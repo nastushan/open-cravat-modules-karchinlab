@@ -4,6 +4,7 @@ widgetGenerators[widgetName] = {
 		'name': 'Gene Ontology',
 		'width': 700, 
 		'height': 400, 
+		'callserver': true,
 		'function': function (div, data) {
 			if (div != null) {
 				emptyElement(div);
