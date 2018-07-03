@@ -1,3 +1,5 @@
 /cravat.yml
 /*.zip
 /*/*/data/**
+.pydevproject
+.project
