@@ -1,0 +1,12 @@
+title: 1000 Genomes
+version: 1.0.0
+type: annotator
+
+level: variant
+output_columns:
+- name: af
+  title: 1000 Genomes AF
+  type: float
+
+description: 1000 Genomes annotation
+developer: rkim@mail.insilico.us.com

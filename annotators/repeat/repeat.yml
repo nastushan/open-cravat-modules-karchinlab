@@ -1,0 +1,18 @@
+title: Repeat Sequences
+version: 1.0.0
+type: annotator
+
+level: variant
+output_columns:
+- name: repeatclass
+  title: Repeat Class
+  type: string
+- name: repeatfamily
+  title: Repeat Family
+  type: string
+- name: repeatname
+  title: Repeat Name
+  type: string
+
+description: Repeat Sequences annotation
+developer: rkim@mail.insilico.us.com

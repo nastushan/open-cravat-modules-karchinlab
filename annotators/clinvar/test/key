@@ -1,0 +1,42 @@
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 11:17:56
+#Report level: variant
+#
+Base Information					ClinVar			Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	Clinical Significance	Disease Ref Nums	Disease Names	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr11	64810053	-	A	Pathogenic	MedGen:CN221809	not provided	1		minus_ins_MEN1						
+2	chr10	87894027	-	CT	Pathogenic	MedGen:C0027672,SNOMED CT:C0027672	Hereditary cancer-predisposing syndrome	1		plus_ins_PTEN						
+3	chr17	21703215	C	-	Pathogenic, risk factor	MedGen:C0268446,OMIM:188580,Orphanet:ORPHA79102,SNOMED CT:C0268446;MedGen:C2750473,OMIM:613239	Thyrotoxic periodic paralysis;Thyrotoxic periodic paralysis 2	1		plus_del_KCNJ18						
+4	chr1	7965348	G	T	Pathogenic	MedGen:C2751533	Parkinson disease, autosomal recessive early-onset, digenic, PINK1/DJ1	1		plus_SBS_PARK7						
+5	chr15	48793359	T	G	Pathogenic/Likely pathogenic	MedGen:C3553886,OMIM:614852;MedGen:CN221809	Primary autosomal recessive microcephaly 9;not provided	1		minus_SBS_GATM						
+6	chr17	7674904	TC	-	Pathogenic	MedGen:CN221809	not provided	1		minus_del_TP53						
+7	chr10	87894027	-	CG	Pathogenic	MedGen:C0027672,SNOMED CT:C0027672	Hereditary cancer-predisposing syndrome	1		fuzzy_ins_PTEN						
+8	chr17	7674904	T	-	Pathogenic	MedGen:CN221809	not provided	1		fuzzy_del_TP53						
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 11:17:56
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+6	
+7	
+8	
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 11:17:56
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	minus_ins_MEN1	1
+3	plus_ins_PTEN	2
+4	plus_del_KCNJ18	3
+5	plus_SBS_PARK7	4
+6	minus_SBS_GATM	5
+7	minus_del_TP53	6
+8	fuzzy_ins_PTEN	7
+9	fuzzy_del_TP53	8

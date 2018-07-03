@@ -1,0 +1,26 @@
+title: COSMIC
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crx
+output_columns:
+- name: cosmic_id
+  title: COSMIC ID
+  type: string
+- name: variant_count_tissue
+  title: COSMIC variant count (tissue)
+  type: string
+- name: variant_count
+  title: COSMIC variant count
+  type: int
+- name: transcript
+  title: COSMIC transcript
+  type: string
+- name: protein_change
+  title: COSMIC protein change
+  type: string
+
+description: COSMIC annotation
+developer: rkim@mail.insilico.us.com
+data_version: 1.0.0

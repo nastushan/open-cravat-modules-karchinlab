@@ -1,0 +1,52 @@
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:15:26
+#Report level: variant
+#
+Base Information					Repeat Sequences			Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	Repeat Class	Repeat Family	Repeat Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr1	10100	C	T	Simple_repeat	Simple_repeat	(TAACCC)n	1		simplerepeat1						
+2	chr1	3694500	A	T	Satellite	Satellite	MSR1	1		satellite1						
+3	chr1	30000	T	C	LINE	L1	L1MB3	1		line1						
+4	chr1	31500	T	C	SINE	Alu	AluJo	1		sine1						
+5	chr1	42000	C	T	LTR	ERVL	ERV3-16A3_I-int	1		ltr1						
+6	chr1	532970	T	G	Low_complexity	Low_complexity	A-rich	1		lowcomplexity1						
+7	chr1	39623	T	G	LTR	ERVL-MaLR	MLT1E1A	1		End						
+8	chr1	39624	T	G	SINE	Alu	AluSx	1		Start						
+9	chr1	45886	G	T				1		before_line						
+10	chr1	45988	T	G				1		after_line						
+11	chr1	39623	TG	-	LTR,SINE	ERVL-MaLR,Alu	MLT1E1A,AluSx	1		multi						
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:15:26
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+6	
+7	
+8	
+9	
+10	
+11	
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:15:26
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	simplerepeat1	1
+3	satellite1	2
+4	line1	3
+5	sine1	4
+6	ltr1	5
+7	lowcomplexity1	6
+8	End	7
+9	Start	8
+10	before_line	9
+11	after_line	10
+12	multi	11
+

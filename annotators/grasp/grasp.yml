@@ -1,0 +1,20 @@
+title: GRASP-GWAS
+version: 1.0.0
+type: annotator
+
+name: GRASP-GWAS
+level: variant
+input_format: crv
+output_columns:
+- name: nhlbi
+  title: GWAS NHLBI Key (GRASP)
+  type: string
+- name: pmid
+  title: GWAS PMID (GRASP)
+  type: string
+- name: phenotype
+  title: GWAS Phenotype (GRASP)
+  type: string
+
+description: GRASP-GWAS annotation
+developer: kmoad@mail.insilico.us.com

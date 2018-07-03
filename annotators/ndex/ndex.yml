@@ -1,0 +1,21 @@
+title: NDEx
+version: 1.0.0
+type: annotator
+
+level: gene
+input_format: crg
+output_columns: 
+- name: numhit
+  title: Number of networks
+  type: int
+- name: networkid
+  title: Network ID
+  type: string
+- name: networkname
+  title: Network Name
+  type: string
+
+add_to_variant_level: true
+
+description: NDEx annotation
+developer: rkim@mail.insilico.us.com

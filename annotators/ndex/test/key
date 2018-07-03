@@ -1,0 +1,40 @@
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:35:08
+#Report level: variant
+#
+Base Information								Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr1	11847684	T	A	NPPA	ENST00000610706.1	{"NPPA":[["P01160","M1L","MIS","ENST00000376480.7","A1T"],["A0A087X094","M1L","MIS","ENST00000610706.1","A1T"],["B0ZBE8",null,"INT","ENST00000376476.1",null]]}	1		NPPA						
+2	chr6	30715175	T	A	MDC1	ENST00000613547.4	{"MDC1":[["Q14676","M1L","MIS","ENST00000376406.7","A1T"],["A0A087X0R2","M1L","MIS","ENST00000613547.4","A1T"]]}	1		MDC1						
+3	chr17	68515400	A	T	PRKAR1A	ENST00000586397.5	{"PRKAR1A":[["P10644","M1L","MIS","ENST00000358598.6","A1T"],["P10644","M1L","MIS","ENST00000392711.5","A1T"],["P10644","M1L","MIS","ENST00000589228.5","A1T"],["P10644","M1L","MIS","ENST00000536854.6","A1T"],["P10644","M1L","MIS","ENST00000586397.5","A1T"],[null,"M1L","MIS","ENST00000588188.6","A1T"]]}	1		PRKAR1A						
+4	chr1	100719861	A	T	VCAM1	ENST00000370115.1	{"VCAM1":[[null,"M1L","MIS","ENST00000370119.8","A1T"],[null,"M1L","MIS","ENST00000347652.6","A1T"],["P19320","M1L","MIS","ENST00000294728.6","A1T"],["E9PDD2","M1L","MIS","ENST00000370115.1","A1T"]]}	1		VCAM1						
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:35:08
+#Report level: gene
+#
+Base Information				NDEx		
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Number of networks	Network ID	Network Name
+MDC1	1	MIS	MIS(1)	1	f9c7eca4-5521-11e7-8f50-0ac135e8bacf	ATM pathway
+NPPA	1	MIS	MIS(1)	1	fd2c9b80-5521-11e7-8f50-0ac135e8bacf	AP-1 transcription factor network
+PRKAR1A	1	MIS	MIS(1)	1	03788bcc-5522-11e7-8f50-0ac135e8bacf	Alpha4 beta1 integrin signaling events
+VCAM1	1	MIS	MIS(1)	8	026a5018-5522-11e7-8f50-0ac135e8bacf,03788bcc-5522-11e7-8f50-0ac135e8bacf,06434396-5522-11e7-8f50-0ac135e8bacf,3e718c82-5521-11e7-8f50-0ac135e8bacf,e88bd848-5521-11e7-8f50-0ac135e8bacf,f23376be-5521-11e7-8f50-0ac135e8bacf,f358bce2-5521-11e7-8f50-0ac135e8bacf,f3e852b4-5521-11e7-8f50-0ac135e8bacf	Alpha9 beta1 integrin signaling events,Alpha4 beta1 integrin signaling events,a4b7 Integrin signaling,Thromboxane A2 receptor signaling,Cellular roles of Anthrax toxin,Beta5 beta6 beta7 and beta8 integrin cell surface interactions,Beta2 integrin cell surface interactions,Beta1 integrin cell surface interactions
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:35:08
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:35:08
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	NPPA	1
+3	MDC1	2
+4	PRKAR1A	3
+5	VCAM1	4

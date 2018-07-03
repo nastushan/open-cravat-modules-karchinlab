@@ -1,0 +1,44 @@
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:50:06
+#Report level: variant
+#
+Base Information								Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr1	11847684	T	A	NPPA	ENST00000610706.1	{"NPPA":[["P01160","M1L","MIS","ENST00000376480.7","A1T"],["A0A087X094","M1L","MIS","ENST00000610706.1","A1T"],["B0ZBE8",null,"INT","ENST00000376476.1",null]]}	1		NPPA						
+2	chr6	30715175	T	A	MDC1	ENST00000613547.4	{"MDC1":[["Q14676","M1L","MIS","ENST00000376406.7","A1T"],["A0A087X0R2","M1L","MIS","ENST00000613547.4","A1T"]]}	1		MDC1						
+3	chr1	12644547	A	T	AADACL4	ENST00000376221.1	{"AADACL4":[["Q5VUY2","M1L","MIS","ENST00000376221.1","A1T"]]}	1		AADACL4						
+4	chr17	68515400	A	T	PRKAR1A	ENST00000586397.5	{"PRKAR1A":[["P10644","M1L","MIS","ENST00000358598.6","A1T"],["P10644","M1L","MIS","ENST00000392711.5","A1T"],["P10644","M1L","MIS","ENST00000589228.5","A1T"],["P10644","M1L","MIS","ENST00000536854.6","A1T"],["P10644","M1L","MIS","ENST00000586397.5","A1T"],[null,"M1L","MIS","ENST00000588188.6","A1T"]]}	1		PRKAR1A						
+5	chr1	100719861	A	T	VCAM1	ENST00000370115.1	{"VCAM1":[[null,"M1L","MIS","ENST00000370119.8","A1T"],[null,"M1L","MIS","ENST00000347652.6","A1T"],["P19320","M1L","MIS","ENST00000294728.6","A1T"],["E9PDD2","M1L","MIS","ENST00000370115.1","A1T"]]}	1		VCAM1						
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:50:06
+#Report level: gene
+#
+Base Information				PubMed	
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	PubMed article count	PubMed search link
+AADACL4	1	MIS	MIS(1)		
+MDC1	1	MIS	MIS(1)	45	http://www.ncbi.nlm.nih.gov/pubmed?term=MDC1[TIAB] AND cancer[MH]
+NPPA	1	MIS	MIS(1)	6	http://www.ncbi.nlm.nih.gov/pubmed?term=NPPA[TIAB] AND cancer[MH]
+PRKAR1A	1	MIS	MIS(1)	164	http://www.ncbi.nlm.nih.gov/pubmed?term=PRKAR1A[TIAB] AND cancer[MH]
+VCAM1	1	MIS	MIS(1)	36	http://www.ncbi.nlm.nih.gov/pubmed?term=VCAM1[TIAB] AND cancer[MH]
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:50:06
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+#CRAVAT Report
+#Created at Tuesday 04/10/2018 09:50:06
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	NPPA	1
+3	MDC1	2
+4	AADACL4	3
+5	PRKAR1A	4
+6	VCAM1	5

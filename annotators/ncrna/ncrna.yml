@@ -1,0 +1,16 @@
+title: ncRNA
+version: 1.0.0
+type: annotator
+
+name: ncRNA
+level: variant
+output_columns: 
+- name: ncrnaclass
+  title: ncRNA Class
+  type: string
+- name: ncrnaname
+  title: ncRNA Name
+  type: string
+
+description: ncRNA annotation
+developer: rkim@mail.insilico.us.com

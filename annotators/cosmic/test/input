@@ -1,0 +1,11 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tag
+chr4	1804372	+	A	G		plus_SBS_FGFR3
+chr12	25245372	+	T	C		minus_SBS_KRAS
+chr12	25245378	+	-	A		minus_ins_KRAS
+chr19	48955597	+	G	-		plus_del_BAX
+chr17	31206362	+	-	CCCC		plus_ins_NF1
+chr1	114713881	+	TGGTCTC	-		minus_del_NRAS
+chr12	25245378	+	-	C		fuzzy_ins_KRAS
+chr1	114713881	+	TGGTC	-		fuzzy_del_NRAS
+chr5	141505474	+	C	T		multihit01
+chr2	233772515	+	A	G		multihit02

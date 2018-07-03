@@ -1,0 +1,21 @@
+title: Cancer Genome Census
+version: 1.0.0
+type: annotator
+
+level: gene
+output_columns:
+- name: class
+  title: CGC driver class
+  type: string
+- name: inheritance
+  title: CGC inheritance
+  type: string
+- name: tts
+  title: CGC tumor types somatic
+  type: string
+- name: ttg
+  title: CGC tumor types germline
+  type: string
+
+description: Cancer Genome Census annotation
+developer: rkim@mail.insilico.us.com

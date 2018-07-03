@@ -1,0 +1,57 @@
+name: vest
+title: VEST
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crx
+output_columns:
+- name: transcript
+  title: VEST score transcript
+  type: string
+- name: score
+  title: VEST score
+  type: float
+- name: pval
+  title: VEST p-value
+  type: float
+- name: score_mis
+  title: VEST score (missense)
+  type: float
+- name: score_fsv
+  title: VEST score (frameshift)
+  type: float
+- name: score_inv
+  title: VEST score (inframe indel)
+  type: float
+- name: score_stg
+  title: VEST score (stop gain)
+  type: float
+- name: score_stl
+  title: VEST score (stop loss)
+  type: float
+- name: score_spl
+  title: VEST score (splice site)
+  type: float
+- name: all_results
+  title: All transcripts
+  type: string
+- name: hugo
+  title: HUGO
+  type: string
+  aggregate: false
+
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: max_score
+  title: Max Score
+  type: float
+- name: mean_score
+  title: Mean Score
+  type: float
+- name: gene_pval
+  title: Gene p-value
+  type: float
+
+description: VEST annotation
+developer: rkim@mail.insilico.us.com

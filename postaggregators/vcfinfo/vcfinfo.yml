@@ -1,0 +1,29 @@
+title: VCF Info
+version: 1.0.0
+type: postaggregator
+
+name: vcfinfo
+level: variant
+input_level: variant,crs,crm
+output_columns:
+- name: phred
+  title: Phred
+  type: string
+- name: filter
+  title: VCF filter
+  type: string
+- name: zygosity
+  title: Zygosity
+  type: string
+- name: alt_reads
+  title: Alternate reads
+  type: string
+- name: tot_reads
+  title: Total reads
+  type: string
+- name: af
+  title: Variant allele frequency
+  type: string
+      
+description: Writes VCF file information extracted by converter
+developer: rkim@mail.insilico.us.com

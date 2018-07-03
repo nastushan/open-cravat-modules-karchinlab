@@ -1,0 +1,12 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tags
+chr1	10100	+	C	T		simplerepeat1
+chr1	3694500	+	A	T		satellite1
+chr1	30000	+	T	C		line1
+chr1	31500	+	T	C		sine1
+chr1	42000	+	C	T		ltr1
+chr1	532970	+	T	G		lowcomplexity1
+chr1	39623	+	T	G		End
+chr1	39624	+	T	G		Start
+chr1	45886	+	G	T		before_line
+chr1	45988	+	T	G		after_line
+chr1	39623	+	TG	-		multi

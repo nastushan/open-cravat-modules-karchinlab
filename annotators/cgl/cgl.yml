@@ -1,0 +1,12 @@
+title: Cancer Genome Landscape
+version: 1.0.0
+type: annotator
+
+level: gene
+output_columns:
+- name: class
+  title: CGL Class
+  type: string
+  
+description: Cancer Genome Landscape annotation
+developer: rkim@mail.insilico.us.com

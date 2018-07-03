@@ -1,0 +1,16 @@
+title: ESP6500
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crv
+output_columns:
+- name: ea_pop_af
+  title: EA
+  type: float
+- name: aa_pop_af
+  title: AA
+  type: float
+
+description: ESP6500 annotation
+developer: rkim@mail.insilico.us.com

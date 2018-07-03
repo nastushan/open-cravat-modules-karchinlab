@@ -1,0 +1,15 @@
+#column=0,Hugo,hugo,string
+#column=1,Variants in Gene,num_variants,int
+#column=2,Sequence Ontology,so,string
+#column=3,All Sequence Ontologies,all_so,string
+#Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
+FGFR3	1	MIS	MIS(1)
+KRAS	1	MIS	MIS(1)
+MAP1A	2	MIS	MIS(2)
+NBPF1	1	MIS	MIS(1)
+PAK1	1	STG	STG(1)
+PAK3	1	MIS	MIS(1)
+SF3B1	2	MIS	MIS(2)
+TLE2	1	MIS	MIS(1)
+TP53	1	MIS	MIS(1)
+TREM2	1	MIS	MIS(1)

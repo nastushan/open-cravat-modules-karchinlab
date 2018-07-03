@@ -1,0 +1,11 @@
+#Variants that target the specified gene
+chr1	22563636	+	A	T		EPHA8
+chr17	31095310	+	A	T		NF1
+chr7	55019278	+	A	T		EGFR
+chr4	1793935	+	A	T		FGFR3
+chr10	87864470	+	A	T		PTEN
+chr7	140924703	-	A	T		BRAF
+chr15	45378453	-	A	T		GATM
+chr17	7676594	-	A	T		TP53
+chr12	25245384	-	A	T		KRAS
+chr17	61861539	-	A	T		BRIP1

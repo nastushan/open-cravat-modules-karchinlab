@@ -1,0 +1,5 @@
+title: Cravat Converter
+version: 1.0.0
+type: converter
+description: File converter for standard cravat input
+developer: rkim@mail.insilico.us.com

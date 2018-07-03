@@ -1,0 +1,12 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tags
+chr3	146085328	+	C	T		plus_SBS_PLOD2
+chr20	52414564	+	-	T		plus_ins_GNAS
+chr3	116584450	+	-	CAAA		plus_ins_PIK3CA
+chr20	117745	+	A	-		plus_del_GNAS
+chr3	179198726	+	AT	-	sample3	plus_del_PIK3CA
+chr7	140734758	+	T	C		minus_SBS_BRAF
+chr7	140742186	+	-	T		minus_ins_BRAF
+chr17	37101975	+	-	TC		minus_ins_ACACA
+chr7	140736487	+	GTGCGAT	-		minus_del_BRAF
+chr20	52414564	+	-	C		fuzzy_ins_GNAS
+chr7	140736487	+	GTGCGA	-		fuzzy_del_BRAF

@@ -1,0 +1,34 @@
+name: chasmplus
+title: CHASMplus
+version: 1.0.0
+type: annotator
+
+level: variant
+output_columns:
+- name: pval
+  title: P-value
+  type: float
+- name: score
+  title: Score
+  type: float
+- name: transcript
+  title: Transcript
+  type: string
+- name: results
+  title: All results
+  type: string
+
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: max_score
+  title: Max Score
+  type: float
+- name: mean_score
+  title: Mean Score
+  type: float
+- name: gene_pval
+  title: Gene p-value
+  type: float
+  
+description: Machine learning method that predicts the functional significance of somatic missense mutations.
+developer: karchin@jhu.edu

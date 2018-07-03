@@ -1,0 +1,27 @@
+title: HGVS
+type: annotator
+version: 1.0.0
+
+level: variant
+input_format: crx
+nc_assembly_version: 11
+
+output_columns:
+- name: genomic
+  title: Genomic
+  type: string
+- name: rna
+  title: Primary RNA
+  type: string
+- name: protein
+  title: Primary protein
+  type: string
+- name: all_rna
+  title: All RNA
+  type: string
+- name: all_protein
+  title: All protein
+  type: string
+
+description: Provides genomic, transcript, and protein sequence changes in HGVS format.
+developer: kmoad@insilico.us.com

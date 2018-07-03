@@ -1,0 +1,19 @@
+title: ClinVar
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crv
+output_columns:
+- name: sig
+  title: Clinical Significance
+  type: string
+- name: refs
+  title: Disease Ref Nums
+  type: string
+- name: diseases
+  title: Disease Names
+  type: string
+
+description: ClinVar annotation
+developer: rkim@mail.insilico.us.com

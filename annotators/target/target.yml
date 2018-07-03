@@ -1,0 +1,16 @@
+title: TARGET
+version: 1.0.0
+type: annotator
+
+level: gene
+input_format: crg
+output_columns: 
+- name: therapy
+  title: Recommended Therapy
+  type: string
+- name: rationale
+  title: Rationale
+  type: string
+
+description: TARGET annotation
+developer: rkim@mail.insilico.us.co

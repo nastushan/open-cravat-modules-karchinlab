@@ -1,0 +1,16 @@
+title: Pseudogene
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crv
+output_columns:
+- name: pseudogene_hugo
+  title: Pseudogene
+  type: string
+- name: pseudogene_transcript
+  title: Pseudogene Transcript
+  type: string
+
+description: Pseudogene annotation
+developer: rkim@mail.insilico.us.com

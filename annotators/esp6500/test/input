@@ -1,0 +1,13 @@
+#Chrom	Position	Ref Base	Alt Base	Sample Id
+chr12	123619507	+	A	G		plus_SBS_DDX55
+chr1	7970884	+	-	T		plus_ins_PARK7
+chr3	179210602	+	-	CC		plus_ins_PIK3CA
+chr12	123619689	+	A	-		plus_del_DDX55
+chr1	7984955	+	GCC	-		plus_del_PARK7
+chr15	45376607	+	C	T		minus_SBS_GATM
+chr15	45364871	+	-	A		minus_ins_GATM
+chr14	104775212	+	-	GG		minus_ins_AKT1
+chr7	140807936	+	A	-		minus_del_BRAF
+chr15	45364907	+	TAT	-		minus_del_GATM
+chr1	7970884	+	-	C		fuzzy_ins_PARK7
+chr15	45364907	+	TA	-		fuzzy_del_GATM

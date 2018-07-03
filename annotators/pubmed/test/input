@@ -1,0 +1,6 @@
+#variants for targeted test genes
+chr1	11847684	-	A	T		NPPA
+chr6	30715175	-	A	T		MDC1
+chr1	12644547	+	A	T		AADACL4
+chr17	68515400	+	A	T		PRKAR1A
+chr1	100719861	+	A	T		VCAM1

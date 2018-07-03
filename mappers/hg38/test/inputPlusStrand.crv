@@ -1,0 +1,33 @@
+#column=0,UID,uid,string
+#column=1,Chrom,chrom,string
+#column=2,Position,pos,int
+#column=3,Ref,ref_base,string
+#column=4,Alt,alt_base,string
+#UID	Chrom	Position	Ref	Alt
+plus_SBS_MIS	chr1	155208824	C	T
+plus_SBS_SYN	chr1	155210348	C	T
+plus_us_int	chr1	155213481	C	T
+plus_us_ss1	chr1	155213482	A	C
+plus_us_ss2	chr1	155213483	G	T
+plus_ds_ss1	chr1	155213392	G	T
+plus_ds_ss2	chr1	155213393	T	C
+plus_ds_int	chr1	155213394	A	T
+plus_STG	chr1	59868328	G	T
+plus_STG2	chr6	42929620	-	AAA
+plus_STL	chr8	43018497	A	G
+plus_STL2	chr17	47310203	-	CCC
+plus_IFI	chr6	42929621	-	ACC
+plus_IFD	chr18	54269588	CGA	-
+plus_FI1	chr12	50081180	-	T
+plus_FI2	chr17	47310187	-	AAAAA
+plus_FSD	chr4	85972104	T	-
+plus_FSD7	chr1	110340653	CGGCTTT	-
+plus_del_beyond_exon	chr18	54292038	TGTAA	-
+plus_before_us_start	chr1	155206796	C	G
+plus_at_us_start	chr1	155206797		G	C
+plus_before_us_end	chr1	155208796	G	T
+plus_at_utr_start	chr1	155208797		T	C
+plus_at_utr_end	chr1	155213823	A	C
+plus_at_ds_start	chr1	155213824	C	A
+plus_at_ds_end	chr1	155215823	C	A
+plus_after_ds_end	chr1	155215824	A	C

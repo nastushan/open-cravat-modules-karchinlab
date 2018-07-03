@@ -1,0 +1,37 @@
+title: gnomAD
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crv
+output_columns:
+- name: af
+  title: gnomAD AF Total
+  type: float
+- name: af_afr
+  title: gnomAD AF African
+  type: float
+- name: af_amr
+  title: gnomAD AF American
+  type: float
+- name: af_asj
+  title: gnomAD AF Ashkenazi Jewish
+  type: float
+- name: af_eas
+  title: gnomAD AF East Asian
+  type: float
+- name: af_fin
+  title: gnomAD AF Finnish
+  type: float
+- name: af_nfe
+  title: gnomAD AF Non-Finnish European
+  type: float
+- name: af_oth
+  title: gnomAD AF Other
+  type: float
+- name: af_sas
+  title: gnomAD AF South Asian
+  type: float
+
+description: gnomAD annotation
+developer: kmoad@mail.insilico.us.com

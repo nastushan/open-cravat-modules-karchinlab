@@ -1,0 +1,16 @@
+title: PubMed
+version: 1.0.0
+type: annotator
+
+level: gene
+input_format: crg
+output_columns:
+- name: n
+  title: PubMed article count
+  type: int
+- name: term
+  title: PubMed search link
+  type: string
+
+description: PubMed annotation
+developer: rkim@mail.insilico.us.com

@@ -1,0 +1,5 @@
+title: UCSC hg38 Gene Mapper
+version: 1.0.0
+type: mapper
+description: Gene mapper using UCSC Gencode
+developer: rkim@mail.insilico.us.com

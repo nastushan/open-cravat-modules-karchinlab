@@ -1,0 +1,16 @@
+#column=0,Hugo,hugo,string
+#column=1,Variants in Gene,num_variants,int
+#column=2,Sequence Ontology,so,string
+#column=3,All Sequence Ontologies,all_so,string
+#Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
+ARHGAP4	1	FI1	FI1(1)
+ARID4B	2	FD1	STG(1),FD1(1)
+ARL1	1	STL	STL(1)
+AVPR2	1	2KD	2KD(1)
+BRCA1	7	SPL	MIS(1),SPL(4),INT(2)
+FLT4	1	FI2	FI2(1)
+GFY	1	2KU	2KU(1)
+KCNN3	1	IIV	IIV(1)
+KRT17	8	MIS	SYN(1),MIS(1),2KU(2),UT5(1),UT3(1),2KD(2)
+MIS18BP1	1	FD2	FD2(1)
+PTH2	1	IDV	IDV(1)

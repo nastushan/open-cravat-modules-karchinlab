@@ -1,0 +1,51 @@
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:27:46
+#Report level: variant
+#
+Base Information					1000 Genomes	Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	1000 Genomes AF	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr3	146085328	C	T	0.000199681	1		plus_SBS_PLOD2						
+2	chr20	52414564	-	T	0.478235	1		plus_ins_GNAS						
+3	chr3	116584450	-	CAAA	0.000998403	1		plus_ins_PIK3CA						
+4	chr20	117745	A	-	0.00938498	1		plus_del_GNAS						
+5	chr3	179198726	AT	-	0.000798722	1	sample3	plus_del_PIK3CA						
+6	chr7	140734758	T	C	0.000199681	1		minus_SBS_BRAF						
+7	chr7	140742186	-	T	0.0632987	1		minus_ins_BRAF						
+8	chr17	37101975	-	TC	0.680312	1		minus_ins_ACACA						
+9	chr7	140736487	GTGCGAT	-	0.00159744	1		minus_del_BRAF						
+10	chr20	52414564	-	C		1		fuzzy_ins_GNAS						
+11	chr7	140736487	GTGCGA	-		1		fuzzy_del_BRAF						
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:27:46
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	sample3
+6	
+7	
+8	
+9	
+10	
+11	
+#CRAVAT Report
+#Created at Thursday 04/05/2018 15:27:46
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	plus_SBS_PLOD2	1
+3	plus_ins_GNAS	2
+4	plus_ins_PIK3CA	3
+5	plus_del_GNAS	4
+6	plus_del_PIK3CA	5
+7	minus_SBS_BRAF	6
+8	minus_ins_BRAF	7
+9	minus_ins_ACACA	8
+10	minus_del_BRAF	9
+11	fuzzy_ins_GNAS	10
+12	fuzzy_del_BRAF	11

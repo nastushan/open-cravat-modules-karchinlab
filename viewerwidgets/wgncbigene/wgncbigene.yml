@@ -1,0 +1,5 @@
+title: NCBI Gene Widget
+version: 1.0.0
+type: webviewerwidget
+description: NCBI Gene webviewer widget
+developer: kmoad@mail.insilico.us.com

@@ -1,0 +1,17 @@
+#name=chasmplus_gene
+#displayname=CHASMplus Gene
+#column=0,Hugo,hugo,string
+#column=1,Max Score,max_score,float
+#column=2,Mean Score,mean_score,float
+#column=3,Gene p-value,gene_pval,float
+#Hugo	Max Score	Mean Score	Gene p-value
+FGFR3	0.75	0.75	0.0
+KRAS	0.717	0.717	0.0
+MAP1A	0.079	0.066	0.245
+NBPF1			
+PAK1	0.389	0.389	0.002
+PAK3	0.256	0.256	0.022
+SF3B1	0.765	0.765	0.0
+TLE2			
+TP53	0.828	0.828	0.0
+TREM2	0.008	0.008	0.841

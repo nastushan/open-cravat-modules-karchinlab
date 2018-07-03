@@ -1,0 +1,5 @@
+title: OldCravat Converter
+version: 1.0.0
+type: converter
+description: File converter for old architecture cravat input
+developer: rkim@mail.insilico.us.com

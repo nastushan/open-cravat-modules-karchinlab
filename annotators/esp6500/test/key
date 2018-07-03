@@ -1,0 +1,54 @@
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 17:04:55
+#Report level: variant
+#
+Base Information					ESP6500		Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	EA	AA	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr12	123619507	A	G		0.000226963	1		plus_SBS_DDX55						
+2	chr1	7970884	-	T	0.000121153		1		plus_ins_PARK7						
+3	chr3	179210602	-	CC	0.000127486		1		plus_ins_PIK3CA						
+4	chr12	123619689	A	-	0.000863132	0.00123762	1		plus_del_DDX55						
+5	chr1	7984955	GCC	-	0.021323	0.0220347	1		plus_del_PARK7						
+6	chr15	45376607	C	T	0.000116333	0.00022748	1		minus_SBS_GATM						
+7	chr15	45364871	-	A	0.000121153	0.000703565	1		minus_ins_GATM						
+8	chr14	104775212	-	GG		0.000234522	1		minus_ins_AKT1						
+9	chr7	140807936	A	-	0.00327193	0.00375411	1		minus_del_BRAF						
+10	chr15	45364907	TAT	-	0.00703883	0.0266509	1		minus_del_GATM						
+11	chr1	7970884	-	C			1		fuzzy_ins_PARK7						
+12	chr15	45364907	TA	-			1		fuzzy_del_GATM						
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 17:04:55
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+6	
+7	
+8	
+9	
+10	
+11	
+12	
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 17:04:55
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	plus_SBS_DDX55	1
+3	plus_ins_PARK7	2
+4	plus_ins_PIK3CA	3
+5	plus_del_DDX55	4
+6	plus_del_PARK7	5
+7	minus_SBS_GATM	6
+8	minus_ins_GATM	7
+9	minus_ins_AKT1	8
+10	minus_del_BRAF	9
+11	minus_del_GATM	10
+12	fuzzy_ins_PARK7	11
+13	fuzzy_del_GATM	12

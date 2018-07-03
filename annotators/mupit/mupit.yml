@@ -1,0 +1,23 @@
+name: mupit
+title: MuPIT
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crx
+output_columns:
+- name: link
+  title: MuPIT link
+  type: string
+- name: hugo
+  title: Hugo
+  type: string
+
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: link
+  title: MuPIT link
+  type: string
+
+description: MuPIT annotation
+developer: rkim@mail.insilico.us.com

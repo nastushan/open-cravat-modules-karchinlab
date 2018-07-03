@@ -1,0 +1,42 @@
+#column=0,UID,uid,string				
+#column=1,Chrom,chrom,string				
+#column=2,Position,pos,int				
+#column=3,Ref Base,ref_base,string				
+#column=4,Alt Base,alt_base,string				
+#UID	Chrom	Position	Ref Base	Alt Base
+#midcodon, should all point to 396, 365, 247
+plus_mc_m1	chr1	155213391	G	A
+plus_mc_s1	chr1	155213392	G	T
+plus_mc_s2	chr1	155213393	T	C
+plus_mc_i1	chr1	155213394	A	T
+plus_mc_i2	chr1	155213481	C	T
+plus_mc_s3	chr1	155213482	A	C
+plus_mc_s4	chr1	155213483	G	T
+plus_mc_m2	chr1	155213484	C	T
+#midcodon, should all point to 311, 1453, 350, 1406, 1453, 350
+minus_mc_m1	chr17	43082404	C	G
+minus_mc_s1	chr17	43082403	C	T
+minus_mc_s2	chr17	43082402	A	T
+minus_mc_i1	chr17	43082401	C	T
+minus_mc_i2	chr17	43079402	G	T
+minus_mc_s3	chr17	43079401	T	C
+minus_mc_s4	chr17	43079400	C	T
+minus_mc_m2	chr17	43079399	T	C
+#intercodon, splices should point to 272
+plus_ic_m1	chr3	179201540	G	C
+plus_ic_s1	chr3	179201541	G	C
+plus_ic_s2	chr3	179201542	T	C
+plus_ic_i1	chr3	179201543	G	C
+plus_ic_i2	chr3	179203541	C	T
+plus_ic_s3	chr3	179203542	A	T
+plus_ic_s4	chr3	179203543	G	T
+plus_ic_m2	chr3	179203544	T	G
+#intercodon, splices should point to 38
+minus_ic_m1	chr12	25245274	C	A
+minus_ic_s1	chr12	25245273	C	G
+minus_ic_s2	chr12	25245272	A	G
+minus_ic_i1	chr12	25245271	T	G
+minus_ic_i2	chr12	25227415	G	T
+minus_ic_s3	chr12	25227414	T	G
+minus_ic_s4	chr12	25227413	C	G
+minus_ic_m2	chr12	25227412	C	G

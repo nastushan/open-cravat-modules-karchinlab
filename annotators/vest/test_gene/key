@@ -1,0 +1,17 @@
+#name=vest_gene
+#displayname=VEST Gene
+#column=0,Hugo,hugo,string
+#column=1,Max Score,max_score,float
+#column=2,Mean Score,mean_score,float
+#column=3,Gene p-value,gene_pval,float
+#Hugo	Max Score	Mean Score	Gene p-value
+ACACA	0.93	0.93	0.021
+AHI1	0.922	0.647	0.014
+DDX20	0.945	0.945	0.004
+DPP10	0.536	0.536	0.167
+FAM71E2			
+FUCA2	0.1	0.1	0.785
+FUK	0.205	0.205	0.521
+HOOK3	0.012	0.012	0.903
+KRTAP5-1			
+MYH9	0.975	0.778	0.0

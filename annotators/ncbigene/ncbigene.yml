@@ -1,0 +1,12 @@
+title: NCBI Gene
+version: 1.0.0
+type: annotator
+
+level: gene
+output_columns:
+- name: ncbi_desc
+  title: NCBI Gene Description
+  type: string
+
+description: NCBI Gene Descriptions
+developer: mryan@insilico.us.com

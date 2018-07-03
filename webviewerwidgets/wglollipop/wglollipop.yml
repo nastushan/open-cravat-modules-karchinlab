@@ -1,0 +1,6 @@
+title: Gene diagram
+version: 1.0.0
+required_annotator: base
+type: webviewerwidget
+description: Gene diagram webviewer widget
+developer: rkim@mail.insilico.us.com

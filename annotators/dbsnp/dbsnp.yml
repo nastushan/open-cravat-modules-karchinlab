@@ -1,0 +1,13 @@
+title: dbSNP
+version: 1.0.0
+type: annotator
+
+level: variant
+input_format: crv
+output_columns:
+- name: snp
+  title: dbSNP
+  type: string
+
+description: Sample count annotation
+developer: rkim@mail.insilico.us.com

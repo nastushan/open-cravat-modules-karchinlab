@@ -1,0 +1,54 @@
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 16:49:26
+#Report level: variant
+#
+Base Information					dbSNP	Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	dbSNP	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr1	22586480	C	A	rs754009354	1		plus_SBS_EPHA8						
+2	chr17	31327741	-	C	rs267606596	1		plus_ins_NF1						
+3	chr7	55181319	-	GGGTTG	rs397517111	1		plus_ins_EGFR						
+4	chr4	1801945	C	-	rs587776836	1		plus_del_FGFR3						
+5	chr10	87864486	AA	-	rs121913290	1		plus_del_PTEN						
+6	chr7	140753351	A	G	rs121913225	1		minus_SBS_BRAF						
+7	chr15	45363947	-	T	rs397515542	1		minus_ins_GATM						
+8	chr17	7675096	-	ACCTC	rs786202514	1		minus_ins_TP53						
+9	chr12	25227263	A	-	rs397517038	1		minus_del_KRAS						
+10	chr17	7675153	GGGCGGGGGT	-	rs137852791	1		minus_del_TP53						
+11	chr17	31327741	-	T		1		fuzzy_ins_NF1						
+12	chr10	87864486	A	-		1		fuzzy_del_PTEN						
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 16:49:26
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+6	
+7	
+8	
+9	
+10	
+11	
+12	
+#CRAVAT Report
+#Created at Tuesday 04/03/2018 16:49:26
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	plus_SBS_EPHA8	1
+3	plus_ins_NF1	2
+4	plus_ins_EGFR	3
+5	plus_del_FGFR3	4
+6	plus_del_PTEN	5
+7	minus_SBS_BRAF	6
+8	minus_ins_GATM	7
+9	minus_ins_TP53	8
+10	minus_del_KRAS	9
+11	minus_del_TP53	10
+12	fuzzy_ins_NF1	11
+13	fuzzy_del_PTEN	12

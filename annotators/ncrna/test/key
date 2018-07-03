@@ -1,0 +1,45 @@
+#CRAVAT Report
+#Created at Thursday 04/05/2018 09:37:52
+#Report level: variant
+#
+Base Information					ncRNA		Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	ncRNA Class	ncRNA Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr1	157790	A	T	snRNA	U6	1		snrna_NA						
+2	chr15	45433048	T	A			1		not_mirna2_2beforeFirst						
+3	chr15	45433049	C	T			1		not_mirna1_1before						
+4	chr15	45433050	T	C	miRNA	hsa-mir-147b	1		mirna_first						
+5	chr15	45433061	C	G	miRNA	hsa-mir-147b	1		mirna_middle						
+6	chr15	45201222	A	C	tRNA	His	1		trna_last						
+7	chr15	45201223	T	C			1		not_trna_after						
+8	chr9	62802322	C	T	rRNA	5S	1		rrna_middle						
+9	chr2	132147927	C	T	lincRNA,lincRNA,lincRNA	TCONS_l2_00014916:1,TCONS_l2_00014914:1,TCONS_l2_00015978:1	1		lincrna_middle						
+#CRAVAT Report
+#Created at Thursday 04/05/2018 09:37:52
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+6	
+7	
+8	
+9	
+#CRAVAT Report
+#Created at Thursday 04/05/2018 09:37:52
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	snrna_NA	1
+3	not_mirna2_2beforeFirst	2
+4	not_mirna1_1before	3
+5	mirna_first	4
+6	mirna_middle	5
+7	trna_last	6
+8	not_trna_after	7
+9	rrna_middle	8
+10	lincrna_middle	9

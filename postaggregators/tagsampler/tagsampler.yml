@@ -1,0 +1,20 @@
+title: Tag Sampler
+version: 1.0.0
+type: postaggregator
+
+name: tagsampler
+level: variant
+input_level: variant,crs,crm
+output_columns:
+- name: numsample
+  title: Number of Samples
+  type: integer
+- name: samples
+  title: Samples
+  type: string
+- name: tags
+  title: Tags
+  type: string
+      
+description: Aggregates tags and samples
+developer: rkim@mail.insilico.us.com

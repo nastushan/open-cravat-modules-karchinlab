@@ -1,0 +1,43 @@
+#CRAVAT Report
+#Created at Tuesday 05/22/2018 14:55:12
+#Report level: variant
+#
+Base Information									GRASP-GWAS			Tag Sampler			VCF Info					
+UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	Sequence Ontology	All Mappings	GWAS NHLBI Key (GRASP)	GWAS PMID (GRASP)	GWAS Phenotype (GRASP)	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+1	chr18	45622439	C	T	SLC14A2	ENST00000255226.10	INT	{"SLC14A2":[["Q15849",null,"INT","ENST00000255226.10",null],["Q15849",null,"INT","ENST00000589658.5",null],["Q15849",null,"INT","ENST00000586448.5",null]]}	237224247705273,219091093496958	23722424,21909109	Years of education(0.0068),Blood urea nitrogen (BUN)(0.0000)	1		plus_SBS_SLC14A2						
+2	chr18	45666191	G	A	SLC14A2	ENST00000586448.5	MIS	{"SLC14A2":[["Q15849","R510Q","MIS","ENST00000586448.5","G1529A"],["Q15849","R510Q","MIS","ENST00000589658.5","G1529A"],["Q15849","R510Q","MIS","ENST00000255226.10","G1529A"]]}	206865654327492,198751034327487,203831464327489,203831464327488,198751034327486,204538424327490,206639234327491,195718094327485	20686565,19875103,20383146,20383146,19875103,20453842,20663923,19571809	LDL cholesterol(0.0413),Tardive dyskinesia(0.0296),Cystatin C in serum(0.0230),Serum creatinine(0.0210),Abnormal Involuntary Movement Scale(0.0128),Rheumatoid arthritis(0.0010),Autism with low IQ(0.0009),Schizophrenia(0.0003)	1		plus_SBS2_SLC14A2						
+3	chr19	44819487	A	G	BCAM	ENST00000270233.10	MIS	{"BCAM":[["A0A087WXM8","T539A","MIS","ENST00000611077.4","A1615G"],["A0A087WXM8","T539A","MIS","ENST00000589651.5","A1615G"],["P50895","T539A","MIS","ENST00000270233.10","A1615G"]]}	20686565852575,22159054852576,20686565852574,20686565852573	20686565,22159054,20686565,20686565	LDL cholesterol(0.0040),Late onset Alzheimer's disease(0.0027),Total cholesterol(0.0012),Triglycerides(0.0002)	1		plus_coding_BCAM						
+4	chr17	7674797	T	C	TP53	ENST00000445888.6	INT	{"TP53":[[null,null,"INT","ENST00000610292.4",null],["A0A087WXZ1",null,"INT","ENST00000618944.4",null],[null,null,"INT","ENST00000455263.6",null],["A0A087WZU8",null,"INT","ENST00000615910.4",null],[null,null,"INT","ENST00000510385.5",null],[null,null,"INT","ENST00000620739.4",null],["P04637",null,"INT","ENST00000445888.6",null],[null,null,"INT","ENST00000420246.6",null],["J3KP33",null,"INT","ENST00000359597.8",null],["A0A087WT22",null,"INT","ENST00000610623.4",null],[null,null,"INT","ENST00000619485.4",null],[null,null,"INT","ENST00000504937.5",null],[null,null,"INT","ENST00000617185.4",null],["P04637",null,"INT","ENST00000269305.8",null],["E7EQX7",null,"INT","ENST00000413465.6",null],[null,null,"INT","ENST00000610538.4",null],[null,null,"INT","ENST00000504290.5",null],["A0A087X1Q1",null,"INT","ENST00000619186.4",null],[null,null,"INT","ENST00000622645.4",null]]}	209356301242936,206865651242934,206865651242933,229366946783226,229366946783224,208819601242935,228297766783225	20935630,20686565,20686565,22936694,22936694,20881960,22829776	Body mass index (BMI)(0.0270),LDL cholesterol(0.0081),Total cholesterol(0.0014),Serum testosterone (T) level(0.0011),Serum dihydrotestosterone (DHT) level(0.0009),Height(0.0002),Sex hormone-binding globulin (SHBG) concentrations(0.0000)	1		minus_SBS_TP53						
+5	chr7	11555251	G	T	THSD7A	ENST00000423059.8	INT	{"THSD7A":[["Q9UPZ6",null,"INT","ENST00000423059.8",null],["A0A087WY08",null,"INT","ENST00000617773.1",null]]}	2033953628	20339536	Triglycerides change with statins(0.0321)	1		minus_SBS_THSD7A						
+#CRAVAT Report
+#Created at Tuesday 05/22/2018 14:55:12
+#Report level: gene
+#
+Base Information			
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
+BCAM	1	MIS	MIS(1)
+SLC14A2	2	MIS	INT(1),MIS(1)
+THSD7A	1	INT	INT(1)
+TP53	1	INT	INT(1)
+#CRAVAT Report
+#Created at Tuesday 05/22/2018 14:55:12
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+2	
+3	
+4	
+5	
+#CRAVAT Report
+#Created at Tuesday 05/22/2018 14:55:12
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+2	plus_SBS_SLC14A2	1
+3	plus_SBS2_SLC14A2	2
+4	plus_coding_BCAM	3
+5	minus_SBS_TP53	4
+6	minus_SBS_THSD7A	5
