@@ -1,27 +1,33 @@
-var widgetName = 'codingvsnoncoding';
+var widgetName = 'sosummary';
 widgetGenerators[widgetName] = {
 	'summary': {
-		'name': 'Coding vs Noncoding',
+		'name': 'Sequence Ontology',
 		'width': 400, 
 		'height': 400, 
 		'callserver': false,
 		'function': function (div) {
-			console.log('here');
 			if (div != null) {
 				emptyElement(div);
 			}
-			var noCoding = 0;
-			var noNoncoding = 0;
+			var counts = {};
 			var d = infomgr.getData('variant'); 
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
-				var hugo = infomgr.getRowValue('variant', row, 'base__hugo'); 
-				if (hugo == '') {
-					noNoncoding++;
-				} else {
-					noCoding++;
+				var so = infomgr.getRowValue('variant', row, 'base__so'); 
+				if (so != '') {
+					if (counts[so] == undefined) {
+						counts[so] = 0;
+					}
+					counts[so] = counts[so] + 1;
 				}
 			}
+			var labels = Object.keys(counts);
+			var data = [];
+			for (var i = 0; i < labels.length; i++) {
+				var count = counts[labels[i]];
+				data.push(count);
+			}
+			
 			div.style.width = 'calc(100% - 37px)';
 			var chartDiv = getEl('canvas');
 			chartDiv.style.width = 'calc(100% - 20px)';
@@ -32,19 +38,14 @@ widgetGenerators[widgetName] = {
 				type: 'doughnut',
 				data: {
 					datasets: [{
-						data: [
-							noCoding,
-							noNoncoding
-						],
+						data: data,
 						backgroundColor: [
 							'#f7c654',
 							'#69a3ef',
+							'#69ef93'
 							],
 					}],
-					labels: [
-						'Coding', 
-						'Non-coding'
-					]
+					labels: labels
 				},
 				options: {
 					responsive: true

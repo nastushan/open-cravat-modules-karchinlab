@@ -3,7 +3,6 @@ import os
 
 def get_data (queries):
     response = {}
-    
     dbpath = queries['dbpath'][0]
     if 'numgo' in queries:
         num_go = queries['numgo']
@@ -51,7 +50,7 @@ def get_data (queries):
     
     conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 
                                         'data', 
-                                        'wggo.sqlite'))
+                                        'wggosummary.sqlite'))
     cursor = conn.cursor()
     
     go = {}
