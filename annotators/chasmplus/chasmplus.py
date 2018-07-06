@@ -18,6 +18,9 @@ class CravatAnnotator(BaseAnnotator):
                 score = float(toks[0])
                 pval = sig3_round(toks[1])
                 self.pvals[score] = pval
+        cnames_query = 'select name from sqlite_master where type="table" and name like "chr%%";'
+        self.cursor.execute(cnames_query)
+        self.available_chroms = [x[0] for x in self.cursor]
     
     def annotate(self, input_data):
         out = {}
@@ -29,6 +32,8 @@ class CravatAnnotator(BaseAnnotator):
         if not(snv):
             return out
         chrom = input_data['chrom']
+        if chrom not in self.available_chroms:
+            return out
         pos = input_data['pos']
         q = 'select c.score, t.transcript, t.alen from '+chrom+' as c '\
             +'join transcript as t '\
