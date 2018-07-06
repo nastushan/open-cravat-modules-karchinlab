@@ -8,7 +8,6 @@ import logging
 import yaml
 from cravat import CravatReader
 from cravat import CravatWriter
-from cravat import admin_util as au
 
 class Aggregator (object):
     
@@ -17,7 +16,8 @@ class Aggregator (object):
                       'float':'real'}
     commit_threshold = 10000
     
-    def __init__(self):
+    def __init__(self, cmd_args):
+        self._cmd_args = cmd_args[1:]
         self.annotators = []
         self.ipaths = {}
         self.readers = {}
@@ -59,7 +59,7 @@ class Aggregator (object):
                             action='store_true',
                             help='Deletes the existing one and creates ' +\
                                  'a new one.')
-        parsed = parser.parse_args()
+        parsed = parser.parse_args(self._cmd_args)
         self.level = parsed.level
         self.name = parsed.name
         self.input_dir = os.path.abspath(parsed.input_dir)
@@ -270,7 +270,7 @@ class Aggregator (object):
                     unique_names.add(db_col_name)
                     
         col_def_strings = []
-        for i, col in enumerate(columns):
+        for col in columns:
             name = col[0]
             sql_type = self.cr_type_to_sql[col[1]]
             s = name + ' ' + sql_type
@@ -319,5 +319,5 @@ class Aggregator (object):
         
                 
 if __name__ == '__main__':
-    aggregator = Aggregator()
+    aggregator = Aggregator(sys.argv)
     aggregator.run()
