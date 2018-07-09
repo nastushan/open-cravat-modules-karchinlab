@@ -1,6 +1,6 @@
 var widgetName = 'gosummary';
 widgetGenerators[widgetName] = {
-	'summary': {
+	'info': {
 		'name': 'Gene Ontology',
 		'width': 700, 
 		'height': 400, 

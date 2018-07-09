@@ -1,6 +1,6 @@
 var widgetName = 'sosummary';
 widgetGenerators[widgetName] = {
-	'summary': {
+	'info': {
 		'name': 'Sequence Ontology',
 		'width': 400, 
 		'height': 400, 
