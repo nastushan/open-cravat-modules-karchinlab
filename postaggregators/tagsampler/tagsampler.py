@@ -6,6 +6,11 @@ import sqlite3
 
 class CravatPostAggregator (BasePostAggregator):
 
+    def check(self):
+        self.cursor.execute('select col_name from sample_header ' +\
+                        'where col_name="base_sample_id"')
+        return self.cursor.fetchone() != None
+
     def setup (self):
         self.cursor_a = self.dbconn.cursor()
     
