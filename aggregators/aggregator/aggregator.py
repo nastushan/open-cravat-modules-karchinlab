@@ -10,6 +10,8 @@ from cravat import CravatReader
 from cravat import CravatWriter
 from cravat import admin_util as au
 
+#test
+
 class Aggregator (object):
     
     cr_type_to_sql = {'string':'text',
