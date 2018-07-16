@@ -62,11 +62,7 @@ class Aggregator (object):
                             action='store_true',
                             help='Deletes the existing one and creates ' +\
                                  'a new one.')
-<<<<<<< HEAD
-        parsed = parser.parse_args(self._cmd_args)
-=======
         parsed = parser.parse_args(cmd_args)
->>>>>>> branch 'dev' of https://github.com/KarchinLab/open-cravat-modules-karchinlab.git
         self.level = parsed.level
         self.name = parsed.name
         self.input_dir = os.path.abspath(parsed.input_dir)
