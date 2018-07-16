@@ -1,0 +1,6 @@
+title: NDEx CHASMplus Summary
+version: 1.0.0
+type: webviewerwidget
+description: NDEx CHASMplus Summary webviewer widget
+developer: rkim@mail.insilico.us.com
+required_annotator: chasmplus

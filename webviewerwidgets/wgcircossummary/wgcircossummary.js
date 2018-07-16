@@ -11,7 +11,6 @@ widgetGenerators[widgetName] = {
 		'height': 700, 
 		'callserver': true,
 		'function': function (div, data) {
-			console.log(data);
 			if (div != null) {
 				emptyElement(div);
 			}

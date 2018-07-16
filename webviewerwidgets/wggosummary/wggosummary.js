@@ -6,7 +6,6 @@ widgetGenerators[widgetName] = {
 		'height': 400, 
 		'callserver': true,
 		'function': function (div, data) {
-			console.log('entered gosummary');
 			if (div != null) {
 				emptyElement(div);
 			}
