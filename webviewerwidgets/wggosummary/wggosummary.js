@@ -1,10 +1,12 @@
-var widgetName = 'go';
+var widgetName = 'gosummary';
 widgetGenerators[widgetName] = {
-	'summary': {
+	'info': {
 		'name': 'Gene Ontology',
 		'width': 700, 
 		'height': 400, 
+		'callserver': true,
 		'function': function (div, data) {
+			console.log('entered gosummary');
 			if (div != null) {
 				emptyElement(div);
 			}

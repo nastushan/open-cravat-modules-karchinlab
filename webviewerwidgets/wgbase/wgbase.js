@@ -32,8 +32,9 @@ widgetGenerators['base'] = {
 							var aachange = uniprot_d[1];
 							var so = uniprot_d[2];
 							var transcript = uniprot_d[3];
-							var tr = getWidgetTableTr([uniprot, aachange, so, 
-								transcript]);
+							var tr = getWidgetTableTr(
+								[uniprot, aachange, so, transcript], 
+								[40, 40, 40, 80]);
 							addEl(tbody, tr);
 						}
 					}

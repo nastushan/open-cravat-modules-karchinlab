@@ -9,6 +9,8 @@ import yaml
 from cravat import CravatReader
 from cravat import CravatWriter
 
+#test
+
 class Aggregator (object):
     
     cr_type_to_sql = {'string':'text',
@@ -17,7 +19,6 @@ class Aggregator (object):
     commit_threshold = 10000
     
     def __init__(self, cmd_args):
-        self._cmd_args = cmd_args[1:]
         self.annotators = []
         self.ipaths = {}
         self.readers = {}
@@ -32,12 +33,14 @@ class Aggregator (object):
         self.opts = None
         self.base_prefix = 'base'
         self.base_dir = os.path.abspath(__file__)
-        self.parse_cmd_args()
+        self.parse_cmd_args(cmd_args)
         self._setup_logger()
         self._read_opts()
         
-    def parse_cmd_args(self):
+    def parse_cmd_args(self, cmd_args):
         parser = argparse.ArgumentParser()
+        parser.add_argument('path',
+                            help='Path to this aggregator module')
         parser.add_argument('-i',
                             dest='input_dir',
                             required=True,
@@ -59,7 +62,11 @@ class Aggregator (object):
                             action='store_true',
                             help='Deletes the existing one and creates ' +\
                                  'a new one.')
+<<<<<<< HEAD
         parsed = parser.parse_args(self._cmd_args)
+=======
+        parsed = parser.parse_args(cmd_args)
+>>>>>>> branch 'dev' of https://github.com/KarchinLab/open-cravat-modules-karchinlab.git
         self.level = parsed.level
         self.name = parsed.name
         self.input_dir = os.path.abspath(parsed.input_dir)

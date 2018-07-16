@@ -1,0 +1,6 @@
+title: Coding vs Noncoding Summary
+version: 1.0.0
+required_annotator: base
+type: webviewerwidget
+description: Coding vs noncoding summary webviewer widget
+developer: rkim@mail.insilico.us.com
