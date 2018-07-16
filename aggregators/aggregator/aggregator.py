@@ -284,13 +284,17 @@ class Aggregator (object):
         self.cursor.execute(q)
         
         # index tables
-        idx_count = 0
-        for cols in self.base_reader.colidxs:
-            idx = 'idx' + str(idx_count)
-            q = 'create index %s_%s on %s (%s);' \
-                %(self.table_name, idx, self.table_name, cols)
+        index_n = 0
+        # index_columns is a list of columns to include in this index
+        for index_columns in self.base_reader.get_index_columns():
+            cols = ['base__{0}'.format(x) for x in index_columns]
+            q = 'create index {table_name}_idx_{idx_num} on {table_name} ({columns});'\
+                .format(table_name = self.table_name,
+                        idx_num = str(index_n),
+                        columns = ', '.join(cols)
+                        )
             self.cursor.execute(q)
-            idx_count += 1
+            index_n += 1
         
         # header table
         q = 'drop table if exists %s' %self.header_table_name
