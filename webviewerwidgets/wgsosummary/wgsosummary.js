@@ -62,9 +62,25 @@ widgetGenerators[widgetName] = {
 					datasets: [{
 						data: data,
 						backgroundColor: [
-							'#f7c654',
-							'#69a3ef',
-							'#69ef93'
+							'#222034',
+							'#45283c',
+							'#663931',
+							'#8f563B',
+							'#dfa066',
+							'#eec39a',
+							'#fbf236',
+							'#99e550',
+							'#6abe30',
+							'#37496e',
+							'#4b692f',
+							'#524b24',
+							'#323c39',
+							'#3f3f74',
+							'#306082',
+							'#5b6ee1',
+							'#639Bff',
+							'#5fCDE4',
+							'#Cbdbfc'
 							],
 					}],
 					labels: labels

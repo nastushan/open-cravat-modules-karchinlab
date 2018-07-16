@@ -7,7 +7,7 @@ import data_model as dm
 del sys.path[0]
 import json
 
-e_data = dm.EnrichmentData(os.path.join(script_dir, "e_sets"))
+e_data = dm.EnrichmentData(os.path.join(script_dir, "data"))
 e_data.load()
 
 def run_query (hugos):
