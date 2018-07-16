@@ -94,7 +94,6 @@ def get_data_for_sos (sos, name_prefix, cursor):
                    'name': name, 
                    'value': str(value)}
             data.append(row)
-    print('@', data)
     return data
     
 def get_data (queries):
@@ -115,6 +114,5 @@ def get_data (queries):
     prefix = 'Inactivating'
     data_sos = get_data_for_sos(sos, prefix, cursor)
     data[prefix] = data_sos
-    print('@', data)
     response['data'] = data
     return response

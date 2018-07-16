@@ -1,0 +1,6 @@
+title: Top Genes VEST Summary
+version: 1.0.0
+type: webviewerwidget
+required_annotator: vest
+description: Top Genes VEST Summary webviewer widget
+developer: rkim@mail.insilico.us.com

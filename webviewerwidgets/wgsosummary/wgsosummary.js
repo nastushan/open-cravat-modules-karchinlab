@@ -9,11 +9,33 @@ widgetGenerators[widgetName] = {
 			if (div != null) {
 				emptyElement(div);
 			}
+			var so_dic = {
+		        '':'Intergenic',
+		        'MIS':'Missense',
+		        'SYN':'Synonymous',
+		        'FI1':'Frameshift insertion',
+		        'FI2':'Frameshift insertion',
+		        'FD1':'Frameshift deletion',
+		        'FD2':'Frameshift deletion',
+		        'IIV':'Inframe insertion',
+		        'IDV':'Inframe deletion',
+		        'CSS':'Complex substitution',
+		        'STG':'Stopgain',
+		        'STL':'Stoploss',
+		        'SPL':'Splice site',
+		        '2KU':'2k upstream',
+		        '2KD':'2k downstream',
+		        'UT3':'3\' UTR',
+		        'UT5':'5\' UTR',
+		        'INT':'Intron',
+		        'UNK':'Unknown'
+		    };
 			var counts = {};
 			var d = infomgr.getData('variant'); 
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
 				var so = infomgr.getRowValue('variant', row, 'base__so'); 
+				so = so_dic[so];
 				if (so != '') {
 					if (counts[so] == undefined) {
 						counts[so] = 0;
