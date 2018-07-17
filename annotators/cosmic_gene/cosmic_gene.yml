@@ -1,5 +1,5 @@
 title: COSMIC Gene
-version: 1.0.0
+version: 1.0.1
 type: annotator
 
 level: gene
@@ -13,4 +13,3 @@ output_columns:
 
 description: COSMIC gene level annotation
 developer: rkim@mail.insilico.us.com
-data_version: 1.0.0
