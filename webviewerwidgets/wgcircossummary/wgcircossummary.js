@@ -1,7 +1,6 @@
 var widgetName = 'circossummary';
 
 $.getScript('/widget_support/circossummary/biocircos-1.1.1.js', function () {});
-$.getScript('/widget_support/circossummary/karyotype.human.grch38.js', function () {});
 $.getScript('/widget_support/circossummary/d3.js', function () {});
 
 widgetGenerators[widgetName] = {
