@@ -3,3 +3,4 @@
 /*/*/data/**
 .pydevproject
 .project
+**.pyc
