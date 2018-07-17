@@ -1,0 +1,6 @@
+title: Top Genes CHASMplus Summary
+version: 1.0.0
+type: webviewerwidget
+required_annotator: chasmplus
+description: Top Genes CHSAMplus Summary webviewer widget
+developer: rkim@mail.insilico.us.com

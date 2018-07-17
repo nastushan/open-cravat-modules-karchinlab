@@ -6,11 +6,13 @@ import sqlite3
 
 class CravatPostAggregator (BasePostAggregator):
 
-    def setup (self):
+    def check(self):
         self.cursor.execute('select col_name from sample_header ' +\
                             'where col_name="base__zygosity"')
-        if self.cursor.fetchone() == None:
-            exit()
+        return self.cursor.fetchone() != None
+
+    def setup (self):
+        pass
     
     def annotate (self, input_data):
         uid = str(input_data['base__uid'])

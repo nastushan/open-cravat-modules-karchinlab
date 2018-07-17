@@ -1,12 +1,11 @@
 var widgetName = 'gosummary';
 widgetGenerators[widgetName] = {
-	'summary': {
+	'info': {
 		'name': 'Gene Ontology',
-		'width': 700, 
-		'height': 400, 
+		'width': 780, 
+		'height': 380, 
 		'callserver': true,
 		'function': function (div, data) {
-			console.log('entered gosummary');
 			if (div != null) {
 				emptyElement(div);
 			}
@@ -81,7 +80,7 @@ widgetGenerators[widgetName] = {
 						xAxes: [{
 							scaleLabel: {
 								display: true,
-								labelString: '# genes',
+								labelString: '# mutated genes from all samples',
 							},
 							ticks: {
 								beginAtZero: true,

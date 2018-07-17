@@ -1,5 +1,4 @@
-var widgetName = 'lollipop';
-widgetGenerators[widgetName] = {
+widgetGenerators['lollipop'] = {
 	'name': 'Gene Diagram',
 	'donterase': true,
 	'variant': {
@@ -46,6 +45,7 @@ widgetGenerators[widgetName] = {
 			'sitedatasource': null,
 		},
 		'function': function (div, row) {
+			var widgetName = 'lollipop';
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
 			var tabName = toks[1];
@@ -744,6 +744,7 @@ widgetGenerators[widgetName] = {
 			'sitedatasource': null,
 		},
 		'function': function (div, row) {
+			var widgetName = 'lollipop';
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
 			var tabName = toks[1];
