@@ -2,8 +2,8 @@ var widgetName = 'sosummary';
 widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Sequence Ontology',
-		'width': 400, 
-		'height': 400, 
+		'width': 580, 
+		'height': 780, 
 		'callserver': false,
 		'function': function (div) {
 			if (div != null) {
@@ -30,6 +30,25 @@ widgetGenerators[widgetName] = {
 		        'INT':'Intron',
 		        'UNK':'Unknown'
 		    };
+			var colors = [
+				'#008080', // teal
+				'#ffd700', // gold
+				'#00ff00', // lime
+				'#ff0000', // red
+				'#dc143c', // crimson
+				'#d2691e', // chocolate
+				'#8b4513', // saddle brown
+				'#0000ff', // blue
+				'#ff4500', // orange red
+				'#ffa500', // orange
+				'#adff2f', // green yellow
+				'#7fffd4', // aqua marine
+				'#00ced1', // dark turquoise
+				'#00bfff', // deep sky blue
+				'#ffff00', // yellow
+				'#00ffff', // aqua
+				'#000080', // navy
+			];
 			var counts = {};
 			var d = infomgr.getData('variant'); 
 			for (var i = 0; i < d.length; i++) {
@@ -61,27 +80,7 @@ widgetGenerators[widgetName] = {
 				data: {
 					datasets: [{
 						data: data,
-						backgroundColor: [
-							'#222034',
-							'#45283c',
-							'#663931',
-							'#8f563B',
-							'#dfa066',
-							'#eec39a',
-							'#fbf236',
-							'#99e550',
-							'#6abe30',
-							'#37496e',
-							'#4b692f',
-							'#524b24',
-							'#323c39',
-							'#3f3f74',
-							'#306082',
-							'#5b6ee1',
-							'#639Bff',
-							'#5fCDE4',
-							'#Cbdbfc'
-							],
+						backgroundColor: colors
 					}],
 					labels: labels
 				},

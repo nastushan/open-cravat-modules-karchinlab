@@ -1,8 +1,8 @@
 widgetGenerators['sosamplesummary'] = {
 	'info': {
 		'name': 'Sequence Ontology by Sample',
-		'width': 600, 
-		'height': 800, 
+		'width': 780, 
+		'height': 780, 
 		'callserver': true,
 		'function': function (div, data) {
 			var colorPalette = {

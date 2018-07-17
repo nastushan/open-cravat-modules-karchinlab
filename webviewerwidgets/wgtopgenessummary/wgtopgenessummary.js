@@ -1,8 +1,8 @@
 widgetGenerators['topgenessummary'] = {
 	'info': {
-		'name': 'Top Genes',
-		'width': 400, 
-		'height': 400, 
+		'name': 'Most Frequently Mutated Genes (normalized by gene length and sorted by % samples mutated)',
+		'width': 780, 
+		'height': 780, 
 		'callserver': true,
 		'function': function (div, data) {
 			if (div != null) {
@@ -32,7 +32,8 @@ widgetGenerators['topgenessummary'] = {
 							data: y,
 							borderColor: '#000000',
 							borderWidth: 0.7,
-							hoverBorderColor: '#aaaaaa'
+							hoverBorderColor: '#aaaaaa',
+							backgroundColor: '#f49e42'
 						}
 					]
 				},
@@ -44,7 +45,7 @@ widgetGenerators['topgenessummary'] = {
 						xAxes: [{
 							scaleLabel: {
 								display: true,
-								labelString: '# samples',
+								labelString: ' % samples',
 							},
 							ticks: {
 								beginAtZero: true,

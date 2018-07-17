@@ -3,8 +3,8 @@ $.getScript('/widget_support/ndexchasmplussummary/cytoscape.js', function () {})
 widgetGenerators['ndexchasmplussummary'] = {
 		'info': {
 			'name': 'NDEx Networks (Top Genes by CHASMplus)',
-			'width': 1200, 
-			'height': 800, 
+			'width': 780, 
+			'height': 780, 
 			'callserver': false,
 			'function': function (parentDiv, data) {
 				var pvalCutoff = 0.05;
@@ -68,7 +68,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 					func.networkDiv.style.left = '10%';
 					func.networkDiv.style.backgroundColor = 'rgb(250,250,250)';
 					func.networkDiv.addEventListener('click', function (evt) {
-						var options = document.getElementById('ndex_options_summary');
+						var options = document.getElementById('ndexchasmplus_options_summary');
 						options.style.display = 'none';
 						options.previousSibling.textContent = 
 							'> ' + self.selectedNetworkName;
@@ -83,8 +83,8 @@ widgetGenerators['ndexchasmplussummary'] = {
 					addEl(parentDiv, func.legendDiv);
 					// Network name area
 					var div = getEl('div');
-					div.id = 'ndex_select_summary';
-					div.className = 'ndex_select_summary';
+					div.id = 'ndexchasmplus_select_summary';
+					div.className = 'ndexchasmplus_select_summary';
 					div.style.fontFamily = 'Roboto';
 					div.style.fontSize = '12px';
 					div.style.fontWeight = 'normal';
@@ -94,7 +94,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 					div.onclick = function (evt) {
 						var selectDiv = evt.target;
 						var optionsDiv = document.getElementById(
-								'ndex_options_summary');
+								'ndexchasmplus_options_summary');
 						if (optionsDiv.style.display == 'none') {
 							optionsDiv.style.display = 'block';
 							selectDiv.textContent = 'v ' + self.selectedNetworkName;
@@ -109,7 +109,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 					addEl(func.enrichmentDiv, div);
 					// Network options
 					var optionsDiv = getEl('div');
-					optionsDiv.id = 'ndex_options_summary';
+					optionsDiv.id = 'ndexchasmplus_options_summary';
 					optionsDiv.style.fontFamily = 'Roboto';
 					optionsDiv.style.fontSize = '12px';
 					optionsDiv.style.fontWeight = 'normal';
@@ -126,7 +126,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 						var option = null;
 						var networkId = rowData.attrs[0].replace(/networkUUID:/g, '');
 						var optionDiv = getEl('div');
-						optionDiv.className = 'ndex_option_summary';
+						optionDiv.className = 'ndexchasmplus_option_summary';
 						var networkName = rowData.cols[0]
 							+ ' (' + rowData.cols[1] + ')';
 						optionDiv.textContent = networkName;
@@ -137,9 +137,9 @@ widgetGenerators['ndexchasmplussummary'] = {
 						optionDiv.style.cursor = 'pointer';
 						optionDiv.style.paddingBottom = '3px';
 						optionDiv.onmouseenter = function (evt) {
-							document.getElementById('ndex_select_summary').textContent = 
+							document.getElementById('ndexchasmplus_select_summary').textContent = 
 								'v ' + evt.target.getAttribute('networkname');
-							var options = document.getElementsByClassName('ndex_option_summary');
+							var options = document.getElementsByClassName('ndexchasmplus_option_summary');
 							for (var j = 0; j < options.length; j++) {
 								var option = options[j];
 								if (option.getAttribute('networkid') == 
@@ -151,14 +151,14 @@ widgetGenerators['ndexchasmplussummary'] = {
 									option.style.color = 'black';
 								}
 							}
-							document.getElementById('ndex_options_summary').focus();
+							document.getElementById('ndexchasmplus_options_summary').focus();
 						}
 						optionDiv.onclick = function (evt) {
-							document.getElementById('ndex_options_summary').style.display 
+							document.getElementById('ndexchasmplus_options_summary').style.display 
 								= 'none';
 							var networkUUID = evt.target.getAttribute('networkid');
 							self.selectedNetworkName = evt.target.getAttribute('networkname');
-							var selectDiv = document.getElementById('ndex_select_summary');
+							var selectDiv = document.getElementById('ndexchasmplus_select_summary');
 							selectDiv.textContent
 								= '> ' + self.selectedNetworkName;
 							selectDiv.style.border = '2px outset #dddddd';
@@ -188,7 +188,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 							}
 							optionText = '\xA0\xA0\xA0\xA0\xA0' + optionText.replace(/, $/, '').trim();
 							optionDiv = getEl('div');
-							optionDiv.className = 'ndex_option_summary';
+							optionDiv.className = 'ndexchasmplus_option_summary';
 							optionDiv.textContent = optionText;
 							optionDiv.setAttribute('networkid', networkId);
 							optionDiv.setAttribute('networkname', networkName);
@@ -196,9 +196,9 @@ widgetGenerators['ndexchasmplussummary'] = {
 							optionDiv.style.cursor = 'pointer';
 							optionDiv.style.paddingBottom = '3px';
 							optionDiv.onmouseenter = function (evt) {
-								document.getElementById('ndex_select_summary').textContent = 
+								document.getElementById('ndexchasmplus_select_summary').textContent = 
 									'v ' + evt.target.getAttribute('networkname');
-								var options = document.getElementsByClassName('ndex_option_summary');
+								var options = document.getElementsByClassName('ndexchasmplus_option_summary');
 								for (var j = 0; j < options.length; j++) {
 									var option = options[j];
 									if (option.getAttribute('networkid') == 
@@ -210,14 +210,14 @@ widgetGenerators['ndexchasmplussummary'] = {
 										option.style.color = 'black';
 									}
 								}
-								document.getElementById('ndex_options_summary').focus();
+								document.getElementById('ndexchasmplus_options_summary').focus();
 							}
 							optionDiv.onclick = function (evt) {
-								document.getElementById('ndex_options_summary').style.display 
+								document.getElementById('ndexchasmplus_options_summary').style.display 
 									= 'none';
 								var networkUUID = evt.target.getAttribute('networkid');
 								self.selectedNetworkName = evt.target.getAttribute('networkname');
-								var selectDiv = document.getElementById('ndex_select_summary');
+								var selectDiv = document.getElementById('ndexchasmplus_select_summary');
 								selectDiv.textContent
 									= '> ' + func.selectedNetworkName;
 								selectDiv.style.border = '2px outset #dddddd';
@@ -750,11 +750,11 @@ widgetGenerators['ndexchasmplussummary'] = {
 					
 					// Shows first network
 					var option = optionsDiv.getElementsByClassName(
-							'ndex_option_summary')[0];
+							'ndexchasmplus_option_summary')[0];
 					var networkUUID = option.getAttribute('networkid');
 					var networkName = option.getAttribute('networkname');
 					optionsDiv.style.display = 'none';
-					var select = func.enrichmentDiv.getElementsByClassName('ndex_select_summary')[0];
+					var select = func.enrichmentDiv.getElementsByClassName('ndexchasmplus_select_summary')[0];
 					select.textContent = '> ' + networkName;
 					select.style.border = '2px outset #dddddd';
 					if (networkUUID != '') {
