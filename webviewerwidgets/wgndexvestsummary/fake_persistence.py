@@ -20,11 +20,11 @@ import sys
 
 def e_set_dir_name(e_set_name):
     current_directory = dirname(abspath(__file__))
-    return join(current_directory, "e_sets", e_set_name)
+    return join(current_directory, "data", e_set_name)
 
 def e_data_dir_name():
     current_directory = dirname(abspath(__file__))
-    return join(current_directory, "e_sets")
+    return join(current_directory, "data")
 
 def e_set_exists(e_set_name):
     return isdir(e_set_dir_path(e_set_name))

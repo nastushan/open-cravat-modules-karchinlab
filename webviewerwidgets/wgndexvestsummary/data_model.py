@@ -1,12 +1,41 @@
 __author__ = 'dexter'
 
-from scipy.stats import hypergeom
 from operator import itemgetter, attrgetter
 from os.path import join, isdir
 from os import listdir
 import fake_persistence as storage
 import sys
 import os
+from math import log, exp
+script_dir = os.path.dirname(__file__)
+sys.path = [script_dir] + sys.path
+from mpmath import loggamma
+del sys.path[0]
+
+def logchoose(ni, ki):
+    try:
+        lgn1 = loggamma(ni+1)
+        lgk1 = loggamma(ki+1)
+        lgnk1 = loggamma(ni-ki+1)
+    except ValueError:
+        raise ValueError
+    return lgn1 - (lgnk1 + lgk1)
+
+def gauss_hypergeom(X, n, m, N):
+    r1 = logchoose(m, X)
+    try:
+        r2 = logchoose(N-m, n-X)
+    except ValueError:
+        return 0
+    r3 = logchoose(N,n)
+
+    return exp(r1 + r2 - r3)
+
+def hypergeo_sf(X, n, m, N):
+    s = 0
+    for i in range(X, min(m,n)+1):
+        s += max(gauss_hypergeom(i, n, m, N), 0.0)
+    return min(max(s,0.0), 1)
 
 class Gene():
     def __init__(self, symbol, entrez_gene_id):
@@ -69,9 +98,11 @@ class IdentifierSet():
 
     # compare this id_set to a query_id_set
     def get_enrichment_score(self, query_id_set_n, M, overlap_n):
+        print(M, self.n, query_id_set_n, overlap_n)
      #   overlap = query_id_set.set & self.set
      #   k = len(overlap)
-        pv = hypergeom(M, self.n, query_id_set_n).sf(overlap_n)
+        #pv = hypergeom(M, self.n, query_id_set_n).sf(overlap_n)
+        pv = hypergeo_sf(overlap_n + 1, query_id_set_n, self.n, M)
         #print("m=" +str(M) + " n=" + str(self.n) + " q=" + str(query_id_set_n) + " k=" + str(overlap_n) + " pv=" + str(pv) + '\n')
         #sys.stderr.write("m=" +str(M) + " n=" + str(self.n) + " q=" + str(query_id_set_n) + " k=" + str(overlap_n) + " pv=" + str(pv) + '\n')
 
