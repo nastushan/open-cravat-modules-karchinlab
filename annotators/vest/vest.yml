@@ -54,4 +54,9 @@ gene_summary_output_columns:
   type: float
 
 description: VEST annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

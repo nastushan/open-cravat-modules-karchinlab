@@ -4,7 +4,7 @@ type: annotator
 
 level: gene
 input_format: crg
-output_columns: 
+output_columns:
 - name: numhit
   title: Number of networks
   type: int
@@ -18,4 +18,9 @@ output_columns:
 add_to_variant_level: true
 
 description: NDEx annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

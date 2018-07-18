@@ -4,12 +4,17 @@ type: annotator
 
 level: gene
 output_columns:
--  name: occurrences
-   title: Occurrences in COSMIC
-   type: int
--  name: gene_count
-   title: COSMIC gene count (tissue)
-   type: string
+- name: occurrences
+  title: Occurrences in COSMIC
+  type: int
+- name: gene_count
+  title: COSMIC gene count (tissue)
+  type: string
 
 description: COSMIC gene level annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

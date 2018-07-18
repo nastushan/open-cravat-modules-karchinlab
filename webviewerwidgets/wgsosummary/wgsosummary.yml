@@ -3,4 +3,9 @@ version: 1.0.0
 required_annotator: base
 type: webviewerwidget
 description: Sequence Ontology Summary result viewer widget
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
