@@ -1,0 +1,11 @@
+title: Circos Summary
+version: 1.0.0
+required_annotator: base
+type: webviewerwidget
+description: Circos Summary result viewer widget
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

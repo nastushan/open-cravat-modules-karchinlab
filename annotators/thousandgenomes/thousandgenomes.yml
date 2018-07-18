@@ -9,4 +9,9 @@ output_columns:
   type: float
 
 description: 1000 Genomes annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

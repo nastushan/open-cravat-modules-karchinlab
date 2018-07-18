@@ -18,4 +18,9 @@ output_columns:
   type: string
 
 description: Cancer Genome Census annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

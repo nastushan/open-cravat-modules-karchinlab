@@ -34,4 +34,9 @@ output_columns:
   type: float
 
 description: gnomAD annotation
-developer: kmoad@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

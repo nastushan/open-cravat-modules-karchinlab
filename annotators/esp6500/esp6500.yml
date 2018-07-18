@@ -13,4 +13,9 @@ output_columns:
   type: float
 
 description: ESP6500 annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

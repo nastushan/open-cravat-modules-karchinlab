@@ -2,4 +2,9 @@ title: Gene Ontology Summary
 version: 1.0.0
 type: webviewerwidget
 description: Gene Ontology Summary webviewer widget
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

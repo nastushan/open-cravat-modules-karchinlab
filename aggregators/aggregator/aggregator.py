@@ -8,7 +8,8 @@ import logging
 import yaml
 from cravat import CravatReader
 from cravat import CravatWriter
-from cravat import admin_util as au
+
+#test
 
 class Aggregator (object):
     
@@ -17,7 +18,7 @@ class Aggregator (object):
                       'float':'real'}
     commit_threshold = 10000
     
-    def __init__(self):
+    def __init__(self, cmd_args):
         self.annotators = []
         self.ipaths = {}
         self.readers = {}
@@ -32,12 +33,14 @@ class Aggregator (object):
         self.opts = None
         self.base_prefix = 'base'
         self.base_dir = os.path.abspath(__file__)
-        self.parse_cmd_args()
+        self.parse_cmd_args(cmd_args)
         self._setup_logger()
         self._read_opts()
         
-    def parse_cmd_args(self):
+    def parse_cmd_args(self, cmd_args):
         parser = argparse.ArgumentParser()
+        parser.add_argument('path',
+                            help='Path to this aggregator module')
         parser.add_argument('-i',
                             dest='input_dir',
                             required=True,
@@ -59,7 +62,7 @@ class Aggregator (object):
                             action='store_true',
                             help='Deletes the existing one and creates ' +\
                                  'a new one.')
-        parsed = parser.parse_args()
+        parsed = parser.parse_args(cmd_args)
         self.level = parsed.level
         self.name = parsed.name
         self.input_dir = os.path.abspath(parsed.input_dir)
@@ -270,7 +273,7 @@ class Aggregator (object):
                     unique_names.add(db_col_name)
                     
         col_def_strings = []
-        for i, col in enumerate(columns):
+        for col in columns:
             name = col[0]
             sql_type = self.cr_type_to_sql[col[1]]
             s = name + ' ' + sql_type
@@ -284,13 +287,17 @@ class Aggregator (object):
         self.cursor.execute(q)
         
         # index tables
-        idx_count = 0
-        for cols in self.base_reader.colidxs:
-            idx = 'idx' + str(idx_count)
-            q = 'create index %s_%s on %s (%s);' \
-                %(self.table_name, idx, self.table_name, cols)
+        index_n = 0
+        # index_columns is a list of columns to include in this index
+        for index_columns in self.base_reader.get_index_columns():
+            cols = ['base__{0}'.format(x) for x in index_columns]
+            q = 'create index {table_name}_idx_{idx_num} on {table_name} ({columns});'\
+                .format(table_name = self.table_name,
+                        idx_num = str(index_n),
+                        columns = ', '.join(cols)
+                        )
             self.cursor.execute(q)
-            idx_count += 1
+            index_n += 1
         
         # header table
         q = 'drop table if exists %s' %self.header_table_name
@@ -319,5 +326,5 @@ class Aggregator (object):
         
                 
 if __name__ == '__main__':
-    aggregator = Aggregator()
+    aggregator = Aggregator(sys.argv)
     aggregator.run()

@@ -1,0 +1,11 @@
+title: NDEx VEST Summary
+version: 1.0.0
+type: webviewerwidget
+description: NDEx VEST Summary webviewer widget
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+required_annotator: vest

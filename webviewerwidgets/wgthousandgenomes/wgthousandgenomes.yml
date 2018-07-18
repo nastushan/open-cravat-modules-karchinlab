@@ -2,4 +2,9 @@ title: 1000 Genomes
 version: 1.0.0
 type: webviewerwidget
 description: 1000 genomes webviewer widget
-developer: kmoad@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
