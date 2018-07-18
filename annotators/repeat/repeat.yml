@@ -15,4 +15,9 @@ output_columns:
   type: string
 
 description: Repeat Sequences annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

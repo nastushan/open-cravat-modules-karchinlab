@@ -24,4 +24,9 @@ output_columns:
   type: string
 
 description: Provides genomic, transcript, and protein sequence changes in HGVS format.
-developer: kmoad@insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

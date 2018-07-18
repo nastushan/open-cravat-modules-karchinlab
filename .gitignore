@@ -1,6 +1,7 @@
 /cravat.yml
 /*.zip
 /*/*/data/**
+!annotators/example_annotator/data/example_annotator.sqlite
 .pydevproject
 .project
 **.pyc

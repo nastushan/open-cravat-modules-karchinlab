@@ -17,4 +17,9 @@ output_columns:
   type: string
 
 description: Gene Ontology annotation
-developer: kmoad@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

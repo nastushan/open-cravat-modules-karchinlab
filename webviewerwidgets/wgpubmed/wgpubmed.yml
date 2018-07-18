@@ -3,4 +3,9 @@ version: 1.0.0
 data_version: 1.0.0
 type: webviewerwidget
 description: PubMed webviewer widget
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

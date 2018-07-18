@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.0
+version: 1.0.1
 type: postaggregator
 
 name: vcfinfo
@@ -24,6 +24,11 @@ output_columns:
 - name: af
   title: Variant allele frequency
   type: string
-      
+
 description: Writes VCF file information extracted by converter
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

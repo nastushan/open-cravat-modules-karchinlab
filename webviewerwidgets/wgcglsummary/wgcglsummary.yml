@@ -3,4 +3,9 @@ version: 1.0.0
 required_annotator: cgl
 type: webviewerwidget
 description: Cancer Genome Landscape Summary result viewer widget
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

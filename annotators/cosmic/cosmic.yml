@@ -22,5 +22,10 @@ output_columns:
   type: string
 
 description: COSMIC annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
 data_version: 1.0.0

@@ -1,16 +1,20 @@
 title: COSMIC Gene
-version: 1.0.0
+version: 1.0.1
 type: annotator
 
 level: gene
 output_columns:
--  name: occurrences
-   title: Occurrences in COSMIC
-   type: int
--  name: gene_count
-   title: COSMIC gene count (tissue)
-   type: string
+- name: occurrences
+  title: Occurrences in COSMIC
+  type: int
+- name: gene_count
+  title: COSMIC gene count (tissue)
+  type: string
 
 description: COSMIC gene level annotation
-developer: rkim@mail.insilico.us.com
-data_version: 1.0.0
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

@@ -4,7 +4,7 @@ type: annotator
 
 name: ncRNA
 level: variant
-output_columns: 
+output_columns:
 - name: ncrnaclass
   title: ncRNA Class
   type: string
@@ -13,4 +13,9 @@ output_columns:
   type: string
 
 description: ncRNA annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

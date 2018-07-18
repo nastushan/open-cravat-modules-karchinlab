@@ -4,7 +4,7 @@ type: annotator
 
 level: gene
 input_format: crg
-output_columns: 
+output_columns:
 - name: therapy
   title: Recommended Therapy
   type: string
@@ -13,4 +13,9 @@ output_columns:
   type: string
 
 description: TARGET annotation
-developer: rkim@mail.insilico.us.co
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

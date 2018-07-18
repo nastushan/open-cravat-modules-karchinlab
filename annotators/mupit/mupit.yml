@@ -20,4 +20,9 @@ gene_summary_output_columns:
   type: string
 
 description: MuPIT annotation
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
