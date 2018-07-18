@@ -1,22 +1,21 @@
 var widgetName = 'circossummary';
 
 $.getScript('/widget_support/circossummary/biocircos-1.1.1.js', function () {});
-$.getScript('/widget_support/circossummary/karyotype.human.grch38.js', function () {});
 $.getScript('/widget_support/circossummary/d3.js', function () {});
 
 widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Circos',
-		'width': 600, 
-		'height': 700, 
+		'width': 580, 
+		'height': 580, 
 		'callserver': true,
 		'function': function (div, data) {
 			if (div != null) {
 				emptyElement(div);
 			}
 			var chartSize = {
-					widgth: 580, 
-					height: 600
+					widgth: 560, 
+					height: 480
 			};
 			var genome = [
 		        ['1', 248956422],
@@ -53,8 +52,8 @@ widgetGenerators[widgetName] = {
 					svgWidth: chartSize['widgth'],
 					svgHeight: chartSize['height'],
 					chrPad: 0.01,
-					innerRadius: 260,
-					outerRadius: 270,
+					innerRadius: 230,
+					outerRadius: 220,
 					zoom: true,
 					genomeFillColor: ["rgb(187, 187, 187)"],
 					genomeLabel: {
@@ -123,19 +122,19 @@ widgetGenerators[widgetName] = {
 			var missense = 
 				[
 					"HISTOGRAM01",
-					{maxRadius: 255, minRadius: 225, histogramFillColor: "#66ff66"},
+					{maxRadius: 205, minRadius: 175, histogramFillColor: "#66ff66"},
 					data['Missense']
 				];
 			var nonSilent = 
 				[
 					"HISTOGRAM02",
-					{maxRadius: 220, minRadius: 190, histogramFillColor: "#aaaa44"},
+					{maxRadius: 170, minRadius: 140, histogramFillColor: "#aaaa44"},
 					data['Non-silent']
 				];
 			var inactivating = 
 				[
 					"HISTOGRAM03",
-					{maxRadius: 185, minRadius: 155, histogramFillColor: "#ff6666"},
+					{maxRadius: 135, minRadius: 105, histogramFillColor: "#ff6666"},
 					data['Inactivating']
 				];
 			var circos = new BioCircos(missense, nonSilent, inactivating, genome, chartSettings);

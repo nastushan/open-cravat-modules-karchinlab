@@ -1,8 +1,8 @@
-widgetGenerators['topgeneschasmsummary'] = {
+widgetGenerators['topgeneschasmplussummary'] = {
 	'info': {
-		'name': 'Top Genes CHASMplus',
-		'width': 150, 
-		'height': 280, 
+		'name': 'Top Genes by CHASMplus',
+		'width': 180, 
+		'height': 380, 
 		'callserver': false,
 		'function': function (div) {
 			if (div != null) {
@@ -22,7 +22,6 @@ widgetGenerators['topgeneschasmsummary'] = {
 						}
 					}
 				}
-				console.log('before splice', extracted);
 				if (extracted.length > numGeneToExtract) {
 					extracted.splice(numGeneToExtract, extracted.length - numGeneToExtract);
 				}
