@@ -28,7 +28,7 @@ output_columns:
 
 # description is a short description of what the annotator does. Try to limit it
 # to around 80 characters.
-description: Template annotator. If you see this description in production, someone is wrong.
+description: Example annotator only. Does not provide useful information.
 
 # developer is you!
 developer:
