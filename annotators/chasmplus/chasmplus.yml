@@ -29,6 +29,11 @@ gene_summary_output_columns:
 - name: gene_pval
   title: Gene p-value
   type: float
-  
+
 description: Machine learning method that predicts the functional significance of somatic missense mutations.
-developer: karchin@jhu.edu
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''

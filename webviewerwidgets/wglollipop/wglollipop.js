@@ -1,7 +1,7 @@
 widgetGenerators['lollipop'] = {
 	'name': 'Gene Diagram',
-	'donterase': true,
 	'variant': {
+		'donterase': true,
 		'width': 580, 
 		'height': 180, 
 		'variables': {
@@ -701,6 +701,7 @@ widgetGenerators['lollipop'] = {
 		}
 	},
 	'gene': {
+		'donterase': true,
 		'width': 580, 
 		'height': 180, 
 		'variables': {
