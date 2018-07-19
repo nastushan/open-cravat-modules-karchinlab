@@ -2,5 +2,10 @@ title: NDEx VEST Summary
 version: 1.0.0
 type: webviewerwidget
 description: NDEx VEST Summary webviewer widget
-developer: rkim@mail.insilico.us.com
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
 required_annotator: vest
