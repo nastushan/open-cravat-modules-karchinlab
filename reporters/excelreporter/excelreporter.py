@@ -2,11 +2,7 @@ from cravat.cravat_report import CravatReport
 import sys
 import os
 import datetime
-#import openpyxl
-#import openpyxl.worksheet.table
 import xlsxwriter
-#from openpyxl.utils.cell import get_column_letter
-#from openpyxl.styles import Border, Side, PatternFill, Font
 
 class Reporter(CravatReport):
     def setup (self):
@@ -19,34 +15,26 @@ class Reporter(CravatReport):
         self.rowno = 0
         self.colno = 0
         self.sheetno = 0
-        '''
-        self.wb.remove(self.wb['Sheet'])
-        self.rightborder = Border(
-            right=Side(border_style='thin', color='555555'))
-        self.bottomborder = Border(
-            bottom=Side(border_style='thin', color='555555'))
-        self.grayfill = PatternFill(start_color='e0e0e0', 
-                                    end_color='e0e0e0', 
-                                    fill_type='solid')
-        self.boldfont = Font(size=14, bold=True)
-        '''
+        self.rightborder = self.wb.add_format()
+        self.rightborder.set_right()
+        self.bottomborder = self.wb.add_format()
+        self.bottomborder.set_bottom()
+        self.grayright = self.wb.add_format()
+        self.grayright.set_right()
+        self.grayright.set_bg_color('#e0e0e0')
+        self.grayfill = self.wb.add_format()
+        self.grayfill.set_bg_color('#E0E0E0')
+        self.boldfont = self.wb.add_format()
+        self.boldfont.set_bold()
+        self.boldfont.set_font_size(14)
         self.write_info_sheet()
         
     def end (self):
-        '''
-        if self.savepath == None:
-            self.savepath = 'cravat_result.xlsx'
-        else: 
-            if self.savepath[-5:] != '.xlsx':
-                self.savepath = self.savepath + '.xlsx'
-        self.wb.save(self.savepath)
-        '''
         self.wb.close()
     
     def write_info_sheet (self):
         self.rowno = 0
-        #self.ws = self.wb.create_sheet(index=self.sheetno, title='info')
-        self.ws = self.wb.add_worksheet()
+        self.ws = self.wb.add_worksheet('Info')
         self.sheetno += 1
         lines = ['CRAVAT Report', 
             'Created at ' + 
@@ -54,7 +42,6 @@ class Reporter(CravatReport):
             ]
         self.colno = 0
         for i in range(len(lines)):
-            #self.ws[self.get_cell_coordinate()] = lines[i]
             self.ws.write(self.rowno, self.colno, lines[i])
             self.rowno += 1
             
@@ -65,16 +52,11 @@ class Reporter(CravatReport):
         return self.ws.cell(row=self.rowno, column=self.colno)
     
     def write_preface (self, level):
-        self.ws = self.wb.add_worksheet()
+        self.ws = self.wb.add_worksheet(level[0].upper() + level[1:])
         self.sheetno += 1
         self.rowno = 0
         self.colno = 0
-        '''
-        self.ws = self.wb.create_sheet(index=self.sheetno, title=level)
-        
-        cell = self.ws.cell(row=3, column=2)
-        self.ws.freeze_panes = cell
-        '''
+        self.ws.freeze_panes(2, 1)
    
     def write_header (self, level):
         self.colno = 0
@@ -88,39 +70,20 @@ class Reporter(CravatReport):
             groupno += 1
             displayname = colgroup['displayname']
             lastcol = colgroup['lastcol']
-            #self.ws.write(self.rowno, self.colno, displayname)
-            '''
-            self.ws.merge_cells(
-                start_row=self.rowno, 
-                start_column=self.colno,
-                end_row=self.rowno,
-                end_column=self.colno + count - 1)
-            '''
-            self.ws.merge_range(self.rowno, self.colno, self.rowno, self.colno + count - 1, displayname)
-            '''
-            cell = self.get_cell()
-            cell.font = self.boldfont
+            lastcolno = self.colno + count - 1
+            if count > 1:
+                self.ws.merge_range(self.rowno, self.colno, self.rowno, lastcolno, displayname)
             if groupno % 2 == 0:
-                for i in range(self.colno, self.colno + count):
-                    self.graycols.append(i)
-                    cell.fill = self.grayfill
-            cell = self.ws.cell(row=self.rowno, column=self.colno-1)
-            cell.border = self.rightborder
-            '''
+                self.ws.set_column(self.colno, lastcolno - 1, None, self.grayfill)
+                self.ws.set_column(lastcolno, lastcolno, None, self.grayright)
+            else:
+                self.ws.set_column(lastcolno, lastcolno, None, self.rightborder)
             self.colno += count
             self.lastcols.append(lastcol)
         self.rowno += 1
         self.colno = 0
         for column in self.colinfo[level]['columns']:
             self.ws.write(self.rowno, self.colno, column['col_title'])
-            '''
-            cell = self.get_cell()
-            cell.border = self.bottomborder
-            if self.colno in self.lastcols:
-                cell.border += self.rightborder
-            if self.colno in self.graycols:
-                cell.fill = self.grayfill
-            '''
             self.colno += 1
         self.rowno += 1
         
@@ -132,13 +95,6 @@ class Reporter(CravatReport):
                 cellvalue = '=HYPERLINK("' + cellvalue + '", "' +\
                 'Link' + '")'
             self.ws.write(self.rowno, self.colno, cellvalue)
-            '''
-            cell = self.get_cell()
-            if self.colno in self.lastcols:
-                cell.border = self.rightborder
-            if self.colno in self.graycols:
-                cell.fill = self.grayfill
-            '''
             self.colno += 1
         self.rowno += 1
 
@@ -146,17 +102,5 @@ def main ():
     r = Reporter(sys.argv)
     r.run()
     
-def test ():
-    reporter = Reporter([
-        '', 'd:\\git\\cravat-newarch\\tmp\\job\\in1000.sqlite',
-        '-s', 'd:\\git\\cravat-newarch\\tmp\\job\\in1000.xlsx'])
-    reporter.run()
-    reporter = Reporter([
-        '', 'd:\\git\\cravat-newarch\\tmp\\job\\in1000.sqlite',
-        '--filterstring', '{"variant": {"thousandgenomes__af": ">0.1"}}',
-        '-s', 'd:\\git\\cravat-newarch\\tmp\\job\\in1000.filtered.xlsx'])
-    reporter.run()
-
 if __name__ == '__main__':
     main()
-    #test()
