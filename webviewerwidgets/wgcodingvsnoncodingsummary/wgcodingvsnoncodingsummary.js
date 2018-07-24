@@ -49,7 +49,6 @@ widgetGenerators[widgetName] = {
 					responsive: true
 				}
 			});
-			widgetCharts[widgetName] = chart;
 		}
 	}
 };

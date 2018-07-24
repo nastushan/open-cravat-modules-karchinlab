@@ -65,7 +65,6 @@ widgetGenerators['topgenessummary'] = {
 					}
 				}
 			});
-			widgetCharts['topgenessummary'] = chart;
 		}
 	}
 };
