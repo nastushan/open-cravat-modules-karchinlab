@@ -414,7 +414,7 @@ class Mapper(cravat.BaseMapper):
                     primary_has_protein = cur_has_protein
         # Fill crx dict with information from most deleterious transcript
         crx_data['hugo'] = primary_hugo
-        if primary_hugo != '':
+        if primary_so in ['MIS', 'SYN', 'FI1', 'FI2', 'FD1', 'FD2', 'IIV', 'IDV', 'CSS', 'STG', 'STL']:
             crx_data['coding'] = 'Y'
         else:
             crx_data['coding'] = ''
