@@ -1,6 +1,7 @@
 title: Pseudogene
 version: 1.0.0
 type: webviewerwidget
+required_annotator: pseudogene
 description: Pseudogene webviewer widget
 developer:
   name: ''

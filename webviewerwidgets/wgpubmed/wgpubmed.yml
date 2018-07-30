@@ -2,6 +2,7 @@ title: PubMed
 version: 1.0.0
 data_version: 1.0.0
 type: webviewerwidget
+required_annotator: pubmed
 description: PubMed webviewer widget
 developer:
   name: ''

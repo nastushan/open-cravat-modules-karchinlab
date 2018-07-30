@@ -1,6 +1,7 @@
 title: Target
 version: 1.0.0
 type: webviewerwidget
+required_annotator: target
 description: Target webviewer widget
 developer:
   name: ''

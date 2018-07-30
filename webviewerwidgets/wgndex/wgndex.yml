@@ -1,6 +1,7 @@
 title: NDEx
 version: 1.0.0
 type: webviewerwidget
+required_annotator: ndex
 description: NDEx webviewer widget
 developer:
   name: ''

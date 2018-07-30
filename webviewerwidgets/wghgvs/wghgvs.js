@@ -37,7 +37,7 @@ widgetGenerators['hgvs'] = {
 					var rna = rnaAll[i];
 					var transc = rna.split(':')[0];
 					var prot = prot2Hgvs[transc2Prot[transc]];
-					var tr = getWidgetTableTr([rna, prot], [160, 80]);
+					var tr = getWidgetTableTr([rna, prot]);
 					addEl(tbody, tr);
 				}
 				addEl(div, addEl(table, tbody));

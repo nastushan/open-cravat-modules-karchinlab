@@ -1,6 +1,7 @@
 title: 1000 Genomes
 version: 1.0.0
 type: webviewerwidget
+required_annotator: thousandgenomes
 description: 1000 genomes webviewer widget
 developer:
   name: ''

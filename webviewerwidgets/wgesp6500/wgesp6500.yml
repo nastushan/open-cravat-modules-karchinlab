@@ -1,6 +1,7 @@
 title: ESP6500
 version: 1.0.0
 type: webviewerwidget
+required_annotator: esp6500
 description: ESP6500 webviewer widget
 developer:
   name: ''

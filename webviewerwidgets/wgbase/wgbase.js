@@ -17,7 +17,8 @@ widgetGenerators['base'] = {
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				if (allMappings != {}) {
-					var table = getWidgetTableFrame();
+					var table = getWidgetTableFrame(['20%', '20%', '20%', '40%']);
+					table.style.width = '100%';
 					var thead = getWidgetTableHead(['UniProt', 'Prot Chng', 
 						'Seq Ont', 'Transcript']);
 					addEl(table, thead);
@@ -32,9 +33,7 @@ widgetGenerators['base'] = {
 							var aachange = uniprot_d[1];
 							var so = uniprot_d[2];
 							var transcript = uniprot_d[3];
-							var tr = getWidgetTableTr(
-								[uniprot, aachange, so, transcript], 
-								[40, 40, 40, 80]);
+							var tr = getWidgetTableTr([uniprot, aachange, so, transcript]);
 							addEl(tbody, tr);
 						}
 					}

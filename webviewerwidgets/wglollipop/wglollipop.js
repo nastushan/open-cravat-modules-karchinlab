@@ -414,7 +414,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariant (variant, stage, y, varHeightInc) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
