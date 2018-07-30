@@ -1,0 +1,13 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tag
+chr4	1804372	+	A	G		plus_SBS_FGFR3
+chr12	25245372	+	T	C		minus_SBS_KRAS
+chr1	16565717	+	C	G		top_SBS_NBPF1
+chr6	41158725	+	G	T		high_SBS_TREM2
+chr15	43526219	+	G	T		high_SBS_MAP1A
+chr15	43528293	+	C	T		mid_SBS_MAP1A
+chrX	111195936	+	A	C		low_SBS_PAK3
+chr17	7673802	+	C	A		bottom_SBS_TP53
+chr2	197401769	+	A	T	zero_SBS_SF3B_one
+chr2	197402110	+	T	C		zero_SBS_SF3B_526
+chr11	77343907	+	G	A		stopgain_SBS_PAK1
+chr19	2997925	+	C	G		stoploss_SBS_TLE2
