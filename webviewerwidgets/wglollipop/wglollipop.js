@@ -43,7 +43,6 @@ widgetGenerators['lollipop'] = {
 			'variantdatasource': null,
 			'variantcategory': null,
 			'sitedatasource': null,
-			redraw: false,
 		},
 		'function': function (div, row) {
 			var widgetName = 'lollipop';
@@ -55,15 +54,16 @@ widgetGenerators['lollipop'] = {
 			
 			v.widgetContentDiv = div;
 			
-			$(div).empty();
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
+				$(div).empty();
 				return;
 			}
 			
 			var self = this;
-			if (hugo != v.hugo || resetTab[currentTab] != false || v['redraw'] == true) {
+			if (hugo != v.hugo || v['resized'] != false) {
+				$(div).empty();
 				$.get('rest/widgetservice/' + widgetName, 
 						{hugo: hugo}).done(function (data) {
 					widgetGenerators[widgetName]['data'] = data;

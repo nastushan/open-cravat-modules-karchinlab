@@ -2,18 +2,28 @@ $.getScript('/widget_support/ndex/cytoscape.js', function () {});
 
 widgetGenerators['ndex'] = {
 		'variant': {
+			'donterase': true,
 			'width': 580, 
 			'height': 580, 
+			'variables': {
+				'hugo': null
+			},
 			'function': function (parentDiv, row, tabName) {
 				var self = this;
 				self.selectedNetworkName = '';
 				
-				$(parentDiv).empty();
-				
 				var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 				if (hugo == '') {
+					$(parentDiv).empty();
 					return;
 				}
+				
+				var v = widgetGenerators['ndex'][tabName]['variables'];
+				if (hugo == v.hugo && v['resized'] != true) {
+					return;
+				}
+				$(parentDiv).empty();
+				v.hugo = hugo;
 				var geneRow = infomgr.geneRows[hugo];
 				var networkids = infomgr.getRowValue('gene', geneRow, 'ndex__networkid');
 				var networknames = infomgr.getRowValue('gene', geneRow, 'ndex__networkname');
