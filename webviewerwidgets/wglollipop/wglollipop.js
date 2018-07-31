@@ -43,6 +43,7 @@ widgetGenerators['lollipop'] = {
 			'variantdatasource': null,
 			'variantcategory': null,
 			'sitedatasource': null,
+			redraw: false,
 		},
 		'function': function (div, row) {
 			var widgetName = 'lollipop';
@@ -51,18 +52,18 @@ widgetGenerators['lollipop'] = {
 			var tabName = toks[1];
 			
 			var v = widgetGenerators[widgetName][tabName]['variables'];
-
+			
 			v.widgetContentDiv = div;
+			
+			$(div).empty();
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
-				$(div).empty();
 				return;
 			}
 			
 			var self = this;
-			if (hugo != v.hugo || resetTab[currentTab] != false) {
-				$(div).empty();
+			if (hugo != v.hugo || resetTab[currentTab] != false || v['redraw'] == true) {
 				$.get('rest/widgetservice/' + widgetName, 
 						{hugo: hugo}).done(function (data) {
 					widgetGenerators[widgetName]['data'] = data;

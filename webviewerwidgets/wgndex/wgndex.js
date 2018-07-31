@@ -7,6 +7,9 @@ widgetGenerators['ndex'] = {
 			'function': function (parentDiv, row, tabName) {
 				var self = this;
 				self.selectedNetworkName = '';
+				
+				$(parentDiv).empty();
+				
 				var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 				if (hugo == '') {
 					return;
