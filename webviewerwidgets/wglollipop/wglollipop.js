@@ -51,8 +51,9 @@ widgetGenerators['lollipop'] = {
 			var tabName = toks[1];
 			
 			var v = widgetGenerators[widgetName][tabName]['variables'];
-
+			
 			v.widgetContentDiv = div;
+			
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
@@ -61,7 +62,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			var self = this;
-			if (hugo != v.hugo || resetTab[currentTab] != false) {
+			if (hugo != v.hugo || v['resized'] != false) {
 				$(div).empty();
 				$.get('rest/widgetservice/' + widgetName, 
 						{hugo: hugo}).done(function (data) {
@@ -414,7 +415,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariant (variant, stage, y, varHeightInc) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;

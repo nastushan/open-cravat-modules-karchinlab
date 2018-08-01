@@ -1,6 +1,7 @@
 title: gnomAD
 version: 1.0.0
 type: webviewerwidget
+required_annotator: gnomad
 description: gnomAD webviewer widget
 developer:
   name: ''

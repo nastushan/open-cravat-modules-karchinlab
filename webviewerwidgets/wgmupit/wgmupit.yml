@@ -1,6 +1,7 @@
 title: MuPIT
 version: 1.0.0
 type: webviewerwidget
+required_annotator: mupit
 description: MuPIT webviewer widget
 developer:
   name: ''
