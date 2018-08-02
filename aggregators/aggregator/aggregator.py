@@ -145,7 +145,7 @@ class Aggregator (object):
                     db_col_name = '%s__%s' %(annot_name, reader_col_name)
                     val = rd[reader_col_name]
                     set_val = 'null'
-                    if val:
+                    if val is not None:
                         if type(val) is str:
                             set_val = '"%s"' %val
                         else:
