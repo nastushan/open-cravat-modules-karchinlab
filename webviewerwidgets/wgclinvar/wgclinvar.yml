@@ -1,6 +1,7 @@
 title: Clinvar
 version: 1.0.0
 type: webviewerwidget
+required_annotator: clinvar
 description: Clinvar webviewer widget
 developer:
   name: ''

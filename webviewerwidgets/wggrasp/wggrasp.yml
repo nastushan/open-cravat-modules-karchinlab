@@ -1,6 +1,7 @@
 title: GRASP
 version: 1.0.0
 type: webviewerwidget
+required_annotator: grasp
 description: GRASP webviewer widget
 developer:
   name: ''

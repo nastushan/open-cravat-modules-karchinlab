@@ -1,6 +1,7 @@
 title: Cosmic Gene
 version: 1.0.0
 type: webviewerwidget
+required_annotator: cosmic_gene
 description: Cosmic gene webviewer widget
 developer:
   name: ''

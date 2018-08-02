@@ -1,6 +1,7 @@
 title: Repeat Sequences
 version: 1.0.0
 type: webviewerwidget
+required_annotator: repeat
 description: Repeat Sequences webviewer widget
 developer:
   name: ''

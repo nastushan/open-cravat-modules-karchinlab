@@ -1,6 +1,7 @@
 title: Non-coding RNA diagram
 version: 1.0.0
 type: webviewerwidget
+required_annotator: ncrna
 description: Non-coding RNA webviewer widget
 developer:
   name: ''

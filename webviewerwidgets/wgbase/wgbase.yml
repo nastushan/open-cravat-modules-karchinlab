@@ -1,6 +1,7 @@
 title: Base information
 version: 1.0.0
 type: webviewerwidget
+required_annotator: base
 description: Base information webviewer widget
 developer: 
   name: ''

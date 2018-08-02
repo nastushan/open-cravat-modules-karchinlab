@@ -1,6 +1,7 @@
 title: dbSNP
 version: 1.0.0
 type: webviewerwidget
+required_annotator: dbsnp
 description: dbSNP webviewer widget
 developer:
   name: ''

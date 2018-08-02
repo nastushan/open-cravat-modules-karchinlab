@@ -18,7 +18,7 @@ widgetGenerators['cosmic_gene'] = {
 					if (match !== null) {
 						var tissue = match[1];
 						var count = match[2];
-						var tr = getWidgetTableTr([tissue, count], [150, 90]);
+						var tr = getWidgetTableTr([tissue, count]);
 						addEl(tbody, tr);
 					}
 				}

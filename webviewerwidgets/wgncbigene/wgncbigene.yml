@@ -1,6 +1,7 @@
 title: NCBI Gene Widget
 version: 1.0.0
 type: webviewerwidget
+required_annotator: ncbigene
 description: NCBI Gene webviewer widget
 developer:
   name: ''

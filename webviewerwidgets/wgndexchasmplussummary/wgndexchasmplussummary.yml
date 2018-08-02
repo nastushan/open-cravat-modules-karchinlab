@@ -1,6 +1,7 @@
 title: NDEx CHASMplus Summary
 version: 1.0.0
 type: webviewerwidget
+required_annotator: chasmplus
 description: NDEx CHASMplus Summary webviewer widget
 developer:
   name: ''

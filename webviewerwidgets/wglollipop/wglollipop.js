@@ -45,13 +45,14 @@ widgetGenerators['lollipop'] = {
 			'sitedatasource': null,
 		},
 		'function': function (div, row) {
+			var self = this;
 			var widgetName = 'lollipop';
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
 			var tabName = toks[1];
 			
 			var v = widgetGenerators[widgetName][tabName]['variables'];
-
+			
 			v.widgetContentDiv = div;
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
@@ -60,52 +61,63 @@ widgetGenerators['lollipop'] = {
 				return;
 			}
 			
-			var self = this;
-			if (hugo != v.hugo || resetTab[currentTab] != false) {
-				$(div).empty();
-				$.get('rest/widgetservice/' + widgetName, 
-						{hugo: hugo}).done(function (data) {
-					widgetGenerators[widgetName]['data'] = data;
-					draw(data);
-					v.hugo = hugo;
-					if (v.variantdatasource != null) {
-						var select = 
-							document.getElementById(
-								getVarDatasourceSelectorId());
-						var idx = getOptionIndex(select, v.variantdatasource);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx;
-							select.dispatchEvent(new Event('change'));
+			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
+				if (v.drawing) {
+					clearTimeout(self.runTimeout);
+				}
+				v.drawing = true;
+				self.runTimeout = setTimeout(function () {
+					console.log('clearing div');
+					$(div).empty();
+					console.log('inside runtimeout for', v.hugo);
+					$.get('rest/widgetservice/' + widgetName, 
+							{hugo: hugo}).done(function (data) {
+						widgetGenerators[widgetName]['data'] = data;
+						draw(data);
+						v.hugo = hugo;
+						if (v.variantdatasource != null) {
+							var select = 
+								document.getElementById(
+									getVarDatasourceSelectorId());
+							var idx = getOptionIndex(select, v.variantdatasource);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx;
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-					if (v.variantcategory != null) {
-						var select = 
-							document.getElementById(getVarCategorySelectorId());
-						var idx = getOptionIndex(select, v.variantcategory);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx
-							select.dispatchEvent(new Event('change'));
+						if (v.variantcategory != null) {
+							var select = 
+								document.getElementById(getVarCategorySelectorId());
+							var idx = getOptionIndex(select, v.variantcategory);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-					if (v.sitedatasource != null) {
-						var select = 
-							document.getElementById(
-									getProtSiteSourceSelectorId());
-						var idx = getOptionIndex(select, v.sitedatasource);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx;
-							select.dispatchEvent(new Event('change'));
+						if (v.sitedatasource != null) {
+							var select = 
+								document.getElementById(
+										getProtSiteSourceSelectorId());
+							var idx = getOptionIndex(select, v.sitedatasource);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx;
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-				});
+					});
+				}, 200);
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
+			}
+			
+			function timedRun () {
+				
 			}
 			
 			function getOptionIndex (select, value) {
@@ -414,7 +426,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariant (variant, stage, y, varHeightInc) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
@@ -493,6 +504,8 @@ widgetGenerators['lollipop'] = {
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
+				
+				this.drawing = false;
 			}
 			
 			function drawControlPanel (data) {
@@ -745,6 +758,7 @@ widgetGenerators['lollipop'] = {
 			'sitedatasource': null,
 		},
 		'function': function (div, row) {
+			var self = this;
 			var widgetName = 'lollipop';
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
@@ -760,50 +774,57 @@ widgetGenerators['lollipop'] = {
 				return;
 			}
 			
-			var self = this;
-			if (hugo != v.hugo || resetTab[currentTab] != false) {
-				$(div).empty();
-				$.get('rest/widgetservice/' + widgetName, 
-						{hugo: hugo}).done(function (data) {
-					widgetGenerators[widgetName]['data'] = data;
-					draw(data);
-					v.hugo = hugo;
-					if (v.variantdatasource != null) {
-						var select = 
-							document.getElementById(
-								getVarDatasourceSelectorId());
-						var idx = getOptionIndex(select, v.variantdatasource);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx;
-							select.dispatchEvent(new Event('change'));
+			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
+				if (v.drawing) {
+					clearTimeout(self.runTimeout);
+				}
+				v.drawing = true;
+				self.runTimeout = setTimeout(function () {
+					console.log('clearing div');
+					$(div).empty();
+					console.log('inside runtimeout for', v.hugo);
+					$.get('rest/widgetservice/' + widgetName, 
+							{hugo: hugo}).done(function (data) {
+						widgetGenerators[widgetName]['data'] = data;
+						v.hugo = hugo;
+						draw(data);
+						if (v.variantdatasource != null) {
+							var select = 
+								document.getElementById(
+									getVarDatasourceSelectorId());
+							var idx = getOptionIndex(select, v.variantdatasource);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx;
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-					if (v.variantcategory != null) {
-						var select = 
-							document.getElementById(getVarCategorySelectorId());
-						var idx = getOptionIndex(select, v.variantcategory);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx
-							select.dispatchEvent(new Event('change'));
+						if (v.variantcategory != null) {
+							var select = 
+								document.getElementById(getVarCategorySelectorId());
+							var idx = getOptionIndex(select, v.variantcategory);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-					if (v.sitedatasource != null) {
-						var select = 
-							document.getElementById(
-									getProtSiteSourceSelectorId());
-						var idx = getOptionIndex(select, v.sitedatasource);
-						if (idx == -1) {
-							idx = 0;
-						} else {
-							select.selectedIndex = idx;
-							select.dispatchEvent(new Event('change'));
+						if (v.sitedatasource != null) {
+							var select = 
+								document.getElementById(
+										getProtSiteSourceSelectorId());
+							var idx = getOptionIndex(select, v.sitedatasource);
+							if (idx == -1) {
+								idx = 0;
+							} else {
+								select.selectedIndex = idx;
+								select.dispatchEvent(new Event('change'));
+							}
 						}
-					}
-				});
+					});
+				}, 200);
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
 			}
@@ -1179,6 +1200,7 @@ widgetGenerators['lollipop'] = {
 
 			function draw (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
+				console.log('drawing started for', v.hugo);
 				v.proteinWidth = getComputedStyle(div)['width'];
 				v.proteinWidth = parseInt(
 					v.proteinWidth.substring(0, v.proteinWidth.length - 2)) 
@@ -1193,6 +1215,9 @@ widgetGenerators['lollipop'] = {
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
+				
+				v.drawing = false;
+				console.log('drawing finished for', v.hugo);
 			}
 			
 			function drawControlPanel (data) {
