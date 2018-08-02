@@ -100,18 +100,8 @@ class CravatAnnotator(BaseAnnotator):
         hgvs_alt = ''
         if tseq.pref != tseq.palt:
             repeat_unit, repeat_count = self._get_repeat_info(tseq.palt)
-#             head_ends_in_repeat_unit = False # Has to be here to handle IndexErrors
-#             try:
-#                 head_ends_in_repeat_unit = tseq.shared_phead[-len(repeat_unit):] == repeat_unit
-#             except IndexError:
-#                 pass
             head_repeat_count = self._count_seq_tail_repeats(tseq.shared_phead,
                                                              repeat_unit)
-#             try:
-#                 while (tseq.shared_phead[-len(repeat_unit)*(head_repeat_count+1):len(tseq.shared_phead)-len(repeat_unit)*(head_repeat_count)] == repeat_unit):
-#                     head_repeat_count += 1
-#             except:
-#                 pass
             if tseq.fs_flag and not(tseq.cterm_ext_flag) and not(tseq.palt_and_tail.startswith('*')): # Frameshift
                 hgvs_ref = aa_let_to_abbv(tseq.pref_and_tail[0]) \
                            + str(tseq.ppos_start+1)
