@@ -8,6 +8,9 @@ widgetGenerators['ndex'] = {
 				var self = this;
 				self.selectedNetworkName = '';
 				var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+				if (hugo == '') {
+					return;
+				}
 				var geneRow = infomgr.geneRows[hugo];
 				var networkids = infomgr.getRowValue('gene', geneRow, 'ndex__networkid');
 				var networknames = infomgr.getRowValue('gene', geneRow, 'ndex__networkname');

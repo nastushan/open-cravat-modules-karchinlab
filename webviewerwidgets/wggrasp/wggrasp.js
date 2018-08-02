@@ -26,7 +26,7 @@ widgetGenerators['grasp'] = {
 					var pval = match[2];
 					var nhlbi = nhlbis[i];
 					var pmid = pmids[i];
-					var tr = getWidgetTableTr([pval, pheno, nhlbi, pmid]);
+					var tr = getWidgetTableTr([pval, pheno, nhlbi, pmid], [40, 70, 70, 60]);
 					addEl(tbody, tr);
 				}
 			}

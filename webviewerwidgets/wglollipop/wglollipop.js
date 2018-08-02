@@ -61,7 +61,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			var self = this;
-			if (hugo != v.hugo) {
+			if (hugo != v.hugo || resetTab[currentTab] != false) {
 				$(div).empty();
 				$.get('rest/widgetservice/' + widgetName, 
 						{hugo: hugo}).done(function (data) {
@@ -761,7 +761,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			var self = this;
-			if (hugo != v.hugo) {
+			if (hugo != v.hugo || resetTab[currentTab] != false) {
 				$(div).empty();
 				$.get('rest/widgetservice/' + widgetName, 
 						{hugo: hugo}).done(function (data) {

@@ -1,6 +1,7 @@
 title: Cancer Genome Landscapes
 version: 1.0.0
 type: webviewerwidget
+required_annotator: cgl
 description: Cancer genome landscapes webviewer widget
 developer:
   name: ''

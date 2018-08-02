@@ -3,6 +3,7 @@ import sqlite3
 import random
 import cravat
 import json
+from collections import OrderedDict
 
 class Mapper(cravat.BaseMapper):
     """
@@ -414,11 +415,23 @@ class Mapper(cravat.BaseMapper):
                     primary_has_protein = cur_has_protein
         # Fill crx dict with information from most deleterious transcript
         crx_data['hugo'] = primary_hugo
+        if primary_so in ['MIS', 'SYN', 'FI1', 'FI2', 'FD1', 'FD2', 'IIV', 'IDV', 'CSS', 'STG', 'STL']:
+            crx_data['coding'] = 'Y'
+        else:
+            crx_data['coding'] = ''
         crx_data['transcript'] = primary_transc
         crx_data['so'] = primary_so
         # Fill crx dict with all mappings
-        crx_data['all_mappings'] = json.dumps(all_maps,
-                                                         separators=(',', ':'))
+        # Set explicit order in the json
+        all_maps_ordered = OrderedDict()
+        # Sort on hugo
+        for hugo in sorted(all_maps.keys()):
+            all_maps_ordered[hugo] = []
+            # Sort hits on transcript id
+            for hit_list in sorted(all_maps[hugo], key=lambda hit_list: hit_list[3]):
+                all_maps_ordered[hugo].append(hit_list)
+        crx_data['all_mappings'] = json.dumps(all_maps_ordered,
+                                              separators=(',', ':'))
         return crx_data, alt_transcripts
     
 def tpos_to_codon(tpos):

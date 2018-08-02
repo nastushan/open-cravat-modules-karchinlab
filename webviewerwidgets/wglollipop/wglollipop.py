@@ -82,19 +82,20 @@ def get_data (queries):
         ', '.join(['"' + v + '"' for v in feature_keys_ignore]) + ')'
     cursor.execute(sql)
     domains = {}
-    for row in cursor.fetchall():
-        (desc, start, stop, aalen, cravat_transcript, \
-            shrt_desc, data_source, feature_key) = row
-        if cravat_transcript != ret['transcript']:
-            continue
-        if data_source not in domains:
-            domains[data_source] = []
-        ret['len'] = aalen
-        row = {'start': start, 'stop': stop, 'desc': desc, 
-            'shrt_desc': shrt_desc, 'data_source': data_source,
-            'feature_key': feature_key}
-        domains[data_source].append(row)
-        ret['transcript'] = cravat_transcript
+    if 'transcript' in ret:
+        for row in cursor.fetchall():
+            (desc, start, stop, aalen, cravat_transcript, \
+                shrt_desc, data_source, feature_key) = row
+            if cravat_transcript != ret['transcript']:
+                continue
+            if data_source not in domains:
+                domains[data_source] = []
+            ret['len'] = aalen
+            row = {'start': start, 'stop': stop, 'desc': desc, 
+                'shrt_desc': shrt_desc, 'data_source': data_source,
+                'feature_key': feature_key}
+            domains[data_source].append(row)
+            ret['transcript'] = cravat_transcript
     for data_source in domains:
         domains[data_source] = \
             sorted(domains[data_source], key=lambda x: x['start'])

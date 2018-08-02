@@ -79,7 +79,6 @@ widgetGenerators['sosamplesummary'] = {
 					}
 				}
 			});
-			widgetCharts['sosamplesummary'] = chart;
 		}
 	}
 };

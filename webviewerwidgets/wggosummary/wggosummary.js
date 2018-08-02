@@ -100,7 +100,6 @@ widgetGenerators[widgetName] = {
 					}
 				}
 			});
-			widgetCharts[widgetName] = chart;
 		}
 	}
 };
