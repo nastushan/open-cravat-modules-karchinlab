@@ -8,9 +8,6 @@ output_columns:
 - name: PubmedId
   title: PubmedId
   type: string
-- name: SequenceType
-  title: SequenceType
-  type: string
 - name: PrimaryPhenoType
   title: PrimaryPhenoType
   type: string
