@@ -13,7 +13,7 @@ class CravatAnnotator(BaseAnnotator):
         chrom, pos, ref_base, alt_base
 
     Return attributes (out):
-        PubmedId, PrimaryPhenoType, Validation
+        PubmedId, PrimaryPhenotype, Validation
 
     Attributes:
         sql_template (str): A sql template for querying Denovo db. Use format str
@@ -22,7 +22,7 @@ class CravatAnnotator(BaseAnnotator):
     
     sql_template = \
     ("SELECT "
-        "PubmedId, PrimaryPhenoType, Validation "
+        "PubmedId, PrimaryPhenotype, Validation "
     "FROM Denovo "
         "WHERE Chr='{}' "
         "AND Position='{}' "
@@ -67,7 +67,7 @@ class CravatAnnotator(BaseAnnotator):
         concated = [','.join(arr) for arr in concated]
         out = {
             'PubmedId': concated[0],
-            'PrimaryPhenoType': concated[1],
+            'PrimaryPhenotype': concated[1],
             'Validation': concated[2]
         }
         return out

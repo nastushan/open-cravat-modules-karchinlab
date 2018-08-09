@@ -8,8 +8,8 @@ output_columns:
 - name: PubmedId
   title: PubmedId
   type: string
-- name: PrimaryPhenoType
-  title: PrimaryPhenoType
+- name: PrimaryPhenotype
+  title: PrimaryPhenotype
   type: string
 - name: Validation
   title: Validation
