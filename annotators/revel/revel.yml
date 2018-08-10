@@ -1,0 +1,18 @@
+title: REVEL
+version: 2016.06.03
+type: annotator
+level: variant
+datasource: 2016.06.03
+input_format: crv
+output_columns:
+  - name: score
+    title: Score
+    type: float
+description: Rare Exome Variant Ensemble Learner
+developer:
+  name: 'Joe Rothstein'
+  organization: 'Icahn School of Medicine at Mount Sinai'
+  email: 'joseph.rothstein@mssm.edu'
+  website: 'https://sites.google.com/site/revelgenomics/'
+  citation: 'http://dx.doi.org/10.1016/j.ajhg.2016.08.016'
+

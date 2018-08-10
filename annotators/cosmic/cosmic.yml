@@ -1,6 +1,7 @@
 title: COSMIC
-version: 1.0.0
+version: 85.0.0
 type: annotator
+datasource: v85
 
 level: variant
 input_format: crx

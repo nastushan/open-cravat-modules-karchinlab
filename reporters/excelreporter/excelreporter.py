@@ -73,6 +73,8 @@ class Reporter(CravatReport):
             lastcolno = self.colno + count - 1
             if count > 1:
                 self.ws.merge_range(self.rowno, self.colno, self.rowno, lastcolno, displayname)
+            else:
+                self.ws.write(self.rowno, self.colno, displayname)
             if groupno % 2 == 0:
                 self.ws.set_column(self.colno, lastcolno - 1, None, self.grayfill)
                 self.ws.set_column(lastcolno, lastcolno, None, self.grayright)
