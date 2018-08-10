@@ -30,11 +30,10 @@ gene_summary_output_columns:
   title: Gene p-value
   type: float
 
-description: Machine learning method that predicts the functional significance of
-  somatic missense mutations.
+description: CHASMplus is a machine learning algorithm that discriminates somatic missense mutations as either cancer drivers or passengers. Predictions can be done in either a cancer type-specific manner or by a model considering multiple cancer types together (a useful default). Along with scoring each mutation, CHASMplus has a rigorous statistical model to evaluate the statistical significance of predictions. This OpenCRAVAT module represents the v1.0 precompute of CHASMplus (source code v1.0).
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
-  citation: ''
+  name: 'Collin Tokheim'
+  organization: 'Johns Hopkins University - Karchin Lab'
+  email: 'ctokheim@jhu.edu'
+  website: 'http://chasmplus.readthedocs.io/en/latest/'
+  citation: 'https://www.biorxiv.org/content/early/2018/06/20/313296'

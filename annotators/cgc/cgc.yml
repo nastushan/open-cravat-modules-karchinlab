@@ -20,8 +20,8 @@ output_columns:
 
 description: Cancer Genome Census annotation
 developer:
-  name: ''
-  organization: ''
+  name: 'Sanger Institute'
+  organization: 'Sanger Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://cancer.sanger.ac.uk/census'
+  citation: 'https://www.nature.com/articles/nrc1299'

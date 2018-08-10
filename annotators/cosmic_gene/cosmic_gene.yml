@@ -12,10 +12,10 @@ output_columns:
   title: COSMIC gene count (tissue)
   type: string
 
-description: COSMIC gene level annotation
+description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:
-  name: ''
-  organization: ''
+  name: 'Sanger Institute'
+  organization: 'Sanger Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://cancer.sanger.ac.uk/cosmic'
+  citation: 'https://academic.oup.com/nar/article/45/D1/D777/2605743'

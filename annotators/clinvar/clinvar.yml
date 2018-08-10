@@ -16,10 +16,10 @@ output_columns:
   title: Disease Names
   type: string
 
-description: ClinVar annotation
+description: ClinVar is an archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
 developer:
-  name: ''
-  organization: ''
+  name: 'NCBI'
+  organization: 'NCBI'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://www.ncbi.nlm.nih.gov/clinvar/'
+  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/26582918'

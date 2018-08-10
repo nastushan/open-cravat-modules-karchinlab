@@ -1,4 +1,4 @@
-title: Denovo
+title: Denovo-DB
 version: 1.1.1
 type: annotator
 
@@ -18,7 +18,7 @@ output_columns:
 description: Denovo annotation. Denovo is a collection of germline variants in the
  human genome which are present in children but not their parents.
 developer:
-  name: ''
+  name: 'University of Washington'
   organization: 'University of Washington'
   email: ''
   website: 'http://denovo-db.gs.washington.edu/'
