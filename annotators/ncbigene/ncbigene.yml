@@ -1,5 +1,5 @@
 title: NCBI Gene
-version: 1.0.0
+version: 2018.02.21
 type: annotator
 
 level: gene
@@ -8,10 +8,10 @@ output_columns:
   title: NCBI Gene Description
   type: string
 
-description: NCBI Gene Descriptions
+description: Gene description from NIH's NCBI Gene Info
 developer:
-  name: ''
-  organization: ''
+  name: 'NIH'
+  organization: 'NIH'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://www.ncbi.nlm.nih.gov/gene'
+  citation: 'https://www.ncbi.nlm.nih.gov/gene'

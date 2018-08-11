@@ -1,5 +1,5 @@
 title: GRASP-GWAS
-version: 1.0.0
+version: 2.0.0
 type: annotator
 
 name: GRASP-GWAS
@@ -16,10 +16,10 @@ output_columns:
   title: GWAS Phenotype (GRASP)
   type: string
 
-description: GRASP-GWAS annotation
+description: Genome-Wide Repository of Associations Between SNPs and Phenotypes
 developer:
-  name: ''
-  organization: ''
+  name: 'NIH'
+  organization: 'NIH'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://grasp.nhlbi.nih.gov/Overview.aspx'
+  citation: 'Leslie R, O’Donnell CJ, Johnson AD (2014) GRASP: analysis of genotype-phenotype results from 1,390 genome-wide association studies and corresponding open access database. Bioinformatics 30(12), i185-94'

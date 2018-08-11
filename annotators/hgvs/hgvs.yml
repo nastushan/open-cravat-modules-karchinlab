@@ -1,4 +1,4 @@
-title: HGVS
+title: HGVS Format
 type: annotator
 version: 1.0.0
 
@@ -23,10 +23,10 @@ output_columns:
   title: All protein
   type: string
 
-description: Provides genomic, transcript, and protein sequence changes in HGVS format.
+description: Variants described in HGVS format
 developer:
-  name: ''
-  organization: ''
+  name: 'Human Genome Variation Society'
+  organization: 'Human Genome Variation Society'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://www.hgvs.org/'
+  citation: 'https://onlinelibrary.wiley.com/doi/pdf/10.1002/humu.22981'
