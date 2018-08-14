@@ -42,7 +42,7 @@ class CravatAnnotator(BaseAnnotator):
         p = input_data['mapping_parser']
         
         primary_transcript = input_data['transcript']
-        if primary_transcript == '':
+        if primary_transcript is None:
             return
         primary_mapping = p.get_transcript_mapping(input_data['transcript'])
         primary_so = primary_mapping.so
