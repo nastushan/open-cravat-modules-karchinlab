@@ -1,0 +1,11 @@
+title: MUTPRED
+version: 1.0.0
+type: webviewerwidget
+required_annotator: mutpred1_hg38
+description: MUTPRED webviewer widget
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
