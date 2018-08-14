@@ -3,7 +3,8 @@ chr11	64810053	+	-	A		minus_ins_MEN1
 chr10	87894027	+	-	CT		plus_ins_PTEN
 chr17	21703215	+	C	-		plus_del_KCNJ18
 chr1	7965348	+	G	T		plus_SBS_PARK7
-chr15	48793359	+	T	G		minus_SBS_GATM
+#chr15	48756099	+	A	G		minus_CEP152
+chr15	48756289	+	G	A	minus_CEP152_2
 chr17	7674904	+	TC	-		minus_del_TP53
 chr10	87894027	+	-	CG		fuzzy_ins_PTEN
 chr17	7674904	+	T	-		fuzzy_del_TP53
