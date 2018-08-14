@@ -4,8 +4,8 @@ type: webviewerwidget
 required_annotator: hgvs
 description: HGVS webviewer widget
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'http://www.insilico.us.com'
   citation: ''

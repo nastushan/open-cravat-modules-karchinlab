@@ -1,5 +1,5 @@
 title: Repeat Sequences
-version: 1.0.0
+version: 2014.1.10
 type: annotator
 
 level: variant
@@ -14,10 +14,10 @@ output_columns:
   title: Repeat Name
   type: string
 
-description: Repeat Sequences annotation
+description: Repeating elements from RepeatMasker library
 developer:
-  name: ''
-  organization: ''
+  name: 'Genetic Information Research Institute'
+  organization: 'Genetic Information Research Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://www.girinst.org/server/RepBase/index.php'
+  citation: 'Bao, W., Kojima, K.K., Kohany, O. Repbase Update, a database of repetitive elements in eukaryotic genomes. Mob DNA, 2015;6:11'

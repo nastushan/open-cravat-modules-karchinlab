@@ -8,10 +8,10 @@ output_columns:
   title: CGL Class
   type: string
 
-description: Cancer Genome Landscape annotation
+description: Oncogenes and tumor supressor genes identified in the Cancer Genome Landscape study
 developer:
-  name: ''
-  organization: ''
+  name: 'Bert Vogelstein'
+  organization: 'Johns Hopkins University'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://science.sciencemag.org/content/339/6127/1546'
+  citation: 'http://science.sciencemag.org/content/339/6127/1546'

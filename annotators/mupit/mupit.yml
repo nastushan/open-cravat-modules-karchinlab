@@ -1,6 +1,6 @@
 name: mupit
 title: MuPIT
-version: 1.0.0
+version: 4.1
 type: annotator
 
 level: variant
@@ -19,10 +19,10 @@ gene_summary_output_columns:
   title: MuPIT link
   type: string
 
-description: MuPIT annotation
+description: Provides links to variant position and annotations in 3D MuPIT structure viewer.
 developer:
-  name: ''
-  organization: ''
+  name: 'Johns Hopkins - Karchin Lab'
+  organization: 'Johns Hopkins - Karchin Lab'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://mupit.icm.jhu.edu/MuPIT_Interactive/'
+  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/23793516'

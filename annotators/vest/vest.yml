@@ -1,6 +1,6 @@
 name: vest
 title: VEST
-version: 1.0.0
+version: 4.0.0
 type: annotator
 
 level: variant
@@ -55,8 +55,8 @@ gene_summary_output_columns:
 
 description: VEST annotation
 developer:
-  name: ''
-  organization: ''
+  name: 'Johns Hopkins University - Karchin Lab'
+  organization: 'Johns Hopkins University - Karchin Lab'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://karchinlab.org/apps/appVest.html'
+  citation: ' https://www.ncbi.nlm.nih.gov/pubmed/26442818'

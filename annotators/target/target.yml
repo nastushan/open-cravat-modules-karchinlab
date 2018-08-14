@@ -1,5 +1,5 @@
 title: TARGET
-version: 1.0.0
+version: 3
 type: annotator
 
 level: gene
@@ -12,10 +12,10 @@ output_columns:
   title: Rationale
   type: string
 
-description: TARGET annotation
+description: Tumor Alterations Relevant for GEnomics-driven Therapy
 developer:
-  name: ''
-  organization: ''
+  name: 'Broad Institute'
+  organization: 'Broad Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://software.broadinstitute.org/cancer/cga/target'
+  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/24836576'

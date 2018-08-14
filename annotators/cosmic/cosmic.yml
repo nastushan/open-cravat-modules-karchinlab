@@ -1,6 +1,7 @@
 title: COSMIC
-version: 1.0.0
+version: 85.0.0
 type: annotator
+datasource: v85
 
 level: variant
 input_format: crx
@@ -21,11 +22,11 @@ output_columns:
   title: COSMIC protein change
   type: string
 
-description: COSMIC annotation
+description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:
-  name: ''
-  organization: ''
+  name: 'Sanger Institute'
+  organization: 'Sanger Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://cancer.sanger.ac.uk/cosmic'
+  citation: 'https://academic.oup.com/nar/article/45/D1/D777/2605743'
 data_version: 1.0.0

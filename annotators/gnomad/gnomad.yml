@@ -1,5 +1,5 @@
 title: gnomAD
-version: 1.0.0
+version: 2.0.2
 type: annotator
 
 level: variant
@@ -33,10 +33,10 @@ output_columns:
   title: gnomAD AF South Asian
   type: float
 
-description: gnomAD annotation
+description: Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects
 developer:
-  name: ''
-  organization: ''
+  name: 'Broad Institute'
+  organization: 'Broad Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://gnomad.broadinstitute.org/'
+  citation: 'https://macarthurlab.org/2017/02/27/the-genome-aggregation-database-gnomad/'

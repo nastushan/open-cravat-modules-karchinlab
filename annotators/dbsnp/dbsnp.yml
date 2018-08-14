@@ -1,5 +1,5 @@
 title: dbSNP
-version: 1.0.0
+version: 151
 type: annotator
 
 level: variant
@@ -9,10 +9,10 @@ output_columns:
   title: dbSNP
   type: string
 
-description: Sample count annotation
+description: Comprehensive database of both single base nucleotide subsitutions and short deletion and insertion polymorphisms
 developer:
-  name: ''
-  organization: ''
+  name: 'NCBI'
+  organization: 'NCBI'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://www.ncbi.nlm.nih.gov/projects/SNP/'
+  citation: 'Sherry ST, Ward MH, Kholodov M, Baker J, Phan L, Smigielski EM, Sirotkin K. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res. 2001 Jan 1;29(1):308-11'

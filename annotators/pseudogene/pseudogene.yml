@@ -1,5 +1,5 @@
 title: Pseudogene
-version: 1.0.0
+version: 27
 type: annotator
 
 level: variant
@@ -12,10 +12,10 @@ output_columns:
   title: Pseudogene Transcript
   type: string
 
-description: Pseudogene annotation
+description: Pseudogenes from UCSC hg38 wgEncodeGencodePseudoGeneV27
 developer:
-  name: ''
-  organization: ''
+  name: 'UCSC'
+  organization: 'UCSC'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://www.gencodegenes.org/'
+  citation: 'http://europepmc.org/abstract/MED/22955987'

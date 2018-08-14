@@ -1,5 +1,5 @@
 title: ESP6500
-version: 1.0.0
+version: 6500.2
 type: annotator
 
 level: variant
@@ -12,10 +12,10 @@ output_columns:
   title: AA
   type: float
 
-description: ESP6500 annotation
+description: Exome Sequencing Project 6500
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
-  citation: ''
+  name: 'University of Washington'
+  organization: 'University of Washington'
+  email: 'evsserver@uw.edu'
+  website: 'http://evs.gs.washington.edu/EVS/'
+  citation: 'Exome Variant Server, NHLBI GO Exome Sequencing Project (ESP), Seattle, WA'

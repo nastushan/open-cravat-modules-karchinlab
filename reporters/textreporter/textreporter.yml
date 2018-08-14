@@ -3,8 +3,8 @@ version: 1.0.0
 type: reporter
 description: Text format reporter
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'http://www.insilico.us.com'
   citation: ''

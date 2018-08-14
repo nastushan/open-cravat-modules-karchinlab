@@ -1,5 +1,5 @@
 title: NDEx
-version: 1.0.0
+version: 4.0.0
 type: annotator
 
 level: gene
@@ -17,10 +17,10 @@ output_columns:
 
 add_to_variant_level: true
 
-description: NDEx annotation
+description: Network Data Exchange
 developer:
-  name: ''
-  organization: ''
+  name: 'The Cytoscape Consortium'
+  organization: 'The Cytoscape Consortium'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://home.ndexbio.org/index/'
+  citation: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4649937/'

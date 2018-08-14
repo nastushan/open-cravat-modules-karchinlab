@@ -1,6 +1,7 @@
 title: Cancer Genome Census
-version: 1.0.0
+version: 85.0.0
 type: annotator
+datasource: v85
 
 level: gene
 output_columns:
@@ -19,8 +20,8 @@ output_columns:
 
 description: Cancer Genome Census annotation
 developer:
-  name: ''
-  organization: ''
+  name: 'Sanger Institute'
+  organization: 'Sanger Institute'
   email: ''
-  website: ''
-  citation: ''
+  website: 'https://cancer.sanger.ac.uk/census'
+  citation: 'https://www.nature.com/articles/nrc1299'

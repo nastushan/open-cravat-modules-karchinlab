@@ -1,5 +1,5 @@
 title: 1000 Genomes
-version: 1.0.0
+version: phase3
 type: annotator
 
 level: variant
@@ -8,10 +8,10 @@ output_columns:
   title: 1000 Genomes AF
   type: float
 
-description: 1000 Genomes annotation
+description: Population allele frequencies from 1000 Genomes Project
 developer:
-  name: ''
-  organization: ''
+  name: '1000 Genomes Project Consortium'
+  organization: '1000 Genomes Project Consortium'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://www.internationalgenome.org/home'
+  citation: 'https://www.nature.com/articles/nature15393'
