@@ -27,8 +27,8 @@ output_columns:
 
 description: Writes VCF file information extracted by converter
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
+  name: 'Kyle Moad'
+  organization: 'In Silico Solutions'
+  email: 'kmoad@insilico.us.com'
+  website: 'http://www.insilico.us.com'
   citation: ''
