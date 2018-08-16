@@ -1,7 +1,8 @@
-title: Aggregator
+title: PhDSNPg
 version: 1.0.0
-type: aggregator
-description: Aggregator
+type: webviewerwidget
+required_annotator: phdsnpg
+description: PhDSNPg
 developer:
   name: 'Kyle Moad'
   organization: 'In Silico Solutions'

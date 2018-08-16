@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Tuesday 08/07/2018 09:30:47
+#Created at Wednesday 08/15/2018 10:47:07
 #Report level: variant
 #
 Base Information										Tag Sampler		
@@ -57,32 +57,32 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 51	chr17	41617437	C	G		KRT17	ENST00000311208.12	2KD	ENST00000311208.12:KRT17:Q04695:2KD:(na):(na)	1		minus_at_ds_end
 52	chr17	41617436	C	G						1		minus_after_ds_end
 #CRAVAT Report
-#Created at Tuesday 08/07/2018 09:30:47
+#Created at Wednesday 08/15/2018 10:47:07
 #Report level: gene
 #
 Base Information			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
-MTX1	16	SPL	MIS(1),SYN(1),INT(2),SPL(4),2KU(2),UT5(2),UT3(2),2KD(2)
+MTX1	16	SPL	SPL(4),MIS(1),SYN(1),INT(2),UT5(2),UT3(2),2KU(2),2KD(2)
 HOOK1	1	STG	STG(1)
 CNPY3	2	IIV	IIV(2)
 HOOK3	1	STL	STL(1)
-ITGB3	2	FI2	IIV(1),FI2(1)
+ITGB3	2	FI2	FI2(1),IIV(1)
 POLI	2	IDV	IDV(1),UNK(1)
 ASIC1	1	FI1	FI1(1)
 ARHGAP24	1	FD1	FD1(1)
 RBM15	1	FD1	FD1(1)
-THBS3	5	INT	2KU(3),INT(2)
-BRCA1	7	SPL	MIS(1),SPL(4),INT(2)
-KRT17	8	MIS	SYN(1),MIS(1),2KU(2),UT5(1),UT3(1),2KD(2)
+THBS3	5	INT	INT(2),2KU(3)
+BRCA1	7	SPL	SPL(4),MIS(1),INT(2)
+KRT17	8	MIS	MIS(1),SYN(1),UT5(1),UT3(1),2KU(2),2KD(2)
 ARL1	1	STL	STL(1)
-ARID4B	2	FD1	STG(1),FD1(1)
+ARID4B	2	FD1	FD1(1),STG(1)
 MIS18BP1	1	FD2	FD2(1)
 ARHGAP4	1	FI1	FI1(1)
 FLT4	1	FI2	FI2(1)
 KCNN3	1	IIV	IIV(1)
 PTH2	1	IDV	IDV(1)
 #CRAVAT Report
-#Created at Tuesday 08/07/2018 09:30:47
+#Created at Wednesday 08/15/2018 10:47:07
 #Report level: sample
 #
 Base Information	
@@ -140,7 +140,7 @@ UID	Sample
 51	
 52	
 #CRAVAT Report
-#Created at Tuesday 08/07/2018 09:30:47
+#Created at Wednesday 08/15/2018 10:47:07
 #Report level: mapping
 #
 Base Information		
