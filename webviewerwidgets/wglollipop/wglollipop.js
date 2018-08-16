@@ -67,9 +67,7 @@ widgetGenerators['lollipop'] = {
 				}
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
-					console.log('clearing div');
 					$(div).empty();
-					console.log('inside runtimeout for', v.hugo);
 					$.get('rest/widgetservice/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
@@ -780,9 +778,7 @@ widgetGenerators['lollipop'] = {
 				}
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
-					console.log('clearing div');
 					$(div).empty();
-					console.log('inside runtimeout for', v.hugo);
 					$.get('rest/widgetservice/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
@@ -1200,7 +1196,6 @@ widgetGenerators['lollipop'] = {
 
 			function draw (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				console.log('drawing started for', v.hugo);
 				v.proteinWidth = getComputedStyle(div)['width'];
 				v.proteinWidth = parseInt(
 					v.proteinWidth.substring(0, v.proteinWidth.length - 2)) 
@@ -1217,7 +1212,6 @@ widgetGenerators['lollipop'] = {
 				setupSiteDiv(data);
 				
 				v.drawing = false;
-				console.log('drawing finished for', v.hugo);
 			}
 			
 			function drawControlPanel (data) {
