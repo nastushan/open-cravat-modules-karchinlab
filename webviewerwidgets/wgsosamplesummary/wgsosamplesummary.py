@@ -24,7 +24,7 @@ def get_data (queries):
         'UNK':'Unknown'
     }
     
-    dbpath = queries['dbpath'][0]
+    dbpath = queries['dbpath']
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
 

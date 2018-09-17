@@ -1,9 +1,7 @@
-var widgetName = 'circossummary';
+$.getScript('/result/widgetfile/wgcircossummary/biocircos-1.1.1.js', function () {});
+$.getScript('/result/widgetfile/wgcircossummary/d3.js', function () {});
 
-$.getScript('/widget_support/circossummary/biocircos-1.1.1.js', function () {});
-$.getScript('/widget_support/circossummary/d3.js', function () {});
-
-widgetGenerators[widgetName] = {
+widgetGenerators['circossummary'] = {
 	'info': {
 		'name': 'Circos',
 		'width': 580, 

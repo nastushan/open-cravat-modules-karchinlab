@@ -98,12 +98,10 @@ class IdentifierSet():
 
     # compare this id_set to a query_id_set
     def get_enrichment_score(self, query_id_set_n, M, overlap_n):
-        print(M, self.n, query_id_set_n, overlap_n)
      #   overlap = query_id_set.set & self.set
      #   k = len(overlap)
         #pv = hypergeom(M, self.n, query_id_set_n).sf(overlap_n)
         pv = hypergeo_sf(overlap_n + 1, query_id_set_n, self.n, M)
-        #print("m=" +str(M) + " n=" + str(self.n) + " q=" + str(query_id_set_n) + " k=" + str(overlap_n) + " pv=" + str(pv) + '\n')
         #sys.stderr.write("m=" +str(M) + " n=" + str(self.n) + " q=" + str(query_id_set_n) + " k=" + str(overlap_n) + " pv=" + str(pv) + '\n')
 
         return pv # EnrichmentScore(pv, k, overlap, self.name)

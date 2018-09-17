@@ -4,8 +4,8 @@ type: webviewerwidget
 required_annotator: repeat
 description: Repeat Sequences webviewer widget
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
   citation: ''

@@ -20,7 +20,7 @@ def run_query (hugos):
     return result
 
 def get_data (queries):
-    hugos = queries['hugos'][0]
+    hugos = queries['hugos']
     hugos = json.loads(hugos)
     response = {'data': run_query(hugos)}
     return response

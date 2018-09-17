@@ -1,4 +1,4 @@
-$.getScript('/widget_support/mupit/3dmol.js', function () {});
+$.getScript('/result/widgetfile/wgmupit/3dmol.js', function () {});
 
 widgetGenerators['mupit'] = {
 	'variant': {

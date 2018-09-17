@@ -42,7 +42,6 @@ def get_id_set_file_names(e_set_name):
 def ensure_e_set_dir(e_set_name):
     path = e_set_dir_path(e_set_name)
     if not e_set_exists(e_set_name):
-        print("Creating " + str(path))
         makedirs(path)
     return path
 
@@ -128,7 +127,6 @@ def ensure_gene_report_dir():
     current_directory = dirname(abspath(__file__))
     path = join(current_directory, "gene_reports")
     if not isdir(path):
-        print("Creating " + str(path))
         makedirs(path)
     return path
 
@@ -140,7 +138,6 @@ def ensure_gene_list_dir():
     current_directory = dirname(abspath(__file__))
     path = join(current_directory, "gene_lists")
     if not isdir(path):
-        print("Creating " + str(path))
         makedirs(path)
     return path
 

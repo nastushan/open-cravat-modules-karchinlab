@@ -3,17 +3,17 @@ import os
 
 def get_data (queries):
     response = {}
-    dbpath = queries['dbpath'][0]
+    dbpath = queries['dbpath']
     if 'numgo' in queries:
         num_go = queries['numgo']
     else:
         num_go = 10
-    
+
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
-    
+
     hugos = []
-    
+
     table = 'gene_filtered'
     query = 'select name from sqlite_master where type="table" and ' +\
         'name="' + table + '"'
@@ -33,7 +33,7 @@ def get_data (queries):
             query = 'select distinct base__hugo from ' + table
             cursor.execute(query)
             hugos = [v[0] for v in cursor.fetchall() if len(v[0].strip()) > 0]
-    
+
     '''
     query = 'select name from sqlite_master where type="table" and ' +\
         'name="variant"'
@@ -44,15 +44,15 @@ def get_data (queries):
         cursor.execute(query)
         hugos = [v[0] for v in cursor.fetchall() if len(v[0].strip()) > 0]
     '''
-    
+
     if hugos == []:
         return response
-    
+
     conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 
                                         'data', 
                                         'wggosummary.sqlite'))
     cursor = conn.cursor()
-    
+
     go = {}
     for hugo in hugos:
         query = 'select go_id from go_annotation where hugo="' + hugo +\
@@ -64,12 +64,12 @@ def get_data (queries):
                 go[go_id]['geneCount'] += 1
             else:
                 go[go_id] = {'go': go_id, 'geneCount': 1}
-    
+
     # Creates a list of keys.
     go_ids = [*go]
-    
+
     sorted_go_ids = sorted(go_ids, key=lambda k: go[k]['geneCount'], reverse=True)
-    
+
     data = []
     # Adds total genes.
     #ret.append({'go': 'Total genes', 
@@ -82,7 +82,7 @@ def get_data (queries):
         go_desc = cursor.fetchone()[0]
         go[go_id]['description'] = go_desc
         data.append(go[go_id])
-    
+
     response['data'] = data
-    
+
     return response

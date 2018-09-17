@@ -1,4 +1,4 @@
-$.getScript('/widget_support/ndexchasmplussummary/cytoscape.js', function () {});
+$.getScript('/result/widgetfile/wgndexchasmplussummary/cytoscape.js', function () {});
 
 widgetGenerators['ndexchasmplussummary'] = {
 		'info': {
@@ -24,7 +24,7 @@ widgetGenerators['ndexchasmplussummary'] = {
 				hugos.sort();
 				
 				var func = this;
-				$.get('rest/widgetservice/ndexchasmplussummary', {'hugos': JSON.stringify(hugos)}).done(function (data) {
+				$.get('/result/runwidget/ndexchasmplussummary', {'hugos': JSON.stringify(hugos)}).done(function (data) {
 					var enrichmentResponseScores = data['data']['scores'];
 					func.enrichmentScores = new Object();
 					var enrichmentScoresFormatedForTable = {'head': ['Pathway', 'p-value', 'Genes'], 'body': []};

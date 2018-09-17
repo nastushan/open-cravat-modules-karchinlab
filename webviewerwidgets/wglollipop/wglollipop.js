@@ -68,7 +68,7 @@ widgetGenerators['lollipop'] = {
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
-					$.get('rest/widgetservice/' + widgetName, 
+					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
 						draw(data);
@@ -779,7 +779,7 @@ widgetGenerators['lollipop'] = {
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
-					$.get('rest/widgetservice/' + widgetName, 
+					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
 						v.hugo = hugo;

@@ -33,7 +33,7 @@ def make_db ():
     # update protein set data_source='pfam' where data_source='Pfam';
 
 def get_data (queries):
-    hugo = queries['hugo'][0]
+    hugo = queries['hugo']
     dbpath = os.path.join(os.path.dirname(__file__), 'data',
                           'wglollipop.sqlite')
     conn = sqlite3.connect(dbpath)

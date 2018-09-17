@@ -14,7 +14,7 @@ def get_data (queries):
     for row in cursor.fetchall():
         genelen[row[0]] = row[1]
     
-    dbpath = queries['dbpath'][0]
+    dbpath = queries['dbpath']
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
     

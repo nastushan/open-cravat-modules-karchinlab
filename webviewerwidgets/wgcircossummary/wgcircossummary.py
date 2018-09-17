@@ -95,10 +95,10 @@ def get_data_for_sos (sos, name_prefix, cursor):
                    'value': str(value)}
             data.append(row)
     return data
-    
+
 def get_data (queries):
     response = {}
-    dbpath = queries['dbpath'][0]
+    dbpath = queries['dbpath']
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
     data = {}

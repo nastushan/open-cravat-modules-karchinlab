@@ -1,4 +1,4 @@
-$.getScript('/widget_support/ndex/cytoscape.js', function () {});
+$.getScript('/result/widgetfile/wgndex/cytoscape.js', function () {});
 
 widgetGenerators['ndex'] = {
 		'variant': {
