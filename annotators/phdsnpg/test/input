@@ -1,0 +1,5 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tag
+chr10	87864470	+	A	T		sample-path
+chr1	12666689	+	C	T		sample-benign
+chr11	35206205	+	A	C		plus-strand-path
+chr17	43047643	+	C	T		neg-strand-path
