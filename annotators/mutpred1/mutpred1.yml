@@ -1,0 +1,43 @@
+# 'title' is the name of the module that will be displayed to the user
+title: MutPred
+
+# 'version' is the version of the annotator. It is primarily used when 
+# publishing a module, but is required for all modules.
+version: 1.2.0
+
+# 'type' is the type of module described by this .yml file. In this case it is
+# 'annotator'
+type: annotator
+
+# 'level' is 'variant' or 'gene'
+level: variant
+input_format: crv
+
+# output_columns has the columns that will be included in the output file.
+# The columns are defined in a list. Each column has three required keys:
+# name, title, and type.
+output_columns:
+- name: external_protein_id
+  title: UniProt/Ensembl ID (MutPred)
+  type: string
+- name: amino_acid_substitution
+  title: Amino acid substitution (MutPred)
+  type: string
+- name: mutpred_general_score
+  title: MutPred general (pathogenicity) score
+  type: float
+- name: mutpred_top5_mechanisms
+  title: Top 5 molecular mechanisms (MutPred)
+  type: string
+
+# description is a short description of what the annotator does. Try to limit it
+# to around 80 characters.
+description: MutPred is a random forest model for the prediction of pathogenic missense variants and automated inference of molecular mechanisms of disease.
+
+# developer is you!
+developer:
+  name: 'Vikas Pejaver'
+  organization: 'University of Washington'
+  email: 'vpejaver@uw.edu'
+  website: 'http://mutpred1.mutdb.org/'
+  citation: 'Li B, Krishnan VG, Mort ME, Xin F, Kamati KK, Cooper DN, Mooney SD, Radivojac P. Automated inference of molecular mechanisms of disease from amino acid substitutions. Bioinformatics (2009) 25(21): 2744-2750.'

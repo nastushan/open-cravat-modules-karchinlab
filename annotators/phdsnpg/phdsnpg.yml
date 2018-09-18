@@ -1,0 +1,25 @@
+title: PhD-SNPg
+version: 0.0.2
+type: annotator
+
+level: variant
+
+output_columns:
+  - name: prediction
+    title: Prediction
+    type: string
+  - name: score
+    title: Score
+    type: float
+  - name: fdr
+    title: FDR
+    type: float
+
+description: A binary classifier for predicting pathogenic variants in coding and non-coding regions.
+
+developer:
+  name: 'Emidio Capriotti'
+  organization: 'University of Bologna'
+  email: 'emidio.capriotti@unibo.it'
+  website: 'http://snps.biofold.org/phd-snpg/index.html'
+  citation: 'PMID: 28482034'
