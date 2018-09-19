@@ -195,6 +195,8 @@ class Mapper(cravat.BaseMapper):
                         if hit.cref == '-': 
                             adj_tpos = gstart_tdata[tid]['tpos'] + 1
                             adj_tstart_tdata = self._coding_query(tid=tid, tpos=adj_tpos)
+                            if tid not in adj_tstart_tdata:
+                                raise DiscardHit()
                             tstart_info = adj_tstart_tdata[tid]
                             tend_info = tstart_info
                         else:
