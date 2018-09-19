@@ -11,7 +11,19 @@ Certain combinations of high values of general scores and low values of property
 - Scores with g > 0.75 and p < 0.05 are referred to as **confident hypotheses**.
 - Scores with g > 0.75 and p < 0.01 are referred to as **very confident hypotheses**.
 
-MutPred is a collaborative effort between the Mooney group from the University of Washington and the Radivojac group from the School of Informatics and Computing, Indiana University. 
+## How are the MutPred scores in Open-CRAVAT generated?
+MutPred was first run on dbNSFP, a database of functional prediction scores for all theoretically possible single nucleotide variants (SNVs), i.e. every base in a given exonic region is substituted to the remaining three possible nucleotides, scored and stored [5]. MutPred requires protein sequences and amino acid substitution information as inputs. To this end, we mapped chromosomal information to the protein information available in dbNSFP v2.7, downloaded the corresponding sequences from UniProt and Ensembl and ran MutPred on these sequences and substitutions. In the case of multiple isoforms, only one isoform (and thus, one protein or transcript ID) was selected. When UniProt IDs were available, the canonical UniProt isoform was chosen. If this did not exist, the canonical Ensembl transcript was chosen. If even this did not exist, the longest secondary UniProt isoform was chosen and if this was also unavailable, the longest secondary Ensembl transcript was chosen.
+
+The general and property scores are included in the Open-CRAVAT annotation along with the selected isoform and amino acid substitution information. However, there may be inconsistencies in the annotations between MutPred and other tools in Open-CRAVAT due to the following reasons:
+
+- Incorrect co-ordinates in dbNSFP (leading to incorrect protein ID or non-coding region in genome)
+- Inability to map protein/transcript IDs to the correct sequence
+- Inconsistent isoform selection based on the above procedure
+- Changes between genome versions (hg19 was used to generate MutPred scores but Open-CRAVAT relies on hg38)
+
+Please keep these and other possible issues in mind when evaluating or using the MutPred annotator.
+
+MutPred is a collaborative effort between the Mooney group from the University of Washington and the Radivojac group from the School of Informatics and Computing, Indiana University. The precomputed scores were generated for a collaboration on the development of REVEL [6] and are also hosted at [http://mutpred1.mutdb.org/dbnsfp/](http://mutpred1.mutdb.org/dbnsfp/).
 
 We welcome any suggestions and comments.
 
@@ -32,7 +44,11 @@ The work is funded by:
 
 3. Boeckmann, B., et al. (2003) The SWISS-PROT protein knowledgebase and its supplement TrEMBL in 2003, Nucleic Acids Res, **31**, 365-370.
 
-4. Cheng, J., Randall. A. and Baldi, P. (2006) Prediction of Protein Stability Changes for Single-Site Mutations Using Support Vector Machines. Proteins: Structure, Function, Bioinformatics, **62**, 1125-1132.
+4. Cheng, J., Randall, A. and Baldi, P. (2006) Prediction of protein stability changes for single-site mutations using support vector machines. Proteins, **62**, 1125-1132.
+
+5. Liu, X., Jian, X., Boerwinkle, E. (2011) dbNSFP: a lightweight database of human nonsynonymous SNPs and their functional predictions. Human Mutat, **32**, 894-899.
+
+6. Ioannidis, N.M., et al. (2016) REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. Am J Hum Genet, **99**, 877-885.
 
 # Contact Us
 
