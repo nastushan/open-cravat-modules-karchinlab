@@ -1,3 +1,6 @@
 # NCBI Gene
 
-Gene descriptions from NCBI Gene database (https://www.ncbi.nlm.nih.gov/gene)
+Gene descriptions from NCBI Gene database.
+
+![Screenshot](ncbigene_screenshot_1.png)
+<br />
