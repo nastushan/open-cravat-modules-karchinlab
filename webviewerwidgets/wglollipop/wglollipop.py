@@ -100,5 +100,5 @@ def get_data (queries):
         domains[data_source] = \
             sorted(domains[data_source], key=lambda x: x['start'])
     ret['domains'] = domains
-    
+    ret['hugo'] = hugo
     return ret

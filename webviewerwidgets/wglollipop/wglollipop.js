@@ -64,15 +64,19 @@ widgetGenerators['lollipop'] = {
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
+                    $(div).empty();
 				}
+                v.hugo = hugo;
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
+                        if (data['hugo'] != v.hugo) {
+                            return;
+                        }
 						draw(data);
-						v.hugo = hugo;
 						if (v.variantdatasource != null) {
 							var select = 
 								document.getElementById(
@@ -108,14 +112,11 @@ widgetGenerators['lollipop'] = {
 								select.dispatchEvent(new Event('change'));
 							}
 						}
+                        this.drawing = false;
 					});
 				}, 200);
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
-			}
-			
-			function timedRun () {
-				
 			}
 			
 			function getOptionIndex (select, value) {
@@ -502,7 +503,6 @@ widgetGenerators['lollipop'] = {
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
-				
 				this.drawing = false;
 			}
 			
@@ -775,14 +775,18 @@ widgetGenerators['lollipop'] = {
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
+                    $(div).empty();
 				}
+                v.hugo = hugo;
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
-						v.hugo = hugo;
+                        if (data['hugo'] != v.hugo) {
+                            return;
+                        }
 						draw(data);
 						if (v.variantdatasource != null) {
 							var select = 
