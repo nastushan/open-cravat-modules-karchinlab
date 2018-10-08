@@ -37,3 +37,5 @@ developer:
   email: 'ctokheim@jhu.edu'
   website: 'http://chasmplus.readthedocs.io/en/latest/'
   citation: 'https://www.biorxiv.org/content/early/2018/06/20/313296'
+
+pval_file: pvals.txt

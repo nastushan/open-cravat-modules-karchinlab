@@ -8,7 +8,7 @@ import stouffer
 class CravatAnnotator(BaseAnnotator):
 
     def setup(self): 
-        pval_path = os.path.join(self.annotator_dir,'data','pvals.txt')
+        pval_path = os.path.join(self.annotator_dir, 'data', self.conf['pval_file'])
         self.pvals = {}
         sig3_round = lambda x: float('{:.3g}'.format(float(x)))
         with open(pval_path) as f:
@@ -68,7 +68,7 @@ class CravatAnnotator(BaseAnnotator):
             gene_data[hugo]['score'].append(score)
         if pval != None:
             gene_data[hugo]['pval'].append(pval)
-    
+
     def summarize_by_gene (self, hugo, gene_collection):
         out = None
         input_data = gene_collection[hugo]
