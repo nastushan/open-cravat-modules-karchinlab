@@ -62,7 +62,11 @@ widgetGenerators['topgenesvestsummary'] = {
 				var tr = getEl('tr');
 				var td = getEl('td');
 				td.style.borderRight = '1px solid black';
-				addEl(tr, addEl(td, getTn(row[0])));
+                var hugo = row[0];
+                if (hugo == '') {
+                    continue;
+                }
+				addEl(tr, addEl(td, getTn(hugo)));
 				addEl(tr, addEl(getEl('td'), getTn(row[1])));
 				addEl(tbody, tr);
 			}
