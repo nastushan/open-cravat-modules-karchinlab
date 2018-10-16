@@ -56,8 +56,6 @@ class CravatConverter(BaseConverter):
             raise BadFormatError('ID column is blank')
         elif tag == '.':
             tag = 'VAR' + str(self.var_counter)
-        if chrom[:3] != 'chr':
-            chrom = 'chr' + chrom
         alts = alts.split(',')
         len_alts = len(alts)
         if len(toks) == 8:
