@@ -1,0 +1,20 @@
+title: LINSIGHT
+version: 2018.10.19
+type: annotator
+datasource: 2018.10.19
+
+level: variant
+input_format: crv
+output_columns:
+- name: value
+  title: Value
+  type: float
+
+description: LINSIGHT
+developer:
+  name: 'Adam Siepel'
+  organization: 'Cold Spring Harbor Laboratory'
+  email: 'asiepel@cshl.edu'
+  website: 'http://github.com/CshlSiepelLab/LINSIGHT/blob/master/README.md'
+  citation: 'http://www.biorxiv.org/content/early/2016/08/15/069682'
+

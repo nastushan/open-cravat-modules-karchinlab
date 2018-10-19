@@ -90,7 +90,7 @@ class Reporter(CravatReport):
         self.rowno += 1
         
     def write_table_row (self, row):
-        row = [v if v != None else '.' for v in list(row)]
+        row = [v if v != None else '' for v in list(row)]
         self.colno = 0
         for cellvalue in row:
             if type(cellvalue) == type('') and cellvalue[:5] == 'http:':
