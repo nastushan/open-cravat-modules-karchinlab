@@ -40,30 +40,6 @@ def get_bin (start, end):
             return start_bin
     return None
 
-def make_db_data ():
-    f = open('linsight.bed')
-    chroms = {}
-    for line in f:
-        [chrom, start, end, val] = line[:-1].split('\t')
-        if chrom not in chroms:
-            chroms[chrom] = open(chrom + '.txt', 'w')
-        binno = get_bin(int(start), int(end))
-        chroms[chrom].write(str(binno) + '\t' + str(start) + '\t' + str(end) + '\t' + str(val) + '\n')
-    for chrom in chroms:
-        chroms[chrom].close()
-
-def make_db_load_sql ():
-    import glob
-    datafilepaths = glob.glob('chr*.txt')
-    wf = open('linsight.sql', 'w')
-    wf.write('.separator "\t"\n')
-    for filepath in datafilepaths:
-        chrom = filepath.split('.')[0]
-        wf.write('create table ' + chrom + ' (binno int, start int, end int, val float);\n')
-        wf.write('create index ' + chrom + '_idx on ' + chrom + ' (binno);\n')
-        wf.write('.import ' + filepath + ' ' + chrom + '\n')
-    wf.close()
-
 if __name__ == '__main__':
     annotator = CravatAnnotator(sys.argv)
     annotator.run()

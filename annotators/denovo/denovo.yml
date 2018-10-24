@@ -6,10 +6,10 @@ level: variant
 input_format: crv
 output_columns:
 - name: PubmedId
-  title: PubmedId
+  title: Pubmed ID
   type: string
 - name: PrimaryPhenotype
-  title: PrimaryPhenotype
+  title: Primary Phenotype
   type: string
 - name: Validation
   title: Validation

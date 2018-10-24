@@ -1,6 +1,29 @@
-![Screenshot](screenshot_1.png)
-![Screenshot](screenshot_2.png)
-<br />
-CHASMplus is random forest classifier trained to distinguish between benign and somatic missense mutations.
+# About CHASMplus
 
-Large-scale cancer sequencing studies of patient cohorts have statistically implicated many cancer driver genes, with a long-tail of infrequently mutated genes. Here we present CHASMplus, a computational method to predict driver missense mutations, which is uniquely powered to identify rare driver mutations within the long-tail. We show that it substantially outperforms comparable methods across a wide variety of benchmark sets. Applied to 8,657 samples across 32 cancer types, CHASMplus identifies over 4,000 unique driver mutations in 240 genes, further distinguished by their specific cancer types. Our results support a prominent emerging role for rare driver mutations, with substantial variability in the frequency spectrum of drivers across cancer types. The trajectory of driver discovery may already be effectively saturated for certain cancer types, a finding with policy implications for future sequencing. As a resource to handle newly observed rare driver mutations, we systematically score every possible missense mutation across the genome.
+CHASMplus is a computational tool to classify missense mutations as drivers or passengers in human cancers. Driver mutations provide a selective advantage to cancer cells, while passenger mutations do not. CHASMplus is based on a set of 95 features, characterizing mutational hotspots, evolutionary conservation/human germline variation, molecular function annotations (e.g., protein-protein interface annotations, sequence biased regions, and relevant covariates (e.g., replication timing). It was trained using somatic mutations from whole-exome sequencing of a larger number of tumors in The Cancer Genome Atlas (TCGA). CHASMplus can score mutations in either a cancer type-specific manner or "pan-cancer", which is a useful default for many cancer types. 
+
+Please check out the [CHASMplus website](https://chasmplus.readthedocs.io) for more information.
+
+## How do I interpret the results?
+
+The CHASMplus output contains two main components: a score and a p-value. High scores reflect a greater likelihood that a mutation is a driver (scores range from 0.0 to 1.0). The P-value reflects the statistical significance of obtaining the acheived or higher CHASMplus score. We recommend that driver mutations are called based on the False Discovery Rate, preferably by using the Benjamini-Hochberg method through a function like the `p.adjust` function in the R programming language. Possible thresholds include a false discovery rate of 0.1 or 0.01, depending on the need to constrain false positives. NOTE: P-values are calibrated for whole-exome sequencing studies. If you are using a targeted gene panel or focusing on only a specific subset of genes, then the P-values will not adequately control the error rate.
+
+## How are CHASMplus scores generated?
+
+CHASMplus scores all possible missense mutations on all transcripts. Therefore keep in mind that the same genomic mutation may have slightly varying scores depending on the transcript. OpenCRAVAT decides which among many transcripts will be chosen as the default. All scores provided through OpenCRAVAT are weighted by their respective gene based on 20/20+ (gene weighted CHASMplus scores). 
+
+## Support
+
+This work was supported by:
+
+* F31CA200266 (to Collin Tokheim) 
+* U24CA204817 (to Rachel Karchin)
+
+## Citation
+
+Tokheim C, Karchin R. CHASMplus reveals the scope of somatic missense mutations driving human cancers. bioRxiv. 2018:313296.
+
+## Contact Us
+
+Collin Tokheim ctokhei1@alumni.jhu.edu
+Rachel Karchin karchin@jhu.edu
