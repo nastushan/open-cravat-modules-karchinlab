@@ -1,0 +1,34 @@
+title: JBrowse Genome Browser
+version: 1.0.0
+required_annotator: base
+type: webviewerwidget
+description: JBrowse Genome Browser
+developer:
+  name: 'Garrett Stevens'
+  organization: 'GMOD'
+  email: 'stevens.garrett.j@gmail.com'
+  website: 'https://www.jbrowse.org'
+  citation: ''
+
+# # Instructions for generating this widget:
+# cd open-cravat-modules-karchinlab/
+# git checkout master
+# git pull
+# cd webviewerwidgets/
+# mkdir tmp
+# cp wgjbrowse/wgjbrowse.js tmp/
+# cp wgjbrowse/wgjbrowse.yml tmp/
+# rm -rf wgjbrowse/*
+# cp tmp/* wgjbrowse/
+# cd tmp/
+# # Optionally update link to latest version
+# wget https://github.com/GMOD/jbrowse/archive/1.15.4-release.tar.gz
+# tar xvf 1.15.4-release.tar.gz
+# cd jbrowse-1.15.4-release/
+# JBROWSE_BUILD_MIN=1 JBROWSE_PUBLIC_PATH=/result/widgetfile/wgjbrowse/ ./setup.sh
+# cp dist/*.bundle.js ../../wgjbrowse/
+# cp img/Empty.png ../../wgjbrowse/
+# cd ../../
+# rm -rf tmp/
+# cd wgjbrowse
+# sed -i 's|img/Empty.png|Empty.png|g' *.bundle.js
