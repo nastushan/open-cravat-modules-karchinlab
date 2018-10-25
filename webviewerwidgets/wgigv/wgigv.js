@@ -2,12 +2,28 @@ $.getScript('/result/widgetfile/wgigv/igv.min.js', function () {});
 
 widgetGenerators['igv'] = {
 	'variant': {
-        'donoterase': true,
+        'donterase': true,
 		'width': 1280,
 		'height': 280,
-        'variables': {'browser': null},
+        'variables': {'drawn': false, 'browser': null},
 		'function': function (div, row, tabName) {
             var self = this;
+            if (self['variables']['drawn'] == true) {
+                var chrom = null;
+                var pos = null;
+                var genome = infomgr.jobinfo['Input genome']; 
+                if (genome == 'hg19') {
+                    chrom = infomgr.getRowValue(tabName, row, 'hg19__chrom');
+                    pos = infomgr.getRowValue(tabName, row, 'hg19__pos');
+                } else {
+                    chrom = infomgr.getRowValue(tabName, row, 'base__chrom');
+                    pos = infomgr.getRowValue(tabName, row, 'base__pos');
+                }
+                var locus = chrom + ':' + pos;
+                self['variables']['browser'].search(locus);
+                return;
+            }
+
             var button = getEl('button');
             button.id = 'igv_loadtrackbtn_' + tabName;
             button.textContent = 'Load Track';
@@ -176,6 +192,7 @@ widgetGenerators['igv'] = {
                 self['variables']['browser'] = b;
                 document.getElementById('igv_draw_variant').getElementsByClassName('igv-content-div')[0].style.height = 'auto';
             });
+            self['variables']['drawn'] = true;
 		}
 	}
 }
