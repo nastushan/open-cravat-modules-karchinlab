@@ -181,8 +181,11 @@ widgetGenerators['lollipop'] = {
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
-							variant['so'] = uniprot_ds[j][2];
 							var protchange = uniprot_ds[j][1];
+                            if (protchange == null) {
+                                continue;
+                            }
+							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
 							var altaa = protchange.substring(protchangelen - 1, protchangelen);
@@ -426,7 +429,6 @@ widgetGenerators['lollipop'] = {
 			
 			function drawMyVariant (variant, stage, y, varHeightInc) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
 				var width = Math.max(v.variantMinWidth, v.aaWidth);
 				var height = Math.min(
@@ -449,7 +451,6 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-				
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -624,7 +625,7 @@ widgetGenerators['lollipop'] = {
 
 				// Draws.
 				var variant = getMyVariant();
-				if (variant != null) {
+				if (variant != null && variant.length > 0) {
 					drawMyVariant(variant, stage, y, varHeightInc);
 				}
 			}
@@ -891,8 +892,11 @@ widgetGenerators['lollipop'] = {
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
-							variant['so'] = uniprot_ds[j][2];
 							var protchange = uniprot_ds[j][1];
+                            if (protchange == null) {
+                                continue;
+                            }
+							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
 							var altaa = protchange.substring(protchangelen - 1, protchangelen);
@@ -1133,11 +1137,9 @@ widgetGenerators['lollipop'] = {
 					}
 				});
 			}
-			
+
 			function drawMyVariant (variant, stage, y, varHeightInc) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
 				var width = Math.max(v.variantMinWidth, v.aaWidth);
 				var height = Math.min(
@@ -1160,7 +1162,6 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-				
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -1333,14 +1334,6 @@ widgetGenerators['lollipop'] = {
 				var y = v.variantRadius;
 				var varHeightInc = (v.varHeightMax - v.varHeightMin) / 
 						v.maxVarNumSample;
-
-				// Draws.
-				/*
-				var variant = getMyVariant();
-				if (variant != null) {
-					drawMyVariant(variant, stage, y, varHeightInc);
-				}
-				*/
 			}
 			
 			function drawProtein (data) {
