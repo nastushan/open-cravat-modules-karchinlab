@@ -23,7 +23,7 @@ class CravatAnnotator(BaseAnnotator):
         hugo = input_data['hugo']
         match = self.civicdata.get(hugo)
         if match is not None:
-            out['description'] = match['description']
+            out['description'] = match['description'].replace('\n', '').replace('"', "'")
             civic_id = match['id']
             out['link'] = 'https://civicdb.org/links/gene/'+str(civic_id)
         return out
