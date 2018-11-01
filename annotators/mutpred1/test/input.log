@@ -1,0 +1,25 @@
+2018-09-13 17:34:20,632 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running converter...
+2018-09-13 17:34:20,632 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Converter (converter)
+2018-09-13 17:34:20,918 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:converter finished in 0.2860143184661865
+2018-09-13 17:34:20,918 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running gene mapper...
+2018-09-13 17:34:20,918 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    UCSC hg38 Gene Mapper (hg38)
+2018-09-13 17:34:22,078 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:gene mapper finished in 1.1599886417388916
+2018-09-13 17:34:22,080 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running annotators...
+2018-09-13 17:34:22,081 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    MutPred (mutpred1)
+2018-09-13 17:34:22,096 file:c:\users\kyle\git\open-cravat\cravat\base_annotator.py name:cravat.mutpred1 level:INFO msg:Initialized mutpred1
+2018-09-13 17:34:22,097 file:c:\users\kyle\git\open-cravat\cravat\base_annotator.py name:cravat.mutpred1 level:INFO msg:Running mutpred1
+2018-09-13 17:34:22,152 file:c:\users\kyle\git\open-cravat\cravat\base_annotator.py name:cravat.mutpred1 level:INFO msg:Completed mutpred1 in 0.055 seconds
+2018-09-13 17:34:22,153 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:anntator(s) finished in 0.07300114631652832
+2018-09-13 17:34:22,153 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running aggregator...
+2018-09-13 17:34:22,153 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Variants
+2018-09-13 17:34:22,840 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Genes
+2018-09-13 17:34:23,527 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Samples
+2018-09-13 17:34:24,071 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Tags
+2018-09-13 17:34:25,263 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:aggregator finished in 3.1102428436279297
+2018-09-13 17:34:25,263 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running post-aggregators...
+2018-09-13 17:34:25,543 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Tag Sampler (tagsampler)
+2018-09-13 17:34:25,957 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    VCF Info (vcfinfo)
+2018-09-13 17:34:25,972 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:post-aggregator finished in 0.7085740566253662
+2018-09-13 17:34:25,973 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:Running reporter...
+2018-09-13 17:34:25,973 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:    Text Reporter (textreporter)
+2018-09-13 17:34:26,359 file:c:\users\kyle\git\open-cravat\cravat\cravat_class.py name:cravat level:INFO msg:reporter finished in 0.38616132736206055

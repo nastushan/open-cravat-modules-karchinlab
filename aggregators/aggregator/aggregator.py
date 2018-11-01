@@ -79,19 +79,9 @@ class Aggregator (object):
         self.delete = parsed.delete
     
     def _setup_logger(self):
-        self.log_path = os.path.join(
-            self.output_dir, 
-            self.output_base_fname + '.aggregator' + '.' + self.level + '.log')
-        self.logger = logging.getLogger('mapper_log')
-        self.logger.propagate = False
-        self.logger.setLevel('INFO')
-        handler = logging.FileHandler(self.log_path, mode='w')
-        formatter = logging.Formatter()
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
-        self.logger.info('Aggregator log')
-        self.logger.info('Opened %s' %time.asctime())
-        self.logger.info('Input directory: %s' %self.input_dir)
+        self.logger = logging.getLogger('cravat.aggregator')
+        self.logger.info('level: {0}'.format(self.level))
+        self.logger.info('input directory: %s' %self.input_dir)
         
     def _read_opts(self):
         opt_file = open(os.path.join(os.path.dirname(__file__),
@@ -104,7 +94,7 @@ class Aggregator (object):
         if self.input_base_fname == None:
             return
         start_time = time.time()
-        self.logger.info('Begin run(): %s' %\
+        self.logger.info('started: %s' %\
                          time.asctime(time.localtime(start_time)))
         self.dbconn.commit()
         self.cursor.execute('pragma synchronous=0;')
@@ -163,15 +153,14 @@ class Aggregator (object):
         self.cursor.execute('pragma synchronous=2;')
         self.cursor.execute('pragma journal_mode=delete;')
         end_time = time.time()
-        self.logger.info('End run(): %s' %time.asctime(time.localtime(end_time)))
+        self.logger.info('finished: %s' %time.asctime(time.localtime(end_time)))
         runtime = end_time - start_time
-        self.logger.info('Runtime: %s' %round(runtime, 3))
+        self.logger.info('runtime: %s' %round(runtime, 3))
         self._cleanup()
         
     def _cleanup(self):
         self.cursor.close()
         self.dbconn.close()
-        self.logger.info('Finished')
     
     def set_input_base_fname (self):
         crv_fname = self.name + '.crv'
@@ -196,7 +185,6 @@ class Aggregator (object):
         self.output_base_fname = self.name
         
     def _setup(self):
-        self.logger.info('Begin setup')
         if self.level == 'variant':
             self.key_name = 'uid'
         elif self.level == 'gene':
@@ -323,8 +311,7 @@ class Aggregator (object):
             os.remove(self.db_path)
         self.dbconn = sqlite3.connect(self.db_path)
         self.cursor = self.dbconn.cursor()
-        
-                
+
 if __name__ == '__main__':
     aggregator = Aggregator(sys.argv)
     aggregator.run()
