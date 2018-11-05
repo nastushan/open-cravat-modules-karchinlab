@@ -188,6 +188,7 @@ widgetGenerators['igv'] = {
             }
             var locus = chrom + ':' + pos;
             var options = {locus: locus, genome: genome};
+            console.log('here');
             igv.createBrowser(drawDiv, options).then(function (b) {
                 self['variables']['browser'] = b;
                 document.getElementById('igv_draw_variant').getElementsByClassName('igv-content-div')[0].style.height = 'auto';

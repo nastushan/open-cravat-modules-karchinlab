@@ -38,7 +38,7 @@ class Mapper(cravat.BaseMapper):
         db_path = os.path.join(self.mapper_dir, 'data', 'hg38.sqlite')
         if not(os.path.exists(db_path)):
             raise Exception('No database at %s' %db_path)
-        self.logger.info('Using database at: %s' %db_path)
+        self.logger.info('mapper database: %s' %db_path)
         self.db = sqlite3.connect(db_path)
         self.c = self.db.cursor()
         q = 'select distinct source from transcript;'
@@ -66,9 +66,7 @@ class Mapper(cravat.BaseMapper):
                     %(self.cmd_args.primary_source, ', '.join(self.gene_sources))
                 raise Exception(err_msg)
             self.primary_gene_source = self.cmd_args.primary_source
-        self.logger.info('Gene source(s): %s' %', '.join(self.gene_sources))
-        self.logger.info('Primary gene source: %s' %self.primary_gene_source)
-        
+ 
     def map(self, crv_data):
         """
         Takes a dict with crv fields and return a dict with crx fields
