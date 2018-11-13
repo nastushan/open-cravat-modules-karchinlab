@@ -132,7 +132,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVarCanvasId (datasource) {
-				var id = tabName + '_' + widgetName + '_mywar_canvas';
+				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
 			
@@ -595,7 +595,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariants (data) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				// Erases canvas for a new gene.
@@ -625,7 +624,7 @@ widgetGenerators['lollipop'] = {
 
 				// Draws.
 				var variant = getMyVariant();
-				if (variant != null && variant.length > 0) {
+				if (variant != null && variant.start != undefined) {
 					drawMyVariant(variant, stage, y, varHeightInc);
 				}
 			}
@@ -843,7 +842,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVarCanvasId (datasource) {
-				var id = tabName + '_' + widgetName + '_mywar_canvas';
+				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
 			
@@ -882,6 +881,7 @@ widgetGenerators['lollipop'] = {
 				return id;
 			}
 			
+            /*
 			function getMyVariant () {
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
@@ -911,6 +911,7 @@ widgetGenerators['lollipop'] = {
 				}
 				return variant;
 			}
+            */
 			
 			function onChangeOtherVariantDatasource (select, data) {
 				var categorySelect = 
@@ -1307,7 +1308,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariants (data) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				// Erases canvas for a new gene.
@@ -1334,8 +1334,50 @@ widgetGenerators['lollipop'] = {
 				var y = v.variantRadius;
 				var varHeightInc = (v.varHeightMax - v.varHeightMin) / 
 						v.maxVarNumSample;
+
+				// Draws.u
+                var v = widgetGenerators[widgetName][tabName]['variables'];
+                var variantRowNos = varByGene[v.hugo];
+                var variantRows = infomgr.datas.variant;
+                for (var i = 0; i < variantRowNos.length; i++) {
+                    var row = variantRows[variantRowNos[i]];
+                    var variant = getMyVariant(row);
+                    if (variant != null && Object.keys(variant).length > 0) {
+                        drawMyVariant(variant, stage, y, varHeightInc);
+                    }
+                }
 			}
 			
+			function getMyVariant (row) {
+				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
+				var hugos = Object.keys(allMappings);
+				variant = {};
+				for (var i = 0; i < hugos.length; i++) {
+					var hugo = hugos[i];
+					var uniprot_ds = allMappings[hugo];
+					for (var j = 0; j < uniprot_ds.length; j++) {
+						var transcript = uniprot_ds[j][3];
+						if (transcript == v.reftranscript) {
+							var protchange = uniprot_ds[j][1];
+                            if (protchange == null) {
+                                continue;
+                            }
+							variant['so'] = uniprot_ds[j][2];
+							var refaa = protchange[0];
+							var protchangelen = protchange.length;
+							var altaa = protchange.substring(protchangelen - 1, protchangelen);
+							var start = protchange.substring(1, protchangelen - 1);
+							variant['start'] = start;
+							variant['refaa'] = refaa;
+							variant['altaa'] = altaa;
+							variant['count'] = infomgr.getRowValue('variant', row, 'tagsampler__numsample');
+							break;
+						}
+					}
+				}
+				return variant;
+			}
+
 			function drawProtein (data) {
 				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
