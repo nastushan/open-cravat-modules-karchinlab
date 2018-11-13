@@ -60,22 +60,21 @@ widgetGenerators['lollipop'] = {
 				$(div).empty();
 				return;
 			}
-			
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
-                    $(div).empty();
+					    $(div).empty();
 				}
-                v.hugo = hugo;
+				v.hugo = hugo;
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
-                        if (data['hugo'] != v.hugo) {
-                            return;
-                        }
+						if (data['hugo'] != v.hugo) {
+						    return;
+						}
 						draw(data);
 						if (v.variantdatasource != null) {
 							var select = 
@@ -112,7 +111,7 @@ widgetGenerators['lollipop'] = {
 								select.dispatchEvent(new Event('change'));
 							}
 						}
-                        this.drawing = false;
+						this.drawing = false;
 					});
 				}, 200);
 			} else {
@@ -182,9 +181,9 @@ widgetGenerators['lollipop'] = {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
 							var protchange = uniprot_ds[j][1];
-                            if (protchange == null) {
-                                continue;
-                            }
+							if (protchange == null) {
+								continue;
+							}
 							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
@@ -207,9 +206,7 @@ widgetGenerators['lollipop'] = {
 				for (; categorySelect.options.length > 0;) {
 					categorySelect.remove(0);
 				}
-
 				var datasource = select.options[select.selectedIndex].value;
-				
 				var categories = null;
 				var categoryPartDiv = 
 					document.getElementById(getVarCategorySelectorDivId());
@@ -222,7 +219,6 @@ widgetGenerators['lollipop'] = {
 					categories.sort();
 					categoryPartDiv.style.display = 'inline-block';
 				}
-				
 				var option = new Option('', '');
 				categorySelect.options.add(option);
 				for (var i = 0; i < categories.length; i++) {
@@ -233,9 +229,7 @@ widgetGenerators['lollipop'] = {
 					var option = new Option(category, category);
 					categorySelect.options.add(option);
 				}
-				
 				categorySelect.setAttribute('datasource', datasource);
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantdatasource = datasource;
 			}
@@ -243,7 +237,6 @@ widgetGenerators['lollipop'] = {
 			function onChangeOtherVariantCategory (
 					canvasId, data, datasource, category) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				$('#' + canvasId).empty();
 				var stage = acgraph.create(canvasId);
 				var y = 0;
@@ -274,7 +267,6 @@ widgetGenerators['lollipop'] = {
 					setupVariantPopup(rect, variant);
 					setupVariantPopup(circle, variant);
 				}
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantcategory = category;
 			}
@@ -282,18 +274,14 @@ widgetGenerators['lollipop'] = {
 			function onChangeProtSiteDatasource (
 					canvasId, data, datasource) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var canvas = document.getElementById(canvasId);
 				$(canvas).empty();
 				if (datasource == '') {
 					return;
 				}
-				
 				v.sitedatasource = datasource;
-				
 				var stage = acgraph.create(canvasId);
 				var y = 0;
-				
 				var domains = data['domains'];
 				var lineDomains = domains[datasource];
 				var stacks = {};
@@ -600,7 +588,7 @@ widgetGenerators['lollipop'] = {
 				// Erases canvas for a new gene.
 				var canvasId = getMyVarCanvasId();
 				var canvas = document.getElementById(canvasId);
-				if (canvas == undefined) {
+				if (canvas == undefined || canvas == null) {
 					var dsDiv = getEl('div');
 					dsDiv.style.width = '100%';
 					dsDiv.style.height = v.varHeightMax + v.variantRadius;
@@ -893,9 +881,9 @@ widgetGenerators['lollipop'] = {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
 							var protchange = uniprot_ds[j][1];
-                            if (protchange == null) {
-                                continue;
-                            }
+							if (protchange == null) {
+								continue;
+							}
 							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
