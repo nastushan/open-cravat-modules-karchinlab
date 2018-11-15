@@ -15,7 +15,6 @@ class CravatAnnotator(BaseAnnotator):
         except:
             return None
         r = self.cursor.fetchone()
-        self.logger.info('r=' + str(r))
         if r == None:
             out = None
         else:

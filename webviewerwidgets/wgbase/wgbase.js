@@ -18,6 +18,7 @@ widgetGenerators['base'] = {
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				if (allMappings != {}) {
 					var table = getWidgetTableFrame(['20%', '20%', '20%', '40%']);
+                    table.style.tableLayout = 'auto';
 					table.style.width = '100%';
 					var thead = getWidgetTableHead(['UniProt', 'Prot Chng', 
 						'Seq Ont', 'Transcript']);

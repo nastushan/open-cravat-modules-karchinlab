@@ -60,22 +60,21 @@ widgetGenerators['lollipop'] = {
 				$(div).empty();
 				return;
 			}
-			
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
-                    $(div).empty();
+					    $(div).empty();
 				}
-                v.hugo = hugo;
+				v.hugo = hugo;
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
 						widgetGenerators[widgetName]['data'] = data;
-                        if (data['hugo'] != v.hugo) {
-                            return;
-                        }
+						if (data['hugo'] != v.hugo) {
+						    return;
+						}
 						draw(data);
 						if (v.variantdatasource != null) {
 							var select = 
@@ -112,7 +111,7 @@ widgetGenerators['lollipop'] = {
 								select.dispatchEvent(new Event('change'));
 							}
 						}
-                        this.drawing = false;
+						this.drawing = false;
 					});
 				}, 200);
 			} else {
@@ -132,7 +131,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVarCanvasId (datasource) {
-				var id = tabName + '_' + widgetName + '_mywar_canvas';
+				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
 			
@@ -181,8 +180,11 @@ widgetGenerators['lollipop'] = {
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
-							variant['so'] = uniprot_ds[j][2];
 							var protchange = uniprot_ds[j][1];
+							if (protchange == null) {
+								continue;
+							}
+							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
 							var altaa = protchange.substring(protchangelen - 1, protchangelen);
@@ -204,9 +206,7 @@ widgetGenerators['lollipop'] = {
 				for (; categorySelect.options.length > 0;) {
 					categorySelect.remove(0);
 				}
-
 				var datasource = select.options[select.selectedIndex].value;
-				
 				var categories = null;
 				var categoryPartDiv = 
 					document.getElementById(getVarCategorySelectorDivId());
@@ -219,7 +219,6 @@ widgetGenerators['lollipop'] = {
 					categories.sort();
 					categoryPartDiv.style.display = 'inline-block';
 				}
-				
 				var option = new Option('', '');
 				categorySelect.options.add(option);
 				for (var i = 0; i < categories.length; i++) {
@@ -230,9 +229,7 @@ widgetGenerators['lollipop'] = {
 					var option = new Option(category, category);
 					categorySelect.options.add(option);
 				}
-				
 				categorySelect.setAttribute('datasource', datasource);
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantdatasource = datasource;
 			}
@@ -240,7 +237,6 @@ widgetGenerators['lollipop'] = {
 			function onChangeOtherVariantCategory (
 					canvasId, data, datasource, category) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				$('#' + canvasId).empty();
 				var stage = acgraph.create(canvasId);
 				var y = 0;
@@ -271,7 +267,6 @@ widgetGenerators['lollipop'] = {
 					setupVariantPopup(rect, variant);
 					setupVariantPopup(circle, variant);
 				}
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantcategory = category;
 			}
@@ -279,18 +274,14 @@ widgetGenerators['lollipop'] = {
 			function onChangeProtSiteDatasource (
 					canvasId, data, datasource) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var canvas = document.getElementById(canvasId);
 				$(canvas).empty();
 				if (datasource == '') {
 					return;
 				}
-				
 				v.sitedatasource = datasource;
-				
 				var stage = acgraph.create(canvasId);
 				var y = 0;
-				
 				var domains = data['domains'];
 				var lineDomains = domains[datasource];
 				var stacks = {};
@@ -426,7 +417,6 @@ widgetGenerators['lollipop'] = {
 			
 			function drawMyVariant (variant, stage, y, varHeightInc) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
 				var width = Math.max(v.variantMinWidth, v.aaWidth);
 				var height = Math.min(
@@ -449,7 +439,6 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-				
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -594,13 +583,12 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariants (data) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				// Erases canvas for a new gene.
 				var canvasId = getMyVarCanvasId();
 				var canvas = document.getElementById(canvasId);
-				if (canvas == undefined) {
+				if (canvas == undefined || canvas == null) {
 					var dsDiv = getEl('div');
 					dsDiv.style.width = '100%';
 					dsDiv.style.height = v.varHeightMax + v.variantRadius;
@@ -624,7 +612,7 @@ widgetGenerators['lollipop'] = {
 
 				// Draws.
 				var variant = getMyVariant();
-				if (variant != null) {
+				if (variant != null && variant.start != undefined) {
 					drawMyVariant(variant, stage, y, varHeightInc);
 				}
 			}
@@ -842,7 +830,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVarCanvasId (datasource) {
-				var id = tabName + '_' + widgetName + '_mywar_canvas';
+				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
 			
@@ -881,6 +869,7 @@ widgetGenerators['lollipop'] = {
 				return id;
 			}
 			
+            /*
 			function getMyVariant () {
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
@@ -891,8 +880,11 @@ widgetGenerators['lollipop'] = {
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
 						if (transcript == v.reftranscript) {
-							variant['so'] = uniprot_ds[j][2];
 							var protchange = uniprot_ds[j][1];
+							if (protchange == null) {
+								continue;
+							}
+							variant['so'] = uniprot_ds[j][2];
 							var refaa = protchange[0];
 							var protchangelen = protchange.length;
 							var altaa = protchange.substring(protchangelen - 1, protchangelen);
@@ -907,6 +899,7 @@ widgetGenerators['lollipop'] = {
 				}
 				return variant;
 			}
+            */
 			
 			function onChangeOtherVariantDatasource (select, data) {
 				var categorySelect = 
@@ -1133,11 +1126,9 @@ widgetGenerators['lollipop'] = {
 					}
 				});
 			}
-			
+
 			function drawMyVariant (variant, stage, y, varHeightInc) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
 				var width = Math.max(v.variantMinWidth, v.aaWidth);
 				var height = Math.min(
@@ -1160,7 +1151,6 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-				
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -1306,7 +1296,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function drawMyVariants (data) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				// Erases canvas for a new gene.
@@ -1334,15 +1323,49 @@ widgetGenerators['lollipop'] = {
 				var varHeightInc = (v.varHeightMax - v.varHeightMin) / 
 						v.maxVarNumSample;
 
-				// Draws.
-				/*
-				var variant = getMyVariant();
-				if (variant != null) {
-					drawMyVariant(variant, stage, y, varHeightInc);
-				}
-				*/
+				// Draws.u
+                var v = widgetGenerators[widgetName][tabName]['variables'];
+                var variantRowNos = varByGene[v.hugo];
+                var variantRows = infomgr.datas.variant;
+                for (var i = 0; i < variantRowNos.length; i++) {
+                    var row = variantRows[variantRowNos[i]];
+                    var variant = getMyVariant(row);
+                    if (variant != null && Object.keys(variant).length > 0) {
+                        drawMyVariant(variant, stage, y, varHeightInc);
+                    }
+                }
 			}
 			
+			function getMyVariant (row) {
+				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
+				var hugos = Object.keys(allMappings);
+				variant = {};
+				for (var i = 0; i < hugos.length; i++) {
+					var hugo = hugos[i];
+					var uniprot_ds = allMappings[hugo];
+					for (var j = 0; j < uniprot_ds.length; j++) {
+						var transcript = uniprot_ds[j][3];
+						if (transcript == v.reftranscript) {
+							var protchange = uniprot_ds[j][1];
+                            if (protchange == null) {
+                                continue;
+                            }
+							variant['so'] = uniprot_ds[j][2];
+							var refaa = protchange[0];
+							var protchangelen = protchange.length;
+							var altaa = protchange.substring(protchangelen - 1, protchangelen);
+							var start = protchange.substring(1, protchangelen - 1);
+							variant['start'] = start;
+							variant['refaa'] = refaa;
+							variant['altaa'] = altaa;
+							variant['count'] = infomgr.getRowValue('variant', row, 'tagsampler__numsample');
+							break;
+						}
+					}
+				}
+				return variant;
+			}
+
 			function drawProtein (data) {
 				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
