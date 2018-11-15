@@ -24,7 +24,6 @@ class CravatAnnotator(BaseAnnotator):
                 pos = pos,
                 alt = alt,
             )
-            self.logger.info(main_query)
             self.cursor.execute(main_query)
             row = self.cursor.fetchone()
             if row is not None:
