@@ -1,0 +1,19 @@
+title: BRCA1 Functional Assay
+version: 2018.10.4
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: score
+  title: Function Score Mean
+  type: float
+- name: class
+  title: Function Class
+  type: string
+description: BRCA1 Functional Assay is a database providing accurate discrimination of loss-of-function versus benign missense variants in BRCA1.
+developer:
+  name: 'Lea Starita'
+  organization: 'University of Washington Staritalab'
+  email: 'support@cravat.us'
+  website: 'staritalab.org'
+  citation: 'https://www.sciencedirect.com/science/article/pii/S000292971830243X?via%3Dihub'
