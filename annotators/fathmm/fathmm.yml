@@ -1,0 +1,29 @@
+title: FATHMM
+version: 0.0.1
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: ens_tid
+  title: Ensembl Transcript ID
+  type: string
+- name: ens_pid
+  title: Ensembl Protein ID
+  type: string
+- name: fathmm_score
+  title: FATHMM Score
+  type: string
+- name: fathmm_rscore
+  title: FATHMM Converted Rank Score
+  type: float
+- name: fathmm_pred
+  title: FATHMM Prediction
+  type: string
+description: Template annotator. If you see this description in production, someone is wrong.
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+
