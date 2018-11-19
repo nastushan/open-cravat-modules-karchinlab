@@ -1,5 +1,5 @@
 title: UCSC hg38 Gene Mapper
-version: 1.0.0
+version: 1.0.1
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -8,3 +8,23 @@ developer:
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+report_substitution:
+  so:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    IDV: inframe deletion
+    IIV: inframe insertion
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FD2: frameshift deletion by 2
+    FD1: frameshift deletion by 1
+    FI2: frameshift insertion by 2
+    FI1: frameshift insertion by 1
