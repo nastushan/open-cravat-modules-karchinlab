@@ -364,6 +364,7 @@ class Mapper(cravat.BaseMapper):
         primary_transc_alen = 0
         primary_transc = ''
         primary_hugo = ''
+        primary_a_change = ''
         all_maps = {}
         alt_transcripts = {}
         primary_has_protein = False
@@ -413,6 +414,7 @@ class Mapper(cravat.BaseMapper):
                     primary_transc_alen = hit.transcript.alen
                     primary_so = hit.so
                     primary_has_protein = cur_has_protein
+                    primary_a_change = a_change
         # Fill crx dict with information from most deleterious transcript
         crx_data['hugo'] = primary_hugo
         if primary_so in ['MIS', 'SYN', 'FI1', 'FI2', 'FD1', 'FD2', 'IIV', 'IDV', 'CSS', 'STG', 'STL']:
@@ -421,6 +423,7 @@ class Mapper(cravat.BaseMapper):
             crx_data['coding'] = ''
         crx_data['transcript'] = primary_transc
         crx_data['so'] = primary_so
+        crx_data['achange'] = primary_a_change
         # Fill crx dict with all mappings
         # Set explicit order in the json
         all_maps_ordered = OrderedDict()
