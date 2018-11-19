@@ -8,8 +8,7 @@ import logging
 import yaml
 from cravat import CravatReader
 from cravat import CravatWriter
-
-#test
+import json
 
 class Aggregator (object):
     
@@ -195,6 +194,7 @@ class Aggregator (object):
             self.key_name = ''
         self.table_name = self.level
         self.header_table_name = self.table_name + '_header'
+        self.reportsub_table_name = self.table_name + '_reportsub'
         annot_name_re = re.compile('.*\.(.*)\.[var,gen]')
         for fname in os.listdir(self.input_dir):
             if fname.startswith(self.name + '.'):
@@ -218,7 +218,6 @@ class Aggregator (object):
     def _setup_table(self):
         columns = []
         unique_names = set([])
-        
         # annotator table
         annotator_table = self.level + '_annotator'
         q = 'drop table if exists {:}'.format(annotator_table)
@@ -266,14 +265,12 @@ class Aggregator (object):
             sql_type = self.cr_type_to_sql[col[1]]
             s = name + ' ' + sql_type
             col_def_strings.append(s)
-            
         # data table
         q = 'drop table if exists %s' %self.table_name
         self.cursor.execute(q)
         q = 'create table %s (%s);' \
             %(self.table_name, ', '.join(col_def_strings))
         self.cursor.execute(q)
-        
         # index tables
         index_n = 0
         # index_columns is a list of columns to include in this index
@@ -286,7 +283,6 @@ class Aggregator (object):
                         )
             self.cursor.execute(q)
             index_n += 1
-        
         # header table
         q = 'drop table if exists %s' %self.header_table_name
         self.cursor.execute(q)
@@ -300,7 +296,32 @@ class Aggregator (object):
                 col_title, 
                 col_type)
             self.cursor.execute(q)
-            
+        # report substitution table
+        if self.level in ['variant', 'gene']:
+            q = 'drop table if exists {}'.format(self.reportsub_table_name)
+            self.cursor.execute(q)
+            q = 'create table {} (module text, subdict text)'.format(self.reportsub_table_name)
+            self.cursor.execute(q)
+            sub = self.base_reader.report_substitution
+            if sub:
+                module = 'base'
+                q = 'insert into {} values (\'{}\', \'{}\')'.format(
+                    self.reportsub_table_name,
+                    'base',
+                    json.dumps(sub)
+                )
+                self.cursor.execute(q)
+            for module in self.readers:
+                sub = self.readers[module].report_substitution
+                if sub:
+                    q = 'insert into {} values ("{}", \'{}\')'.format(
+                        self.reportsub_table_name,
+                        module,
+                        json.dumps(sub)
+                    )
+                    self.cursor.execute(q)
+        self.dbconn.commit()
+
     def _setup_io(self):
         self.base_reader = CravatReader(self.base_fpath)
         for annot_name in self.annotators:
