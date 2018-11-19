@@ -22,8 +22,8 @@ output_columns:
 description: Template annotator. If you see this description in production, someone is wrong.
 developer:
   name: ''
-  organization: ''
+  organization: 'University of Bristol Integrative Epidemiology Unit'
   email: ''
-  website: ''
-  citation: ''
+  website: 'http://fathmm.biocompute.org.uk/index.html'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
 
