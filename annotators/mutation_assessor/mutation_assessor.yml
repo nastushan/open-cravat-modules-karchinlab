@@ -1,0 +1,26 @@
+title: Mutation Assessor
+version: 0.0.1
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: mut_var
+  title: Mutation Variant
+  type: string
+- name: mut_score
+  title: Mutation Score
+  type: float
+- name: mut_rscore
+  title: Mutation Rank Score
+  type: float
+- name: mut_pred
+  title: Mutation Functional Impact
+  type: string
+description: Template annotator. If you see this description in production, someone is wrong.
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+
