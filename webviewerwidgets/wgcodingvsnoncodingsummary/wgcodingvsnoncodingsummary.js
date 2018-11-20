@@ -15,10 +15,17 @@ widgetGenerators[widgetName] = {
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
 				var hugo = infomgr.getRowValue('variant', row, 'base__hugo'); 
+                var so = infomgr.getRowValue('variant', row, 'base__so');
 				if (hugo == '') {
 					noNoncoding++;
 				} else {
-					noCoding++;
+                    if (so == '2kb downstream' || so == '2kb upstream' ||
+                        so == '3-prime utr' || so == '5-prime utr' ||
+                        so == 'intron') {
+                        noNoncoding++;
+                    } else {
+                        noCoding++;
+                    }
 				}
 			}
 			div.style.width = 'calc(100% - 37px)';
