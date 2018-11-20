@@ -1,5 +1,5 @@
 title: FATHMM
-version: 2.3
+version: "2.3"
 type: annotator
 level: variant
 input_format: crv
