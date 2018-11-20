@@ -1,5 +1,5 @@
 title: FATHMM
-version: 0.0.1
+version: 2.3
 type: annotator
 level: variant
 input_format: crv
@@ -19,11 +19,11 @@ output_columns:
 - name: fathmm_pred
   title: FATHMM Prediction
   type: string
-description: Template annotator. If you see this description in production, someone is wrong.
+description: Functional analysis through hidden markov models.
 developer:
-  name: ''
+  name: 'Chris Campbell'
   organization: 'University of Bristol Integrative Epidemiology Unit'
-  email: ''
+  email: 'support@cravat.us'
   website: 'http://fathmm.biocompute.org.uk/index.html'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
 
