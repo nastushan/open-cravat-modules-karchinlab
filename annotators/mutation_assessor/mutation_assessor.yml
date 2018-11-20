@@ -1,5 +1,5 @@
 title: Mutation Assessor
-version: "3"
+version: "3.0"
 type: annotator
 level: variant
 input_format: crv
