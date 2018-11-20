@@ -1,5 +1,5 @@
 widgetGenerators['lollipop'] = {
-	'name': 'Gene Diagram',
+	'name': 'Protein Diagram',
 	'variant': {
 		'donterase': true,
 		'width': 580, 

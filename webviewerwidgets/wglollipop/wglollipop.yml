@@ -1,8 +1,8 @@
-title: Gene diagram
-version: 1.0.0
+title: Protein diagram
+version: 1.0.1
 required_annotator: base
 type: webviewerwidget
-description: Gene diagram webviewer widget
+description: Protein diagram webviewer widget
 developer:
   name: 'Rick Kim'
   organization: 'In Silico Solutions'
