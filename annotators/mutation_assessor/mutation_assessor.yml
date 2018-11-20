@@ -1,5 +1,5 @@
 title: Mutation Assessor
-version: 0.0.1
+version: 3
 type: annotator
 level: variant
 input_format: crv
@@ -18,9 +18,9 @@ output_columns:
   type: string
 description: Mutation Assessor is a database providing prediction of the functional impact of amino-acid substitutions in proteins
 developer:
-  name: ''
-  organization: ''
-  email: ''
+  name: 'Chris Sander'
+  organization: 'memorial Sloan-Kettering Cancer Center'
+  email: 'support@cravat.us'
   website: 'http://mutationassessor.org/r3/about.php'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
 
