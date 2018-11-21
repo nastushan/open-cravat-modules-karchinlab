@@ -1,0 +1,26 @@
+title: Phast Cons 100 Way Vertebrate & Phast Cons 20 Way Mammalian
+version: 0.0.1
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: phastcons100_vert
+  title: Phast Cons 100 Way Vertebrate Score
+  type: float
+- name: phastcons100_vert_r
+  title: Phast Cons 100 Way Vertebrate Ranked Score
+  type: float
+- name: phastcons20_mamm
+  title: Phast Cons 20 Way Mammalian Score
+  type: float
+- name: phastcons20_mamm_r
+  title: Phast Cons 20 Way Mammalian Ranked Score
+  type: float
+description: 
+developer:
+  name: ''
+  organization: ''
+  email: 'support@cravat.us'
+  website: ''
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
