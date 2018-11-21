@@ -1,0 +1,29 @@
+title: FATHMM
+version: "2.3"
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: ens_tid
+  title: Ensembl Transcript ID
+  type: string
+- name: ens_pid
+  title: Ensembl Protein ID
+  type: string
+- name: fathmm_score
+  title: FATHMM Score
+  type: string
+- name: fathmm_rscore
+  title: FATHMM Converted Rank Score
+  type: float
+- name: fathmm_pred
+  title: FATHMM Prediction
+  type: string
+description: Functional analysis through hidden markov models.
+developer:
+  name: 'Chris Campbell'
+  organization: 'University of Bristol Integrative Epidemiology Unit'
+  email: 'support@cravat.us'
+  website: 'http://fathmm.biocompute.org.uk/index.html'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+

@@ -1,5 +1,5 @@
 title: Mutation Assessor
-version: 0.0.1
+version: "3.0"
 type: annotator
 level: variant
 input_format: crv
@@ -16,11 +16,11 @@ output_columns:
 - name: mut_pred
   title: Mutation Functional Impact
   type: string
-description: Template annotator. If you see this description in production, someone is wrong.
+description: Mutation Assessor is a database providing prediction of the functional impact of amino-acid substitutions in proteins
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
-  citation: ''
+  name: 'Chris Sander'
+  organization: 'memorial Sloan-Kettering Cancer Center'
+  email: 'support@cravat.us'
+  website: 'http://mutationassessor.org/r3/about.php'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
 
