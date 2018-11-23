@@ -302,24 +302,26 @@ class Aggregator (object):
             self.cursor.execute(q)
             q = 'create table {} (module text, subdict text)'.format(self.reportsub_table_name)
             self.cursor.execute(q)
-            sub = self.base_reader.report_substitution
-            if sub:
-                module = 'base'
-                q = 'insert into {} values (\'{}\', \'{}\')'.format(
-                    self.reportsub_table_name,
-                    'base',
-                    json.dumps(sub)
-                )
-                self.cursor.execute(q)
-            for module in self.readers:
-                sub = self.readers[module].report_substitution
+            if hasattr(self.base_reader, 'report_substitution'):
+                sub = self.base_reader.report_substitution
                 if sub:
-                    q = 'insert into {} values ("{}", \'{}\')'.format(
+                    module = 'base'
+                    q = 'insert into {} values (\'{}\', \'{}\')'.format(
                         self.reportsub_table_name,
-                        module,
+                        'base',
                         json.dumps(sub)
                     )
                     self.cursor.execute(q)
+            for module in self.readers:
+                if hasattr(self.base_reader, 'report_substitution'):
+                    sub = self.readers[module].report_substitution
+                    if sub:
+                        q = 'insert into {} values ("{}", \'{}\')'.format(
+                            self.reportsub_table_name,
+                            module,
+                            json.dumps(sub)
+                        )
+                        self.cursor.execute(q)
         self.dbconn.commit()
 
     def _setup_io(self):
