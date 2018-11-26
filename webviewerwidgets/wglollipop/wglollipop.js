@@ -509,7 +509,7 @@ widgetGenerators['lollipop'] = {
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
 				span = getEl('span');
-				addEl(span, getTn('Domains from: '));
+				addEl(span, getTn('Track: '));
 				addEl(partDiv, span);
 				select = getEl('select');
 				select.id = getProtSiteSourceSelectorId();
@@ -540,7 +540,7 @@ widgetGenerators['lollipop'] = {
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
 				var span = getEl('span');
-				addEl(span, getTn('Reference variants from: '));
+				addEl(span, getTn('\xa0\xa0Reference variants from: '));
 				addEl(partDiv, span);
 				var select = getEl('select');
 				select.id = getVarDatasourceSelectorId();
@@ -1222,7 +1222,7 @@ widgetGenerators['lollipop'] = {
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
 				span = getEl('span');
-				addEl(span, getTn('Domains from: '));
+				addEl(span, getTn('Track: '));
 				addEl(partDiv, span);
 				select = getEl('select');
 				select.id = getProtSiteSourceSelectorId();
@@ -1253,7 +1253,7 @@ widgetGenerators['lollipop'] = {
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
 				var span = getEl('span');
-				addEl(span, getTn('Reference variants from: '));
+				addEl(span, getTn('\xa0\xa0Reference variants from: '));
 				addEl(partDiv, span);
 				var select = getEl('select');
 				select.id = getVarDatasourceSelectorId();
