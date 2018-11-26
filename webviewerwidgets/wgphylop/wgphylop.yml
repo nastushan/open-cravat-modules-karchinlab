@@ -1,0 +1,11 @@
+title: phyloP 100 Way Vertebrate & 20 Way Mammalian
+version: 1.0.0
+type: webviewerwidget
+required_annotator: phylop
+description: PhyloP webviewer widget
+developer:
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'http://www.insilico.us.com'
+  citation: ''

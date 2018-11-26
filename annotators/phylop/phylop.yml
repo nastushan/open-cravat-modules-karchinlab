@@ -1,0 +1,26 @@
+title: Phylogenetic P
+version: "3.5"
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: phylop100_vert
+  title: 100 Way Vertebrate Score
+  type: float
+- name: phylop100_vert_r
+  title: 100 Way Vertebrate Ranked Score
+  type: float
+- name: phylop20_mamm
+  title: 20 Way Mammalian Score
+  type: float
+- name: phylop20_mamm_r
+  title: 20 Way Mammalian Ranked Score
+  type: float
+description: 
+developer:
+  name: 'UCSC'
+  organization: 'University of California Santa Cruz Genomics Institute'
+  email: 'support@cravat.us'
+  website: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
