@@ -1,8 +1,8 @@
-title: Phast Cons 100 Way Vertebrate & Phast Cons 20 Way Mammalian
+title: phastCons 100 Way Vertebrate & 20 Way Mammalian
 version: 1.0.0
 type: webviewerwidget
 required_annotator: phastcons
-description: PhastCons web viewer widget
+description: phastCons web viewer widget
 developer:
   name: 'Rick Kim'
   organization: 'In Silico Solutions'
