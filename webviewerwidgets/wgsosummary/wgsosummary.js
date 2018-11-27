@@ -11,24 +11,24 @@ widgetGenerators[widgetName] = {
 			}
 			var so_dic = {
 		        '':'Intergenic',
-		        'MIS':'Missense',
-		        'SYN':'Synonymous',
-		        'FI1':'Frameshift insertion',
-		        'FI2':'Frameshift insertion',
-		        'FD1':'Frameshift deletion',
-		        'FD2':'Frameshift deletion',
-		        'IIV':'Inframe insertion',
-		        'IDV':'Inframe deletion',
-		        'CSS':'Complex substitution',
-		        'STG':'Stopgain',
-		        'STL':'Stoploss',
+		        'missense':'Missense',
+		        'synonymous':'Synonymous',
+		        'frameshift insertion by 1':'Frameshift insertion',
+		        'frameshift insertion by 2':'Frameshift insertion',
+		        'frameshift deletion by 1':'Frameshift deletion',
+		        'frameshift deletion by 2':'Frameshift deletion',
+		        'inframe insertion':'Inframe insertion',
+		        'inframe deletion':'Inframe deletion',
+		        'complex substitution':'Complex substitution',
+		        'stop gained':'Stopgain',
+		        'stop lost':'Stoploss',
 		        'SPL':'Splice site',
-		        '2KU':'2k upstream',
-		        '2KD':'2k downstream',
-		        'UT3':'3\' UTR',
-		        'UT5':'5\' UTR',
-		        'INT':'Intron',
-		        'UNK':'Unknown'
+		        '2kb upstream':'2k upstream',
+		        '2kb downstream':'2k downstream',
+		        '3-prime utr':'3\' UTR',
+		        '5-prime utr':'5\' UTR',
+		        'intron':'Intron',
+		        'unknown':'Unknown'
 		    };
 			var colors = [
 				'#008080', // teal
