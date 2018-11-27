@@ -22,13 +22,31 @@ widgetGenerators[widgetName] = {
 		        'complex substitution':'Complex substitution',
 		        'stop gained':'Stopgain',
 		        'stop lost':'Stoploss',
-		        'SPL':'Splice site',
+		        'splice site':'Splice site',
 		        '2kb upstream':'2k upstream',
 		        '2kb downstream':'2k downstream',
 		        '3-prime utr':'3\' UTR',
 		        '5-prime utr':'5\' UTR',
 		        'intron':'Intron',
-		        'unknown':'Unknown'
+		        'unknown':'Unknown',
+				'MIS':'Missense',
+				'SYN':'Synonymous',
+				'FI1':'Frameshift insertion',
+				'FI2':'Frameshift insertion',
+				'FD1':'Frameshift deletion',
+				'FD2':'Frameshift deletion',
+				'IIV':'Inframe insertion',
+				'IDV':'Inframe deletion',
+				'CSS':'Complex substitution',
+				'STG':'Stopgain',
+				'STL':'Stoploss',
+				'SPL':'Splice site',
+				'2KU':'2k upstream',
+				'2KD':'2k downstream',
+				'UT3':'3\' UTR',
+				'UT5':'5\' UTR',
+				'INT':'Intron',
+				'UNK':'Unknown'
 		    };
 			var colors = [
 				'#008080', // teal

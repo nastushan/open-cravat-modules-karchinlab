@@ -1,5 +1,5 @@
 title: Sequence Ontology Summary
-version: 1.0.1
+version: 1.0.2
 required_annotator: base
 type: webviewerwidget
 description: Sequence Ontology Summary result viewer widget
