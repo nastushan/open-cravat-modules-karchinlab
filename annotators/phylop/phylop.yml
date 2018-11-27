@@ -16,7 +16,7 @@ output_columns:
 - name: phylop20_mamm_r
   title: 20 Way Mammalian Ranked Score
   type: float
-description: 
+description: A database providing conservation scoring by phylogenetic p-values
 developer:
   name: 'UCSC'
   organization: 'University of California Santa Cruz Genomics Institute'
