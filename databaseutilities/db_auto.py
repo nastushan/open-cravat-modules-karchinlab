@@ -17,7 +17,7 @@ class CravatDatabase:
             self.curs = self.conn.cursor()
             assert isinstance(self.conn, sqlite3.Connection)
             assert isinstance(self.curs, sqlite3.Cursor)
-            db_len = len(col_dict)
+            self.db_len = len(col_dict)
             #creating sqlite statement strings
             if(tag == "v"):
                 exe_str = "(pos integer, alt text, "
@@ -36,7 +36,7 @@ class CravatDatabase:
                 exe_str += y
                 self.wilds += "?"
                 self.ref_str += x
-                if j < db_len:
+                if j < self.db_len:
                     exe_str += ", "
                     self.wilds += ", "
                     self.ref_str += ", "
@@ -83,7 +83,8 @@ class CravatDatabase:
                                     else:
                                         data.append(toks[col_idx[p]]) #Figure out casting
                                     p += 1
-                                self.curs.execute("INSERT INTO {tname}{ref} VALUES{wilds}".format(tname=x, ref=self.ref_str, wilds=self.wilds), data)
+                                if data.count(None) != self.db_len:
+                                    self.curs.execute("INSERT INTO {tname}{ref} VALUES{wilds}".format(tname=x, ref=self.ref_str, wilds=self.wilds), data)
                     self.conn.commit()
                     print("Finished {i} insertion".format(i=x))
             else:
@@ -100,7 +101,8 @@ class CravatDatabase:
                                 else:
                                     data.append(float(toks[col_idx[p]])) #Figure out casting
                                 p += 1
-                            self.curs.execute("INSERT INTO genes{ref} VALUES{wilds}".format(ref=self.ref_str, wilds=self.wilds), data)
+                            if data.count(None) != self.db_len:
+                                self.curs.execute("INSERT INTO genes{ref} VALUES{wilds}".format(ref=self.ref_str, wilds=self.wilds), data)
                 self.conn.commit()
             self.curs.execute("PRAGMA synchronous = 1;")
             self.curs.execute("PRAGMA journal_mode = DELETE;")
@@ -127,7 +129,6 @@ class CravatDatabase:
 #Command line params
 #Typecasting
 #Generic input files
-#Removal of empty rows?
 if __name__ == "__main__":
     #Dictionary of column names and data types
     d = {"rvis_evs":"real", "rvis_perc_evs":"real", "rvis_fdr_exac":"real", "rvis_exac":"real", "rvis_perc_exac":"real"}
