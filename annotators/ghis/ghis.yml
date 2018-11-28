@@ -1,0 +1,16 @@
+title: GHIS
+version: "3.5"
+type: annotator
+level: gene
+output_columns:
+  - name: ghis
+    title: GHIS Score
+    type: float
+description: Gene haploinsufficiency scoring
+developer:
+  name: ''
+  organization: ''
+  email: 'support@cravat.us'
+  website: 'https://doi.org/10.1093/nar/gkv474'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
