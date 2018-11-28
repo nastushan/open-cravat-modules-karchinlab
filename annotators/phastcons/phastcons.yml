@@ -16,7 +16,7 @@ output_columns:
 - name: phastcons20_mamm_r
   title: 20 Way Mammalian Ranked Score
   type: float
-description: 
+description: A database of compressed phastCons conservation scores.
 developer:
   name: 'UCSC'
   organization: 'University of California Santa Cruz Genomics Institute'
