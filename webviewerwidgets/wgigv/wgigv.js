@@ -6,6 +6,9 @@ widgetGenerators['igv'] = {
 		'width': 1280,
 		'height': 280,
         'variables': {'drawn': false, 'browser': null},
+        'init': function () {
+            this['variables']['drawn'] = false;
+        },
 		'function': function (div, row, tabName) {
             var self = this;
             if (self['variables']['drawn'] == true) {
