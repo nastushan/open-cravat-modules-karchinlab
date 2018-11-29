@@ -65,7 +65,7 @@ class CravatDatabase:
                                     data.append(self.myCast(toks[col], colnum)) #Figure out user specified casting
                                 colnum += 1
                             if not self.rmRow(data):
-                                self.curs.execute("INSERT INTO {tname}{ref} VALUES{wilds}".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
+                                self.curs.execute("INSERT INTO {tname}({ref}) VALUES({wilds});".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
                 self.conn.commit()
                 print("Finished {name} insertion".format(name=filename))
                 fnum += 1
@@ -76,12 +76,12 @@ class CravatDatabase:
             print(e)
             self.conn.close()
 
-    #Accepts file path for database, creates simple indexes based on position and alt base
-    def indexer(self):
+    #Accepts list of cols to create 1 index on (per table)
+    def indexer(self, cols):
         try:
             print("Database indexing start")
             for tname in self.tnames:
-                self.curs.execute("CREATE INDEX idx_{name}_gname ON {name}(gname);".format(name = tname))
+                self.curs.execute("CREATE INDEX idx_{tname}_{iname} ON {tname}({cols});".format(tname = tname, cols=', '.join(cols), iname=''.join(cols)))
             print("Database indexing finished. Database fully functional!")
         except Error as e:
             print(e)
@@ -108,31 +108,35 @@ class CravatDatabase:
             return False
 
 #TODO
-#Command line params
+#Command line params?
 #Generic input files
 #Indexing?
 if __name__ == "__main__":
     #Dictionary of column names and data types
-    d = {"gname":"text", "rvis_evs":"real", "rvis_perc_evs":"real", "rvis_fdr_exac":"real", "rvis_exac":"real", "rvis_perc_exac":"real"}
+    d = {"pos":"integer", "alt":"text", "phastcons100_vert":"real", "phastcons100_vert_r":"real", "phastcons20_mamm":"real", "phastcons20_mamm_r":"real"}
     #List of table names
-    t = ['genes']
+    t = ['chr15', 'chrM', 'chrY']
     #Change to annotator directory
-    os.chdir("C:/Users/trak/open-cravat-modules-karchinlab/annotators")
+    os.chdir("C:/Users/trak/Desktop/cravat_test")
     #Creating new annotator directory
-    os.makedirs("rvis/data", exist_ok=True)
+    os.makedirs("phast/data", exist_ok=True)
     #Path to database
-    p = os.path.join(os.getcwd(), "rvis", "data", "rvis.sqlite")
+    p = os.path.join(os.getcwd(), "phast", "data", "phast.sqlite")
     #Creating database
     db = CravatDatabase(p, d, t)
     #Path to data file(s)
-    wpath = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5_gene.complete')
+    wpath = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chr15')
+    wpath2 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrM')
+    wpath3 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrY')
     #List of files
-    files = [wpath]
+    files = [wpath, wpath2, wpath3]
     #Indexes of columns needed from datafile(s), make sure they are ordered in correlation with database col order
-    col_idx = [0, 36, 37, 38, 39, 40]
+    col_idx = [1, 3, 112, 113, 114, 115]
     #Insert data from datafile(s) into database
     db.parser(files, col_idx)
+    #List of columns to index on (one index is created using all items in list)
+    cols = ['pos','alt']
     #Index database
-    db.indexer()
+    db.indexer(cols)
     #Close db connection
     db.conn.close()
