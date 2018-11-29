@@ -1,0 +1,28 @@
+title: RVIS
+version: "3.0"
+type: annotator
+level: gene
+output_columns:
+  - name: rvis_evs
+    title: Score
+    type: float
+  - name: rvis_perc_evs
+    title: Percentile Rank
+    type: float
+  - name: rvis_fdr_exac
+    title: FDR p-value
+    type: float
+  - name: rvis_exac
+    title: ExAC-based RVIS
+    type: float
+  - name: rvis_perc_exac
+    title: ExAC-based RVIS Percentile
+    type: float
+description: Residual variation intolerance scoring
+developer:
+  name: 'Slavé Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David B. Goldstein'
+  organization: 'Center for Human Genome Variation, Duke University'
+  email: 'support@cravat.us'
+  website: 'https://doi.org/10.1371/journal.pgen.1003709'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
