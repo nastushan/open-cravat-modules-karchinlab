@@ -87,12 +87,14 @@ class CravatDatabase:
             print(e)
             self.conn.close()
 
+    #Checks passed cell for a null/none type identifier (ex. '#' or '.' used to denote no data) and returns a boolean as to whether it should be added to the database as a null value
     def nullChk(self, cell):
         if cell == '.':
             return True
         else:
             return False
 
+    #Casts passed cell to the corresponding python data type associated with the sqlite data type for that column
     def myCast(self, cell, colnum):
         if self.col_dict.get(list(self.col_dict)[colnum]) == 'real':
             return float(cell)
@@ -101,6 +103,7 @@ class CravatDatabase:
         else:
             return cell
 
+    #Returns a boolean to determine if the passed row should be added to the database (ex. all columns are null or an empty column requires the whole row to be irrelevant)
     def rmRow(self, row):
         if row.count(None) >= 5:
             return True
@@ -110,7 +113,6 @@ class CravatDatabase:
 #TODO
 #Command line params?
 #Generic input files
-#Indexing?
 if __name__ == "__main__":
     #Dictionary of column names and data types
     d = {"pos":"integer", "alt":"text", "phastcons100_vert":"real", "phastcons100_vert_r":"real", "phastcons20_mamm":"real", "phastcons20_mamm_r":"real"}
