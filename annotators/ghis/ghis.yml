@@ -8,8 +8,8 @@ output_columns:
     type: float
 description: Gene haploinsufficiency scoring
 developer:
-  name: ''
-  organization: ''
+  name: 'Julia Steinberg, Frantisek Honti, Stephen Meader, Caleb Webber'
+  organization: '1MRC Functional Genomics Unit, University of Oxford'
   email: 'support@cravat.us'
   website: 'https://doi.org/10.1093/nar/gkv474'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
