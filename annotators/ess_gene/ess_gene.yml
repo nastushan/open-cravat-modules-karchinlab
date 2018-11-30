@@ -1,0 +1,16 @@
+title: Essential Genes
+version: "3.5"
+type: annotator
+level: gene
+output_columns:
+  - name: ess_gene
+    title: Phenotype-Changing
+    type: string
+description: 
+developer:
+  name: 'Benjamin Georgi, Benjamin F. Voight, Maja Bućan'
+  organization: 'Department of Genetics, University of Pennsylvania'
+  email: 'support@cravat.us'
+  website: 'https://doi.org/10.1371/journal.pgen.1003484'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+

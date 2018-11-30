@@ -1,0 +1,52 @@
+title: ExAC Gene Constraint
+version: 0.3.1
+type: annotator
+level: gene
+output_columns:
+  - name: exac_pli
+    title: Probability of LoF Intolerance (Homozygous & Heterozygous)
+    type: float
+  - name: exac_prec
+    title: Probability of LoF Intolerance (Homozygous)
+    type: float
+  - name: exac_pnull
+    title: Probability of LoF Tolerance (Homozygous & Heterozygous)
+    type: float
+  - name: exac_nontcga_pli
+    title: Probability of LoF Intolerance (Homozygous & Heterozygous) NonTCGA Subset
+    type: float
+  - name: exac_nontcga_prec
+    title: Probability of LoF Intolerance (Homozygous) NonTCGA Subset
+    type: float
+  - name: exac_nontcga_pnull
+    title: Probability of LoF Tolerance (Homozygous & Heterozygous) NonTCGA Subset
+    type: float
+  - name: exac_nonpsych_pli
+    title: Probability of LoF Intolerance (Homozygous & Heterozygous) Nonpsych Subset
+    type: float
+  - name: exac_nonpsych_prec
+    title: Probability of LoF Intolerance (Homozygous) Nonpsych Subset
+    type: float
+  - name: exac_nonpsych_pnull
+    title: Probability of LoF Tolerance (Homozygous & Heterozygous) Nonpsych Subset
+    type: float
+  - name: exac_del_score
+    title: Winsorised Deletion Intolerance Z-Score
+    type: float
+  - name: exac_dup_score
+    title: Winsorised Duplication Intolerance Z-Score
+    type: float
+  - name: exac_cnv_score
+    title: Winsorised CNV Intolerance Z-Score
+    type: float
+  - name: exac_cnv_flag
+    title: CNV Bias/Noise
+    type: string
+description: 
+developer:
+  name: ''
+  organization: ''
+  email: 'support@cravat.us'
+  website: 'http://exac.broadinstitute.org/'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
