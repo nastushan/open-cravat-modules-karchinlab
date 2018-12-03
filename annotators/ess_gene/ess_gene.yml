@@ -1,12 +1,12 @@
 title: Essential Genes
-version: "3.5"
+version: 3.5.0
 type: annotator
 level: gene
 output_columns:
   - name: ess_gene
     title: Phenotype-Changing
     type: string
-description: 
+description: Essential Genes provides a database of genetic variation & mutational burden in 2472 human orthologs
 developer:
   name: 'Benjamin Georgi, Benjamin F. Voight, Maja Bućan'
   organization: 'Department of Genetics, University of Pennsylvania'

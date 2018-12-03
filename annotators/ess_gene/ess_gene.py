@@ -16,7 +16,7 @@ class CravatAnnotator(BaseAnnotator):
         self.cursor.execute('SELECT ess_gene FROM genes WHERE gname= ?;', [hugo])
         row = self.cursor.fetchone()
         if row is not None:
-            out['ess_gene'] = float(row[0])
+            out['ess_gene'] = row[0]
         return out
     
     def cleanup(self):

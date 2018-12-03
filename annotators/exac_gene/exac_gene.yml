@@ -1,34 +1,34 @@
-title: ExAC Gene Constraint
+title: ExAC Gene Constraint & CNV Score
 version: 0.3.1
 type: annotator
 level: gene
 output_columns:
   - name: exac_pli
-    title: Probability of LoF Intolerance (Homozygous & Heterozygous)
+    title: Prob of LoF Intolerance (Homo & Hetero)
     type: float
   - name: exac_prec
-    title: Probability of LoF Intolerance (Homozygous)
+    title: Prob of LoF Intolerance (Homo)
     type: float
   - name: exac_pnull
-    title: Probability of LoF Tolerance (Homozygous & Heterozygous)
+    title: Prob of LoF Tolerance (Homo & Hetero)
     type: float
   - name: exac_nontcga_pli
-    title: Probability of LoF Intolerance (Homozygous & Heterozygous) NonTCGA Subset
+    title: Prob of LoF Intolerance (Homo & Hetero) NonTCGA
     type: float
   - name: exac_nontcga_prec
-    title: Probability of LoF Intolerance (Homozygous) NonTCGA Subset
+    title: Prob of LoF Intolerance (Homo) NonTCGA
     type: float
   - name: exac_nontcga_pnull
-    title: Probability of LoF Tolerance (Homozygous & Heterozygous) NonTCGA Subset
+    title: Prob of LoF Tolerance (Homo & Hetero) NonTCGA
     type: float
   - name: exac_nonpsych_pli
-    title: Probability of LoF Intolerance (Homozygous & Heterozygous) Nonpsych Subset
+    title: Prob of LoF Intolerance (Homo & Hetero) Nonpsych
     type: float
   - name: exac_nonpsych_prec
-    title: Probability of LoF Intolerance (Homozygous) Nonpsych Subset
+    title: Prob of LoF Intolerance (Homo) Nonpsych
     type: float
   - name: exac_nonpsych_pnull
-    title: Probability of LoF Tolerance (Homozygous & Heterozygous) Nonpsych Subset
+    title: Prob of LoF Tolerance (Homo & Hetero) Nonpsych
     type: float
   - name: exac_del_score
     title: Winsorised Deletion Intolerance Z-Score
@@ -44,8 +44,8 @@ output_columns:
     type: string
 description: 
 developer:
-  name: ''
-  organization: ''
+  name: 'ExAC'
+  organization: 'Exome Aggregation Consortium'
   email: 'support@cravat.us'
   website: 'http://exac.broadinstitute.org/'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
