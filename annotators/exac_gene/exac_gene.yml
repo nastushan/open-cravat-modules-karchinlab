@@ -1,5 +1,5 @@
 title: ExAC Gene Constraint & CNV Score
-version: 0.3.1
+version: 0.3.1.0
 type: annotator
 level: gene
 output_columns:
@@ -31,18 +31,18 @@ output_columns:
     title: Prob of LoF Tolerance (Homo & Hetero) Nonpsych
     type: float
   - name: exac_del_score
-    title: Winsorised Deletion Intolerance Z-Score
+    title: Deletion Intolerance Z-Score
     type: float
   - name: exac_dup_score
-    title: Winsorised Duplication Intolerance Z-Score
+    title: Duplication Intolerance Z-Score
     type: float
   - name: exac_cnv_score
-    title: Winsorised CNV Intolerance Z-Score
+    title: CNV Intolerance Z-Score
     type: float
   - name: exac_cnv_flag
     title: CNV Bias/Noise
     type: string
-description: 
+description: ExAC Functional Gene Constraint & CNV Scores provides probability of LoF tolerance/intolerance
 developer:
   name: 'ExAC'
   organization: 'Exome Aggregation Consortium'
