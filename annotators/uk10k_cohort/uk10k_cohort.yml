@@ -1,5 +1,5 @@
 title: UK10K Cohort Twins & ALSPAC
-version: 3.5
+version: 3.5.0
 type: annotator
 level: variant
 input_format: crv
