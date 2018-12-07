@@ -1,0 +1,10 @@
+title: AncestryDNA Converter
+version: 1.0.0
+type: converter
+description: File converter for AncestryDNA format
+developer:
+  name: 'Kyle Moad'
+  organization: 'In Silico Solutions'
+  email: 'kmoad@insilico.us.com'
+  website: 'http://www.insilico.us.com'
+  citation: ''

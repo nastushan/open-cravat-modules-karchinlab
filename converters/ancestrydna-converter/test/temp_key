@@ -1,0 +1,68 @@
+#CRAVAT Report
+#Created at Friday 12/07/2018 14:41:50
+#Report level: variant
+#
+Base Information											Hg19		Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Hg19 Chrom	Hg19 Position	Number of Samples	Samples	Tags
+1	chr1	758245	N	T							chr1	693625	1		rs190214723
+2	chr1	817341	N	G							chr1	752721	1		rs3131972
+3	chr1	833068	N	A							chr1	768448	1		rs12562034
+4	chr1	833068	N	G							chr1	768448	1		rs12562034
+5	chr1	851793	N	G							chr1	787173	1		rs115093905
+6	chr1	864627	N	C							chr1	800007	1		rs6681049
+7	chr1	894801	N	A							chr1	830181	1		rs28444699
+8	chr1	903175	N	C							chr1	838555	1		rs4970383
+9	chr1	905373	N	T							chr1	840753	1		rs4970382
+10	chr1	905373	N	C							chr1	840753	1		rs4970382
+11	chr1	908025	N	A							chr1	843405	1		rs11516185
+12	chrX	3121862	N	T							chrX	3039903	1		rs59756922
+#CRAVAT Report
+#Created at Friday 12/07/2018 14:41:50
+#Report level: gene
+#
+Base Information			
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
+#CRAVAT Report
+#Created at Friday 12/07/2018 14:41:50
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+1	
+2	
+2	
+3	
+4	
+5	
+5	
+6	
+6	
+7	
+7	
+8	
+8	
+9	
+10	
+11	
+11	
+12	
+12	
+#CRAVAT Report
+#Created at Friday 12/07/2018 14:41:50
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+20	rs190214723	1
+21	rs3131972	2
+22	rs12562034	3
+22	rs12562034	4
+23	rs115093905	5
+24	rs6681049	6
+25	rs28444699	7
+26	rs4970383	8
+27	rs4970382	9
+27	rs4970382	10
+28	rs11516185	11
+30	rs59756922	12
