@@ -19,8 +19,9 @@ class CravatConverter(BaseConverter):
         if l.startswith('rsid'): return []
         toks = l.strip('\r\n').split('\t')
         tags = toks[0]
-        if int(toks[1]) >= 25: return []
-        chrom = toks[1]
+        if int(toks[1]) == 26: chrom = 'M'
+        elif int(toks[1]) == 25: chrom = 'Y'
+        else: chrom = toks[1]
         pos = toks[2]
         ref = 'N'
         sample = None

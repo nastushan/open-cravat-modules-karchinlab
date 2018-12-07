@@ -17,13 +17,15 @@
 #contain the two alleles observed at this SNP (genotype).  The genotype is reported 
 #on the forward (+) strand with respect to the human reference.
 rsid	chromosome	position	allele1	allele2
+rs311047	25	2622260	A	G
+rs311055	25	2624467	G	G
 rs190214723	1	693625	T	T
 rs3131972	1	752721	G	G
-rs12562034	1	768448	A	G
+rs111033442	26	1385	C	C
 rs115093905	1	787173	G	G
-rs6681049	1	800007	C	C
+rs1815109	7	11846108	A	G
 rs28444699	1	830181	A	A
-rs4970383	1	838555	C	C
+rs9786252	24	2911033	G	G
 rs4970382	1	840753	T	C
 rs11516185	1	843405	A	A
 rs200019352	1	2160304	0	0
