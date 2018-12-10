@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Monday 12/10/2018 11:32:21
+#Created at Monday 12/10/2018 15:39:28
 #Report level: variant
 #
 Base Information											Hg19		Tag Sampler		
@@ -20,14 +20,14 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 14	chr1	908025	?	A							chr1	843405	1		rs11516185
 15	chrX	3121862	?	T							chrX	3039903	1		rs59756922
 #CRAVAT Report
-#Created at Monday 12/10/2018 11:32:21
+#Created at Monday 12/10/2018 15:39:28
 #Report level: gene
 #
 Base Information			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 THSD7A	2	INT	INT(2)
 #CRAVAT Report
-#Created at Monday 12/10/2018 11:32:21
+#Created at Monday 12/10/2018 15:39:28
 #Report level: sample
 #
 Base Information	
@@ -57,7 +57,7 @@ UID	Sample
 15	
 15	
 #CRAVAT Report
-#Created at Monday 12/10/2018 11:32:21
+#Created at Monday 12/10/2018 15:39:28
 #Report level: mapping
 #
 Base Information		

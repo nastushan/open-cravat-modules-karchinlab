@@ -20,15 +20,12 @@ class CravatConverter(BaseConverter):
         tags = toks[0]
         chrom = toks[1]
         pos = toks[2]
-        ref = '?'
+        ref = ''
         sample = None
         geno = list(toks[3])
         for var in geno:
-            if var != '-' and var != 'D':
-                if var == 'I':
-                    alt = '-'
-                else:
-                    alt = var
+            if var != '-' and var != 'D' and var != 'I':
+                alt = var
                 wdict = {'tags':tags,
                     'chrom':chrom,
                     'pos':pos,
