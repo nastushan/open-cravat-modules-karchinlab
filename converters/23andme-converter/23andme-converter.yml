@@ -1,0 +1,10 @@
+title: 23andMe Converter
+version: 1.0.0
+type: converter
+description: File converter for 23andMe format
+developer:
+  name: 'Kyle Moad'
+  organization: 'In Silico Solutions'
+  email: 'kmoad@insilico.us.com'
+  website: 'http://www.insilico.us.com'
+  citation: ''
