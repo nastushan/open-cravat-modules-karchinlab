@@ -20,7 +20,7 @@ class CravatConverter(BaseConverter):
         tags = toks[0]
         chrom = toks[1]
         pos = toks[2]
-        ref = 'N'
+        ref = '?'
         sample = None
         geno = list(toks[3])
         for var in geno:

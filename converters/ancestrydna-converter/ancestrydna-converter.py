@@ -23,7 +23,7 @@ class CravatConverter(BaseConverter):
         elif int(toks[1]) == 25: chrom = 'Y'
         else: chrom = toks[1]
         pos = toks[2]
-        ref = 'N'
+        ref = '?'
         sample = None
         for var in toks[3:]:
             if var != '0':

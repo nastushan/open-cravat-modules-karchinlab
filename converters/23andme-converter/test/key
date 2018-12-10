@@ -1,0 +1,59 @@
+#CRAVAT Report
+#Created at Monday 12/10/2018 11:30:37
+#Report level: variant
+#
+Base Information											Hg19		Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Hg19 Chrom	Hg19 Position	Number of Samples	Samples	Tags
+1	chr1	69869	T	T	Y	OR4F5	ENST00000335137.3	synonymous	_260_	ENST00000335137.3:OR4F5:Q8NH21:SYN:_260_:T779T	chr1	69869	1		rs548049170
+2	chr1	630128	?	A							chr1	565508	1		rs9283150
+3	chr1	792461	?	G							chr1	727841	1		rs116587930
+4	chr1	817341	?	G							chr1	752721	1		rs3131972
+5	chr1	818725	?	C							chr1	754105	1		rs12184325
+6	chr1	1338099	C	-	Y	DVL1	ENST00000378888.9	frameshift deletion by 1	_531_	ENST00000378888.9:DVL1:O14640:FD1:_531_:G1592-; ENST00000378891.9:DVL1:(na):FD1:_506_:G1517-; ENST00000610709.2:DVL1:A0A087WWA7:FD1:_280_:G839-	chr1	1273479	1		rs797044834
+7	chrM	10	?	T							chrM	10	1		i703360
+8	chr1	984121	?	G							chr1	919501	1		rs4970414
+9	chr1	984121	?	T							chr1	919501	1		rs4970414
+#CRAVAT Report
+#Created at Monday 12/10/2018 11:30:37
+#Report level: gene
+#
+Base Information			
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
+OR4F5	1	SYN	SYN(1)
+DVL1	1	FD1	FD1(1)
+#CRAVAT Report
+#Created at Monday 12/10/2018 11:30:37
+#Report level: sample
+#
+Base Information	
+UID	Sample
+1	
+1	
+2	
+2	
+3	
+3	
+4	
+4	
+5	
+5	
+6	
+6	
+7	
+8	
+9	
+#CRAVAT Report
+#Created at Monday 12/10/2018 11:30:37
+#Report level: mapping
+#
+Base Information		
+Original Line	User Tags	UID
+21	rs548049170	1
+23	rs9283150	2
+25	rs116587930	3
+26	rs3131972	4
+27	rs12184325	5
+28	rs797044834	6
+30	i703360	7
+31	rs4970414	8
+31	rs4970414	9
