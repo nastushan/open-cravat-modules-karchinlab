@@ -162,7 +162,10 @@ class Mapper(cravat.BaseMapper):
         coding_hits = []
         chrom = crv_data['chrom']
         start_gpos = crv_data['pos']
-        end_gpos = start_gpos + len(crv_data['ref_base']) - 1
+        if crv_data['ref_base'] is None: 
+            end_gpos = start_gpos
+            crv_data['ref_base'] = '?'
+        else: end_gpos = start_gpos + len(crv_data['ref_base']) - 1
         gstart_tdata = self._coding_query(chrom=chrom, gpos=start_gpos)
         gend_tdata = self._coding_query(chrom=chrom, gpos=end_gpos)
         all_tids = set(list(gstart_tdata.keys()) + list(gend_tdata.keys()))
