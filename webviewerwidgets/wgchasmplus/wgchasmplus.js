@@ -4,7 +4,12 @@ widgetGenerators['chasmplus'] = {
 		'height': 280, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Score', 'chasmplus__score', tabName);
-			addInfoLine(div, row, 'P-value', 'chasmplus__pval', tabName);
+			if(typeof addGradientBarComponent == 'function'){
+				addGradientBarComponent(div, row, 'P-value', 'chasmplus__pval', tabName, {'0.01':[255,0,0], '0.05':[255,255,0]});
+			}
+			else{
+				addInfoLine(div, row, 'P-value', 'chasmplus__pval', tabName);
+			}
 			addInfoLine(div, row, 'Transcript', 'chasmplus__transcript', tabName);
             var allMappings = infomgr.getRowValue(tabName, row, 'chasmplus__results');
             if (allMappings != null) {

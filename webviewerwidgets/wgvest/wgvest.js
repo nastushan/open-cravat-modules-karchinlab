@@ -3,7 +3,12 @@ widgetGenerators['vest'] = {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			addBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName);
+			if(typeof addGradientBarComponent == 'function'){
+				addGradientBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName);
+			}
+			else{
+				addBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName);
+			}
 			var allMappings = infomgr.getRowValue(tabName, row, 'vest__all_results');
 			if (allMappings == null) {
 				addEl(div, addEl(getEl('span'), getTn('N/A')));
