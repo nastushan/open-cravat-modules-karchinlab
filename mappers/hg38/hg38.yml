@@ -28,3 +28,41 @@ report_substitution:
     FD1: frameshift deletion by 1
     FI2: frameshift insertion by 2
     FI1: frameshift insertion by 1
+  all_so:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    IDV: inframe deletion
+    IIV: inframe insertion
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FD2: frameshift deletion by 2
+    FD1: frameshift deletion by 1
+    FI2: frameshift insertion by 2
+    FI1: frameshift insertion by 1
+  all_mappings:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    IDV: inframe deletion
+    IIV: inframe insertion
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FD2: frameshift deletion by 2
+    FD1: frameshift deletion by 1
+    FI2: frameshift insertion by 2
+    FI1: frameshift insertion by 1

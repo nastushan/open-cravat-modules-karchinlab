@@ -14,7 +14,8 @@ class Aggregator (object):
     
     cr_type_to_sql = {'string':'text',
                       'int':'integer',
-                      'float':'real'}
+                      'float':'real',
+                      'category': 'string'}
     commit_threshold = 10000
     
     def __init__(self, cmd_args):
@@ -262,6 +263,7 @@ class Aggregator (object):
         col_def_strings = []
         for col in columns:
             name = col[0]
+            print(self.cr_type_to_col)
             sql_type = self.cr_type_to_sql[col[1]]
             s = name + ' ' + sql_type
             col_def_strings.append(s)
@@ -286,15 +288,16 @@ class Aggregator (object):
         # header table
         q = 'drop table if exists %s' %self.header_table_name
         self.cursor.execute(q)
-        q = 'create table %s (col_name text, col_title text, col_type text);' \
+        q = 'create table %s (col_name text, col_title text, col_type text, categories text);' \
             %(self.header_table_name)
         self.cursor.execute(q)
         for col_name, col_type, col_title in columns:
-            q = 'insert into {} values ("{}", "{}", "{}")'.format(
+            q = 'insert into {} values ("{}", "{}", "{}", "{}")'.format(
                 self.header_table_name, 
                 col_name, 
                 col_title, 
-                col_type)
+                col_type,
+                col_cats)
             self.cursor.execute(q)
         # report substitution table
         if self.level in ['variant', 'gene']:
