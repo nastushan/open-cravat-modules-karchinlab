@@ -1,0 +1,26 @@
+title: UK10K Cohort Twins & ALSPAC
+version: 3.5.0
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: uk10k_twins_ac
+  title: Twins Alt Allele Count
+  type: float
+- name: uk10k_twins_af
+  title: Twins Alt Allele Freq
+  type: float
+- name: uk10k_alspac_ac
+  title: ALSPAC Alt Allele Count
+  type: float
+- name: uk10k_alspac_af
+  title: ALSPAC Alt Allele Freq
+  type: float
+description: UK10K cohort provides genetic information from DTR & ALSPAC
+developer:
+  name: 'UK10K Consortium'
+  organization: 'Wellcome Sanger Institute'
+  email: 'support@cravat.us'
+  website: 'https://www.uk10k.org/studies/cohorts.html'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+

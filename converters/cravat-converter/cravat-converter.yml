@@ -1,5 +1,5 @@
 title: Cravat Converter
-version: 1.0.0
+version: 1.0.1
 type: converter
 description: File converter for standard cravat input
 developer:
@@ -8,3 +8,5 @@ developer:
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+release_note:
+  1.0.1: also parses space-delimited files.

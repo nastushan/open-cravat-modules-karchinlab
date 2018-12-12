@@ -1,0 +1,20 @@
+title: GTEx
+version: 6.0.0
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: gtex_gene
+  title: Target Gene
+  type: string
+- name: gtex_tissue
+  title: Tissue Type
+  type: string
+description: Genotype-tissue expression
+developer:
+  name: 'GTEx Consortium'
+  organization: 'The Broad Institute of MIT and Harvard'
+  email: 'support@cravat.us'
+  website: 'https://gtexportal.org/home/'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+

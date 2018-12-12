@@ -1,0 +1,11 @@
+title: ExAC Gene Constraint & CNV Score
+version: 1.0.0
+type: webviewerwidget
+required_annotator: exac_gene
+description: ExAC Constraint & CNV webviewer widget
+developer:
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'http://www.insilico.us.com'
+  citation: ''
