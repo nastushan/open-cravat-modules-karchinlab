@@ -7,13 +7,13 @@ level: variant
 input_format: crv
 output_columns:
 - name: nhlbi
-  title: GWAS NHLBI Key (GRASP)
+  title: NHLBI Key
   type: string
 - name: pmid
-  title: GWAS PMID (GRASP)
+  title: PMID
   type: string
 - name: phenotype
-  title: GWAS Phenotype (GRASP)
+  title: Phenotype
   type: string
 
 description: Genome-Wide Repository of Associations Between SNPs and Phenotypes
