@@ -1,0 +1,5 @@
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tag
+chr16	47430	+	C	A		
+chr16	47461	+	T	C		
+chr16	47460	+	A	C		
+chrM	3307	+	A	C		

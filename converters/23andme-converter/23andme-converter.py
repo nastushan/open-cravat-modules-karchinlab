@@ -1,66 +1,36 @@
 from cravat import BaseConverter
 from cravat import BadFormatError
 
-"""
-    CRAVAT Input format:  chr pos +/- ref alt [Sample] [Tag(s)]
-    Sample is an optional sample identifier for cohort studies
-    Tags is a string with identifiers or categorical tags. It is also
-    optional and is delimited with semicolons if there is more than one
-    tag. 
-"""     
 class CravatConverter(BaseConverter):
     comp_base = {'A':'T','T':'A','C':'G','G':'C','-':'-','N':'N'}
     
     def __init__(self):
         self.format_name = '23andme'
     
-    def _switch_strand(self, bases):
-        return ''.join([self.comp_base[base] for base in bases[::-1]])
-    
-    def _check_line(self, l): #could take tokens not l
-        toks = l.strip('\r\n').split('\t')
-        if len(toks) == 4:
-            rsid, chrom, pos, als = toks
-        else:
-            return False, "Wrong number of columns"
-        valid_bases = list(self.comp_base.keys())
-        try:
-            int(pos)
-        except ValueError:
-            return False, '3rd column must be integer'
-        al1 = als[0].upper()
-        al2 = als[1].upper()
-        for char in al1.upper():
-            if char not in valid_bases: return False, 'Bad ref base'
-        for char in al2.upper():
-            if char not in valid_bases: return False, 'Bad alt base'
-        return True, ''
-
     def check_format(self, f):
-        for l in f:
-            if not(l.startswith('#')):
-                format_correct, _ = self._check_line(l)
-                return format_correct
-
+        return '23andMe' in f.readline()
+    
     def setup(self, f):
         pass
-
+    
     def convert_line(self, l):
+        ret = []
         if l.startswith('#'): return []
-        format_correct, format_msg= self._check_line(l)
-        if not(format_correct): raise BadFormatError(format_msg)
         toks = l.strip('\r\n').split('\t')
-        rsid, chrom, pos, als = toks
-        al1 = als[0].upper()
-        al2 = als[1].upper()
-        wdict1 = {'chrom':chrom,
-                  'pos':pos,
-                  'ref_base':al1,                 
-                  'alt_base':al1,
-                  'sample_id':sample}
-        wdict1 = {'chrom':chrom,
-                  'pos':pos,
-                  'ref_base':al1,                 
-                  'alt_base':al2,
-                  'sample_id':sample}
-        return [wdict1, wdict2]
+        tags = toks[0]
+        chrom = toks[1]
+        pos = toks[2]
+        ref = ''
+        sample = None
+        geno = list(toks[3])
+        for var in geno:
+            if var != '-' and var != 'D' and var != 'I':
+                alt = var
+                wdict = {'tags':tags,
+                    'chrom':chrom,
+                    'pos':pos,
+                    'ref_base':ref,
+                    'alt_base':alt,
+                    'sample_id':sample}
+                ret.append(wdict)
+        return ret

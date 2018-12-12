@@ -162,7 +162,10 @@ class Mapper(cravat.BaseMapper):
         coding_hits = []
         chrom = crv_data['chrom']
         start_gpos = crv_data['pos']
-        end_gpos = start_gpos + len(crv_data['ref_base']) - 1
+        if crv_data['ref_base'] is None: 
+            end_gpos = start_gpos
+            crv_data['ref_base'] = '?'
+        else: end_gpos = start_gpos + len(crv_data['ref_base']) - 1
         gstart_tdata = self._coding_query(chrom=chrom, gpos=start_gpos)
         gend_tdata = self._coding_query(chrom=chrom, gpos=end_gpos)
         all_tids = set(list(gstart_tdata.keys()) + list(gend_tdata.keys()))
@@ -178,7 +181,7 @@ class Mapper(cravat.BaseMapper):
                 # of the transcript to determine sequence ontology
                 if tid in gstart_tdata and tid in gend_tdata:
                     # Fill in ref base if needed
-                    if hit.gref == '':
+                    if hit.gref == '?':
                         hit.gref = gstart_tdata[tid]['base']
                     # Map plus strand genomic start/end to transcript direction
                     if hit.transcript.strand == '+':
@@ -373,7 +376,7 @@ class Mapper(cravat.BaseMapper):
                 continue
             elif hit.hit_type in ['coding', 'noncoding']:
                 # Replace empty ref_base with data from hit if available
-                if crx_data['ref_base'] == '' and hit.gref != '':
+                if crx_data['ref_base'] == '?' and hit.gref != '':
                     crx_data['ref_base'] = hit.gref
                 # Add to all maps dict
                 if hit.apos_start != None:

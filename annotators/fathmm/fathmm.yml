@@ -1,5 +1,5 @@
 title: FATHMM
-version: "2.3"
+version: 2.3.0
 type: annotator
 level: variant
 input_format: crv
@@ -26,4 +26,3 @@ developer:
   email: 'support@cravat.us'
   website: 'http://fathmm.biocompute.org.uk/index.html'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
-

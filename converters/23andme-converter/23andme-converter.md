@@ -1,3 +1,3 @@
 # 23andMe Converter
 
-Converts from 23andMe format.
+Converts from the standard input format.
