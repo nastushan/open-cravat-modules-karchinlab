@@ -1,0 +1,16 @@
+title: LoFtool
+version: 3.5.0
+type: annotator
+level: gene
+output_columns:
+  - name: loftool_score
+    title: LoF Score
+    type: float
+description: Gene intolerance score based on loss-of-function variants
+developer:
+  name: 'João Fadista, Nikolay Oskolkov, Ola Hansson, Leif Groop'
+  organization: 'Lund University Diabetes Centre'
+  email: 'support@cravat.us'
+  website: 'https://doi.org/10.1093/bioinformatics/btv602'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+
