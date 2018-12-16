@@ -1,11 +1,11 @@
 title: UCSC hg38 Gene Mapper
-version: 1.0.3
+version: 1.0.4
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
   name: 'Kyle Moad'
   organization: 'In Silico Solutions'
-  email: 'kmoad@insilico.us.com'
+  email: 'support@cravat.su'
   website: 'http://www.insilico.us.com'
   citation: ''
 report_substitution:
