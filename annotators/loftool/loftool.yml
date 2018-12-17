@@ -1,11 +1,12 @@
 title: LoFtool
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: gene
 output_columns:
   - name: loftool_score
     title: LoF Score
     type: float
+    width: 55
 description: Gene intolerance score based on loss-of-function variants
 developer:
   name: 'João Fadista, Nikolay Oskolkov, Ola Hansson, Leif Groop'

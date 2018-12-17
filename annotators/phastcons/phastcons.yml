@@ -1,5 +1,5 @@
 title: Phast Cons
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: variant
 input_format: crv
@@ -12,6 +12,7 @@ output_columns:
   title: Vert Ranked Score
   type: float
   desc: 100 Way Vertebrate Ranked Score
+  width: 58
 - name: phastcons20_mamm
   title: Mamm Score
   type: float
@@ -20,6 +21,7 @@ output_columns:
   title: Mamm Ranked Score
   type: float
   desc: 20 Way Mammalian Ranked Score
+  width: 56
 description: A database of compressed phastCons conservation scores.
 developer:
   name: 'UCSC'

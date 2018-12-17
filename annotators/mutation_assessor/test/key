@@ -1,20 +1,20 @@
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:26:18
+#Created at Monday 12/17/2018 16:33:33
 #Report level: variant
 #
-Base Information										Mutation Assessor				Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	Mutation Variant	Mutation Score	Mutation Rank Score	Mutation Functional Impact	Number of Samples	Samples	Tags
-1	chr1	69094	G	A	Y	OR4F5	ENST00000335137.3	MIS	ENST00000335137.3:OR4F5:Q8NH21:MIS:V2M:G4A	V2M	2.86	0.83291	M	1		
-2	chr1	69105	C	A	Y	OR4F5	ENST00000335137.3	MIS	ENST00000335137.3:OR4F5:Q8NH21:MIS:F5L:C15A	F5L	2.615	0.76725	M	1		
+Base Information											Mutation Assessor				Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Variant	Score	Ranked Score	Functional Impact	Number of Samples	Samples	Tags
+1	chr1	69094	G	A	Y	OR4F5	ENST00000335137.3	missense	V2M	ENST00000335137.3:OR4F5:Q8NH21:missense:V2M:G4A	V2M	2.86	0.83291	Medium	1		
+2	chr1	69105	C	A	Y	OR4F5	ENST00000335137.3	missense	F5L	ENST00000335137.3:OR4F5:Q8NH21:missense:F5L:C15A	F5L	2.615	0.76725	Medium	1		
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:26:18
+#Created at Monday 12/17/2018 16:33:33
 #Report level: gene
 #
 Base Information			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
-OR4F5	2	MIS	MIS(2)
+OR4F5	2	missense	missense(2)
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:26:18
+#Created at Monday 12/17/2018 16:33:33
 #Report level: sample
 #
 Base Information	
@@ -22,7 +22,7 @@ UID	Sample
 1	
 2	
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:26:18
+#Created at Monday 12/17/2018 16:33:33
 #Report level: mapping
 #
 Base Information		
