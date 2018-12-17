@@ -10,15 +10,18 @@ output_columns:
 - name: id
   title: ID
   type: string
+  hidden: True
 - name: aspect
   title: Aspect
   type: string
 - name: go_ref
   title: Reference
   type: string
+  hidden: True
 - name: evi
   title: Evidence Code
   type: string
+  hidden: True
 
 description: Gene Ontology (GO) project provides a comprehensive computable knowledge regarding the functions of genes and gene products.
 developer:
