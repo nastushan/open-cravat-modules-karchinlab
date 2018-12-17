@@ -9,17 +9,21 @@ output_columns:
 - name: sig
   title: Clinical Significance
   type: string
+  width: 90
 - name: refs
   title: Disease Ref Nums
   type: string
+  hidden: True
+  width: 55
 - name: diseases
   title: Disease Names
   type: string
+  width: 55
 
 description: ClinVar is an archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
 developer:
   name: 'NCBI'
   organization: 'NCBI'
-  email: ''
+  email: 'support@cravat.us'
   website: 'https://www.ncbi.nlm.nih.gov/clinvar/'
   citation: 'https://www.ncbi.nlm.nih.gov/pubmed/26582918'
