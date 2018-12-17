@@ -1,6 +1,6 @@
 name: chasmplus
 title: CHASMplus
-version: 1.0.1
+version: 1.0.2
 type: annotator
 
 level: variant
@@ -14,9 +14,11 @@ output_columns:
 - name: transcript
   title: Transcript
   type: string
+  hidden: True
 - name: results
   title: All results
   type: string
+  hidden: True
 
 can_summarize_by_gene: true
 gene_summary_output_columns:
