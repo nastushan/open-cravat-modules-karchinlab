@@ -1,21 +1,23 @@
 title: UK10K Cohort Twins & ALSPAC
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: variant
 input_format: crv
 output_columns:
 - name: uk10k_twins_ac
-  title: Twins Alt Allele Count
+  title: Twins AC
   type: float
 - name: uk10k_twins_af
-  title: Twins Alt Allele Freq
+  title: Twins AF
   type: float
 - name: uk10k_alspac_ac
-  title: ALSPAC Alt Allele Count
+  title: ALSPAC AC
   type: float
+  width: 56
 - name: uk10k_alspac_af
-  title: ALSPAC Alt Allele Freq
+  title: ALSPAC AF
   type: float
+  width: 56
 description: UK10K cohort provides genetic information from DTR & ALSPAC
 developer:
   name: 'UK10K Consortium'

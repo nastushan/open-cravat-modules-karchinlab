@@ -1,21 +1,27 @@
 title: Phylogenetic P
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: variant
 input_format: crv
 output_columns:
 - name: phylop100_vert
-  title: 100 Way Vertebrate Score
+  title: Vert Score
   type: float
+  desc: 100 Way Vertebrate Score
 - name: phylop100_vert_r
-  title: 100 Way Vertebrate Ranked Score
+  title: Vert Ranked Score
   type: float
+  desc: 100 Way Vertebrate Ranked Score
+  width: 54
 - name: phylop20_mamm
-  title: 20 Way Mammalian Score
+  title: Mamm Score
   type: float
+  desc: 20 Way Mammalian Score
 - name: phylop20_mamm_r
-  title: 20 Way Mammalian Ranked Score
+  title: Mamm Ranked Score
   type: float
+  desc: 20 Way Mammalian Ranked Score
+  width: 54
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
   name: 'UCSC'
