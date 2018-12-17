@@ -1,6 +1,6 @@
 title: CIViC Gene
 
-version: 0.0.1
+version: 0.0.2
 
 type: annotator
 
@@ -20,7 +20,7 @@ description: Provides descriptions and linkouts to CIViC
 developer:
   name: ''
   organization: 'The McDonnell Genome Institute at Washington University School of Medicine'
-  email: ''
+  email: 'support@cravat.us'
   website: 'https://civicdb.org'
   citation: 'https://www.nature.com/articles/ng.3774'
 
