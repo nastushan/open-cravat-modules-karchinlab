@@ -5,17 +5,21 @@ level: variant
 input_format: crv
 output_columns:
 - name: phastcons100_vert
-  title: 100 Way Vertebrate Score
+  title: Vert Score
   type: float
+  desc: 100 Way Vertebrate Score
 - name: phastcons100_vert_r
-  title: 100 Way Vertebrate Ranked Score
+  title: Vert Ranked Score
   type: float
+  desc: 100 Way Vertebrate Ranked Score
 - name: phastcons20_mamm
-  title: 20 Way Mammalian Score
+  title: Mamm Score
   type: float
+  desc: 20 Way Mammalian Score
 - name: phastcons20_mamm_r
-  title: 20 Way Mammalian Ranked Score
+  title: Mamm Ranked Score
   type: float
+  desc: 20 Way Mammalian Ranked Score
 description: A database of compressed phastCons conservation scores.
 developer:
   name: 'UCSC'
