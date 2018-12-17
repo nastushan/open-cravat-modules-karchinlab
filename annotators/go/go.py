@@ -9,27 +9,32 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data):
         out = {}
         hugo = input_data['hugo']
-        if 'go_aspect' in self.conf:
-            aspect_filter = self.conf['go_aspect'].strip();
-        else:
-            aspect_filter = 'F';
+        # if 'go_aspect' in self.conf:
+        #     aspect_filter = self.conf['go_aspect'].strip();
+        # else:
+        #     aspect_filter = 'F';
         
-        q = 'SELECT name, go_name.go_id, go_aspect FROM go_annotation JOIN go_name ON go_annotation.go_id=go_name.go_id WHERE hugo="%s";' \
+        q = 'SELECT name, go_name.dname, go_name.id, aspect, refer, evidence FROM go_annotation JOIN go_name ON go_annotation.id=go_name.id WHERE hugo="%s";' \
             %(hugo)
         self.cursor.execute(q)
         result = self.cursor.fetchall()
         if result:
-            list = []
-            idlist = []
-            alist = []
+            name_list = []
+            id_list = []
+            aspect_list = []
+            ref_list = []
+            evi_list = []
             for res in result:
-                if res[2] in aspect_filter:
-                    list.append(res[0])
-                    idlist.append(res[1])
-                    alist.append(res[2])
-            out['name'] = ';'.join(list)
-            out['id'] = ';'.join(idlist)
-            out['aspect'] = ';'.join(alist)
+                name_list.append(res[0])
+                id_list.append(res[1])
+                aspect_list.append(res[2])
+                ref_list.append(res[3])
+                evi_list.append(res[4])
+            out['name'] = ';'.join(name_list)
+            out['id'] = ';'.join(id_list)
+            out['aspect'] = ';'.join(aspect_list)
+            out['ref'] = ';'.join(ref_list)
+            out['evidence'] = ';'.join(evi_list)
         return out
     
 if __name__ == '__main__':

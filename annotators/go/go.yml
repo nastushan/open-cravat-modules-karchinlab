@@ -2,18 +2,22 @@ title: Gene Ontology
 version: 2018.03.08
 type: annotator
 
-go_aspect: F
-
 level: gene
 output_columns:
 - name: name
-  title: name
+  title: Term
   type: string
 - name: id
-  title: Go id
+  title: ID
   type: string
 - name: aspect
-  title: go_aspect
+  title: Aspect
+  type: string
+- name: go_ref
+  title: Reference
+  type: string
+- name: evi
+  title: Evidence Code
   type: string
 
 description: Gene Ontology (GO) project provides a comprehensive computable knowledge regarding the functions of genes and gene products.
@@ -22,4 +26,5 @@ developer:
   organization: 'Gene Ontology Consortium'
   email: ''
   website: 'http://geneontology.org/'
-  citation: 'Ashburner et al. Gene ontology: tool for the unification of biology (2000) Nat Genet 25(1):25-9'
+  citation: '| Ashburner et al. Gene ontology: tool for the unification of biology (2000) Nat Genet 25(1):25-9. https://doi.org/10.1038/75556 
+  GO Consortium, Nucleic Acids Res., 2017 https://doi.org/10.1093/nar/gkw1108'

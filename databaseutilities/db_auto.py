@@ -52,7 +52,7 @@ class CravatDatabase:
                 with open("{filename}".format(filename=filename)) as f:
                     for i,l in enumerate(f):
                         #Skip first line of file (assumes first line is column names)
-                        if i > 0:
+                        if i > 29:
                             #Strip whitespace and split on tabs (assumes file is tsv formatted)
                             toks = l.strip("\r\n").split("\t")
                             data = []
@@ -65,7 +65,8 @@ class CravatDatabase:
                                     data.append(self.myCast(toks[col], colnum)) #Figure out user specified casting
                                 colnum += 1
                             if not self.rmRow(data):
-                                self.curs.execute("INSERT INTO {tname}({ref}) VALUES({wilds});".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
+                                #Ignores insertion of data that violates any constraints
+                                self.curs.execute("INSERT or IGNORE INTO {tname}({ref}) VALUES({wilds});".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
                 self.conn.commit()
                 print("Finished {name} insertion".format(name=filename))
                 fnum += 1
@@ -89,7 +90,7 @@ class CravatDatabase:
 
     #Checks passed cell for a null/none type identifier (ex. '#' or '.' used to denote no data) and returns a boolean as to whether it should be added to the database as a null value
     def nullChk(self, cell):
-        if cell == '.':
+        if cell == '':
             return True
         else:
             return False
@@ -105,39 +106,38 @@ class CravatDatabase:
 
     #Returns a boolean to determine if the passed row should be added to the database (ex. all columns are null or an empty column requires the whole row to be irrelevant)
     def rmRow(self, row):
-        if row.count(None) >= 5:
+        if row.count(None) >= 2:
             return True
         else:
             return False
 
 #TODO
-#Command line params?
+#User specification of skipping lines (set comment char? int of lines to skip?)
+#File locations in user directories require expanduser (join does not work). Check for User directory and fix path before opening?
 #Generic input files
 if __name__ == "__main__":
-    #Dictionary of column names and data types
-    d = {"pos":"integer", "alt":"text", "phastcons100_vert":"real", "phastcons100_vert_r":"real", "phastcons20_mamm":"real", "phastcons20_mamm_r":"real"}
+    #Dictionary of column names and data types, constraints (i.e. primary key, unique, etc.) can be added after data type
+    d = {"name":"text", "id":"text", "go_ref":"text", "evi":"text", "aspect":"text"}
     #List of table names
-    t = ['chr15', 'chrM', 'chrY']
+    t = ["go_annotation"]
     #Change to annotator directory
-    os.chdir("C:/Users/trak/Desktop/cravat_test")
+    os.chdir("C:/Users/trak/open-cravat-modules-karchinlab/annotators")
     #Creating new annotator directory
-    os.makedirs("phast/data", exist_ok=True)
+    os.makedirs("go/data", exist_ok=True)
     #Path to database
-    p = os.path.join(os.getcwd(), "phast", "data", "phast.sqlite")
+    p = os.path.join(os.getcwd(), "go", "data", "go.sqlite")
     #Creating database
     db = CravatDatabase(p, d, t)
     #Path to data file(s)
-    wpath = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chr15')
-    wpath2 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrM')
-    wpath3 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrY')
+    wpath = os.path.expanduser('~/Documents/job1/goa_human.gaf')
     #List of files
-    files = [wpath, wpath2, wpath3]
+    files = [wpath]
     #Indexes of columns needed from datafile(s), make sure they are ordered in correlation with database col order
-    col_idx = [1, 3, 112, 113, 114, 115]
+    col_idx = [2,4,5,6,8]
     #Insert data from datafile(s) into database
     db.parser(files, col_idx)
     #List of columns to index on (one index is created using all items in list)
-    cols = ['pos','alt']
+    cols = ['name']
     #Index database
     db.indexer(cols)
     #Close db connection
