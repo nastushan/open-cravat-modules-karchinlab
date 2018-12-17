@@ -1,5 +1,5 @@
 title: GERP++
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: variant
 input_format: crv
@@ -13,6 +13,7 @@ output_columns:
 - name: gerp_rs_rank
   title: RS Ranked Score
   type: float
+  width: 58
 description: Genomic Evolutionary Rate Profiling
 developer:
   name: 'Stanford University Sidow Lab'

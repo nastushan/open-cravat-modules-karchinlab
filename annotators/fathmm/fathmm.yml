@@ -1,24 +1,29 @@
 title: FATHMM
-version: 2.3.0
+version: 2.3.01
 type: annotator
 level: variant
 input_format: crv
 output_columns:
 - name: ens_tid
-  title: Ensembl Transcript ID
+  title: Transcript ID
   type: string
+  hidden: True
 - name: ens_pid
-  title: Ensembl Protein ID
+  title: Protein ID
   type: string
+  hidden: True
 - name: fathmm_score
-  title: FATHMM Score
+  title: Score
   type: string
+  hidden: True
 - name: fathmm_rscore
-  title: FATHMM Converted Rank Score
+  title: Converted Rank Score
   type: float
+  width: 68
 - name: fathmm_pred
-  title: FATHMM Prediction
+  title: Prediction
   type: string
+  hidden: True
 description: Functional analysis through hidden markov models.
 developer:
   name: 'Chris Campbell'
