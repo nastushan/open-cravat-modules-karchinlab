@@ -1,16 +1,18 @@
 title: ncRNA
-version: 2014.1.10
+version: 2014.1.101
 type: annotator
 
 name: ncRNA
 level: variant
 output_columns:
 - name: ncrnaclass
-  title: ncRNA Class
+  title: Class
   type: string
+  width: 70
 - name: ncrnaname
-  title: ncRNA Name
+  title: Name
   type: string
+  width: 70
 
 description: Non-coding RNA from RepeatMasker library
 developer:

@@ -1,5 +1,5 @@
 title: COSMIC Gene
-version: 85.0.0
+version: 85.0.1
 type: annotator
 datasource: v85
 
@@ -8,9 +8,11 @@ output_columns:
 - name: occurrences
   title: Occurrences in COSMIC
   type: int
+  width: 170
 - name: gene_count
-  title: COSMIC gene count (tissue)
+  title: Gene Count (Tissue)
   type: string
+  width: 110
 
 description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:

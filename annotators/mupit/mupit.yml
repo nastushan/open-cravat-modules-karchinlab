@@ -1,23 +1,27 @@
 name: mupit
 title: MuPIT
-version: 4.2.0
+version: 4.2.1
 type: annotator
 
 level: variant
 input_format: crx
 output_columns:
 - name: link
-  title: MuPIT link
+  title: Link
   type: string
+  width: 80
 - name: hugo
   title: Hugo
   type: string
+  width: 70
+  hidden: true
 
 can_summarize_by_gene: true
 gene_summary_output_columns:
 - name: link
-  title: MuPIT link
+  title: Link
   type: string
+  width: 80
 
 description: Provides links to variant position and annotations in 3D MuPIT structure viewer.
 developer:

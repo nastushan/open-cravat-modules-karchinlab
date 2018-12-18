@@ -1,5 +1,5 @@
 title: LINSIGHT
-version: 2018.10.19
+version: 2018.10.191
 type: annotator
 datasource: 2018.10.19
 
@@ -9,6 +9,7 @@ output_columns:
 - name: value
   title: Value
   type: float
+  width: 80
 
 description: LINSIGHT
 developer:

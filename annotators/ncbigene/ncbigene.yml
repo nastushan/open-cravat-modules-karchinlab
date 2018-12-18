@@ -1,12 +1,13 @@
 title: NCBI Gene
-version: 2018.02.21
+version: 2018.02.211
 type: annotator
 
 level: gene
 output_columns:
 - name: ncbi_desc
-  title: NCBI Gene Description
+  title: Description
   type: string
+  width: 200
 
 description: Gene description from NIH's NCBI Gene Info
 developer:

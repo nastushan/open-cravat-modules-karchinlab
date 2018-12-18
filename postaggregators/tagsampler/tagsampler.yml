@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.0
+version: 1.0.1
 type: postaggregator
 
 name: tagsampler
@@ -14,12 +14,12 @@ output_columns:
   title: Samples
   type: string
   category: multi
-  width: 90
+  width: 105
 - name: tags
   title: Tags
   type: string
   category: multi
-  width: 90
+  width: 105
 
 description: Aggregates tags and samples
 developer:

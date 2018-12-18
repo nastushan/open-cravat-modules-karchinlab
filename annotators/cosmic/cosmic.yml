@@ -1,5 +1,5 @@
 title: COSMIC
-version: 85.0.0
+version: 85.0.1
 type: annotator
 datasource: v85
 
@@ -7,20 +7,25 @@ level: variant
 input_format: crx
 output_columns:
 - name: cosmic_id
-  title: COSMIC ID
+  title: ID
   type: string
+  width: 90
+  hidden: true
 - name: variant_count_tissue
-  title: COSMIC variant count (tissue)
+  title: Variant Count (Tissue)
   type: string
+  width: 110
 - name: variant_count
   title: COSMIC variant count
   type: int
 - name: transcript
-  title: COSMIC transcript
+  title: Transcript
   type: string
+  width: 135
 - name: protein_change
-  title: COSMIC protein change
+  title: Protein Change
   type: string
+  width: 100
 
 description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:

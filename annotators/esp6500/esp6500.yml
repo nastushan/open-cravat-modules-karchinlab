@@ -1,6 +1,7 @@
 title: ESP6500
-version: 6500.2.0
+version: 6500.2.1
 type: annotator
+datasource: v.0.0.30
 
 level: variant
 input_format: crv
@@ -8,9 +9,11 @@ output_columns:
 - name: ea_pop_af
   title: EA
   type: float
+  width: 50
 - name: aa_pop_af
   title: AA
   type: float
+  width: 50
 
 description: Exome Sequencing Project 6500
 developer:

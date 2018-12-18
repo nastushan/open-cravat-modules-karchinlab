@@ -1,5 +1,5 @@
 title: TARGET
-version: 3.0.0
+version: 3.0.1
 type: annotator
 
 level: gene
@@ -8,9 +8,12 @@ output_columns:
 - name: therapy
   title: Recommended Therapy
   type: string
+  width: 110
+  category: multi
 - name: rationale
   title: Rationale
   type: string
+  width: 95
 
 description: Tumor Alterations Relevant for GEnomics-driven Therapy
 developer:

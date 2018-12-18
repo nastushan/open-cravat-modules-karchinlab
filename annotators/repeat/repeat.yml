@@ -1,5 +1,5 @@
 title: Repeat Sequences
-version: 2014.1.10
+version: 2014.1.101
 type: annotator
 
 level: variant
@@ -7,12 +7,15 @@ output_columns:
 - name: repeatclass
   title: Repeat Class
   type: string
+  width: 100
 - name: repeatfamily
   title: Repeat Family
   type: string
+  width: 100
 - name: repeatname
   title: Repeat Name
   type: string
+  width: 110
 
 description: Repeating elements from RepeatMasker library
 developer:

@@ -1,12 +1,13 @@
 title: Cancer Genome Landscape
-version: 1.0.0
+version: 1.0.1
 type: annotator
 
 level: gene
 output_columns:
 - name: class
-  title: CGL Class
+  title: Class
   type: string
+  width: 105
 
 description: Oncogenes and tumor supressor genes identified in the Cancer Genome Landscape study
 developer:
