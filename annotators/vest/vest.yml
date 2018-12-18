@@ -1,45 +1,32 @@
 name: vest
 title: VEST
-version: 4.0.0
+version: 4.0.1
 type: annotator
 
 level: variant
 input_format: crx
 output_columns:
 - name: transcript
-  title: VEST score transcript
+  title: Score Transcript
   type: string
+  hidden: True
+  width: 68
 - name: score
-  title: VEST score
+  title: Score
   type: float
 - name: pval
-  title: VEST p-value
-  type: float
-- name: score_mis
-  title: VEST score (missense)
-  type: float
-- name: score_fsv
-  title: VEST score (frameshift)
-  type: float
-- name: score_inv
-  title: VEST score (inframe indel)
-  type: float
-- name: score_stg
-  title: VEST score (stop gain)
-  type: float
-- name: score_stl
-  title: VEST score (stop loss)
-  type: float
-- name: score_spl
-  title: VEST score (splice site)
+  title: P-value
   type: float
 - name: all_results
   title: All transcripts
   type: string
+  hidden: True
+  width: 68
 - name: hugo
   title: HUGO
   type: string
   aggregate: false
+  hidden: True
 
 can_summarize_by_gene: true
 gene_summary_output_columns:

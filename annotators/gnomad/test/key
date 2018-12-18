@@ -1,9 +1,9 @@
 #CRAVAT Report
-#Created at Thursday 12/13/2018 14:11:24
+#Created at Monday 12/17/2018 16:31:52
 #Report level: variant
 #
 Base Information											gnomAD									Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	AF Total	AF African	AF American	AF Ashkenazi Jewish	AF East Asian	AF Finnish	AF Non-Finnish European	AF Other	AF South Asian	Number of Samples	Samples	Tags
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	AF Total	AF African	AF American	AF Ashkenazi Jewish	AF East Asian	AF Finnish	AF Non-Fin Eur	AF Other	AF South Asian	Number of Samples	Samples	Tags
 1	chr10	2987654	T	A																1		Does_Not_Exist
 2	chr3	41194775	C	A		CTNNB1	ENST00000405570.5	2kb upstream		ENST00000405570.5:CTNNB1:P35222:2kb upstream:(na):(na)	0.000732764113674	0.00264124942582								1		plus_upstream_CTNNB1
 3	chr15 	48717160	G	C							7.81359878733e-06	0.000164690382082								1		plus_SBS_SEP152
@@ -21,7 +21,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 15	chr1	7965337	-	C	Y	PARK7	ENST00000338639.9	frameshift insertion by 1	_35_	ENST00000338639.9:PARK7:Q99497:frameshift insertion by 1:_35_:-104C; ENST00000377488.5:PARK7:Q99497:frameshift insertion by 1:_35_:-104C; ENST00000377491.5:PARK7:Q99497:frameshift insertion by 1:_35_:-104C; ENST00000377493.9:PARK7:K7ELW0:frameshift insertion by 1:_35_:-104C; ENST00000493678.5:PARK7:Q99497:frameshift insertion by 1:_35_:-104C										1		fuzzy_ins_PARK7
 16	chr7	140800417	CT	-	Y	BRAF	ENST00000288602.10	frameshift deletion by 2	_308_	ENST00000288602.10:BRAF:P15056:frameshift deletion by 2:_308_:AG924-										1		fuzzy_del_BRAF
 #CRAVAT Report
-#Created at Thursday 12/13/2018 14:11:24
+#Created at Monday 12/17/2018 16:31:52
 #Report level: gene
 #
 Base Information			
@@ -37,7 +37,7 @@ CDKN2A	1	intron	intron(1)
 BRAF	3	frameshift deletion by 2	frameshift deletion by 2(1),inframe deletion(1),intron(1)
 TP53	1	intron	intron(1)
 #CRAVAT Report
-#Created at Thursday 12/13/2018 14:11:24
+#Created at Monday 12/17/2018 16:31:52
 #Report level: sample
 #
 Base Information	
@@ -59,7 +59,7 @@ UID	Sample
 15	
 16	
 #CRAVAT Report
-#Created at Thursday 12/13/2018 14:11:24
+#Created at Monday 12/17/2018 16:31:52
 #Report level: mapping
 #
 Base Information		

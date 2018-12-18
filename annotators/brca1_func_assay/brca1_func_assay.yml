@@ -1,5 +1,5 @@
-title: BRCA1 Functional Assay
-version: 2018.10.4
+title: BRCA1 Multiplex Assay
+version: 2018.10.5
 type: annotator
 level: variant
 input_format: crv
@@ -10,7 +10,7 @@ output_columns:
 - name: class
   title: Function Class
   type: string
-description: BRCA1 Functional Assay is a database providing accurate discrimination of loss-of-function versus benign missense variants in BRCA1.
+description: BRCA1 Multiplex Assay is a database providing accurate discrimination of loss-of-function versus benign missense variants in BRCA1.
 developer:
   name: 'Lea Starita'
   organization: 'University of Washington Staritalab'

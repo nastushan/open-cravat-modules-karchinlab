@@ -6,11 +6,11 @@ datasource: v85
 level: gene
 output_columns:
 - name: occurrences
-  title: Occurrences in COSMIC
+  title: Occurrences
   type: int
   width: 170
 - name: gene_count
-  title: Gene Count (Tissue)
+  title: Tissue count
   type: string
   width: 110
 

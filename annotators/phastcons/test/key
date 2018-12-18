@@ -1,19 +1,19 @@
 #CRAVAT Report
-#Created at Monday 11/26/2018 13:37:05
+#Created at Monday 12/17/2018 16:32:09
 #Report level: variant
 #
-Base Information										Phast Cons				Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	100 Way Vertebrate Score	100 Way Vertebrate Ranked Score	20 Way Mammalian Score	20 Way Mammalian Ranked Score	Number of Samples	Samples	Tags
-1	chrM	3310	C	A						0.0	0.06329	0.0	0.01567	1		
-2	chrM	3315	G	C						0.0	0.06329	0.0	0.01567	1		
+Base Information											Phast Cons				Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Vert Score	Vert Ranked Score	Mamm Score	Mamm Ranked Score	Number of Samples	Samples	Tags
+1	chrM	3310	C	A							0.0	0.06329	0.0	0.01567	1		
+2	chrM	3315	G	C							0.0	0.06329	0.0	0.01567	1		
 #CRAVAT Report
-#Created at Monday 11/26/2018 13:37:05
+#Created at Monday 12/17/2018 16:32:09
 #Report level: gene
 #
 Base Information			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 #CRAVAT Report
-#Created at Monday 11/26/2018 13:37:05
+#Created at Monday 12/17/2018 16:32:09
 #Report level: sample
 #
 Base Information	
@@ -21,7 +21,7 @@ UID	Sample
 1	
 2	
 #CRAVAT Report
-#Created at Monday 11/26/2018 13:37:05
+#Created at Monday 12/17/2018 16:32:09
 #Report level: mapping
 #
 Base Information		

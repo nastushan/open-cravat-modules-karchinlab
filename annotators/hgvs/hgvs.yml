@@ -1,6 +1,6 @@
 title: HGVS Format
 type: annotator
-version: 1.0.0
+version: 1.0.1
 
 level: variant
 input_format: crx
@@ -10,23 +10,29 @@ output_columns:
 - name: genomic
   title: Genomic
   type: string
+  hidden: True
+  width: 65
 - name: rna
   title: Primary RNA
   type: string
+  width: 55
 - name: protein
   title: Primary protein
   type: string
+  width: 55
 - name: all_rna
   title: All RNA
   type: string
+  hidden: True
 - name: all_protein
   title: All protein
   type: string
+  hidden: True
 
 description: Variants described in HGVS format
 developer:
   name: 'Human Genome Variation Society'
   organization: 'Human Genome Variation Society'
-  email: ''
+  email: 'support@cravat.us'
   website: 'http://www.hgvs.org/'
   citation: 'https://onlinelibrary.wiley.com/doi/pdf/10.1002/humu.22981'
