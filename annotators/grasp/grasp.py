@@ -6,33 +6,28 @@ from cravat import BaseAnnotator
 class CravatAnnotator (BaseAnnotator):
 
     def setup(self):
-        self.query_template = 'select nhlbi, pmid, pvalue, phenotype from grasp where chrom=? and pos=? order by pvalue desc;'
+        self.query_template = 'select nhlbi, pmid, pvalue, phenotype from grasp where chrom=? and pos=? order by pvalue;'
 
     def annotate(self, input_data):
         out = {}
         
         chrom = input_data['chrom']
-        pos = input_data['pos']
-        
-        out = {'nhlbi': [],
-               'pmid': [],
-               'phenotype': []}
-        
+        pos = input_data['pos']        
         self.cursor.execute(self.query_template, [chrom, pos]) 
         results = self.cursor.fetchall()
-        if len(results) == 0:
-            continue
-        for result in results:
-            (nhlbi, pmid, pvalue, phenotype) = result
-            out['nhlbi'].append(nhlbi)
-            out['pmid'].append(pmid)
-            pvalue = '{:.4f}'.format(pvalue)
-            out['phenotype'].append(phenotype + '(' + str(pvalue) + ')')
-        out['nhlbi'] = ','.join([str(v) for v in out['nhlbi']])
-        out['pmid'] = ','.join([str(v) for v in out['pmid']])
-        out['phenotype'] = ','.join([str(v) for v in out['phenotype']])
-        if out['phenotype'] == '':
-            out = None
+        if len(results) > 0:
+            nhlbi_list = []
+            pmid_list = []
+            pheno_list = []
+            for result in results:
+                nhlbi, pmid, pvalue, phenotype = result
+                nhlbi_list.append(str(nhlbi))
+                pmid_list.append(str(pmid))
+                pvalue = '{:.4f}'.format(pvalue)
+                pheno_list.append(phenotype + '(' + str(pvalue) + ')')
+            out['nhlbi'] = '|'.join(nhlbi_list)
+            out['pmid'] = '|'.join(pmid_list)
+            out['phenotype'] = '|'.join(pheno_list)
         return out
 
 if __name__ == '__main__':
