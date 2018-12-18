@@ -8,13 +8,18 @@ input_level: variant,crs,crm
 output_columns:
 - name: numsample
   title: Number of Samples
-  type: integer
+  type: int
+  width: 90
 - name: samples
   title: Samples
   type: string
+  category: multi
+  width: 90
 - name: tags
   title: Tags
   type: string
+  category: multi
+  width: 90
 
 description: Aggregates tags and samples
 developer:
