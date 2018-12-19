@@ -27,6 +27,8 @@ class CravatAnnotator(BaseAnnotator):
                 ref_list.append(res[4])
                 evi_list.append(res[5])
             set_asp = set(aspect_list)
+            set_asp = list(set_asp)
+            #set_asp = OrderedSet(set_asp)
             out['dname'] = res[0]
             out['id'] = ';'.join(id_list)
             out['name'] = ';'.join(go_name_list)
