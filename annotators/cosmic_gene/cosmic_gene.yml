@@ -6,13 +6,14 @@ datasource: v85
 level: gene
 output_columns:
 - name: occurrences
-  title: Occurrences in COSMIC
+  title: Occurrences
   type: int
-  width: 170
+  width: 95
 - name: gene_count
-  title: Gene Count (Tissue)
+  title: Tissue count
   type: string
-  width: 110
+  width: 120
+  hidden: True
 
 description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:

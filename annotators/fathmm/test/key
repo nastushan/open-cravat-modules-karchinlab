@@ -1,19 +1,19 @@
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:10:37
+#Created at Monday 12/17/2018 15:52:21
 #Report level: variant
 #
-Base Information										FATHMM					Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	Ensembl Transcript ID	Ensembl Protein ID	FATHMM Score	FATHMM Converted Rank Score	FATHMM Prediction	Number of Samples	Samples	Tags
-1	chrM	3310	C	A						ENST00000361390	ENSP00000354687	2.88	0.10313	T	1		
-2	chrM	3315	T	C						ENST00000361390	ENSP00000354687	2.92	0.09937	T	1		
+Base Information											FATHMM					Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Transcript ID	Protein ID	Score	Converted Rank Score	Prediction	Number of Samples	Samples	Tags
+1	chrM	3310	C	A							ENST00000361390	ENSP00000354687	2.88	0.10313	T	1		
+2	chrM	3315	T	C							ENST00000361390	ENSP00000354687	2.92	0.09937	T	1		
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:10:37
+#Created at Monday 12/17/2018 15:52:21
 #Report level: gene
 #
 Base Information			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:10:37
+#Created at Monday 12/17/2018 15:52:21
 #Report level: sample
 #
 Base Information	
@@ -21,7 +21,7 @@ UID	Sample
 1	
 2	
 #CRAVAT Report
-#Created at Tuesday 11/20/2018 14:10:37
+#Created at Monday 12/17/2018 15:52:21
 #Report level: mapping
 #
 Base Information		

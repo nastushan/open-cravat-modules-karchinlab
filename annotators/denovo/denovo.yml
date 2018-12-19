@@ -1,25 +1,28 @@
 title: Denovo-DB
-version: 1.6.1
+version: 1.6.2
 type: annotator
 
 level: variant
 input_format: crv
 output_columns:
 - name: PubmedId
-  title: Pubmed ID
+  title: PMID
   type: string
+  hidden: True
 - name: PrimaryPhenotype
-  title: Primary Phenotype
+  title: Phenotype
   type: string
+  width: 68
 - name: Validation
   title: Validation
   type: string
+  width: 68
 
 description: Denovo annotation. Denovo is a collection of germline variants in the
  human genome which are present in children but not their parents.
 developer:
-  name: 'University of Washington'
+  name: 'Tychele Turner'
   organization: 'University of Washington'
-  email: ''
+  email: 'support@cravat.us'
   website: 'http://denovo-db.gs.washington.edu/'
   citation: 'denovo-db, Seattle, WA (URL: denovo-db.gs.washington.edu) [date (month, yr) accessed]'

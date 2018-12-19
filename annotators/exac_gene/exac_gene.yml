@@ -1,47 +1,69 @@
 title: ExAC Gene Constraint & CNV Score
-version: 0.3.1
+version: 0.3.11
 type: annotator
 level: gene
 output_columns:
   - name: exac_pli
-    title: Prob of LoF Intolerance (Homo & Hetero)
+    title: pLI
     type: float
+    desc: Probability LoF Intolerance (Hom&Het)
   - name: exac_prec
-    title: Prob of LoF Intolerance (Homo)
+    title: pLI (Hom)
     type: float
+    desc: Probability LoF Intolerance (Hom)
   - name: exac_pnull
-    title: Prob of LoF Tolerance (Homo & Hetero)
+    title: pLT
     type: float
+    desc: Probability LoF Tolerance (Hom&Het)
   - name: exac_nontcga_pli
-    title: Prob of LoF Intolerance (Homo & Hetero) NonTCGA
+    title: pLI NonTCGA
     type: float
+    desc: Probability LoF Intolerance (Hom&Het) NonTCGA
+    width: 64
   - name: exac_nontcga_prec
-    title: Prob of LoF Intolerance (Homo) NonTCGA
+    title: pLI (Hom) NonTCGA
     type: float
+    desc: Probability LoF Intolerance (Hom) NonTCGA
+    width: 68
   - name: exac_nontcga_pnull
-    title: Prob of LoF Tolerance (Homo & Hetero) NonTCGA
+    title: pLT NonTCGA
     type: float
+    desc: Probability LoF Tolerance (Hom&Het) NonTCGA
+    width: 64
   - name: exac_nonpsych_pli
-    title: Prob of LoF Intolerance (Homo & Hetero) Nonpsych
+    title: pLI Nonpsych
     type: float
+    desc: Probability LoF Intolerance (Hom&Het) Nonpsych
+    width: 65
   - name: exac_nonpsych_prec
-    title: Prob of LoF Intolerance (Homo) Nonpsych
+    title: pLI (Hom) Nonpsych
     type: float
+    desc: Probability LoF Intolerance (Hom) Nonpsych
+    width: 68
   - name: exac_nonpsych_pnull
-    title: Prob of LoF Tolerance (Homo & Hetero) Nonpsych
+    title: pLT Nonpsych
     type: float
+    desc: Probability LoF Tolerance (Hom&Het) Nonpsych
+    width: 65
   - name: exac_del_score
-    title: Deletion Intolerance Z-Score
+    title: Del Int Z-Score
     type: float
+    desc: Deletion Intolerance Z-Score
+    width: 54
   - name: exac_dup_score
-    title: Duplication Intolerance Z-Score
+    title: Dup Int Z-Score
     type: float
+    desc: Duplication Intolerance Z-Score
+    width: 54
   - name: exac_cnv_score
-    title: CNV Intolerance Z-Score
+    title: CNV Int Z-Score
     type: float
+    desc: CNV Intolerance Z-Score
+    width: 54
   - name: exac_cnv_flag
     title: CNV Bias/Noise
     type: string
+    width: 70
 description: ExAC Functional Gene Constraint & CNV Scores provides probability of LoF tolerance/intolerance
 developer:
   name: 'ExAC'

@@ -1,10 +1,10 @@
 title: GHIS
-version: 3.5.0
+version: 3.5.01
 type: annotator
 level: gene
 output_columns:
   - name: ghis
-    title: GHIS Score
+    title: Score
     type: float
 description: Gene haploinsufficiency scoring
 developer:
