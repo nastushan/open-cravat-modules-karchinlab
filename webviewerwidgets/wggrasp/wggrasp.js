@@ -11,11 +11,11 @@ widgetGenerators['grasp'] = {
 			addEl(table, tbody);
 
 			var nhlbiStr = infomgr.getRowValue(tabName, row, 'grasp__nhlbi');
-			var nhlbis = nhlbiStr != null ? nhlbiStr.split(',') : [];
+			var nhlbis = nhlbiStr != null ? nhlbiStr.split('|') : [];
 			var pmidStr = infomgr.getRowValue(tabName, row, 'grasp__pmid');
-			var pmids = pmidStr != null ? pmidStr.split(',') : [];
+			var pmids = pmidStr != null ? pmidStr.split('|') : [];
 			var phenoValStr = infomgr.getRowValue(tabName, row, 'grasp__phenotype');
-			var phenoVals = phenoValStr != null ? phenoValStr.split(',') : [];
+			var phenoVals = phenoValStr != null ? phenoValStr.split('|') : [];
 			
 			var re = /(.*)\((.*)\)/
 			for (var i = 0; i < phenoVals.length; i++) {

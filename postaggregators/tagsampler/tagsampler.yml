@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.0
+version: 1.0.1
 type: postaggregator
 
 name: tagsampler
@@ -8,13 +8,18 @@ input_level: variant,crs,crm
 output_columns:
 - name: numsample
   title: Number of Samples
-  type: integer
+  type: int
+  width: 90
 - name: samples
   title: Samples
   type: string
+  category: multi
+  width: 105
 - name: tags
   title: Tags
   type: string
+  category: multi
+  width: 105
 
 description: Aggregates tags and samples
 developer:

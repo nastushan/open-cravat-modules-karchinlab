@@ -92,18 +92,6 @@ class CravatAnnotator(BaseAnnotator):
             out['score'] = max_score
             out['pval'] = worst_pval
             out['all_results'] = ','.join(all_results_list)
-            if primary_so == 'MIS':
-                out['score_mis'] = max_score
-            elif primary_so in ['FI1','FI2','FD1','FD2']:
-                out['score_fsv'] = max_score
-            elif primary_so in ['INI','IND']:
-                out['score_inv'] = max_score
-            elif primary_so == 'STG':
-                out['score_stg'] = max_score
-            elif primary_so == 'STL':
-                out['score_stl'] = max_score
-            elif primary_so == 'SPL':
-                out['score_spl'] = max_score
             out['hugo'] = input_data['hugo']
             
         return out

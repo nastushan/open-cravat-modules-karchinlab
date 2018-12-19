@@ -1,21 +1,23 @@
 title: Mutation Assessor
-version: 3.0.0
+version: 3.0.01
 type: annotator
 level: variant
 input_format: crv
 output_columns:
 - name: mut_var
-  title: Mutation Variant
+  title: Variant
   type: string
 - name: mut_score
-  title: Mutation Score
+  title: Score
   type: float
 - name: mut_rscore
-  title: Mutation Rank Score
+  title: Ranked Score
   type: float
+  width: 54
 - name: mut_pred
-  title: Mutation Functional Impact
+  title: Functional Impact
   type: string
+  width: 68
 description: Mutation Assessor is a database providing prediction of the functional impact of amino-acid substitutions in proteins
 developer:
   name: 'Chris Sander'

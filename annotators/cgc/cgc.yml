@@ -1,5 +1,5 @@
 title: Cancer Genome Census
-version: 85.0.0
+version: 85.0.1
 type: annotator
 datasource: v85
 
@@ -8,20 +8,24 @@ output_columns:
 - name: class
   title: CGC driver class
   type: string
+  width: 130
 - name: inheritance
   title: CGC inheritance
   type: string
+  width: 105
 - name: tts
   title: CGC tumor types somatic
   type: string
+  hidden: True
 - name: ttg
   title: CGC tumor types germline
   type: string
+  hidden: True
 
 description: Cancer Genome Census annotation
 developer:
   name: 'Sanger Institute'
   organization: 'Sanger Institute'
-  email: ''
+  email: 'support@cravat.us'
   website: 'https://cancer.sanger.ac.uk/census'
   citation: 'https://www.nature.com/articles/nrc1299'

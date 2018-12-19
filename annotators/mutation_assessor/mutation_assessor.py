@@ -16,6 +16,7 @@ class CravatAnnotator(BaseAnnotator):
     
     def annotate(self, input_data, secondary_data=None):
         out = {}
+        subs = {'H':'High', 'M':'Medium', 'L':'Low', 'N':'Neutral'}
         stmt = 'SELECT mut_var, mut_score, mut_rscore, mut_pred FROM {chr} WHERE pos = {pos} AND alt = "{alt}"'.format(chr=input_data["chrom"], pos=int(input_data["pos"]), alt = input_data["alt_base"])
         self.curs.execute(stmt)
         row = self.curs.fetchone()
@@ -23,7 +24,7 @@ class CravatAnnotator(BaseAnnotator):
             out['mut_var'] = row[0]
             out['mut_score'] = float(row[1])
             out['mut_rscore'] = float(row[2])
-            out['mut_pred'] = row[3]
+            out['mut_pred'] = subs.get(row[3])
         return out
     
     def cleanup(self):

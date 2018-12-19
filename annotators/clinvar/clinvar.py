@@ -29,7 +29,7 @@ class CravatAnnotator(BaseAnnotator):
         qr = self.cursor.fetchone()
         if qr:
             sig = qr[0]
-            refs = qr[1]
+            refs = ';'.join(qr[1].split(','))
             diseases = qr[2]
 
         return {'sig':sig,

@@ -1,16 +1,18 @@
 title: Pseudogene
-version: 27.0.0
+version: 27.0.1
 type: annotator
 
 level: variant
 input_format: crv
 output_columns:
 - name: pseudogene_hugo
-  title: Pseudogene
+  title: Hugo
   type: string
+  width: 90
 - name: pseudogene_transcript
-  title: Pseudogene Transcript
+  title: Transcript
   type: string
+  width: 90
 
 description: Pseudogenes from UCSC hg38 wgEncodeGencodePseudoGeneV27
 developer:

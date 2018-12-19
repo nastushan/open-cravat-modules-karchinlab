@@ -21,7 +21,25 @@ def get_data (queries):
         'UT3':'3\' UTR',
         'UT5':'5\' UTR',
         'INT':'Intron',
-        'UNK':'Unknown'
+        'UNK':'Unknown',
+        'missense':'Missense',
+        'synonymous':'Synonymous',
+        'frameshift insertion by 1':'Frameshift insertion',
+        'frameshift insertion by 2':'Frameshift insertion',
+        'frameshift deletion by 1':'Frameshift deletion',
+        'frameshift deletion by 2':'Frameshift deletion',
+        'inframe insertion':'Inframe insertion',
+        'inframe deletion':'Inframe deletion',
+        'complex substitution':'Complex substitution',
+        'stop gained':'Stopgain',
+        'stop lost':'Stoploss',
+        'splice site':'Splice site',
+        '2kb upstream':'2k upstream',
+        '2kb downstream':'2k downstream',
+        '3-prime utr':'3\' UTR',
+        '5-prime utr':'5\' UTR',
+        'intron':'Intron',
+        'unknown':'Unknown'
     }
     
     dbpath = queries['dbpath']

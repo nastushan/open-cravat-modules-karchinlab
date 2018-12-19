@@ -1,5 +1,5 @@
 title: gnomAD
-version: 2.1.0
+version: 2.1.01
 type: annotator
 
 level: variant
@@ -14,9 +14,11 @@ output_columns:
 - name: af_amr
   title: AF American
   type: float
+  width: 63
 - name: af_asj
   title: AF Ashkenazi Jewish
   type: float
+  width: 68
 - name: af_eas
   title: AF East Asian
   type: float
@@ -24,8 +26,9 @@ output_columns:
   title: AF Finnish
   type: float
 - name: af_nfe
-  title: AF Non-Finnish European
+  title: AF Non-Fin Eur
   type: float
+  desc: AF Non-Finnish European
 - name: af_oth
   title: AF Other
   type: float

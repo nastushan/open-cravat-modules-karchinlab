@@ -39,8 +39,8 @@ class CravatAnnotator (BaseAnnotator):
                 out['pseudogene_hugo'].append(hugo)
                 out['pseudogene_transcript'].append(enst)
         
-        out['pseudogene_hugo'] = ','.join(out['pseudogene_hugo'])
-        out['pseudogene_transcript'] = ','.join(out['pseudogene_transcript'])
+        out['pseudogene_hugo'] = ';'.join(out['pseudogene_hugo'])
+        out['pseudogene_transcript'] = ';'.join(out['pseudogene_transcript'])
         
         return out
 
