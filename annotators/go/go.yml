@@ -1,19 +1,29 @@
 title: Gene Ontology
-version: 2018.03.08
+version: 2018.12.01
 type: annotator
 
 level: gene
 output_columns:
-- name: name
+- name: dname
   title: Term
   type: string
 - name: id
   title: ID
   type: string
   hidden: True
-- name: aspect
-  title: Aspect
+- name: name
+  title: GO Name
   type: string
+  hidden: True
+- name: aspect
+  title: Full Aspects
+  type: string
+  hidden: True
+- name: set_asp
+  title: Aspects
+  type: string
+  category: multiple
+  desc: MFO, BPO, CCO
 - name: go_ref
   title: Reference
   type: string

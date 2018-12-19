@@ -33,7 +33,7 @@ class CravatDatabase:
             self.ref_str = ', '.join(refls)
             #executing sqlite statements
             for name in self.tnames:
-                self.curs.execute('CREATE TABLE IF NOT EXISTS {name} ({exe_str});'.format(name=name, exe_str=exe_str))
+                self.curs.execute('CREATE TABLE IF NOT EXISTS {name} ({exe_str}, primary key (name, synonym));'.format(name=name, exe_str=exe_str))
             print("Database created")
         except Error as e:
             print(e)
@@ -115,11 +115,12 @@ class CravatDatabase:
 #User specification of skipping lines (set comment char? int of lines to skip?)
 #File locations in user directories require expanduser (join does not work). Check for User directory and fix path before opening?
 #Generic input files
+#Primary key specification
 if __name__ == "__main__":
     #Dictionary of column names and data types, constraints (i.e. primary key, unique, etc.) can be added after data type
-    d = {"name":"text", "id":"text", "go_ref":"text", "evi":"text", "aspect":"text"}
+    d = {"name":"text", "synonym":"text not null"}
     #List of table names
-    t = ["go_annotation"]
+    t = ["go_synonym"]
     #Change to annotator directory
     os.chdir("C:/Users/trak/open-cravat-modules-karchinlab/annotators")
     #Creating new annotator directory
@@ -133,7 +134,7 @@ if __name__ == "__main__":
     #List of files
     files = [wpath]
     #Indexes of columns needed from datafile(s), make sure they are ordered in correlation with database col order
-    col_idx = [2,4,5,6,8]
+    col_idx = [2,10]
     #Insert data from datafile(s) into database
     db.parser(files, col_idx)
     #List of columns to index on (one index is created using all items in list)
