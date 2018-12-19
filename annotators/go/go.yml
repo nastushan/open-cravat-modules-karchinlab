@@ -23,7 +23,7 @@ output_columns:
   title: Aspects
   type: string
   category: multiple
-  #categories: ["F", "P", "C"]
+  categories: ["F", "P", "C"]
   desc: MFO, BPO, CCO
   width: 60
 - name: go_ref
