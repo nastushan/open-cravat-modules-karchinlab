@@ -22,8 +22,8 @@ output_columns:
 - name: set_asp
   title: Aspects
   type: string
-  category: multiple
-  categories: ["F", "P", "C"]
+  category: multi
+  #categories: ["F", "P", "C"]
   desc: MFO, BPO, CCO
   width: 60
 - name: go_ref
