@@ -22,7 +22,6 @@ output_columns:
 - name: set_asp
   title: Aspects
   type: string
-  category: single
   desc: MFO, BPO, CCO
   width: 60
 - name: go_ref
