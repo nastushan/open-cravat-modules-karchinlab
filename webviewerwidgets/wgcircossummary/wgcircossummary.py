@@ -102,7 +102,7 @@ def get_data (queries):
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
     data = {}
-    sos = ['MIS', 'CSS', 'IIV', 'IDV', 'STL', 'SPL', 'STG', 'FI1', 'FI2', 'FD1', 'FD2']
+    sos = ['MIS', 'CSS', 'IIV', 'IDV', 'STL', 'SPL', 'STG', 'FSI', 'FI1', 'FI2', 'FSD', 'FD1', 'FD2']
     prefix = 'Non-silent'
     data_sos = get_data_for_sos(sos, prefix, cursor)
     data[prefix] = data_sos
@@ -110,7 +110,7 @@ def get_data (queries):
     prefix = 'Missense'
     data_sos = get_data_for_sos(sos, prefix, cursor)
     data[prefix] = data_sos
-    sos = ['FI1', 'FI2', 'FD1', 'FD2', 'STG', 'STL', 'SPL']
+    sos = ['FSI', 'FI1', 'FI2', 'FSD', 'FD1', 'FD2', 'STG', 'STL', 'SPL']
     prefix = 'Inactivating'
     data_sos = get_data_for_sos(sos, prefix, cursor)
     data[prefix] = data_sos

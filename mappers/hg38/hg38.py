@@ -287,19 +287,19 @@ class Mapper(cravat.BaseMapper):
             if hit.gref == '-':
                 extra_bases = len(hit.galt)%3
                 if extra_bases == 0:
-                    hit.so = 'IIV'
+                    hit.so = 'INI'
                 elif extra_bases == 1:
-                    hit.so = 'FI1'
+                    hit.so = 'FSI'
                 elif extra_bases == 2:
-                    hit.so = 'FI2'
+                    hit.so = 'FSI'
             elif hit.galt == '-':
                 extra_bases = len(hit.gref)%3
                 if extra_bases == 0:
-                    hit.so = 'IDV'
+                    hit.so = 'IND'
                 elif extra_bases == 1:
-                    hit.so = 'FD1'
+                    hit.so = 'FSD'
                 elif extra_bases == 2:
-                    hit.so = 'FD2'
+                    hit.so = 'FSD'
             elif len(hit.gref) == 1 and len(hit.galt) == 1:
                 self._fill_snv_pchange(hit)
                 if hit.aref != hit.aalt:
@@ -420,7 +420,7 @@ class Mapper(cravat.BaseMapper):
                     primary_a_change = a_change
         # Fill crx dict with information from most deleterious transcript
         crx_data['hugo'] = primary_hugo
-        if primary_so in ['MIS', 'SYN', 'FI1', 'FI2', 'FD1', 'FD2', 'IIV', 'IDV', 'CSS', 'STG', 'STL']:
+        if primary_so in ['MIS', 'SYN', 'FSI', 'FSD', 'FD1', 'FD2', 'INI', 'IND', 'CSS', 'STG', 'STL']:
             crx_data['coding'] = 'Y'
         else:
             crx_data['coding'] = ''
