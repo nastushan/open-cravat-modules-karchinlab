@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.1
+version: 1.0.2
 type: postaggregator
 
 name: vcfinfo
@@ -9,21 +9,27 @@ output_columns:
 - name: phred
   title: Phred
   type: string
+  width: 90
 - name: filter
   title: VCF filter
   type: string
+  width: 70
 - name: zygosity
   title: Zygosity
   type: string
+  width: 90
 - name: alt_reads
   title: Alternate reads
   type: string
+  width: 70
 - name: tot_reads
   title: Total reads
   type: string
+  width: 70
 - name: af
-  title: Variant allele frequency
+  title: Variant AF
   type: string
+  width: 80
 
 description: Writes VCF file information extracted by converter
 developer:
