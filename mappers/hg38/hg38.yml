@@ -1,5 +1,5 @@
 title: UCSC hg38 Gene Mapper
-version: 1.1.0
+version: 1.1.1
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -24,14 +24,16 @@ report_substitution:
     STL: stop lost
     SPL: splice site
     STG: stop gained
-    FD2: frameshift deletion by 2
-    FD1: frameshift deletion by 1
-    FI2: frameshift insertion by 2
-    FI1: frameshift insertion by 1
-    FSI: frameshift insertion
     FSD: frameshift deletion
-    INI: frameshift insertion
-    IND: frameshift deletion
+    FD2: frameshift deletion
+    FD1: frameshift deletion
+    FSI: frameshift insertion
+    FI2: frameshift insertion
+    FI1: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+    IIV: inframe insertion
+    IDV: inframe deletion
   all_so:
     2KD: 2kb downstream
     2KU: 2kb upstream
@@ -47,14 +49,16 @@ report_substitution:
     STL: stop lost
     SPL: splice site
     STG: stop gained
-    FD2: frameshift deletion by 2
-    FD1: frameshift deletion by 1
-    FI2: frameshift insertion by 2
-    FI1: frameshift insertion by 1
-    FSI: frameshift insertion
     FSD: frameshift deletion
-    INI: frameshift insertion
-    IND: frameshift deletion
+    FD2: frameshift deletion
+    FD1: frameshift deletion
+    FSI: frameshift insertion
+    FI2: frameshift insertion
+    FI1: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+    IIV: inframe insertion
+    IDV: inframe deletion
   all_mappings:
     2KD: 2kb downstream
     2KU: 2kb upstream
@@ -70,13 +74,16 @@ report_substitution:
     STL: stop lost
     SPL: splice site
     STG: stop gained
-    FD2: frameshift deletion by 2
-    FD1: frameshift deletion by 1
-    FI2: frameshift insertion by 2
-    FI1: frameshift insertion by 1
-    FSI: frameshift insertion
     FSD: frameshift deletion
-    INI: frameshift insertion
-    IND: frameshift deletion
+    FD2: frameshift deletion
+    FD1: frameshift deletion
+    FSI: frameshift insertion
+    FI2: frameshift insertion
+    FI1: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+    IIV: inframe insertion
+    IDV: inframe deletion
 release_note:
     1.1.0: Sequence ontology terms change. FI1 and FI2 to FSI, FD1 and FD2 to FSD, IIV to INI, IDV to IND.
+    1.1.1: Fix on SO sub
