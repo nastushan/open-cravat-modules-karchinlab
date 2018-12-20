@@ -1,11 +1,11 @@
 title: Gene Ontology Summary
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: base
 description: Gene Ontology Summary webviewer widget
 developer:
   name: 'Rick Kim'
   organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
+  email: 'support@cravat.us'
   website: 'http://www.insilico.us.com'
   citation: ''
