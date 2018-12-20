@@ -145,7 +145,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Report level: gene
 #
 Base Information				Cancer Genome Landscape
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	CGL Class
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Class
 ABL1	1	MIS	MIS(1)	Oncogene
 ACVR1B	1	MIS	MIS(1)	TSG
 AKT1	1	MIS	MIS(1)	Oncogene
