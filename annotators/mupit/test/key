@@ -3,7 +3,7 @@ CRAVAT Report
 #Report level: variant
 #
 Base Information								MuPIT		Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	MuPIT link	Hugo	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Link	Hugo	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr1	12666689	C	T	AADACL4	ENST00000376221.1	{"AADACL4":[["Q5VUY2","S393F","MIS","ENST00000376221.1","C1178T"]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr1:12666689	AADACL4	2	S1,S2	SBS1_AADACL4,SBS3_AADACL4						
 2	chr1	12666560	G	A	AADACL4	ENST00000376221.1	{"AADACL4":[["Q5VUY2","R350H","MIS","ENST00000376221.1","G1049A"]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr1:12666560	AADACL4	1	S1	SBS2_AADACL4						
 3	chr7	27199497	C	G	HOXA13	ENST00000222753.5	{"HOXA13":[["P31271","C194S","MIS","ENST00000222753.5","G581C"]]}			1	S1	SBS_HOXA13						

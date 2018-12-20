@@ -14,7 +14,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Report level: gene
 #
 Base Information				PubMed	
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	PubMed article count	PubMed search link
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Article Count	Search Link
 AADACL4	1	MIS	MIS(1)		
 MDC1	1	MIS	MIS(1)	45	http://www.ncbi.nlm.nih.gov/pubmed?term=MDC1[TIAB] AND cancer[MH]
 NPPA	1	MIS	MIS(1)	6	http://www.ncbi.nlm.nih.gov/pubmed?term=NPPA[TIAB] AND cancer[MH]
