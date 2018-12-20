@@ -1,105 +1,35 @@
-var widgetName = 'go';
-widgetGenerators[widgetName] = {
-	'summary': {
-		'name': 'Gene Ontology',
-		'width': 700, 
-		'height': 400, 
-		'function': function (div, data) {
-			if (div != null) {
-				emptyElement(div);
+widgetGenerators['go'] = {
+	'gene': {
+		'width': 450, 
+		'height': 200, 
+		'function': function (div, row, tabName) {
+			addInfoLine(div, row, 'Gene Name', 'go__dname', tabName)
+			var goid = infomgr.getRowValue(tabName, row, 'go__id');
+			var idls = goid != null ? goid.split(';') : [];
+			var goname = infomgr.getRowValue(tabName, row, 'go__name');
+			var namels = goname != null ? goname.split(';') : [];
+			var ontol = infomgr.getRowValue(tabName, row, 'go__aspect');
+			var ontolls = ontol != null ? ontol.split(';') : [];
+			var ref = infomgr.getRowValue(tabName, row, 'go__go_ref');
+			var refls = ontol != null ? ref.split(';') : [];
+			var evi = infomgr.getRowValue(tabName, row, 'go__evi');
+			var evils = ontol != null ? evi.split(';') : [];
+			var table = getWidgetTableFrame();
+			addEl(div, table);
+			var thead = getWidgetTableHead(['ID', 'GO Name', 'Aspect', 'Reference', 'Evidence Code']);
+			addEl(table, thead);
+			var tbody = getEl('tbody');
+			addEl(table, tbody);
+			for (var i =0; i<idls.length;i++){
+				var iditr = idls[i];
+				var nameitr = namels[i];
+				var ontolitr = ontolls[i];
+				var refitr = refls[i];
+				var eviitr = evils[i];
+				var tr = getWidgetTableTr([iditr, nameitr, ontolitr, refitr, eviitr]);
+				addEl(tbody, tr);
 			}
-			if (data == undefined) {
-				return;
-			}
-			var colorPalette = [
-				'#ff0000', // red
-				'#dc143c', // crimson
-				'#ff4500', // orange red
-				'#ffa500', // orange
-				'#ffd700', // gold
-				'#d2691e', // chocolate
-				'#8b4513', // saddle brown
-				'#adff2f', // green yellow
-				'#7fffd4', // aqua marine
-				'#00ced1', // dark turquoise
-				'#00bfff', // deep sky blue
-				'#ffff00', // yellow
-				'#0000ff', // blue
-				'#00ff00', // lime
-				'#00ffff', // aqua
-				'#000080', // navy
-				'#800080', // purple
-				'#800000', // maroon
-				'#808000', // olive
-				'#008080', // teal
-				'#008000', // green
-				'#ff00ff', // fuchsia
-			];
-			div.style.width = 'calc(100% - 37px)';
-			var chartDiv = getEl('canvas');
-			chartDiv.style.width = 'calc(100% - 20px)';
-			chartDiv.style.height = 'calc(100% - 20px)';
-			addEl(div, chartDiv);
-			
-			var x = [];
-			var y = [];
-			var maxY = 0;
-			var colors = [];
-			for (var i = 0; i < data.length; i++){
-				var desc = data[i]['description'];
-				var geneCount = data[i]['geneCount'];
-				x.push(desc);
-				y.push(geneCount);
-				if (geneCount > maxY) {
-					maxY = geneCount;
-				}
-				colors.push(colorPalette[i % colorPalette.length]);
-			}
-			
-			var color = Chart.helpers.color;
-			var chart = new Chart(chartDiv, {
-				type: 'horizontalBar',
-				data: {
-					labels: x,
-					datasets: [
-						{
-							data: y,
-							backgroundColor: colors,
-							borderColor: '#000000',
-							borderWidth: 0.7,
-							hoverBorderColor: '#aaaaaa'
-						}
-					]
-				},
-				options: {
-					responsive: true,
-					maintainAspectRatio: false,
-					legend: {display: false},
-					scales: {
-						xAxes: [{
-							scaleLabel: {
-								display: true,
-								labelString: '# genes',
-							},
-							ticks: {
-								beginAtZero: true,
-								stepSize: 1.0,
-								max: maxY + 1,
-							}
-						}],
-					},
-					tooltips: {
-						backgroundColor: '#ffffff',
-						displayColors: false,
-						titleFontColor: '#000000',
-						titleFontStyle: 'normal',
-						bodyFontColor: '#000000',
-						borderColor: '#333333',
-						borderWidth: 1,
-					}
-				}
-			});
-			widgetCharts[widgetName] = chart;
+			addEl(div, addEl(table, tbody));
 		}
 	}
-};
+}

@@ -8,8 +8,8 @@ import os
 # data file(s) to be inserted into the database. 
 class CravatDatabase:
     # chrls = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrM", "chrX", "chrY"]
-    #Creates new database object with file path for database, dictionary of columns to be created in the format of {col name : data type}, and list of table names
-    def __init__(self, db_loc, col_dict, tnames):
+    #Creates new database object with file path for database, dictionary of columns to be created in the format of {col name : data type}, list of table names, and a grouped primary key (can be an empty string)
+    def __init__(self, db_loc, col_dict, tnames, primary_key):
         print("Creating database")
         try:
             self.db_loc = db_loc
@@ -28,19 +28,24 @@ class CravatDatabase:
                 exels.append("{name} {type}".format(name=col_name, type=col_type))
                 wildls.append("?")
                 refls.append("{name}".format(name=col_name))
+            #column name and data type for statment
             exe_str = ', '.join(exels)
+            #wildcard statement for data insertion (?s for each column)
             self.wilds = ', '.join(wildls)
+            #column names for data insertion statement
             self.ref_str = ', '.join(refls)
+            if primary_key != '':
+                primary_key = ', primary key({keys})'.format(keys=primary_key)
             #executing sqlite statements
             for name in self.tnames:
-                self.curs.execute('CREATE TABLE IF NOT EXISTS {name} ({exe_str});'.format(name=name, exe_str=exe_str))
+                self.curs.execute('CREATE TABLE IF NOT EXISTS {name} ({exe_str} {primary_key});'.format(name=name, exe_str=exe_str, primary_key=primary_key))
             print("Database created")
         except Error as e:
             print(e)
             self.conn.close()
 
-    #Accepts list of filenames for data files and a list of col indexes (columns wanted from datafiles)
-    def parser(self, filenames, col_idx):
+    #Accepts list of filenames for data files, list of col indexes (columns wanted from datafiles), and number of lines to skip at beginning when reading data files
+    def parser(self, filenames, col_idx, skip_num):
         try:
             print("Data insertion start")
             self.curs.execute("PRAGMA synchronous = 0;")
@@ -51,8 +56,9 @@ class CravatDatabase:
                 print("Starting {name} insertion".format(name=filename))
                 with open("{filename}".format(filename=filename)) as f:
                     for i,l in enumerate(f):
-                        #Skip first line of file (assumes first line is column names)
-                        if i > 0:
+                        #Skip 'skip_num' number of lines of file
+                        skip_num = skip_num - 1
+                        if i > skip_num:
                             #Strip whitespace and split on tabs (assumes file is tsv formatted)
                             toks = l.strip("\r\n").split("\t")
                             data = []
@@ -65,7 +71,8 @@ class CravatDatabase:
                                     data.append(self.myCast(toks[col], colnum)) #Figure out user specified casting
                                 colnum += 1
                             if not self.rmRow(data):
-                                self.curs.execute("INSERT INTO {tname}({ref}) VALUES({wilds});".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
+                                #Ignores insertion of data that violates any constraints (i.e. if unique constraint column is not unique, row will be discarded and insertion will continue)
+                                self.curs.execute("INSERT or IGNORE INTO {tname}({ref}) VALUES({wilds});".format(tname=self.tnames[fnum], ref=self.ref_str, wilds=self.wilds), data)
                 self.conn.commit()
                 print("Finished {name} insertion".format(name=filename))
                 fnum += 1
@@ -81,6 +88,7 @@ class CravatDatabase:
         try:
             print("Database indexing start")
             for tname in self.tnames:
+                #Index formatted to have table name and specified index name
                 self.curs.execute("CREATE INDEX idx_{tname}_{iname} ON {tname}({cols});".format(tname = tname, cols=', '.join(cols), iname=''.join(cols)))
             print("Database indexing finished. Database fully functional!")
         except Error as e:
@@ -89,55 +97,62 @@ class CravatDatabase:
 
     #Checks passed cell for a null/none type identifier (ex. '#' or '.' used to denote no data) and returns a boolean as to whether it should be added to the database as a null value
     def nullChk(self, cell):
-        if cell == '.':
+        if cell == '':
             return True
         else:
             return False
 
     #Casts passed cell to the corresponding python data type associated with the sqlite data type for that column
     def myCast(self, cell, colnum):
+        #Converts sqlite real to python float
         if self.col_dict.get(list(self.col_dict)[colnum]) == 'real':
             return float(cell)
+        #Converts sqlite integer to python int
         elif self.col_dict.get(list(self.col_dict)[colnum]) == 'integer':
             return int(cell)
+        #No conversion
         else:
             return cell
 
     #Returns a boolean to determine if the passed row should be added to the database (ex. all columns are null or an empty column requires the whole row to be irrelevant)
     def rmRow(self, row):
-        if row.count(None) >= 5:
+        #Counts number of empty cells in row, will remove if count exceeds specified number of empty cells
+        if row.count(None) >= 2:
             return True
         else:
             return False
 
 #TODO
-#Command line params?
 #Generic input files
 if __name__ == "__main__":
-    #Dictionary of column names and data types
-    d = {"pos":"integer", "alt":"text", "phastcons100_vert":"real", "phastcons100_vert_r":"real", "phastcons20_mamm":"real", "phastcons20_mamm_r":"real"}
+    #Dictionary of column names and data types, constraints (i.e. single primary key, unique, etc.) can be added after data type
+    d = {"column name" : "data type [unique | not null | primary key]"}
+    # OPTIONAL string of primary keys (grouped), comma separated. If no keys needed or only a singular key leave an empty string or declare above after data type
+    k = 'key1, key2'
     #List of table names
-    t = ['chr15', 'chrM', 'chrY']
+    t = ["name 1", "name 2"]
     #Change to annotator directory
-    os.chdir("C:/Users/trak/Desktop/cravat_test")
+    os.chdir("C:/Your/Annotator/Directory/Here")
     #Creating new annotator directory
-    os.makedirs("phast/data", exist_ok=True)
+    os.makedirs("Annotator Name/data", exist_ok=True)
     #Path to database
-    p = os.path.join(os.getcwd(), "phast", "data", "phast.sqlite")
+    p = os.path.join(os.getcwd(), "Annotator Name", "data", "Annotator Name.sqlite")
     #Creating database
-    db = CravatDatabase(p, d, t)
+    db = CravatDatabase(p, d, t, k)
     #Path to data file(s)
-    wpath = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chr15')
-    wpath2 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrM')
-    wpath3 = os.path.join('E:', 'dbNSFPv3.5a', 'dbNSFP3.5a_variant.chrY')
+    #If data files are stored under User folder, use expanduser command. Else, use join
+    #wpath = os.path.expanduser('~/Documents/Data/Data File')
+    wpath = os.path.join('C:','Data','Data File')
     #List of files
-    files = [wpath, wpath2, wpath3]
+    files = [wpath]
     #Indexes of columns needed from datafile(s), make sure they are ordered in correlation with database col order
-    col_idx = [1, 3, 112, 113, 114, 115]
+    col_idx = [1,2]
+    #Number of lines to skip at beginning of file (headers, etc.), leave at 0 if no lines are to be skipped
+    skip_num = 0
     #Insert data from datafile(s) into database
-    db.parser(files, col_idx)
+    db.parser(files, col_idx, skip_num)
     #List of columns to index on (one index is created using all items in list)
-    cols = ['pos','alt']
+    cols = ['column name']
     #Index database
     db.indexer(cols)
     #Close db connection
