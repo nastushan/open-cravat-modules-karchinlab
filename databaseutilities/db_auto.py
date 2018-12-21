@@ -122,9 +122,19 @@ class CravatDatabase:
         else:
             return False
 
+def tsv_converter(infile, outfile, skip_num):
+    with open("{filename}".format(filename=infile)) as inf, open("{filename}".format(filename=outfile), "w") as outf:
+        for i,l in enumerate(inf):
+            if i > skip_num - 1:
+                l = l.replace(';','\t')
+                l = l.replace('_',' ')
+                outf.write(l)
+
 #TODO
 #Generic input files
 if __name__ == "__main__":
+    #Convert original data file to a more standardized tsv format. Edit the tsv_converter method as needed
+    tsv_converter("Original Data File", "Formatted Data File", 0)
     #Dictionary of column names and data types, constraints (i.e. single primary key, unique, etc.) can be added after data type
     d = {"column name" : "data type [unique | not null | primary key]"}
     # OPTIONAL string of primary keys (grouped), comma separated. If no keys needed or only a singular key leave an empty string or declare above after data type
