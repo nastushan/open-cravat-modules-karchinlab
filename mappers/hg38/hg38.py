@@ -74,8 +74,6 @@ class Mapper(cravat.BaseMapper):
             self.newso = True
         else:
             self.newso = False
-        print(self.cravat_version)
-        print('newso', self.newso)
  
     def map(self, crv_data):
         """
