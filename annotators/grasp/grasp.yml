@@ -27,4 +27,4 @@ developer:
   citation: 'Leslie R, O’Donnell CJ, Johnson AD (2014) GRASP: analysis of genotype-phenotype results from 1,390 genome-wide association studies and corresponding open access database. Bioinformatics 30(12), i185-94'
 
 release_note:
-  2.0.2: added index with chrom and pos. removed old index with binno.
+  2.0.2: removed double quotation from phenotype in data
