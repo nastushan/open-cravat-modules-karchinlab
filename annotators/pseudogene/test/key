@@ -3,7 +3,7 @@
 #Report level: variant
 #
 Base Information					Pseudogene		Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	Pseudogene	Pseudogene Transcript	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr1	12000	A	T	DDX11L1	ENST00000456328.2	1	nosample	pg						
 2	chr12	9261271	A	G	A2MP1	ENST00000544183.1	1	s07	r00004						
 3	chr11	113789394	G	A	ATF4P4,RP11-667M19.5	ENST00000393544.2,ENST00000544730.1	1	s29	r00686						

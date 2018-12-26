@@ -28,7 +28,10 @@ class CravatPostAggregator (BasePostAggregator):
         samples = ';'.join(samples)
         q = 'select base__tags from mapping where base__uid=' + uid
         self.cursor_a.execute(q)
-        tags = ';'.join([v[0] for v in self.cursor_a.fetchall()])
+        tags = {}
+        for row in self.cursor_a.fetchall():
+            tags[row[0]] = True
+        tags = ';'.join(list(tags.keys()))
         out = {'numsample': numsample, 'samples': samples, 'tags': tags}
         return out
 
