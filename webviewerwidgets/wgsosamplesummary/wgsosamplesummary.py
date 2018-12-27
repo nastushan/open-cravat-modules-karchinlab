@@ -75,7 +75,7 @@ def get_data (queries):
         for row in cursor.fetchall():
             (so, count) = row
             so = so_dic[so]
-            sosample[so][i] += 1
+            sosample[so][i] = count
 
     data = {}
     for so in sos:
