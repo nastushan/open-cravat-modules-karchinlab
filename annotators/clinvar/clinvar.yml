@@ -1,7 +1,7 @@
 title: ClinVar
 version: 2018.04.061
 type: annotator
-datasource: 2018.04.06
+datasource: 2018.12.17
 
 level: variant
 input_format: crv
