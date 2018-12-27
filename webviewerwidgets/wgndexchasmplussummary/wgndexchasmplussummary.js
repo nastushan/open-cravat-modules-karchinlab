@@ -751,6 +751,9 @@ widgetGenerators['ndexchasmplussummary'] = {
 					// Shows first network
 					var option = optionsDiv.getElementsByClassName(
 							'ndexchasmplus_option_summary')[0];
+                    if (option == undefined) {
+                        return;
+                    }
 					var networkUUID = option.getAttribute('networkid');
 					var networkName = option.getAttribute('networkname');
 					optionsDiv.style.display = 'none';

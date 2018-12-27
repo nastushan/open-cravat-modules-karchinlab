@@ -1,5 +1,5 @@
 title: Pseudogene
-version: 27.0.1
+version: 27.0.3
 type: annotator
 
 level: variant
@@ -21,3 +21,6 @@ developer:
   email: ''
   website: 'https://www.gencodegenes.org/'
   citation: 'http://europepmc.org/abstract/MED/22955987'
+
+release_note:
+  27.0.3: corrected test key

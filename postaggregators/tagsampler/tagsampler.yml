@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.1
+version: 1.0.3
 type: postaggregator
 
 name: tagsampler
@@ -18,7 +18,6 @@ output_columns:
 - name: tags
   title: Tags
   type: string
-  category: multi
   width: 105
 
 description: Aggregates tags and samples
@@ -28,3 +27,5 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+release_note:
+  1.0.2: removed multi cat from tags for speed

@@ -8,3 +8,4 @@
 *.bak
 .vscode/**
 **/__pycache__/**
+**/*.status.json

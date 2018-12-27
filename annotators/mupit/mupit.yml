@@ -1,6 +1,6 @@
 name: mupit
 title: MuPIT
-version: 4.2.1
+version: 4.2.2
 type: annotator
 
 level: variant
@@ -30,3 +30,6 @@ developer:
   email: ''
   website: 'http://mupit.icm.jhu.edu/MuPIT_Interactive/'
   citation: 'https://www.ncbi.nlm.nih.gov/pubmed/23793516'
+
+release_note:
+  4.2.2: data in sync with production MuPIT

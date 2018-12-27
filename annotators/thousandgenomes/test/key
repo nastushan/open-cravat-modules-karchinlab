@@ -3,7 +3,7 @@
 #Report level: variant
 #
 Base Information					1000 Genomes	Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	1000 Genomes AF	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+UID	Chrom	Position	Ref Base	Alt Base	AF	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr3	146085328	C	T	0.000199681	1		plus_SBS_PLOD2						
 2	chr20	52414564	-	T	0.478235	1		plus_ins_GNAS						
 3	chr3	116584450	-	CAAA	0.000998403	1		plus_ins_PIK3CA						

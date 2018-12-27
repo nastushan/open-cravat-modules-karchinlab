@@ -1,5 +1,5 @@
 title: GRASP
-version: 2.0.0
+version: 2.0.2
 type: annotator
 
 level: variant
@@ -25,3 +25,6 @@ developer:
   email: 'support@cravat.us'
   website: 'https://grasp.nhlbi.nih.gov/Overview.aspx'
   citation: 'Leslie R, O’Donnell CJ, Johnson AD (2014) GRASP: analysis of genotype-phenotype results from 1,390 genome-wide association studies and corresponding open access database. Bioinformatics 30(12), i185-94'
+
+release_note:
+  2.0.2: removed double quotation from phenotype in data

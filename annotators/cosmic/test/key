@@ -3,7 +3,7 @@
 #Report level: variant
 #
 Base Information										COSMIC					Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	ID	Variant Count (Tissue)	COSMIC variant count	Transcript	Protein Change	Number of Samples	Samples	Tags
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	ID	Variant Count (Tissue)	Variant Count	Transcript	Protein Change	Number of Samples	Samples	Tags
 1	chr4	1804372	A	G	Y	FGFR3	ENST00000440486.6	MIS	ENST00000260795.6:FGFR3:P22607:MIS:Y373C:A1118G; ENST00000340107.8:FGFR3:(na):MIS:Y375C:A1124G; ENST00000352904.5:FGFR3:(na):INT:(na):(na); ENST00000412135.6:FGFR3:(na):INT:(na):(na); ENST00000440486.6:FGFR3:P22607:MIS:Y373C:A1118G; ENST00000481110.6:FGFR3:F8W9L4:MIS:Y373C:A1118G; ENST00000613647.4:FGFR3:I6LM06:UT3:(na):(na)	COSM718	upper_aerodigestive_tract(1);haematopoietic_and_lymphoid_tissue(8);thymus(1);urinary_tract(432);skin(16);kidney(1)	459	ENST00000440486	p.Y373C	1		plus_SBS_FGFR3
 2	chr12	25245372	T	C	Y	KRAS	ENST00000256078.8	MIS	ENST00000256078.8:KRAS:P01116:MIS:K5E:A13G; ENST00000311936.7:KRAS:(na):MIS:K5E:A13G; ENST00000556131.1:KRAS:G3V4K2:MIS:K5E:A13G; ENST00000557334.5:KRAS:G3V5T7:MIS:K5E:A13G	COSM132886	large_intestine(1);haematopoietic_and_lymphoid_tissue(1);liver(2);central_nervous_system(1)	5	ENST00000311936	p.K5E	1		minus_SBS_KRAS
 3	chr12	25245378	-	A	Y	KRAS	ENST00000256078.8	FI1	ENST00000256078.8:KRAS:P01116:FI1:_3_:-8T; ENST00000311936.7:KRAS:(na):FI1:_3_:-8T; ENST00000556131.1:KRAS:G3V4K2:FI1:_3_:-8T; ENST00000557334.5:KRAS:G3V5T7:FI1:_3_:-8T	COSM4589939	central_nervous_system(2)	2	ENST00000311936	p.E3fs*3	1		minus_ins_KRAS

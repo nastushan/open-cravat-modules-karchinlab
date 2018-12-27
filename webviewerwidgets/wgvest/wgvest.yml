@@ -1,5 +1,5 @@
 title: VEST
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: vest
 description: VEST webviewer widget
@@ -9,3 +9,6 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+
+release_note:
+  1.0.1: fixed bar component color direction

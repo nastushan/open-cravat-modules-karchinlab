@@ -1,16 +1,17 @@
 #CRAVAT Report
-#Created at Tuesday 12/18/2018 16:27:47
+#Created at Thursday 12/20/2018 14:53:47
 #Report level: variant
 #
 Base Information											GRASP			Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	NHLBI Key	PMID	Phenotype	Number of Samples	Samples	Tags
-1	chr18	45622439	C	T		SLC14A2	ENST00000255226.10	intron		ENST00000255226.10:SLC14A2:Q15849:intron:(na):(na); ENST00000586448.5:SLC14A2:Q15849:intron:(na):(na); ENST00000589658.5:SLC14A2:Q15849:intron:(na):(na)	219091093496958|205026933496957|237224247705273	21909109|20502693|23722424	Blood urea nitrogen (BUN)(0.0000)|Gene expression of TSGA10 in peripheral blood monocytes(0.0000)|Years of education(0.0068)	1		plus_SBS_SLC14A2
-2	chr18	45666191	G	A	Y	SLC14A2	ENST00000586448.5	missense	R510Q	ENST00000255226.10:SLC14A2:Q15849:missense:R510Q:G1529A; ENST00000586448.5:SLC14A2:Q15849:missense:R510Q:G1529A; ENST00000589658.5:SLC14A2:Q15849:missense:R510Q:G1529A	195718094327485|206639234327491|204538424327490|198751034327486|203831464327488|203831464327489|198751034327487|206865654327492	19571809|20663923|20453842|19875103|20383146|20383146|19875103|20686565	Schizophrenia(0.0003)|Autism with low IQ(0.0009)|Rheumatoid arthritis(0.0010)|Abnormal Involuntary Movement Scale(0.0128)|Serum creatinine(0.0210)|Cystatin C in serum(0.0230)|Tardive dyskinesia(0.0296)|LDL cholesterol(0.0413)	1		plus_SBS2_SLC14A2
-3	chr19	44819487	A	G	Y	BCAM	ENST00000270233.10	missense	T539A	ENST00000270233.10:BCAM:P50895:missense:T539A:A1615G; ENST00000589651.5:BCAM:A0A087WXM8:missense:T539A:A1615G; ENST00000611077.4:BCAM:A0A087WXM8:missense:T539A:A1615G	226854166628749|226854166628747|20686565852573|20686565852574|22159054852576|20686565852575|222338106628748	22685416|22685416|20686565|20686565|22159054|20686565|22233810	Gene expression of BCAM (probeID ILMN_2320280) in temporal cortex in Alzheimer's disease cases and controls(0.0000)|Gene expression of BCAM (probeID ILMN_2320280) in cerebellum in Alzheimer's disease cases and controls(0.0000)|Triglycerides(0.0002)|Total cholesterol(0.0012)|Late onset Alzheimer's disease(0.0027)|LDL cholesterol(0.0040)|Gene expression change of BCL3 (ENSG00000069399) in dendritic cells after treatment with Mycobacterium tuberculosis(0.0373)	1		plus_coding_BCAM
-4	chr17	7674797	T	C		TP53	ENST00000445888.6	intron		ENST00000269305.8:TP53:P04637:intron:(na):(na); ENST00000359597.8:TP53:J3KP33:intron:(na):(na); ENST00000413465.6:TP53:E7EQX7:intron:(na):(na); ENST00000420246.6:TP53:(na):intron:(na):(na); ENST00000445888.6:TP53:P04637:intron:(na):(na); ENST00000455263.6:TP53:(na):intron:(na):(na); ENST00000504290.5:TP53:(na):intron:(na):(na); ENST00000504937.5:TP53:(na):intron:(na):(na); ENST00000510385.5:TP53:(na):intron:(na):(na); ENST00000610292.4:TP53:(na):intron:(na):(na); ENST00000610538.4:TP53:(na):intron:(na):(na); ENST00000610623.4:TP53:A0A087WT22:intron:(na):(na); ENST00000615910.4:TP53:A0A087WZU8:intron:(na):(na); ENST00000617185.4:TP53:(na):intron:(na):(na); ENST00000618944.4:TP53:A0A087WXZ1:intron:(na):(na); ENST00000619186.4:TP53:A0A087X1Q1:intron:(na):(na); ENST00000619485.4:TP53:(na):intron:(na):(na); ENST00000620739.4:TP53:(na):intron:(na):(na); ENST00000622645.4:TP53:(na):intron:(na):(na)	228297766783225|208819601242935|229366946783224|229366946783226|206865651242933|222338106783223|206865651242934|209356301242936	22829776|20881960|22936694|22936694|20686565|22233810|20686565|20935630	Sex hormone-binding globulin (SHBG) concentrations(0.0000)|Height(0.0002)|Serum dihydrotestosterone (DHT) level(0.0009)|Serum testosterone (T) level(0.0011)|Total cholesterol(0.0014)|Gene expression of SAT2 (ENSG00000141504) in dendritic cells treated with Mycobacterium tuberculosis(0.0046)|LDL cholesterol(0.0081)|Body mass index (BMI)(0.0270)	1		minus_SBS_TP53
-5	chr7	11555251	G	T		THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	2033953628	20339536	Triglycerides change with statins(0.0321)	1		minus_SBS_THSD7A
+1	chr18	45622439	C	T		SLC14A2	ENST00000255226.10	intron		ENST00000255226.10:SLC14A2:Q15849:intron:(na):(na); ENST00000586448.5:SLC14A2:Q15849:intron:(na):(na); ENST00000589658.5:SLC14A2:Q15849:intron:(na):(na)	219091093496958|237224247705273	21909109|23722424	Blood urea nitrogen (BUN)(7.990e-14)|Years of education(6.782e-03)	1		plus_SBS_SLC14A2
+2	chr18	45666191	G	A	Y	SLC14A2	ENST00000586448.5	missense	R510Q	ENST00000255226.10:SLC14A2:Q15849:missense:R510Q:G1529A; ENST00000586448.5:SLC14A2:Q15849:missense:R510Q:G1529A; ENST00000589658.5:SLC14A2:Q15849:missense:R510Q:G1529A	195718094327485|206639234327491|204538424327490|198751034327486|203831464327488|203831464327489|198751034327487|206865654327492	19571809|20663923|20453842|19875103|20383146|20383146|19875103|20686565	Schizophrenia(2.660e-04)|Autism with low IQ(9.460e-04)|Rheumatoid arthritis(1.005e-03)|Abnormal Involuntary Movement Scale(1.282e-02)|Serum creatinine(2.100e-02)|Cystatin C in serum(2.300e-02)|Tardive dyskinesia(2.958e-02)|LDL cholesterol(4.132e-02)	1		plus_SBS2_SLC14A2
+3	chr19	44819487	A	G	Y	BCAM	ENST00000270233.10	missense	T539A	ENST00000270233.10:BCAM:P50895:missense:T539A:A1615G; ENST00000589651.5:BCAM:A0A087WXM8:missense:T539A:A1615G; ENST00000611077.4:BCAM:A0A087WXM8:missense:T539A:A1615G	20686565852573|20686565852574|22159054852576|20686565852575	20686565|20686565|22159054|20686565	Triglycerides(2.374e-04)|Total cholesterol(1.158e-03)|Late onset Alzheimer's disease(2.740e-03)|LDL cholesterol(4.004e-03)	1		plus_coding_BCAM
+4	chr17	7674797	T	C		TP53	ENST00000445888.6	intron		ENST00000269305.8:TP53:P04637:intron:(na):(na); ENST00000359597.8:TP53:J3KP33:intron:(na):(na); ENST00000413465.6:TP53:E7EQX7:intron:(na):(na); ENST00000420246.6:TP53:(na):intron:(na):(na); ENST00000445888.6:TP53:P04637:intron:(na):(na); ENST00000455263.6:TP53:(na):intron:(na):(na); ENST00000504290.5:TP53:(na):intron:(na):(na); ENST00000504937.5:TP53:(na):intron:(na):(na); ENST00000510385.5:TP53:(na):intron:(na):(na); ENST00000610292.4:TP53:(na):intron:(na):(na); ENST00000610538.4:TP53:(na):intron:(na):(na); ENST00000610623.4:TP53:A0A087WT22:intron:(na):(na); ENST00000615910.4:TP53:A0A087WZU8:intron:(na):(na); ENST00000617185.4:TP53:(na):intron:(na):(na); ENST00000618944.4:TP53:A0A087WXZ1:intron:(na):(na); ENST00000619186.4:TP53:A0A087X1Q1:intron:(na):(na); ENST00000619485.4:TP53:(na):intron:(na):(na); ENST00000620739.4:TP53:(na):intron:(na):(na); ENST00000622645.4:TP53:(na):intron:(na):(na)	228297766783225|208819601242935|229366946783224|229366946783226|206865651242933|206865651242934|209356301242936	22829776|20881960|22936694|22936694|20686565|20686565|20935630	Sex hormone-binding globulin (SHBG) concentrations(1.170e-14)|Height(1.855e-04)|Serum dihydrotestosterone (DHT) level(9.350e-04)|Serum testosterone (T) level(1.128e-03)|Total cholesterol(1.403e-03)|LDL cholesterol(8.131e-03)|Body mass index (BMI)(2.700e-02)	1		minus_SBS_TP53
+5	chr7	11555251	G	T		THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	2033953628	20339536	Triglycerides change with statins(3.207e-02)	1		minus_SBS_THSD7A
+6	chr6	29643212	G	T							2062287930336|2045384230325|1755430030319|1987510330320|2033953630322|234556366291363|2203755530338|2190911530337|2033953630323|2038314630324|2008185630321	20622879|20453842|17554300|19875103|20339536|23455636|22037555|21909115|20339536|20383146|20081856	Behçet's disease(1.400e-10)|Rheumatoid arthritis(1.584e-07)|Rheumatoid arthritis, combined control dataset(3.265e-04)|Simpson-Angus Scale(6.558e-03)|Triglycerides change with statins(9.683e-03)|Advanced age-related macular degeneration(1.959e-02)|Schizophrenia(2.280e-02)|Systolic blood pressure (SBP)(3.270e-02)|HDL cholesterol change with statins(4.571e-02)|Cystatin C in serum(4.900e-02)|Major depressive disorder(4.967e-02)	1	plus_behcet	
 #CRAVAT Report
-#Created at Tuesday 12/18/2018 16:27:47
+#Created at Thursday 12/20/2018 14:53:47
 #Report level: gene
 #
 Base Information			
@@ -20,7 +21,7 @@ BCAM	1	missense	missense(1)
 TP53	1	intron	intron(1)
 THSD7A	1	intron	intron(1)
 #CRAVAT Report
-#Created at Tuesday 12/18/2018 16:27:47
+#Created at Thursday 12/20/2018 14:53:47
 #Report level: sample
 #
 Base Information	
@@ -30,8 +31,9 @@ UID	Sample
 3	
 4	
 5	
+6	plus_behcet
 #CRAVAT Report
-#Created at Tuesday 12/18/2018 16:27:47
+#Created at Thursday 12/20/2018 14:53:47
 #Report level: mapping
 #
 Base Information		
@@ -41,3 +43,4 @@ Original Line	User Tags	UID
 4	plus_coding_BCAM	3
 5	minus_SBS_TP53	4
 6	minus_SBS_THSD7A	5
+7		6
