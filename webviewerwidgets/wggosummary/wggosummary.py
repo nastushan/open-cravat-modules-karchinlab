@@ -82,6 +82,15 @@ def get_data (queries):
         go_desc = cursor.fetchone()[0]
         go[go_id]['description'] = go_desc
         data.append(go[go_id])
+    
+    # Remove protein_binding from the names, it crowds out all the others
+    rm_index = -1
+    for i,v in enumerate(data):
+        if v['description'] == 'protein binding':
+            rm_index = i
+            break
+    if rm_index != -1:
+        data = data[:rm_index]+data[rm_index+1:]
 
     response['data'] = data
 

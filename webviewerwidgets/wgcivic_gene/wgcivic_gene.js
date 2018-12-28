@@ -10,7 +10,7 @@ widgetGenerators['civic_gene'] = {
 			} else {
 				addInfoLineLink(div, 'Link', link, link, -1);
 			}
-			addInfoLine(div, row, 'Description', 'civic_gene__description', tabName);
+			addInfoLine(div, row, 'Description', 'civic_gene__description', tabName, 70);
 		}
 	}
 }

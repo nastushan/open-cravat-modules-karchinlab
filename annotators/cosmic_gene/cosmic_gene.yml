@@ -1,5 +1,5 @@
 title: COSMIC Gene
-version: 85.0.1
+version: 85.0.2
 type: annotator
 datasource: v85
 
@@ -22,3 +22,6 @@ developer:
   email: ''
   website: 'https://cancer.sanger.ac.uk/cosmic'
   citation: 'https://academic.oup.com/nar/article/45/D1/D777/2605743'
+
+release_note:
+  85.0.2: added index to data for speed

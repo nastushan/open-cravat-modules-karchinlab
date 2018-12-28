@@ -4,6 +4,7 @@ import random
 import cravat
 import json
 from collections import OrderedDict
+from distutils.version import LooseVersion
 
 class Mapper(cravat.BaseMapper):
     """
@@ -66,6 +67,13 @@ class Mapper(cravat.BaseMapper):
                     %(self.cmd_args.primary_source, ', '.join(self.gene_sources))
                 raise Exception(err_msg)
             self.primary_gene_source = self.cmd_args.primary_source
+        if hasattr(self, 'cravat_version') == False:
+            import pkg_resources
+            self.cravat_version = pkg_resources.get_distribution('open-cravat').version
+        if LooseVersion(self.cravat_version) >= LooseVersion('1.3.0'):
+            self.newso = True
+        else:
+            self.newso = False
  
     def map(self, crv_data):
         """
@@ -287,19 +295,37 @@ class Mapper(cravat.BaseMapper):
             if hit.gref == '-':
                 extra_bases = len(hit.galt)%3
                 if extra_bases == 0:
-                    hit.so = 'INI'
+                    if self.newso:
+                        hit.so = 'INI'
+                    else:
+                        hit.so = 'IIV'
                 elif extra_bases == 1:
-                    hit.so = 'FSI'
+                    if self.newso:
+                        hit.so = 'FSI'
+                    else:
+                        hit.so = 'FI1'
                 elif extra_bases == 2:
-                    hit.so = 'FSI'
+                    if self.newso:
+                        hit.so = 'FSI'
+                    else:
+                        hit.so = 'FI2'
             elif hit.galt == '-':
                 extra_bases = len(hit.gref)%3
                 if extra_bases == 0:
-                    hit.so = 'IND'
+                    if self.newso:
+                        hit.so = 'IND'
+                    else:
+                        hit.so = 'IDV'
                 elif extra_bases == 1:
-                    hit.so = 'FSD'
+                    if self.newso:
+                        hit.so = 'FSD'
+                    else:
+                        hit.so = 'FD1'
                 elif extra_bases == 2:
-                    hit.so = 'FSD'
+                    if self.newso:
+                        hit.so = 'FSD'
+                    else:
+                        hit.so = 'FD2'
             elif len(hit.gref) == 1 and len(hit.galt) == 1:
                 self._fill_snv_pchange(hit)
                 if hit.aref != hit.aalt:
@@ -420,7 +446,7 @@ class Mapper(cravat.BaseMapper):
                     primary_a_change = a_change
         # Fill crx dict with information from most deleterious transcript
         crx_data['hugo'] = primary_hugo
-        if primary_so in ['MIS', 'SYN', 'FSI', 'FSD', 'FD1', 'FD2', 'INI', 'IND', 'CSS', 'STG', 'STL']:
+        if primary_so in ['MIS', 'SYN', 'FSI', 'FI1', 'FI2', 'FSD', 'FD1', 'FD2', 'INI', 'IIV', 'IND', 'IDV', 'CSS', 'STG', 'STL']:
             crx_data['coding'] = 'Y'
         else:
             crx_data['coding'] = ''

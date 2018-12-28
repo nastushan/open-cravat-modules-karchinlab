@@ -37,6 +37,8 @@ class CravatConverter(BaseConverter):
         if not(strand in ['-','+']): return False, '4th column must be + or -'
         ref = ref.upper()
         alt = alt.upper()
+        if len(ref) == 0 or len(alt) == 0:
+            return False, 'Empty base'
         for char in ref.upper():
             if char not in valid_bases: return False, 'Bad ref base'
         for char in alt.upper():
@@ -44,10 +46,13 @@ class CravatConverter(BaseConverter):
         return True, ''
     
     def check_format(self, f):
+        format_correct = False
         for l in f:
             if not(l.startswith('#')):
                 format_correct, _ = self._check_line(l)
-                return format_correct
+                if format_correct == True:
+                    break
+        return format_correct
     
     def setup(self, f):
         pass

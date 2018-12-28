@@ -15,7 +15,7 @@ output_columns:
 description: PubMed annotation
 developer:
   name: ''
-  organization: ''
+  organization: 'NCBI'
   email: ''
   website: ''
   citation: ''

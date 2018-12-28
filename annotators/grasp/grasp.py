@@ -23,7 +23,7 @@ class CravatAnnotator (BaseAnnotator):
                 nhlbi, pmid, pvalue, phenotype = result
                 nhlbi_list.append(str(nhlbi))
                 pmid_list.append(str(pmid))
-                pvalue = '{:.4f}'.format(pvalue)
+                pvalue = '{:.3e}'.format(pvalue)
                 pheno_list.append(phenotype + '(' + str(pvalue) + ')')
             out['nhlbi'] = '|'.join(nhlbi_list)
             out['pmid'] = '|'.join(pmid_list)

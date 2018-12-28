@@ -1,6 +1,7 @@
 title: TARGET
-version: 3.0.1
+version: 3.0.11
 type: annotator
+datasource: 3.0.1
 
 level: gene
 input_format: crg
@@ -8,7 +9,7 @@ output_columns:
 - name: therapy
   title: Recommended Therapy
   type: string
-  width: 110
+  width: 190
   category: multi
 - name: rationale
   title: Rationale

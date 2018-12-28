@@ -7,6 +7,9 @@ widgetGenerators['ndexvestsummary'] = {
 			'height': 780, 
 			'callserver': false,
 			'function': function (parentDiv, data) {
+                if (data == undefined) {
+                    return;
+                }
 				var pvalCutoff = 0.05;
 				var hugos = [];
 				var geneRows = infomgr.getData('gene');
