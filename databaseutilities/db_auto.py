@@ -47,6 +47,8 @@ class CravatDatabase:
     #Accepts list of filenames for data files, list of col indexes (columns wanted from datafiles), and number of lines to skip at beginning when reading data files
     def parser(self, filenames, col_idx, skip_num):
         try:
+            #Skip 'skip_num' number of lines of file
+            skip_num = skip_num - 1
             print("Data insertion start")
             self.curs.execute("PRAGMA synchronous = 0;")
             self.curs.execute("PRAGMA journal_mode = MEMORY;")
@@ -56,8 +58,6 @@ class CravatDatabase:
                 print("Starting {name} insertion".format(name=filename))
                 with open("{filename}".format(filename=filename)) as f:
                     for i,l in enumerate(f):
-                        #Skip 'skip_num' number of lines of file
-                        skip_num = skip_num - 1
                         if i > skip_num:
                             #Strip whitespace and split on tabs (assumes file is tsv formatted)
                             toks = l.strip("\r\n").split("\t")
