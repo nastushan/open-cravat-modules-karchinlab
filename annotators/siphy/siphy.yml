@@ -1,0 +1,26 @@
+title: SiPhy
+version: 3.5.0
+type: annotator
+level: variant
+input_format: crv
+output_columns:
+- name: pi
+  title: Stationary Distribution
+  type: string
+  desc: Estimated stationary distribution of A,C,G,T at the site.
+  width: 76
+- name: logodds
+  title: Score
+  type: float
+  desc: Score based on 29 mammal genomes. Larger the score, more conserved the site.
+- name: logodds_rank
+  title: Rank Score
+  type: float
+  desc: Ratio of rank of the score over total number of scores in the database.
+description: A database of conservation scores based on 29 mammal genomes
+developer:
+  name: ''
+  organization: 'Broad Institute'
+  email: 'support@cravat.us'
+  website: 'https://www.broadinstitute.org/mammals-models/29-mammals-project'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
