@@ -1,6 +1,7 @@
 title: SiPhy
 version: 3.5.0
 type: annotator
+datasource: 3.5.0
 level: variant
 input_format: crv
 output_columns:
