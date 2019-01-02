@@ -1,3 +1,4 @@
-# Probability of haploinsufficiency P(HI): 
+# Probability of haploinsufficiency P(HI): providing probabilities for gene-based haploinsufficiency
+P(HI) provides a database containing gene-based haploinsufficiency predictions transformed into haploinsufficiency scores for genic deletions, which have been demonstrated to better discriminate between pathogenic and benign deletions than consideration of the deletion size or numbers of genes deleted. These robust predictions of haploinsufficiency support clinical interpretation of novel loss-of-function variants and prioritization of variants and genes for follow-up studies.
 
 NOTE: Data provided by [dbNSFP](https://sites.google.com/site/jpopgen/dbNSFP) version 3.5a

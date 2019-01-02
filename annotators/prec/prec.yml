@@ -1,6 +1,7 @@
 title: P(Recessive Disease)
 version: 3.5.0
 type: annotator
+datasource: 3.5.0
 level: gene
 output_columns:
   - name: prec
@@ -14,10 +15,10 @@ output_columns:
     desc: 'Known recessive status of the gene. lof-tolerant, seen in homozygous state in at least one 1000G individual; recessive, known OMIM recessive disease.'
     category: single
     width: 84
-description: 
+description: Providing probabilities for LoF alleles
 developer:
-  name: ''
-  organization: ''
+  name: 'Daniel G. MacArthur'
+  organization: 'Wellcome Trust Sanger Institute'
   email: 'support@cravat.us'
   website: 'https://doi.org/10.1126/science.1215040'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
