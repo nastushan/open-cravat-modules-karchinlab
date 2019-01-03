@@ -1,6 +1,6 @@
 widgetGenerators['clinvar'] = {
 	'variant': {
-		'width': 400, 
+		'width': 700, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Significance', 'clinvar__sig', tabName);
@@ -36,12 +36,7 @@ widgetGenerators['clinvar'] = {
 			for (var j=0;j<disease_objls.length;j++){
 				for (var ref in disease_objls[j].refs){
 					var link = disease_objls[j].refs[ref];
-					if(typeof getWidgetTableTrLink == 'function'){
-						var tr = getWidgetTableTrLink([disease_objls[j].name, ref, link]);
-					}
-					else{
-						var tr = getWidgetTableTr([disease_objls[j].name, ref, link]);
-					}
+					var tr = getWidgetTableTr([disease_objls[j].name, ref, link]);
 					addEl(tbody, tr);
 				}
 			addEl(div, addEl(table, tbody));
@@ -84,7 +79,7 @@ function linkify(disease, db_id){
 			links.MeSH = link;
 		}
 		else if(idls[i].startsWith('SNOMED')){
-			link = 'https://browser.ihtsdotools.org/?perspective=full&conceptId1='+idls[i].slice(idls[i].indexOf(':')+1);
+			link = 'https://browser.ihtsdotools.org/?perspective=full&conceptId1='+idls[i].slice(idls[i].indexOf(':')+1)+'&edition=en-edition&release=v20180731&server=https://browser.ihtsdotools.org/api/v1/snomed&langRefset=900000000000509007';
 			links.SNOMED_CT = link;
 		}
 	}

@@ -1,7 +1,7 @@
 title: ClinVar
-version: 2018.04.061
+version: 2019.01.02
 type: annotator
-datasource: 2018.12.17
+datasource: 2019.01.02
 
 level: variant
 input_format: crv
@@ -10,6 +10,7 @@ output_columns:
   title: Clinical Significance
   type: string
   width: 90
+  category: single
 - name: disease_refs
   title: Disease Ref Nums
   type: string
