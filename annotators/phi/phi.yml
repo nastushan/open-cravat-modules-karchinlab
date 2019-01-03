@@ -1,0 +1,18 @@
+title: P(Haploinsufficiency)
+version: 3.5.0
+type: annotator
+datasource: 3.5.0
+level: gene
+output_columns:
+  - name: phi
+    title: P(HI)
+    type: float
+    desc: Estimated probability of haploinsufficiency of the gene
+    width: 127
+description: Providing probabilities for gene-based haploinsufficiency
+developer:
+  name: 'Ni Huang, Insuk Lee, Edward M. Marcotte, Matthew E. Hurles'
+  organization: 'Wellcome Trust Sanger Institute'
+  email: 'support@cravat.us'
+  website: 'https://doi.org/10.1371/journal.pgen.1001154'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
