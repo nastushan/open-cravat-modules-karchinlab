@@ -1,7 +1,7 @@
 widgetGenerators['topgeneschasmplussummary'] = {
 	'info': {
 		'name': 'Top Genes by CHASMplus',
-		'width': 180, 
+		'width': 280, 
 		'height': 380, 
 		'callserver': false,
 		'function': function (div) {

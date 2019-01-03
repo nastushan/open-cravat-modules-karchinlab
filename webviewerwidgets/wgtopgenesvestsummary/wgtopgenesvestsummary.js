@@ -1,7 +1,7 @@
 widgetGenerators['topgenesvestsummary'] = {
 	'info': {
 		'name': 'Top Genes by VEST',
-		'width': 180, 
+		'width': 280, 
 		'height': 380, 
 		'callserver': false,
 		'function': function (div) {

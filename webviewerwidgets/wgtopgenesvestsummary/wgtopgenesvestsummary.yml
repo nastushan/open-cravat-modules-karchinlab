@@ -1,5 +1,5 @@
 title: Top Genes VEST Summary
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: vest
 description: Top Genes VEST Summary webviewer widget
