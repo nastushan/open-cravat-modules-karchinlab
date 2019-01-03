@@ -1,5 +1,5 @@
 title: GRASP
-version: 2.0.2
+version: 2.0.3
 type: annotator
 
 level: variant
@@ -28,3 +28,4 @@ developer:
 
 release_note:
   2.0.2: removed double quotation from phenotype in data
+  2.0.3: test key encoded in UTF-8

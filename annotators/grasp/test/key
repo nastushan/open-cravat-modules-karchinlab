@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Thursday 12/20/2018 14:53:47
+#Created at Thursday 01/03/2019 15:07:40
 #Report level: variant
 #
 Base Information											GRASP			Tag Sampler		
@@ -9,9 +9,9 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 3	chr19	44819487	A	G	Y	BCAM	ENST00000270233.10	missense	T539A	ENST00000270233.10:BCAM:P50895:missense:T539A:A1615G; ENST00000589651.5:BCAM:A0A087WXM8:missense:T539A:A1615G; ENST00000611077.4:BCAM:A0A087WXM8:missense:T539A:A1615G	20686565852573|20686565852574|22159054852576|20686565852575	20686565|20686565|22159054|20686565	Triglycerides(2.374e-04)|Total cholesterol(1.158e-03)|Late onset Alzheimer's disease(2.740e-03)|LDL cholesterol(4.004e-03)	1		plus_coding_BCAM
 4	chr17	7674797	T	C		TP53	ENST00000445888.6	intron		ENST00000269305.8:TP53:P04637:intron:(na):(na); ENST00000359597.8:TP53:J3KP33:intron:(na):(na); ENST00000413465.6:TP53:E7EQX7:intron:(na):(na); ENST00000420246.6:TP53:(na):intron:(na):(na); ENST00000445888.6:TP53:P04637:intron:(na):(na); ENST00000455263.6:TP53:(na):intron:(na):(na); ENST00000504290.5:TP53:(na):intron:(na):(na); ENST00000504937.5:TP53:(na):intron:(na):(na); ENST00000510385.5:TP53:(na):intron:(na):(na); ENST00000610292.4:TP53:(na):intron:(na):(na); ENST00000610538.4:TP53:(na):intron:(na):(na); ENST00000610623.4:TP53:A0A087WT22:intron:(na):(na); ENST00000615910.4:TP53:A0A087WZU8:intron:(na):(na); ENST00000617185.4:TP53:(na):intron:(na):(na); ENST00000618944.4:TP53:A0A087WXZ1:intron:(na):(na); ENST00000619186.4:TP53:A0A087X1Q1:intron:(na):(na); ENST00000619485.4:TP53:(na):intron:(na):(na); ENST00000620739.4:TP53:(na):intron:(na):(na); ENST00000622645.4:TP53:(na):intron:(na):(na)	228297766783225|208819601242935|229366946783224|229366946783226|206865651242933|206865651242934|209356301242936	22829776|20881960|22936694|22936694|20686565|20686565|20935630	Sex hormone-binding globulin (SHBG) concentrations(1.170e-14)|Height(1.855e-04)|Serum dihydrotestosterone (DHT) level(9.350e-04)|Serum testosterone (T) level(1.128e-03)|Total cholesterol(1.403e-03)|LDL cholesterol(8.131e-03)|Body mass index (BMI)(2.700e-02)	1		minus_SBS_TP53
 5	chr7	11555251	G	T		THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	2033953628	20339536	Triglycerides change with statins(3.207e-02)	1		minus_SBS_THSD7A
-6	chr6	29643212	G	T							2062287930336|2045384230325|1755430030319|1987510330320|2033953630322|234556366291363|2203755530338|2190911530337|2033953630323|2038314630324|2008185630321	20622879|20453842|17554300|19875103|20339536|23455636|22037555|21909115|20339536|20383146|20081856	Beh�et's disease(1.400e-10)|Rheumatoid arthritis(1.584e-07)|Rheumatoid arthritis, combined control dataset(3.265e-04)|Simpson-Angus Scale(6.558e-03)|Triglycerides change with statins(9.683e-03)|Advanced age-related macular degeneration(1.959e-02)|Schizophrenia(2.280e-02)|Systolic blood pressure (SBP)(3.270e-02)|HDL cholesterol change with statins(4.571e-02)|Cystatin C in serum(4.900e-02)|Major depressive disorder(4.967e-02)	1	plus_behcet	
+6	chr6	29643212	G	T							2062287930336|2045384230325|1755430030319|1987510330320|2033953630322|234556366291363|2203755530338|2190911530337|2033953630323|2038314630324|2008185630321	20622879|20453842|17554300|19875103|20339536|23455636|22037555|21909115|20339536|20383146|20081856	BehÃ§et's disease(1.400e-10)|Rheumatoid arthritis(1.584e-07)|Rheumatoid arthritis, combined control dataset(3.265e-04)|Simpson-Angus Scale(6.558e-03)|Triglycerides change with statins(9.683e-03)|Advanced age-related macular degeneration(1.959e-02)|Schizophrenia(2.280e-02)|Systolic blood pressure (SBP)(3.270e-02)|HDL cholesterol change with statins(4.571e-02)|Cystatin C in serum(4.900e-02)|Major depressive disorder(4.967e-02)	1	plus_behcet	
 #CRAVAT Report
-#Created at Thursday 12/20/2018 14:53:47
+#Created at Thursday 01/03/2019 15:07:40
 #Report level: gene
 #
 Base Information			
@@ -21,7 +21,7 @@ BCAM	1	missense	missense(1)
 TP53	1	intron	intron(1)
 THSD7A	1	intron	intron(1)
 #CRAVAT Report
-#Created at Thursday 12/20/2018 14:53:47
+#Created at Thursday 01/03/2019 15:07:40
 #Report level: sample
 #
 Base Information	
@@ -33,7 +33,7 @@ UID	Sample
 5	
 6	plus_behcet
 #CRAVAT Report
-#Created at Thursday 12/20/2018 14:53:47
+#Created at Thursday 01/03/2019 15:07:40
 #Report level: mapping
 #
 Base Information		
