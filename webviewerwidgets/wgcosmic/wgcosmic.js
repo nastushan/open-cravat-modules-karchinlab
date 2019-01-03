@@ -2,6 +2,7 @@ widgetGenerators['cosmic'] = {
 	'variant': {
 		'width': 280, 
 		'height': 220, 
+		'word-break': 'normal',
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'ID', 'cosmic__cosmic_id', tabName, 4);
 			addInfoLine(div, row, 'Variant Count', 'cosmic__variant_count', tabName);
@@ -19,7 +20,7 @@ widgetGenerators['cosmic'] = {
 					var tok = toks[i];
 					var match = re.exec(tok);
 					if (match !== null) {
-						var tissue = match[1];
+						var tissue = match[1].replace(/_/g, " ");
 						var count = match[2];
 						var tr = getWidgetTableTr([tissue, count]);
 						addEl(tbody, tr);
