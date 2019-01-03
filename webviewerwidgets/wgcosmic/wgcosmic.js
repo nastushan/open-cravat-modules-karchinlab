@@ -1,9 +1,9 @@
 widgetGenerators['cosmic'] = {
 	'variant': {
 		'width': 280, 
-		'height': 280, 
+		'height': 220, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'ID', 'cosmic__cosmic_id', tabName);
+			addInfoLine(div, row, 'ID', 'cosmic__cosmic_id', tabName, 4);
 			addInfoLine(div, row, 'Variant Count', 'cosmic__variant_count', tabName);
 			addInfoLine(div, row, 'Transcript', 'cosmic__transcript', tabName);
 			addInfoLine(div, row, 'Protein Change', 'cosmic__protein_change', tabName);
