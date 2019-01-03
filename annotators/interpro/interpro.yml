@@ -1,0 +1,19 @@
+title: InterPro
+version: 3.5.0
+type: annotator
+datasource: 3.5.0
+level: variant
+input_format: crv
+output_columns:
+- name: domain
+  title: Domain
+  type: string
+  width: 62
+  desc: Domain or conserved site on which the variant is located. Multiple entries separated by ";".
+description: 
+developer:
+  name: ''
+  organization: ''
+  email: 'support@cravat.us'
+  website: ''
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
