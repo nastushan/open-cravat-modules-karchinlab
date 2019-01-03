@@ -129,7 +129,7 @@ class CravatAnnotator(BaseAnnotator):
             out['mean_score'] = round(sum(scores)/len(scores),3)
             out['gene_pval'] = round(raw_gene_pval, 3)
         return out
-    
+
 if __name__ == '__main__':
     annotator = CravatAnnotator(sys.argv)
     annotator.run()

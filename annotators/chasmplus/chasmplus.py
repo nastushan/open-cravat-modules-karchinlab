@@ -3,6 +3,7 @@ from cravat import BaseAnnotator
 from cravat import InvalidData
 import sqlite3
 import os
+import stouffer
 
 class CravatAnnotator(BaseAnnotator):
 
@@ -56,6 +57,27 @@ class CravatAnnotator(BaseAnnotator):
                     result = '*'+result
                 results.append(result)
             out['results'] = (',').join(results)
+        return out
+
+    def build_gene_collection (self, hugo, input_data, gene_data):
+        score = input_data['score']
+        pval = input_data['pval']
+        if score != None:
+            gene_data[hugo]['score'].append(score)
+            gene_data[hugo]['pval'].append(pval)
+
+    def summarize_by_gene (self, hugo, gene_collection):
+        out = None
+        input_data = gene_collection[hugo]
+        scores = input_data['score']
+        pvals_non_unique = input_data['pval']
+        pvals = list(set(pvals_non_unique))
+        if len(scores) > 0:
+            out = {}
+            raw_gene_pval = stouffer.stouffer(pvals)[1]
+            out['max_score'] = max(scores)
+            out['mean_score'] = round(sum(scores)/len(scores),3)
+            out['gene_pval'] = round(raw_gene_pval, 3)
         return out
 
 if __name__ == '__main__':
