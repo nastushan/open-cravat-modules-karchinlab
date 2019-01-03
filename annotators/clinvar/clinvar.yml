@@ -1,7 +1,7 @@
 title: ClinVar
-version: 2018.04.061
+version: 2019.01.02
 type: annotator
-datasource: 2018.04.06
+datasource: 2019.01.02
 
 level: variant
 input_format: crv
@@ -10,15 +10,26 @@ output_columns:
   title: Clinical Significance
   type: string
   width: 90
-- name: refs
+  category: single
+- name: disease_refs
   title: Disease Ref Nums
   type: string
   hidden: True
   width: 55
-- name: diseases
+- name: disease_names
   title: Disease Names
   type: string
   width: 55
+- name: rev_stat
+  title: Review Status
+  type: string
+  width: 55
+  desc: The level of review supporting the assertion of clinical significance for the variation
+- name: id
+  title: ClinVar ID
+  type: string
+  width: 55
+  hidden: True
 
 description: ClinVar is an archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
 developer:

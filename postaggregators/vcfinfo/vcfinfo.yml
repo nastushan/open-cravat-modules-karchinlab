@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.2
+version: 1.0.4
 type: postaggregator
 
 name: vcfinfo
@@ -14,10 +14,12 @@ output_columns:
   title: VCF filter
   type: string
   width: 70
+  category: multi
 - name: zygosity
   title: Zygosity
   type: string
   width: 90
+  category: multi
 - name: alt_reads
   title: Alternate reads
   type: string
@@ -38,3 +40,7 @@ developer:
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+
+release_note:
+  1.0.3: zygosity is multi category.
+  1.0.4: filter is multi category.

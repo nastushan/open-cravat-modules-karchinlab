@@ -35,12 +35,12 @@ class CravatPostAggregator (BasePostAggregator):
             altreads.append(altread)
             totreads.append(totread)
             afs.append(af)
-        phred = ','.join([str(v) for v in phreds])
-        filter = ','.join([str(v) for v in filts])
-        zygosity = ','.join([str(v) for v in zygosities])
-        alt_reads = ','.join([str(v) for v in altreads])
-        tot_reads = ','.join([str(v) for v in totreads])
-        af = ','.join([str(v) for v in afs])
+        phred = ';'.join([str(v) for v in phreds])
+        filter = ';'.join([str(v) for v in filts])
+        zygosity = ';'.join([str(v) for v in zygosities])
+        alt_reads = ';'.join([str(v) for v in altreads])
+        tot_reads = ';'.join([str(v) for v in totreads])
+        af = ';'.join([str(v) for v in afs])
         out = {'phred': phred, 'filter': filter, 'zygosity': zygosity, 
                'alt_reads': alt_reads, 'tot_reads': tot_reads, 'af': af}
         return out
