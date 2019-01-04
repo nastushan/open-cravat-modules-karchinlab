@@ -1,0 +1,11 @@
+title: BioGRID
+version: 1.0.0
+type: webviewerwidget
+required_annotator: biogrid
+description: BioGRID webviewer widget
+developer:
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'http://www.insilico.us.com'
+  citation: ''

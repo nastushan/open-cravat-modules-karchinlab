@@ -1,9 +1,9 @@
-widgetGenerators['intact'] = {
+widgetGenerators['biogrid'] = {
 	'gene': {
 		'width': 250, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
-			var acts = infomgr.getRowValue(tabName, row, 'intact__intact');
+			var acts = infomgr.getRowValue(tabName, row, 'biogrid__biogrid');
 			var actsls = acts != null ? acts.split('|') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);
