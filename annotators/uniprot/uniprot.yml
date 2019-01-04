@@ -1,0 +1,17 @@
+title: UniProt
+version: 3.5.0
+type: annotator
+level: gene
+output_columns:
+  - name: acc
+    title: Accession Number
+    type: string
+    desc: Primary (citable) accession number
+    width: 70
+description: Comprehensive resource for protein sequence and functional information.
+developer:
+  name: 'The UniProt Consortium'
+  organization: 'The UniProt Consortium'
+  email: 'support@cravat.us'
+  website: 'https://www.uniprot.org/'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
