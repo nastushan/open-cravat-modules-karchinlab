@@ -40,7 +40,7 @@ class CravatAnnotator(BaseAnnotator):
         if has_results:
             out['cosmic_id'] = primary_rd['cosmic_id']
             out['transcript'] = primary_rd['accession']
-            out['protein_change'] = primary_rd['aachange_cosmic']
+            out['protein_change'] = primary_rd['aachange_cosmic'].replace('p.','')
             out['variant_count'] = primary_rd['occurrences']
             site_list = zip(primary_rd['primarysites'].split(';'),
                             primary_rd['primarysitenos'].split(';'))

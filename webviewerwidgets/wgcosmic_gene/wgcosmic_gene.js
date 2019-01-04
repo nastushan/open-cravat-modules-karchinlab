@@ -2,8 +2,9 @@ widgetGenerators['cosmic_gene'] = {
 	'gene': {
 		'width': 280, 
 		'height': 280, 
+		'word-break': 'normal',
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Variant Count', 'cosmic_gene__occurrences', tabName);
+			addInfoLine(div, row, 'Occurrences', 'cosmic_gene__occurrences', tabName);
 			var vcTissue = infomgr.getRowValue(tabName, row, 'cosmic_gene__gene_count');
 			if (vcTissue !== null) {
 				var table = getWidgetTableFrame();
@@ -16,7 +17,7 @@ widgetGenerators['cosmic_gene'] = {
 					var tok = toks[i];
 					var match = re.exec(tok);
 					if (match !== null) {
-						var tissue = match[1];
+						var tissue = match[1].replace(/_/g, " ");
 						var count = match[2];
 						var tr = getWidgetTableTr([tissue, count]);
 						addEl(tbody, tr);

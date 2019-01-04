@@ -1,5 +1,5 @@
 title: COSMIC
-version: 85.0.3
+version: 85.0.4
 type: annotator
 datasource: v85
 
@@ -32,7 +32,7 @@ description: Catalogue Of Somatic Mutations In Cancer, is the world's largest an
 developer:
   name: 'Sanger Institute'
   organization: 'Sanger Institute'
-  email: ''
+  email: 'support@cravat.us'
   website: 'https://cancer.sanger.ac.uk/cosmic'
   citation: 'https://academic.oup.com/nar/article/45/D1/D777/2605743'
 data_version: 1.0.0
