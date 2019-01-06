@@ -1,5 +1,5 @@
 title: ClinVar
-version: 2019.01.02
+version: 2019.01.021
 type: annotator
 datasource: 2019.01.02
 
@@ -38,3 +38,9 @@ developer:
   email: 'support@cravat.us'
   website: 'https://www.ncbi.nlm.nih.gov/clinvar/'
   citation: 'https://www.ncbi.nlm.nih.gov/pubmed/26582918'
+
+tags:
+- phenotype
+
+release_note:
+  2019.01.021: added phenotype tag.

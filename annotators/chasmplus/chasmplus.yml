@@ -1,6 +1,6 @@
 name: chasmplus
 title: CHASMplus
-version: 1.0.2
+version: 1.0.3
 type: annotator
 
 level: variant
@@ -41,3 +41,6 @@ developer:
   citation: 'https://www.biorxiv.org/content/early/2018/06/20/313296'
 
 pval_file: pvals.txt
+
+release_note:
+  1.0.3: added gene level summary
