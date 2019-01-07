@@ -40,6 +40,9 @@ gene_summary_output_columns:
   title: Gene p-value
   type: float
 
+tags:
+- scoring algorithm
+
 description: VEST annotation
 developer:
   name: 'Johns Hopkins University - Karchin Lab'

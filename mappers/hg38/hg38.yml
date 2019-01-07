@@ -84,6 +84,7 @@ report_substitution:
     IND: inframe deletion
     IIV: inframe insertion
     IDV: inframe deletion
+
 release_note:
     1.1.0: Sequence ontology terms change. FI1 and FI2 to FSI, FD1 and FD2 to FSD, IIV to INI, IDV to IND.
     1.1.1: Fix on SO sub

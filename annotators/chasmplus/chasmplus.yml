@@ -42,5 +42,8 @@ developer:
 
 pval_file: pvals.txt
 
+tags:
+- scoring algorithm
+
 release_note:
   1.0.3: added gene level summary
