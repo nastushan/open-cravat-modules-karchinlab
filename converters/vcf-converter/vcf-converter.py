@@ -29,7 +29,7 @@ class CravatConverter(BaseConverter):
                            'type':'float'}]
     
     def check_format(self, f): 
-        return f.readline().startswith('##fileformat=VCF')
+        return f.name.endswith('.vcf') or f.readline().startswith('##fileformat=VCF')
     
     def setup(self, f):
         
