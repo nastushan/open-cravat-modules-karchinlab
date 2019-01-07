@@ -3,6 +3,17 @@ widgetGenerators['biogrid'] = {
 		'width': 250, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
+			var id = infomgr.getRowValue(tabName, row, 'biogrid__id');
+			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			var head = hugo+' BioGRID'
+			var link = '';
+			if(id != null){
+				link = 'https://thebiogrid.org/'+id;
+			}
+			else{
+				id = '';
+			}
+			addInfoLineLink(div, head, id, link);
 			var acts = infomgr.getRowValue(tabName, row, 'biogrid__biogrid');
 			var actsls = acts != null ? acts.split('|') : [];
 			var table = getWidgetTableFrame();

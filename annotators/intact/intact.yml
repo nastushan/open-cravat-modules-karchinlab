@@ -12,7 +12,7 @@ output_columns:
     title: Interactors
     type: string
     width: 80
-description: 
+description: Molecular interaction data
 developer:
   name: 'Orchard S et al.'
   organization: 'European Bioinformatics Institute (EMBL-EBI)'

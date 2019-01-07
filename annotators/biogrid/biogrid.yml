@@ -12,10 +12,15 @@ output_columns:
     title: Interactors
     type: string
     width: 80
-description: 
+    desc: Other genes (separated by ;) this gene interacts with.
+  - name: id
+    title: ID
+    type: string
+    width: 58
+description: Comprehensive interaction repository
 developer:
   name: ''
-  organization: ''
+  organization: 'BioGRID'
   email: 'support@cravat.us'
   website: 'https://thebiogrid.org/'
   citation: 'https://sites.google.com/site/jpopgen/dbNSFP'

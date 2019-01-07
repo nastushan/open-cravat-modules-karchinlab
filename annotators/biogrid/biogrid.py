@@ -13,7 +13,7 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
         out = {}
         hugo = input_data['hugo']
-        self.cursor.execute('SELECT biogrid FROM genes WHERE gname= ?;', [hugo])
+        self.cursor.execute('select biogrid, id from genes join biogrid_id on genes.gname=biogrid_id.gname where genes.gname = ?;', [hugo])
         row = self.cursor.fetchone()
         if row is not None:
             rawlist = row[0].split('|')
@@ -22,6 +22,7 @@ class CravatAnnotator(BaseAnnotator):
                 glist.append(raw[:raw.find('[')])
             out['biogrid'] = row[0]
             out['genes'] = ';'.join(glist)
+            out['id'] = row[1]
         return out
     
     def cleanup(self):
