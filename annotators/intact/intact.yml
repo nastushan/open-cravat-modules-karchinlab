@@ -12,6 +12,7 @@ output_columns:
     title: Interactors
     type: string
     width: 80
+    desc: Other genes (separated by ;) this gene interacts with
 description: Molecular interaction data
 developer:
   name: 'Orchard S et al.'
