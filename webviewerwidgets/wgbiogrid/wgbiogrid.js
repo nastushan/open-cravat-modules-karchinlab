@@ -1,6 +1,6 @@
 widgetGenerators['biogrid'] = {
 	'gene': {
-		'width': 250, 
+		'width': 192, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
 			var id = infomgr.getRowValue(tabName, row, 'biogrid__id');

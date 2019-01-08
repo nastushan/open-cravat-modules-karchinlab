@@ -1,6 +1,6 @@
 widgetGenerators['prec'] = {
 	'gene': {
-		'width': 280, 
+		'width': 212, 
 		'height': 100, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Known Recessive Status', 'prec__stat', tabName);

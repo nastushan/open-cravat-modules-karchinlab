@@ -1,9 +1,10 @@
 widgetGenerators['siphy'] = {
 	'variant': {
-		'width': 280, 
-		'height': 190, 
+		'width': 152, 
+		'height': 210, 
+		'word-break': 'normal',
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Score', 'siphy__logodds', tabName);
+			addInfoLine(div, row, 'Score', 'siphy__logodds', tabName, 25);
 			addGradientBarComponent(div, row, 'Rank Score', 'siphy__logodds_rank', tabName);
 			var pis = infomgr.getRowValue(tabName, row, 'siphy__pi');
 			var pils = pis != null ? pis.split(';') : [];

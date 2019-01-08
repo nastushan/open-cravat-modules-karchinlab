@@ -1,8 +1,7 @@
 widgetGenerators['intact'] = {
 	'gene': {
-		'width': 250, 
+		'width': 162, 
 		'height': 250, 
-		//'word-break': 'normal',
 		'function': function (div, row, tabName) {
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			var head = hugo+' IntAct';
