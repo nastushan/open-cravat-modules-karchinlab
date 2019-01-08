@@ -1,0 +1,23 @@
+title: IntAct
+version: 2018.11.30
+type: annotator
+level: gene
+datasource: 4.0.0
+output_columns:
+  - name: intact
+    title: Raw Data
+    type: string
+    width: 70
+    hidden: True
+  - name: acts
+    title: Interactors
+    type: string
+    width: 80
+    desc: Other genes (separated by ;) this gene interacts with
+description: Molecular interaction data
+developer:
+  name: 'Orchard S et al.'
+  organization: 'European Bioinformatics Institute (EMBL-EBI)'
+  email: 'support@cravat.us'
+  website: 'https://www.ebi.ac.uk/intact/'
+  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
