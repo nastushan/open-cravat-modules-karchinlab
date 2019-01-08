@@ -20,7 +20,7 @@ output_columns:
     width: 58
 description: Comprehensive interaction repository
 developer:
-  name: ''
+  name: 'BioGRID'
   organization: 'BioGRID'
   email: 'support@cravat.us'
   website: 'https://thebiogrid.org/'
