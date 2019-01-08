@@ -13,15 +13,20 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
         out = {}
         hugo = input_data['hugo']
-        self.cursor.execute('select biogrid, id from genes join biogrid_id on genes.gname=biogrid_id.gname where genes.gname = ?;', [hugo])
+        self.cursor.execute('select biogrid, id from biogrid_id left join genes on biogrid_id.gname=genes.gname where biogrid_id.gname = ?;', [hugo])
         row = self.cursor.fetchone()
         if row is not None:
-            rawlist = row[0].split('|')
+            if row[0] is not None:
+                rawlist = row[0].split('|')
+            else:
+                rawlist = []
             glist = []
             for raw in rawlist:
                 glist.append(raw[:raw.find('[')])
+            glist.sort()
+            glist = filter(None, glist)
             out['biogrid'] = row[0]
-            out['genes'] = ';'.join(glist)
+            out['acts'] = ';'.join(glist)
             out['id'] = row[1]
         return out
     

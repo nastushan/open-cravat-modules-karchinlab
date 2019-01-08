@@ -20,8 +20,10 @@ class CravatAnnotator(BaseAnnotator):
             glist = []
             for raw in rawlist:
                 glist.append(raw[:raw.find('[')])
+            glist.sort()
+            glist = filter(None, glist)
             out['intact'] = row[0]
-            out['genes'] = ';'.join(glist)
+            out['acts'] = ';'.join(glist)
         return out
     
     def cleanup(self):

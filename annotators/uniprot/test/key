@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Monday 01/07/2019 11:00:36
+#Created at Tuesday 01/08/2019 13:11:54
 #Report level: variant
 #
 Base Information											Tag Sampler		
@@ -16,7 +16,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 10	chrX	124022628	A	T	Y	STAG2	ENST00000218089.13	missense	M1L	ENST00000218089.13:STAG2:(na):missense:M1L:A1T; ENST00000371144.7:STAG2:Q8N3U4:missense:M1L:A1T; ENST00000371145.7:STAG2:(na):missense:M1L:A1T; ENST00000371157.7:STAG2:Q8N3U4:missense:M1L:A1T; ENST00000371160.5:STAG2:Q8N3U4:missense:M1L:A1T	1		STAG2
 11	chrY	13479665	T	A	Y	UTY	ENST00000545955.5	missense	M1L	ENST00000329134.9:UTY:(na):missense:M1L:A1T; ENST00000331397.8:UTY:O14607:missense:M1L:A1T; ENST00000362096.8:UTY:O14607:missense:M1L:A1T; ENST00000382893.2:UTY:A6NCS7:missense:M1L:A1T; ENST00000382896.8:UTY:(na):missense:M1L:A1T; ENST00000537580.5:UTY:A0A096LPD8:missense:M1L:A1T; ENST00000538878.5:UTY:F5H3N7:missense:M1L:A1T; ENST00000540140.5:UTY:F5GWV3:missense:M1L:A1T; ENST00000545955.5:UTY:F5H8B4:missense:M1L:A1T; ENST00000612274.4:UTY:A0A087X2I9:missense:M1L:A1T; ENST00000617789.4:UTY:A0A087X0Y2:missense:M1L:A1T; ENST00000618474.4:UTY:A0A087X248:missense:M1L:A1T; ENST00000624098.3:UTY:(na):missense:M1L:A1T	1		UTY
 #CRAVAT Report
-#Created at Monday 01/07/2019 11:00:36
+#Created at Tuesday 01/08/2019 13:11:54
 #Report level: gene
 #
 Base Information				UniProt
@@ -26,14 +26,14 @@ BRCA2	1	missense	missense(1)	P51587
 CASP8	1	missense	missense(1)	Q14790
 DNMT1	1	missense	missense(1)	P26358
 MED12	1	missense	missense(1)	Q93074
-MKL1	1	missense	missense(1)	Q969V6
+MKL1	1	missense	missense(1)	
 MSH2	1	missense	missense(1)	P43246
 MTMR3	1	missense	missense(1)	Q13615
 PIWIL3	1	missense	missense(1)	Q7Z3Z3
 STAG2	1	missense	missense(1)	Q8N3U4
 UTY	1	missense	missense(1)	O14607
 #CRAVAT Report
-#Created at Monday 01/07/2019 11:00:36
+#Created at Tuesday 01/08/2019 13:11:54
 #Report level: sample
 #
 Base Information	
@@ -50,7 +50,7 @@ UID	Sample
 10	
 11	
 #CRAVAT Report
-#Created at Monday 01/07/2019 11:00:36
+#Created at Tuesday 01/08/2019 13:11:54
 #Report level: mapping
 #
 Base Information		

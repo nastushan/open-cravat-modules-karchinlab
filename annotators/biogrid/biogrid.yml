@@ -1,14 +1,15 @@
 title: BioGRID
-version: 3.5.0
+version: 3.5.167
 type: annotator
 level: gene
+datasource: 4.0.0
 output_columns:
   - name: biogrid
     title: Raw Data
     type: string
     width: 70
     hidden: True
-  - name: genes
+  - name: acts
     title: Interactors
     type: string
     width: 80

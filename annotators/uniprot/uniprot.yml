@@ -1,7 +1,8 @@
 title: UniProt
-version: 3.5.0
+version: 2018.9.0
 type: annotator
 level: gene
+datasource: 4.0.0
 output_columns:
   - name: acc
     title: Accession Number

@@ -2,39 +2,25 @@ widgetGenerators['intact'] = {
 	'gene': {
 		'width': 250, 
 		'height': 250, 
+		//'word-break': 'normal',
 		'function': function (div, row, tabName) {
-			var acts = infomgr.getRowValue(tabName, row, 'intact__intact');
-			var actsls = acts != null ? acts.split('|') : [];
+			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			var head = hugo+' IntAct';
+			var link = 'https://www.ebi.ac.uk/intact/query/geneName:'+hugo;
+			addInfoLineLink(div, head, 'Link', link);
+			var acts = infomgr.getRowValue(tabName, row, 'intact__acts');
+			var actsls = acts != null ? acts.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['Interactor', 'PubMed Link']);
+			var thead = getWidgetTableHead(['Interactors']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);
-			for (var j=0;j<actsls.length-1;j++){
-				var gene = actsls[j].slice(0, actsls[j].indexOf('['));
-				var pubid = actsls[j].slice(actsls[j].indexOf('[')+1,actsls[j].indexOf(']'));
-				var pubidls = pubid.split(';');
-				var links = [];
-				for(var i=0;i<pubidls.length;i++){
-					var link = '';
-					if(links.indexOf(pubidls[i]) == -1){
-						if (!pubidls[i].startsWith('unassigned')){
-							link = 'https://www.ncbi.nlm.nih.gov/pubmed/'+pubidls[i];
-						}
-						else{
-							link = pubidls[i];
-						}
-						links.push(pubidls[i])
-					}
-					else{
-						link = links[links.indexOf(pubidls[i])]
-					}
-					var tr = getWidgetTableTr([gene, link]);
-					addEl(tbody, tr);
-				}
-			addEl(div, addEl(table, tbody));
+			for (var j=0;j<actsls.length;j++){
+				var tr = getWidgetTableTr([actsls[j]]);
+				addEl(tbody, tr);
 			}
+			addEl(div, addEl(table, tbody));
 		}
 	}
 }

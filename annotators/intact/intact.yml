@@ -1,14 +1,15 @@
 title: IntAct
-version: 3.5.0
+version: 2018.11.30
 type: annotator
 level: gene
+datasource: 4.0.0
 output_columns:
   - name: intact
     title: Raw Data
     type: string
     width: 70
     hidden: True
-  - name: genes
+  - name: acts
     title: Interactors
     type: string
     width: 80
