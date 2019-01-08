@@ -1,9 +1,9 @@
-description: Repeating elements from RepeatMasker and Simple Repeat libraries
+description: Repeating elements from RepeatMasker and Simple Repeat tracks of UCSC hg38 database
 developer:
   citation: UCSC Genome Browser Tracks rmsk and simpleRepeat were used to obtain Low complexity, SINE, LINE, LTR, Simple Repeat, and Satellite data and they were combined.
   email: ''
-  name: Genetic Information Research Institute
-  organization: Genetic Information Research Institute
+  name: 
+  organization: UCSC
   website: http://genome.ucsc.edu
 level: variant
 output_columns:
