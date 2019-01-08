@@ -15,7 +15,7 @@ Review Status is the level of review supporting the assertion of clinical signif
 7. No assertion criteria provided
 8. No assertion provided
 
-See [https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/] for more information.
+See [Clinvar Review Status](https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/) for more information.
 
 ![Screenshot](clinvar_screenshot_1.png)
 <br />
