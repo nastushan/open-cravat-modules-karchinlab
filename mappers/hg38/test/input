@@ -1,6 +1,7 @@
 #Chrom	Position	Strand	Ref	Alt	Sample	Tag
 #Plus Strand Tests
 chr1	155208824	+	C	T		plus_SBS_MIS
+chr1	155208824	+	C			plus_SBS_MIS_NoRef
 chr1	155210348	+	C	T		plus_SBS_SYN
 chr1	155213481	+	C	T		plus_us_int
 chr1	155213482	+	A	C		plus_us_ss1
@@ -29,6 +30,7 @@ chr1	155215823	+	C	A		plus_at_ds_end
 chr1	155215824	+	A	C		plus_after_ds_end
 #Minus Strand
 chr17	43047643	+	C	T		minus_SBS_MIS
+chr17	43047643	+	C			minus_SBS_MIS_NoRef
 chr17	41624183	+	G	A		minus_SBS_SYN
 chr17	41624191	+	C	T		minus_SBS_weird
 chr17	43079400	+	C	T		minus_spl1
