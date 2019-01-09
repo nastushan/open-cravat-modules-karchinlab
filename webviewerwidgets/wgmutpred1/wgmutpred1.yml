@@ -1,8 +1,8 @@
-title: MUTPRED
+title: MutPred
 version: 1.0.0
 type: webviewerwidget
 required_annotator: mutpred1
-description: MUTPRED webviewer widget
+description: MutPred webviewer widget
 developer:
   name: ''
   organization: ''

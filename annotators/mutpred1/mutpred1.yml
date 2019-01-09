@@ -1,5 +1,5 @@
 title: MutPred
-version: 1.2.1
+version: 1.2.2
 type: annotator
 
 level: variant
@@ -17,7 +17,7 @@ output_columns:
   type: float
   width: 85
 - name: mutpred_top5_mechanisms
-  title: Top 5 mechanisms
+  title: Top 5 molecular mechanisms
   type: string
   hidden: True
   width: 90
