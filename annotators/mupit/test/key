@@ -1,48 +1,49 @@
-CRAVAT Report
-#Created at Thursday 04/05/2018 09:03:02
+#CRAVAT Report
+#Created at Wednesday 01/09/2019 10:50:24
 #Report level: variant
 #
-Base Information								MuPIT		Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Link	Hugo	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
-1	chr1	12666689	C	T	AADACL4	ENST00000376221.1	{"AADACL4":[["Q5VUY2","S393F","MIS","ENST00000376221.1","C1178T"]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr1:12666689	AADACL4	2	S1,S2	SBS1_AADACL4,SBS3_AADACL4						
-2	chr1	12666560	G	A	AADACL4	ENST00000376221.1	{"AADACL4":[["Q5VUY2","R350H","MIS","ENST00000376221.1","G1049A"]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr1:12666560	AADACL4	1	S1	SBS2_AADACL4						
-3	chr7	27199497	C	G	HOXA13	ENST00000222753.5	{"HOXA13":[["P31271","C194S","MIS","ENST00000222753.5","G581C"]]}			1	S1	SBS_HOXA13						
-4	chr12	8845496	A	T	A2ML1	ENST00000299698.11	{"A2ML1":[["A8K2U0","K511*","STG","ENST00000299698.11","A1531T"],[null,"K20*","STG","ENST00000539547.5","A58T"]]}			1	S1	SBS1_A2ML1						
-5	chr12	8852253	C	T	A2ML1	ENST00000299698.11	{"A2ML1":[["A8K2U0","S836L","MIS","ENST00000299698.11","C2507T"],[null,"S345L","MIS","ENST00000539547.5","C1034T"]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr12:8852253	A2ML1	1	S1	SBS2_A2ML1						
-6	chr11	35206205	A	C	CD44	ENST00000428726.6	{"CD44":[["P16070","H459P","MIS","ENST00000428726.6","A1376C"],[null,"H416P","MIS","ENST00000415148.6","A1247C"],[null,null,"INT","ENST00000352818.8",null],[null,null,"INT","ENST00000434472.6",null],[null,null,"INT","ENST00000433892.6",null],[null,null,"INT","ENST00000278386.10",null],[null,null,"INT","ENST00000263398.10",null],["H0YD13",null,"INT","ENST00000526669.6",null]]}	http://www.cravat.us/MuPIT_Interactive?gm=chr11:35206205	CD44	1	S1	SBS_CD44						
+Base Information											MuPIT		Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Link	Hugo	Number of Samples	Samples	Tags
+1	chr1	1719358	A	G	Y	CDK11A	ENST00000378633.5	missense	W109R	ENST00000356200.7:CDK11A:Q5QPR4:missense:C75R:T223C; ENST00000357760.6:CDK11A:Q5QPR3:missense:W109R:T325C; ENST00000358779.9:CDK11A:(na):missense:W109R:T325C; ENST00000378633.5:CDK11A:Q9UQ88:missense:W109R:T325C; ENST00000378638.6:CDK11A:Q5QPR4:missense:C75R:T223C; ENST00000404249.7:CDK11A:(na):missense:C109R:T325C	http://www.cravat.us/MuPIT_Interactive?gm=chr1:1719358	CDK11A	1	S1	CDK11A
+2	chr1	1719393	A	G	Y	CDK11A	ENST00000378633.5	missense	V97A	ENST00000356200.7:CDK11A:Q5QPR4:missense:V63A:T188C; ENST00000357760.6:CDK11A:Q5QPR3:missense:V97A:T290C; ENST00000358779.9:CDK11A:(na):missense:V97A:T290C; ENST00000378633.5:CDK11A:Q9UQ88:missense:V97A:T290C; ENST00000378638.6:CDK11A:Q5QPR4:missense:V63A:T188C; ENST00000404249.7:CDK11A:(na):missense:V97A:T290C	http://www.cravat.us/MuPIT_Interactive?gm=chr1:1719393	CDK11A	1	S2	CDK11A
+3	chr1	1719406	G	A	Y	CDK11A	ENST00000378633.5	missense	R93W	ENST00000356200.7:CDK11A:Q5QPR4:missense:R59W:C175T; ENST00000357760.6:CDK11A:Q5QPR3:missense:R93W:C277T; ENST00000358779.9:CDK11A:(na):missense:R93W:C277T; ENST00000378633.5:CDK11A:Q9UQ88:missense:R93W:C277T; ENST00000378638.6:CDK11A:Q5QPR4:missense:R59W:C175T; ENST00000404249.7:CDK11A:(na):missense:R93W:C277T	http://www.cravat.us/MuPIT_Interactive?gm=chr1:1719406	CDK11A	1	S3	CDK11A
+4	chr7	27199497	C	G	Y	HOXA13	ENST00000222753.5	missense	C194S	ENST00000222753.5:HOXA13:P31271:missense:C194S:G581C			1	S1	SBS_HOXA13
+5	chr12	8845496	A	T	Y	A2ML1	ENST00000299698.11	stop gained	K511*	ENST00000299698.11:A2ML1:A8K2U0:stop gained:K511*:A1531T; ENST00000539547.5:A2ML1:(na):stop gained:K20*:A58T			1	S1	SBS1_A2ML1
+6	chr12	8852253	C	T	Y	A2ML1	ENST00000299698.11	missense	S836L	ENST00000299698.11:A2ML1:A8K2U0:missense:S836L:C2507T; ENST00000539547.5:A2ML1:(na):missense:S345L:C1034T	http://www.cravat.us/MuPIT_Interactive?gm=chr12:8852253	A2ML1	1	S1	SBS2_A2ML1
+7	chr1	3860425	C	T	Y	DFFB	ENST00000625756.2	missense	R83C	ENST00000338895.7:DFFB:B4DZS0:intron:(na):(na); ENST00000341385.4:DFFB:A0A0B4J1S5:intron:(na):(na); ENST00000378209.7:DFFB:O76075:intron:(na):(na); ENST00000625756.2:DFFB:G3XAD0:missense:R83C:C247T	http://www.cravat.us/MuPIT_Interactive?gm=chr1:3860425	DFFB	1	S1	DFFB
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:03:03
+#Created at Wednesday 01/09/2019 10:50:24
 #Report level: gene
 #
 Base Information				MuPIT
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	MuPIT link
-A2ML1	2	STG	STG(1),MIS(1)	http://www.cravat.us/MuPIT_Interactive?gm=chr12:8852253
-AADACL4	2	MIS	MIS(2)	http://www.cravat.us/MuPIT_Interactive?gm=chr1:12666689,chr1:12666560
-CD44	1	MIS	MIS(1)	http://www.cravat.us/MuPIT_Interactive?gm=chr11:35206205
-HOXA13	1	MIS	MIS(1)	
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Link
+CDK11A	3	missense	missense(3)	http://www.cravat.us/MuPIT_Interactive?gm=chr1:1719358,chr1:1719393,chr1:1719406
+HOXA13	1	missense	missense(1)	
+A2ML1	2	stop gained	stop gained(1),missense(1)	http://www.cravat.us/MuPIT_Interactive?gm=chr12:8852253
+DFFB	1	missense	missense(1)	http://www.cravat.us/MuPIT_Interactive?gm=chr1:3860425
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:03:03
+#Created at Wednesday 01/09/2019 10:50:24
 #Report level: sample
 #
 Base Information	
 UID	Sample
 1	S1
-2	S1
-1	S2
-3	S1
+2	S2
+3	S3
 4	S1
 5	S1
 6	S1
+7	S1
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:03:03
+#Created at Wednesday 01/09/2019 10:50:24
 #Report level: mapping
 #
 Base Information		
 Original Line	User Tags	UID
-2	SBS1_AADACL4	1
-3	SBS2_AADACL4	2
-4	SBS3_AADACL4	1
-5	SBS_HOXA13	3
-6	SBS1_A2ML1	4
-7	SBS2_A2ML1	5
-8	SBS_CD44	6
+2	CDK11A	1
+3	CDK11A	2
+4	CDK11A	3
+5	SBS_HOXA13	4
+6	SBS1_A2ML1	5
+7	SBS2_A2ML1	6
+8	DFFB	7
