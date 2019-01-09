@@ -21,7 +21,7 @@ developer:
   organization: 'Sanger Institute'
   email: 'support@cravat.us'
   website: 'https://cancer.sanger.ac.uk/cosmic'
-  citation: 'https://academic.oup.com/nar/article/45/D1/D777/2605743'
+  citation: 'Simon A. Forbes et al; COSMIC: somatic cancer genetics at high-resolution, Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D777–D783, https://doi.org/10.1093/nar/gkw1121'
 
 release_note:
   85.0.2: added index to data for speed
