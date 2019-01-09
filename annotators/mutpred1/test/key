@@ -3,7 +3,7 @@
 #Report level: variant
 #
 Base Information											MutPred				Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Uniprot	Variant	Pathogenicity score	Top 5 mechanisms	Number of Samples	Samples	Tags
+UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Uniprot	Variant	Pathogenicity score	Top 5 molecular mechanisms	Number of Samples	Samples	Tags
 1	chr1	6586927	C	A	Y	ZBTB48	ENST00000619514.1	missense	S64Y	ENST00000377674.8:ZBTB48:P10074:intron:(na):(na); ENST00000619514.1:ZBTB48:A0A087WZL2:missense:S64Y:C191A					1	s1	
 2	chr1	26780588	G	A	Y	ARID1A	ENST00000324856.11	missense	M2230I	ENST00000324856.11:ARID1A:O14497:missense:M2230I:G6690A; ENST00000374152.6:ARID1A:(na):missense:M1847I:G5541A; ENST00000457599.6:ARID1A:(na):missense:M2013I:G6039A	O14497	M2230I	0.532	Loss of disorder (P = 0.027); Loss of MoRF binding (P = 0.1004); Gain of helix (P = 0.2684); Loss of phosphorylation at S2227 (P = 0.288); Gain of catalytic residue at A2234 (P = 0.3105)	1	s1	
 3	chr1	55005088	G	A	Y	BSND	ENST00000371265.4	missense	E82K	ENST00000371265.4:BSND:Q8WZ55:missense:E82K:G244A	Q8WZ55	E82K	0.302	Gain of ubiquitination at E82 (P = 0.0117); Gain of glycosylation at E82 (P = 0.0966); Gain of methylation at E82 (P = 0.0975); Loss of helix (P = 0.1299); Gain of relative solvent accessibility (P = 0.1684)	1	s1	
