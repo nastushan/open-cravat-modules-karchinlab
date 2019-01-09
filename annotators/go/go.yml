@@ -19,6 +19,7 @@ output_columns:
   title: Full Aspects
   type: string
   hidden: True
+  width: 57
 - name: set_asp
   title: Aspects
   type: string
@@ -28,10 +29,12 @@ output_columns:
   title: Reference
   type: string
   hidden: True
+  width: 75
 - name: evi
   title: Evidence Code
   type: string
   hidden: True
+  width: 60
 
 description: Gene Ontology (GO) project provides a comprehensive computable knowledge regarding the functions of genes and gene products.
 developer:
