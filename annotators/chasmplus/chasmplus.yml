@@ -1,6 +1,6 @@
 name: chasmplus
 title: CHASMplus
-version: 1.0.3
+version: 1.0.4
 type: annotator
 
 level: variant
@@ -36,7 +36,7 @@ description: CHASMplus is a machine learning algorithm that discriminates somati
 developer:
   name: 'Collin Tokheim'
   organization: 'Johns Hopkins University - Karchin Lab'
-  email: 'ctokheim@jhu.edu'
+  email: 'ctokhei1@alumni.jh.edu'
   website: 'http://chasmplus.readthedocs.io/en/latest/'
   citation: 'https://www.biorxiv.org/content/early/2018/06/20/313296'
 
@@ -46,4 +46,5 @@ tags:
 - scoring algorithm
 
 release_note:
+  1.0.4: updated email, 
   1.0.3: added gene level summary
