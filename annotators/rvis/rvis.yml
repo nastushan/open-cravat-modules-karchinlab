@@ -1,5 +1,5 @@
 title: RVIS
-version: 3.0.01
+version: 3.0.02
 type: annotator
 level: gene
 output_columns:
@@ -14,13 +14,16 @@ output_columns:
     title: FDR p-value
     type: float
     width: 54
+    hidden: True
   - name: rvis_exac
     title: ExAC-based RVIS
     type: float
+    hidden: True
   - name: rvis_perc_exac
     title: ExAC-based Percentile
     type: float
     width: 67
+    hidden: True
 description: Residual variation intolerance scoring
 developer:
   name: 'Slavé Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David B. Goldstein'
