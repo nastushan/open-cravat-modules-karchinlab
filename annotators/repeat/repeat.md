@@ -2,9 +2,7 @@
 
 ## Overview
  
-Learn whether your module falls into a repeat region.
-
-This can be useful for knowing if you're in a reasonable complexity region.
+Annotation of repeat regions. UCSC Genome Browser Tracks rmsk and simpleRepeat were used to obtain Low complexity, SINE, LINE, LTR, Simple Repeat, and Satellite data.
 
 ## Outputs
 
