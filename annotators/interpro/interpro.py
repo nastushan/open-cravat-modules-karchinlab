@@ -12,11 +12,12 @@ class CravatAnnotator(BaseAnnotator):
     
     def annotate(self, input_data, secondary_data=None):
         out = {}
-        stmt = 'SELECT domain FROM {chr} WHERE pos = {pos} AND alt = "{alt}"'.format(chr=input_data["chrom"], pos=int(input_data["pos"]), alt = input_data["alt_base"])
+        stmt = 'SELECT uniprot_acc, domain FROM {chr} WHERE pos = {pos} AND alt = "{alt}"'.format(chr=input_data["chrom"], pos=int(input_data["pos"]), alt = input_data["alt_base"])
         self.cursor.execute(stmt)
         row = self.cursor.fetchone()
         if row is not None:
-            out['domain'] = row[0]
+            out['uniprot_acc'] = row[0]
+            out['domain'] = row[1]
         return out
     
     def cleanup(self):

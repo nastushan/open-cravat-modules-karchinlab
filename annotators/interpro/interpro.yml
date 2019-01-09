@@ -5,6 +5,11 @@ datasource: 4.0.0
 level: variant
 input_format: crv
 output_columns:
+- name: uniprot_acc
+  title: UniProt Accession Number
+  type: string
+  width: 70
+  desc: Associated UniProt accession number. Multiple entries separated by ";"
 - name: domain
   title: Domain
   type: string
