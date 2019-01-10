@@ -9,7 +9,7 @@ class Reporter(CravatReport):
         else: 
             if self.savepath[-5:] != '.tsv':
                 self.savepath = self.savepath + '.tsv'
-        self.wf = open(self.savepath, 'w')
+        self.wf = open(self.savepath, 'w', encoding='utf-8')
     
     def end (self):
         self.wf.close()
