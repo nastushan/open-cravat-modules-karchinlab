@@ -1,7 +1,7 @@
 widgetGenerators['rvis'] = {
 	'gene': {
 		'width': 280, 
-		'height': 280, 
+		'height': 140, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Residual Variation Intolerance Score', 'rvis__rvis_evs', tabName)
 			addInfoLine(div, row, 'RVIS Percentile Rank', 'rvis__rvis_perc_evs', tabName)

@@ -1,10 +1,10 @@
-widgetGenerators['mutpred1_hg38'] = {
+widgetGenerators['mutpred1'] = {
 	'variant': {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			addBarComponent(div, row, 'MUTPRED Score', 'mutpred1_hg38__mutpred_general_score', tabName);
-			var top5Mechs = infomgr.getRowValue(tabName, row, 'mutpred1_hg38__mutpred_top5_mechanisms');
+			addBarComponent(div, row, 'MutPred Score', 'mutpred1__mutpred_general_score', tabName);
+			var top5Mechs = infomgr.getRowValue(tabName, row, 'mutpred1__mutpred_top5_mechanisms');
 			if (top5Mechs == null) {
 				addEl(div, addEl(getEl('span'), getTn('N/A')));
 			} else {

@@ -12,6 +12,19 @@ The CHASMplus output contains two main components: a score and a p-value. High s
 
 CHASMplus scores all possible missense mutations on all transcripts. Therefore keep in mind that the same genomic mutation may have slightly varying scores depending on the transcript. OpenCRAVAT decides which among many transcripts will be chosen as the default. All scores provided through OpenCRAVAT are weighted by their respective gene based on 20/20+ (gene weighted CHASMplus scores). 
 
+## Cancer Type Abbreviations Guide
+
+| Abbr. | Full | Abbr. | Full | Abbr. | Full | Abbr. | Full | Abbr. | Full |
+|--------------|------------------------------------------------------------------|--------------|---------------------------------------|--------------|------------------------------------|--------------|--------------------------------------|--------------|----------------|
+| ACC | Adrenocortical carcinoma | HNSC | Head and Neck squamous cell carcinoma | LUSC | Lung squamous cell carcinoma | SARC | Sarcoma | UVM | Uveal Melanoma |
+| BLCA | Bladder Urothelial Carcinoma | KICH | Kidney Chromophobe | MESO | Mesothelioma | SKCM | Skin Cutaneous Melanoma |  |  |
+| CESC | Cervical squamous cell carcinoma and endocervical adenocarcinoma | KIRC | Kidney renal clear cell carcinoma | OV | Ovarian serous cystadenocarcinoma | STAD | Stomach adenocarcinoma |  |  |
+| CHOL | Cholangiocarcinoma | KIRP | Kidney renal papillary cell carcinoma | PAAD | Pancreatic adenocarcinoma | TGCT | Testicular Germ Cell Tumors |  |  |
+| COAD | Colon adenocarcinoma | LAML | Acute Myeloid Leukemia | PANCAN | PAN Cancer | THCA | Thyroid carcinoma |  |  |
+| DLBC | Lymphoid Neoplasm Diffuse Large B-cell Lymphoma | LGG | Brain Lower Grade Glioma | PCPG | Pheochromocytoma and Paraganglioma | THYM | Thymoma |  |  |
+| ESCA | Esophageal carcinoma | LIHC | Liver hepatocellular carcinoma | PRAD | Prostate adenocarcinoma | UCEC | Uterine Corpus Endometrial Carcinoma |  |  |
+| GBM | Glioblastoma multiforme | LUAD | Lung adenocarcinoma | READ | Rectum adenocarcinoma | UCS | Uterine Carcinosarcoma |  |  |
+
 ## Support
 
 This work was supported by:
