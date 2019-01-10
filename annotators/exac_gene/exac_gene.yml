@@ -1,5 +1,5 @@
 title: ExAC Gene Constraint & CNV Score
-version: 0.3.11
+version: 0.3.12
 type: annotator
 level: gene
 output_columns:
@@ -20,31 +20,37 @@ output_columns:
     type: float
     desc: Probability LoF Intolerance (Hom&Het) NonTCGA
     width: 64
+    hidden: True
   - name: exac_nontcga_prec
     title: pLI (Hom) NonTCGA
     type: float
     desc: Probability LoF Intolerance (Hom) NonTCGA
     width: 68
+    hidden: True
   - name: exac_nontcga_pnull
     title: pLT NonTCGA
     type: float
     desc: Probability LoF Tolerance (Hom&Het) NonTCGA
     width: 64
+    hidden: True
   - name: exac_nonpsych_pli
     title: pLI Nonpsych
     type: float
     desc: Probability LoF Intolerance (Hom&Het) Nonpsych
     width: 65
+    hidden: True
   - name: exac_nonpsych_prec
     title: pLI (Hom) Nonpsych
     type: float
     desc: Probability LoF Intolerance (Hom) Nonpsych
     width: 68
+    hidden: True
   - name: exac_nonpsych_pnull
     title: pLT Nonpsych
     type: float
     desc: Probability LoF Tolerance (Hom&Het) Nonpsych
     width: 65
+    hidden: True
   - name: exac_del_score
     title: Del Int Z-Score
     type: float
