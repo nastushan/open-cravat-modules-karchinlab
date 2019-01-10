@@ -1,5 +1,5 @@
 title: CHASMplus widget
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: chasmplus
 description: CHASMplus webviewer widget

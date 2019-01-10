@@ -5,7 +5,7 @@ widgetGenerators['chasmplus'] = {
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Score', 'chasmplus__score', tabName);
 			if(typeof addGradientBarComponent == 'function'){
-				addGradientBarComponent(div, row, 'P-value', 'chasmplus__pval', tabName, {'0.01':[255,0,0], '0.05':[255,255,0]});
+				addGradientBarComponent(div, row, 'P-value', 'chasmplus__pval', tabName, {'0.01':[255,0,0], '0.05':[255,255,0], '0.050000001':[255,255,255]});
 			}
 			else{
 				addInfoLine(div, row, 'P-value', 'chasmplus__pval', tabName);
