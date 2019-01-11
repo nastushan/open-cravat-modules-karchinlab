@@ -7,13 +7,13 @@ level: variant
 input_format: crv
 output_columns:
 - name: ea_pop_af
-  title: EA
+  title: AF European American
   type: float
-  width: 50
+  width: 68
 - name: aa_pop_af
-  title: AA
+  title: AF African American
   type: float
-  width: 50
+  width: 68
 
 description: Exome Sequencing Project 6500
 developer:
