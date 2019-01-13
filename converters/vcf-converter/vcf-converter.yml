@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.0.1
+version: 1.0.2
 type: converter
 description: Converter for VCF format input
 developer:
@@ -10,4 +10,5 @@ developer:
   citation: ''
 
 release_note:
+  1.0.2: . in ID becomes empty tag instead of VAR_ tag.
   1.0.1: detects format from extension .vcf.
