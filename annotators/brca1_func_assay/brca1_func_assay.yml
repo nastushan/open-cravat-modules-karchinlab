@@ -1,5 +1,5 @@
 title: BRCA1 Multiplex Assay
-version: 2018.12.20
+version: 2018.12.26
 type: annotator
 level: variant
 input_format: crv
@@ -7,12 +7,12 @@ output_columns:
 - name: score
   title: Function Score Mean
   type: float
-  width: 60
+  width: 140
   hidden: True
 - name: class
   title: Function Class
   type: string
-  width: 60
+  width: 160
 description: BRCA1 Multiplex Assay is a database providing accurate discrimination of loss-of-function versus benign missense variants in BRCA1.
 developer:
   name: 'Lea Starita'
