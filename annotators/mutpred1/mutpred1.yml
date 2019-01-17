@@ -12,6 +12,7 @@ output_columns:
 - name: amino_acid_substitution
   title: Variant
   type: string
+  hidden: true
 - name: mutpred_general_score
   title: Score
   type: float

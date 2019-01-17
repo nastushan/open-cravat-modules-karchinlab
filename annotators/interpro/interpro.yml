@@ -10,6 +10,7 @@ output_columns:
   type: string
   width: 70
   desc: Associated UniProt accession number. Multiple entries separated by ";"
+  hidden: true
 - name: domain
   title: Domain
   type: string
