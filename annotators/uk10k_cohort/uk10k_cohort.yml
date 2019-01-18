@@ -7,6 +7,7 @@ output_columns:
 - name: uk10k_twins_ac
   title: Twins AC
   type: float
+  hidden: True
 - name: uk10k_twins_af
   title: Twins AF
   type: float
@@ -14,6 +15,7 @@ output_columns:
   title: ALSPAC AC
   type: float
   width: 56
+  hidden: True
 - name: uk10k_alspac_af
   title: ALSPAC AF
   type: float
