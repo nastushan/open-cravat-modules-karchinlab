@@ -98,7 +98,7 @@ class CravatAnnotator(BaseAnnotator):
         hgvs_ref = ''
         hgvs_so = ''
         hgvs_alt = ''
-        if tseq.pref != tseq.palt:
+        if tseq.pref != tseq.palt: # Not synonomous
             repeat_unit, repeat_count = self._get_repeat_info(tseq.palt)
             head_repeat_count = self._count_seq_tail_repeats(tseq.shared_phead,
                                                              repeat_unit)
@@ -110,8 +110,7 @@ class CravatAnnotator(BaseAnnotator):
                 else:
                     count_to_stop = str(len(tseq.palt_and_tail.split('*')[0])+1)
                 hgvs_alt = '%sfs*%s' %(aa_let_to_abbv(tseq.palt_and_tail[0]), count_to_stop)
-#             elif head_ends_in_repeat_unit and tseq.pref == '': # Repeat or Duplication
-            elif head_repeat_count > 0 and tseq.pref == '':
+            elif head_repeat_count > 0 and tseq.pref == '': # Repeat or Duplication
                 repeat_count += head_repeat_count
                 unit_start_index = tseq.ppos_start - len(repeat_unit)
                 head_unit = tseq.shared_phead[unit_start_index:]
@@ -272,10 +271,10 @@ class TranscriptSequence(object):
                         +self.full_seq[ full_seq_var_start + len(ref) : ]
         self.alt_pseq, self.alt_extra = self._translate_bases(self.alt_tseq)
         head, pref, palt, tail = _trim_sequence(self.ref_pseq, self.alt_pseq)
-        if tail == '*':
-            pref += '*'
-            palt += '*'
-            tail = ''
+        # if tail == '*':
+        #     pref += '*'
+        #     palt += '*'
+        #     tail = ''
         self.pref = pref
         self.palt = palt
         self.shared_phead = head
