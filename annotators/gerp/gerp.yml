@@ -1,5 +1,5 @@
 title: GERP++
-version: 3.5.01
+version: 3.5.02
 type: annotator
 level: variant
 input_format: crv
@@ -8,13 +8,15 @@ output_columns:
   title: Neutral Rate
   type: float
   hidden: true
+  width: 60
 - name: gerp_rs
   title: RS Score
   type: float
+  width: 60
 - name: gerp_rs_rank
   title: RS Ranked Score
   type: float
-  width: 58
+  width: 60
 description: Genomic Evolutionary Rate Profiling
 developer:
   name: 'Stanford University Sidow Lab'

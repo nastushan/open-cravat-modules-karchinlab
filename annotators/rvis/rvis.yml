@@ -1,5 +1,5 @@
 title: RVIS
-version: 3.0.02
+version: 3.0.03
 type: annotator
 level: gene
 output_columns:
@@ -9,7 +9,7 @@ output_columns:
   - name: rvis_perc_evs
     title: Percentile Rank
     type: float
-    width: 65
+    width: 70
   - name: rvis_fdr_exac
     title: FDR p-value
     type: float

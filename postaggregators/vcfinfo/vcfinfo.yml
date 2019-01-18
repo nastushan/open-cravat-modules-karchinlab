@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.4
+version: 1.0.5
 type: postaggregator
 
 name: vcfinfo
@@ -18,7 +18,7 @@ output_columns:
 - name: zygosity
   title: Zygosity
   type: string
-  width: 90
+  width: 100
   category: multi
 - name: alt_reads
   title: Alternate reads
@@ -31,7 +31,7 @@ output_columns:
 - name: af
   title: Variant AF
   type: string
-  width: 80
+  width: 90
 
 description: Writes VCF file information extracted by converter
 developer:
