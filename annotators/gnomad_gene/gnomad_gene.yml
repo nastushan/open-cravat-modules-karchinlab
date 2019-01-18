@@ -1,0 +1,47 @@
+title: gnomAD Gene
+version: 2.1.0
+type: annotator
+level: gene
+output_columns:
+  - name: transcript
+    title: Transcript
+    type: string
+    width: 68
+  - name: oe_lof
+    title: Obv/Exp LoF
+    type: string
+    width: 70
+  - name: oe_mis
+    title: Obv/Exp Mis
+    type: string
+    width: 70
+  - name: oe_syn
+    title: Obv/Exp Syn
+    type: string
+    width: 70
+    hidden: True
+  - name: lof_z
+    title: LoF Z-Score
+    type: string
+  - name: mis_z
+    title: Mis Z-Score
+    type: string
+  - name: syn_z
+    title: Syn Z-Score
+    type: string
+    hidden: True
+  - name: pLI
+    title: pLI
+    type: string
+  - name: pRec
+    title: pRec
+    type: string
+  - name: pNull
+    title: pNull
+    type: string
+description: 
+  name: 'Broad Institute'
+  organization: 'Broad Institute'
+  email: 'support@cravat.us'
+  website: 'http://gnomad.broadinstitute.org/'
+  citation: 'https://www.nature.com/articles/nature19057'
