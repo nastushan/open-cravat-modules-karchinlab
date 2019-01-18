@@ -1,5 +1,5 @@
 title: UK10K Cohort Twins & ALSPAC
-version: 3.5.02
+version: 3.5.03
 type: annotator
 level: variant
 input_format: crv
@@ -26,4 +26,4 @@ developer:
   organization: 'Wellcome Sanger Institute'
   email: 'support@cravat.us'
   website: 'https://www.uk10k.org/studies/cohorts.html'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: 'The UK10K Project: Rare variants in health or disease. Walter et al. Nature (2015)'
