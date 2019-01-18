@@ -15,6 +15,7 @@ output_columns:
   - name: fdr
     title: FDR
     type: float
+    hidden: true
 
 description: A binary classifier for predicting pathogenic variants in coding and non-coding regions.
 

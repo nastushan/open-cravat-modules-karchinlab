@@ -23,6 +23,7 @@ output_columns:
   title: Transcript
   type: string
   width: 135
+  hidden: true
 - name: protein_change
   title: Protein Change
   type: string

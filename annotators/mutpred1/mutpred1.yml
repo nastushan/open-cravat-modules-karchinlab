@@ -12,10 +12,12 @@ output_columns:
 - name: amino_acid_substitution
   title: Variant
   type: string
+  hidden: true
 - name: mutpred_general_score
-  title: Pathogenicity score
+  title: Score
   type: float
   width: 85
+  desc: Pathogenicity score
 - name: mutpred_top5_mechanisms
   title: Top 5 molecular mechanisms
   type: string
