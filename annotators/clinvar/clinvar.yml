@@ -1,5 +1,5 @@
 title: ClinVar
-version: 2019.01.022
+version: 2019.01.023
 type: annotator
 datasource: 2019.01.02
 
@@ -43,5 +43,6 @@ tags:
 - phenotype
 
 release_note:
+  2019.01.023: changed id column format for web linking
   2019.01.022: updated data set, widget overhaul
   2019.01.021: added phenotype tag.

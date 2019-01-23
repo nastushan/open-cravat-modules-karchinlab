@@ -93,9 +93,16 @@ class Reporter(CravatReport):
         row = [v if v != None else '' for v in list(row)]
         self.colno = 0
         for cellvalue in row:
-            if type(cellvalue) == type('') and cellvalue[:5] == 'http:':
-                cellvalue = '=HYPERLINK("' + cellvalue + '", "' +\
-                'Link' + '")'
+            if type(cellvalue) == type('') and ('http:' in cellvalue or 'https:' in cellvalue):
+                toks = cellvalue.split('[WEB:]')
+                if len(toks) != 2:
+                    url = toks[0]
+                    text = toks[0]
+                else:
+                    text = toks[0]
+                    url = toks[1]
+                cellvalue = '=HYPERLINK("' + url + '", "' +\
+                text + '")'
             self.ws.write(self.rowno, self.colno, cellvalue)
             self.colno += 1
         self.rowno += 1
