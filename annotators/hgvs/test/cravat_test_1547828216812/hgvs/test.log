@@ -1,0 +1,22 @@
+Running converter...
+	Converter (converter)         	finished in 0.737s
+Running gene mapper...
+	UCSC hg38 Gene Mapper (hg38)  	finished in 0.455s
+Running annotators...
+	annotator(s) finished in 4.315s
+Running aggregator...
+	Variants                      	finished in 0.490s
+	Genes                         	finished in 0.342s
+	Samples                       	finished in 0.355s
+	Tags                          	finished in 0.744s
+Running post-aggregators...
+	Tag Sampler (tagsampler)      	finished in 0.275s
+	VCF Info (vcfinfo)            	finished in 0.000s
+Running reporter...
+	Text Reporter (textreporter)  	finished in 0.738s
+Normally Finished. Runtime: 8.916s
+done
+  Testing: hgvs
+  Verifying variant level values.
+  Completed in: 10.80 seconds
+  Test result: PASS
