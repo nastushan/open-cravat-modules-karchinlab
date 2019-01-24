@@ -1,5 +1,5 @@
 title: Gene Ontology
-version: 2018.12.01
+version: 2018.12.021
 type: annotator
 
 level: gene
@@ -19,7 +19,7 @@ output_columns:
   title: Full Aspects
   type: string
   hidden: True
-  width: 57
+  width: 60
 - name: set_asp
   title: Aspects
   type: string

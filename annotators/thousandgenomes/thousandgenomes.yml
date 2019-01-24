@@ -1,5 +1,5 @@
 title: 1000 Genomes
-version: 3.0.2
+version: 3.0.3
 type: annotator
 
 level: variant
@@ -13,6 +13,6 @@ description: Population allele frequencies from 1000 Genomes Project
 developer:
   name: '1000 Genomes Project Consortium'
   organization: '1000 Genomes Project Consortium'
-  email: ''
+  email: 'support@cravat.us'
   website: 'http://www.internationalgenome.org/home'
-  citation: 'https://www.nature.com/articles/nature15393'
+  citation: '1000 Genomes Project Consortium; A global reference for human genetic variation, Nature, Volume 526, 01 October 2015, Pages 68–74, https://www.nature.com/articles/nature15393'

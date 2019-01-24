@@ -1,5 +1,5 @@
 title: gnomAD
-version: 2.1.01
+version: 2.1.02
 type: annotator
 
 level: variant
@@ -8,33 +8,40 @@ output_columns:
 - name: af
   title: AF Total
   type: float
+  width: 70
 - name: af_afr
   title: AF African
   type: float
+  width: 70
 - name: af_amr
   title: AF American
   type: float
-  width: 63
+  width: 70
 - name: af_asj
   title: AF Ashkenazi Jewish
   type: float
-  width: 68
+  width: 70
 - name: af_eas
   title: AF East Asian
   type: float
+  width: 70
 - name: af_fin
   title: AF Finnish
   type: float
+  width: 70
 - name: af_nfe
   title: AF Non-Fin Eur
   type: float
   desc: AF Non-Finnish European
+  width: 70
 - name: af_oth
   title: AF Other
   type: float
+  width: 70
 - name: af_sas
   title: AF South Asian
   type: float
+  width: 70
 
 description: Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects
 developer:

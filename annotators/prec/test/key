@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Wednesday 01/02/2019 14:02:57
 #Report level: gene
 #
-Base Information				P(Recessive Disease)	
+Base Information				P(rec)	
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	P(rec)	Known Status
 AAMP	1	missense	missense(1)	0.1223	
 BRCA2	1	missense	missense(1)	0.70346	
