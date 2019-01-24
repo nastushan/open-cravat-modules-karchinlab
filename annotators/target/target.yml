@@ -20,6 +20,6 @@ description: Tumor Alterations Relevant for GEnomics-driven Therapy
 developer:
   name: 'Broad Institute'
   organization: 'Broad Institute'
-  email: ''
+  email: 'support@cravat.us'
   website: 'https://software.broadinstitute.org/cancer/cga/target'
   citation: 'https://www.ncbi.nlm.nih.gov/pubmed/24836576'
