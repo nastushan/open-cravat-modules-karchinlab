@@ -2,6 +2,7 @@ widgetGenerators['ess_gene'] = {
 	'gene': {
 		'width': 330, 
 		'height': 100, 
+        'default_hidden': true,
 		'function': function (div, row, tabName) {
 			var gene = infomgr.getRowValue(tabName, row, 'ess_gene__ess_gene');
 			if(gene === 'N'){
