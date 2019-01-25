@@ -3,6 +3,7 @@ import os
 
 def get_data (queries):
     so_dic = {
+        None: 'Intergenic',
         '':'Intergenic',
         'MIS':'Missense',
         'SYN':'Synonymous',
