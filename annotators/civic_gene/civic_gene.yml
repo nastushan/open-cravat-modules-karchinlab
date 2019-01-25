@@ -1,6 +1,6 @@
 title: CIViC Gene
 
-version: 0.0.2
+version: 0.0.3
 
 type: annotator
 
@@ -18,7 +18,7 @@ output_columns:
 description: Provides descriptions and linkouts to CIViC
 
 developer:
-  name: ''
+  name: 'The McDonnell Genome Institute at Washington University School of Medicine'
   organization: 'The McDonnell Genome Institute at Washington University School of Medicine'
   email: 'support@cravat.us'
   website: 'https://civicdb.org'
