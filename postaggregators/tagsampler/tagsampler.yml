@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.3
+version: 1.0.4
 type: postaggregator
 
 name: tagsampler
@@ -29,3 +29,4 @@ developer:
   citation: ''
 release_note:
   1.0.2: removed multi cat from tags for speed
+  1.0.4: handles samples that are null

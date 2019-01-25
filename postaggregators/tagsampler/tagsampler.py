@@ -17,7 +17,7 @@ class CravatPostAggregator (BasePostAggregator):
         
     def annotate (self, input_data):
         uid = str(input_data['base__uid'])
-        q = 'select base__sample_id from sample where base__uid=' + uid
+        q = 'select base__sample_id from sample where base__uid=' + uid + ' and base__sample_id is not null'
         self.cursor_a.execute(q)
         samples = {}
         for row in self.cursor_a.fetchall():
@@ -30,7 +30,8 @@ class CravatPostAggregator (BasePostAggregator):
         self.cursor_a.execute(q)
         tags = {}
         for row in self.cursor_a.fetchall():
-            tags[row[0]] = True
+            if row[0] is not None:
+                tags[row[0]] = True
         tags = ';'.join(list(tags.keys()))
         out = {'numsample': numsample, 'samples': samples, 'tags': tags}
         return out
