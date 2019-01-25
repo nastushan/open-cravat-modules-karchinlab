@@ -1,4 +1,4 @@
-# Cancer Genome Landscapes
+# Cancer Genome Landscape
 
 Oncogenes and tumor supressor genes described by Vogelstein et al.
 <br /> 
