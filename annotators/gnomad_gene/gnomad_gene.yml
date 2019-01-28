@@ -2,6 +2,7 @@ title: gnomAD Gene
 version: 2.1.03
 type: annotator
 level: gene
+description: Gene level population statistics from gnomAD
 output_columns:
   - name: transcript
     title: Transcript
@@ -41,7 +42,7 @@ output_columns:
     title: pNull
     type: string
     hidden: True
-description: 
+developer: 
   name: 'Broad Institute'
   organization: 'Broad Institute'
   email: 'support@cravat.us'
