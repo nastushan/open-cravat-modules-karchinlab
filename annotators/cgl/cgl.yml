@@ -1,5 +1,5 @@
 title: Cancer Genome Landscape
-version: 1.0.1
+version: 1.0.2
 type: annotator
 
 level: gene
@@ -9,10 +9,10 @@ output_columns:
   type: string
   width: 105
 
-description: Oncogenes and tumor supressor genes identified in the Cancer Genome Landscape study
+description: Oncogenes and tumor supressor genes
 developer:
   name: 'Bert Vogelstein'
   organization: 'Johns Hopkins University'
-  email: ''
+  email: 'support@cravat.us'
   website: 'http://science.sciencemag.org/content/339/6127/1546'
   citation: 'http://science.sciencemag.org/content/339/6127/1546'

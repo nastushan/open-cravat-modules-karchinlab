@@ -1,5 +1,5 @@
 title: COSMIC
-version: 85.0.4
+version: 85.0.5
 type: annotator
 datasource: v85
 
@@ -28,6 +28,7 @@ output_columns:
   title: Protein Change
   type: string
   width: 100
+  hidden: true
 
 description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
 developer:
