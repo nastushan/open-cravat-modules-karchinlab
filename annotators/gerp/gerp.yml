@@ -14,6 +14,7 @@ output_columns:
   title: Neutral Rate
   type: float
   width: 60
+  filterable: false
 - filterable: true
   name: gerp_rs
   title: RS Score
@@ -23,8 +24,9 @@ output_columns:
   title: RS Ranked Score
   type: float
   width: 60
+  filterable: false
 tags:
 - evolution
 title: GERP++
 type: annotator
-version: 3.5.02
+version: 3.5.03

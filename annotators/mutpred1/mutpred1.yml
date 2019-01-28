@@ -15,10 +15,12 @@ output_columns:
   name: external_protein_id
   title: Uniprot
   type: string
+  filterable: false
 - hidden: true
   name: amino_acid_substitution
   title: Variant
   type: string
+  filterable: false
 - desc: Pathogenicity score
   filterable: true
   name: mutpred_general_score
@@ -30,10 +32,11 @@ output_columns:
   title: Top 5 molecular mechanisms
   type: string
   width: 90
+  filterable: false
 tags:
 - variants
 - germline
 - variant effect prediction
 title: MutPred
 type: annotator
-version: 1.2.2
+version: 1.2.3

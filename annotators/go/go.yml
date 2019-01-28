@@ -18,15 +18,18 @@ output_columns:
   name: id
   title: ID
   type: string
+  filterable: false
 - hidden: true
   name: name
   title: GO Name
   type: string
+  filterable: false
 - hidden: true
   name: aspect
   title: Full Aspects
   type: string
   width: 60
+  filterable: false
 - desc: MFO, BPO, CCO
   name: set_asp
   title: Aspects
@@ -37,13 +40,15 @@ output_columns:
   title: Reference
   type: string
   width: 75
+  filterable: false
 - hidden: true
   name: evi
   title: Evidence Code
   type: string
   width: 60
+  filterable: false
 tags:
 - genes
 title: Gene Ontology
 type: annotator
-version: 2018.12.021
+version: 2018.12.022

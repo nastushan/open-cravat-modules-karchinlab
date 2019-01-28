@@ -1,5 +1,5 @@
 title: gnomAD Gene
-version: 2.1.03
+version: 2.1.04
 type: annotator
 level: gene
 description: Gene level population statistics from gnomAD
@@ -9,6 +9,7 @@ output_columns:
     type: string
     width: 68
     hidden: True
+    filterable: false
   - name: oe_lof
     title: Obv/Exp LoF
     type: string
@@ -22,6 +23,7 @@ output_columns:
     type: string
     width: 70
     hidden: True
+    filterable: false
   - name: lof_z
     title: LoF Z-Score
     type: string
@@ -32,6 +34,7 @@ output_columns:
     title: Syn Z-Score
     type: string
     hidden: True
+    filterable: false
   - name: pLI
     title: pLI
     type: string
@@ -42,6 +45,7 @@ output_columns:
     title: pNull
     type: string
     hidden: True
+    filterable: false
 developer: 
   name: 'Broad Institute'
   organization: 'Broad Institute'

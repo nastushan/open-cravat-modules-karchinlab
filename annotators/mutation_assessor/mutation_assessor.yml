@@ -14,18 +14,22 @@ output_columns:
   name: mut_var
   title: Variant
   type: string
+  filterable: false
 - filterable: true
   name: mut_score
   title: Score
   type: float
+  filterable: false
 - name: mut_rscore
   title: Ranked Score
   type: float
   width: 54
+  filterable: false
 - name: mut_pred
   title: Functional Impact
   type: string
   width: 68
+  filterable: false
 tags:
 - variants
 - germline
@@ -33,4 +37,4 @@ tags:
 - variant effect prediction
 title: Mutation Assessor
 type: annotator
-version: 3.0.01
+version: 3.0.02

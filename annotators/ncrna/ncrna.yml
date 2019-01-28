@@ -14,6 +14,7 @@ output_columns:
   title: Class
   type: string
   width: 70
+  filterable: false
 - filterable: true
   name: ncrnaname
   title: Name
@@ -24,4 +25,4 @@ tags:
 - genomic features
 title: ncRNA
 type: annotator
-version: 2014.1.101
+version: 2014.1.102

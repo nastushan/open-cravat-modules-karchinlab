@@ -14,11 +14,13 @@ output_columns:
   title: Number of Networks
   type: int
   width: 105
+  filterable: false
 - hidden: true
   name: networkid
   title: Network ID
   type: string
   width: 80
+  filterable: false
 - category: multi
   filterable: true
   name: networkname
@@ -32,4 +34,4 @@ tags:
 - interactions
 title: NDEx
 type: annotator
-version: 4.0.2
+version: 4.0.3

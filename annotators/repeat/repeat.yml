@@ -15,10 +15,12 @@ output_columns:
   title: Repeat Class
   type: string
   width: 100
+  filterable: false
 - name: repeatfamily
   title: Repeat Family
   type: string
   width: 100
+  filterable: false
 - filterable: true
   name: repeatname
   title: Repeat Name
@@ -28,4 +30,4 @@ tags:
 - genomic features
 title: Repeat Sequences
 type: annotator
-version: 2014.1.102
+version: 2014.1.103

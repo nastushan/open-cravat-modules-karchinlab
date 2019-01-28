@@ -13,10 +13,12 @@ output_columns:
   name: ens_tid
   title: Transcript ID
   type: string
+  filterable: false
 - hidden: true
   name: ens_pid
   title: Protein ID
   type: string
+  filterable: false
 - filterable: true
   hidden: true
   name: fathmm_score
@@ -26,13 +28,15 @@ output_columns:
   title: Converted Rank Score
   type: float
   width: 68
+  filterable: false
 - hidden: true
   name: fathmm_pred
   title: Prediction
   type: string
+  filterable: false
 tags:
 - variants
 - variant effect prediction
 title: FATHMM
 type: annotator
-version: 2.3.01
+version: 2.3.02

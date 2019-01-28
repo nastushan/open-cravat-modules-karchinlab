@@ -15,6 +15,7 @@ output_columns:
   title: UniProt Accession Number
   type: string
   width: 70
+  filterable: false
 - desc: Domain or conserved site on which the variant is located. Multiple entries
     separated by ";".
   filterable: true
@@ -26,4 +27,4 @@ tags:
 - genes
 title: InterPro
 type: annotator
-version: 71.0.0
+version: 71.0.1

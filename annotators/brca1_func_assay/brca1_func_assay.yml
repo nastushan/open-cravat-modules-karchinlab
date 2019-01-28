@@ -10,12 +10,12 @@ developer:
 input_format: crv
 level: variant
 output_columns:
-- filterable: true
-  hidden: true
+- hidden: true
   name: score
   title: Function Score Mean
   type: float
   width: 140
+  filterable: false
 - name: class
   title: Function Class
   type: string
@@ -25,4 +25,4 @@ tags:
 - multiplex assays
 title: BRCA1 Multiplex Assay
 type: annotator
-version: 2019.1.23
+version: 2019.1.231

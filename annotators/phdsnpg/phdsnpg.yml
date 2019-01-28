@@ -13,6 +13,7 @@ output_columns:
   title: Prediction
   type: string
   width: 68
+  filterable: false
 - filterable: true
   name: score
   title: Score
@@ -21,6 +22,7 @@ output_columns:
   name: fdr
   title: FDR
   type: float
+  filterable: false
 tags:
 - variants
 - noncoding
@@ -28,4 +30,4 @@ tags:
 - variant effect prediction
 title: PhD-SNPg
 type: annotator
-version: 0.0.4
+version: 0.0.5

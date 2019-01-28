@@ -15,6 +15,7 @@ output_columns:
   title: Genomic
   type: string
   width: 65
+  filterable: false
 - name: rna
   title: Primary RNA
   type: string
@@ -27,12 +28,14 @@ output_columns:
   name: all_rna
   title: All RNA
   type: string
+  filterable: false
 - hidden: true
   name: all_protein
   title: All protein
   type: string
+  filterable: false
 tags:
 - variants
 title: HGVS Format
 type: annotator
-version: 1.0.1
+version: 1.0.2

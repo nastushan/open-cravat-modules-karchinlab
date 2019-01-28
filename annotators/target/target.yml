@@ -18,10 +18,11 @@ output_columns:
   title: Rationale
   type: string
   width: 95
+  filterable: false
 tags:
 - genes
 - clinical relevance
 - cancer
 title: TARGET
 type: annotator
-version: 3.0.12
+version: 3.0.13

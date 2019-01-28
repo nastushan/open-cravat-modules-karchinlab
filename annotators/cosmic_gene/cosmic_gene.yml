@@ -21,6 +21,7 @@ output_columns:
   title: Tissue count
   type: string
   width: 120
+  filterable: false
 release_note:
   85.0.2: added index to data for speed
 tags:
@@ -28,4 +29,4 @@ tags:
 - cancer
 title: COSMIC Gene
 type: annotator
-version: 85.0.3
+version: 85.0.4

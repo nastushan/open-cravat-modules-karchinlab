@@ -15,10 +15,12 @@ output_columns:
   name: nhlbi
   title: NHLBI Key
   type: string
+  filterable: false
 - hidden: true
   name: pmid
   title: PMID
   type: string
+  filterable: false
 - filterable: true
   name: phenotype
   title: Phenotype
@@ -35,4 +37,4 @@ tags:
 - literature
 title: GRASP
 type: annotator
-version: 2.0.3
+version: 2.0.4

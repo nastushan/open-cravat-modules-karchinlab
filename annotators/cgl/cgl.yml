@@ -8,8 +8,7 @@ developer:
   website: http://science.sciencemag.org/content/339/6127/1546
 level: gene
 output_columns:
-- filterable: false
-  name: class
+- name: class
   title: Class
   type: string
   width: 105
@@ -18,4 +17,4 @@ tags:
 - cancer
 title: Cancer Genome Landscape
 type: annotator
-version: 1.0.2
+version: 1.0.3

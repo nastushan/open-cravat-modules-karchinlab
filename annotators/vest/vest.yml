@@ -27,26 +27,30 @@ output_columns:
   title: Score Transcript
   type: string
   width: 68
+  filterable: false
 - name: score
   title: Score
   type: float
 - name: pval
   title: P-value
   type: float
+  filterable: false
 - hidden: true
   name: all_results
   title: All transcripts
   type: string
   width: 68
+  filterable: false
 - aggregate: false
   hidden: true
   name: hugo
   title: HUGO
   type: string
+  filterable: false
 tags:
 - variants
 - genes
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.0.1
+version: 4.0.2

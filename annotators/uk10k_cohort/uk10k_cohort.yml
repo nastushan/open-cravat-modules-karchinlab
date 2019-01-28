@@ -14,6 +14,7 @@ output_columns:
   name: uk10k_twins_ac
   title: Twins AC
   type: float
+  filterable: false
 - filterable: true
   name: uk10k_twins_af
   title: Twins AF
@@ -23,6 +24,7 @@ output_columns:
   title: ALSPAC AC
   type: float
   width: 56
+  filterable: false
 - filterable: true
   name: uk10k_alspac_af
   title: ALSPAC AF
@@ -32,4 +34,4 @@ tags:
 - populations
 title: UK10K Cohort Twins & ALSPAC
 type: annotator
-version: 3.5.03
+version: 3.5.04

@@ -15,11 +15,13 @@ output_columns:
   title: Clinical Significance
   type: string
   width: 90
+  filterable: false
 - hidden: true
   name: disease_refs
   title: Disease Ref Nums
   type: string
   width: 55
+  filterable: false
 - name: disease_names
   title: Disease Names
   type: string
@@ -30,12 +32,14 @@ output_columns:
   title: Review Status
   type: string
   width: 55
+  filterable: false
 - filterable: true
   hidden: true
   name: id
   title: ClinVar ID
   type: string
   width: 55
+  filterable: false
 release_note:
   2019.01.021: added phenotype tag.
   2019.01.022: updated data set, widget overhaul
@@ -47,4 +51,4 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.01.023
+version: 2019.01.024

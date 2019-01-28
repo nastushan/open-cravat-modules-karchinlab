@@ -18,10 +18,11 @@ output_columns:
   title: Transcript
   type: string
   width: 90
+  filterable: false
 release_note:
   27.0.3: corrected test key
 tags:
 - genomic features
 title: Pseudogene
 type: annotator
-version: 27.0.3
+version: 27.0.4

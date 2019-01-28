@@ -26,6 +26,7 @@ output_columns:
   title: Hugo
   type: string
   width: 70
+  filterable: false
 release_note:
   4.2.2: data in sync with production MuPIT
 tags:
@@ -37,4 +38,4 @@ tags:
 - variant effect prediction
 title: MuPIT
 type: annotator
-version: 4.2.2
+version: 4.2.3

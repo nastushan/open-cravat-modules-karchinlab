@@ -27,36 +27,42 @@ output_columns:
   title: pLI NonTCGA
   type: float
   width: 64
+  filterable: false
 - desc: Probability LoF Intolerance (Hom) NonTCGA
   hidden: true
   name: exac_nontcga_prec
   title: pLI (Hom) NonTCGA
   type: float
   width: 68
+  filterable: false
 - desc: Probability LoF Tolerance (Hom&Het) NonTCGA
   hidden: true
   name: exac_nontcga_pnull
   title: pLT NonTCGA
   type: float
   width: 64
+  filterable: false
 - desc: Probability LoF Intolerance (Hom&Het) Nonpsych
   hidden: true
   name: exac_nonpsych_pli
   title: pLI Nonpsych
   type: float
   width: 65
+  filterable: false
 - desc: Probability LoF Intolerance (Hom) Nonpsych
   hidden: true
   name: exac_nonpsych_prec
   title: pLI (Hom) Nonpsych
   type: float
   width: 68
+  filterable: false
 - desc: Probability LoF Tolerance (Hom&Het) Nonpsych
   hidden: true
   name: exac_nonpsych_pnull
   title: pLT Nonpsych
   type: float
   width: 65
+  filterable: false
 - desc: Deletion Intolerance Z-Score
   name: exac_del_score
   title: Del Int Z-Score
@@ -82,4 +88,4 @@ tags:
 - populations
 title: ExAC Gene Constraint & CNV Score
 type: annotator
-version: 0.3.12
+version: 0.3.13

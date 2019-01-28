@@ -13,6 +13,7 @@ output_columns:
   title: P(rec)
   type: float
   width: 84
+  filterable: false
 - category: single
   desc: Known recessive status of the gene. lof-tolerant, seen in homozygous state
     in at least one 1000G individual; recessive, known OMIM recessive disease.
@@ -24,4 +25,4 @@ tags:
 - genes
 title: P(rec)
 type: annotator
-version: 3.5.0
+version: 3.5.1

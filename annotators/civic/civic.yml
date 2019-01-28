@@ -13,14 +13,17 @@ output_columns:
   name: description
   title: Description
   type: string
+  filterable: false
 - hidden: true
   name: clinical_a_score
   title: Clinical actionability score
   type: string
+  filterable: false
 - name: link
   title: Linkout
   type: string
   width: 70
+  filterable: false
 - name: diseases
   title: Diseases
   type: string
@@ -32,4 +35,4 @@ tags:
 - literature
 title: CIViC
 type: annotator
-version: 1.0.3
+version: 1.0.4

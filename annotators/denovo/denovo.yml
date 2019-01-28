@@ -15,6 +15,7 @@ output_columns:
   name: PubmedId
   title: PMID
   type: string
+  filterable: false
 - filterable: true
   name: PrimaryPhenotype
   title: Phenotype
@@ -24,6 +25,7 @@ output_columns:
   title: Validation
   type: string
   width: 68
+  filterable: false
 tags:
 - variants
 - noncoding
@@ -32,4 +34,4 @@ tags:
 - clinical relevance
 title: Denovo-DB
 type: annotator
-version: 1.6.2
+version: 1.6.3

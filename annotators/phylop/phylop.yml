@@ -19,6 +19,7 @@ output_columns:
   title: Vert Ranked Score
   type: float
   width: 54
+  filterable: false
 - desc: 20 Way Mammalian Score
   filterable: true
   name: phylop20_mamm
@@ -29,8 +30,9 @@ output_columns:
   title: Mamm Ranked Score
   type: float
   width: 54
+  filterable: false
 tags:
 - evolution
 title: PhyloP
 type: annotator
-version: 3.5.02
+version: 3.5.03

@@ -16,23 +16,27 @@ output_columns:
   title: Percentile Rank
   type: float
   width: 70
+  filterable: false
 - hidden: true
   name: rvis_fdr_exac
   title: FDR p-value
   type: float
   width: 54
+  filterable: false
 - hidden: true
   name: rvis_exac
   title: ExAC-based RVIS
   type: float
+  filterable: false
 - hidden: true
   name: rvis_perc_exac
   title: ExAC-based Percentile
   type: float
   width: 67
+  filterable: false
 tags:
 - genes
 - evolution
 title: RVIS
 type: annotator
-version: 3.0.03
+version: 3.0.04
