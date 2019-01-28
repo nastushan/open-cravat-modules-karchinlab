@@ -1,11 +1,16 @@
-title: Pseudogene
-version: 27.0.3
-type: annotator
-
-level: variant
+datasource: hg38
+description: Pseudogenes from UCSC hg38 wgEncodeGencodePseudoGeneV27
+developer:
+  citation: http://europepmc.org/abstract/MED/22955987
+  email: ''
+  name: UCSC
+  organization: UCSC
+  website: https://www.gencodegenes.org/
 input_format: crv
+level: variant
 output_columns:
-- name: pseudogene_hugo
+- filterable: true
+  name: pseudogene_hugo
   title: Hugo
   type: string
   width: 90
@@ -13,14 +18,10 @@ output_columns:
   title: Transcript
   type: string
   width: 90
-
-description: Pseudogenes from UCSC hg38 wgEncodeGencodePseudoGeneV27
-developer:
-  name: 'UCSC'
-  organization: 'UCSC'
-  email: ''
-  website: 'https://www.gencodegenes.org/'
-  citation: 'http://europepmc.org/abstract/MED/22955987'
-
 release_note:
   27.0.3: corrected test key
+tags:
+- genomic features
+title: Pseudogene
+type: annotator
+version: 27.0.3

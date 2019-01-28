@@ -10,24 +10,29 @@ output_columns:
   title: Phred
   type: string
   width: 90
+  filterable: true
 - name: filter
   title: VCF filter
   type: string
   width: 70
   category: multi
+  filterable: true
 - name: zygosity
   title: Zygosity
   type: string
   width: 100
   category: multi
+  filterable: true
 - name: alt_reads
   title: Alternate reads
   type: string
   width: 70
+  filterable: true
 - name: tot_reads
   title: Total reads
   type: string
   width: 70
+  filterable: true
 - name: af
   title: Variant AF
   type: string

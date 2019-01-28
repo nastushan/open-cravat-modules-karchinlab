@@ -1,21 +1,24 @@
-title: LINSIGHT
-version: 2018.10.191
-type: annotator
 datasource: 2018.10.19
-
-level: variant
+description: LINSIGHT
+developer:
+  citation: https://www.nature.com/articles/ng.3810
+  email: asiepel@cshl.edu
+  name: Adam Siepel
+  organization: Cold Spring Harbor Laboratory
+  website: http://github.com/CshlSiepelLab/LINSIGHT/blob/master/README.md
 input_format: crv
+level: variant
 output_columns:
-- name: value
+- filterable: true
+  name: value
   title: Value
   type: float
   width: 80
-
-description: LINSIGHT
-developer:
-  name: 'Adam Siepel'
-  organization: 'Cold Spring Harbor Laboratory'
-  email: 'asiepel@cshl.edu'
-  website: 'http://github.com/CshlSiepelLab/LINSIGHT/blob/master/README.md'
-  citation: 'https://www.nature.com/articles/ng.3810'
-
+tags:
+- noncoding
+- variant effect prediction
+- evolution
+- genomic features
+title: LINSIGHT
+type: annotator
+version: 2018.10.191

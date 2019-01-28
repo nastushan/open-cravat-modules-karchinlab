@@ -1,9 +1,12 @@
-title: PubMed
-version: 1.1.0
-type: annotator
-
-level: gene
+description: PubMed annotation
+developer:
+  citation: ''
+  email: ''
+  name: ''
+  organization: NCBI
+  website: ''
 input_format: crg
+level: gene
 output_columns:
 - name: n
   title: Article Count
@@ -11,11 +14,9 @@ output_columns:
 - name: term
   title: Search Link
   type: string
-
-description: PubMed annotation
-developer:
-  name: ''
-  organization: 'NCBI'
-  email: ''
-  website: ''
-  citation: ''
+tags:
+- genes
+- literature
+title: PubMed
+type: annotator
+version: 1.1.0

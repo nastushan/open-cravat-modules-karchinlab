@@ -1,27 +1,30 @@
-title: BioGRID
-version: 3.5.167
-type: annotator
-level: gene
-datasource: 4.0.0
-output_columns:
-  - name: biogrid
-    title: Raw Data
-    type: string
-    width: 70
-    hidden: True
-  - name: acts
-    title: Interactors
-    type: string
-    width: 80
-    desc: Other genes (separated by ;) this gene interacts with.
-  - name: id
-    title: ID
-    type: string
-    width: 58
+datasource: v4.0.0
 description: Comprehensive interaction repository
 developer:
-  name: 'BioGRID'
-  organization: 'BioGRID'
-  email: 'support@cravat.us'
-  website: 'https://thebiogrid.org/'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: BioGRID
+  organization: BioGRID
+  website: https://thebiogrid.org/
+level: gene
+output_columns:
+- hidden: true
+  name: biogrid
+  title: Raw Data
+  type: string
+  width: 70
+- desc: Other genes (separated by ;) this gene interacts with.
+  name: acts
+  title: Interactors
+  type: string
+  width: 80
+- name: id
+  title: ID
+  type: string
+  width: 58
+tags:
+- genes
+- interactions
+title: BioGRID
+type: annotator
+version: 3.5.167

@@ -9,3 +9,7 @@
 .vscode/**
 **/__pycache__/**
 **/*.status.json
+hg38_bak
+tagger.py
+*.tsv
+.gitignore

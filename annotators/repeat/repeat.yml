@@ -1,8 +1,12 @@
-description: Repeating elements from RepeatMasker and Simple Repeat tracks of UCSC hg38 database. UCSC Genome Browser Tracks rmsk and simpleRepeat were used to obtain Low complexity, SINE, LINE, LTR, Simple Repeat, and Satellite data and they were combined.
+datasource: hg38
+description: Repeating elements from RepeatMasker and Simple Repeat tracks of UCSC
+  hg38 database. UCSC Genome Browser Tracks rmsk and simpleRepeat were used to obtain
+  Low complexity, SINE, LINE, LTR, Simple Repeat, and Satellite data and they were
+  combined.
 developer:
   citation: http://www.ncbi.nlm.nih.gov/pubmed/30407534
   email: ''
-  name: 
+  name: null
   organization: UCSC
   website: http://genome.ucsc.edu
 level: variant
@@ -15,12 +19,13 @@ output_columns:
   title: Repeat Family
   type: string
   width: 100
-- name: repeatname
+- filterable: true
+  name: repeatname
   title: Repeat Name
   type: string
   width: 110
 tags:
-- variant-level
+- genomic features
 title: Repeat Sequences
 type: annotator
 version: 2014.1.102

@@ -1,29 +1,35 @@
-title: UK10K Cohort Twins & ALSPAC
-version: 3.5.03
-type: annotator
-level: variant
+datasource: dbNSFP v4.0b1
+description: UK10K cohort provides genetic information from DTR & ALSPAC
+developer:
+  citation: 'The UK10K Project: Rare variants in health or disease. Walter et al.
+    Nature (2015)'
+  email: support@cravat.us
+  name: UK10K Consortium
+  organization: Wellcome Sanger Institute
+  website: https://www.uk10k.org/studies/cohorts.html
 input_format: crv
+level: variant
 output_columns:
-- name: uk10k_twins_ac
+- hidden: true
+  name: uk10k_twins_ac
   title: Twins AC
   type: float
-  hidden: True
-- name: uk10k_twins_af
+- filterable: true
+  name: uk10k_twins_af
   title: Twins AF
   type: float
-- name: uk10k_alspac_ac
+- hidden: true
+  name: uk10k_alspac_ac
   title: ALSPAC AC
   type: float
   width: 56
-  hidden: True
-- name: uk10k_alspac_af
+- filterable: true
+  name: uk10k_alspac_af
   title: ALSPAC AF
   type: float
   width: 56
-description: UK10K cohort provides genetic information from DTR & ALSPAC
-developer:
-  name: 'UK10K Consortium'
-  organization: 'Wellcome Sanger Institute'
-  email: 'support@cravat.us'
-  website: 'https://www.uk10k.org/studies/cohorts.html'
-  citation: 'The UK10K Project: Rare variants in health or disease. Walter et al. Nature (2015)'
+tags:
+- populations
+title: UK10K Cohort Twins & ALSPAC
+type: annotator
+version: 3.5.03

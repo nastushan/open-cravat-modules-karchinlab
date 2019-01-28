@@ -1,18 +1,26 @@
-title: dbSNP
-version: 151.0.1
-type: annotator
-
-level: variant
+datasource: v151
+description: Comprehensive database of both single base nucleotide subsitutions and
+  short deletion and insertion polymorphisms
+developer:
+  citation: 'Sherry ST, Ward MH, Kholodov M, Baker J, Phan L, Smigielski EM, Sirotkin
+    K. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res. 2001 Jan
+    1;29(1):308-11'
+  email: support@cravat.us
+  name: NCBI
+  organization: NCBI
+  website: https://www.ncbi.nlm.nih.gov/projects/SNP/
 input_format: crv
+level: variant
 output_columns:
 - name: snp
   title: rsID
   type: string
-
-description: Comprehensive database of both single base nucleotide subsitutions and short deletion and insertion polymorphisms
-developer:
-  name: 'NCBI'
-  organization: 'NCBI'
-  email: 'support@cravat.us'
-  website: 'https://www.ncbi.nlm.nih.gov/projects/SNP/'
-  citation: 'Sherry ST, Ward MH, Kholodov M, Baker J, Phan L, Smigielski EM, Sirotkin K. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res. 2001 Jan 1;29(1):308-11'
+tags:
+- variants
+- noncoding
+- germline
+- populations
+- literature
+title: dbSNP
+type: annotator
+version: 151.0.1

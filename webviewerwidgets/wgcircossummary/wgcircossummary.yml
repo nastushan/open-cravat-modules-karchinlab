@@ -9,6 +9,5 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
-
 release_note:
   1.1.1: prevents an error with one histogram bar for a SO class.

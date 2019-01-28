@@ -1,17 +1,19 @@
-title: LoFtool
-version: 3.5.01
-type: annotator
-level: gene
-output_columns:
-  - name: loftool_score
-    title: LoF Score
-    type: float
-    width: 55
+datasource: dbNSFP v4.0b1
 description: Gene intolerance score based on loss-of-function variants
 developer:
-  name: 'João Fadista, Nikolay Oskolkov, Ola Hansson, Leif Groop'
-  organization: 'Lund University Diabetes Centre'
-  email: 'support@cravat.us'
-  website: 'https://doi.org/10.1093/bioinformatics/btv602'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
-
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: "Jo\xE3o Fadista, Nikolay Oskolkov, Ola Hansson, Leif Groop"
+  organization: Lund University Diabetes Centre
+  website: https://doi.org/10.1093/bioinformatics/btv602
+level: gene
+output_columns:
+- name: loftool_score
+  title: LoF Score
+  type: float
+  width: 55
+tags:
+- genes
+title: LoFtool
+type: annotator
+version: 3.5.01

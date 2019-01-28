@@ -1,18 +1,18 @@
-title: NCBI Gene
-version: 2018.02.211
-type: annotator
-
+description: Gene description from NIH's NCBI Gene Info
+developer:
+  citation: https://www.ncbi.nlm.nih.gov/gene
+  email: ''
+  name: NIH
+  organization: NIH
+  website: https://www.ncbi.nlm.nih.gov/gene
 level: gene
 output_columns:
 - name: ncbi_desc
   title: Description
   type: string
   width: 200
-
-description: Gene description from NIH's NCBI Gene Info
-developer:
-  name: 'NIH'
-  organization: 'NIH'
-  email: ''
-  website: 'https://www.ncbi.nlm.nih.gov/gene'
-  citation: 'https://www.ncbi.nlm.nih.gov/gene'
+tags:
+- genes
+title: NCBI Gene
+type: annotator
+version: 2018.02.211

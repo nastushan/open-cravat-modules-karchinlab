@@ -1,15 +1,31 @@
-name: vest
-title: VEST
-version: 4.0.1
-type: annotator
-
-level: variant
+can_summarize_by_gene: true
+datasource: v4
+description: VEST annotation
+developer:
+  citation: ' https://www.ncbi.nlm.nih.gov/pubmed/26442818'
+  email: ''
+  name: Johns Hopkins University - Karchin Lab
+  organization: Johns Hopkins University - Karchin Lab
+  website: http://karchinlab.org/apps/appVest.html
+gene_summary_output_columns:
+- name: max_score
+  title: Max Score
+  type: float
+- filterable: true
+  name: mean_score
+  title: Mean Score
+  type: float
+- name: gene_pval
+  title: Gene p-value
+  type: float
 input_format: crx
+level: variant
+name: vest
 output_columns:
-- name: transcript
+- hidden: true
+  name: transcript
   title: Score Transcript
   type: string
-  hidden: True
   width: 68
 - name: score
   title: Score
@@ -17,36 +33,20 @@ output_columns:
 - name: pval
   title: P-value
   type: float
-- name: all_results
+- hidden: true
+  name: all_results
   title: All transcripts
   type: string
-  hidden: True
   width: 68
-- name: hugo
+- aggregate: false
+  hidden: true
+  name: hugo
   title: HUGO
   type: string
-  aggregate: false
-  hidden: True
-
-can_summarize_by_gene: true
-gene_summary_output_columns:
-- name: max_score
-  title: Max Score
-  type: float
-- name: mean_score
-  title: Mean Score
-  type: float
-- name: gene_pval
-  title: Gene p-value
-  type: float
-
 tags:
-- scoring algorithm
-
-description: VEST annotation
-developer:
-  name: 'Johns Hopkins University - Karchin Lab'
-  organization: 'Johns Hopkins University - Karchin Lab'
-  email: ''
-  website: 'http://karchinlab.org/apps/appVest.html'
-  citation: ' https://www.ncbi.nlm.nih.gov/pubmed/26442818'
+- variants
+- genes
+- variant effect prediction
+title: VEST
+type: annotator
+version: 4.0.1

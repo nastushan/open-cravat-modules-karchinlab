@@ -1,31 +1,36 @@
-title: PhyloP
-version: 3.5.02
-type: annotator
-level: variant
-input_format: crv
-output_columns:
-- name: phylop100_vert
-  title: Vert Score
-  type: float
-  desc: 100 Way Vertebrate Score
-- name: phylop100_vert_r
-  title: Vert Ranked Score
-  type: float
-  desc: 100 Way Vertebrate Ranked Score
-  width: 54
-- name: phylop20_mamm
-  title: Mamm Score
-  type: float
-  desc: 20 Way Mammalian Score
-- name: phylop20_mamm_r
-  title: Mamm Ranked Score
-  type: float
-  desc: 20 Way Mammalian Ranked Score
-  width: 54
+datasource: dbNSFP v4.0b1
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
-  name: 'UCSC'
-  organization: 'University of California Santa Cruz Genomics Institute'
-  email: 'support@cravat.us'
-  website: 'https://sites.google.com/site/jpopgen/dbNSFP'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: UCSC
+  organization: University of California Santa Cruz Genomics Institute
+  website: https://sites.google.com/site/jpopgen/dbNSFP
+input_format: crv
+level: variant
+output_columns:
+- desc: 100 Way Vertebrate Score
+  filterable: true
+  name: phylop100_vert
+  title: Vert Score
+  type: float
+- desc: 100 Way Vertebrate Ranked Score
+  name: phylop100_vert_r
+  title: Vert Ranked Score
+  type: float
+  width: 54
+- desc: 20 Way Mammalian Score
+  filterable: true
+  name: phylop20_mamm
+  title: Mamm Score
+  type: float
+- desc: 20 Way Mammalian Ranked Score
+  name: phylop20_mamm_r
+  title: Mamm Ranked Score
+  type: float
+  width: 54
+tags:
+- evolution
+title: PhyloP
+type: annotator
+version: 3.5.02

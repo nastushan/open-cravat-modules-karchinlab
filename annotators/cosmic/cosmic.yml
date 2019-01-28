@@ -1,17 +1,27 @@
-title: COSMIC
-version: 85.0.5
-type: annotator
+data_version: 1.0.0
 datasource: v85
-
-level: variant
+description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and
+  most comprehensive resource for exploring the impact of somatic mutations in human
+  cancer.
+developer:
+  citation: "Simon A. Forbes et al; COSMIC: somatic cancer genetics at high-resolution,\
+    \ Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D777\u2013\
+    D783, https://doi.org/10.1093/nar/gkw1121"
+  email: support@cravat.us
+  name: Sanger Institute
+  organization: Sanger Institute
+  website: https://cancer.sanger.ac.uk/cosmic
 input_format: crx
+level: variant
 output_columns:
-- name: cosmic_id
+- filterable: false
+  hidden: true
+  name: cosmic_id
   title: ID
   type: string
   width: 90
-  hidden: true
-- name: variant_count_tissue
+- filterable: false
+  name: variant_count_tissue
   title: Variant Count (Tissue)
   type: string
   width: 110
@@ -19,22 +29,21 @@ output_columns:
   title: Variant Count
   type: int
   width: 80
-- name: transcript
+- filterable: false
+  hidden: true
+  name: transcript
   title: Transcript
   type: string
   width: 135
+- filterable: false
   hidden: true
-- name: protein_change
+  name: protein_change
   title: Protein Change
   type: string
   width: 100
-  hidden: true
-
-description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
-developer:
-  name: 'Sanger Institute'
-  organization: 'Sanger Institute'
-  email: 'support@cravat.us'
-  website: 'https://cancer.sanger.ac.uk/cosmic'
-  citation: 'Simon A. Forbes et al; COSMIC: somatic cancer genetics at high-resolution, Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D777–D783, https://doi.org/10.1093/nar/gkw1121'
-data_version: 1.0.0
+tags:
+- variants
+- cancer
+title: COSMIC
+type: annotator
+version: 85.0.5

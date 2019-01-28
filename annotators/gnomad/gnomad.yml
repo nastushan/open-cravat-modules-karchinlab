@@ -1,52 +1,67 @@
-title: gnomAD
-version: 2.1.02
-type: annotator
-
-level: variant
+datasource: v2.1
+description: Genome Aggregation Database (gnomAD) is a resource developed by an international
+  coalition of investigators, with the goal of aggregating and harmonizing both exome
+  and genome sequencing data from a wide variety of large-scale sequencing projects
+developer:
+  citation: https://www.nature.com/articles/nature19057
+  email: ''
+  name: Broad Institute
+  organization: Broad Institute
+  website: http://gnomad.broadinstitute.org/
 input_format: crv
+level: variant
 output_columns:
-- name: af
+- filterable: true
+  name: af
   title: AF Total
   type: float
   width: 70
-- name: af_afr
+- filterable: true
+  name: af_afr
   title: AF African
   type: float
   width: 70
-- name: af_amr
+- filterable: true
+  name: af_amr
   title: AF American
   type: float
   width: 70
-- name: af_asj
+- filterable: true
+  name: af_asj
   title: AF Ashkenazi Jewish
   type: float
   width: 70
-- name: af_eas
+- filterable: true
+  name: af_eas
   title: AF East Asian
   type: float
   width: 70
-- name: af_fin
+- filterable: true
+  name: af_fin
   title: AF Finnish
   type: float
   width: 70
-- name: af_nfe
+- desc: AF Non-Finnish European
+  filterable: true
+  name: af_nfe
   title: AF Non-Fin Eur
   type: float
-  desc: AF Non-Finnish European
   width: 70
-- name: af_oth
+- filterable: true
+  name: af_oth
   title: AF Other
   type: float
   width: 70
-- name: af_sas
+- filterable: true
+  name: af_sas
   title: AF South Asian
   type: float
   width: 70
-
-description: Genome Aggregation Database (gnomAD) is a resource developed by an international coalition of investigators, with the goal of aggregating and harmonizing both exome and genome sequencing data from a wide variety of large-scale sequencing projects
-developer:
-  name: 'Broad Institute'
-  organization: 'Broad Institute'
-  email: ''
-  website: 'http://gnomad.broadinstitute.org/'
-  citation: 'https://www.nature.com/articles/nature19057'
+tags:
+- variants
+- noncoding
+- germline
+- populations
+title: gnomAD
+type: annotator
+version: 2.1.02

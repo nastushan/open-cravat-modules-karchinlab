@@ -1,22 +1,28 @@
-title: BRCA1 Multiplex Assay
-version: 2019.1.23
-type: annotator
-level: variant
+datasource: dbNSFP v4.0b1
+description: Impact of BRCA1 missense variants on protein function as determined by
+  multiplex homology-directed DNA repair assay
+developer:
+  citation: https://www.sciencedirect.com/science/article/pii/S000292971830243X?via%3Dihub
+  email: support@cravat.us
+  name: Lea Starita
+  organization: Starita Lab
+  website: http://staritalab.org/
 input_format: crv
+level: variant
 output_columns:
-- name: score
+- filterable: true
+  hidden: true
+  name: score
   title: Function Score Mean
   type: float
   width: 140
-  hidden: True
 - name: class
   title: Function Class
   type: string
   width: 160
-description: Impact of BRCA1 missense variants on protein function as determined by multiplex homology-directed DNA repair assay
-developer:
-  name: 'Lea Starita'
-  organization: 'Starita Lab'
-  email: 'support@cravat.us'
-  website: 'http://staritalab.org/'
-  citation: 'https://www.sciencedirect.com/science/article/pii/S000292971830243X?via%3Dihub'
+tags:
+- cancer
+- multiplex assays
+title: BRCA1 Multiplex Assay
+type: annotator
+version: 2019.1.23

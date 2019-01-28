@@ -1,25 +1,29 @@
-title: InterPro
-version: 71.0.0
-type: annotator
-datasource: 4.0.0
-level: variant
+datasource: v4.0.0
+description: Protein sequence analysis & classification
+developer:
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: Alex L. Mitchell et al.
+  organization: European Bioinformatics Institute (EMBL-EBI)
+  website: https://www.ebi.ac.uk/interpro/
 input_format: crv
+level: variant
 output_columns:
-- name: uniprot_acc
+- desc: Associated UniProt accession number. Multiple entries separated by ";"
+  hidden: true
+  name: uniprot_acc
   title: UniProt Accession Number
   type: string
   width: 70
-  desc: Associated UniProt accession number. Multiple entries separated by ";"
-  hidden: true
-- name: domain
+- desc: Domain or conserved site on which the variant is located. Multiple entries
+    separated by ";".
+  filterable: true
+  name: domain
   title: Domain
   type: string
   width: 62
-  desc: Domain or conserved site on which the variant is located. Multiple entries separated by ";".
-description: Protein sequence analysis & classification
-developer:
-  name: 'Alex L. Mitchell et al.'
-  organization: 'European Bioinformatics Institute (EMBL-EBI)'
-  email: 'support@cravat.us'
-  website: 'https://www.ebi.ac.uk/interpro/'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+tags:
+- genes
+title: InterPro
+type: annotator
+version: 71.0.0

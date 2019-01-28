@@ -1,8 +1,11 @@
-title: Cancer Genome Census
-version: 85.0.1
-type: annotator
 datasource: v85
-
+description: Cancer Genome Census annotation
+developer:
+  citation: https://www.nature.com/articles/nrc1299
+  email: support@cravat.us
+  name: Sanger Institute
+  organization: Sanger Institute
+  website: https://cancer.sanger.ac.uk/census
 level: gene
 output_columns:
 - name: class
@@ -13,19 +16,17 @@ output_columns:
   title: CGC inheritance
   type: string
   width: 105
-- name: tts
+- hidden: true
+  name: tts
   title: CGC tumor types somatic
   type: string
-  hidden: True
-- name: ttg
+- hidden: true
+  name: ttg
   title: CGC tumor types germline
   type: string
-  hidden: True
-
-description: Cancer Genome Census annotation
-developer:
-  name: 'Sanger Institute'
-  organization: 'Sanger Institute'
-  email: 'support@cravat.us'
-  website: 'https://cancer.sanger.ac.uk/census'
-  citation: 'https://www.nature.com/articles/nrc1299'
+tags:
+- genes
+- cancer
+title: Cancer Genome Census
+type: annotator
+version: 85.0.1

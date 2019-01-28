@@ -1,26 +1,18 @@
-name: chasmplus
-title: CHASMplus
-version: 1.0.4
-type: annotator
-
-level: variant
-output_columns:
-- name: pval
-  title: P-value
-  type: float
-- name: score
-  title: Score
-  type: float
-- name: transcript
-  title: Transcript
-  type: string
-  hidden: True
-- name: results
-  title: All results
-  type: string
-  hidden: True
-
 can_summarize_by_gene: true
+datasource: v1.0.0
+description: CHASMplus is a machine learning algorithm that discriminates somatic
+  missense mutations as either cancer drivers or passengers. Predictions can be done
+  in either a cancer type-specific manner or by a model considering multiple cancer
+  types together (a useful default). Along with scoring each mutation, CHASMplus has
+  a rigorous statistical model to evaluate the statistical significance of predictions.
+  This OpenCRAVAT module represents the v1.0 precompute of CHASMplus (source code
+  v1.0).
+developer:
+  citation: https://www.biorxiv.org/content/early/2018/06/20/313296
+  email: ctokhei1@alumni.jh.edu
+  name: Collin Tokheim
+  organization: Johns Hopkins University - Karchin Lab
+  website: http://chasmplus.readthedocs.io/en/latest/
 gene_summary_output_columns:
 - name: max_score
   title: Max Score
@@ -31,20 +23,31 @@ gene_summary_output_columns:
 - name: gene_pval
   title: Gene p-value
   type: float
-
-description: CHASMplus is a machine learning algorithm that discriminates somatic missense mutations as either cancer drivers or passengers. Predictions can be done in either a cancer type-specific manner or by a model considering multiple cancer types together (a useful default). Along with scoring each mutation, CHASMplus has a rigorous statistical model to evaluate the statistical significance of predictions. This OpenCRAVAT module represents the v1.0 precompute of CHASMplus (source code v1.0).
-developer:
-  name: 'Collin Tokheim'
-  organization: 'Johns Hopkins University - Karchin Lab'
-  email: 'ctokhei1@alumni.jh.edu'
-  website: 'http://chasmplus.readthedocs.io/en/latest/'
-  citation: 'https://www.biorxiv.org/content/early/2018/06/20/313296'
-
+level: variant
+name: chasmplus
+output_columns:
+- name: pval
+  title: P-value
+  type: float
+- name: score
+  title: Score
+  type: float
+- hidden: true
+  name: transcript
+  title: Transcript
+  type: string
+- hidden: true
+  name: results
+  title: All results
+  type: string
 pval_file: pvals.txt
-
-tags:
-- scoring algorithm
-
 release_note:
-  1.0.4: updated email, 
   1.0.3: added gene level summary
+  1.0.4: updated email,
+tags:
+- variants
+- cancer
+- variant effect prediction
+title: CHASMplus
+type: annotator
+version: 1.0.4

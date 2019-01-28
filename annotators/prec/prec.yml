@@ -1,24 +1,27 @@
-title: P(rec)
-version: 3.5.0
-type: annotator
-datasource: 3.5.0
-level: gene
-output_columns:
-  - name: prec
-    title: P(rec)
-    type: float
-    desc: Estimated probability that gene is a recessive disease gene
-    width: 84
-  - name: stat
-    title: Known Status
-    type: string
-    desc: 'Known recessive status of the gene. lof-tolerant, seen in homozygous state in at least one 1000G individual; recessive, known OMIM recessive disease.'
-    category: single
-    width: 84
+datasource: dbNSFP v4.0b1
 description: Providing probabilities for LoF alleles
 developer:
-  name: 'Daniel G. MacArthur'
-  organization: 'Wellcome Trust Sanger Institute'
-  email: 'support@cravat.us'
-  website: 'https://doi.org/10.1126/science.1215040'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: Daniel G. MacArthur
+  organization: Wellcome Trust Sanger Institute
+  website: https://doi.org/10.1126/science.1215040
+level: gene
+output_columns:
+- desc: Estimated probability that gene is a recessive disease gene
+  name: prec
+  title: P(rec)
+  type: float
+  width: 84
+- category: single
+  desc: Known recessive status of the gene. lof-tolerant, seen in homozygous state
+    in at least one 1000G individual; recessive, known OMIM recessive disease.
+  name: stat
+  title: Known Status
+  type: string
+  width: 84
+tags:
+- genes
+title: P(rec)
+type: annotator
+version: 3.5.0

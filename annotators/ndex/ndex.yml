@@ -1,31 +1,35 @@
-title: NDEx
-version: 4.0.2
-type: annotator
-
-level: gene
+add_to_variant_level: true
+datasource: v2
+description: Network Data Exchange
+developer:
+  citation: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4649937/
+  email: ''
+  name: The Cytoscape Consortium
+  organization: The Cytoscape Consortium
+  website: http://home.ndexbio.org/index/
 input_format: crg
+level: gene
 output_columns:
 - name: numhit
   title: Number of Networks
   type: int
   width: 105
-- name: networkid
+- hidden: true
+  name: networkid
   title: Network ID
   type: string
-  hidden: true
   width: 80
-- name: networkname
+- category: multi
+  filterable: true
+  name: networkname
   title: Network Name
   type: string
-  category: multi
   width: 185
-
-add_to_variant_level: true
-
-description: Network Data Exchange
-developer:
-  name: 'The Cytoscape Consortium'
-  organization: 'The Cytoscape Consortium'
-  email: ''
-  website: 'http://home.ndexbio.org/index/'
-  citation: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4649937/'
+tags:
+- variants
+- genes
+- cancer
+- interactions
+title: NDEx
+type: annotator
+version: 4.0.2

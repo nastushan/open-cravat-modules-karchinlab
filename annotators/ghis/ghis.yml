@@ -1,15 +1,18 @@
-title: GHIS
-version: 3.5.01
-type: annotator
-level: gene
-output_columns:
-  - name: ghis
-    title: Score
-    type: float
+datasource: dbNSFP v4.0b1
 description: Gene haploinsufficiency scoring
 developer:
-  name: 'Julia Steinberg, Frantisek Honti, Stephen Meader, Caleb Webber'
-  organization: '1MRC Functional Genomics Unit, University of Oxford'
-  email: 'support@cravat.us'
-  website: 'https://doi.org/10.1093/nar/gkv474'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: Julia Steinberg, Frantisek Honti, Stephen Meader, Caleb Webber
+  organization: 1MRC Functional Genomics Unit, University of Oxford
+  website: https://doi.org/10.1093/nar/gkv474
+level: gene
+output_columns:
+- name: ghis
+  title: Score
+  type: float
+tags:
+- genes
+title: GHIS
+type: annotator
+version: 3.5.01

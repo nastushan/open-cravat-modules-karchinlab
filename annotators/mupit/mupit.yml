@@ -1,35 +1,40 @@
-name: mupit
-title: MuPIT
-version: 4.2.2
-type: annotator
-
-level: variant
-input_format: crx
-output_columns:
-- name: link
-  title: Link
-  type: string
-  width: 80
-- name: hugo
-  title: Hugo
-  type: string
-  width: 70
-  hidden: true
-
 can_summarize_by_gene: true
+datasource: v5.2.4
+description: Provides links to variant position and annotations in 3D MuPIT structure
+  viewer.
+developer:
+  citation: https://www.ncbi.nlm.nih.gov/pubmed/23793516
+  email: ''
+  name: Johns Hopkins - Karchin Lab
+  organization: Johns Hopkins - Karchin Lab
+  website: http://mupit.icm.jhu.edu/MuPIT_Interactive/
 gene_summary_output_columns:
 - name: link
   title: Link
   type: string
   width: 80
-
-description: Provides links to variant position and annotations in 3D MuPIT structure viewer.
-developer:
-  name: 'Johns Hopkins - Karchin Lab'
-  organization: 'Johns Hopkins - Karchin Lab'
-  email: ''
-  website: 'http://mupit.icm.jhu.edu/MuPIT_Interactive/'
-  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/23793516'
-
+input_format: crx
+level: variant
+name: mupit
+output_columns:
+- name: link
+  title: Link
+  type: string
+  width: 80
+- hidden: true
+  name: hugo
+  title: Hugo
+  type: string
+  width: 70
 release_note:
   4.2.2: data in sync with production MuPIT
+tags:
+- variants
+- genes
+- germline
+- denovo
+- cancer
+- variant effect prediction
+title: MuPIT
+type: annotator
+version: 4.2.2

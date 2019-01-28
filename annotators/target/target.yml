@@ -1,25 +1,27 @@
-title: TARGET
-version: 3.0.12
-type: annotator
-datasource: 3.0.1
-
-level: gene
+datasource: v3.0.1
+description: Tumor Alterations Relevant for GEnomics-driven Therapy
+developer:
+  citation: https://www.ncbi.nlm.nih.gov/pubmed/24836576
+  email: support@cravat.us
+  name: Broad Institute
+  organization: Broad Institute
+  website: https://software.broadinstitute.org/cancer/cga/target
 input_format: crg
+level: gene
 output_columns:
-- name: therapy
+- category: multi
+  name: therapy
   title: Recommended Therapy
   type: string
   width: 190
-  category: multi
 - name: rationale
   title: Rationale
   type: string
   width: 95
-
-description: Tumor Alterations Relevant for GEnomics-driven Therapy
-developer:
-  name: 'Broad Institute'
-  organization: 'Broad Institute'
-  email: 'support@cravat.us'
-  website: 'https://software.broadinstitute.org/cancer/cga/target'
-  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/24836576'
+tags:
+- genes
+- clinical relevance
+- cancer
+title: TARGET
+type: annotator
+version: 3.0.12

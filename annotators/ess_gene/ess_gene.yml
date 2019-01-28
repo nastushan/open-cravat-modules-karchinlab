@@ -1,17 +1,21 @@
-title: Essential Genes
-version: 3.5.01
-type: annotator
+datasource: dbNSFP v4.0b1
+description: Essential Genes provides a database of genetic variation & mutational
+  burden in 2472 human orthologs
+developer:
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: "Benjamin Georgi, Benjamin F. Voight, Maja Bu\u0107an"
+  organization: Department of Genetics, University of Pennsylvania
+  website: https://doi.org/10.1371/journal.pgen.1003484
 level: gene
 output_columns:
-  - name: ess_gene
-    title: Essential
-    type: string
-    desc: Essential or Non-essential function
-    width: 63
-description: Essential Genes provides a database of genetic variation & mutational burden in 2472 human orthologs
-developer:
-  name: 'Benjamin Georgi, Benjamin F. Voight, Maja Bućan'
-  organization: 'Department of Genetics, University of Pennsylvania'
-  email: 'support@cravat.us'
-  website: 'https://doi.org/10.1371/journal.pgen.1003484'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+- desc: Essential or Non-essential function
+  name: ess_gene
+  title: Essential
+  type: string
+  width: 63
+tags:
+- genes
+title: Essential Genes
+type: annotator
+version: 3.5.01

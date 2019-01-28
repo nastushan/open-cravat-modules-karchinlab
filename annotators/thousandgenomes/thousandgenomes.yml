@@ -1,18 +1,24 @@
-title: 1000 Genomes
-version: 3.0.3
-type: annotator
-
+datasource: Phase 3
+description: Population allele frequencies from 1000 Genomes Project
+developer:
+  citation: "1000 Genomes Project Consortium; A global reference for human genetic\
+    \ variation, Nature, Volume 526, 01 October 2015, Pages 68\u201374, https://www.nature.com/articles/nature15393"
+  email: support@cravat.us
+  name: 1000 Genomes Project Consortium
+  organization: 1000 Genomes Project Consortium
+  website: http://www.internationalgenome.org/home
 level: variant
 output_columns:
-- name: af
+- filterable: true
+  name: af
   title: AF
   type: float
   width: 80
-
-description: Population allele frequencies from 1000 Genomes Project
-developer:
-  name: '1000 Genomes Project Consortium'
-  organization: '1000 Genomes Project Consortium'
-  email: 'support@cravat.us'
-  website: 'http://www.internationalgenome.org/home'
-  citation: '1000 Genomes Project Consortium; A global reference for human genetic variation, Nature, Volume 526, 01 October 2015, Pages 68–74, https://www.nature.com/articles/nature15393'
+tags:
+- variants
+- noncoding
+- germline
+- populations
+title: 1000 Genomes
+type: annotator
+version: 3.0.3

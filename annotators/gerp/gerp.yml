@@ -1,15 +1,21 @@
-title: GERP++
-version: 3.5.02
-type: annotator
-level: variant
+datasource: dbNSFP v4.0b1
+description: Genomic Evolutionary Rate Profiling
+developer:
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: Stanford University Sidow Lab
+  organization: Stanford University Sidow Lab
+  website: http://mendel.stanford.edu/SidowLab/downloads/gerp/index.html
 input_format: crv
+level: variant
 output_columns:
-- name: gerp_nr
+- hidden: true
+  name: gerp_nr
   title: Neutral Rate
   type: float
-  hidden: true
   width: 60
-- name: gerp_rs
+- filterable: true
+  name: gerp_rs
   title: RS Score
   type: float
   width: 60
@@ -17,11 +23,8 @@ output_columns:
   title: RS Ranked Score
   type: float
   width: 60
-description: Genomic Evolutionary Rate Profiling
-developer:
-  name: 'Stanford University Sidow Lab'
-  organization: 'Stanford University Sidow Lab'
-  email: 'support@cravat.us'
-  website: 'http://mendel.stanford.edu/SidowLab/downloads/gerp/index.html'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
-
+tags:
+- evolution
+title: GERP++
+type: annotator
+version: 3.5.02

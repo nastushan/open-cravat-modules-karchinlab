@@ -1,79 +1,85 @@
-title: ExAC Gene Constraint & CNV Score
-version: 0.3.12
-type: annotator
+datasource: dbNSFP v4.0b1
+description: ExAC Functional Gene Constraint & CNV Scores provides probability of
+  LoF tolerance/intolerance
+developer:
+  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  email: support@cravat.us
+  name: ExAC
+  organization: Exome Aggregation Consortium
+  website: http://exac.broadinstitute.org/
 level: gene
 output_columns:
-  - name: exac_pli
-    title: pLI
-    type: float
-    desc: Probability LoF Intolerance (Hom&Het)
-  - name: exac_prec
-    title: pLI (Hom)
-    type: float
-    desc: Probability LoF Intolerance (Hom)
-  - name: exac_pnull
-    title: pLT
-    type: float
-    desc: Probability LoF Tolerance (Hom&Het)
-  - name: exac_nontcga_pli
-    title: pLI NonTCGA
-    type: float
-    desc: Probability LoF Intolerance (Hom&Het) NonTCGA
-    width: 64
-    hidden: True
-  - name: exac_nontcga_prec
-    title: pLI (Hom) NonTCGA
-    type: float
-    desc: Probability LoF Intolerance (Hom) NonTCGA
-    width: 68
-    hidden: True
-  - name: exac_nontcga_pnull
-    title: pLT NonTCGA
-    type: float
-    desc: Probability LoF Tolerance (Hom&Het) NonTCGA
-    width: 64
-    hidden: True
-  - name: exac_nonpsych_pli
-    title: pLI Nonpsych
-    type: float
-    desc: Probability LoF Intolerance (Hom&Het) Nonpsych
-    width: 65
-    hidden: True
-  - name: exac_nonpsych_prec
-    title: pLI (Hom) Nonpsych
-    type: float
-    desc: Probability LoF Intolerance (Hom) Nonpsych
-    width: 68
-    hidden: True
-  - name: exac_nonpsych_pnull
-    title: pLT Nonpsych
-    type: float
-    desc: Probability LoF Tolerance (Hom&Het) Nonpsych
-    width: 65
-    hidden: True
-  - name: exac_del_score
-    title: Del Int Z-Score
-    type: float
-    desc: Deletion Intolerance Z-Score
-    width: 54
-  - name: exac_dup_score
-    title: Dup Int Z-Score
-    type: float
-    desc: Duplication Intolerance Z-Score
-    width: 54
-  - name: exac_cnv_score
-    title: CNV Int Z-Score
-    type: float
-    desc: CNV Intolerance Z-Score
-    width: 54
-  - name: exac_cnv_flag
-    title: CNV Bias/Noise
-    type: string
-    width: 70
-description: ExAC Functional Gene Constraint & CNV Scores provides probability of LoF tolerance/intolerance
-developer:
-  name: 'ExAC'
-  organization: 'Exome Aggregation Consortium'
-  email: 'support@cravat.us'
-  website: 'http://exac.broadinstitute.org/'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+- desc: Probability LoF Intolerance (Hom&Het)
+  name: exac_pli
+  title: pLI
+  type: float
+- desc: Probability LoF Intolerance (Hom)
+  name: exac_prec
+  title: pLI (Hom)
+  type: float
+- desc: Probability LoF Tolerance (Hom&Het)
+  name: exac_pnull
+  title: pLT
+  type: float
+- desc: Probability LoF Intolerance (Hom&Het) NonTCGA
+  hidden: true
+  name: exac_nontcga_pli
+  title: pLI NonTCGA
+  type: float
+  width: 64
+- desc: Probability LoF Intolerance (Hom) NonTCGA
+  hidden: true
+  name: exac_nontcga_prec
+  title: pLI (Hom) NonTCGA
+  type: float
+  width: 68
+- desc: Probability LoF Tolerance (Hom&Het) NonTCGA
+  hidden: true
+  name: exac_nontcga_pnull
+  title: pLT NonTCGA
+  type: float
+  width: 64
+- desc: Probability LoF Intolerance (Hom&Het) Nonpsych
+  hidden: true
+  name: exac_nonpsych_pli
+  title: pLI Nonpsych
+  type: float
+  width: 65
+- desc: Probability LoF Intolerance (Hom) Nonpsych
+  hidden: true
+  name: exac_nonpsych_prec
+  title: pLI (Hom) Nonpsych
+  type: float
+  width: 68
+- desc: Probability LoF Tolerance (Hom&Het) Nonpsych
+  hidden: true
+  name: exac_nonpsych_pnull
+  title: pLT Nonpsych
+  type: float
+  width: 65
+- desc: Deletion Intolerance Z-Score
+  name: exac_del_score
+  title: Del Int Z-Score
+  type: float
+  width: 54
+- desc: Duplication Intolerance Z-Score
+  name: exac_dup_score
+  title: Dup Int Z-Score
+  type: float
+  width: 54
+- desc: CNV Intolerance Z-Score
+  name: exac_cnv_score
+  title: CNV Int Z-Score
+  type: float
+  width: 54
+- name: exac_cnv_flag
+  title: CNV Bias/Noise
+  type: string
+  width: 70
+tags:
+- genes
+- germline
+- populations
+title: ExAC Gene Constraint & CNV Score
+type: annotator
+version: 0.3.12

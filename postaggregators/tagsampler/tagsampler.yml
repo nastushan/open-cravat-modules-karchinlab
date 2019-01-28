@@ -10,6 +10,7 @@ output_columns:
   title: Number of Samples
   type: int
   width: 90
+  filterable: false
 - name: samples
   title: Samples
   type: string
