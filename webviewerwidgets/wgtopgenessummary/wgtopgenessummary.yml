@@ -1,5 +1,5 @@
 title: Top Genes Summary
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: base
 description: Top Genes Summary webviewer widget

@@ -19,7 +19,7 @@ def get_data (queries):
     cursor = conn.cursor()
     
     gene_var_perc = {}
-    q = 'select variant.base__hugo, count(*) from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid group by variant.base__hugo'
+    q = 'select variant.base__hugo, count(*) from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid and variant.base__hugo is not null group by variant.base__hugo'
     cursor.execute(q)
     for row in cursor.fetchall():
         hugo = row[0]
