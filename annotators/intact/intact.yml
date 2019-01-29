@@ -1,4 +1,4 @@
-datasource: v4.0.0
+datasource: 2018.11.30
 description: Molecular interaction data
 developer:
   citation: https://sites.google.com/site/jpopgen/dbNSFP

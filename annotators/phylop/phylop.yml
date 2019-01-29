@@ -1,4 +1,4 @@
-datasource: dbNSFP v4.0b1
+datasource: hg38
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
   citation: https://sites.google.com/site/jpopgen/dbNSFP

@@ -1,4 +1,4 @@
-datasource: v1
+datasource: v1.2
 description: MutPred is a random forest model for the prediction of pathogenic missense
   variants and automated inference of molecular mechanisms of disease.
 developer:
@@ -22,9 +22,9 @@ output_columns:
   type: string
   filterable: false
 - desc: Pathogenicity score
+  title: Score
   filterable: true
   name: mutpred_general_score
-  title: Score
   type: float
   width: 85
 - hidden: true

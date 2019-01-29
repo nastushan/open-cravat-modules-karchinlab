@@ -1,4 +1,4 @@
-datasource: dbNSFP v4.0b1
+datasource: v0.3.1
 description: ExAC Functional Gene Constraint & CNV Scores provides probability of
   LoF tolerance/intolerance
 developer:

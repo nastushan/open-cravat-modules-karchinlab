@@ -1,4 +1,4 @@
-datasource: dbNSFP v4.0b1
+datasource: v2.3
 description: Functional analysis through hidden markov models.
 developer:
   citation: https://sites.google.com/site/jpopgen/dbNSFP
