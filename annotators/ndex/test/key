@@ -13,7 +13,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Report level: gene
 #
 Base Information				NDEx		
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Number of networks	Network ID	Network Name
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Number of Networks	Network ID	Network Name
 MDC1	1	MIS	MIS(1)	1	f9c7eca4-5521-11e7-8f50-0ac135e8bacf	ATM pathway
 NPPA	1	MIS	MIS(1)	1	fd2c9b80-5521-11e7-8f50-0ac135e8bacf	AP-1 transcription factor network
 PRKAR1A	1	MIS	MIS(1)	1	03788bcc-5522-11e7-8f50-0ac135e8bacf	Alpha4 beta1 integrin signaling events
