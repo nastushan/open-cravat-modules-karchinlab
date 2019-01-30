@@ -4,6 +4,7 @@ widgetGenerators['mupit'] = {
 	'variant': {
 		'width': 280, 
 		'height': 80, 
+        'default_hidden': true,
 		'function': function (div, row, tabName) {
 			var link = infomgr.getRowValue(tabName, row, 'mupit__link');
 			if (link == null) {
@@ -18,6 +19,7 @@ widgetGenerators['mupit'] = {
 	'gene': {
 		'width': 280, 
 		'height': 80, 
+        'default_hidden': true,
 		'function': function (div, row, tabName) {
 			var link = infomgr.getRowValue(tabName, row, 'mupit__link');
 			if (link == null) {
