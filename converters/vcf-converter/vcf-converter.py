@@ -146,7 +146,6 @@ class CravatConverter(BaseConverter):
         alt_reads = ''
         ref_reads = ''
         af = ''
-        
         #AD contains 2 values usually ref count and alt count unless there are 
         #multiple alts then it will have alt 1 then alt 2.
         if self.vcf_format == 'varscan':
