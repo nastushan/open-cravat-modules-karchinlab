@@ -39,7 +39,7 @@ class CravatAnnotator(BaseAnnotator):
         return {'sig':sig,
                 'disease_refs':refs,
                 'disease_names':diseases,
-                'rev_ stat':rev,
+                'rev_stat':rev,
                 'id': id}
         
 if __name__ == '__main__':
