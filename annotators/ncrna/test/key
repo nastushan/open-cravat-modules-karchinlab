@@ -3,7 +3,7 @@
 #Report level: variant
 #
 Base Information					ncRNA		Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	ncRNA Class	ncRNA Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
+UID	Chrom	Position	Ref Base	Alt Base	Class	Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr1	157790	A	T	snRNA	U6	1		snrna_NA						
 2	chr15	45433048	T	A			1		not_mirna2_2beforeFirst						
 3	chr15	45433049	C	T			1		not_mirna1_1before						
