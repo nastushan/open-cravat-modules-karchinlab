@@ -2,7 +2,17 @@ widgetGenerators['note'] = {
 	'variant': {
 		'width': 280, 
 		'height': 280, 
+		'donterase': true,
+        'variables': {'noterow': ''},
 		'function': function (div, row, tabName) {
+            var widgetName = 'note';
+			var v = widgetGenerators[widgetName][tabName]['variables'];
+            if (v['noterow'] == row[0]) {
+                return;
+            } else {
+                $(div).empty();
+            }
+            v['noterow'] = row[0];
             var colNo = infomgr.getColumnNo(tabName, 'base__note');
             var note = row[colNo];
             var button = getEl('button');
@@ -21,7 +31,6 @@ widgetGenerators['note'] = {
                     success: function (response) {
                     }
                 });
-                console.log(note);
             });
             addEl(div, button);
             addEl(div, getEl('br'));
@@ -35,7 +44,17 @@ widgetGenerators['note'] = {
 	'gene': {
 		'width': 280,
 		'height': 280,
+		'donterase': true,
+        'variables': {'noterow': ''},
 		'function': function (div, row, tabName) {
+            var widgetName = 'note';
+			var v = widgetGenerators[widgetName][tabName]['variables'];
+            if (v['noterow'] == row[0]) {
+                return;
+            } else {
+                $(div).empty();
+            }
+            v['noterow'] = row[0];
             var colNo = infomgr.getColumnNo(tabName, 'base__note');
             var note = row[colNo];
             var button = getEl('button');
@@ -54,7 +73,6 @@ widgetGenerators['note'] = {
                     success: function (response) {
                     }
                 });
-                console.log(note);
             });
             addEl(div, button);
             addEl(div, getEl('br'));
