@@ -1,5 +1,5 @@
 title: MutPred
-version: 1.0.0
+version: 1.0.2
 type: webviewerwidget
 required_annotator: mutpred1
 description: MutPred webviewer widget
