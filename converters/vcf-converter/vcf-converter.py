@@ -29,7 +29,18 @@ class CravatConverter(BaseConverter):
                            'type':'float'}]
     
     def check_format(self, f): 
-        return f.name.endswith('.vcf') or f.readline().startswith('##fileformat=VCF')
+        vcf_format = False
+        if f.name.endswith('.vcf'):
+            vcf_format = True
+        first_line = f.readline()
+        if first_line.startswith('##fileformat=VCF'):
+            vcf_format = True
+        second_line = f.readline()
+        if second_line.startswith('##source=VarScan'):
+            self.vcf_format = 'varscan'
+        else:
+            self.vcf_format = 'unknown'
+        return vcf_format
     
     def setup(self, f):
         
@@ -128,7 +139,7 @@ class CravatConverter(BaseConverter):
             if gt != gts[0]:
                 return 'het'
         return 'hom'            
-                        
+
     #Extract read depth, allele count, and allele frequency from optional VCR information
     def extract_read_info (self, sample_data, gt, gts, genotype_fields): 
         depth = ''
@@ -138,31 +149,58 @@ class CravatConverter(BaseConverter):
         
         #AD contains 2 values usually ref count and alt count unless there are 
         #multiple alts then it will have alt 1 then alt 2.
-        if 'AD' in genotype_fields and genotype_fields['AD'] <= len(sample_data): 
-            if 0 in gts.keys():
-                #if part of the genotype is reference, then AD will have #ref reads, #alt reads
-                ref_reads = sample_data[genotype_fields['AD']].split(',')[0]
-                alt_reads = sample_data[genotype_fields['AD']].split(',')[1]
-            elif gt == max(gts.keys()):    
-                #if geontype has multiple alt bases, then AD will have #alt1 reads, #alt2 reads
-                alt_reads = sample_data[genotype_fields['AD']].split(',')[1]
-            else:
-                alt_reads = sample_data[genotype_fields['AD']].split(',')[0]                            
-                             
+        if self.vcf_format == 'varscan':
+            if 'AD' in genotype_fields and 'RD' in genotype_fields:
+                try:
+                    ref_reads = sample_data[genotype_fields['RD']]
+                except:
+                    ref_reads = ''
+                try:
+                    alt_reads = sample_data[genotype_fields['AD']]
+                except:
+                    alt_reads = ''
+        else:
+            if 'AD' in genotype_fields and genotype_fields['AD'] <= len(sample_data): 
+                if 0 in gts.keys():
+                    #if part of the genotype is reference, then AD will have #ref reads, #alt reads
+                    try:
+                        ref_reads = sample_data[genotype_fields['AD']].split(',')[0]
+                    except:
+                        ref_reads = ''
+                    try:
+                        alt_reads = sample_data[genotype_fields['AD']].split(',')[1]
+                    except:
+                        alt_reads = ''
+                elif gt == max(gts.keys()):    
+                    #if geontype has multiple alt bases, then AD will have #alt1 reads, #alt2 reads
+                    try:
+                        alt_reads = sample_data[genotype_fields['AD']].split(',')[1]
+                    except:
+                        alt_reads = ''
+                else:
+                    try:
+                        alt_reads = sample_data[genotype_fields['AD']].split(',')[0]
+                    except:
+                        alt_reads = ''
         if 'DP' in genotype_fields and genotype_fields['DP'] <= len(sample_data): 
             depth = sample_data[genotype_fields['DP']] 
         elif alt_reads != '' and ref_reads != '':
             #if DP is not present but we have alt and ref reads count, dp = ref+alt
             depth = int(alt_reads) + int(ref_reads)   
-
+        else:
+            depth = ''
         if 'AF' in genotype_fields and genotype_fields['AF'] <= len(sample_data):
-            af = float(sample_data[genotype_fields['AF']] )
+            try:
+                af = float(sample_data[genotype_fields['AF']] )
+            except:
+                af = ''
         elif depth != '' and alt_reads != '':
             #if AF not specified, calc it from alt and ref reads
             af = float(alt_reads) / float(depth)
- 
+        else:
+            af = ''
         return depth, alt_reads, af
-            
+
     def extract_vcf_variant (self, strand, pos, ref, alt):
 
         reflen = len(ref)

@@ -29,6 +29,10 @@ class CravatPostAggregator (BasePostAggregator):
         afs = []
         for row in self.cursor.fetchall():
             (sample, phred, filt, zygosity, altread, totread, af) = row
+            if altread == None:
+                altread = ''
+            if af == None:
+                af = ''
             phreds.append(phred)
             filts.append(filt)
             zygosities.append(zygosity)

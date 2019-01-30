@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.6
+version: 1.0.7
 type: postaggregator
 
 name: vcfinfo
@@ -49,3 +49,4 @@ developer:
 release_note:
   1.0.3: zygosity is multi category.
   1.0.4: filter is multi category.
+  1.0.7: altread and af None to empty string to accommodate error handling of vcf-converter
