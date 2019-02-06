@@ -21,15 +21,17 @@ output_columns:
   name: tts
   title: CGC tumor types somatic
   type: string
+  width: 160
   filterable: false
 - hidden: true
   name: ttg
   title: CGC tumor types germline
   type: string
+  width: 160
   filterable: false
 tags:
 - genes
 - cancer
 title: Cancer Genome Census
 type: annotator
-version: 85.0.3
+version: 85.0.4

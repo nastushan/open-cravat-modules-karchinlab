@@ -39,7 +39,7 @@ output_columns:
   name: all_results
   title: All transcripts
   type: string
-  width: 68
+  width: 70
   filterable: false
 - aggregate: false
   hidden: true
@@ -53,4 +53,4 @@ tags:
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.0.2
+version: 4.0.3

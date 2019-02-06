@@ -14,6 +14,7 @@ output_columns:
   title: Transcript ID
   type: string
   filterable: false
+  width: 68
 - hidden: true
   name: ens_pid
   title: Protein ID
@@ -34,6 +35,7 @@ output_columns:
   title: Prediction
   type: string
   filterable: false
+  width: 68
 tags:
 - variants
 - variant effect prediction
