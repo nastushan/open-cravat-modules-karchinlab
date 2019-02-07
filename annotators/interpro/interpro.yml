@@ -1,7 +1,7 @@
 datasource: v71
 description: Protein sequence analysis & classification
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Mitchell, A. L., Attwood, T. K., Babbitt, P. C., et al. (2018). InterPro in 2019: improving coverage, classification and access to protein sequence annotations. Nucleic acids research, 47(D1), D351-D360."
   email: support@cravat.us
   name: Alex L. Mitchell et al.
   organization: European Bioinformatics Institute (EMBL-EBI)
@@ -27,4 +27,4 @@ tags:
 - genes
 title: InterPro
 type: annotator
-version: 71.0.1
+version: 71.0.2

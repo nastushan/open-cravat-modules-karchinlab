@@ -1,8 +1,7 @@
 datasource: dbNSFP v4.0b1
 description: UK10K cohort provides genetic information from DTR & ALSPAC
 developer:
-  citation: 'The UK10K Project: Rare variants in health or disease. Walter et al.
-    Nature (2015)'
+  citation: 'UK10K consortium. (2015). The UK10K project identifies rare variants in health and disease. Nature, 526(7571), 82.'
   email: support@cravat.us
   name: UK10K Consortium
   organization: Wellcome Sanger Institute
@@ -34,4 +33,4 @@ tags:
 - populations
 title: UK10K Cohort Twins & ALSPAC
 type: annotator
-version: 3.5.04
+version: 3.5.05

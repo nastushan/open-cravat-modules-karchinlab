@@ -1,8 +1,7 @@
 datasource: Phase 3
 description: Population allele frequencies from 1000 Genomes Project
 developer:
-  citation: "1000 Genomes Project Consortium; A global reference for human genetic\
-    \ variation, Nature, Volume 526, 01 October 2015, Pages 68\u201374, https://www.nature.com/articles/nature15393"
+  citation: "1000 Genomes Project Consortium. (2015). A global reference for human genetic variation. Nature, 526(7571), 68."
   email: support@cravat.us
   name: 1000 Genomes Project Consortium
   organization: 1000 Genomes Project Consortium
@@ -21,4 +20,4 @@ tags:
 - populations
 title: 1000 Genomes
 type: annotator
-version: 3.0.4
+version: 3.0.5

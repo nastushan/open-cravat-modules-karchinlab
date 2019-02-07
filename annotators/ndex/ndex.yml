@@ -2,7 +2,7 @@ add_to_variant_level: true
 datasource: v2
 description: Network Data Exchange
 developer:
-  citation: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4649937/
+  citation: "Pratt, D., Chen, J., Welker, D., et al. (2015). NDEx, the network data exchange. Cell systems, 1(4), 302-305."
   email: ''
   name: The Cytoscape Consortium
   organization: The Cytoscape Consortium
@@ -34,4 +34,4 @@ tags:
 - interactions
 title: NDEx
 type: annotator
-version: 4.0.4
+version: 4.0.5

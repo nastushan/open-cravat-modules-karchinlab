@@ -1,6 +1,6 @@
 description: Gene description from NIH's NCBI Gene Info
 developer:
-  citation: https://www.ncbi.nlm.nih.gov/gene
+  citation: "Wheeler, D. L., Barrett, T., Benson, D. A., Bryant, S. H., et al. (2006). Database resources of the national center for biotechnology information. Nucleic acids research, 35(suppl_1), D5-D12."
   email: ''
   name: NIH
   organization: NIH
@@ -15,4 +15,4 @@ tags:
 - genes
 title: NCBI Gene
 type: annotator
-version: 2018.02.213
+version: 2019.02.006

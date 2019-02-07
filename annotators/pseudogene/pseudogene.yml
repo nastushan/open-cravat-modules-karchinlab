@@ -1,7 +1,7 @@
 datasource: hg38
 description: Pseudogenes from UCSC hg38 wgEncodeGencodePseudoGeneV27
 developer:
-  citation: http://europepmc.org/abstract/MED/22955987
+  citation: "Harrow, J., Frankish, A., Gonzalez, J. M., Tapanari, E., Diekhans, M., Kokocinski, F., ... & Barnes, I. (2012). GENCODE: the reference human genome annotation for The ENCODE Project. Genome research, 22(9), 1760-1774."
   email: ''
   name: UCSC
   organization: UCSC
@@ -25,4 +25,4 @@ tags:
 - genomic features
 title: Pseudogene
 type: annotator
-version: 27.0.4
+version: 27.0.5

@@ -2,7 +2,7 @@ can_summarize_by_gene: true
 datasource: v4
 description: VEST annotation
 developer:
-  citation: ' https://www.ncbi.nlm.nih.gov/pubmed/26442818'
+  citation: 'Douville, C., Masica, D. L., Stenson, P. D., et al. (2016). Assessing the pathogenicity of insertion and deletion variants with the variant effect scoring tool (VEST‐Indel). Human mutation, 37(1), 28-35.'
   email: ''
   name: Johns Hopkins University - Karchin Lab
   organization: Johns Hopkins University - Karchin Lab
@@ -53,4 +53,4 @@ tags:
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.0.3
+version: 4.0.4

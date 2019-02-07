@@ -2,9 +2,7 @@ datasource: v151
 description: Comprehensive database of both single base nucleotide subsitutions and
   short deletion and insertion polymorphisms
 developer:
-  citation: 'Sherry ST, Ward MH, Kholodov M, Baker J, Phan L, Smigielski EM, Sirotkin
-    K. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res. 2001 Jan
-    1;29(1):308-11'
+  citation: 'Sherry, S.T., Ward, M., Kholodov, M., Baker, J., Phan, L., Smigielski, E.M., & Sirotkin, K. (2001). dbSNP: the NCBI database of genetic variation. Nucleic acids research, 29 1, 308-11 .'
   email: support@cravat.us
   name: NCBI
   organization: NCBI
@@ -23,4 +21,4 @@ tags:
 - literature
 title: dbSNP
 type: annotator
-version: 151.0.2
+version: 151.0.3

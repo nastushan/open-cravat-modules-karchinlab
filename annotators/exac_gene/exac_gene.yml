@@ -2,7 +2,7 @@ datasource: v0.3.1
 description: ExAC Functional Gene Constraint & CNV Scores provides probability of
   LoF tolerance/intolerance
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Lek, M., Karczewski, K. J., Minikel, E. V., et al. (2016). Analysis of protein-coding genetic variation in 60,706 humans. Nature, 536(7616), 285."
   email: support@cravat.us
   name: ExAC
   organization: Exome Aggregation Consortium
@@ -88,4 +88,4 @@ tags:
 - populations
 title: ExAC Gene Constraint & CNV Score
 type: annotator
-version: 0.3.13
+version: 0.3.14

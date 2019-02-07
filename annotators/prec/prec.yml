@@ -1,7 +1,7 @@
 datasource: dbNSFP v4.0b1
 description: Providing probabilities for LoF alleles
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "MacArthur, D. G., Balasubramanian, S., Frankish, A., et al. (2012). A systematic survey of loss-of-function variants in human protein-coding genes. Science, 335(6070), 823-828."
   email: support@cravat.us
   name: Daniel G. MacArthur
   organization: Wellcome Trust Sanger Institute
@@ -25,4 +25,4 @@ tags:
 - genes
 title: P(rec)
 type: annotator
-version: 3.5.3
+version: 3.5.4

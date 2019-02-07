@@ -1,8 +1,7 @@
 datasource: hg38
 description: Non-coding RNA from RepeatMasker library
 developer:
-  citation: Bao, W., Kojima, K.K., Kohany, O. Repbase Update, a database of repetitive
-    elements in eukaryotic genomes. Mob DNA, 2015;6:11
+  citation: "Bao, W., Kojima, K. K., & Kohany, O. (2015). Repbase Update, a database of repetitive elements in eukaryotic genomes. Mobile DNA, 6(1), 11."
   email: ''
   name: Genetic Information Research Institute
   organization: Genetic Information Research Institute
@@ -25,4 +24,4 @@ tags:
 - genomic features
 title: ncRNA
 type: annotator
-version: 2014.1.102
+version: 2019.02.006

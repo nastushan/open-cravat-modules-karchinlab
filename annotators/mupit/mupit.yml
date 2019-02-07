@@ -3,7 +3,7 @@ datasource: v5.2.4
 description: Provides links to variant position and annotations in 3D MuPIT structure
   viewer.
 developer:
-  citation: https://www.ncbi.nlm.nih.gov/pubmed/23793516
+  citation: "Niknafs, N., Kim, D., Kim, R., et al. (2013). MuPIT interactive: webserver for mapping variant positions to annotated, interactive 3D structures. Human genetics, 132(11), 1235-1243."
   email: ''
   name: Johns Hopkins - Karchin Lab
   organization: Johns Hopkins - Karchin Lab
@@ -38,4 +38,4 @@ tags:
 - variant effect prediction
 title: MuPIT
 type: annotator
-version: 4.2.3
+version: 4.2.4

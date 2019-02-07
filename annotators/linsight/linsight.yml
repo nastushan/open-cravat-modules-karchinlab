@@ -1,7 +1,7 @@
 datasource: 2018.10.19
 description: LINSIGHT
 developer:
-  citation: https://www.nature.com/articles/ng.3810
+  citation: "Huang, Y. F., Gulko, B., & Siepel, A. (2017). Fast, scalable prediction of deleterious noncoding variants from functional and population genomic data. Nature genetics, 49(4), 618."
   email: asiepel@cshl.edu
   name: Adam Siepel
   organization: Cold Spring Harbor Laboratory
@@ -21,4 +21,4 @@ tags:
 - genomic features
 title: LINSIGHT
 type: annotator
-version: 2018.10.192
+version: 2019.02.006

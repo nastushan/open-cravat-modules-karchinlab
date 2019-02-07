@@ -2,7 +2,7 @@ datasource: dbNSFP v4.0b1
 description: Impact of BRCA1 missense variants on protein function as determined by
   multiplex homology-directed DNA repair assay
 developer:
-  citation: https://www.sciencedirect.com/science/article/pii/S000292971830243X?via%3Dihub
+  citation: "Findlay, G.M., Daza, R.M., Martin, B., Zhang, M.D., Leith, A.P., Gasperini, M.J., Janizek, J.D., Huang, X., Starita, L.M., & Shendure, J. (2018). Accurate classification of BRCA1 variants with saturation genome editing. Nature, 1-6."
   email: support@cravat.us
   name: Lea Starita
   organization: Starita Lab
@@ -25,4 +25,4 @@ tags:
 - multiplex assays
 title: BRCA1 Multiplex Assay
 type: annotator
-version: 2019.1.231
+version: 2019.2.6

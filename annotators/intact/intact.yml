@@ -1,7 +1,7 @@
 datasource: 2018.11.30
 description: Molecular interaction data
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Orchard, S., Ammari, M., Aranda, B., et al. (2013). The MIntAct project—IntAct as a common curation platform for 11 molecular interaction databases. Nucleic acids research, 42(D1), D358-D363."
   email: support@cravat.us
   name: Orchard S et al.
   organization: European Bioinformatics Institute (EMBL-EBI)
@@ -24,4 +24,4 @@ tags:
 - interactions
 title: IntAct
 type: annotator
-version: 2019.1.25
+version: 2019.2.06

@@ -2,8 +2,7 @@ datasource: v161
 description: Denovo annotation. Denovo is a collection of germline variants in the
   human genome which are present in children but not their parents.
 developer:
-  citation: 'denovo-db, Seattle, WA (URL: denovo-db.gs.washington.edu) [date (month,
-    yr) accessed]'
+  citation: 'Turner, T.N., Yi, Q., Krumm, N., Huddleston, J., Hoekzema, K., Stessman, H.A., Doebley, A., Bernier, R.A., Nickerson, D.A., & Eichler, E.E. (2017). denovo-db: a compendium of human de novo variants. Nucleic Acids Research, 45(D1):D804-D811.'
   email: support@cravat.us
   name: Tychele Turner
   organization: University of Washington
@@ -34,4 +33,4 @@ tags:
 - clinical relevance
 title: Denovo-DB
 type: annotator
-version: 1.6.3
+version: 1.6.4

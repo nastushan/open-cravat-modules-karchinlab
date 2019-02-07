@@ -1,7 +1,7 @@
 datasource: v3
 description: Residual variation intolerance scoring
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Petrovski, S., Wang, Q., Heinzen, E. L., Allen, A. S., & Goldstein, D. B. (2013). Genic intolerance to functional variation and the interpretation of personal genomes. PLoS genetics, 9(8), e1003709."
   email: support@cravat.us
   name: "Slav\xE9 Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David\
     \ B. Goldstein"
@@ -39,4 +39,4 @@ tags:
 - evolution
 title: RVIS
 type: annotator
-version: 3.0.04
+version: 3.0.05

@@ -1,7 +1,7 @@
 datasource: v2.3
 description: Functional analysis through hidden markov models.
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Shihab, H. A., Gough, J., Mort, M., Cooper, D. N., Day, I. N., & Gaunt, T. R. (2014). Ranking non-synonymous single nucleotide polymorphisms based on disease concepts. Human genomics, 8(1), 11."
   email: support@cravat.us
   name: Chris Campbell
   organization: University of Bristol Integrative Epidemiology Unit
@@ -41,4 +41,4 @@ tags:
 - variant effect prediction
 title: FATHMM
 type: annotator
-version: 2.3.02
+version: 2.3.03

@@ -1,7 +1,7 @@
 datasource: v3.0.1
 description: Tumor Alterations Relevant for GEnomics-driven Therapy
 developer:
-  citation: https://www.ncbi.nlm.nih.gov/pubmed/24836576
+  citation: "Van Allen, E. M., Wagle, N., Stojanov, P., et al. (2014). Whole-exome sequencing and clinical interpretation of formalin-fixed, paraffin-embedded tumor samples to guide precision cancer medicine. Nature medicine, 20(6), 682."
   email: support@cravat.us
   name: Broad Institute
   organization: Broad Institute
@@ -25,4 +25,4 @@ tags:
 - cancer
 title: TARGET
 type: annotator
-version: 3.0.13
+version: 3.0.14

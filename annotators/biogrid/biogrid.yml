@@ -1,7 +1,7 @@
 datasource: v3.5.167
 description: Comprehensive interaction repository
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Oughtred R, Stark C, Breitkreutz BJ, et al. (2018). The BioGRID interaction database: 2019 update. Nucleic Acids Res. 47(D1):D529-D541."
   email: support@cravat.us
   name: BioGRID
   organization: BioGRID
@@ -29,4 +29,4 @@ tags:
 - interactions
 title: BioGRID
 type: annotator
-version: 3.5.168
+version: 3.5.169

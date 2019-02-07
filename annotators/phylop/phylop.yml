@@ -1,7 +1,7 @@
 datasource: hg38
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Pollard, K. S., Hubisz, M. J., Rosenbloom, K. R., & Siepel, A. (2010). Detection of nonneutral substitution rates on mammalian phylogenies. Genome research, 20(1), 110-121."
   email: support@cravat.us
   name: UCSC
   organization: University of California Santa Cruz Genomics Institute
@@ -35,4 +35,4 @@ tags:
 - evolution
 title: PhyloP
 type: annotator
-version: 3.5.03
+version: 3.5.04

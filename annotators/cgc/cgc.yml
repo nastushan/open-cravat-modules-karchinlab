@@ -1,7 +1,7 @@
 datasource: v85
 description: Cancer Genome Census annotation
 developer:
-  citation: https://www.nature.com/articles/nrc1299
+  citation: "Futreal, P.A., Coin, L.J., Marshall, M., Down, T., Hubbard, T.L., Wooster, R., Rahman, N., & Stratton, M.R. (2004). A census of human cancer genes. Nature Reviews Cancer, 4, 177-183."
   email: support@cravat.us
   name: Sanger Institute
   organization: Sanger Institute
@@ -34,4 +34,4 @@ tags:
 - cancer
 title: Cancer Genome Census
 type: annotator
-version: 85.0.4
+version: 85.0.5

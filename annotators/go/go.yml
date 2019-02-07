@@ -2,9 +2,7 @@ datasource: 2018.12.06
 description: Gene Ontology (GO) project provides a comprehensive computable knowledge
   regarding the functions of genes and gene products.
 developer:
-  citation: '| Ashburner et al. Gene ontology: tool for the unification of biology
-    (2000) Nat Genet 25(1):25-9. https://doi.org/10.1038/75556 GO Consortium, Nucleic
-    Acids Res., 2017 https://doi.org/10.1093/nar/gkw1108'
+  citation: 'Ashburner, M., Ball, C. A., Blake, J. A., et al. (2000). Gene Ontology: tool for the unification of biology. Nature genetics, 25(1), 25.'
   email: support@cravat.us
   name: Gene Ontology Consortium
   organization: Gene Ontology Consortium
@@ -51,4 +49,4 @@ tags:
 - genes
 title: Gene Ontology
 type: annotator
-version: 2018.12.023
+version: 2019.2.006

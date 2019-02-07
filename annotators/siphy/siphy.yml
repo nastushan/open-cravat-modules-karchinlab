@@ -1,7 +1,7 @@
 datasource: dbNSFP v4.0b1
 description: A database of conservation scores based on 29 mammal genomes
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Lindblad-Toh, K., Garber, M., Zuk, et al. (2011). A high-resolution map of human evolutionary constraint using 29 mammals. Nature, 478(7370), 476."
   email: support@cravat.us
   name: ''
   organization: Broad Institute
@@ -30,4 +30,4 @@ tags:
 - evolution
 title: SiPhy
 type: annotator
-version: 3.5.1
+version: 3.5.2

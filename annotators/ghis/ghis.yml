@@ -1,7 +1,7 @@
 datasource: dbNSFP v4.0b1
 description: Gene haploinsufficiency scoring
 developer:
-  citation: https://sites.google.com/site/jpopgen/dbNSFP
+  citation: "Steinberg, J., Honti, F., Meader, S., & Webber, C. (2015). Haploinsufficiency predictions without study bias. Nucleic acids research, 43(15), e101-e101."
   email: support@cravat.us
   name: Julia Steinberg, Frantisek Honti, Stephen Meader, Caleb Webber
   organization: 1MRC Functional Genomics Unit, University of Oxford
@@ -15,4 +15,4 @@ tags:
 - genes
 title: GHIS
 type: annotator
-version: 3.5.02
+version: 3.5.03

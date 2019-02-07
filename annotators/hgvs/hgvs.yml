@@ -1,7 +1,7 @@
 datasource: v15.11
 description: Variants described in HGVS format
 developer:
-  citation: https://onlinelibrary.wiley.com/doi/pdf/10.1002/humu.22981
+  citation: "den Dunnen, J. T., Dalgleish, R., Maglott, D. R., et al. (2016). HGVS recommendations for the description of sequence variants: 2016 update. Human mutation, 37(6), 564-569."
   email: support@cravat.us
   name: Human Genome Variation Society
   organization: Human Genome Variation Society
@@ -38,4 +38,4 @@ tags:
 - variants
 title: HGVS Format
 type: annotator
-version: 1.0.2
+version: 1.0.3

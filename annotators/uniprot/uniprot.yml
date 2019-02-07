@@ -1,5 +1,5 @@
 title: UniProt
-version: 2018.9.1
+version: 2019.02.06
 type: annotator
 level: gene
 output_columns:
@@ -14,5 +14,5 @@ developer:
   organization: 'The UniProt Consortium'
   email: 'support@cravat.us'
   website: 'https://www.uniprot.org/'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: 'UniProt Consortium. (2018). UniProt: the universal protein knowledgebase. Nucleic acids research, 46(5), 2699.'
 datasource: 2018_09
