@@ -9,7 +9,7 @@ developer:
   website: http://www.insilico.us.com
 required_annotator: base
 tags:
-- Notes
+- notes
 title: Note
 type: webviewerwidget
 version: 1.0.1
