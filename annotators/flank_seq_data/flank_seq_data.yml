@@ -1,0 +1,20 @@
+title: Flanking Sequence (DATA)
+version: 0.0.1
+type: annotator
+level: variant
+output_columns:
+- name: ref_seq 
+  title: Ref Sequence
+  type: string
+- name: alt_seq
+  title: Alt Sequence
+  type: string
+description: Reference and alternate bases with flanking sequence
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+options:
+  flanking_bases: 60

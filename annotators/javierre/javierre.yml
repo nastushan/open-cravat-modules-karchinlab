@@ -1,0 +1,21 @@
+datasource: hg19
+description: Javierre et al promoter-interacting regions | Promoter capture Hi-C was used to identify interacting regions of 31,253 promoters that are significantly associated across 17 human primary hematopoietic cell types.
+developer:
+  citation: Javierre, B. M., Burren S.E. et al. (2016). Lineage-specific genome architecture links enhancers and non-coding disease variants to target gene promoters. Cell, 167(5), 1369-1384.
+  email: 
+  name: 
+  organization: The Babraham Institute, Babraham Research Campus, Cambridge
+  website: https://doi.org/10.1016/j.cell.2016.09.037
+level: variant
+output_columns:
+- name: targets
+  title: Gene Targets
+  type: string
+  width: 70
+  filterable: true
+tags:
+- noncoding
+- genomic features
+title: Javierre et al promoter-interacting regions
+type: annotator
+version: 2019.2.5

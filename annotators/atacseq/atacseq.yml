@@ -1,0 +1,22 @@
+title: ATAC-seq
+version: 0.0.1
+type: annotator
+level: variant
+output_columns:
+- name: disease
+  title: Disease
+  type: string
+- name: snp
+  title: CausalSNP
+  type: string
+- name: element
+  title: Element Type
+  type: string
+description: 'Enhancer datafrom ATAC-seq study'
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+
