@@ -1,3 +1,4 @@
+name: interpro
 datasource: v71
 description: Protein sequence analysis & classification
 developer:
@@ -8,6 +9,12 @@ developer:
   website: https://www.ebi.ac.uk/interpro/
 input_format: crv
 level: variant
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: domain
+  title: Domain
+  type: string
+  width: 160
 output_columns:
 - desc: Associated UniProt accession number. Multiple entries separated by ";"
   hidden: true
@@ -27,4 +34,4 @@ tags:
 - genes
 title: InterPro
 type: annotator
-version: 71.0.2
+version: 71.0.3
