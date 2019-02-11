@@ -14,9 +14,9 @@ output_columns:
   type: string
 description: 'Enhancer datafrom ATAC-seq study'
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
-  citation: ''
+  name: M. Ryan Corces
+  organization: Stanford University School of Medicine
+  email: support@cravat.us
+  website: https://gdc.cancer.gov/about-data/publications/ATACseq-AWG
+  citation: Corces, M. R., Granja, J. M. et al. (2018). The chromatin accessibility landscape of primary human cancers. Science, 362(6413), p.eaav1898 
 
