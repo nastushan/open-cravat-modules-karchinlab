@@ -14,3 +14,4 @@ tagger.py
 *.tsv
 .gitignore
 example_annotator
+**input.status.json
