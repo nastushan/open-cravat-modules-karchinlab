@@ -1,5 +1,5 @@
 datasource: v85
-description: Cancer Genome Census annotation
+description: Cancer Gene Census annotation
 developer:
   citation: "Futreal, P.A., Coin, L.J., Marshall, M., Down, T., Hubbard, T.L., Wooster, R., Rahman, N., & Stratton, M.R. (2004). A census of human cancer genes. Nature Reviews Cancer, 4, 177-183."
   email: support@cravat.us
@@ -32,6 +32,6 @@ output_columns:
 tags:
 - genes
 - cancer
-title: Cancer Genome Census
+title: Cancer Gene Census
 type: annotator
-version: 85.0.5
+version: 85.0.6
