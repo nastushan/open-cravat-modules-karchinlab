@@ -16,7 +16,7 @@ class CravatAnnotator(BaseAnnotator):
         self.cursor.execute('SELECT acc FROM genes WHERE gname= ?;', [hugo])
         row = self.cursor.fetchone()
         if row is not None:
-            out['acc'] = row[0]
+            out['acc'] = row[0] + '[WEB:]https://www.uniprot.org/uniprot/' + row[0]
         return out
     
     def cleanup(self):
