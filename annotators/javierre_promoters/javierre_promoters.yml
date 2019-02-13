@@ -8,14 +8,14 @@ developer:
   website: https://doi.org/10.1016/j.cell.2016.09.037
 level: variant
 output_columns:
-- name: targets
-  title: Gene Targets
+- name: regions
+  title: Regions
   type: string
   width: 70
   filterable: true
 tags:
 - noncoding
 - genomic features
-title: Promoter interacting regions
+title: Promoter-interacting regions
 type: annotator
 version: 2019.2.5
