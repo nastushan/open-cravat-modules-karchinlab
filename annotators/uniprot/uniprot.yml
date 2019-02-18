@@ -1,5 +1,5 @@
 title: UniProt
-version: 2019.02.011
+version: 2019.02.13
 type: annotator
 level: gene
 output_columns:

@@ -1,7 +1,7 @@
-# Flanking Sequence (API)
+# Flanking Sequence
 
 Display the reference and alternate sequences with a number of flanking bases.
 
-Data is fetched by quering [https://rest.ensembl.org/documentation/info/sequence_region](rest.ensembl.org).
+Data is queried using the [https://github.com/pdxgx/neoepiscope/blob/master/neoepiscope/bowtie_index.py](neoepiscope bowtie index).
 
 The number of flanking bases returned is configurabel in the module's yml file. It defaults to 60.
