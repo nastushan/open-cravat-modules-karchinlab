@@ -2,8 +2,8 @@ var widgetName = 'codingvsnoncodingsummary';
 widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Coding vs Noncoding',
-		'width': 380, 
-		'height': 380, 
+		'width': 280, 
+		'height': 280, 
 		'callserver': false,
 		'function': function (div) {
 			if (div != null) {
