@@ -4,16 +4,16 @@ $.getScript('/result/widgetfile/wgcircossummary/d3.js', function () {});
 widgetGenerators['circossummary'] = {
 	'info': {
 		'name': 'Circos',
-		'width': 580, 
-		'height': 580, 
+		'width': 480, 
+		'height': 480, 
 		'callserver': true,
 		'function': function (div, data) {
 			if (div != null) {
 				emptyElement(div);
 			}
 			var chartSize = {
-					widgth: 560, 
-					height: 480
+					widgth: 460, 
+					height: 380
 			};
 			var genome = [
 		        ['1', 248956422],

@@ -3,8 +3,8 @@ $.getScript('/result/widgetfile/wgndexchasmplussummary/cytoscape.js', function (
 widgetGenerators['ndexchasmplussummary'] = {
 		'info': {
 			'name': 'NDEx Networks (Top Genes by CHASMplus)',
-			'width': 780, 
-			'height': 780, 
+			'width': 580, 
+			'height': 580, 
 			'callserver': false,
 			'function': function (parentDiv, data) {
 				var pvalCutoff = 0.05;
