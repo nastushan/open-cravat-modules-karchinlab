@@ -2,8 +2,8 @@ var widgetName = 'sosummary';
 widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Sequence Ontology',
-		'width': 580, 
-		'height': 780, 
+		'width': 380, 
+		'height': 380, 
 		'callserver': false,
 		'function': function (div) {
 			if (div != null) {
@@ -92,13 +92,11 @@ widgetGenerators[widgetName] = {
 				var count = counts[labels[i]];
 				data.push(count);
 			}
-			
 			div.style.width = 'calc(100% - 37px)';
 			var chartDiv = getEl('canvas');
 			chartDiv.style.width = 'calc(100% - 20px)';
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
-			
 			var chart = new Chart(chartDiv, {
 				type: 'doughnut',
 				data: {
@@ -109,7 +107,9 @@ widgetGenerators[widgetName] = {
 					labels: labels
 				},
 				options: {
-					responsive: true
+					responsive: true,
+                    responsiveAnimationDuration: 500,
+                    maintainAspectRatio: false,
 				}
 			});
 		}
