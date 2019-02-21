@@ -1,5 +1,5 @@
 title: NDEx VEST Summary
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: vest
 description: NDEx VEST Summary webviewer widget

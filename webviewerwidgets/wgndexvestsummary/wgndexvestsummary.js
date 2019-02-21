@@ -3,13 +3,10 @@ $.getScript('/result/widgetfile/wgndexvestsummary/cytoscape.js', function () {})
 widgetGenerators['ndexvestsummary'] = {
 		'info': {
 			'name': 'NDEx Networks (Top Genes by VEST)',
-			'width': 780, 
-			'height': 780, 
+			'width': 580, 
+			'height': 580, 
 			'callserver': false,
 			'function': function (parentDiv, data) {
-                if (data == undefined) {
-                    return;
-                }
 				var pvalCutoff = 0.05;
 				var hugos = [];
 				var geneRows = infomgr.getData('gene');
