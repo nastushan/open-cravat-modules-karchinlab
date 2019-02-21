@@ -22,9 +22,7 @@ def run_query (hugos):
 def get_data (queries):
     hugos = queries['hugos']
     hugos = json.loads(hugos)
-    print('hugos=', hugos)
     response = {'data': run_query(hugos)}
-    print('response=', response)
     return response
 
 if __name__ ==  '__main__':
