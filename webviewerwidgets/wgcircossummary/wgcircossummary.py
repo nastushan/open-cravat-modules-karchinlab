@@ -127,5 +127,4 @@ def get_data (queries):
     '''
     data[prefix] = data_sos
     response['data'] = data
-    print(data)
     return response
