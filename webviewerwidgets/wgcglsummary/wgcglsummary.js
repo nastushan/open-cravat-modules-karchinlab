@@ -5,10 +5,9 @@ widgetGenerators[widgetName] = {
 		'width': 280, 
 		'height': 280, 
 		'callserver': false,
-		'function': function (div) {
-			if (div != null) {
-				emptyElement(div);
-			}
+        'variables': {},
+        'init': function () {
+            var v = this['variables'];
 			var noTSG = 0;
 			var noOncogene = 0;
 			var noNeutral = 0;
@@ -24,20 +23,36 @@ widgetGenerators[widgetName] = {
 					noOncogene++;
 				}
 			}
+            v['tsg'] = noTSG;
+            v['oncogene'] = noOncogene;
+            v['neutral'] = noNeutral;
+        },
+        'shoulddraw': function () {
+            var v = this['variables'];
+            if (v['tsg'] + v['oncogene'] + v['neutral'] == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+		'function': function (div) {
+			if (div != null) {
+				emptyElement(div);
+			}
+            var v = this['variables'];
 			div.style.width = 'calc(100% - 37px)';
 			var chartDiv = getEl('canvas');
 			chartDiv.style.width = 'calc(100% - 20px)';
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
-			
 			var chart = new Chart(chartDiv, {
 				type: 'doughnut',
 				data: {
 					datasets: [{
 						data: [
-							noNeutral,
-							noOncogene,
-							noTSG
+							v['neutral'],
+							v['oncogene'],
+							v['tsg']
 						],
 						backgroundColor: [
 							'#f7c654',

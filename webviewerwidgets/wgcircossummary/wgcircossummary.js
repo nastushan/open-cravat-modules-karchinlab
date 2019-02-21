@@ -79,8 +79,8 @@ widgetGenerators['circossummary'] = {
             var btn = getEl('button');
             btn.textContent = '+';
             btn.style.position = 'absolute';
-            btn.style.top = '28';
-            btn.style.left = '5';
+            btn.style.top = '33';
+            btn.style.right = '26';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
             btn.setAttribute('widgetname', widgetName);
@@ -94,8 +94,8 @@ widgetGenerators['circossummary'] = {
             var btn = getEl('button');
             btn.textContent = '-';
             btn.style.position = 'absolute';
-            btn.style.top = '28';
-            btn.style.left = '26';
+            btn.style.top = '33';
+            btn.style.right = '5';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
             btn.setAttribute('widgetname', widgetName);
