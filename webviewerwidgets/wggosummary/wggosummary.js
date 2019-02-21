@@ -3,7 +3,7 @@ widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Gene Ontology',
 		'width': 780, 
-		'height': 380, 
+		'height': 280, 
 		'callserver': true,
 		'function': function (div, data) {
 			if (div != null) {
