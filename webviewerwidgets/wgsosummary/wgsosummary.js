@@ -10,6 +10,7 @@ widgetGenerators[widgetName] = {
 				emptyElement(div);
 			}
 			var so_dic = {
+                null: 'Intergenic',
 		        '':'Intergenic',
 		        'missense':'Missense',
 		        'synonymous':'Synonymous',
