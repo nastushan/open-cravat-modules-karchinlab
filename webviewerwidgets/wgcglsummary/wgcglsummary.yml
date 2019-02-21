@@ -1,5 +1,5 @@
 title: Cancer Genome Landscape Summary
-version: 1.0.0
+version: 1.0.2
 required_annotator: cgl
 type: webviewerwidget
 description: Cancer Genome Landscape Summary result viewer widget

@@ -9,6 +9,7 @@ widgetGenerators[widgetName] = {
 			if (div != null) {
 				emptyElement(div);
 			}
+            div.style.textAlign = 'center';
 			var noCoding = 0;
 			var noNoncoding = 0;
 			var d = infomgr.getData('variant'); 
@@ -53,7 +54,12 @@ widgetGenerators[widgetName] = {
 					]
 				},
 				options: {
-					responsive: true
+					responsive: true,
+                    responsiveAnimationDuration: 500,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                    },
 				}
 			});
 		}

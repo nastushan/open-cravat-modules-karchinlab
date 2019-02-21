@@ -67,7 +67,12 @@ widgetGenerators[widgetName] = {
 					]
 				},
 				options: {
-					responsive: true
+					responsive: true,
+                    responsiveAnimationDuration: 500,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                    },
 				}
 			});
 		}
