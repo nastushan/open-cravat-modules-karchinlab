@@ -10,27 +10,43 @@ input_format: crv
 level: variant
 output_columns:
 - hidden: true
+  desc: "Alternative allele count in called genotypes in UK10K TWINSUK cohort."
   name: uk10k_twins_ac
   title: Twins AC
   type: float
   filterable: false
 - filterable: true
+  desc: "Alternative allele frequency in called genotypes in UK10K TWINSUK cohort."
   name: uk10k_twins_af
   title: Twins AF
   type: float
 - hidden: true
+  desc: "Alternative allele count in called genotypes in UK10K ALSPAC cohort."
   name: uk10k_alspac_ac
   title: ALSPAC AC
   type: float
   width: 56
   filterable: false
 - filterable: true
+  desc: "Alternative allele frequency in called genotypes in UK10K ALSPAC cohort."
   name: uk10k_alspac_af
   title: ALSPAC AF
   type: float
   width: 56
+- hidden: true
+  name: uk10k_ac
+  desc: "Alternative allele count in combined genotypes in UK10K cohort (TWINSUK+ALSPAC)."
+  title: UK10K AC
+  type: float
+  filterable: false
+- hidden: true
+  name: uk10k_af
+  desc: "Alternative allele frequency in combined genotypes in UK10K cohort (TWINSUK+ALSPAC)."
+  title: UK10K AF
+  type: float
+  filterable: false
 tags:
 - populations
 title: UK10K Cohort Twins & ALSPAC
 type: annotator
-version: 3.5.05
+version: 3.5.06
