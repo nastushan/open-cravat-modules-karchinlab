@@ -9,25 +9,36 @@ developer:
 input_format: crv
 level: variant
 output_columns:
-- desc: 100 Way Vertebrate Score
+- desc: phyloP (phylogenetic p-values) conservation score based on the multiple alignments of 100 vertebrate genomes (including human). The larger the score, the more conserved the site.
   filterable: true
   name: phylop100_vert
   title: Vert Score
   type: float
-- desc: 100 Way Vertebrate Ranked Score
+- desc: phyloP vertebrate scores were ranked among all phyloP vertebrate scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phyloP vertebrate scores in dbNSFP.
   name: phylop100_vert_r
   title: Vert Ranked Score
   type: float
   width: 54
   filterable: false
-- desc: 20 Way Mammalian Score
+- desc: phyloP (phylogenetic p-values) conservation score based on the multiple alignments of 30 mammalian genomes (including human). The larger the score, the more conserved the site.
   filterable: true
-  name: phylop20_mamm
+  name: phylop30_mamm
   title: Mamm Score
   type: float
-- desc: 20 Way Mammalian Ranked Score
-  name: phylop20_mamm_r
+- desc: phyloP mammalian scores were ranked among all phyloP mammalian scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phyloP mammalian scores in dbNSFP.
+  name: phylop30_mamm_r
   title: Mamm Ranked Score
+  type: float
+  width: 54
+  filterable: false
+- desc: Conservation score based on 17-way alignment primate set. The larger the score, the more conserved the site.
+  filterable: true
+  name: phylop17_primate
+  title: Primate Score
+  type: float
+- desc:  The rank of the phyloP primate score among all phyloP primate scores in dbNSFP.
+  name: phylop17_primate_r
+  title: Primate Ranked Score
   type: float
   width: 54
   filterable: false
@@ -35,4 +46,4 @@ tags:
 - evolution
 title: PhyloP
 type: annotator
-version: 3.5.04
+version: 3.5.05
