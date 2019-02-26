@@ -16,6 +16,6 @@ output_columns:
 tags:
 - noncoding
 - genomic features
-title: Promoter-interacting regions
+title: Promoter IR
 type: annotator
-version: 2019.2.13
+version: 2019.2.22
