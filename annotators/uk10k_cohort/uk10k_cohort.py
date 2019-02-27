@@ -12,7 +12,7 @@ class CravatAnnotator(BaseAnnotator):
     
     def annotate(self, input_data, secondary_data=None):
         out = {}
-        stmt = 'SELECT uk10k_twins_ac, uk10k_twins_af, uk10k_alspac_ac, uk10k_alspac_af FROM {chr} WHERE pos = {pos} AND alt = "{alt}"'.format(chr=input_data["chrom"], pos=int(input_data["pos"]), alt = input_data["alt_base"])
+        stmt = 'SELECT uk10k_twins_ac, uk10k_twins_af, uk10k_alspac_ac, uk10k_alspac_af, uk10k_ac, uk10k_af FROM {chr} WHERE pos = {pos} AND alt = "{alt}"'.format(chr=input_data["chrom"], pos=int(input_data["pos"]), alt = input_data["alt_base"])
         self.cursor.execute(stmt)
         row = self.cursor.fetchone()
         if row is not None:
@@ -20,6 +20,8 @@ class CravatAnnotator(BaseAnnotator):
             out['uk10k_twins_af'] = self.myCast(row[1])
             out['uk10k_alspac_ac'] = self.myCast(row[2])
             out['uk10k_alspac_af'] = self.myCast(row[3])
+            out['uk10k_ac'] = self.myCast(row[4])
+            out['uk10k_af'] = self.myCast(row[5])
         return out
     
     def cleanup(self):
