@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.0.7
+version: 1.1.0
 type: postaggregator
 
 name: vcfinfo
@@ -37,6 +37,14 @@ output_columns:
   title: Variant AF
   type: string
   width: 90
+- name: hap_block
+  title: Haplotype block ID
+  type: int
+  width: 90
+- name: hap_strand
+  title: Haplotype strand ID
+  type: int
+  width: 90
 
 description: Writes VCF file information extracted by converter
 developer:
@@ -50,3 +58,4 @@ release_note:
   1.0.3: zygosity is multi category.
   1.0.4: filter is multi category.
   1.0.7: altread and af None to empty string to accommodate error handling of vcf-converter
+  1.1.0: Handle copy number information

@@ -26,7 +26,13 @@ class CravatConverter(BaseConverter):
                            'type':'int'},
                           {'name':'af',
                            'title':'Variant allele frequency',
-                           'type':'float'}]
+                           'type':'float'},
+                          {'name': 'hap_block',
+                           'title': 'Haplotype block ID',
+                           'type': 'int'},
+                          {'name': 'hap_strand',
+                           'title': 'Haplotype strand ID',
+                           'type': 'int'}]
     
     def check_format(self, f): 
         vcf_format = False
@@ -81,7 +87,8 @@ class CravatConverter(BaseConverter):
                          'alt_base':newalt,
                          'sample_id':'no_sample',
                          'phred': qual,
-                         'filter': filter}
+                         'filter': filter,
+                         }
                 all_wdicts.append(wdict)
         elif len(toks) > 8:
             sample_datas = toks[9:]
@@ -111,20 +118,42 @@ class CravatConverter(BaseConverter):
                         newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
                         zyg = self.homo_hetro(sample_data[gt_field_no])
                         depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, genotype_fields)
-                            
-                        wdict = {'tags':tag,
-                                 'chrom':chrom,
-                                 'pos':newpos,
-                                 'ref_base':newref,
-                                 'alt_base':newalt,
-                                 'sample_id':sample,
-                                 'phred': qual,
-                                 'filter': filter,
-                                 'zygosity': zyg,
-                                 'tot_reads': depth,
-                                 'alt_reads': alt_reads,
-                                 'af': af,                                
-                                 }
+                        
+                        if 'HP' in genotype_fields:
+                            hp_field_no = genotype_fields['HP']
+                            haplotype_block = sample_data[hp_field_no].split(',')[0].split('-')[0]
+                            haplotype_strand = sample_data[hp_field_no].split(',')[0].split('-')[1]
+                            wdict = {'tags':tag,
+                                     'chrom':chrom,
+                                     'pos':newpos,
+                                     'ref_base':newref,
+                                     'alt_base':newalt,
+                                     'sample_id':sample,
+                                     'phred': qual,
+                                     'filter': filter,
+                                     'zygosity': zyg,
+                                     'tot_reads': depth,
+                                     'alt_reads': alt_reads,
+                                     'af': af,
+                                     'hap_block': haplotype_block,
+                                     'hap_strand': haplotype_strand,                               
+                                     } 
+                        else:
+                            wdict = {'tags':tag,
+                                     'chrom':chrom,
+                                     'pos':newpos,
+                                     'ref_base':newref,
+                                     'alt_base':newalt,
+                                     'sample_id':sample,
+                                     'phred': qual,
+                                     'filter': filter,
+                                     'zygosity': zyg,
+                                     'tot_reads': depth,
+                                     'alt_reads': alt_reads,
+                                     'af': af, 
+                                     'hap_block': None,
+                                     'hap_strand': None,                               
+                                     }
                         all_wdicts.append(wdict)
         return all_wdicts
  
@@ -190,12 +219,12 @@ class CravatConverter(BaseConverter):
             depth = ''
         if 'AF' in genotype_fields and genotype_fields['AF'] <= len(sample_data):
             try:
-                af = round(float(sample_data[genotype_fields['AF']] ), 3)
+                af = float(sample_data[genotype_fields['AF']] )
             except:
                 af = ''
         elif depth != '' and alt_reads != '':
             #if AF not specified, calc it from alt and ref reads
-            af = round(float(alt_reads) / float(depth),3)
+            af = float(alt_reads) / float(depth)
         else:
             af = ''
         return depth, alt_reads, af
