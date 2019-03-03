@@ -15,3 +15,5 @@ tagger.py
 .gitignore
 example_annotator
 **input.status.json
+**/**/.DS_Store
+**/**/**/.DS_Store

@@ -13,10 +13,15 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
         out = {}
         hugo = input_data['hugo']
-        self.cursor.execute('SELECT ess_gene FROM genes WHERE gname= ?;', [hugo])
+        self.cursor.execute('SELECT ess_gene, ess_gene_crispr, ess_gene_crispr2, ess_gene_gene_trap, indispensability_score, indispensability_pred  FROM genes WHERE gname= ?;', [hugo])
         row = self.cursor.fetchone()
         if row is not None:
             out['ess_gene'] = row[0]
+            out['ess_gene_crispr'] = row[1]
+            out['ess_gene_crispr2'] = row[2]
+            out['ess_gene_gene_trap'] = row[3]
+            out['indispensability_score'] = row[4]
+            out['indispensability_pred'] = row[5]
         return out
     
     def cleanup(self):

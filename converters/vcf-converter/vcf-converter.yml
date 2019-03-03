@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.0.5
+version: 1.1.0
 type: converter
 description: Converter for VCF format input
 developer:
@@ -14,3 +14,4 @@ release_note:
   1.0.3: supports VarScan VCF format.
   1.0.2: . in ID becomes empty tag instead of VAR_ tag.
   1.0.1: detects format from extension .vcf.
+  1.1.0: Import copy number from vcf with HP info key

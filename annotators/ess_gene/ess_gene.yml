@@ -2,20 +2,49 @@ datasource: dbNSFP v4.0b1
 description: Essential Genes provides a database of genetic variation & mutational
   burden in 2472 human orthologs
 developer:
-  citation: "Georgi, B., Voight, B.F., & Bucan, M. (2013). From Mouse to Human: Evolutionary Genomics Analysis of Human Orthologs of Essential Genes. PLoS genetics 9(5): e1003484."
+  citation: 'Georgi, B., Voight, B.F., & Bucan, M. (2013). From Mouse to Human: Evolutionary
+    Genomics Analysis of Human Orthologs of Essential Genes. PLoS genetics 9(5): e1003484.'
   email: support@cravat.us
   name: "Benjamin Georgi, Benjamin F. Voight, Maja Bu\u0107an"
   organization: Department of Genetics, University of Pennsylvania
   website: https://doi.org/10.1371/journal.pgen.1003484
 level: gene
 output_columns:
-- desc: Essential or Non-essential function
+- desc: Essential or non-essential genes
   name: ess_gene
   title: Essential
+  type: string
+  width: 63
+- desc: Essential ("E") or Non-essential phenotype-changing ("N") based on large scale
+    CRISPR experiments.
+  name: ess_gene_crispr
+  title: CRISPR
+  type: string
+  width: 63
+- desc: Essential ("E"), context-Specific essential ("S"), or Non-essential phenotype-changing
+    ("N") based on large scale CRISPR experiments.
+  name: ess_gene_crispr2
+  title: CRISPR2
+  type: string
+  width: 63
+- desc: Essential ("E"), HAP1-Specific essential ("H"), KBM7-Specific essential ("K"),
+    or Non-essential phenotype-changing ("N"), based on large scale mutagenesis experiments.
+  name: ess_gene_gene_trap
+  title: Gene Trap
+  type: string
+  width: 63
+- desc: A probability prediction of the gene being essential.
+  name: indispensability_score
+  title: Indispensability Score
+  type: string
+  width: 63
+- desc: Essential ("E") or loss-of-function tolerant ("N") based on Gene_indispensability_score.
+  name: indispensability_pred
+  title: Indispensability Pred
   type: string
   width: 63
 tags:
 - genes
 title: Essential Genes
 type: annotator
-version: 3.5.03
+version: 3.5.04
