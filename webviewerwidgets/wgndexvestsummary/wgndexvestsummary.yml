@@ -1,5 +1,5 @@
 title: NDEx VEST Summary
-version: 1.0.3
+version: 1.0.4
 type: webviewerwidget
 required_annotator: vest
 description: NDEx VEST Summary webviewer widget
@@ -10,3 +10,5 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 required_annotator: vest
+release_note:
+  1.0.4: improved resize and redraw
