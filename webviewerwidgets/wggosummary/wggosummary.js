@@ -5,6 +5,16 @@ widgetGenerators[widgetName] = {
 		'width': 780, 
 		'height': 280, 
 		'callserver': true,
+        'init': function (data) {
+            this['variables']['data'] = data;
+        },
+        'shoulddraw': function () {
+            if (this['variables']['data'] == undefined) {
+                return false;
+            } else {
+                return true;
+            }
+        },
 		'function': function (div, data) {
 			if (div != null) {
 				emptyElement(div);
@@ -41,7 +51,6 @@ widgetGenerators[widgetName] = {
 			chartDiv.style.width = 'calc(100% - 20px)';
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
-			
 			var x = [];
 			var y = [];
 			var maxY = 0;
@@ -56,7 +65,6 @@ widgetGenerators[widgetName] = {
 				}
 				colors.push(colorPalette[i % colorPalette.length]);
 			}
-			
 			var color = Chart.helpers.color;
 			var chart = new Chart(chartDiv, {
 				type: 'horizontalBar',
