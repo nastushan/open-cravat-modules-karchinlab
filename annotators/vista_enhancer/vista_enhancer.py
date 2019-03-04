@@ -12,16 +12,21 @@ class CravatAnnotator (BaseAnnotator):
         
         chrom = input_data['chrom']
         pos = input_data['pos']
-        features = [] 
-        q = 'select feature from data where chrom="{chrom}" and start<={pos} and end>={pos};'.format(
+        features = []
+        element = ""
+        q = 'select features, element from data where chrom="{chrom}" and start<={pos} and end>={pos};'.format(
             chrom=chrom,
             pos=pos
         )
         self.cursor.execute(q)
-        print(q) 
-        features = [r[0].strip() for r in self.cursor if r[0] is not None]
+        for r in self.cursor:
+            print(r[1])
+            if r[0] is not None:
+                features.append(r[0].strip())
+                elnum = r[1][8:].strip()
+                element = r[1].strip() + "[WEB:]https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=presentation&show=1&experiment_id="+ elnum +"&organism_id=1"
         out['features'] = ','.join(features)
-        print(out)
+        out['element'] =element 
         return out
         
 if __name__ == '__main__':

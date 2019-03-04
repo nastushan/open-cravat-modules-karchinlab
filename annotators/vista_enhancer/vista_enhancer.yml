@@ -1,14 +1,22 @@
 datasource: hg19
 description: Experimentally validated enhancers from the VISTA Enhancer Browser
 developer:
-  citation: Visel, A., Minovitsky, S., Dubchak, I., & Pennacchio, L. A. (2006). VISTA Enhancer Browser—a database of tissue-specific human enhancers. Nucleic acids research, 35(suppl_1), D88-D92.
+  citation: "Visel, A., Minovitsky, S., Dubchak, I., & Pennacchio, L. A. (2006). VISTA\
+    \ Enhancer Browser\u2014a database of tissue-specific human enhancers. Nucleic\
+    \ acids research, 35(suppl_1), D88-D92."
   email: vtdelapuente@lbl.gov
-  name:  Lawrence Berkeley National Laboratory
+  name: Lawrence Berkeley National Laboratory
   organization: Lawrence Berkeley National Laboratory
   website: https://enhancer.lbl.gov/
 level: variant
 output_columns:
-- name: features
+- desc: ''
+  name: element
+  title: Element
+  type: string
+  width: 70
+- desc: ''
+  name: features
   title: Features
   type: string
   width: 70
@@ -17,4 +25,4 @@ tags:
 - genomic features
 title: VISTA Enhancer Browser
 type: annotator
-version: 2019.2.5
+version: 2019.3.4
