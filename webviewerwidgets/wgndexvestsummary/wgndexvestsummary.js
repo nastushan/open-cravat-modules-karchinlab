@@ -45,6 +45,11 @@ widgetGenerators['ndexvestsummary'] = {
             var func = this;
             $.get('/result/runwidget/ndexvestsummary', {'hugos': JSON.stringify(hugos)}).done(function (data) {
                 var enrichmentResponseScores = data['data']['scores'];
+                if (enrichmentResponseScores.length == 0) {
+                    executeWidgetClose(v['widgetname'], currentTab, true);
+                    grayOutWidgetSelect(v['widgetname'], currentTab);
+                    return;
+                }
                 func.enrichmentScores = new Object();
                 var enrichmentScoresFormatedForTable = {'head': ['Pathway', 'p-value', 'Genes'], 'body': []};
                 for (var eNum=0; eNum < enrichmentResponseScores.length; eNum++){
@@ -800,7 +805,7 @@ widgetGenerators['ndexvestsummary'] = {
             btn.style.right = '26';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
-            btn.setAttribute('widgetname', widgetName);
+            btn.setAttribute('widgetname', v['widgetname']);
             btn.addEventListener('click', function (evt) {
                 v['zoom'] *= 1.2;
                 func.cy.zoom({level: v['zoom']});
@@ -813,7 +818,7 @@ widgetGenerators['ndexvestsummary'] = {
             btn.style.right = '5';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
-            btn.setAttribute('widgetname', widgetName);
+            btn.setAttribute('widgetname', v['widgetname']);
             btn.addEventListener('click', function (evt) {
                 v['zoom'] *= 0.8;
                 func.cy.zoom({level: v['zoom']});

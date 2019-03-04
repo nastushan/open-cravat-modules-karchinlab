@@ -12,6 +12,7 @@ widgetGenerators['ndexchasmplussummary'] = {
         },
         'confirmonresize': true,
         'function': function (parentDiv, data) {
+            console.log('data=', data);
             var v = this['variables'];
             if (parentDiv != undefined) {
                 v['div'] = parentDiv;
@@ -45,6 +46,11 @@ widgetGenerators['ndexchasmplussummary'] = {
             var func = this;
             $.get('/result/runwidget/ndexchasmplussummary', {'hugos': JSON.stringify(hugos)}).done(function (data) {
                 var enrichmentResponseScores = data['data']['scores'];
+                if (enrichmentResponseScores.length == 0) {
+                    executeWidgetClose(v['widgetname'], currentTab, true);
+                    grayOutWidgetSelect(v['widgetname'], currentTab);
+                    return;
+                }
                 func.enrichmentScores = new Object();
                 var enrichmentScoresFormatedForTable = {'head': ['Pathway', 'p-value', 'Genes'], 'body': []};
                 for (var eNum=0; eNum < enrichmentResponseScores.length; eNum++){
@@ -803,7 +809,7 @@ widgetGenerators['ndexchasmplussummary'] = {
             btn.style.right = '26';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
-            btn.setAttribute('widgetname', widgetName);
+            btn.setAttribute('widgetname', v['widgetname']);
             btn.addEventListener('click', function (evt) {
                 v['zoom'] *= 1.2;
                 func.cy.zoom({level: v['zoom']});
@@ -816,7 +822,7 @@ widgetGenerators['ndexchasmplussummary'] = {
             btn.style.right = '5';
             btn.style.fontSize = '12px';
             btn.style.zIndex = '2';
-            btn.setAttribute('widgetname', widgetName);
+            btn.setAttribute('widgetname', v['widgetname']);
             btn.addEventListener('click', function (evt) {
                 v['zoom'] *= 0.8;
                 func.cy.zoom({level: v['zoom']});
