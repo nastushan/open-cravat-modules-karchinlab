@@ -1,5 +1,5 @@
 title: UCSC hg38 Gene Mapper
-version: 1.1.5
+version: 1.1.6
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
