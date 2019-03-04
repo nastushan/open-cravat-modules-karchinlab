@@ -7,8 +7,25 @@ widgetGenerators['ndexchasmplussummary'] = {
         'height': 380, 
         'callserver': false,
         'variables': {zoom: 1.0},
+        'beforeresize': function () {
+            $(this['variables']['div']).empty();
+        },
+        'confirmonresize': true,
         'function': function (parentDiv, data) {
             var v = this['variables'];
+            if (parentDiv != undefined) {
+                v['div'] = parentDiv;
+            } else if (v['div'] != undefined) {
+                parentDiv = v['div'];
+            }
+            if (data != undefined) {
+                v['data'] = data;
+            } else if (v['data'] != undefined) {
+                data = v['data'];
+            }
+			if (parentDiv != null) {
+				$(parentDiv).empty();
+			}
             var pvalCutoff = 0.05;
             var hugos = [];
             var geneRows = infomgr.getData('gene');

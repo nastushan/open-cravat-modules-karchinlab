@@ -7,31 +7,9 @@ widgetGenerators['circossummary'] = {
 		'width': 480, 
 		'height': 480, 
 		'callserver': true,
-        'variables': {},
-        'onresize': function () {
-            this['function']();
-        },
-		'function': function (div, data) {
-            var widgetName = 'circossummary';
-            var v = this['variables'];
-            if (div != undefined) {
-                v['div'] = div;
-            } else if (v['div'] != undefined) {
-                div = v['div'];
-            }
-            if (data != undefined) {
-                v['data'] = data;
-            } else if (v['data'] != undefined) {
-                data = v['data'];
-            }
-            if (div == undefined || data == undefined) {
-                console.log('circossummary: div and/or data are undefined. returning.');
-                return;
-            }
-			if (div != null) {
-				emptyElement(div);
-			}
-			v['layout_data'] = [
+        'variables': {
+            zoom: 1.0,
+			layout_data: [
 			  {"id":"1","label":"1","color":"#996600","len":248956422},
 			  {"id":"2","label":"2","color":"#666600","len":242193529},
 			  {"id":"3","label":"3","color":"#99991E","len":198295559},
@@ -56,25 +34,44 @@ widgetGenerators['circossummary'] = {
 			  {"id":"22","label":"22","color":"#666666","len":50818468},
 			  {"id":"X","label":"X","color":"#999999","len":156040895},
 			  {"id":"Y","label":"Y","color":"#CCCCCC","len":57227415},
-			];
+			],
+        },
+        'beforeresize': function () {
+            var contentDiv = this['variables']['div'];
+            $(contentDiv).empty();
+            contentDiv.style.width = '0px';
+            contentDiv.style.height = '0px';
+        },
+        'onresize': function () {
+            this['function']();
+        },
+		'function': function (div, data) {
+            var widgetName = 'circossummary';
+            var v = this['variables'];
+            if (div != undefined) {
+                v['div'] = div;
+            } else if (v['div'] != undefined) {
+                div = v['div'];
+            }
+            if (data != undefined) {
+                v['data'] = data;
+            } else if (v['data'] != undefined) {
+                data = v['data'];
+            }
+			if (div != null) {
+				$(div).empty();
+			}
             var width = null;
             var height = null;
-            if (v['width'] != undefined) {
-                width = v['width'];
-            } else {
-                width = div.offsetWidth;
-                v['width'] = width;
-            }
-            if (v['height'] != undefined) {
-                height = v['height'];
-            } else {
-                height = div.offsetHeight;
-                v['height'] = height;
-            }
+            width = div.offsetWidth;
+            height = div.offsetHeight;
+            v['width'] = width;
+            v['height'] = height;
+            var zoom = v['zoom'];
             var wHMin = Math.min(width, height);
             div.style.textAlign = 'center';
-            div.style.width = div.offsetWidth + 'px';
-            div.style.height = div.offsetHeight + 'px';
+            div.style.width = width + 'px';
+            div.style.height = height + 'px';
             div.style.overflow = 'auto';
             var btn = getEl('button');
             btn.textContent = '+';
@@ -85,10 +82,13 @@ widgetGenerators['circossummary'] = {
             btn.style.zIndex = '2';
             btn.setAttribute('widgetname', widgetName);
             btn.addEventListener('click', function (evt) {
-                v['width'] = v['width'] * 1.2;
-                v['height'] = v['height'] * 1.2;
-                var widgetName = this.getAttribute('widgetname');
-                widgetGenerators[widgetName][currentTab]['function']();
+                /*
+                var div = this.parentElement;
+                div.style.width = (v['width'] * 1.2) + 'px';
+                div.style.height = (v['height'] * 1.2) + 'px';
+                */
+                v['zoom'] *= 1.2;
+                widgetGenerators[v['widgetname']][currentTab]['function']();
             });
             addEl(div, btn);
             var btn = getEl('button');
@@ -100,10 +100,8 @@ widgetGenerators['circossummary'] = {
             btn.style.zIndex = '2';
             btn.setAttribute('widgetname', widgetName);
             btn.addEventListener('click', function (evt) {
-                v['width'] = width * 0.8;
-                v['height'] = height / 0.8;
-                var widgetName = this.getAttribute('widgetname');
-                widgetGenerators[widgetName][currentTab]['function']();
+                v['zoom'] *= 0.8;
+                widgetGenerators[v['widgetname']][currentTab]['function']();
             });
             addEl(div, btn);
 			var chartDivId = 'circos_summary_svg';
@@ -112,13 +110,13 @@ widgetGenerators['circossummary'] = {
 			addEl(div, chartDiv);
             var myCircos = new Circos({
                 container: '#' + chartDivId,
-                width: wHMin,
-                height: wHMin,
+                width: wHMin * zoom,
+                height: wHMin * zoom,
             });
             v['circos'] = myCircos;
 			var conf = {
-  				innerRadius: wHMin / 2 - 34,
-			    outerRadius: wHMin / 2 - 14,
+  				innerRadius: wHMin / 2 * zoom - 34,
+			    outerRadius: wHMin / 2 * zoom - 14,
   				gap: 0.02,
   				labels: {
     				display: true,

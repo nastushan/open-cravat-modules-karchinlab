@@ -1,22 +1,32 @@
 $.getScript('/result/widgetfile/wgndex/cytoscape.js', function () {});
 
 widgetGenerators['ndex'] = {
-		'variant': {
-			'donterase': true,
-			'width': 580, 
-			'height': 580, 
-			'variables': {
-				'hugo': null
-			},
-			'function': function (parentDiv, row, tabName) {
-				var self = this;
-				self.selectedNetworkName = '';
-				
-				var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
-				if (hugo == '') {
-					$(parentDiv).empty();
-					return;
-				}
+    'variant': {
+        'donterase': true,
+        'width': 580, 
+        'height': 580, 
+        'variables': {
+            'hugo': null
+    },
+    'beforeresize': function () {
+        $(this['variables']['div']).empty();
+    },
+    'confirmonresize': true,
+    'function': function (parentDiv, row, tabName) {
+        var v = this['variables'];
+        if (parentDiv != undefined) {
+            v['div'] = parentDiv;
+        } else if (v['div'] != undefined) {
+            parentDiv = v['div'];
+        }
+        var self = this;
+        self.selectedNetworkName = '';
+        
+        var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+        if (hugo == '') {
+            $(parentDiv).empty();
+            return;
+        }
 				
 				var v = widgetGenerators['ndex'][tabName]['variables'];
 				if (hugo == v.hugo && v['resized'] != true) {
@@ -730,9 +740,22 @@ widgetGenerators['ndex'] = {
 	'gene': {
 		'width': 880, 
 		'height': 580, 
+        'donterase': false,
+        'variables': {
+        },
+        'beforeresize': function () {
+            $(this['variables']['div']).empty();
+        },
+        'confirmonresize': true,
 		'function': function (parentDiv, row, tabName) {
+            var v = this['variables'];
+            if (parentDiv != undefined) {
+                v['div'] = parentDiv;
+            } else if (v['div'] != undefined) {
+                parentDiv = v['div'];
+            }
 			var self = this;
-			emptyElement(self);
+			$(parentDiv).empty();
 			self.selectedNetworkName = '';
 			var networkids = infomgr.getRowValue(tabName, row, 'ndex__networkid');
 			var networknames = infomgr.getRowValue(tabName, row, 'ndex__networkname');
