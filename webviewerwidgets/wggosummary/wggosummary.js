@@ -93,7 +93,7 @@ widgetGenerators[widgetName] = {
 							ticks: {
 								beginAtZero: true,
 								stepSize: 1.0,
-								max: maxY + 1,
+								max: maxY,
 							}
 						}],
 					},
