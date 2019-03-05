@@ -219,12 +219,12 @@ class CravatConverter(BaseConverter):
             depth = ''
         if 'AF' in genotype_fields and genotype_fields['AF'] <= len(sample_data):
             try:
-                af = float(sample_data[genotype_fields['AF']] )
+                af = round(float(sample_data[genotype_fields['AF']] ),3)
             except:
                 af = ''
         elif depth != '' and alt_reads != '':
             #if AF not specified, calc it from alt and ref reads
-            af = float(alt_reads) / float(depth)
+            af = round(float(alt_reads) / float(depth),3)
         else:
             af = ''
         return depth, alt_reads, af
