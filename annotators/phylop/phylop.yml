@@ -1,4 +1,4 @@
-datasource: hg38
+datasource: dbNSFP v4.0b1
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
   citation: "Pollard, K. S., Hubisz, M. J., Rosenbloom, K. R., & Siepel, A. (2010). Detection of nonneutral substitution rates on mammalian phylogenies. Genome research, 20(1), 110-121."
