@@ -32,7 +32,9 @@ class CravatPostAggregator (BasePostAggregator):
         for row in self.cursor_a.fetchall():
             if row[0] is not None:
                 tags[row[0]] = True
-        tags = ';'.join(list(tags.keys()))
+        tags = list(tags.keys())
+        tags.sort()
+        tags = ';'.join(list(tags)
         out = {'numsample': numsample, 'samples': samples, 'tags': tags}
         return out
 
