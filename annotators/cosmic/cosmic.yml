@@ -18,6 +18,7 @@ output_columns:
   title: ID
   type: string
   width: 90
+  link_format: "https://cancer.sanger.ac.uk/cosmic/mutation/overview?id=${COSM(.*)}"
 - filterable: false
   name: variant_count_tissue
   title: Variant Count (Tissue)

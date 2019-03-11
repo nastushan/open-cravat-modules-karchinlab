@@ -38,7 +38,7 @@ class CravatAnnotator(BaseAnnotator):
                 elif len(rd['genename']) > len(primary_rd.get('genename','')):
                     primary_rd = rd
         if has_results:
-            out['cosmic_id'] = primary_rd['cosmic_id'] + '[WEB:]https://cancer.sanger.ac.uk/cosmic/mutation/overview?id=' + primary_rd['cosmic_id'][4:]
+            out['cosmic_id'] = primary_rd['cosmic_id']
             out['transcript'] = primary_rd['accession']
             out['protein_change'] = primary_rd['aachange_cosmic'].replace('p.','')
             out['variant_count'] = primary_rd['occurrences']
