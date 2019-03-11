@@ -13,7 +13,7 @@ widgetGenerators['go'] = {
 			var ontolls = ontol != null ? ontol.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['ID', 'GO Name', 'Aspect', 'GO Link']);
+			var thead = getWidgetTableHead(['ID', 'GO Name', 'Aspect']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);
@@ -24,7 +24,7 @@ widgetGenerators['go'] = {
 				var ontolitr = ontolls[i];
 				var link = 'http://amigo.geneontology.org/amigo/term/'+iditr;
 				if(!inTable.includes(iditr)){
-					var tr = getWidgetTableTr([iditr, nameitr, ontolitr, link]);
+					var tr = getWidgetTableTr([link, nameitr, ontolitr],[iditr]);
 					addEl(tbody, tr);
 					inTable.push(iditr);
 				}
