@@ -34,7 +34,7 @@ class CravatPostAggregator (BasePostAggregator):
                 tags[row[0]] = True
         tags = list(tags.keys())
         tags.sort()
-        tags = ';'.join(list(tags)
+        tags = ';'.join(list(tags))
         out = {'numsample': numsample, 'samples': samples, 'tags': tags}
         return out
 
