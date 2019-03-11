@@ -33,8 +33,6 @@ class CravatAnnotator(BaseAnnotator):
             diseases = qr[2]
             rev = qr[3]
             id = qr[4]
-        if id != '':
-            id = id + '[WEB:]https://www.ncbi.nlm.nih.gov/clinvar/variation/' + id
 
         return {'sig':sig,
                 'disease_refs':refs,

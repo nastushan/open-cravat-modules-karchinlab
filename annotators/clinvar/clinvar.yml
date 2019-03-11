@@ -40,6 +40,7 @@ output_columns:
   type: string
   width: 55
   filterable: false
+  link_format: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/${.*}/'
 release_note:
   2019.01.021: added phenotype tag.
   2019.01.022: updated data set, widget overhaul
