@@ -8,6 +8,7 @@ output_columns:
     type: string
     desc: Primary (citable) accession number
     width: 70
+    link_format: 'https://www.uniprot.org/uniprot/${.*}'
 description: Comprehensive resource for protein sequence and functional information.
 developer:
   name: 'The UniProt Consortium'
