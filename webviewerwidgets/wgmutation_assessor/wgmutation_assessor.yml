@@ -1,5 +1,5 @@
 title: Mutation Assessor
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: mutation_assessor
 description: Mutation Assessor webviewer widget

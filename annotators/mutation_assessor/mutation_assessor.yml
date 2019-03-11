@@ -1,28 +1,40 @@
-title: Mutation Assessor
-version: 3.0.01
-type: annotator
-level: variant
+datasource: Release 3
+description: Mutation Assessor is a database providing prediction of the functional
+  impact of amino-acid substitutions in proteins
+developer:
+  citation: "Reva, B., Antipin, Y., & Sander, C. (2007). Determinants of protein function revealed by combinatorial entropy optimization. Genome biology, 8(11), R232."
+  email: support@cravat.us
+  name: Chris Sander
+  organization: Memorial Sloan-Kettering Cancer Center
+  website: http://mutationassessor.org/r3/about.php
 input_format: crv
+level: variant
 output_columns:
-- name: mut_var
+- hidden: true
+  name: mut_var
   title: Variant
   type: string
-  hidden: true
-- name: mut_score
+  filterable: false
+- filterable: true
+  name: mut_score
   title: Score
   type: float
+  filterable: false
 - name: mut_rscore
   title: Ranked Score
   type: float
   width: 54
+  filterable: false
 - name: mut_pred
   title: Functional Impact
   type: string
   width: 68
-description: Mutation Assessor is a database providing prediction of the functional impact of amino-acid substitutions in proteins
-developer:
-  name: 'Chris Sander'
-  organization: 'Memorial Sloan-Kettering Cancer Center'
-  email: 'support@cravat.us'
-  website: 'http://mutationassessor.org/r3/about.php'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  filterable: false
+tags:
+- variants
+- germline
+- cancer
+- variant effect prediction
+title: Mutation Assessor
+type: annotator
+version: 3.0.03

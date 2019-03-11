@@ -1,6 +1,5 @@
-# Cancer Genome Landscapes
+# Cancer Genome Landscape
 
-
-![Screenshot](cgl_screenshot_1.png)
-<br />
-ClinVar is a freely accessible, public archive of reports of the relationships among human variations and phenotypes, with supporting evidence. ClinVar thus facilitates access to and communication about the relationships asserted between human variation and observed health status, and the history of that interpretation. 
+Oncogenes and tumor supressor genes described by Vogelstein et al.
+<br /> 
+![Screenshot](cgl_screenshot_1.png) 

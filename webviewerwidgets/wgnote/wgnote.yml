@@ -1,13 +1,15 @@
-title: Note
-version: 1.0.0
-type: webviewerwidget
-required_annotator: base
-description: Note-taking widget
-developer: 
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
-  citation: ''
 columnwidth:
 - note__text: 100
+description: Note-taking widget
+developer:
+  citation: ''
+  email: rkim@insilico.us.com
+  name: Rick Kim
+  organization: In Silico Solutions
+  website: http://www.insilico.us.com
+required_annotator: base
+tags:
+- notes
+title: Note
+type: webviewerwidget
+version: 1.0.1

@@ -26,7 +26,8 @@ widgetGenerators['grasp'] = {
 					var pval = match[2];
 					var nhlbi = nhlbis[i];
 					var pmid = pmids[i];
-					var tr = getWidgetTableTr([pval, pheno, nhlbi, pmid], ['40px', '70px', '70px', '60px']);
+					var pmLink = 'https://www.ncbi.nlm.nih.gov/pubmed/'+pmid
+					var tr = getWidgetTableTr([pval, pheno, nhlbi, pmLink], [pmid]);
 					addEl(tbody, tr);
 				}
 			}

@@ -1,5 +1,5 @@
 title: NDEx CHASMplus Summary
-version: 1.0.1
+version: 1.0.5
 type: webviewerwidget
 required_annotator: chasmplus
 description: NDEx CHASMplus Summary webviewer widget
@@ -10,3 +10,5 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 required_annotator: chasmplus
+release_note:
+  1.0.3: improved resize and redraw

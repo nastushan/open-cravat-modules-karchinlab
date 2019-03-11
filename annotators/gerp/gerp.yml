@@ -1,15 +1,22 @@
-title: GERP++
-version: 3.5.02
-type: annotator
-level: variant
+datasource: dbNSFP v4.0b1
+description: Genomic Evolutionary Rate Profiling
+developer:
+  citation: "Davydov, E. V., Goode, D. L., Sirota, M., Cooper, G. M., Sidow, A., & Batzoglou, S. (2010). Identifying a high fraction of the human genome to be under selective constraint using GERP++. PLoS computational biology, 6(12), e1001025."
+  email: support@cravat.us
+  name: Stanford University Sidow Lab
+  organization: Stanford University Sidow Lab
+  website: http://mendel.stanford.edu/SidowLab/downloads/gerp/index.html
 input_format: crv
+level: variant
 output_columns:
-- name: gerp_nr
+- hidden: true
+  name: gerp_nr
   title: Neutral Rate
   type: float
-  hidden: true
   width: 60
-- name: gerp_rs
+  filterable: false
+- filterable: true
+  name: gerp_rs
   title: RS Score
   type: float
   width: 60
@@ -17,11 +24,9 @@ output_columns:
   title: RS Ranked Score
   type: float
   width: 60
-description: Genomic Evolutionary Rate Profiling
-developer:
-  name: 'Stanford University Sidow Lab'
-  organization: 'Stanford University Sidow Lab'
-  email: 'support@cravat.us'
-  website: 'http://mendel.stanford.edu/SidowLab/downloads/gerp/index.html'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
-
+  filterable: false
+tags:
+- evolution
+title: GERP++
+type: annotator
+version: 3.5.04

@@ -2,4 +2,6 @@ title: Gene ontology
 version: 1.0.1
 type: webviewerwidget
 description: Gene ontology webviewer widget
-developer: rkim@mail.insilico.us.com
+developer: 
+- email: rkim@mail.insilico.us.com
+- organization: In Silico Solutions

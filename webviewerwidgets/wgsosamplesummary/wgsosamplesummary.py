@@ -3,6 +3,7 @@ import os
 
 def get_data (queries):
     so_dic = {
+        None: 'Intergenic',
         '':'Intergenic',
         'MIS':'Missense',
         'SYN':'Synonymous',
@@ -52,9 +53,12 @@ def get_data (queries):
     conn = sqlite3.connect(dbpath)
     cursor = conn.cursor()
 
-    q = 'select distinct base__sample_id from sample'
+    q = 'select distinct base__sample_id from sample where base__sample_id is not null'
     cursor.execute(q)
-    samples = [v[0] for v in cursor.fetchall()]
+    samples = [v[0] for v in cursor.fetchall() if v[0]]
+    if len(samples) == 1:
+        response = {'data': None}
+        return response
     samples.sort()
     
     q = 'select distinct variant.base__so from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid'

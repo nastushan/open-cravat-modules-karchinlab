@@ -1,17 +1,21 @@
-title: HGVS Format
-type: annotator
-version: 1.0.1
-
-level: variant
+datasource: v15.11
+description: Variants described in HGVS format
+developer:
+  citation: "den Dunnen, J. T., Dalgleish, R., Maglott, D. R., et al. (2016). HGVS recommendations for the description of sequence variants: 2016 update. Human mutation, 37(6), 564-569."
+  email: support@cravat.us
+  name: Human Genome Variation Society
+  organization: Human Genome Variation Society
+  website: http://www.hgvs.org/
 input_format: crx
+level: variant
 nc_assembly_version: 11
-
 output_columns:
-- name: genomic
+- hidden: true
+  name: genomic
   title: Genomic
   type: string
-  hidden: True
   width: 65
+  filterable: false
 - name: rna
   title: Primary RNA
   type: string
@@ -20,19 +24,18 @@ output_columns:
   title: Primary protein
   type: string
   width: 55
-- name: all_rna
+- hidden: true
+  name: all_rna
   title: All RNA
   type: string
-  hidden: True
-- name: all_protein
+  filterable: false
+- hidden: true
+  name: all_protein
   title: All protein
   type: string
-  hidden: True
-
-description: Variants described in HGVS format
-developer:
-  name: 'Human Genome Variation Society'
-  organization: 'Human Genome Variation Society'
-  email: 'support@cravat.us'
-  website: 'http://www.hgvs.org/'
-  citation: 'https://onlinelibrary.wiley.com/doi/pdf/10.1002/humu.22981'
+  filterable: false
+tags:
+- variants
+title: HGVS Format
+type: annotator
+version: 1.0.3

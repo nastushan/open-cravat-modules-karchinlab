@@ -21,17 +21,17 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #
 Base Information				UniProt
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Accession Number
-AAMP	1	missense	missense(1)	Q13685
-BRCA2	1	missense	missense(1)	P51587
-CASP8	1	missense	missense(1)	Q14790
-DNMT1	1	missense	missense(1)	P26358
-MED12	1	missense	missense(1)	Q93074
+AAMP	1	missense	missense(1)	Q13685[WEB:]https://www.uniprot.org/uniprot/Q13685
+BRCA2	1	missense	missense(1)	P51587[WEB:]https://www.uniprot.org/uniprot/P51587
+CASP8	1	missense	missense(1)	Q14790[WEB:]https://www.uniprot.org/uniprot/Q14790
+DNMT1	1	missense	missense(1)	P26358[WEB:]https://www.uniprot.org/uniprot/P26358
+MED12	1	missense	missense(1)	Q93074[WEB:]https://www.uniprot.org/uniprot/Q93074
 MKL1	1	missense	missense(1)	
-MSH2	1	missense	missense(1)	P43246
-MTMR3	1	missense	missense(1)	Q13615
-PIWIL3	1	missense	missense(1)	Q7Z3Z3
-STAG2	1	missense	missense(1)	Q8N3U4
-UTY	1	missense	missense(1)	O14607
+MSH2	1	missense	missense(1)	P43246[WEB:]https://www.uniprot.org/uniprot/P43246
+MTMR3	1	missense	missense(1)	Q13615[WEB:]https://www.uniprot.org/uniprot/Q13615
+PIWIL3	1	missense	missense(1)	Q7Z3Z3[WEB:]https://www.uniprot.org/uniprot/Q7Z3Z3
+STAG2	1	missense	missense(1)	Q8N3U4[WEB:]https://www.uniprot.org/uniprot/Q8N3U4
+UTY	1	missense	missense(1)	O14607[WEB:]https://www.uniprot.org/uniprot/O14607
 #CRAVAT Report
 #Created at Tuesday 01/08/2019 13:11:54
 #Report level: sample

@@ -1,5 +1,5 @@
 title: Top Genes CHASMplus Summary
-version: 1.0.1
+version: 1.0.2
 type: webviewerwidget
 required_annotator: chasmplus
 description: Top Genes CHSAMplus Summary webviewer widget

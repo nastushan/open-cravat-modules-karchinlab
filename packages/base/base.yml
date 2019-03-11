@@ -1,0 +1,30 @@
+title: Base Package
+version: 0.0.1
+type: package
+developer:
+  name: 'In Silico Solutions'
+  organization: 'In Silico Solutions'
+  email: 'support@cravat.us'
+  website: 'insilico.us.com'
+  citation: ''
+description: 'Base OpenCRAVAT modules. Needed for each install.'
+requires:
+  - hg38
+  - cravat-converter
+  - vcf-converter
+  - oldcravat-converter
+  - textreporter
+  - excelreporter
+  - tagsampler
+  - vcfinfo
+  - wgbase
+  - wgncrna
+  - wglollipop
+  - wgndex
+  - wgcircossummary
+  - wgcodingvsnoncodingsummary
+  - wggosummary
+  - wgsosamplesummary
+  - wgsosummary
+  - wgtopgenessummary
+

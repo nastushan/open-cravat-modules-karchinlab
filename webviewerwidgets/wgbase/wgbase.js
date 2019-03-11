@@ -1,6 +1,6 @@
 widgetGenerators['base'] = {
 	'variant': {
-		'width': 280, 
+		'width': 580, 
 		'height': 280, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'UID', 'base__uid', tabName);

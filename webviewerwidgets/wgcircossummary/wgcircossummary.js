@@ -1,163 +1,172 @@
-$.getScript('/result/widgetfile/wgcircossummary/biocircos-1.1.1.js', function () {});
 $.getScript('/result/widgetfile/wgcircossummary/d3.js', function () {});
+$.getScript('/result/widgetfile/wgcircossummary/circos.min.js', function () {});
 
 widgetGenerators['circossummary'] = {
 	'info': {
 		'name': 'Circos',
-		'width': 580, 
-		'height': 580, 
+		'width': 480, 
+		'height': 480, 
 		'callserver': true,
+        'variables': {
+            zoom: 1.0,
+			layout_data: [
+			  {"id":"1","label":"1","color":"#996600","len":248956422},
+			  {"id":"2","label":"2","color":"#666600","len":242193529},
+			  {"id":"3","label":"3","color":"#99991E","len":198295559},
+			  {"id":"4","label":"4","color":"#CC0000","len":190214555},
+			  {"id":"5","label":"5","color":"#FF0000","len":181538259},
+			  {"id":"6","label":"6","color":"#FF00CC","len":170805979},
+			  {"id":"7","label":"7","color":"#FFCCCC","len":159345973},
+			  {"id":"8","label":"8","color":"#FF9900","len":145138636},
+			  {"id":"9","label":"9","color":"#FFCC00","len":138394717},
+			  {"id":"10","label":"10","color":"#FFFF00","len":133797422},
+			  {"id":"11","label":"11","color":"#CCFF00","len":135086622},
+			  {"id":"12","label":"12","color":"#00FF00","len":133275309},
+			  {"id":"13","label":"13","color":"#358000","len":114364328},
+			  {"id":"14","label":"14","color":"#0000CC","len":107043718},
+			  {"id":"15","label":"5","color":"#6699FF","len":101991189},
+			  {"id":"16","label":"16","color":"#99CCFF","len":90338345},
+			  {"id":"17","label":"17","color":"#00FFFF","len":83257441},
+			  {"id":"18","label":"18","color":"#CCFFFF","len":80373285},
+			  {"id":"19","label":"19","color":"#9900CC","len":58617616},
+			  {"id":"20","label":"20","color":"#CC33FF","len":64444167},
+			  {"id":"21","label":"21","color":"#CC99FF","len":46709983},
+			  {"id":"22","label":"22","color":"#666666","len":50818468},
+			  {"id":"X","label":"X","color":"#999999","len":156040895},
+			  {"id":"Y","label":"Y","color":"#CCCCCC","len":57227415},
+			],
+        },
+        'beforeresize': function () {
+            var contentDiv = this['variables']['div'];
+            $(contentDiv).empty();
+            contentDiv.style.width = '0px';
+            contentDiv.style.height = '0px';
+        },
+        'onresize': function () {
+            this['function']();
+        },
 		'function': function (div, data) {
+            var widgetName = 'circossummary';
+            var v = this['variables'];
+            if (div != undefined) {
+                v['div'] = div;
+            } else if (v['div'] != undefined) {
+                div = v['div'];
+            }
+            if (data != undefined) {
+                v['data'] = data;
+            } else if (v['data'] != undefined) {
+                data = v['data'];
+            }
 			if (div != null) {
-				emptyElement(div);
+				$(div).empty();
 			}
-			var chartSize = {
-					widgth: 560, 
-					height: 480
-			};
-			var genome = [
-		        ['1', 248956422],
-		        ['2', 242193529],
-		        ['3', 198295559],
-		        ['4', 190214555],
-		        ['5', 181538259],
-		        ['6', 170805979],
-		        ['7', 159345973],
-		        ['8', 145138636],
-		        ['9', 138394717],
-		        ['10', 133797422],
-		        ['11', 135086622],
-		        ['12', 133275309],
-		        ['13', 114364328],
-		        ['14', 107043718],
-		        ['15', 101991189],
-		        ['16', 90338345],
-		        ['17', 83257441],
-		        ['18', 80373285],
-		        ["19", 58617616],
-		        ['20', 64444167],
-		        ['21', 46709983],
-		        ['22', 50818468],
-		        ['X', 156040895],
-		        ['Y', 57227415]
-		    ];
-			var parentDiv = div;
-			var chartDiv = null;
-			var chartDivId = 'circos_summary';
-			var dataParams = null;
-			var chartSettings = {
-					target: chartDivId,
-					svgWidth: chartSize['widgth'],
-					svgHeight: chartSize['height'],
-					chrPad: 0.01,
-					innerRadius: 230,
-					outerRadius: 220,
-					zoom: true,
-					genomeFillColor: ["rgb(187, 187, 187)"],
-					genomeLabel: {
-						display : true,
-						textSize : 10,
-						textColor : "#000",
-						dx : 0.028,
-						dy : "-0.55em"
-					},
-					ticks: {
-						'display': false
-					},
-					HISTOGRAMMouseEvent: true,
-					HISTOGRAMMouseOverDisplay: true,
-					HISTOGRAMMouseEnterColor: 'none',
-					HISTOGRAMMouseLeaveColor: 'none',
-					HISTOGRAMMouseMoveColor: 'none',
-					HISTOGRAMMouseOutColor: 'none',
-					HISTOGRAMMouseOverColor: 'none',
-					HISTOGRAMMouseOutDisplay: true,
-					HISTOGRAMMouseOverTooltipsHtml01 : "chr :",
-					HISTOGRAMMouseOverTooltipsHtml02 : "<br>position: ",
-					HISTOGRAMMouseOverTooltipsHtml03 : " ~ ",
-					HISTOGRAMMouseOverTooltipsHtml04 : "<br>Sequence ontologies: ",
-					HISTOGRAMMouseOverTooltipsHtml05 : "<br>count : ",
-					HISTOGRAMMouseOverTooltipsHtml06 : "",
-					HISTOGRAMMouseOverTooltipsPosition : "absolute",
-					HISTOGRAMMouseOverTooltipsBackgroundColor : "white",
-					HISTOGRAMMouseOverTooltipsBorderStyle : "solid",
-					HISTOGRAMMouseOverTooltipsBorderWidth : 0,
-					HISTOGRAMMouseOverTooltipsPadding : "3px",
-					HISTOGRAMMouseOverTooltipsBorderRadius : "3px",
-					HISTOGRAMMouseOverTooltipsOpacity : 0.8,
-			};
-			function addLegendItem (legendDiv, legendColor, legendText) {
-				var legendHeight = '14px';
-				var bar = getEl('div');
-				bar.style.display = 'inline-block';
-				bar.style.width = '14px';
-				bar.style.height = legendHeight;
-				bar.style.backgroundColor = legendColor;
-				addEl(legendDiv, bar);
-				
-				var spacer = getEl('div');
-				spacer.style.display = 'inline-block';
-				spacer.style.width = '10px';
-				spacer.style.height = legendHeight;
-				addEl(legendDiv, spacer);
-				
-				var text = getEl('div');
-				text.style.display = 'inline-block';
-				text.style.verticalAlign = 'top';
-				text.style.height = legendHeight;
-				text.style.fontSize = '12px';
-				text.textContent = legendText;
-				addEl(legendDiv, text);
-			}
-			
-			chartDiv = getEl('div');
+            var width = null;
+            var height = null;
+            width = div.offsetWidth;
+            height = div.offsetHeight;
+            v['width'] = width;
+            v['height'] = height;
+            var zoom = v['zoom'];
+            var wHMin = Math.min(width, height);
+            div.style.textAlign = 'center';
+            div.style.width = width + 'px';
+            div.style.height = height + 'px';
+            div.style.overflow = 'auto';
+            var btn = getEl('button');
+            btn.textContent = '+';
+            btn.style.position = 'absolute';
+            btn.style.top = '33';
+            btn.style.right = '26';
+            btn.style.fontSize = '12px';
+            btn.style.zIndex = '2';
+            btn.setAttribute('widgetname', widgetName);
+            btn.addEventListener('click', function (evt) {
+                /*
+                var div = this.parentElement;
+                div.style.width = (v['width'] * 1.2) + 'px';
+                div.style.height = (v['height'] * 1.2) + 'px';
+                */
+                v['zoom'] *= 1.2;
+                widgetGenerators[v['widgetname']][currentTab]['function']();
+            });
+            addEl(div, btn);
+            var btn = getEl('button');
+            btn.textContent = '-';
+            btn.style.position = 'absolute';
+            btn.style.top = '33';
+            btn.style.right = '5';
+            btn.style.fontSize = '12px';
+            btn.style.zIndex = '2';
+            btn.setAttribute('widgetname', widgetName);
+            btn.addEventListener('click', function (evt) {
+                v['zoom'] *= 0.8;
+                widgetGenerators[v['widgetname']][currentTab]['function']();
+            });
+            addEl(div, btn);
+			var chartDivId = 'circos_summary_svg';
+			var chartDiv = getEl('svg');
 			chartDiv.id = chartDivId;
-			chartDiv.style.width = chartSize['width'];
-			chartDiv.style.height = chartSize['height'];
-			chartDiv.style.display = 'inline-block';
-			addEl(parentDiv, chartDiv);
-
-			var missense = 
-				[
-					"HISTOGRAM01",
-					{maxRadius: 205, minRadius: 175, histogramFillColor: "#66ff66"},
-					data['Missense']
-				];
-			var nonSilent = 
-				[
-					"HISTOGRAM02",
-					{maxRadius: 170, minRadius: 140, histogramFillColor: "#aaaa44"},
-					data['Non-silent']
-				];
-			var inactivating = 
-				[
-					"HISTOGRAM03",
-					{maxRadius: 135, minRadius: 105, histogramFillColor: "#ff6666"},
-					data['Inactivating']
-				];
-			var circos = new BioCircos(missense, nonSilent, inactivating, genome, chartSettings);
-			circos.draw_genome(circos.genomeLength);
-			
-			var histogramSetting = {
-				'Missense': {'color': '#66ff66'},
-				'Non-silent': {'color': '#aaaa44'},
-				'Inactivating': {'color': '#ff6666'}
+			addEl(div, chartDiv);
+            var myCircos = new Circos({
+                container: '#' + chartDivId,
+                width: wHMin * zoom,
+                height: wHMin * zoom,
+            });
+            v['circos'] = myCircos;
+			var conf = {
+  				innerRadius: wHMin / 2 * zoom - 34,
+			    outerRadius: wHMin / 2 * zoom - 14,
+  				gap: 0.02,
+  				labels: {
+    				display: true,
+    				position: 'center',
+    				size: '14px',
+    				color: '#000000',
+    				radialOffset: 22,
+  				},
+				ticks: {
+                    display: false,
+                },
 			};
-			
-			var legendDiv = getEl('div');
-			legendDiv.id = 'circoslegenddiv';
-			legendDiv.style.display = 'inline-block';
-			legendDiv.style.verticalAlign = 'top';
-			var categories = ['Inactivating', 'Missense', 'Non-silent'];
-			for (var i = 0; i < categories.length; i++) {
-				var category = categories[i];
-				var legend = getEl('div');
-				legend.style.padding = '3px';
-				addLegendItem(legend, histogramSetting[category]['color'], category);
-				addEl(legendDiv, legend);
-			}
-			addEl(parentDiv, legendDiv);
-
+            myCircos.layout(v['layout_data'], conf);
+            myCircos.heatmap('heatmap-missense', data['Missense'], {
+                innerRadius: 0.75,
+                outerRadius: 0.95,
+                color: 'Greens',
+                tooltipContent: function (datum, index) {
+                    var toks = datum['name'].split('@@@');
+                    var effect = toks[0];
+                    var genes = toks[1];
+                    var tt = `<table style="color: white; width: 350px; font-size: 12px;"><tr><td>Range</td><td>${datum.start} ~ ${datum.end}</td></tr><tr><td>Effect</td><td>${effect}</td></tr><tr><td>Genes</td><td style="word-break: break-all;">${genes}</td></tr></table>`;
+                    return tt;
+                },
+            });
+            myCircos.heatmap('heatmap-nonsilent', data['Non-silent'], {
+                innerRadius: 0.54,
+                outerRadius: 0.74,
+                color: 'Blues',
+                tooltipContent: function (datum, index) {
+                    var toks = datum['name'].split('@@@');
+                    var effect = toks[0];
+                    var genes = toks[1];
+                    var tt = `<table style="color: white; width: 350px; font-size: 12px;"><tr><td>Range</td><td>${datum.start} ~ ${datum.end}</td></tr><tr><td>Effect</td><td>${effect}</td></tr><tr><td>Genes</td><td style="word-break: break-all;">${genes}</td></tr></table>`;
+                    return tt;
+                },
+            });
+            myCircos.heatmap('heatmap-inactivating', data['Inactivating'], {
+                innerRadius: 0.33,
+                outerRadius: 0.53,
+                color: 'Reds',
+                tooltipContent: function (datum, index) {
+                    var toks = datum['name'].split('@@@');
+                    var effect = toks[0];
+                    var genes = toks[1];
+                    var tt = `<table style="color: white; width: 350px; font-size: 12px;"><tr><td>Range</td><td>${datum.start} ~ ${datum.end}</td></tr><tr><td>Effect</td><td>${effect}</td></tr><tr><td>Genes</td><td style="word-break: break-all;">${genes}</td></tr></table>`;
+                    return tt;
+                },
+            });
+            myCircos.render();
 		}
 	}
 };

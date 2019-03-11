@@ -38,7 +38,7 @@ class CravatAnnotator(BaseAnnotator):
                 'disease_refs':refs,
                 'disease_names':diseases,
                 'rev_stat':rev,
-                'id':id}
+                'id': id}
         
 if __name__ == '__main__':
     annotator = CravatAnnotator(sys.argv)

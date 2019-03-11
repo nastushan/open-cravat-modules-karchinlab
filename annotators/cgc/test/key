@@ -1,37 +1,39 @@
 #CRAVAT Report
-#Created at Monday 04/09/2018 16:39:44
+#Created at Wednesday 01/30/2019 12:25:07
 #Report level: variant
 #
-Base Information								Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
-1	chr1	22563636	A	T	EPHA8	ENST00000166244.7	{"EPHA8":[[null,"M1L","MIS","ENST00000374644.8","A1T"],["P29322","M1L","MIS","ENST00000166244.7","A1T"],[null,"M1L","MIS","ENST00000538803.1","A1T"]]}	1		EPHA8						
-2	chr17	31095310	A	T	NF1	ENST00000358273.8	{"NF1":[[null,"M1L","MIS","ENST00000356175.7","A1T"],["P21359","M1L","MIS","ENST00000358273.8","A1T"],[null,"M1L","MIS","ENST00000431387.8","A1T"]]}	1		NF1						
-3	chr7	55019278	A	T	EGFR	ENST00000275493.6	{"EGFR":[["A0A0B4J1Y5","M1L","MIS","ENST00000442591.5","A1T"],["Q504U8","M1L","MIS","ENST00000455089.5","A1T"],[null,"M1L","MIS","ENST00000342916.7","A1T"],["E9PFD7","M1L","MIS","ENST00000454757.6","A1T"],[null,"M1L","MIS","ENST00000344576.6","A1T"],[null,"M1L","MIS","ENST00000420316.6","A1T"],["P00533","M1L","MIS","ENST00000275493.6","A1T"]]}	1		EGFR						
-4	chr4	1793935	A	T	FGFR3	ENST00000260795.6	{"FGFR3":[["F8W9L4","M1L","MIS","ENST00000481110.6","A1T"],[null,"M1L","MIS","ENST00000340107.8","A1T"],[null,"M1L","MIS","ENST00000412135.6","A1T"],["P22607","M1L","MIS","ENST00000440486.6","A1T"],["I6LM06","M1L","MIS","ENST00000613647.4","A1T"],["P22607","M1L","MIS","ENST00000260795.6","A1T"],[null,"M1L","MIS","ENST00000352904.5","A1T"]]}	1		FGFR3						
-5	chr10	87864470	A	T	PTEN	ENST00000371953.7	{"PTEN":[["P60484","M1L","MIS","ENST00000371953.7","A1T"],["A0A087WT17",null,"UT5","ENST00000610634.1",null]],"KLLN":[["B2CW77",null,"2KU","ENST00000445946.3",null]]}	1		PTEN						
-6	chr7	140924703	T	A	BRAF	ENST00000288602.10	{"BRAF":[["P15056","M1L","MIS","ENST00000288602.10","A1T"]]}	1		BRAF						
-7	chr15	45378453	T	A	GATM	ENST00000396659.7	{"GATM":[["P50440","M1L","MIS","ENST00000396659.7","A1T"],[null,"M1L","MIS","ENST00000558336.5","A1T"]]}	1		GATM						
-8	chr17	7676594	T	A	TP53	ENST00000269305.8	{"TP53":[["P04637","M1L","MIS","ENST00000445888.6","A1T"],["A0A087WZU8","M1L","MIS","ENST00000615910.4","A1T"],["E7EQX7","M1L","MIS","ENST00000413465.6","A1T"],["J3KP33","M1L","MIS","ENST00000359597.8","A1T"],["P04637","M1L","MIS","ENST00000269305.8","A1T"],[null,"M1L","MIS","ENST00000617185.4","A1T"],[null,"M1L","MIS","ENST00000420246.6","A1T"],[null,"M1L","MIS","ENST00000455263.6","A1T"],[null,null,"UT5","ENST00000610292.4",null],["A0A087WXZ1",null,"2KU","ENST00000618944.4",null],[null,null,"2KU","ENST00000510385.5",null],[null,null,"UT5","ENST00000620739.4",null],["A0A087WT22",null,"2KU","ENST00000610623.4",null],[null,null,"UT5","ENST00000619485.4",null],[null,null,"2KU","ENST00000504937.5",null],[null,null,"UT5","ENST00000610538.4",null],[null,null,"2KU","ENST00000504290.5",null],["A0A087X1Q1",null,"2KU","ENST00000619186.4",null],[null,null,"UT5","ENST00000622645.4",null]]}	1		TP53						
-9	chr12	25245384	T	A	KRAS	ENST00000556131.1	{"KRAS":[[null,"M1L","MIS","ENST00000311936.7","A1T"],["G3V5T7","M1L","MIS","ENST00000557334.5","A1T"],["P01116","M1L","MIS","ENST00000256078.8","A1T"],["G3V4K2","M1L","MIS","ENST00000556131.1","A1T"]]}	1		KRAS						
-10	chr17	61861539	T	A	BRIP1	ENST00000577598.5	{"BRIP1":[[null,"M1L","MIS","ENST00000259008.6","A1T"],["J3QSE8","M1L","MIS","ENST00000577598.5","A1T"]]}	1		BRIP1						
+Base Information												Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
+1	chr1	22563636	A	T		Y	EPHA8	ENST00000166244.7	missense	M1L	ENST00000166244.7:EPHA8:P29322:missense:M1L:A1T; ENST00000374644.8:EPHA8:(na):missense:M1L:A1T; ENST00000538803.1:EPHA8:(na):missense:M1L:A1T	0		EPHA8
+2	chr17	31095310	A	T		Y	NF1	ENST00000358273.8	missense	M1L	ENST00000356175.7:NF1:(na):missense:M1L:A1T; ENST00000358273.8:NF1:P21359:missense:M1L:A1T; ENST00000431387.8:NF1:(na):missense:M1L:A1T	0		NF1
+3	chr7	55019278	A	T		Y	EGFR	ENST00000275493.6	missense	M1L	ENST00000275493.6:EGFR:P00533:missense:M1L:A1T; ENST00000342916.7:EGFR:(na):missense:M1L:A1T; ENST00000344576.6:EGFR:(na):missense:M1L:A1T; ENST00000420316.6:EGFR:(na):missense:M1L:A1T; ENST00000442591.5:EGFR:A0A0B4J1Y5:missense:M1L:A1T; ENST00000454757.6:EGFR:E9PFD7:missense:M1L:A1T; ENST00000455089.5:EGFR:Q504U8:missense:M1L:A1T	0		EGFR
+4	chr4	1793935	A	T		Y	FGFR3	ENST00000440486.6	missense	M1L	ENST00000260795.6:FGFR3:P22607:missense:M1L:A1T; ENST00000340107.8:FGFR3:(na):missense:M1L:A1T; ENST00000352904.5:FGFR3:(na):missense:M1L:A1T; ENST00000412135.6:FGFR3:(na):missense:M1L:A1T; ENST00000440486.6:FGFR3:P22607:missense:M1L:A1T; ENST00000481110.6:FGFR3:F8W9L4:missense:M1L:A1T; ENST00000613647.4:FGFR3:I6LM06:missense:M1L:A1T	0		FGFR3
+5	chr10	87864470	A	T		Y	PTEN	ENST00000371953.7	missense	M1L	ENST00000371953.7:PTEN:P60484:missense:M1L:A1T; ENST00000445946.3:KLLN:B2CW77:2kb upstream:(na):(na); ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	0		PTEN
+6	chr7	140924703	T	A		Y	BRAF	ENST00000288602.10	missense	M1L	ENST00000288602.10:BRAF:P15056:missense:M1L:A1T	0		BRAF
+7	chr15	45378453	T	A		Y	GATM	ENST00000396659.7	missense	M1L	ENST00000396659.7:GATM:P50440:missense:M1L:A1T; ENST00000558336.5:GATM:(na):missense:M1L:A1T	0		GATM
+8	chr17	7676594	T	A		Y	TP53	ENST00000445888.6	missense	M1L	ENST00000269305.8:TP53:P04637:missense:M1L:A1T; ENST00000359597.8:TP53:J3KP33:missense:M1L:A1T; ENST00000413465.6:TP53:E7EQX7:missense:M1L:A1T; ENST00000420246.6:TP53:(na):missense:M1L:A1T; ENST00000445888.6:TP53:P04637:missense:M1L:A1T; ENST00000455263.6:TP53:(na):missense:M1L:A1T; ENST00000504290.5:TP53:(na):2kb upstream:(na):(na); ENST00000504937.5:TP53:(na):2kb upstream:(na):(na); ENST00000510385.5:TP53:(na):2kb upstream:(na):(na); ENST00000610292.4:TP53:(na):5-prime utr:(na):(na); ENST00000610538.4:TP53:(na):5-prime utr:(na):(na); ENST00000610623.4:TP53:A0A087WT22:2kb upstream:(na):(na); ENST00000615910.4:TP53:A0A087WZU8:missense:M1L:A1T; ENST00000617185.4:TP53:(na):missense:M1L:A1T; ENST00000618944.4:TP53:A0A087WXZ1:2kb upstream:(na):(na); ENST00000619186.4:TP53:A0A087X1Q1:2kb upstream:(na):(na); ENST00000619485.4:TP53:(na):5-prime utr:(na):(na); ENST00000620739.4:TP53:(na):5-prime utr:(na):(na); ENST00000622645.4:TP53:(na):5-prime utr:(na):(na)	0		TP53
+9	chr12	25245384	T	A		Y	KRAS	ENST00000256078.8	missense	M1L	ENST00000256078.8:KRAS:P01116:missense:M1L:A1T; ENST00000311936.7:KRAS:(na):missense:M1L:A1T; ENST00000556131.1:KRAS:G3V4K2:missense:M1L:A1T; ENST00000557334.5:KRAS:G3V5T7:missense:M1L:A1T	0		KRAS
+10	chr17	61861539	T	A		Y	BRIP1	ENST00000259008.6	missense	M1L	ENST00000259008.6:BRIP1:(na):missense:M1L:A1T; ENST00000577598.5:BRIP1:J3QSE8:missense:M1L:A1T	0		BRIP1
+11	chr6	149683132	A	T		Y	LATS1	ENST00000543571.5	missense	S653T	ENST00000253339.9:LATS1:O95835:missense:S653T:T1957A; ENST00000392273.7:LATS1:(na):missense:S653T:T1957A; ENST00000543571.5:LATS1:O95835:missense:S653T:T1957A	0		LATS1
 #CRAVAT Report
-#Created at Monday 04/09/2018 16:39:44
+#Created at Wednesday 01/30/2019 12:25:07
 #Report level: gene
 #
-Base Information				Cancer Genome Census			
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	CGC driver class	CGC inheritance	CGC tumor types somatic	CGC tumor types germline
-BRAF	1	MIS	MIS(1)	Oncogene, fusion	somatic	melanoma, colorectal, papillary thyroid, borderline ovarian, NSCLC, cholangiocarcinoma, pilocytic astrocytoma, Spitzoid tumour, pancreas acinar carcinoma, melanocytic nevus, prostate, gastric	
-BRIP1	1	MIS	MIS(1)	TSG	germline		AML, leukaemia, breast
-EGFR	1	MIS	MIS(1)	Oncogene	somatic/germline	glioma, NSCLC	NSCLC
-EPHA8	1	MIS	MIS(1)				
-FGFR3	1	MIS	MIS(1)	Oncogene, fusion	somatic	bladder, MM, T-cell lymphoma	
-GATM	1	MIS	MIS(1)				
-KRAS	1	MIS	MIS(1)	Oncogene	somatic	pancreatic, colorectal, lung, thyroid, AML, other tumour types	
-NF1	1	MIS	MIS(1)	TSG, fusion	somatic/germline	neurofibroma, glioma	neurofibroma, glioma
-PTEN	1	MIS	MIS(1)	TSG	somatic/germline	glioma, prostate, endometrial	harmartoma, glioma, prostate, endometrial
-TP53	1	MIS	MIS(1)	Oncogene, TSG, fusion	somatic/germline	breast, colorectal, lung, sarcoma, adrenocortical, glioma, Spitzoid tumour, multiple other tumour types	breast, sarcoma, adrenocortical carcinoma, glioma, multiple other tumour types
+Base Information					Cancer Genome Census			
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note	CGC driver class	CGC inheritance	CGC tumor types somatic	CGC tumor types germline
+EPHA8	1	missense	missense(1)					
+NF1	1	missense	missense(1)		TSG, fusion	somatic/germline	neurofibroma, glioma	neurofibroma, glioma
+EGFR	1	missense	missense(1)		Oncogene	somatic/germline	glioma, NSCLC	NSCLC
+FGFR3	1	missense	missense(1)		Oncogene, fusion	somatic	bladder, MM, T-cell lymphoma	
+PTEN	1	missense	missense(1)		TSG	somatic/germline	glioma, prostate, endometrial	harmartoma, glioma, prostate, endometrial
+BRAF	1	missense	missense(1)		Oncogene, fusion	somatic	melanoma, colorectal, papillary thyroid, borderline ovarian, NSCLC, cholangiocarcinoma, pilocytic astrocytoma, Spitzoid tumour, pancreas acinar carcinoma, melanocytic nevus, prostate, gastric	
+GATM	1	missense	missense(1)					
+TP53	1	missense	missense(1)		Oncogene, TSG, fusion	somatic/germline	breast, colorectal, lung, sarcoma, adrenocortical, glioma, Spitzoid tumour, multiple other tumour types	breast, sarcoma, adrenocortical carcinoma, glioma, multiple other tumour types
+KRAS	1	missense	missense(1)		Oncogene	somatic	pancreatic, colorectal, lung, thyroid, AML, other tumour types	
+BRIP1	1	missense	missense(1)		TSG	germline		AML, leukaemia, breast
+LATS1	1	missense	missense(1)		TSG	somatic	skin basal cell carcinoma	
 #CRAVAT Report
-#Created at Monday 04/09/2018 16:39:44
+#Created at Wednesday 01/30/2019 12:25:07
 #Report level: sample
 #
 Base Information	
@@ -46,8 +48,9 @@ UID	Sample
 8	
 9	
 10	
+11	
 #CRAVAT Report
-#Created at Monday 04/09/2018 16:39:44
+#Created at Wednesday 01/30/2019 12:25:07
 #Report level: mapping
 #
 Base Information		
@@ -62,3 +65,4 @@ Original Line	User Tags	UID
 9	TP53	8
 10	KRAS	9
 11	BRIP1	10
+12	LATS1	11

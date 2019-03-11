@@ -1,5 +1,5 @@
 title: Circos Summary
-version: 1.1.1
+version: 1.1.5
 required_annotator: base
 type: webviewerwidget
 description: Circos Summary result viewer widget
@@ -9,6 +9,7 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
-
 release_note:
+  1.1.5: improved resize and redraw
+  1.1.2: uses library circos.js.
   1.1.1: prevents an error with one histogram bar for a SO class.

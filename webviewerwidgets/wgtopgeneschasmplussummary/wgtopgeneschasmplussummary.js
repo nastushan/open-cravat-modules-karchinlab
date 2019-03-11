@@ -2,34 +2,12 @@ widgetGenerators['topgeneschasmplussummary'] = {
 	'info': {
 		'name': 'Top Genes by CHASMplus',
 		'width': 280, 
-		'height': 380, 
+		'height': 220, 
 		'callserver': false,
-		'function': function (div) {
-			if (div != null) {
-				emptyElement(div);
-			}
-			
-			div.style.width = 'calc(100% - 37px)';
-
-			var numGeneToExtract = 10;
-			function sortExtracted () {
-				for (var i = 0; i < extracted.length - 1; i++) {
-					for (var j = i + 1; j < extracted.length; j++) {
-						if (extracted[j][1] < extracted[i][1]) {
-							var tmp = extracted[i];
-							extracted[i] = extracted[j];
-							extracted[j] = tmp;
-						}
-					}
-				}
-				if (extracted.length > numGeneToExtract) {
-					extracted.splice(numGeneToExtract, extracted.length - numGeneToExtract);
-				}
-			}
+        'variables': {},
+        'init': function () {
 			var extracted = [];
-			for (var i = 0; i < numGeneToExtract; i++) {
-				extracted.push(['', 1.0]);
-			}
+            var pvalCutoff = 0.08;
 			var geneRows = infomgr.getData('gene');
 			for (var i = 0; i < geneRows.length; i++) {
 				var row = geneRows[i];
@@ -38,15 +16,37 @@ widgetGenerators['topgeneschasmplussummary'] = {
 				if (pval == undefined) {
 					continue;
 				}
-				for (var j = 0; j < extracted.length; j++) {
-					if (pval < extracted[j][1]) {
-						extracted.push([hugo, pval]);
-						sortExtracted();
-						break;
-					}
-				}
+                if (pval <= pvalCutoff) {
+                    extracted.push([hugo, pval]);
+                }
 			}
-			
+			var numGeneToExtract = 10;
+            for (var i = 0; i < extracted.length - 1; i++) {
+                for (var j = i + 1; j < extracted.length; j++) {
+                    if (extracted[j][1] < extracted[i][1]) {
+                        var tmp = extracted[i];
+                        extracted[i] = extracted[j];
+                        extracted[j] = tmp;
+                    }
+                }
+            }
+            if (extracted.length > numGeneToExtract) {
+                extracted.splice(numGeneToExtract, extracted.length - numGeneToExtract);
+            }
+            this['variables']['extracted'] = extracted;
+        },
+        'shoulddraw': function () {
+            if (this['variables']['extracted'].length == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+		'function': function (div) {
+			if (div != null) {
+				emptyElement(div);
+			}
+            var extracted = this['variables']['extracted'];
 			var table = getEl('table');
 			table.style.fontSize = '13px';
 			table.style.borderCollapse = 'collapse';

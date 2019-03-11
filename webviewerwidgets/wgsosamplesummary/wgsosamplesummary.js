@@ -1,9 +1,20 @@
 widgetGenerators['sosamplesummary'] = {
 	'info': {
 		'name': 'Sequence Ontology by Sample',
-		'width': 780, 
-		'height': 780, 
+		'width': 480, 
+		'height': 380, 
 		'callserver': true,
+        'variables': {},
+        'init': function (data) {
+            this['variables']['data'] = data;
+        },
+        'shoulddraw': function () {
+            if (this['variables']['data'] == null) {
+                return false;
+            } else {
+                return true;
+            }
+        },
 		'function': function (div, data) {
 			var colorPalette = {
 				'Frameshift insertion':'#ff0000', // red
@@ -23,25 +34,15 @@ widgetGenerators['sosamplesummary'] = {
 				'Intron':'#00ffff', // aqua
 				'Unknown':'#000080', // navy
 				'Intergenic':'#008080', // teal
-				/*
-				'#800080', // purple
-				'#800000', // maroon
-				'#808000', // olive
-				'#008000', // green
-				'#ff00ff', // fuchsia
-				*/
 	        };
-			
 			if (div != null) {
 				emptyElement(div);
 			}
-			
 			div.style.width = 'calc(100% - 37px)';
 			var chartDiv = getEl('canvas');
 			chartDiv.style.width = 'calc(100% - 20px)';
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
-
 			var samples = data['samples'];
 			var sos = data['sos'];
 			var socountdata = data['socountdata'];
@@ -68,7 +69,12 @@ widgetGenerators['sosamplesummary'] = {
 						mode: 'index',
 						intersect: false
 					},
+                    legend: {
+                        position: 'right',
+                    },
 					responsive: true,
+                    responsiveAnimationDuration: 500,
+                    maintainAspectRatio: false,
 					scales: {
 						xAxes: [{
 							stacked: true,

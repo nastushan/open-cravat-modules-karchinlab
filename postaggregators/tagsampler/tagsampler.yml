@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.3
+version: 1.0.7
 type: postaggregator
 
 name: tagsampler
@@ -10,6 +10,7 @@ output_columns:
   title: Number of Samples
   type: int
   width: 90
+  filterable: false
 - name: samples
   title: Samples
   type: string
@@ -29,3 +30,5 @@ developer:
   citation: ''
 release_note:
   1.0.2: removed multi cat from tags for speed
+  1.0.4: handles samples that are null
+  1.0.5: assigned filterable.

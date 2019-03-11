@@ -1,47 +1,55 @@
-title: ClinVar
-version: 2019.01.022
-type: annotator
 datasource: 2019.01.02
-
-level: variant
+description: ClinVar is an archive of reports of the relationships among human variations
+  and phenotypes, with supporting evidence.
+developer:
+  citation: "Landrum, M.J., Lee, J.M., Benson, M., et al. (2016). ClinVar: public archive of interpretations of clinically relevant variants. Nucleic Acids Research, 44(D1):D862-8."
+  email: support@cravat.us
+  name: NCBI
+  organization: NCBI
+  website: https://www.ncbi.nlm.nih.gov/clinvar/
 input_format: crv
+level: variant
 output_columns:
-- name: sig
+- category: single
+  name: sig
   title: Clinical Significance
   type: string
   width: 90
-  category: single
-- name: disease_refs
+  filterable: false
+- hidden: true
+  name: disease_refs
   title: Disease Ref Nums
   type: string
-  hidden: True
   width: 55
+  filterable: false
 - name: disease_names
   title: Disease Names
   type: string
   width: 55
-- name: rev_stat
+- desc: The level of review supporting the assertion of clinical significance for
+    the variation
+  name: rev_stat
   title: Review Status
   type: string
   width: 55
-  desc: The level of review supporting the assertion of clinical significance for the variation
-- name: id
+  filterable: false
+- filterable: true
+  hidden: true
+  name: id
   title: ClinVar ID
   type: string
   width: 55
-  hidden: True
-
-description: ClinVar is an archive of reports of the relationships among human variations and phenotypes, with supporting evidence.
-developer:
-  name: 'NCBI'
-  organization: 'NCBI'
-  email: 'support@cravat.us'
-  website: 'https://www.ncbi.nlm.nih.gov/clinvar/'
-  citation: 'https://www.ncbi.nlm.nih.gov/pubmed/26582918'
-
-tags:
-- phenotype
-
+  filterable: false
+  link_format: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/${.*}/'
 release_note:
-  2019.01.022: updated data set, widget overhaul
   2019.01.021: added phenotype tag.
+  2019.01.022: updated data set, widget overhaul
+  2019.01.023: changed id column format for web linking
+tags:
+- variants
+- germline
+- clinical relevance
+- literature
+title: ClinVar
+type: annotator
+version: 2019.02.006

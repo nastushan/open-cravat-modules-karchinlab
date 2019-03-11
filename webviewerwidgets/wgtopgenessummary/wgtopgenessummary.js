@@ -1,28 +1,37 @@
 widgetGenerators['topgenessummary'] = {
 	'info': {
 		'name': 'Most Frequently Mutated Genes (normalized by gene length and sorted by % samples mutated)',
-		'width': 780, 
-		'height': 780, 
+		'width': 380, 
+		'height': 380, 
 		'callserver': true,
-		'function': function (div, data) {
+        'variables': {},
+        'init': function (data) {
+            this['variables']['data'] = data;
+        },
+        'shoulddraw': function () {
+            if (this['variables']['data'] == null) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+		'function': function (div, dummy) {
 			if (div != null) {
 				emptyElement(div);
 			}
-			
 			div.style.width = 'calc(100% - 37px)';
 			var chartDiv = getEl('canvas');
 			chartDiv.style.width = 'calc(100% - 20px)';
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
-
 			var x = [];
 			var y = [];
+            var data = this['variables']['data'];
 			for (var i = 0; i < data.length; i++) {
 				var row = data[i];
 				x.push(row[0]);
 				y.push(row[1]);
 			}
-			
 			var chart = new Chart(chartDiv, {
 				type: 'horizontalBar',
 				data: {
@@ -49,8 +58,8 @@ widgetGenerators['topgenessummary'] = {
 							},
 							ticks: {
 								beginAtZero: true,
-								stepSize: 1.0,
-								max: 1.0,
+								stepSize: 10.0,
+								max: 100.0,
 							}
 						}],
 					},

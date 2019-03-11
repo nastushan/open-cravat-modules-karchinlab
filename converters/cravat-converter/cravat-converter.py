@@ -37,8 +37,6 @@ class CravatConverter(BaseConverter):
         if not(strand in ['-','+']): return False, '4th column must be + or -'
         ref = ref.upper()
         alt = alt.upper()
-        if len(ref) == 0 or len(alt) == 0:
-            return False, 'Empty base'
         for char in ref.upper():
             if char not in valid_bases: return False, 'Bad ref base'
         for char in alt.upper():

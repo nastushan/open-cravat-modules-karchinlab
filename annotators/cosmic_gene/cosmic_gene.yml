@@ -1,27 +1,32 @@
-title: COSMIC Gene
-version: 85.0.3
-type: annotator
 datasource: v85
-
+description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and
+  most comprehensive resource for exploring the impact of somatic mutations in human
+  cancer.
+developer:
+  citation: "Simon A. Forbes et al; COSMIC: somatic cancer genetics at high-resolution,\
+    \ Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D777\u2013\
+    D783, https://doi.org/10.1093/nar/gkw1121"
+  email: support@cravat.us
+  name: Sanger Institute
+  organization: Sanger Institute
+  website: https://cancer.sanger.ac.uk/cosmic
 level: gene
 output_columns:
 - name: occurrences
   title: Occurrences
   type: int
   width: 95
-- name: gene_count
+- hidden: true
+  name: gene_count
   title: Tissue count
   type: string
   width: 120
-  hidden: True
-
-description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and most comprehensive resource for exploring the impact of somatic mutations in human cancer.
-developer:
-  name: 'Sanger Institute'
-  organization: 'Sanger Institute'
-  email: 'support@cravat.us'
-  website: 'https://cancer.sanger.ac.uk/cosmic'
-  citation: 'Simon A. Forbes et al; COSMIC: somatic cancer genetics at high-resolution, Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D777–D783, https://doi.org/10.1093/nar/gkw1121'
-
+  filterable: false
 release_note:
   85.0.2: added index to data for speed
+tags:
+- genes
+- cancer
+title: COSMIC Gene
+type: annotator
+version: 85.0.4

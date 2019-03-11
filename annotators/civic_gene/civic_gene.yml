@@ -1,26 +1,28 @@
-title: CIViC Gene
-
-version: 0.0.2
-
-type: annotator
-
+datasource: Jan 2019
+description: Provides descriptions and linkouts to CIViC
+developer:
+  citation: "Griffith, M., Spies, N.C., Krysiak, K., et al. (2017). CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer. Nature Genetics, 49(2):170-174."
+  email: support@cravat.us
+  name: The McDonnell Genome Institute at Washington University School of Medicine
+  organization: The McDonnell Genome Institute at Washington University School of
+    Medicine
+  website: https://civicdb.org
 level: gene
-
 output_columns:
-- name: description
+- hidden: true
+  name: description
   title: Description
   type: string
-  hidden: True
 - name: link
   title: Link
   type: string
-
-description: Provides descriptions and linkouts to CIViC
-
-developer:
-  name: ''
-  organization: 'The McDonnell Genome Institute at Washington University School of Medicine'
-  email: 'support@cravat.us'
-  website: 'https://civicdb.org'
-  citation: 'https://www.nature.com/articles/ng.3774'
-
+  width: 75
+  filterable: false
+tags:
+- genes
+- clinical relevance
+- cancer
+- literature
+title: CIViC Gene
+type: annotator
+version: 0.0.5

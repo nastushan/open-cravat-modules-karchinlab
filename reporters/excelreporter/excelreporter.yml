@@ -1,5 +1,5 @@
 title: Excel Reporter
-version: 1.0.0
+version: 1.0.1
 type: reporter
 description: Microsoft Excel reporter
 developer:
@@ -8,3 +8,6 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
+
+release_note:
+  1.0.1: changed hyperlink format to use "[WEB:]"

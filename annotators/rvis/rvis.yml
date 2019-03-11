@@ -1,33 +1,42 @@
-title: RVIS
-version: 3.0.03
-type: annotator
-level: gene
-output_columns:
-  - name: rvis_evs
-    title: Score
-    type: float
-  - name: rvis_perc_evs
-    title: Percentile Rank
-    type: float
-    width: 70
-  - name: rvis_fdr_exac
-    title: FDR p-value
-    type: float
-    width: 54
-    hidden: True
-  - name: rvis_exac
-    title: ExAC-based RVIS
-    type: float
-    hidden: True
-  - name: rvis_perc_exac
-    title: ExAC-based Percentile
-    type: float
-    width: 67
-    hidden: True
+datasource: v3
 description: Residual variation intolerance scoring
 developer:
-  name: 'Slavé Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David B. Goldstein'
-  organization: 'Center for Human Genome Variation, Duke University'
-  email: 'support@cravat.us'
-  website: 'https://doi.org/10.1371/journal.pgen.1003709'
-  citation: 'https://sites.google.com/site/jpopgen/dbNSFP'
+  citation: "Petrovski, S., Wang, Q., Heinzen, E. L., Allen, A. S., & Goldstein, D. B. (2013). Genic intolerance to functional variation and the interpretation of personal genomes. PLoS genetics, 9(8), e1003709."
+  email: support@cravat.us
+  name: "Slav\xE9 Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David\
+    \ B. Goldstein"
+  organization: Center for Human Genome Variation, Duke University
+  website: https://doi.org/10.1371/journal.pgen.1003709
+level: gene
+output_columns:
+- name: rvis_evs
+  title: Score
+  type: float
+- name: rvis_perc_evs
+  title: Percentile Rank
+  type: float
+  width: 70
+  filterable: false
+- hidden: true
+  name: rvis_fdr_exac
+  title: FDR p-value
+  type: float
+  width: 54
+  filterable: false
+- hidden: true
+  name: rvis_exac
+  title: ExAC-based RVIS
+  type: float
+  filterable: false
+- hidden: true
+  name: rvis_perc_exac
+  title: ExAC-based Percentile
+  type: float
+  width: 67
+  filterable: false
+tags:
+- genes
+- evolution
+title: RVIS
+type: annotator
+version: 3.0.05

@@ -17,7 +17,8 @@ widgetGenerators['gtex'] = {
 				var geneitr = genels[i];
 				var tissueitr = tissuels[i];
 				tissueitr = tissueitr.replace("_", " ")
-				var tr = getWidgetTableTr([geneitr, tissueitr]);
+				var ensLink = 'https://ensembl.org/Homo_sapiens/Gene/Summary?g='+geneitr;
+				var tr = getWidgetTableTr([ensLink, tissueitr],[geneitr]);
 				addEl(tbody, tr);
 			}
 			addEl(div, addEl(table, tbody));

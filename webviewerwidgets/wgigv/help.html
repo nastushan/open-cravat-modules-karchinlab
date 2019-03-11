@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Help for IGV Widget</title>
+<style> 
+	body{
+		font-family: Arial,Helvetica,sans-serif;
+	}
+	.label { 
+		font-style: normal;
+		z-index:1;
+		position:absolute;
+		width: 16px;
+		height: 16px;
+		text-align: center;
+		padding: 4px;
+		border: 1px solid #000000;
+		border-radius:50%;
+		background: #eeeeee;
+	}
+	td {
+		padding: 5px;
+		border: solid 1px #222222;
+		border-bottom: solid 1px #222222;
+	}
+	td .label {
+		display: inline-block;
+		position: initial;
+	} 
+	li{
+		border-left: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+	}
+</style>
+</head>
+<body>
+	
+		<div style="position:absolute; width: 1300px; height: 300px">
+			<b class="label" style="left:0px; top: 25px;" > 1 </b>
+			<b class="label" style="left:125px; top: 50px;"> 2 </b>
+			<b class="label" style="left:235px; top: 50px;"> 3 </b>
+			<b class="label" style="left:490px; top: 50px;"> 4 </b>
+			<b class="label" style="left:740px; top: 50px;"> 5 </b>
+			<b class="label" style="left:1100px; top: 50px;"> 6 </b>
+			<b class="label" style="left:50px; top: 103px; "> 7 </b>
+			<b class="label" style="left:50px; top: 193px;"> 8 </b>
+			<b class="label" style="left:1215px; top: 140px;"> 9 </b>
+			<b class="label" style="left:1250px; top: 140px;"> 10 </b>
+			<img style="z-index: 0; position:absolute; width: 100%; height: 100%" src="/result/widgetfile/wgigv/IGVScreenshot.png">
+		</div>
+		
+		<br>
+		<div style="position: absolute; top: 320px">
+			<table style="border: solid 1px black;border-left: solid 1px black; width:100%">
+				<tbody>
+				<tr>
+					<td><b class="label"> 1 </b></td>
+					<td><p>Load a track using a local or remote data file (.bam file extension) and index file(.bai file extension).</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 2 </b></td>
+					<td><p>Select which chromosome to view using the drop-down selector.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 3 </b></td>
+					<td><p>This text box shows which area of the chromosome that is being viewed. Changing the values here
+						and clicking on the magnifying glass icon will update the view.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 4 </b></td>
+					<td><p>This displays how many base pairs are shown in the current view.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 5 </b></td>
+					<td><p>These buttons will toggle the mouse guide, center line, and the track labels, in the track viewer.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 6 </b></td>
+					<td><p>Use the slider or the +/- buttons on either end to zoom in or out of the current view.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 7 </b></td>
+					<td><p>The diagram shows the current chromosome being viewed and the area outlined in red corresponds to the region shown. Clicking on the diagram will move the view to the selected location.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 8 </b></td>
+					<td><p>Click and drag to adjust the viewing window of your selected track.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 9 </b></td>
+					<td><p>Reorder tracks by dragging and dropping the grey bar.</p></td>
+				</tr>
+				<tr>
+					<td><b class="label"> 10 </b></td>
+					<td><p>Set track configurations.</p></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	
+</body>
+</html>

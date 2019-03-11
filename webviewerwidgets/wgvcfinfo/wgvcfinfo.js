@@ -2,6 +2,7 @@ widgetGenerators['vcfinfo'] = {
 	'variant': {
 		'width': 280, 
 		'height': 80, 
+        'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Phred', 'vcfinfo__phred', tabName);
 			addInfoLine(div, row, 'Filter', 'vcfinfo__filter', tabName);

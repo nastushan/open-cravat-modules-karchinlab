@@ -2,13 +2,14 @@ var widgetName = 'codingvsnoncodingsummary';
 widgetGenerators[widgetName] = {
 	'info': {
 		'name': 'Coding vs Noncoding',
-		'width': 380, 
-		'height': 380, 
+		'width': 280, 
+		'height': 280, 
 		'callserver': false,
 		'function': function (div) {
 			if (div != null) {
 				emptyElement(div);
 			}
+            div.style.textAlign = 'center';
 			var noCoding = 0;
 			var noNoncoding = 0;
 			var d = infomgr.getData('variant'); 
@@ -53,7 +54,12 @@ widgetGenerators[widgetName] = {
 					]
 				},
 				options: {
-					responsive: true
+					responsive: true,
+                    responsiveAnimationDuration: 500,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                    },
 				}
 			});
 		}

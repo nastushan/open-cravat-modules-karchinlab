@@ -84,11 +84,11 @@ def get_data_for_sos (sos, name_prefix, cursor):
             if end >= chromsize:
                 end = chromsize - 1
             hugos = bin['genes']
-            name = name_prefix + '(' + ','.join(hugos) + ')'
+            name = name_prefix + '@@@' + ' '.join(hugos)
             value = bin['count']
             if value == 0:
                 continue
-            row = {'chr': chrom, 
+            row = {'block_id': chrom, 
                    'start': str(start), 
                    'end': str(end), 
                    'name': name, 
@@ -105,20 +105,26 @@ def get_data (queries):
     sos = ['MIS', 'CSS', 'IIV', 'IDV', 'STL', 'SPL', 'STG', 'FSI', 'FI1', 'FI2', 'FSD', 'FD1', 'FD2']
     prefix = 'Non-silent'
     data_sos = get_data_for_sos(sos, prefix, cursor)
+    '''
     if len(data_sos) == 1:
         data_sos.append({'chr': '22', 'start': '1000000', 'end': '1000001', 'name': '', 'value': '0'})
+    '''
     data[prefix] = data_sos
     sos = ['MIS']
     prefix = 'Missense'
     data_sos = get_data_for_sos(sos, prefix, cursor)
+    '''
     if len(data_sos) == 1:
         data_sos.append({'chr': '22', 'start': '1000000', 'end': '1000001', 'name': '', 'value': '0'})
+    '''
     data[prefix] = data_sos
     sos = ['FSI', 'FI1', 'FI2', 'FSD', 'FD1', 'FD2', 'STG', 'STL', 'SPL']
     prefix = 'Inactivating'
     data_sos = get_data_for_sos(sos, prefix, cursor)
+    '''
     if len(data_sos) == 1:
         data_sos.append({'chr': '22', 'start': '1000000', 'end': '1000001', 'name': '', 'value': '0'})
+    '''
     data[prefix] = data_sos
     response['data'] = data
     return response

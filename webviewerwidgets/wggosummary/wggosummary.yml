@@ -1,5 +1,5 @@
 title: Gene Ontology Summary
-version: 1.0.2
+version: 1.0.5
 type: webviewerwidget
 required_annotator: base
 description: Gene Ontology Summary webviewer widget
@@ -9,3 +9,5 @@ developer:
   email: 'support@cravat.us'
   website: 'http://www.insilico.us.com'
   citation: ''
+release_note:
+  1.0.4: auto hide for no coding variant
