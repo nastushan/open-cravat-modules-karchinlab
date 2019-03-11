@@ -66,7 +66,7 @@ class CravatAnnotator(BaseAnnotator):
         concated = reduce(self.concat, result, [[] for i in range(len(result[0]))])
         concated = [','.join(arr) for arr in concated]
         out = {
-            'PubmedId': concated[0] + '[WEB:]https://www.ncbi.nlm.nih.gov/pubmed/?term=' + concated[0],
+            'PubmedId': concated[0],
             'PrimaryPhenotype': concated[1],
             'Validation': concated[2]
         }
