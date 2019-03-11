@@ -13,6 +13,7 @@ output_columns:
 - name: snp
   title: rsID
   type: string
+  link_format: 'https://www.ncbi.nlm.nih.gov/snp/${.*}'
 tags:
 - variants
 - noncoding

@@ -22,7 +22,7 @@ class CravatAnnotator(BaseAnnotator):
         if snp_ids == "":
             return out
         out = {}
-        out['snp'] = snp_ids + '[WEB:]https://www.ncbi.nlm.nih.gov/snp/' + snp_ids
+        out['snp'] = snp_ids
         return out
     
 if __name__ == '__main__':
