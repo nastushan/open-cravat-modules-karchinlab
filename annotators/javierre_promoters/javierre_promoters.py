@@ -14,7 +14,6 @@ class CravatAnnotator (BaseAnnotator):
         pos = input_data['pos']
         
         q = 'select Target_gene_name from capture where PIR_Chr="{cnum}" and PIR_Start<={pos} and PIR_End>={pos};'.format(cnum = chrom.replace('chr',''), pos=pos)
-        print(q)
         self.cursor.execute(q)
         regions = [r[0] for r in self.cursor if r[0] is not None]
         out['regions'] = ';'.join(regions)
