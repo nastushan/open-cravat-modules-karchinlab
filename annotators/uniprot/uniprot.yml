@@ -1,5 +1,5 @@
 title: UniProt
-version: 2019.02.13
+version: 2019.03.14
 type: annotator
 level: gene
 output_columns:
@@ -17,3 +17,4 @@ developer:
   website: 'https://www.uniprot.org/'
   citation: 'UniProt Consortium. (2018). UniProt: the universal protein knowledgebase. Nucleic acids research, 46(5), 2699.'
 datasource: 2018_09
+private: true
