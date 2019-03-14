@@ -3,6 +3,7 @@ import sys
 import os
 import datetime
 import xlsxwriter
+import re
 
 class Reporter(CravatReport):
     def setup (self):
@@ -106,6 +107,15 @@ class Reporter(CravatReport):
             self.ws.write(self.rowno, self.colno, cellvalue)
             self.colno += 1
         self.rowno += 1
+
+    def substitute_val (self, level, row):
+        if level in self.column_subs:
+            for i in self.column_subs[level]:
+                if row[i] is not None:
+                    sub = self.column_subs[level][i]
+                    for target in sub:
+                        row[i] = re.sub('\\b' + target + '\\b', sub[target], row[i])
+        return row
 
 def main ():
     r = Reporter(sys.argv)
