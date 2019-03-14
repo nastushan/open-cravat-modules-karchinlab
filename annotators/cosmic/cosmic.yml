@@ -45,4 +45,5 @@ tags:
 - cancer
 title: COSMIC
 type: annotator
-version: 85.0.9
+version: 85.0.10
+private: true
