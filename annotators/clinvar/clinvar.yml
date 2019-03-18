@@ -52,4 +52,5 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.02.006
+version: 2019.02.007
+private: true

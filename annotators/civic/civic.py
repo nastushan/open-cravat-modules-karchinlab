@@ -45,7 +45,7 @@ class CravatAnnotator(BaseAnnotator):
             out["description"] = match['description']
             out["clinical_a_score"] = match['civic_actionability_score']
             civic_id = match['id']
-            out['link'] = 'https://civicdb.org/links/variant/'+str(civic_id)
+            out['id'] = civic_id
             evidence_link = 'https://civicdb.org/api/variants/{civic_id}/evidence_items?count=5000&page=1'.format(civic_id=civic_id)
             r = requests.get(evidence_link)
             d = json.loads(r.text)

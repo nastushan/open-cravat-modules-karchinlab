@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.1.0
+version: 1.1.2
 type: converter
 description: Converter for VCF format input
 developer:
@@ -10,6 +10,7 @@ developer:
   citation: ''
 
 release_note:
+  1.1.2: fixed test key
   1.1.1: Allele Frequency rounds to 3rd decimal place
   1.1.0: Import copy number from vcf with HP info key
   1.0.5: allele frequency rounds to 3rd decimal place.
