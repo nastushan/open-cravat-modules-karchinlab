@@ -1,5 +1,4 @@
 #Chrom	Position	Strand	Ref Base	Alt Base	sample	tag
-chr22	30025797	+	A	T		p.Asn1198Ile
 chr6	87464233	+	G	C		p.Asp618His
 chr6	87464233	+	G	A		p.Asp618Asn
 chr6	87464233	+	G	T		p.Asp618Tyr
@@ -101,3 +100,4 @@ chr17	41619437	+	T	G		minus_at_utr_end
 chr17	41619436	+	A	G		minus_at_ds_start
 chr17	41617437	+	C	G		minus_at_ds_end
 chr17	41617436	+	C	G		minus_after_ds_end
+chr22	30025797	+	A	T		p.Asn1198Ile
