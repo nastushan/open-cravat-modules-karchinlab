@@ -19,15 +19,15 @@ output_columns:
   title: Clinical actionability score
   type: string
   filterable: false
-- name: link
-  title: Linkout
-  type: string
-  width: 70
-  filterable: false
 - name: diseases
   title: Diseases
   type: string
   width: 75
+- name: id
+  title: ID
+  type: string
+  filterable: false
+  link_format: 'https://civicdb.org/links/variant/${.*}'
 tags:
 - variants
 - clinical relevance
@@ -35,4 +35,5 @@ tags:
 - literature
 title: CIViC
 type: annotator
-version: 1.0.5
+version: 1.0.6
+private: true
