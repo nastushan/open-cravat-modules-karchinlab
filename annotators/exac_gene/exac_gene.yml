@@ -86,6 +86,6 @@ tags:
 - genes
 - germline
 - populations
-title: ExAC Gene Constraint & CNV Score
+title: ExAC Gene and CNV
 type: annotator
-version: 0.3.14
+version: 0.3.15
