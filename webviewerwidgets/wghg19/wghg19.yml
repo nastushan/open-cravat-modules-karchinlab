@@ -1,8 +1,9 @@
 title: hg19 info widget
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: hg19
 description: hg19 info webviewer widget
+hidden: true
 developer: 
   name: 'Rick Kim'
   organization: 'In Silico Solutions'

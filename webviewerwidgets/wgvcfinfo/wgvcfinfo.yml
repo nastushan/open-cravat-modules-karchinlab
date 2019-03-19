@@ -1,8 +1,9 @@
 title: VCF info widget
-version: 1.0.1
+version: 1.0.2
 type: webviewerwidget
 required_annotator: vcfinfo
 description: VCF info webviewer widget
+hidden: true
 developer: 
   name: 'Rick Kim'
   organization: 'In Silico Solutions'
