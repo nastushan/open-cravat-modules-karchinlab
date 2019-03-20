@@ -1,7 +1,9 @@
 datasource: dbNSFP v4.0b1
 description: A database providing conservation scoring by phylogenetic p-values
 developer:
-  citation: "Pollard, K. S., Hubisz, M. J., Rosenbloom, K. R., & Siepel, A. (2010). Detection of nonneutral substitution rates on mammalian phylogenies. Genome research, 20(1), 110-121."
+  citation: Pollard, K. S., Hubisz, M. J., Rosenbloom, K. R., & Siepel, A. (2010).
+    Detection of nonneutral substitution rates on mammalian phylogenies. Genome research,
+    20(1), 110-121.
   email: support@cravat.us
   name: UCSC
   organization: University of California Santa Cruz Genomics Institute
@@ -9,34 +11,39 @@ developer:
 input_format: crv
 level: variant
 output_columns:
-- desc: phyloP (phylogenetic p-values) conservation score based on the multiple alignments of 100 vertebrate genomes (including human). The larger the score, the more conserved the site.
+- desc: 100-way Vertebrate Score
   filterable: true
   name: phylop100_vert
   title: Vert Score
   type: float
-- desc: phyloP vertebrate scores were ranked among all phyloP vertebrate scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phyloP vertebrate scores in dbNSFP.
+- desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
   name: phylop100_vert_r
   title: Vert Ranked Score
   type: float
   width: 54
   filterable: false
-- desc: phyloP (phylogenetic p-values) conservation score based on the multiple alignments of 30 mammalian genomes (including human). The larger the score, the more conserved the site.
+- desc: phyloP (phylogenetic p-values) conservation score based on the multiple alignments
+    of 30 mammalian genomes (including human). The larger the score, the more conserved
+    the site.
   filterable: true
   name: phylop30_mamm
   title: Mamm Score
   type: float
-- desc: phyloP mammalian scores were ranked among all phyloP mammalian scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phyloP mammalian scores in dbNSFP.
+- desc: phyloP mammalian scores were ranked among all phyloP mammalian scores in dbNSFP.
+    The rankscore is the ratio of the rank of the score over the total number of phyloP
+    mammalian scores in dbNSFP.
   name: phylop30_mamm_r
   title: Mamm Ranked Score
   type: float
   width: 54
   filterable: false
-- desc: Conservation score based on 17-way alignment primate set. The larger the score, the more conserved the site.
+- desc: Conservation score based on 17-way alignment primate set. The larger the score,
+    the more conserved the site.
   filterable: true
   name: phylop17_primate
   title: Primate Score
   type: float
-- desc:  The rank of the phyloP primate score among all phyloP primate scores in dbNSFP.
+- desc: The rank of the phyloP primate score among all phyloP primate scores in dbNSFP.
   name: phylop17_primate_r
   title: Primate Ranked Score
   type: float
@@ -46,4 +53,4 @@ tags:
 - evolution
 title: PhyloP
 type: annotator
-version: 3.5.05
+version: 3.5.6

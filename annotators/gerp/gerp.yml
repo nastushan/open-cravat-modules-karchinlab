@@ -1,7 +1,9 @@
 datasource: dbNSFP v4.0b1
 description: Genomic Evolutionary Rate Profiling
 developer:
-  citation: "Davydov, E. V., Goode, D. L., Sirota, M., Cooper, G. M., Sidow, A., & Batzoglou, S. (2010). Identifying a high fraction of the human genome to be under selective constraint using GERP++. PLoS computational biology, 6(12), e1001025."
+  citation: Davydov, E. V., Goode, D. L., Sirota, M., Cooper, G. M., Sidow, A., &
+    Batzoglou, S. (2010). Identifying a high fraction of the human genome to be under
+    selective constraint using GERP++. PLoS computational biology, 6(12), e1001025.
   email: support@cravat.us
   name: Stanford University Sidow Lab
   organization: Stanford University Sidow Lab
@@ -20,13 +22,15 @@ output_columns:
   title: RS Score
   type: float
   width: 60
+  desc: Rejected substitutions score
 - name: gerp_rs_rank
   title: RS Ranked Score
   type: float
   width: 60
   filterable: false
+  desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
 tags:
 - evolution
 title: GERP++
 type: annotator
-version: 3.5.04
+version: 3.5.5

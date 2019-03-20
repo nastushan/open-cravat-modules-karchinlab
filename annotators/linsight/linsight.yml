@@ -1,7 +1,9 @@
 datasource: 2018.10.19
 description: LINSIGHT
 developer:
-  citation: "Huang, Y. F., Gulko, B., & Siepel, A. (2017). Fast, scalable prediction of deleterious noncoding variants from functional and population genomic data. Nature genetics, 49(4), 618."
+  citation: Huang, Y. F., Gulko, B., & Siepel, A. (2017). Fast, scalable prediction
+    of deleterious noncoding variants from functional and population genomic data.
+    Nature genetics, 49(4), 618.
   email: asiepel@cshl.edu
   name: Adam Siepel
   organization: Cold Spring Harbor Laboratory
@@ -14,6 +16,7 @@ output_columns:
   title: Value
   type: float
   width: 80
+  desc: Probability of negative selection on noncoding sites
 tags:
 - noncoding
 - variant effect prediction
@@ -21,4 +24,4 @@ tags:
 - genomic features
 title: LINSIGHT
 type: annotator
-version: 2019.02.006
+version: 2019.03.20

@@ -2,7 +2,9 @@ datasource: 2019.01.02
 description: ClinVar is an archive of reports of the relationships among human variations
   and phenotypes, with supporting evidence.
 developer:
-  citation: "Landrum, M.J., Lee, J.M., Benson, M., et al. (2016). ClinVar: public archive of interpretations of clinically relevant variants. Nucleic Acids Research, 44(D1):D862-8."
+  citation: 'Landrum, M.J., Lee, J.M., Benson, M., et al. (2016). ClinVar: public
+    archive of interpretations of clinically relevant variants. Nucleic Acids Research,
+    44(D1):D862-8.'
   email: support@cravat.us
   name: NCBI
   organization: NCBI
@@ -22,25 +24,24 @@ output_columns:
   type: string
   width: 55
   filterable: false
+  desc: Disease reference numbers
 - name: disease_names
   title: Disease Names
   type: string
   width: 55
-- desc: The level of review supporting the assertion of clinical significance for
-    the variation
+- desc: The level of review supporting the assertion of clinical significance
   name: rev_stat
   title: Review Status
   type: string
   width: 55
   filterable: false
-- filterable: true
+- filterable: false
   hidden: true
   name: id
   title: ClinVar ID
   type: string
   width: 55
-  filterable: false
-  link_format: 'https://www.ncbi.nlm.nih.gov/clinvar/variation/${.*}/'
+  link_format: https://www.ncbi.nlm.nih.gov/clinvar/variation/${.*}/
 release_note:
   2019.01.021: added phenotype tag.
   2019.01.022: updated data set, widget overhaul
@@ -52,5 +53,5 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.02.007
+version: 2019.03.20
 private: true

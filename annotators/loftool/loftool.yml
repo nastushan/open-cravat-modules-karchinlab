@@ -1,7 +1,9 @@
 datasource: dbNSFP v4.0b1
 description: Gene intolerance score based on loss-of-function variants
 developer:
-  citation: "Fadista, J., Oskolkov, N., Hansson, O., & Groop, L. (2016). LoFtool: a gene intolerance score based on loss-of-function variants in 60 706 individuals. Bioinformatics, 33(4), 471-474."
+  citation: 'Fadista, J., Oskolkov, N., Hansson, O., & Groop, L. (2016). LoFtool:
+    a gene intolerance score based on loss-of-function variants in 60 706 individuals.
+    Bioinformatics, 33(4), 471-474.'
   email: support@cravat.us
   name: "Jo\xE3o Fadista, Nikolay Oskolkov, Ola Hansson, Leif Groop"
   organization: Lund University Diabetes Centre
@@ -12,8 +14,9 @@ output_columns:
   title: LoF Score
   type: float
   width: 55
+  desc: A percentile score for gene intolerance to functional change
 tags:
 - genes
 title: LoFtool
 type: annotator
-version: 3.5.03
+version: 3.5.4

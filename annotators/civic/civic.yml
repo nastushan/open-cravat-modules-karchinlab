@@ -1,7 +1,9 @@
 datasource: Jan 2019
 description: Provides descriptions and linkouts to CIViC
 developer:
-  citation: "Griffith, M., Spies, N.C., Krysiak, K., et al. (2017). CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer. Nature Genetics, 49(2):170-174."
+  citation: Griffith, M., Spies, N.C., Krysiak, K., et al. (2017). CIViC is a community
+    knowledgebase for expert crowdsourcing the clinical interpretation of variants
+    in cancer. Nature Genetics, 49(2):170-174.
   email: support@cravat.us
   name: The McDonnell Genome Institute at Washington University School of Medicine
   organization: The McDonnell Genome Institute at Washington University School of
@@ -19,6 +21,7 @@ output_columns:
   title: Clinical actionability score
   type: string
   filterable: false
+  desc: Represents the accumulation of evidence
 - name: diseases
   title: Diseases
   type: string
@@ -27,7 +30,7 @@ output_columns:
   title: ID
   type: string
   filterable: false
-  link_format: 'https://civicdb.org/links/variant/${.*}'
+  link_format: https://civicdb.org/links/variant/${.*}
 tags:
 - variants
 - clinical relevance
@@ -35,5 +38,5 @@ tags:
 - literature
 title: CIViC
 type: annotator
-version: 1.0.6
+version: 1.0.7
 private: true
