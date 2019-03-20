@@ -1,5 +1,5 @@
 title: UCSC hg38 Gene Mapper
-version: 1.1.7
+version: 1.1.8
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -19,21 +19,13 @@ report_substitution:
     SYN: synonymous
     MIS: missense
     CSS: complex substitution
-    IDV: inframe deletion
-    IIV: inframe insertion
     STL: stop lost
     SPL: splice site
     STG: stop gained
     FSD: frameshift deletion
-    FD2: frameshift deletion
-    FD1: frameshift deletion
     FSI: frameshift insertion
-    FI2: frameshift insertion
-    FI1: frameshift insertion
     INI: inframe insertion
     IND: inframe deletion
-    IIV: inframe insertion
-    IDV: inframe deletion
   all_so:
     2KD: 2kb downstream
     2KU: 2kb upstream
@@ -44,21 +36,13 @@ report_substitution:
     SYN: synonymous
     MIS: missense
     CSS: complex substitution
-    IDV: inframe deletion
-    IIV: inframe insertion
     STL: stop lost
     SPL: splice site
     STG: stop gained
     FSD: frameshift deletion
-    FD2: frameshift deletion
-    FD1: frameshift deletion
     FSI: frameshift insertion
-    FI2: frameshift insertion
-    FI1: frameshift insertion
     INI: inframe insertion
     IND: inframe deletion
-    IIV: inframe insertion
-    IDV: inframe deletion
   all_mappings:
     2KD: 2kb downstream
     2KU: 2kb upstream
@@ -69,21 +53,13 @@ report_substitution:
     SYN: synonymous
     MIS: missense
     CSS: complex substitution
-    IDV: inframe deletion
-    IIV: inframe insertion
     STL: stop lost
     SPL: splice site
     STG: stop gained
     FSD: frameshift deletion
-    FD2: frameshift deletion
-    FD1: frameshift deletion
     FSI: frameshift insertion
-    FI2: frameshift insertion
-    FI1: frameshift insertion
     INI: inframe insertion
     IND: inframe deletion
-    IIV: inframe insertion
-    IDV: inframe deletion
   coding:
     Y: "Yes"
 
