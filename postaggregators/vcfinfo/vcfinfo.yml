@@ -56,9 +56,6 @@ release_note:
   1.1.1: handles vcf with only first 5 columns.
   1.1.0: Handle copy number information
   1.0.7: altread and af None to empty string to accommodate error handling of vcf-converter
-<<<<<<< HEAD
   1.0.4: filter is multi category.
   1.0.3: zygosity is multi category.
-=======
   1.1.0: Handle copy number information
->>>>>>> update-desc
