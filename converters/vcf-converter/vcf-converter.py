@@ -72,17 +72,21 @@ class CravatConverter(BaseConverter):
         [chrom, pos, tag, ref, alts] = toks[:5]
         if toklen >= 6:
             qual = toks[5]
+        else:
+            qual = None
         if toklen >= 7:
             filter = toks[6]
+        else:
+            filter = None
         if toklen >= 8:
             info = toks[7]
-        if tag == '':
-            raise BadFormatError('ID column is blank')
-        elif tag == '.':
-            tag = ''
+        else:
+            info = None
+        if tag == '.':
+            tag = None
         alts = alts.split(',')
         len_alts = len(alts)
-        if toklen <= 8 and toklen > 5:
+        if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
                 alt = alts[altno]
