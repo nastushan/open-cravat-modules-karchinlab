@@ -243,9 +243,9 @@ class CravatConverter(BaseConverter):
         new_ref2, new_alt2, new_pos = \
             self.trimming_vcf_input(ref, alt, pos, strand)
                 
-        if new_ref2 == '':
+        if new_ref2 == '' or new_ref2 == '.':
             new_ref2 = '-'
-        if new_alt2 == '':
+        if new_alt2 == '' or new_alt2 == '.':
             new_alt2 = '-'
         
         return new_pos, new_ref2, new_alt2
