@@ -1,7 +1,9 @@
 datasource: v3
 description: Residual variation intolerance scoring
 developer:
-  citation: "Petrovski, S., Wang, Q., Heinzen, E. L., Allen, A. S., & Goldstein, D. B. (2013). Genic intolerance to functional variation and the interpretation of personal genomes. PLoS genetics, 9(8), e1003709."
+  citation: Petrovski, S., Wang, Q., Heinzen, E. L., Allen, A. S., & Goldstein, D.
+    B. (2013). Genic intolerance to functional variation and the interpretation of
+    personal genomes. PLoS genetics, 9(8), e1003709.
   email: support@cravat.us
   name: "Slav\xE9 Petrovski, Quanli Wang, Erin L. Heinzen, Andrew S. Allen, David\
     \ B. Goldstein"
@@ -12,31 +14,36 @@ output_columns:
 - name: rvis_evs
   title: Score
   type: float
+  desc: A measure of intolerance of mutational burden
 - name: rvis_perc_evs
   title: Percentile Rank
   type: float
   width: 70
   filterable: false
+  desc: The percentile rank of the gene based on RVIS
 - hidden: true
   name: rvis_fdr_exac
   title: FDR p-value
   type: float
   width: 54
   filterable: false
+  desc: A gene's FDR p-value for preferential LoF depletion among ExAC
 - hidden: true
   name: rvis_exac
   title: ExAC-based RVIS
   type: float
   filterable: false
+  desc: ExAC-based RVIS, where 'common' MAF is 0.05% in at least one population
 - hidden: true
   name: rvis_perc_exac
   title: ExAC-based Percentile
   type: float
   width: 67
   filterable: false
+  desc: Genome-Wide percentile for the ExAC-based RVIS
 tags:
 - genes
 - evolution
 title: RVIS
 type: annotator
-version: 3.0.05
+version: 3.0.6

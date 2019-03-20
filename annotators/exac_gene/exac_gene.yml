@@ -2,61 +2,62 @@ datasource: v0.3.1
 description: ExAC Functional Gene Constraint & CNV Scores provides probability of
   LoF tolerance/intolerance
 developer:
-  citation: "Lek, M., Karczewski, K. J., Minikel, E. V., et al. (2016). Analysis of protein-coding genetic variation in 60,706 humans. Nature, 536(7616), 285."
+  citation: Lek, M., Karczewski, K. J., Minikel, E. V., et al. (2016). Analysis of
+    protein-coding genetic variation in 60,706 humans. Nature, 536(7616), 285.
   email: support@cravat.us
   name: ExAC
   organization: Exome Aggregation Consortium
   website: http://exac.broadinstitute.org/
 level: gene
 output_columns:
-- desc: Probability LoF Intolerance (Hom&Het)
+- desc: Probability LoF Intolerance (hom & het)
   name: exac_pli
   title: pLI
   type: float
-- desc: Probability LoF Intolerance (Hom)
+- desc: Probability LoF Intolerance (hom)
   name: exac_prec
   title: pLI (Hom)
   type: float
-- desc: Probability LoF Tolerance (Hom&Het)
+- desc: Probability LoF Tolerance (hom & het)
   name: exac_pnull
   title: pLT
   type: float
-- desc: Probability LoF Intolerance (Hom&Het) NonTCGA
+- desc: Probability LoF Intolerance (hom & het) NonTCGA
   hidden: true
   name: exac_nontcga_pli
   title: pLI NonTCGA
   type: float
   width: 64
   filterable: false
-- desc: Probability LoF Intolerance (Hom) NonTCGA
+- desc: Probability LoF Intolerance (hom) NonTCGA
   hidden: true
   name: exac_nontcga_prec
   title: pLI (Hom) NonTCGA
   type: float
   width: 68
   filterable: false
-- desc: Probability LoF Tolerance (Hom&Het) NonTCGA
+- desc: Probability LoF Tolerance (hom & het) NonTCGA
   hidden: true
   name: exac_nontcga_pnull
   title: pLT NonTCGA
   type: float
   width: 64
   filterable: false
-- desc: Probability LoF Intolerance (Hom&Het) Nonpsych
+- desc: Probability LoF Intolerance (hom & het) Nonpsych
   hidden: true
   name: exac_nonpsych_pli
   title: pLI Nonpsych
   type: float
   width: 65
   filterable: false
-- desc: Probability LoF Intolerance (Hom) Nonpsych
+- desc: Probability LoF Intolerance (hom) Nonpsych
   hidden: true
   name: exac_nonpsych_prec
   title: pLI (Hom) Nonpsych
   type: float
   width: 68
   filterable: false
-- desc: Probability LoF Tolerance (Hom&Het) Nonpsych
+- desc: Probability LoF Tolerance (hom & het) Nonpsych
   hidden: true
   name: exac_nonpsych_pnull
   title: pLT Nonpsych
@@ -88,4 +89,4 @@ tags:
 - populations
 title: ExAC Gene and CNV
 type: annotator
-version: 0.3.15
+version: 0.3.16

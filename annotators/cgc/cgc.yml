@@ -1,7 +1,9 @@
 datasource: v85
 description: Cancer Gene Census annotation
 developer:
-  citation: "Futreal, P.A., Coin, L.J., Marshall, M., Down, T., Hubbard, T.L., Wooster, R., Rahman, N., & Stratton, M.R. (2004). A census of human cancer genes. Nature Reviews Cancer, 4, 177-183."
+  citation: Futreal, P.A., Coin, L.J., Marshall, M., Down, T., Hubbard, T.L., Wooster,
+    R., Rahman, N., & Stratton, M.R. (2004). A census of human cancer genes. Nature
+    Reviews Cancer, 4, 177-183.
   email: support@cravat.us
   name: Sanger Institute
   organization: Sanger Institute
@@ -12,11 +14,13 @@ output_columns:
   title: CGC driver class
   type: string
   width: 130
+  desc: Driver class
 - name: inheritance
   title: CGC inheritance
   type: string
   width: 105
   filterable: false
+  desc: Somatic or germline
 - hidden: true
   name: tts
   title: CGC tumor types somatic
@@ -34,4 +38,4 @@ tags:
 - cancer
 title: Cancer Gene Census
 type: annotator
-version: 85.0.8
+version: 85.0.9

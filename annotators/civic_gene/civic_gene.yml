@@ -26,4 +26,4 @@ tags:
 title: CIViC Gene
 type: annotator
 version: 1.0.6
-private: true
+requires_opencravat: '>=1.4.0'

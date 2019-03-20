@@ -3,7 +3,8 @@ description: Genome Aggregation Database (gnomAD) is a resource developed by an 
   coalition of investigators, with the goal of aggregating and harmonizing both exome
   and genome sequencing data from a wide variety of large-scale sequencing projects
 developer:
-  citation: "Lek, M., Karczewski, K. J., Minikel, E. V., et al. (2016). Analysis of protein-coding genetic variation in 60,706 humans. Nature, 536(7616), 285."
+  citation: Lek, M., Karczewski, K. J., Minikel, E. V., et al. (2016). Analysis of
+    protein-coding genetic variation in 60,706 humans. Nature, 536(7616), 285.
   email: ''
   name: Broad Institute
   organization: Broad Institute
@@ -41,7 +42,7 @@ output_columns:
   title: AF Finnish
   type: float
   width: 70
-- desc: AF Non-Finnish European
+- desc: AF non-Finnish European
   filterable: true
   name: af_nfe
   title: AF Non-Fin Eur
@@ -64,4 +65,4 @@ tags:
 - populations
 title: gnomAD
 type: annotator
-version: 2.1.04
+version: 2.1.5

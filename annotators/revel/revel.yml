@@ -1,7 +1,9 @@
 datasource: 2016.06.03
 description: Rare Exome Variant Ensemble Learner
 developer:
-  citation: "Ioannidis, N. M., Rothstein, J. H., Pejaver, V., et al. (2016). REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. The American Journal of Human Genetics, 99(4), 877-885."
+  citation: 'Ioannidis, N. M., Rothstein, J. H., Pejaver, V., et al. (2016). REVEL:
+    an ensemble method for predicting the pathogenicity of rare missense variants.
+    The American Journal of Human Genetics, 99(4), 877-885.'
   email: joseph.rothstein@mssm.edu
   name: Joe Rothstein
   organization: Icahn School of Medicine at Mount Sinai
@@ -13,10 +15,11 @@ output_columns:
   name: score
   title: Score
   type: float
+  desc: Pathogenicity score
 tags:
 - variants
 - germline
 - variant effect prediction
 title: REVEL
 type: annotator
-version: 2019.02.06
+version: 2019.03.20

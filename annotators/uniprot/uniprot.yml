@@ -1,20 +1,21 @@
 title: UniProt
-version: 2019.03.14
+version: 2019.03.20
 type: annotator
 level: gene
 output_columns:
-  - name: acc
-    title: Accession Number
-    type: string
-    desc: Primary (citable) accession number
-    width: 70
-    link_format: 'https://www.uniprot.org/uniprot/${.*}'
+- name: acc
+  title: Accession Number
+  type: string
+  desc: Primary accession number
+  width: 70
+  link_format: https://www.uniprot.org/uniprot/${.*}
 description: Comprehensive resource for protein sequence and functional information.
 developer:
-  name: 'The UniProt Consortium'
-  organization: 'The UniProt Consortium'
-  email: 'support@cravat.us'
-  website: 'https://www.uniprot.org/'
-  citation: 'UniProt Consortium. (2018). UniProt: the universal protein knowledgebase. Nucleic acids research, 46(5), 2699.'
-datasource: 2018_09
-private: true
+  name: The UniProt Consortium
+  organization: The UniProt Consortium
+  email: support@cravat.us
+  website: https://www.uniprot.org/
+  citation: 'UniProt Consortium. (2018). UniProt: the universal protein knowledgebase.
+    Nucleic acids research, 46(5), 2699.'
+datasource: 201809
+requires_opencravat: '>=1.4.0'
