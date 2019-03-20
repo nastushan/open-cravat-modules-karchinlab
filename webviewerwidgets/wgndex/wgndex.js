@@ -25,7 +25,7 @@ widgetGenerators['ndex'] = {
             self.selectedNetworkName = '';
             
             var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
-            if (hugo == '') {
+            if (hugo == '' || hugo == null) {
                 $(parentDiv).empty();
                 return;
             }
