@@ -23,4 +23,4 @@ tags:
 title: dbSNP
 type: annotator
 version: 151.0.6
-private: true
+requires_opencravat: '>=1.4.0'

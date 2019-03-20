@@ -18,4 +18,4 @@ developer:
   citation: 'UniProt Consortium. (2018). UniProt: the universal protein knowledgebase.
     Nucleic acids research, 46(5), 2699.'
 datasource: 201809
-private: true
+requires_opencravat: '>=1.4.0'

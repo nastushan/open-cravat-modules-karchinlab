@@ -49,4 +49,4 @@ tags:
 title: COSMIC
 type: annotator
 version: 85.0.11
-private: true
+requires_opencravat: '>=1.4.0'
