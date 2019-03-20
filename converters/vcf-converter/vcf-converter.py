@@ -65,17 +65,24 @@ class CravatConverter(BaseConverter):
         if l.startswith('#'): return None
         self.var_counter += 1
         toks = l.strip('\r\n').split('\t')
+        toklen = len(toks)
         all_wdicts = []
-        if len(toks) < 8:
-            raise BadFormatError('Wrong VCF format')
-        [chrom, pos, tag, ref, alts, qual, filter, info] = toks[:8]
+        if toklen < 5:
+            raise BadFormatError('At least CHROM POS ID REF ALT columns are needed')
+        [chrom, pos, tag, ref, alts] = toks[:5]
+        if toklen >= 6:
+            qual = toks[5]
+        if toklen >= 7:
+            filter = toks[6]
+        if toklen >= 8:
+            info = toks[7]
         if tag == '':
             raise BadFormatError('ID column is blank')
         elif tag == '.':
             tag = ''
         alts = alts.split(',')
         len_alts = len(alts)
-        if len(toks) == 8:
+        if toklen <= 8 and toklen > 5:
             for altno in range(len_alts):
                 wdict = None
                 alt = alts[altno]
@@ -88,9 +95,9 @@ class CravatConverter(BaseConverter):
                          'sample_id':'no_sample',
                          'phred': qual,
                          'filter': filter,
-                         }
+                }
                 all_wdicts.append(wdict)
-        elif len(toks) > 8:
+        elif toklen > 8:
             sample_datas = toks[9:]
             genotype_fields = {}
             genotype_field_no = 0
