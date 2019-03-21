@@ -2,6 +2,7 @@ widgetGenerators['fathmm'] = {
 	'variant': {
 		'width': 280, 
 		'height': 80, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'FATHMM Converted Rank Score', 'fathmm__fathmm_rscore', tabName);
 			var tid = infomgr.getRowValue(tabName, row, 'fathmm__ens_tid');

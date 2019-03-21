@@ -2,6 +2,7 @@ widgetGenerators['mutpred1'] = {
 	'variant': {
 		'width': 280, 
 		'height': 180, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addBarComponent(div, row, 'MutPred Score', 'mutpred1__mutpred_general_score', tabName);
 			var top5Mechs = infomgr.getRowValue(tabName, row, 'mutpred1__mutpred_top5_mechanisms');
