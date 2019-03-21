@@ -1,5 +1,5 @@
 title: VEST
-version: 1.0.1
+version: 1.0.2
 type: webviewerwidget
 required_annotator: vest
 description: VEST webviewer widget
@@ -12,3 +12,4 @@ developer:
 
 release_note:
   1.0.1: fixed bar component color direction
+  1.0.2: hide by default

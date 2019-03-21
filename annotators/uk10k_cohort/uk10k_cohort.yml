@@ -48,6 +48,6 @@ output_columns:
   filterable: false
 tags:
 - populations
-title: UK10K Cohort Twins & ALSPAC
+title: UK10k Cohorts
 type: annotator
-version: 3.5.7
+version: 3.5.8
