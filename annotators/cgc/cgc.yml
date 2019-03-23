@@ -1,4 +1,4 @@
-datasource: v85
+datasource: '2019-03-23'
 description: Cancer Gene Census annotation
 developer:
   citation: Futreal, P.A., Coin, L.J., Marshall, M., Down, T., Hubbard, T.L., Wooster,
@@ -11,31 +11,36 @@ developer:
 level: gene
 output_columns:
 - name: class
-  title: CGC driver class
+  title: Driver class
   type: string
   width: 130
   desc: Driver class
 - name: inheritance
-  title: CGC inheritance
+  title: Inheritance
   type: string
   width: 105
   filterable: false
   desc: Somatic or germline
-- hidden: true
-  name: tts
-  title: CGC tumor types somatic
+- name: tts
+  title: Tumor types somatic
   type: string
+  hidden: true
   width: 160
   filterable: false
-- hidden: true
-  name: ttg
-  title: CGC tumor types germline
+- name: ttg
+  title: Tumor types germline
   type: string
   width: 160
+  hidden: true
   filterable: false
+- name: link
+  title: Link
+  type: string
+  link_format: 'https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=${.*}'
+
 tags:
 - genes
 - cancer
 title: Cancer Gene Census
 type: annotator
-version: 85.0.9
+version: 85.0.10
