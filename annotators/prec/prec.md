@@ -1,2 +1,2 @@
 # Probability of recessive disease P(rec): providing probabilities for LoF alleles
-P(rec) provides a database identifying rare and likely deleterious loss-of-function (LoF) alleles, including 26 known and 21 predicted severe disease–causing variants, as well as common LoF variants in nonessential genes.
+P(rec) provides a database identifying rare and likely deleterious loss-of-function (LoF) alleles, including 26 known and 21 predicted severe disease-causing variants, as well as common LoF variants in nonessential genes.
