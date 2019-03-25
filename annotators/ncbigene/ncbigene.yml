@@ -11,6 +11,10 @@ output_columns:
   title: Description
   type: string
   width: 200
+- name: entrez
+  title: Entrez ID
+  type: string
+  link_format: 'https://www.ncbi.nlm.nih.gov/gene/${.*}'
 tags:
 - genes
 title: NCBI Gene
