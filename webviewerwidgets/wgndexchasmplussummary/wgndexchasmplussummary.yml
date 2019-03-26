@@ -1,14 +1,14 @@
 title: NDEx CHASMplus Summary
-version: 1.0.5
+version: 1.0.6
 type: webviewerwidget
 required_annotator: chasmplus
 description: NDEx CHASMplus Summary webviewer widget
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
-required_annotator: chasmplus
 release_note:
   1.0.3: improved resize and redraw
+hidden: true
