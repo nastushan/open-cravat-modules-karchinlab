@@ -48,5 +48,5 @@ tags:
 - cancer
 title: COSMIC
 type: annotator
-version: 85.0.11
+version: 85.0.12
 requires_opencravat: '>=1.4.0'

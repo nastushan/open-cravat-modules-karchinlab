@@ -53,5 +53,5 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.03.20
+version: 2019.03.26
 requires_opencravat: '>=1.4.0'
