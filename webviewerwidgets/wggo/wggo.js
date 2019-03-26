@@ -1,6 +1,6 @@
 widgetGenerators['go'] = {
 	'gene': {
-		'width': 450, 
+		'width': 480, 
 		'height': 200, 
 		'word-break':'normal',
 		'function': function (div, row, tabName) {
@@ -13,7 +13,7 @@ widgetGenerators['go'] = {
 			var ontolls = ontol != null ? ontol.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['ID', 'GO Name', 'Aspect']);
+			var thead = getWidgetTableHead(['ID', 'GO Name', 'Aspect'],['20%','70%','10%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);
