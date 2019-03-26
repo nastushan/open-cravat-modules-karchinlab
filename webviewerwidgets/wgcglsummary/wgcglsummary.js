@@ -73,6 +73,27 @@ widgetGenerators[widgetName] = {
                     legend: {
                         position: 'bottom',
                     },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var lbl = null;
+                                switch(tooltipItem.index) {
+                                    case 0:
+                                        lbl = 'Neutral: ' + v['neutral'];
+                                        break;
+                                    case 1:
+                                        lbl = 'Oncogenes: ' + v['oncogene'];
+                                        break;
+                                    case 2:
+                                        lbl = 'Tumor suppressor genes:' + v['tsg'];
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                return lbl;
+                            }
+                        }
+                    },
 				}
 			});
 		}

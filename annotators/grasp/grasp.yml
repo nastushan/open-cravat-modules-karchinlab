@@ -21,6 +21,7 @@ output_columns:
   title: PMID
   type: string
   filterable: false
+  desc: PubMed ID
 - filterable: true
   name: phenotype
   title: Phenotype
@@ -37,4 +38,4 @@ tags:
 - literature
 title: GRASP
 type: annotator
-version: 2.0.4
+version: 2.0.5

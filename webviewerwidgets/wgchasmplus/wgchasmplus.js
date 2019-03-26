@@ -2,6 +2,7 @@ widgetGenerators['chasmplus'] = {
 	'variant': {
 		'width': 280, 
 		'height': 280, 
+        'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Score', 'chasmplus__score', tabName);
 			if(typeof addGradientBarComponent == 'function'){

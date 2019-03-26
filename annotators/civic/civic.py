@@ -6,6 +6,7 @@ import sqlite3
 import requests
 import json
 import os
+import re
 
 class CravatAnnotator(BaseAnnotator):
 
@@ -42,10 +43,10 @@ class CravatAnnotator(BaseAnnotator):
         var_key = ":".join([input_data["chrom"][3:],str(input_data["pos"]),input_data["ref_base"],input_data["alt_base"]])
         match = self.civicdata.get(var_key)
         if match is not None:
-            out["description"] = match['description']
+            out["description"] = re.sub('\s',' ', match.get('description',''))
             out["clinical_a_score"] = match['civic_actionability_score']
             civic_id = match['id']
-            out['link'] = 'https://civicdb.org/links/variant/'+str(civic_id)
+            out['id'] = civic_id
             evidence_link = 'https://civicdb.org/api/variants/{civic_id}/evidence_items?count=5000&page=1'.format(civic_id=civic_id)
             r = requests.get(evidence_link)
             d = json.loads(r.text)

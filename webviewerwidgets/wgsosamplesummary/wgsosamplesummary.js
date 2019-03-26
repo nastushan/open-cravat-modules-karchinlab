@@ -44,6 +44,16 @@ widgetGenerators['sosamplesummary'] = {
 			chartDiv.style.height = 'calc(100% - 20px)';
 			addEl(div, chartDiv);
 			var samples = data['samples'];
+            var labelLenCutoff = 10;
+            var origSamples = [];
+            for (var i = 0; i < samples.length; i++) {
+                var sample = samples[i];
+                origSamples.push(sample);
+                if (sample.length > labelLenCutoff) {
+                    sample = sample.substring(0, 4) + '..' + sample.substring(sample.length - 4, sample.length);
+                }
+                samples[i] = sample;
+            }
 			var sos = data['sos'];
 			var socountdata = data['socountdata'];
 			var datasets = [];
@@ -67,7 +77,13 @@ widgetGenerators['sosamplesummary'] = {
 					},
 					tooltips: {
 						mode: 'index',
-						intersect: false
+						intersect: false,
+                        callbacks: {
+                            title: function (tooltipItem) {
+                                var title = origSamples[tooltipItem[0].index];
+                                return title;
+                            }
+                        },
 					},
                     legend: {
                         position: 'right',
@@ -78,6 +94,10 @@ widgetGenerators['sosamplesummary'] = {
 					scales: {
 						xAxes: [{
 							stacked: true,
+                            ticks: {
+                                maxRotation: 90,
+                                minRotation: 90,
+                            }
 						}],
 						yAxes: [{
 							stacked: true

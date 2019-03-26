@@ -70,10 +70,6 @@ class Mapper(cravat.BaseMapper):
         if hasattr(self, 'cravat_version') == False:
             import pkg_resources
             self.cravat_version = pkg_resources.get_distribution('open-cravat').version
-        if LooseVersion(self.cravat_version) >= LooseVersion('1.3.0'):
-            self.newso = True
-        else:
-            self.newso = False
  
     def map(self, crv_data):
         """
@@ -295,37 +291,19 @@ class Mapper(cravat.BaseMapper):
             if hit.gref == '-':
                 extra_bases = len(hit.galt)%3
                 if extra_bases == 0:
-                    if self.newso:
-                        hit.so = 'INI'
-                    else:
-                        hit.so = 'IIV'
+                    hit.so = 'INI'
                 elif extra_bases == 1:
-                    if self.newso:
-                        hit.so = 'FSI'
-                    else:
-                        hit.so = 'FI1'
+                    hit.so = 'FSI'
                 elif extra_bases == 2:
-                    if self.newso:
-                        hit.so = 'FSI'
-                    else:
-                        hit.so = 'FI2'
+                    hit.so = 'FSI'
             elif hit.galt == '-':
                 extra_bases = len(hit.gref)%3
                 if extra_bases == 0:
-                    if self.newso:
-                        hit.so = 'IND'
-                    else:
-                        hit.so = 'IDV'
+                    hit.so = 'IND'
                 elif extra_bases == 1:
-                    if self.newso:
-                        hit.so = 'FSD'
-                    else:
-                        hit.so = 'FD1'
+                    hit.so = 'FSD'
                 elif extra_bases == 2:
-                    if self.newso:
-                        hit.so = 'FSD'
-                    else:
-                        hit.so = 'FD2'
+                    hit.so = 'FSD'
             elif len(hit.gref) == 1 and len(hit.galt) == 1:
                 self._fill_snv_pchange(hit)
                 if hit.aref != hit.aalt:

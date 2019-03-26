@@ -1,7 +1,8 @@
 datasource: dbNSFP v4.0b1
 description: A database of conservation scores based on 29 mammal genomes
 developer:
-  citation: "Lindblad-Toh, K., Garber, M., Zuk, et al. (2011). A high-resolution map of human evolutionary constraint using 29 mammals. Nature, 478(7370), 476."
+  citation: Lindblad-Toh, K., Garber, M., Zuk, et al. (2011). A high-resolution map
+    of human evolutionary constraint using 29 mammals. Nature, 478(7370), 476.
   email: support@cravat.us
   name: ''
   organization: Broad Institute
@@ -9,18 +10,18 @@ developer:
 input_format: crv
 level: variant
 output_columns:
-- desc: Estimated stationary distribution of A,C,G,T at the site.
+- desc: Estimated stationary distribution of A,C,G,T at the site
   name: pi
   title: Stationary Distribution
   type: string
   width: 76
   filterable: false
-- desc: Score based on 29 mammal genomes. Larger the score, more conserved the site.
+- desc: Score based on 29 mammal genomes
   filterable: true
   name: logodds
   title: Score
   type: float
-- desc: Ratio of rank of the score over total number of scores in the database.
+- desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
   name: logodds_rank
   title: Rank Score
   type: float
@@ -30,4 +31,4 @@ tags:
 - evolution
 title: SiPhy
 type: annotator
-version: 3.5.2
+version: 3.5.3

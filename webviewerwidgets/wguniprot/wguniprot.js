@@ -2,6 +2,7 @@ widgetGenerators['uniprot'] = {
 	'gene': {
 		'width': 185, 
 		'height': 120, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			var accs = infomgr.getRowValue(tabName, row, 'uniprot__acc');
 			var accsls = accs != null ? accs.split(';') : [];

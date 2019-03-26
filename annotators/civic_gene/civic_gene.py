@@ -17,15 +17,15 @@ class CravatAnnotator(BaseAnnotator):
             records = d['records']
             self.civicdata.update({x['name']:x for x in records})
             page_url = d['_meta']['links']['next']
+        self.logger.info(self.civicdata['ARID1A'])
                 
     def annotate(self, input_data, secondary_data=None):
         out = {}     
         hugo = input_data['hugo']
         match = self.civicdata.get(hugo)
-        if match is not None:
+        if match is not None and match['description']:
             out['description'] = match['description'].replace('\n', '').replace('"', "'")
-            civic_id = match['id']
-            out['link'] = 'https://civicdb.org/links/gene/'+str(civic_id)
+            out['id'] = match['id']
         return out
     
     def cleanup(self):

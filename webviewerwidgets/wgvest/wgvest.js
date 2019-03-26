@@ -2,6 +2,7 @@ widgetGenerators['vest'] = {
 	'variant': {
 		'width': 280, 
 		'height': 180, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			if(typeof addGradientBarComponent == 'function'){
 				addGradientBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName, colors={'0.0':[255,0,0],'0.05':[255,230,230],'1.0':[255,255,255]});
@@ -35,6 +36,7 @@ widgetGenerators['vest'] = {
 	'gene': {
 		'width': 280, 
 		'height': 80, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Max score', 'vest__max_score', tabName);
 			addInfoLine(div, row, 'Mean score', 'vest__mean_score', tabName);

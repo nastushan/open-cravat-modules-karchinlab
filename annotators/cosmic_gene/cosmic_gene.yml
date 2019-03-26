@@ -16,12 +16,14 @@ output_columns:
   title: Occurrences
   type: int
   width: 95
+  desc: Number of variants in COSMIC
 - hidden: true
   name: gene_count
   title: Tissue count
   type: string
   width: 120
   filterable: false
+  desc: Occurences in COSMIC per tissue
 release_note:
   85.0.2: added index to data for speed
 tags:
@@ -29,4 +31,4 @@ tags:
 - cancer
 title: COSMIC Gene
 type: annotator
-version: 85.0.4
+version: 85.0.5

@@ -1,5 +1,5 @@
 title: Sequence Ontology Sample Summary
-version: 1.1.4
+version: 1.1.5
 type: webviewerwidget
 required_annotator: base
 description: Sequence Ontology Sample Summary webviewer widget
@@ -12,3 +12,4 @@ developer:
 release_note:
   1.1.1: fixed a bug
   1.1.3: fixed bugs
+  1.1.5: truncates long labels.

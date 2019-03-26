@@ -1,7 +1,9 @@
 datasource: v2.3
 description: Functional analysis through hidden markov models.
 developer:
-  citation: "Shihab, H. A., Gough, J., Mort, M., Cooper, D. N., Day, I. N., & Gaunt, T. R. (2014). Ranking non-synonymous single nucleotide polymorphisms based on disease concepts. Human genomics, 8(1), 11."
+  citation: Shihab, H. A., Gough, J., Mort, M., Cooper, D. N., Day, I. N., & Gaunt,
+    T. R. (2014). Ranking non-synonymous single nucleotide polymorphisms based on
+    disease concepts. Human genomics, 8(1), 11.
   email: support@cravat.us
   name: Chris Campbell
   organization: University of Bristol Integrative Epidemiology Unit
@@ -15,21 +17,25 @@ output_columns:
   type: string
   filterable: false
   width: 68
+  desc: Ensembl transcript ID
 - hidden: true
   name: ens_pid
   title: Protein ID
   type: string
   filterable: false
+  desc: Ensembl protein ID
 - filterable: true
   hidden: true
   name: fathmm_score
   title: Score
   type: string
+  desc: FATHMM default score
 - name: fathmm_rscore
   title: Converted Rank Score
   type: float
   width: 68
   filterable: false
+  desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
 - hidden: true
   name: fathmm_pred
   title: Prediction
@@ -41,4 +47,4 @@ tags:
 - variant effect prediction
 title: FATHMM
 type: annotator
-version: 2.3.03
+version: 2.3.4

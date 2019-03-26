@@ -11,34 +11,39 @@ developer:
 input_format: crv
 level: variant
 output_columns:
-- desc: phastCons conservation score based on the multiple alignments of 100 vertebrate genomes (including human). The larger the score, the more conserved the site.
+- desc: 100-way Vertebrate Score
   filterable: true
   name: phastcons100_vert
   title: Vert Score
   type: float
-- desc: phastCons100way_vertebrate scores were ranked among all phastCons100way_vertebrate scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phastCons100way_vertebrate scores in dbNSFP.
+- desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
   filterable: false
   name: phastcons100_vert_r
   title: Vert Ranked Score
   type: float
   width: 58
-- desc: phastCons conservation score based on the multiple alignments of 30 mammalian genomes (including human). The larger the score, the more conserved the site.
+- desc: phastCons conservation score based on the multiple alignments of 30 mammalian
+    genomes (including human). The larger the score, the more conserved the site.
   filterable: true
   name: phastcons30_mamm
   title: Mamm Score
   type: float
-- desc: phastCons30way_mammalian scores were ranked among all phastCons30way_mammalian scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of phastCons30way_mammalian scores in dbNSFP.
+- desc: phastCons30way_mammalian scores were ranked among all phastCons30way_mammalian
+    scores in dbNSFP. The rankscore is the ratio of the rank of the score over the
+    total number of phastCons30way_mammalian scores in dbNSFP.
   filterable: false
   name: phastcons30_mamm_r
   title: Mamm Ranked Score
   type: float
   width: 56
-- desc: Conservation score based on 17way alignment primate set. The larger the score, the more conserved the site.
+- desc: Conservation score based on 17way alignment primate set. The larger the score,
+    the more conserved the site.
   filterable: true
   name: phastcons17way_primate
   title: Primate Score
   type: float
-- desc: Rank of the phastCons17way_primate score among all phastCons17way_primate scores in dbNSFP.
+- desc: Rank of the phastCons17way_primate score among all phastCons17way_primate
+    scores in dbNSFP.
   filterable: false
   name: phastcons17way_primate_r
   title: Primate Ranked Score
@@ -48,4 +53,4 @@ tags:
 - evolution
 title: Phast Cons
 type: annotator
-version: 3.5.04
+version: 3.5.5

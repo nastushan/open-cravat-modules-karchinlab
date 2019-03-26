@@ -22,6 +22,7 @@ class CravatAnnotator(BaseAnnotator):
             out['inheritance'] = self.d[hugo][1]
             out['tts'] = self.d[hugo][2]
             out['ttg'] = self.d[hugo][3]
+            out['link'] = hugo
         
         return out
     

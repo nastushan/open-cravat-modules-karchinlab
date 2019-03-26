@@ -1,7 +1,8 @@
 datasource: dbNSFP v4.0b1
 description: UK10K cohort provides genetic information from DTR & ALSPAC
 developer:
-  citation: 'UK10K consortium. (2015). The UK10K project identifies rare variants in health and disease. Nature, 526(7571), 82.'
+  citation: UK10K consortium. (2015). The UK10K project identifies rare variants in
+    health and disease. Nature, 526(7571), 82.
   email: support@cravat.us
   name: UK10K Consortium
   organization: Wellcome Sanger Institute
@@ -10,43 +11,43 @@ input_format: crv
 level: variant
 output_columns:
 - hidden: true
-  desc: "Alternative allele count in called genotypes in UK10K TWINSUK cohort."
+  desc: Allele count in the DTR twin registry
   name: uk10k_twins_ac
   title: Twins AC
   type: float
   filterable: false
 - filterable: true
-  desc: "Alternative allele frequency in called genotypes in UK10K TWINSUK cohort."
+  desc: Allele frequency in the DTR twin registry
   name: uk10k_twins_af
   title: Twins AF
   type: float
 - hidden: true
-  desc: "Alternative allele count in called genotypes in UK10K ALSPAC cohort."
+  desc: Allele count in the Avon Longitudinal Study of Parents and Children
   name: uk10k_alspac_ac
   title: ALSPAC AC
   type: float
   width: 56
   filterable: false
 - filterable: true
-  desc: "Alternative allele frequency in called genotypes in UK10K ALSPAC cohort."
+  desc: Allele frequency in the Avon Longitudinal Study of Parents and Children
   name: uk10k_alspac_af
   title: ALSPAC AF
   type: float
   width: 56
 - hidden: true
   name: uk10k_ac
-  desc: "Alternative allele count in combined genotypes in UK10K cohort (TWINSUK+ALSPAC)."
+  desc: Alternative allele count in combined genotypes in UK10K cohort (TWINSUK+ALSPAC).
   title: UK10K AC
   type: float
   filterable: false
 - hidden: true
   name: uk10k_af
-  desc: "Alternative allele frequency in combined genotypes in UK10K cohort (TWINSUK+ALSPAC)."
+  desc: Alternative allele frequency in combined genotypes in UK10K cohort (TWINSUK+ALSPAC).
   title: UK10K AF
   type: float
   filterable: false
 tags:
 - populations
-title: UK10K Cohort Twins & ALSPAC
+title: UK10k Cohorts
 type: annotator
-version: 3.5.06
+version: 3.5.8

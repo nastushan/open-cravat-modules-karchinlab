@@ -1,5 +1,5 @@
 title: Excel Reporter
-version: 1.0.1
+version: 1.0.2
 type: reporter
 description: Microsoft Excel reporter
 developer:
@@ -10,4 +10,5 @@ developer:
   citation: ''
 
 release_note:
+  1.0.2: regex substitution
   1.0.1: changed hyperlink format to use "[WEB:]"

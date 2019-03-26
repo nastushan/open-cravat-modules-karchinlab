@@ -1,8 +1,10 @@
-datasource: dbNSFP v4.0b1
+datasource: '2018.04.05'
 description: Impact of BRCA1 missense variants on protein function as determined by
   multiplex homology-directed DNA repair assay
 developer:
-  citation: "Findlay, G.M., Daza, R.M., Martin, B., Zhang, M.D., Leith, A.P., Gasperini, M.J., Janizek, J.D., Huang, X., Starita, L.M., & Shendure, J. (2018). Accurate classification of BRCA1 variants with saturation genome editing. Nature, 1-6."
+  citation: Findlay, G.M., Daza, R.M., Martin, B., Zhang, M.D., Leith, A.P., Gasperini,
+    M.J., Janizek, J.D., Huang, X., Starita, L.M., & Shendure, J. (2018). Accurate
+    classification of BRCA1 variants with saturation genome editing. Nature, 1-6.
   email: support@cravat.us
   name: Lea Starita
   organization: Starita Lab
@@ -16,6 +18,8 @@ output_columns:
   type: float
   width: 140
   filterable: false
+  desc: Function scores quantify the depletion of SNVs. The median synonymous SNV
+    scores as 0
 - name: class
   title: Function Class
   type: string
@@ -25,4 +29,4 @@ tags:
 - multiplex assays
 title: BRCA1 Multiplex Assay
 type: annotator
-version: 2019.2.6
+version: 2019.03.21

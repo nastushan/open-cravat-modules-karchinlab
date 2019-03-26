@@ -32,10 +32,6 @@ class CravatPostAggregator (BasePostAggregator):
         hap_strands = []
         for row in self.cursor.fetchall():
             (sample, phred, filt, zygosity, altread, totread, af, hap_block, hap_strand) = row
-            if altread == None:
-                altread = ''
-            if af == None:
-                af = ''
             phreds.append(phred)
             filts.append(filt)
             zygosities.append(zygosity)
@@ -44,17 +40,37 @@ class CravatPostAggregator (BasePostAggregator):
             afs.append(af)
             hap_blocks.append(hap_block)
             hap_strands.append(hap_strand)
-        phred = ';'.join([str(v) for v in phreds])
-        filter = ';'.join([str(v) for v in filts])
-        zygosity = ';'.join([str(v) for v in zygosities])
-        alt_reads = ';'.join([str(v) for v in altreads])
-        tot_reads = ';'.join([str(v) for v in totreads])
-        af = ';'.join([str(v) for v in afs])
-        hap_block = ';'.join([str(v) for v in hap_blocks])
-        hap_strand = ';'.join([str(v) for v in hap_strands])
-        if hap_block == 'None':
+        phred = ';'.join(['' if v == None else str(v) for v in phreds])
+        s = list(set(phred))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            phred = None
+        filter = ';'.join(['' if v == None else str(v) for v in filts])
+        s = list(set(filter))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            filter = None
+        zygosity = ';'.join(['' if v == None else str(v) for v in zygosities])
+        s = list(set(zygosity))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            zygosity = None
+        alt_reads = ';'.join(['' if v == None else str(v) for v in altreads])
+        s = list(set(alt_reads))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            alt_reads = None
+        tot_reads = ';'.join(['' if v == None else str(v) for v in totreads])
+        s = list(set(tot_reads))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            tot_reads = None
+        af = ';'.join(['' if v == None else str(v) for v in afs])
+        s = list(set(af))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
+            af = None
+        hap_block = ';'.join(['' if v == None else str(v) for v in hap_blocks])
+        s = list(set(hap_block))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
             hap_block = None
-        if hap_strand == 'None':
+        hap_strand = ';'.join(['' if v == None else str(v) for v in hap_strands])
+        s = list(set(hap_strand))
+        if len(s) == 0 or (len(s) == 1 and s[0] == ';'):
             hap_strand = None
         out = {'phred': phred, 'filter': filter, 'zygosity': zygosity, 
                'alt_reads': alt_reads, 'tot_reads': tot_reads, 'af': af,

@@ -98,7 +98,7 @@ class CravatAnnotator(BaseAnnotator):
         hgvs_ref = ''
         hgvs_so = ''
         hgvs_alt = ''
-        if tseq.pref != tseq.palt:
+        if tseq.pref != tseq.palt: # Not synonomous
             repeat_unit, repeat_count = self._get_repeat_info(tseq.palt)
             head_repeat_count = self._count_seq_tail_repeats(tseq.shared_phead,
                                                              repeat_unit)
@@ -110,8 +110,7 @@ class CravatAnnotator(BaseAnnotator):
                 else:
                     count_to_stop = str(len(tseq.palt_and_tail.split('*')[0])+1)
                 hgvs_alt = '%sfs*%s' %(aa_let_to_abbv(tseq.palt_and_tail[0]), count_to_stop)
-#             elif head_ends_in_repeat_unit and tseq.pref == '': # Repeat or Duplication
-            elif head_repeat_count > 0 and tseq.pref == '':
+            elif head_repeat_count > 0 and tseq.pref == '': # Repeat or Duplication
                 repeat_count += head_repeat_count
                 unit_start_index = tseq.ppos_start - len(repeat_unit)
                 head_unit = tseq.shared_phead[unit_start_index:]
@@ -181,6 +180,7 @@ class CravatAnnotator(BaseAnnotator):
             hgvs_ref = aa_let_to_abbv(hit_aa) + str(tseq.orig_ppos_start)
             hgvs_so = '='
         hgvs_p = '%s:p.(%s%s%s)' %(tseq.protein, hgvs_ref, hgvs_so, hgvs_alt)
+        # print(hgvs_p)
         return hgvs_p
     
     
@@ -196,6 +196,8 @@ class CravatAnnotator(BaseAnnotator):
         pos = input_data['pos']
         ref = input_data['ref_base']
         alt = input_data['alt_base']
+        # print('#'*25)
+        # print(pos,ref,alt)
         map_parser = AllMappingsParser(input_data['all_mappings'])
         primary_transcript = input_data['transcript']
         
@@ -250,6 +252,7 @@ class TranscriptSequence(object):
         self.ref_tseq = self.full_seq[self.cds_start:self.cds_end]
         self.ref_pseq, self.ref_extra = self._translate_bases(self.ref_tseq)
         self.tpos_start = None
+        self.tpos_end = None
         self.orig_ppos_start = None
         self.alt_tseq = None
         self.alt_pseq = None
@@ -263,6 +266,8 @@ class TranscriptSequence(object):
         self.protein = protein_name
         
     def alter_sequence(self, tpos_start, ref, alt):
+        self.tpos_start = tpos_start
+        self.tpos_end = tpos_start + len(ref)
         self.orig_ppos_start = math.floor(tpos_start/3)
         ref = ref.replace('-','')
         alt = alt.replace('-','')
@@ -272,10 +277,10 @@ class TranscriptSequence(object):
                         +self.full_seq[ full_seq_var_start + len(ref) : ]
         self.alt_pseq, self.alt_extra = self._translate_bases(self.alt_tseq)
         head, pref, palt, tail = _trim_sequence(self.ref_pseq, self.alt_pseq)
-        if tail == '*':
-            pref += '*'
-            palt += '*'
-            tail = ''
+        # if tail == '*':
+        #     pref += '*'
+        #     palt += '*'
+        #     tail = ''
         self.pref = pref
         self.palt = palt
         self.shared_phead = head
@@ -287,7 +292,15 @@ class TranscriptSequence(object):
         self.pref_len = len(self.pref)
         self.palt_len = len(self.palt)
         self.fs_flag = (len(ref) - len(alt))%3 != 0
-        self.cterm_ext_flag = pref == '*'
+        # print('REF:', head[-5:], pref, tail)
+        # print('ALT:', head[-5:], palt, tail)
+        # Detect a c-terminal extension
+        stp_start = len(self.ref_tseq) - 3
+        stp_hit = stp_start <= self.tpos_start or stp_start < self.tpos_end
+        # print(stp_start, self.tpos_start, self.tpos_end)
+        # print('stp_hit:',stp_hit)
+        self.cterm_ext_flag = stp_hit and len(self.palt) > len(self.pref)
+        # self.cterm_ext_flag = pref == '*'
         
     def _translate_codons(self, bases): 
         """
