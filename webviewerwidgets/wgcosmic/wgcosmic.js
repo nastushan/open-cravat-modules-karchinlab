@@ -11,7 +11,7 @@ widgetGenerators['cosmic'] = {
 			var vcTissue = infomgr.getRowValue(tabName, row, 'cosmic__variant_count_tissue');
 			if (vcTissue !== null) {
 				var table = getWidgetTableFrame();
-				var thead = getWidgetTableHead(['Tissue', 'Count']);
+				var thead = getWidgetTableHead(['Tissue', 'Count'],['85%','15%']);
 				addEl(table, thead);
 				var tbody = getEl('tbody');
 				var toks = vcTissue.split(';');

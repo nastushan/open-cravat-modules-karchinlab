@@ -1,6 +1,6 @@
 widgetGenerators['interpro'] = {
 	'variant': {
-		'width': 500, 
+		'width': 480, 
 		'height': 140, 
 		'word-break': 'normal',
 		'function': function (div, row, tabName) {
@@ -10,7 +10,7 @@ widgetGenerators['interpro'] = {
 			var domls = dom != null ? dom.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['UniProt Acc.', 'Domain', 'InterPro Link']);
+			var thead = getWidgetTableHead(['UniProt', 'Domain', 'Link'],['20%','70%','10%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);
