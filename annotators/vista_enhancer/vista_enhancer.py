@@ -23,8 +23,7 @@ class CravatAnnotator (BaseAnnotator):
             print(r[1])
             if r[0] is not None:
                 features.append(r[0].strip())
-                elnum = r[1][8:].strip()
-                element = r[1].strip() + "[WEB:]https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=presentation&show=1&experiment_id="+ elnum +"&organism_id=1"
+                element = r[1].strip()
         out['features'] = ','.join(features)
         out['element'] =element 
         return out
