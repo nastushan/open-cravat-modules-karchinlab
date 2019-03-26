@@ -1,11 +1,11 @@
 title: Cosmic Gene
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: cosmic_gene
 description: Cosmic gene webviewer widget
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
