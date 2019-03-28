@@ -1,6 +1,6 @@
 widgetGenerators['base'] = {
 	'variant': {
-		'width': 580, 
+		'width': 380, 
 		'height': 280, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'UID', 'base__uid', tabName);
@@ -17,11 +17,11 @@ widgetGenerators['base'] = {
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				if (allMappings != {}) {
-					var table = getWidgetTableFrame(['20%', '20%', '20%', '40%']);
+					var table = getWidgetTableFrame();
                     table.style.tableLayout = 'auto';
 					table.style.width = '100%';
 					var thead = getWidgetTableHead(['UniProt', 'Prot Chng', 
-						'Seq Ont', 'Transcript']);
+						'Seq Ont', 'Transcript'], ['20%', '18%', '18%', '44%']);
 					addEl(table, thead);
 					var tbody = getEl('tbody');
 					var hugos = Object.keys(allMappings);

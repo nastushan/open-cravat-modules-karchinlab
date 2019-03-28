@@ -14,10 +14,10 @@ widgetGenerators['chasmplus'] = {
 			addInfoLine(div, row, 'Transcript', 'chasmplus__transcript', tabName);
             var allMappings = infomgr.getRowValue(tabName, row, 'chasmplus__results');
             if (allMappings != null) {
-                var table = getWidgetTableFrame(['50%', '25%', '25%']);
+                var table = getWidgetTableFrame();
                 table.style.width = '100%';
                 var thead = getWidgetTableHead(['Transcript', 'Score', 
-                    'P-value']);
+                    'P-value'], ['60%', '20%', '20%']);
                 addEl(table, thead);
                 var tbody = getEl('tbody');
                 var lines = allMappings.split(',')

@@ -1,6 +1,6 @@
 widgetGenerators['clinvar'] = {
 	'variant': {
-		'width': 700, 
+		'width': 480, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Significance', 'clinvar__sig', tabName);
@@ -29,7 +29,8 @@ widgetGenerators['clinvar'] = {
 			}
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['Disease', 'Database', 'Hyperlink']);
+			var thead = getWidgetTableHead(['Disease', 'Database', 'Hyperlink'],
+										   ['70%','20%','10%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);
