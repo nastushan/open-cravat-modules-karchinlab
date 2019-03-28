@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.8
+version: 1.0.9
 type: postaggregator
 
 name: tagsampler
@@ -9,7 +9,7 @@ output_columns:
 - name: numsample
   title: Number of Samples
   type: int
-  width: 90
+  width: 60
   filterable: false
 - name: samples
   title: Samples
@@ -33,3 +33,4 @@ release_note:
   1.0.4: handles samples that are null
   1.0.5: assigned filterable.
   1.0.8: fix syntax error
+  1.0.9: adjust width for Number of Samples
