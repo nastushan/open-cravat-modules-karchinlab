@@ -5,7 +5,7 @@ widgetGenerators['grasp'] = {
 		'function': function (div, row, tabName) {
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['Pval', 'Phenotype','NHLBI', 'PubMed']);
+			var thead = getWidgetTableHead(['Pval', 'Phenotype','NHLBI', 'PubMed'],['65px','40%','40%','20%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);

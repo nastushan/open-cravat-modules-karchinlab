@@ -1,7 +1,7 @@
 widgetGenerators['fathmm'] = {
 	'variant': {
-		'width': 280, 
-		'height': 80, 
+		'width': 380, 
+		'height': 180, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'FATHMM Converted Rank Score', 'fathmm__fathmm_rscore', tabName);
@@ -25,7 +25,7 @@ widgetGenerators['fathmm'] = {
 			}
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['Ensembl Transcript ID', 'Ensembl Protein ID', 'FATHMM Score', 'FATHMM Prediction']);
+			var thead = getWidgetTableHead(['Transcript', 'Protein', 'Score', 'Prediction'],['35%','35%','15%','15%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');
 			addEl(table, tbody);

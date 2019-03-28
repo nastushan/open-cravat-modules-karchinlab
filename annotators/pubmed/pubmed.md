@@ -1,6 +1,6 @@
 # PubMed
 
-Article counts and pubmed search links for genes.
+The number of PubMed articles that mention a given gene in the title or abstract, and a link to those articles.
 
 ![Screenshot](pubmed_screenshot_1.png)
 <br />

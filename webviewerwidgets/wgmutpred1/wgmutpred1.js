@@ -1,6 +1,6 @@
 widgetGenerators['mutpred1'] = {
 	'variant': {
-		'width': 280, 
+		'width': 380, 
 		'height': 180, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
@@ -13,7 +13,7 @@ widgetGenerators['mutpred1'] = {
 				var withAtRe = /(.*) at ([A-Z]\d+).*P = (0\.\d+)/;
 				var withoutAtRe = /(.*) \(P = (0\.\d+)\)/;
 				var table = getWidgetTableFrame();
-				var thead = getWidgetTableHead(['Mechanism', 'Location', 'P-value']);
+				var thead = getWidgetTableHead(['Mechanism', 'Location', 'P-value'],['60%','20%','20%']);
 				addEl(table, thead);
 				var tbody = getEl('tbody');
 				for (var i = 0; i < all_mechs.length; i++) {

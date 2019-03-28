@@ -1,6 +1,6 @@
 widgetGenerators['hgvs'] = {
 	'variant': {
-		'width': 280, 
+		'width': 380, 
 		'height': 280, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Genomic', 'hgvs__genomic', tabName);
@@ -29,7 +29,7 @@ widgetGenerators['hgvs'] = {
 			if (rnaAll.length > 0) {
 				var table = getWidgetTableFrame();
 				addEl(div, table);
-				var thead = getWidgetTableHead(['RNA', 'Protein']);
+				var thead = getWidgetTableHead(['RNA', 'Protein'],['55%','45%']);
 				addEl(table, thead);
 				var tbody = getEl('tbody');
 				addEl(table, tbody);

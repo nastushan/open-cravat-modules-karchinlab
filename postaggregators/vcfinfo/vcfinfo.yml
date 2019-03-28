@@ -8,7 +8,7 @@ output_columns:
 - name: phred
   title: Phred
   type: string
-  width: 90
+  width: 70
   filterable: true
   desc: Phred quality score
 - name: filter
@@ -26,7 +26,7 @@ output_columns:
 - name: alt_reads
   title: Alternate reads
   type: string
-  width: 70
+  width: 60
   filterable: true
 - name: tot_reads
   title: Total reads

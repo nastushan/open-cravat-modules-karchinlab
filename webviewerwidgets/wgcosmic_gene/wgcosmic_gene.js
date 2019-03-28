@@ -8,7 +8,7 @@ widgetGenerators['cosmic_gene'] = {
 			var vcTissue = infomgr.getRowValue(tabName, row, 'cosmic_gene__gene_count');
 			if (vcTissue !== null) {
 				var table = getWidgetTableFrame();
-				var thead = getWidgetTableHead(['Tissue', 'Count']);
+				var thead = getWidgetTableHead(['Tissue', 'Count'],['85%','15%']);
 				addEl(table, thead);
 				var tbody = getEl('tbody');
 				var toks = vcTissue.split(';');
