@@ -1,7 +1,7 @@
-import sqlite3
+import aiosqlite3
 import os
 
-def get_data (queries):
+async def get_data (queries):
     response = {}
     dbpath = queries['dbpath']
     if 'numgo' in queries:
@@ -9,30 +9,30 @@ def get_data (queries):
     else:
         num_go = 10
 
-    conn = sqlite3.connect(dbpath)
-    cursor = conn.cursor()
+    conn = await aiosqlite3.connect(dbpath)
+    cursor = await conn.cursor()
 
     hugos = []
 
     table = 'gene_filtered'
     query = 'select name from sqlite_master where type="table" and ' +\
         'name="' + table + '"'
-    cursor.execute(query)
-    r = cursor.fetchone()
+    await cursor.execute(query)
+    r = await cursor.fetchone()
     if r is not None:
         query = 'select distinct base__hugo from ' + table
-        cursor.execute(query)
-        hugos = [v[0] for v in cursor.fetchall() if len(v[0].strip()) > 0]
+        await cursor.execute(query)
+        hugos = [v[0] for v in await cursor.fetchall() if len(v[0].strip()) > 0]
     else:
         table = 'gene'
         query = 'select name from sqlite_master where type="table" and ' +\
             'name="' + table + '"'
-        cursor.execute(query)
-        r = cursor.fetchone()
+        await cursor.execute(query)
+        r = await cursor.fetchone()
         if r is not None:
             query = 'select distinct base__hugo from ' + table
-            cursor.execute(query)
-            hugos = [v[0] for v in cursor.fetchall() if len(v[0].strip()) > 0]
+            await cursor.execute(query)
+            hugos = [v[0] for v in await cursor.fetchall() if len(v[0].strip()) > 0]
 
     '''
     query = 'select name from sqlite_master where type="table" and ' +\
@@ -48,17 +48,17 @@ def get_data (queries):
     if hugos == []:
         return response
 
-    conn = sqlite3.connect(os.path.join(os.path.dirname(__file__), 
+    conn = await aiosqlite3.connect(os.path.join(os.path.dirname(__file__), 
                                         'data', 
                                         'wggosummary.sqlite'))
-    cursor = conn.cursor()
+    cursor = await conn.cursor()
 
     go = {}
     for hugo in hugos:
         query = 'select go_id from go_annotation where hugo="' + hugo +\
             '" and go_aspect="F"'
-        cursor.execute(query)
-        for row in cursor.fetchall():
+        await cursor.execute(query)
+        for row in await cursor.fetchall():
             go_id = row[0]
             if go_id in go:
                 go[go_id]['geneCount'] += 1
@@ -78,8 +78,9 @@ def get_data (queries):
     for go_num in range(min(num_go, len(sorted_go_ids))):
         go_id = sorted_go_ids[go_num]
         query = 'select name from go_name where go_id="' + go_id + '"'
-        cursor.execute(query)
-        go_desc = cursor.fetchone()[0]
+        await cursor.execute(query)
+        for row in await cursor.fetchone():
+            go_desc = row[0]
         go[go_id]['description'] = go_desc
         data.append(go[go_id])
     

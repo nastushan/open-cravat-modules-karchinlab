@@ -4,6 +4,7 @@ import datetime
 import re
 
 class Reporter(CravatReport):
+
     def setup (self):
         if self.savepath == None:
             self.savepath = 'cravat_result.tsv'
