@@ -1,4 +1,4 @@
-datasource: 2016.06.03
+datasource: 2019.03.27
 description: Rare Exome Variant Ensemble Learner
 developer:
   citation: 'Ioannidis, N. M., Rothstein, J. H., Pejaver, V., et al. (2016). REVEL:
@@ -22,4 +22,4 @@ tags:
 - variant effect prediction
 title: REVEL
 type: annotator
-version: 2019.03.20
+version: 2019.03.27

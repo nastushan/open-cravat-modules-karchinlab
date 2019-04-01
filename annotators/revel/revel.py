@@ -6,17 +6,22 @@ import os
 
 class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
-        chrom = input_data['chrom'].replace('chr','')
-        try:
-            q = 'select score from revel_' + chrom + ' where pos=' + str(input_data['pos']) + ' and ref="' + input_data['ref_base'] + '" and alt="' + input_data['alt_base'] + '"'
-            self.cursor.execute(q)
-            r = self.cursor.fetchone()
-            if r:
-                out = {'score': r[0]}
-            else:
-                out = None
-        except:
-            out = None
+        out = None
+        # Don't run on alt contigs
+        if len(input_data['chrom']) > 5: return None
+        # Dont run on non-missense mutations
+        ref = input_data['ref_base']
+        alt = input_data['alt_base']
+        if not(len(ref.replace('-','')) == 1 and len(ref.replace('-','')) == 1): return None
+        q = 'select score from {tname} where pos={pos} and alt="{alt}"'.format(
+            tname = input_data['chrom'],
+            pos = input_data['pos'],
+            alt = input_data['alt_base'],
+            )
+        self.cursor.execute(q)
+        r = self.cursor.fetchone()
+        if r:
+            out = {'score': r[0]}
         return out
         
 if __name__ == '__main__':
