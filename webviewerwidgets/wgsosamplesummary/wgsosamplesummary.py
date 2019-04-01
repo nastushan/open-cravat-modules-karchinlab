@@ -1,7 +1,7 @@
-import sqlite3
+import aiosqlite3
 import os
 
-def get_data (queries):
+async def get_data (queries):
     so_dic = {
         None: 'Intergenic',
         '':'Intergenic',
@@ -50,20 +50,20 @@ def get_data (queries):
     }
     
     dbpath = queries['dbpath']
-    conn = sqlite3.connect(dbpath)
-    cursor = conn.cursor()
+    conn = await aiosqlite3.connect(dbpath)
+    cursor = await conn.cursor()
 
     q = 'select distinct base__sample_id from sample where base__sample_id is not null'
-    cursor.execute(q)
-    samples = [v[0] for v in cursor.fetchall() if v[0]]
+    await cursor.execute(q)
+    samples = [v[0] for v in await cursor.fetchall() if v[0]]
     if len(samples) == 1:
         response = {'data': None}
         return response
     samples.sort()
     
     q = 'select distinct variant.base__so from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid'
-    cursor.execute(q)
-    sos = [so_dic[v[0]] for v in cursor.fetchall()]
+    await cursor.execute(q)
+    sos = [so_dic[v[0]] for v in await cursor.fetchall()]
     sos.sort()
     
     sosample = {}
@@ -75,8 +75,8 @@ def get_data (queries):
     for i in range(len(samples)):
         sample = samples[i]
         q = 'select variant.base__so, count(*) from variant, variant_filtered, sample where variant.base__uid=variant_filtered.base__uid and sample.base__uid=variant.base__uid and sample.base__sample_id="' + sample + '" group by variant.base__so order by variant.base__so'
-        cursor.execute(q)
-        for row in cursor.fetchall():
+        await cursor.execute(q)
+        for row in await cursor.fetchall():
             (so, count) = row
             so = so_dic[so]
             sosample[so][i] = count
