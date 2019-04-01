@@ -1,4 +1,3 @@
-import sqlite3
 import os
 import sys
 script_dir = os.path.dirname(__file__)
@@ -19,7 +18,7 @@ def run_query (hugos):
     result = e_data.get_scores_on_standarized_query_terms('cravat_nci', standardized_search_terms, False)
     return result
 
-def get_data (queries):
+async def get_data (queries):
     params = json.loads(queries['params'])
     hugos = params['hugos']
     response = {'data': run_query(hugos)}

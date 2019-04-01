@@ -1,27 +1,27 @@
-import sqlite3
+import aiosqlite3
 import os
 
-def make_db ():
+async def make_db ():
     dbpath = 'wglollipop.sqlite'
-    conn = sqlite3.connect(dbpath)
-    cursor = conn.cursor()
+    conn = await aiosqlite3.connect(dbpath)
+    cursor = await conn.cursor()
     table_name = 'variant'
     sql = 'drop table if exists ' + table_name
-    cursor.execute(sql)
+    await cursor.execute(sql)
     sql = 'create table ' + table_name + ' (' +\
         'tissue text, hugo text, cravat_transcript text, ref_aa text, ' +\
         'alt_aa text, aa_pos integer, so text, num_sample integer)'
-    cursor.execute(sql)
+    await cursor.execute(sql)
     table_name = 'protein'
     sql = 'drop table if exists ' + table_name
-    cursor.execute(sql)
+    await cursor.execute(sql)
     sql = 'create table ' + table_name + ' (chrom text, feature_key text, ' +\
         'desc text, start integer, stop integer, uniprot_id text, ' +\
         'aa_len integer, cravat_transcript text, shrt_desc text, ' +\
         'hugo text, data_source text)'
-    cursor.execute(sql)
+    await cursor.execute(sql)
     sql = 'create index ' + table_name + '_idx0 on ' + table_name + ' (hugo)'
-    cursor.execute(sql)
+    await cursor.execute(sql)
     
     # Next steps.
     # .separator "\t"
@@ -32,21 +32,21 @@ def make_db ():
     # update protein set data_source='uniprot' where data_source='Uniprot';
     # update protein set data_source='pfam' where data_source='Pfam';
 
-def get_data (queries):
+async def get_data (queries):
     hugo = queries['hugo']
     dbpath = os.path.join(os.path.dirname(__file__), 'data',
                           'wglollipop.sqlite')
-    conn = sqlite3.connect(dbpath)
-    cursor = conn.cursor()
+    conn = await aiosqlite3.connect(dbpath)
+    cursor = await conn.cursor()
     
     ret = {}
 
     # Variants
     sql = 'select tissue, cravat_transcript, aa_pos, ref_aa, alt_aa, ' +\
         'so, num_sample, data_source from variant where hugo="' + hugo + '"'
-    cursor.execute(sql)
+    await cursor.execute(sql)
     variants = {}
-    for row in cursor.fetchall():
+    for row in await cursor.fetchall():
         (tissue, cravat_transcript, aa_pos, ref_aa, alt_aa, 
             so, num_sample, data_source) = row
         ret['transcript'] = cravat_transcript
@@ -80,10 +80,10 @@ def get_data (queries):
         'shrt_desc, data_source, feature_key from protein where hugo="' +\
         hugo + '" and feature_key not in (' +\
         ', '.join(['"' + v + '"' for v in feature_keys_ignore]) + ')'
-    cursor.execute(sql)
+    await cursor.execute(sql)
     domains = {}
     if 'transcript' in ret:
-        for row in cursor.fetchall():
+        for row in await cursor.fetchall():
             (desc, start, stop, aalen, cravat_transcript, \
                 shrt_desc, data_source, feature_key) = row
             if cravat_transcript != ret['transcript']:
