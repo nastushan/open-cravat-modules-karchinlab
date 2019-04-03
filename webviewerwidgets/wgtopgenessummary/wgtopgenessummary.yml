@@ -1,5 +1,5 @@
-title: Top Genes Summary
-version: 1.0.2
+title: Genes Ranked by Total Variants
+version: 1.0.3
 type: webviewerwidget
 required_annotator: base
 description: Top Genes Summary webviewer widget
