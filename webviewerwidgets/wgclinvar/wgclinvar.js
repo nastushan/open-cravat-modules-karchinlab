@@ -29,7 +29,7 @@ widgetGenerators['clinvar'] = {
 			}
 			var table = getWidgetTableFrame();
 			addEl(div, table);
-			var thead = getWidgetTableHead(['Disease', 'Database', 'Hyperlink'],
+			var thead = getWidgetTableHead(['Disease', 'Database', 'Link'],
 										   ['70%','20%','10%']);
 			addEl(table, thead);
 			var tbody = getEl('tbody');

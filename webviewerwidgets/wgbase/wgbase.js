@@ -21,7 +21,7 @@ widgetGenerators['base'] = {
                     table.style.tableLayout = 'auto';
 					table.style.width = '100%';
 					var thead = getWidgetTableHead(['UniProt', 'Prot Chng', 
-						'Seq Ont', 'Transcript'], ['20%', '18%', '18%', '44%']);
+						'Seq Ont', 'Transcript'], ['25%', '18%', '18%', '39%']);
 					addEl(table, thead);
 					var tbody = getEl('tbody');
 					var hugos = Object.keys(allMappings);
