@@ -55,6 +55,7 @@ widgetGenerators['lollipop'] = {
 			var v = widgetGenerators[widgetName][tabName]['variables'];
 			
 			v.widgetContentDiv = div;
+            v.tabName = tabName;
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
@@ -70,8 +71,14 @@ widgetGenerators['lollipop'] = {
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
+                    var spinner = getSpinner();
+                    spinner.className = 'widgetspinner';
+                    addEl(div, spinner);
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
+                        var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
+                        var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
+                        $(spinner).remove();
 						widgetGenerators[widgetName]['data'] = data;
 						if (data['hugo'] != v.hugo) {
 						    return;
@@ -756,6 +763,7 @@ widgetGenerators['lollipop'] = {
 			var v = widgetGenerators[widgetName][tabName]['variables'];
 
 			v.widgetContentDiv = div;
+            v.tabName = tabName;
 			
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
@@ -772,8 +780,14 @@ widgetGenerators['lollipop'] = {
 				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
 					$(div).empty();
+                    var spinner = getSpinner();
+                    spinner.className = 'widgetspinner';
+                    addEl(div, spinner);
 					$.get('/result/runwidget/' + widgetName, 
 							{hugo: hugo}).done(function (data) {
+                        var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
+                        var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
+                        $(spinner).remove();
 						widgetGenerators[widgetName]['data'] = data;
                         if (data['hugo'] != v.hugo) {
                             return;
