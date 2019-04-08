@@ -53,7 +53,6 @@ tags:
 - variant effect prediction
 title: CHASMplus
 type: annotator
-version: 1.0.7
+version: 1.0.8
 requires:
   - 'wgndexchasmplussummary'
-  - 'wgtopgeneschasmplussummary'

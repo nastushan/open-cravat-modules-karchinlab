@@ -56,7 +56,6 @@ tags:
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.0.7
+version: 4.0.8
 requires:
   - 'wgndexvestsummary'
-  - 'wgtopgenesvestsummary'
