@@ -6,7 +6,17 @@ widgetGenerators['ndex'] = {
         'width': 580, 
         'height': 580, 
         'variables': {
-            'hugo': null
+            'hugo': null,
+            'nodata': false,
+        },
+        'showhide': function () {
+            var v = this['variables'];
+            console.log(this);
+            if (v.nodata == false) {
+                return true;
+            } else if (v.nodata == true) {
+                return false;
+            }
         },
         'beforeresize': function () {
             $(this['variables']['div']).empty();
@@ -39,8 +49,10 @@ widgetGenerators['ndex'] = {
             var networkids = infomgr.getRowValue('gene', geneRow, 'ndex__networkid');
             var networknames = infomgr.getRowValue('gene', geneRow, 'ndex__networkname');
             if (networkids == null) {
+                v.nodata = true;
                 return;
             }
+            v.nodata = false;
             // configureEnrichmentScoresForTable port
             self.data = {};
             self.data['head'] = 

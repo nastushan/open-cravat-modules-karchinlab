@@ -4,6 +4,7 @@ widgetGenerators['topgenessummary'] = {
 		'width': 380, 
 		'height': 380, 
 		'callserver': true,
+        'default_hidden': true,
         'variables': {},
         'init': function (data) {
             this['variables']['data'] = data;
