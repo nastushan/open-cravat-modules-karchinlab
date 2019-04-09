@@ -2,7 +2,7 @@ $.getScript('/result/widgetfile/wgndexchasmplussummary/cytoscape.js', function (
 
 widgetGenerators['ndexchasmplussummary'] = {
     'info': {
-        'name': 'NDEx Networks (Top Genes by CHASMplus)',
+        'name': 'NDEx CHASMplus summary',
         'width': 580, 
         'height': 380, 
         'callserver': true,
@@ -105,7 +105,7 @@ widgetGenerators['ndexchasmplussummary'] = {
                 for (var i = 1; i < networkGenes.length; i++) {
                     networkGenesStr = networkGenesStr + ', ' + networkGenes[i];
                 }
-                row['cols'] = [enrichmentResponseScores[eNum]['set_name'], '' + enrichmentResponseScores[eNum]['pv'], networkGenesStr];
+                row['cols'] = [enrichmentResponseScores[eNum]['set_name'], '' + enrichmentResponseScores[eNum]['pv'].toFixed(3), networkGenesStr];
                 enrichmentScoresFormatedForTable['body'].push(row);
             }
             

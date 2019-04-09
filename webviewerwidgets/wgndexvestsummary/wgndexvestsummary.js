@@ -2,7 +2,7 @@ $.getScript('/result/widgetfile/wgndexvestsummary/cytoscape.js', function () {})
 
 widgetGenerators['ndexvestsummary'] = {
     'info': {
-        'name': 'NDEx Networks (Top Genes by VEST)',
+        'name': 'NDEx VEST summary',
         'width': 580, 
         'height': 380, 
         'callserver': true,
@@ -104,7 +104,7 @@ widgetGenerators['ndexvestsummary'] = {
                 for (var i = 1; i < networkGenes.length; i++) {
                     networkGenesStr = networkGenesStr + ', ' + networkGenes[i];
                 }
-                row['cols'] = [enrichmentResponseScores[eNum]['set_name'], '' + enrichmentResponseScores[eNum]['pv'], networkGenesStr];
+                row['cols'] = [enrichmentResponseScores[eNum]['set_name'], '' + enrichmentResponseScores[eNum]['pv'].toFixed(3), networkGenesStr];
                 enrichmentScoresFormatedForTable['body'].push(row);
             }
             

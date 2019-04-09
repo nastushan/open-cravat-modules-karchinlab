@@ -1,5 +1,5 @@
 title: NDEx CHASMplus Summary
-version: 1.0.6
+version: 1.0.7
 type: webviewerwidget
 required_annotator: chasmplus
 description: NDEx CHASMplus Summary webviewer widget
@@ -11,4 +11,5 @@ developer:
   citation: ''
 release_note:
   1.0.3: improved resize and redraw
+  1.0.7: three effective digits
 hidden: true
