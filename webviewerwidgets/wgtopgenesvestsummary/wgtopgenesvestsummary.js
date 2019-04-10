@@ -4,6 +4,7 @@ widgetGenerators['topgenesvestsummary'] = {
 		'width': 280, 
 		'height': 220, 
 		'callserver': false,
+        'default_hidden': true,
         'variables': {},
         'init': function () {
 			var extracted = [];
