@@ -11,7 +11,6 @@ widgetGenerators['ndex'] = {
         },
         'showhide': function () {
             var v = this['variables'];
-            console.log(this);
             if (v.nodata == false) {
                 return true;
             } else if (v.nodata == true) {
@@ -37,6 +36,7 @@ widgetGenerators['ndex'] = {
             var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
             if (hugo == '' || hugo == null) {
                 $(parentDiv).empty();
+                v.nodata = true;
                 return;
             }
             var v = widgetGenerators['ndex'][tabName]['variables'];
