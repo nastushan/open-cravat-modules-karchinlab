@@ -2,7 +2,7 @@ $.getScript('/result/widgetfile/wgndexvestsummary/cytoscape.js', function () {})
 
 widgetGenerators['ndexvestsummary'] = {
     'info': {
-        'name': 'NDEx VEST summary',
+        'name': 'NDEx pathogenic genes summary',
         'width': 580, 
         'height': 380, 
         'callserver': true,

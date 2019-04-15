@@ -1,5 +1,5 @@
-title: NDEx CHASMplus Summary
-version: 1.0.7
+title: NDEx Cancer Variant Genes Summary
+version: 1.0.8
 type: webviewerwidget
 required_annotator: chasmplus
 description: NDEx CHASMplus Summary webviewer widget

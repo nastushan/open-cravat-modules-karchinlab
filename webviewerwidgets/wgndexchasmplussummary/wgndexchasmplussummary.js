@@ -2,7 +2,7 @@ $.getScript('/result/widgetfile/wgndexchasmplussummary/cytoscape.js', function (
 
 widgetGenerators['ndexchasmplussummary'] = {
     'info': {
-        'name': 'NDEx CHASMplus summary',
+        'name': 'NDEx cancer variant genes summary',
         'width': 580, 
         'height': 380, 
         'callserver': true,
