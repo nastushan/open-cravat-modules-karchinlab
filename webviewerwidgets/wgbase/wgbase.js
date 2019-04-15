@@ -3,6 +3,24 @@ widgetGenerators['base'] = {
 		'width': 380, 
 		'height': 280, 
 		'function': function (div, row, tabName) {
+            var soDic = {
+                '2KD': '2kb downstream',
+                '2KU': '2kb upstream',
+                'UT3': '3-prime utr',
+                'UT5': '5-prime utr',
+                'INT': 'intron',
+                'UNK': 'unknown',
+                'SYN': 'synonymous',
+                'MIS': 'missense',
+                'CSS': 'complex substitution',
+                'STL': 'stop lost',
+                'SPL': 'splice site',
+                'STG': 'stop gained',
+                'FSD': 'frameshift deletion',
+                'FSI': 'frameshift insertion',
+                'INI': 'inframe insertion',
+                'IND': 'inframe deletion',
+            };
 			addInfoLine(div, row, 'UID', 'base__uid', tabName);
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
 				addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
@@ -32,7 +50,7 @@ widgetGenerators['base'] = {
 							var uniprot_d = uniprot_ds[j];
 							var uniprot = uniprot_d[0];
 							var aachange = uniprot_d[1];
-							var so = uniprot_d[2];
+							var so = soDic[uniprot_d[2]];
 							var transcript = uniprot_d[3];
 							var tr = getWidgetTableTr([uniprot, aachange, so, transcript]);
 							addEl(tbody, tr);
@@ -47,6 +65,24 @@ widgetGenerators['base'] = {
 		'width': 280,
 		'height': 280,
 		'function': function (div, row, tabName) {
+            var soDic = {
+                '2KD': '2kb downstream',
+                '2KU': '2kb upstream',
+                'UT3': '3-prime utr',
+                'UT5': '5-prime utr',
+                'INT': 'intron',
+                'UNK': 'unknown',
+                'SYN': 'synonymous',
+                'MIS': 'missense',
+                'CSS': 'complex substitution',
+                'STL': 'stop lost',
+                'SPL': 'splice site',
+                'STG': 'stop gained',
+                'FSD': 'frameshift deletion',
+                'FSI': 'frameshift insertion',
+                'INI': 'inframe insertion',
+                'IND': 'inframe deletion',
+            };
 			addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
 			addInfoLine(div, row, '# Variants', 'base__num_variants', tabName);
 			addInfoLine(div, row, 'Most Severe Seq Ont', 'base__so', tabName);
@@ -60,7 +96,7 @@ widgetGenerators['base'] = {
 				for (var i = 0; i < allMappings.length; i++) {
 					var mapping = allMappings[i];
 					var toks = mapping.split('(');
-					var so = toks[0];
+					var so = soDic[toks[0]];
 					var numTranscript = toks[1].split(')')[0];
 					var tr = getWidgetTableTr([so, numTranscript]);
 					addEl(tbody, tr);
