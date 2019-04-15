@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.9
+version: 1.0.10
 type: postaggregator
 
 name: tagsampler
@@ -7,19 +7,22 @@ level: variant
 input_level: variant,crs,crm
 output_columns:
 - name: numsample
-  title: Number of Samples
+  title: Sample Count
   type: int
-  width: 60
+  width: 55
   filterable: false
+  desc: Number of samples which contain the variant.
 - name: samples
   title: Samples
   type: string
   category: multi
-  width: 105
+  width: 65
+  desc: Samples which contain the variant.
 - name: tags
   title: Tags
   type: string
-  width: 105
+  width: 65
+  desc: Variant tags from the input file.
 
 description: Aggregates tags and samples
 developer:
@@ -34,3 +37,4 @@ release_note:
   1.0.5: assigned filterable.
   1.0.8: fix syntax error
   1.0.9: adjust width for Number of Samples
+  1.0.10: change column widths and desc
