@@ -1,8 +1,9 @@
-title: NDEx Cancer Variant Genes Summary
+title: NDEX Enriched Cancer Pathways
 version: 1.0.8
 type: webviewerwidget
+requires_opencravat: '>=1.4.2'
 required_annotator: chasmplus
-description: NDEx CHASMplus Summary webviewer widget
+description: NDEX Enriched Cancer Pathways widget
 developer:
   name: Rick Kim
   organization: In Silico Solutions

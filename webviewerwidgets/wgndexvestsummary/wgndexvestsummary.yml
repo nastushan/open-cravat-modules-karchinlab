@@ -1,8 +1,9 @@
-title: NDEx Pathogenic Genes Summary
+title: NDEX Enriched Pathogentic Pathways
 version: 1.0.9
 type: webviewerwidget
+requires_opencravat: '>=1.4.2'
 required_annotator: vest
-description: NDEx VEST Summary webviewer widget
+description: NDEX Enriched Pathogentic Pathways widget
 developer:
   name: Rick Kim
   organization: In Silico Solutions
