@@ -71,15 +71,18 @@ class CravatConverter(BaseConverter):
             raise BadFormatError('At least CHROM POS ID REF ALT columns are needed')
         [chrom, pos, tag, ref, alts] = toks[:5]
         if toklen >= 6:
-            qual = toks[5].replace('.','')
+            qual = toks[5]
+            if qual == '.': qual = None
         else:
             qual = None
         if toklen >= 7:
-            filter = toks[6].replace('.','')
+            filter = toks[6]
+            if filter == '.': filter = None
         else:
             filter = None
         if toklen >= 8:
-            info = toks[7].replace('.','')
+            info = toks[7]
+            if info == '.': info = None
         else:
             info = None
         if tag == '.':
@@ -129,8 +132,9 @@ class CravatConverter(BaseConverter):
                         newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
                         zyg = self.homo_hetro(sample_data[gt_field_no])
                         depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, genotype_fields)
-                        depth = depth.replace('.','')
-                        alt_reads = alt_reads.replace('.','')
+                        if depth == '.': depth = None
+                        if alt_reads == '.': alt_reads = None
+                        if af == '.': af = None
                         if 'HP' in genotype_fields:
                             hp_field_no = genotype_fields['HP']
                             haplotype_block = sample_data[hp_field_no].split(',')[0].split('-')[0]
