@@ -80,7 +80,7 @@ async def get_data (queries):
         query = 'select name from go_name where go_id="' + go_id + '"'
         await cursor.execute(query)
         for row in await cursor.fetchone():
-            go_desc = row[0]
+            go_desc = row
         go[go_id]['description'] = go_desc
         data.append(go[go_id])
     

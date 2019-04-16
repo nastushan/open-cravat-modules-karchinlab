@@ -1,6 +1,7 @@
 title: Gene Ontology Summary
 version: 1.0.5
 type: webviewerwidget
+requires_opencravat: '>=1.4.2'
 required_annotator: base
 description: Gene Ontology Summary webviewer widget
 developer:
