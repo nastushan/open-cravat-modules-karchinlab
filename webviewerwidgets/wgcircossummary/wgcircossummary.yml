@@ -1,5 +1,6 @@
 title: Circos Summary
 version: 1.1.5
+requires_opencravat: '>=1.4.2'
 required_annotator: base
 type: webviewerwidget
 description: Circos Summary result viewer widget
