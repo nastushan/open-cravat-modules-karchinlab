@@ -1,5 +1,5 @@
 title: Tag Sampler
-version: 1.0.10
+version: 1.0.11
 type: postaggregator
 
 name: tagsampler
@@ -11,6 +11,7 @@ output_columns:
   type: int
   width: 55
   filterable: false
+  hidden: true
   desc: Number of samples which contain the variant.
 - name: samples
   title: Samples
@@ -23,6 +24,7 @@ output_columns:
   type: string
   width: 65
   desc: Variant tags from the input file.
+  hidden: true
 
 description: Aggregates tags and samples
 developer:
@@ -38,3 +40,4 @@ release_note:
   1.0.8: fix syntax error
   1.0.9: adjust width for Number of Samples
   1.0.10: change column widths and desc
+  1.0.11: hide num samples and tags
