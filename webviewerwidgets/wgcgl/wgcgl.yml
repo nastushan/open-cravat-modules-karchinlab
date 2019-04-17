@@ -1,11 +1,11 @@
 title: Cancer Gene Landscapes
-version: 1.0.2
+version: 1.0.3
 type: webviewerwidget
 required_annotator: cgl
 description: Cancer gene landscapes webviewer widget
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''

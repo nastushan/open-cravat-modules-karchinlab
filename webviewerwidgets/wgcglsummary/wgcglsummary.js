@@ -1,7 +1,7 @@
 var widgetName = 'cglsummary';
 widgetGenerators[widgetName] = {
 	'info': {
-		'name': 'Cancer Genome Landscape',
+		'name': 'Cancer Gene Landscape',
 		'width': 280, 
 		'height': 280, 
 		'callserver': false,
