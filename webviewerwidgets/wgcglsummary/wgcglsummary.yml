@@ -1,5 +1,6 @@
 title: Cancer Gene Landscape Summary
 version: 1.0.5
+hidden: true
 required_annotator: cgl
 type: webviewerwidget
 description: Cancer Gene Landscape Summary result viewer widget
