@@ -1,8 +1,8 @@
-title: Cancer Gene Landscapes
+title: Cancer Gene Landscape
 version: 1.0.3
 type: webviewerwidget
 required_annotator: cgl
-description: Cancer gene landscapes webviewer widget
+description: Cancer gene landscape webviewer widget
 developer:
   name: Rick Kim
   organization: In Silico Solutions
