@@ -1,5 +1,5 @@
 title: NDEX Enriched Pathogentic Pathways
-version: 1.0.9
+version: 1.0.10
 type: webviewerwidget
 requires_opencravat: '>=1.4.2'
 required_annotator: vest
@@ -11,6 +11,7 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 release_note:
+  1.0.10: aiosqlite3 version
   1.0.4: improved resize and redraw
   1.0.8: three effective digits
 hidden: true

@@ -41,22 +41,18 @@ class CravatConverter(BaseConverter):
         first_line = f.readline()
         if first_line.startswith('##fileformat=VCF'):
             vcf_format = True
-        second_line = f.readline()
-        if second_line.startswith('##source=VarScan'):
-            self.vcf_format = 'varscan'
-        else:
-            self.vcf_format = 'unknown'
         return vcf_format
     
     def setup(self, f):
-        
-        vcf_line_no = 0
-        for line in f:
-            vcf_line_no += 1
-            if len(line) < 6:
+        for n, l in enumerate(f):
+            if n==2 and l.startswith('##source=VarScan'):
+                self.vcf_format = 'varscan'
+            else:
+                self.vcf_format = 'unknown'
+            if len(l) < 6:
                 continue
-            if line[:6] == '#CHROM':
-                toks = re.split('\s+', line.rstrip())
+            if l[:6] == '#CHROM':
+                toks = re.split('\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break

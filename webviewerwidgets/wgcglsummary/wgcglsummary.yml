@@ -1,6 +1,7 @@
 title: Cancer Gene Landscape Summary
 version: 1.0.5
 hidden: true
+requires_opencravat: '>=1.4.2'
 required_annotator: cgl
 type: webviewerwidget
 description: Cancer Gene Landscape Summary result viewer widget
@@ -10,3 +11,5 @@ developer:
   email: rkim@insilico.us.com
   website: http://www.insilico.us.com
   citation: ''
+release_note:
+  1.0.4: aiosqlite3 version

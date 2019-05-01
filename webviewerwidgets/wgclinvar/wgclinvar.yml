@@ -3,6 +3,7 @@ version: 1.0.2
 type: webviewerwidget
 required_annotator: clinvar
 description: Clinvar webviewer widget
+hidden: true
 developer:
   name: Rick Kim
   organization: In Silico Solutions

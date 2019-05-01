@@ -1,6 +1,7 @@
 title: Top Genes CHASMplus Summary
-version: 1.0.3
+version: 1.0.4
 type: webviewerwidget
+requires_opencravat: '>=1.4.2'
 required_annotator: chasmplus
 description: Top Genes CHSAMplus Summary webviewer widget
 developer:
@@ -10,3 +11,5 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 hidden: true
+release_note:
+  1.0.4: aiosqlite3 version
