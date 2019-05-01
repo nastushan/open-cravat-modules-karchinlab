@@ -52,7 +52,7 @@ class CravatConverter(BaseConverter):
             if len(l) < 6:
                 continue
             if l[:6] == '#CHROM':
-                toks = re.split('\s+', l.rstrip())
+                toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
