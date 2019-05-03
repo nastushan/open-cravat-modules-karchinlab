@@ -52,7 +52,7 @@ class CravatConverter(BaseConverter):
             if len(l) < 6:
                 continue
             if l[:6] == '#CHROM':
-                toks = re.split('\s+', l.rstrip())
+                toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
@@ -90,6 +90,8 @@ class CravatConverter(BaseConverter):
                 wdict = None
                 alt = alts[altno]
                 newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                if newalt == '*': # VCF 4.2
+                    continue
                 wdict = {'tags':tag,
                          'chrom':chrom,
                          'pos':newpos,
@@ -126,6 +128,8 @@ class CravatConverter(BaseConverter):
                     else:
                         alt = alts[gt - 1]
                         newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                        if newalt == '*': # VCF 4.2
+                            continue
                         zyg = self.homo_hetro(sample_data[gt_field_no])
                         depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, genotype_fields)
                         if depth == '.': depth = None
@@ -222,11 +226,12 @@ class CravatConverter(BaseConverter):
                         alt_reads = sample_data[genotype_fields['AD']].split(',')[0]
                     except:
                         alt_reads = ''
-        if 'DP' in genotype_fields and genotype_fields['DP'] <= len(sample_data): 
-            depth = sample_data[genotype_fields['DP']] 
-        elif alt_reads != '' and ref_reads != '':
-            #if DP is not present but we have alt and ref reads count, dp = ref+alt
+        if alt_reads != '' and ref_reads != '':
+            # Default dp = ref+alt
             depth = int(alt_reads) + int(ref_reads)   
+        elif 'DP' in genotype_fields and genotype_fields['DP'] <= len(sample_data): 
+            # DP is fallback because some callers apply additional filters to DP which are not applied to AD
+            depth = sample_data[genotype_fields['DP']] 
         else:
             depth = ''
         if 'AF' in genotype_fields and genotype_fields['AF'] <= len(sample_data):
@@ -236,9 +241,24 @@ class CravatConverter(BaseConverter):
                 af = ''
         elif depth != '' and alt_reads != '':
             #if AF not specified, calc it from alt and ref reads
-            af = round(float(alt_reads) / float(depth),3)
+            af = None
+            try: # Handle cases where alt_reads and/or depth are a placeholder character like '.'
+                int(alt_reads)
+                int(depth)
+            except ValueError:
+                af = ''
+            if af is None:
+                if int(depth) == 0: # Uncommon case where a filter has removed all reads but call is still made
+                    af = ''
+                else:
+                    af = round(int(alt_reads) / int(depth),3)
         else:
             af = ''
+        if type(af) == float: # Bound af to [0.0, 1.0]
+            if af > 1.0:
+                af = 1.0
+            elif af < 0.0:
+                af = 0.0
         return depth, alt_reads, af
 
     def extract_vcf_variant (self, strand, pos, ref, alt):
