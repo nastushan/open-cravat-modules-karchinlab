@@ -9,7 +9,7 @@ widgetGenerators[widgetName] = {
             this['variables']['data'] = data;
         },
         'shoulddraw': function () {
-            if (this['variables']['data'] == undefined) {
+            if (this['variables']['data'] == undefined || this['variables']['data'].length == 0) {
                 return false;
             } else {
                 return true;
@@ -19,7 +19,7 @@ widgetGenerators[widgetName] = {
 			if (div != null) {
 				emptyElement(div);
 			}
-			if (data == undefined) {
+			if (data == undefined || data.length == 0) {
 				return;
 			}
 			var colorPalette = [
