@@ -5,11 +5,7 @@ requires_opencravat: '>=1.4.2'
 required_annotator: cgl
 type: webviewerwidget
 description: Cancer Gene Landscape Summary result viewer widget
-developer:
-  name: Rick Kim
-  organization: In Silico Solutions
-  email: rkim@insilico.us.com
-  website: http://www.insilico.us.com
-  citation: ''
-release_note:
-  1.0.4: aiosqlite3 version
+developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
+  website: 'http://www.insilico.us.com', citation: ''}
+release_note: {1.0.4: aiosqlite3 version}
+tags: [visualization widgets]

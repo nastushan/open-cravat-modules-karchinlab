@@ -4,9 +4,6 @@ data_version: 1.0.0
 type: webviewerwidget
 required_annotator: pubmed
 description: PubMed webviewer widget
-developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
-  citation: ''
+developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
+  website: 'http://www.insilico.us.com', citation: ''}
+tags: [visualization widgets]

@@ -4,9 +4,6 @@ requires_opencravat: '>=1.4.2'
 required_annotator: base
 type: webviewerwidget
 description: Protein diagram webviewer widget
-developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
-  citation: ''
+developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
+  website: 'http://www.insilico.us.com', citation: ''}
+tags: [visualization widgets]

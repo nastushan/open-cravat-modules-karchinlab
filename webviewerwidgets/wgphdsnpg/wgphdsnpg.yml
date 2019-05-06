@@ -3,9 +3,6 @@ version: 1.0.1
 type: webviewerwidget
 required_annotator: phdsnpg
 description: PhDSNPg
-developer:
-  name: 'Kyle Moad'
-  organization: 'In Silico Solutions'
-  email: 'support@cravat.us'
-  website: ''
-  citation: ''
+developer: {name: Kyle Moad, organization: In Silico Solutions, email: support@cravat.us,
+  website: '', citation: ''}
+tags: [visualization widgets]

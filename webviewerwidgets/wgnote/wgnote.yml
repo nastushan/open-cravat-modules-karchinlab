@@ -1,15 +1,10 @@
 columnwidth:
-- note__text: 100
+- {note__text: 100}
 description: Note-taking widget
-developer:
-  citation: ''
-  email: rkim@insilico.us.com
-  name: Rick Kim
-  organization: In Silico Solutions
-  website: http://www.insilico.us.com
+developer: {citation: '', email: rkim@insilico.us.com, name: Rick Kim, organization: In
+    Silico Solutions, website: 'http://www.insilico.us.com'}
 required_annotator: base
-tags:
-- notes
+tags: [notes, visualization widgets]
 title: Note
 type: webviewerwidget
 version: 1.0.1
