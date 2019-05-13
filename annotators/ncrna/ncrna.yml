@@ -25,6 +25,5 @@ tags:
 title: ncRNA IT
 type: annotator
 version: 2019.05.13
-private: true
 release_note:
   2019.05.13: intervaltree and pickle
