@@ -1,9 +1,15 @@
 title: CIViC Gene
-version: 1.0.2
+version: 1.0.3
 type: webviewerwidget
 required_annotator: civic_gene
 description: CIViC Gene webviewer widget
-developer: {name: Kyle Moad, organization: In Silico Solutions, email: kmoad@insilico.us.com,
-  website: 'http://www.insilico.us.com', citation: ''}
+developer:
+  name: Kyle Moad
+  organization: In Silico Solutions
+  email: kmoad@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
 private: true
-tags: [visualization widgets]
+tags:
+- visualization widgets
+hidden: true

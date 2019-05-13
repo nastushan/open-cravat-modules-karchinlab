@@ -1,8 +1,14 @@
 title: ESP6500
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: esp6500
 description: ESP6500 webviewer widget
-developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
-  website: 'http://www.insilico.us.com', citation: ''}
-tags: [visualization widgets]
+developer:
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
+tags:
+- visualization widgets
+hidden: true
