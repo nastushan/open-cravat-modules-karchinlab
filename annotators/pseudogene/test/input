@@ -1,6 +1,0 @@
-#Chrom	Position	Strand	Ref	Alt	Sample Id	Tags
-chr1	12000	+	A	T	nosample	pg
-chr12	9261271	+	A	G	s07	r00004
-chr11	113789394	+	G	A	s29	r00686
-chr11	6718320	+	T	C	s12	r03634
-chr17	18512065	+	TATT	-	s15	r09267

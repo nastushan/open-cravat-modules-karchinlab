@@ -1,5 +1,4 @@
-# ncRNA
+# Annotator Template
 
-Identifies non-coding RNA at the variant location.
-
-![Screenshot](ncrna_screenshot_1.png)
+Describe annotator using markdown format. More information about the markdown 
+format can be found at [markdownguide.org](https://www.markdownguide.org/)
