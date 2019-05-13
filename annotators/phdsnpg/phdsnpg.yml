@@ -34,4 +34,6 @@ tags:
 - variant effect prediction
 title: PhD-SNPg
 type: annotator
-version: 0.0.7
+version: 0.0.8
+requires:
+- wgphdsnpg

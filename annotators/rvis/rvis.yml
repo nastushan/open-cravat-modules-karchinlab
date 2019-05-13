@@ -46,4 +46,6 @@ tags:
 - evolution
 title: RVIS
 type: annotator
-version: 3.0.6
+version: 3.0.7
+requires:
+- wgrvis

@@ -41,4 +41,6 @@ tags:
 - variant effect prediction
 title: MuPIT
 type: annotator
-version: 4.2.5
+version: 4.2.6
+requires:
+- wgmupit

@@ -65,4 +65,6 @@ tags:
 - populations
 title: gnomAD
 type: annotator
-version: 2.1.5
+version: 2.1.6
+requires:
+- wggnomad

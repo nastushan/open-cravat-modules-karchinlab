@@ -47,4 +47,6 @@ tags:
 - variant effect prediction
 title: FATHMM
 type: annotator
-version: 2.3.4
+version: 2.3.5
+requires:
+- wgfathmm

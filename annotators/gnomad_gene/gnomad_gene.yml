@@ -1,5 +1,5 @@
 title: gnomAD Gene
-version: 2.1.5
+version: 2.1.6
 type: annotator
 level: gene
 description: Gene level population statistics from gnomAD
@@ -62,3 +62,5 @@ developer:
   website: http://gnomad.broadinstitute.org/
   citation: https://www.nature.com/articles/nature19057
 datasource: v2.1
+requires:
+- wggnomad_gene

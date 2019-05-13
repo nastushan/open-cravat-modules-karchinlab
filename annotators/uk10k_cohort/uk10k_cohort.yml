@@ -50,4 +50,6 @@ tags:
 - populations
 title: UK10k Cohorts
 type: annotator
-version: 3.5.8
+version: 3.5.9
+requires:
+- wguk10k_cohort

@@ -1,6 +1,8 @@
 description: Gene description from NIH's NCBI Gene Info
 developer:
-  citation: "Wheeler, D. L., Barrett, T., Benson, D. A., Bryant, S. H., et al. (2006). Database resources of the national center for biotechnology information. Nucleic acids research, 35(suppl_1), D5-D12."
+  citation: Wheeler, D. L., Barrett, T., Benson, D. A., Bryant, S. H., et al. (2006).
+    Database resources of the national center for biotechnology information. Nucleic
+    acids research, 35(suppl_1), D5-D12.
   email: ''
   name: NIH
   organization: NIH
@@ -14,10 +16,12 @@ output_columns:
 - name: entrez
   title: Entrez ID
   type: string
-  link_format: 'https://www.ncbi.nlm.nih.gov/gene/${.*}'
+  link_format: https://www.ncbi.nlm.nih.gov/gene/${.*}
 tags:
 - genes
 title: NCBI Gene
 type: annotator
-version: '2019.03.23'
-datasource: '2019.03.23'
+version: 2019.05.13
+datasource: 2019.03.23
+requires:
+- wgncbigene

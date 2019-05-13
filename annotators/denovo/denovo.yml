@@ -38,5 +38,7 @@ tags:
 - clinical relevance
 title: Denovo-DB
 type: annotator
-version: 1.6.7
+version: 1.6.8
 requires_opencravat: '>=1.4.0'
+requires:
+- wgdenovo

@@ -31,4 +31,6 @@ tags:
 - cancer
 title: COSMIC Gene
 type: annotator
-version: 85.0.5
+version: 85.0.6
+requires:
+- wgcosmic_gene

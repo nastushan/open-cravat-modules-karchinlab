@@ -19,4 +19,6 @@ tags:
 - genes
 title: LoFtool
 type: annotator
-version: 3.5.4
+version: 3.5.5
+requires:
+- wgloftool

@@ -26,4 +26,6 @@ tags:
 - interactions
 title: IntAct
 type: annotator
-version: 2019.03.20
+version: 2019.05.13
+requires:
+- wgintact
