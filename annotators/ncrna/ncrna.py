@@ -8,7 +8,7 @@ import pickle
 class CravatAnnotator(BaseAnnotator):
 
     def setup(self): 
-        pickle_path = os.path.join(self.data_dir,'ncrna_it.pickle')
+        pickle_path = os.path.join(self.data_dir,'ncrna.pickle')
         with open(pickle_path,'rb') as f:
             self.data = pickle.load(f)
     
