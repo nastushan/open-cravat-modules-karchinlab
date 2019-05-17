@@ -1266,7 +1266,7 @@ widgetGenerators['lollipop'] = {
             function drawMyVariantsTable (data) {
                 var div = getEl('div');
                 div.style.position = 'absolute';
-                div.style.top = '43px';
+                div.style.top = '50px';
                 div.style.left = '4px';
                 var contentDiv = document.getElementById('widgetcontentdiv_lollipop_gene');
                 addEl(contentDiv, div);
@@ -1283,7 +1283,7 @@ widgetGenerators['lollipop'] = {
                 addEl(th, getTn('Seq Ont'));
                 addEl(tr, th);
                 var th = getEl('th');
-                addEl(th, getTn('# Sample'));
+                addEl(th, getTn('# Samples'));
                 addEl(tr, th);
                 addEl(thead, tr);
                 addEl(table, thead);
@@ -1292,8 +1292,19 @@ widgetGenerators['lollipop'] = {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
                 var myVariants = v['myvariants'];
                 if (myVariants.length == 0) {
+                    $(table).remove();
                     var sdiv = getEl('div');
-                    sdiv.textContent = 'No mapping to UniProt canonical transcript';
+                    sdiv.textContent = 'No variants map to';
+                    sdiv.style.position = 'relative';
+                    sdiv.style.left = '4px';
+                    addEl(div, sdiv);
+                    var sdiv = getEl('div');
+                    sdiv.textContent = 'UniProt\'s canonical';
+                    sdiv.style.position = 'relative';
+                    sdiv.style.left = '4px';
+                    addEl(div, sdiv);
+                    var sdiv = getEl('div');
+                    sdiv.textContent = 'transcript';
                     sdiv.style.position = 'relative';
                     sdiv.style.left = '4px';
                     addEl(div, sdiv);
