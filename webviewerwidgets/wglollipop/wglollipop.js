@@ -23,7 +23,7 @@ widgetGenerators['lollipop'] = {
 					'FSD': 'rgb(200, 0, 255)',
 			},
 			'varColorNoSo': '#aaaaaa',
-			'refTranscript': null,
+			'reftranscript': null,
 			'aaWidth': null,
 			'boxDomainHeight': 30,
 			'boxR': 6,
@@ -60,6 +60,9 @@ widgetGenerators['lollipop'] = {
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
 				$(div).empty();
+                var sdiv = getEl('div');
+                sdiv.textContent = 'No gene';
+                addEl(div, sdiv);
 				return;
 			}
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
@@ -83,6 +86,12 @@ widgetGenerators['lollipop'] = {
 						if (data['hugo'] != v.hugo) {
 						    return;
 						}
+                        if (data['len'] == undefined) {
+                            var sdiv = getEl('div');
+                            sdiv.textContent = 'No protein diagram in UniProt';
+                            addEl(div, sdiv);
+                            return;
+                        }
 						draw(data);
 						if (v.variantdatasource != null) {
 							var select = 
@@ -270,8 +279,11 @@ widgetGenerators['lollipop'] = {
 							y, 
 							width, height).
 							fill(color);
-					var circle = stage.circle(x, y + height, v.variantRadius).
+					var civariantrcle = stage.circle(x, y + height, v.variantRadius).
 							fill(color);
+                    var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                    rect.domElement_.setAttribute('aachange', aachange);
+                    circle.domElement_.setAttribute('aachange', aachange);
 					setupVariantPopup(rect, variant);
 					setupVariantPopup(circle, variant);
 				}
@@ -336,7 +348,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function setupVariantPopup (element, variant) {
-				element.variant = variant;
+                element.variant = variant;
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				acgraph.events.listen(element, 'mouseover', function (evt) {
 					if (v['popup'] == null) {
@@ -447,6 +459,9 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
+                var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                rect.domElement_.setAttribute('aachange', aachange);
+                circle.domElement_.setAttribute('aachange', aachange);
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -490,11 +505,9 @@ widgetGenerators['lollipop'] = {
 				v.proteinWidth = parseInt(
 					v.proteinWidth.substring(0, v.proteinWidth.length - 2)) 
 					- v.variantRadius - v.xEndPad;
-				
 				v.aalen = data['len'];
 				v.aaWidth = v.proteinWidth / v.aalen;
 				v.reftranscript = data['transcript'];
-				
 				drawControlPanel(data);
 				drawMyVariants(data);
 				drawProtein(data);
@@ -635,6 +648,14 @@ widgetGenerators['lollipop'] = {
 				dsDiv.style.height = '30px';
 				dsDiv.setAttribute('datasource', datasource);
 				addEl(div, dsDiv);
+
+                // Transcript
+                var tsDiv = getEl('div');
+                tsDiv.style.position = 'absolute';
+                tsDiv.style.bottom = '7px';
+                tsDiv.style.right = '12px';
+                tsDiv.textContent = v.reftranscript;
+                addEl(div, tsDiv);
 				
 				// Protein canvas
 				var canvas = getEl('div');
@@ -731,7 +752,7 @@ widgetGenerators['lollipop'] = {
 					'FSD': 'rgb(200, 0, 255)',
 			},
 			'varColorNoSo': '#aaaaaa',
-			'refTranscript': null,
+			'reftranscript': null,
 			'aaWidth': null,
 			'boxDomainHeight': 30,
 			'boxR': 6,
@@ -742,7 +763,7 @@ widgetGenerators['lollipop'] = {
 			'domainLineMinWidth': 7,
 			'variantMinWidth': 2,
 			'variantRadius': 5,
-			'xStart': 4,
+			'xStart': 160,
 			'xEndPad': 14,
 			'varHeightMax': 22,
 			'varHeightMin': 12,
@@ -768,6 +789,9 @@ widgetGenerators['lollipop'] = {
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
 			if (hugo == '') {
 				$(div).empty();
+                var sdiv = getEl('div');
+                sdiv.textContent = 'No gene';
+                addEl(div, sdiv);
 				return;
 			}
 			
@@ -790,6 +814,12 @@ widgetGenerators['lollipop'] = {
                         $(spinner).remove();
 						widgetGenerators[widgetName]['data'] = data;
                         if (data['hugo'] != v.hugo) {
+                            return;
+                        }
+                        if (data['len'] == undefined) {
+                            var sdiv = getEl('div');
+                            sdiv.textContent = 'No protein diagram in UniProt';
+                            addEl(div, sdiv);
                             return;
                         }
 						draw(data);
@@ -988,6 +1018,9 @@ widgetGenerators['lollipop'] = {
 							fill(color);
 					var circle = stage.circle(x, y + height, v.variantRadius).
 							fill(color);
+                    var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                    rect.domElement_.setAttribute('aachange', aachange);
+                    circle.domElement_.setAttribute('aachange', aachange);
 					setupVariantPopup(rect, variant);
 					setupVariantPopup(circle, variant);
 				}
@@ -1057,7 +1090,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function setupVariantPopup (element, variant) {
-				element.variant = variant;
+                element.variant = variant;
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				acgraph.events.listen(element, 'mouseover', function (evt) {
 					if (v['popup'] == null) {
@@ -1168,6 +1201,10 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
+                var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                rect.domElement_.setAttribute('aachange', aachange);
+                circle.domElement_.setAttribute('aachange', aachange);
+                circle.domElement_.classList.add('lollipop_gene');
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
@@ -1210,7 +1247,7 @@ widgetGenerators['lollipop'] = {
 				v.proteinWidth = getComputedStyle(div)['width'];
 				v.proteinWidth = parseInt(
 					v.proteinWidth.substring(0, v.proteinWidth.length - 2)) 
-					- v.variantRadius - v.xEndPad;
+					- v.variantRadius - v.xEndPad - v.xStart;
 				
 				v.aalen = data['len'];
 				v.aaWidth = v.proteinWidth / v.aalen;
@@ -1221,12 +1258,82 @@ widgetGenerators['lollipop'] = {
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
+                drawMyVariantsTable(data);
 				
 				v.drawing = false;
 			}
-			
+
+            function drawMyVariantsTable (data) {
+                var div = getEl('div');
+                div.style.position = 'absolute';
+                div.style.top = '43px';
+                div.style.left = '4px';
+                var contentDiv = document.getElementById('widgetcontentdiv_lollipop_gene');
+                addEl(contentDiv, div);
+                var table = getEl('table');
+                table.className = 'lollipop_gene_varianttable';
+                table.style.fontSize = '12px';
+                addEl(div, table);
+                var thead = getEl('thead');
+                var tr = getEl('tr');
+                var th = getEl('th');
+                addEl(th, getTn('Change'));
+                addEl(tr, th);
+                var th = getEl('th');
+                addEl(th, getTn('Seq Ont'));
+                addEl(tr, th);
+                var th = getEl('th');
+                addEl(th, getTn('# Sample'));
+                addEl(tr, th);
+                addEl(thead, tr);
+                addEl(table, thead);
+                var tbody = getEl('tbody');
+                addEl(table, tbody);
+				var v = widgetGenerators[widgetName][tabName]['variables'];
+                var myVariants = v['myvariants'];
+                if (myVariants.length == 0) {
+                    var sdiv = getEl('div');
+                    sdiv.textContent = 'No mapping to UniProt';
+                    sdiv.style.position = 'relative';
+                    sdiv.style.left = '4px';
+                    addEl(div, sdiv);
+                    return;
+                }
+                for (var i = 0; i < myVariants.length; i++) {
+                    var variant = myVariants[i];
+                    tr = getEl('tr');
+                    td = getEl('td');
+                    td.style.cursor = 'default';
+                    td.addEventListener('mouseover', function (evt) {
+                        var aachange = evt.target.textContent;
+                        var circles = $('circle.lollipop_gene[aachange=' + aachange + ']');
+                        for (var i = 0; i < circles.length; i++) {
+                            var circle = circles[i];
+                            circle.setAttribute('oldfill', circle.getAttribute('fill'));
+                            circle.setAttribute('fill', 'black');
+                        }
+                    });
+                    td.addEventListener('mouseout', function (evt) {
+                        var aachange = evt.target.textContent;
+                        var circles = $('circle.lollipop_gene[aachange=' + aachange + ']');
+                        for (var i = 0; i < circles.length; i++) {
+                            var circle = circles[i];
+                            circle.setAttribute('fill', circle.getAttribute('oldfill'));
+                        }
+                    });
+                    addEl(td, getTn(variant.refaa + variant.start + variant.altaa));
+                    addEl(tr, td);
+                    td = getEl('td');
+                    addEl(td, getTn(variant.so));
+                    addEl(tr, td);
+                    td = getEl('td');
+                    addEl(td, getTn(variant.count));
+                    addEl(tr, td);
+                    addEl(tbody, tr);
+                }
+            }
+
 			function drawControlPanel (data) {
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
 				// Container
@@ -1311,7 +1418,7 @@ widgetGenerators['lollipop'] = {
 				addEl(partDiv, addEl(getEl('span'), getTn(')')));
 				addEl(dsDiv, partDiv);
 			}
-			
+
 			function drawMyVariants (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				
@@ -1342,17 +1449,22 @@ widgetGenerators['lollipop'] = {
 
 				// Draws.u
                 var v = widgetGenerators[widgetName][tabName]['variables'];
+                v['myvariants'] = [];
                 var variantRowNos = varByGene[v.hugo];
                 var variantRows = infomgr.datas.variant;
                 for (var i = 0; i < variantRowNos.length; i++) {
                     var row = variantRows[variantRowNos[i]];
                     var variant = getMyVariant(row);
+                    if (Object.keys(variant).length == 0) {
+                        continue;
+                    }
+                    v['myvariants'].push(variant);
                     if (variant != null && Object.keys(variant).length > 0) {
                         drawMyVariant(variant, stage, y, varHeightInc);
                     }
                 }
 			}
-			
+
 			function getMyVariant (row) {
 				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
@@ -1394,6 +1506,14 @@ widgetGenerators['lollipop'] = {
 				dsDiv.setAttribute('datasource', datasource);
 				addEl(div, dsDiv);
 				
+                // Transcript
+                var tsDiv = getEl('div');
+                tsDiv.style.position = 'absolute';
+                tsDiv.style.bottom = '7px';
+                tsDiv.style.right = '12px';
+                tsDiv.textContent = v.reftranscript;
+                addEl(div, tsDiv);
+				
 				// Protein canvas
 				var canvas = getEl('div');
 				var canvasId = getProtCanvasId();
@@ -1426,6 +1546,8 @@ widgetGenerators['lollipop'] = {
 						drawBoxDomain(stage, domain, y);
 					}
 				}
+
+                // My variant table
 			}
 			
 			function setupOtherVariantDiv (data) {
