@@ -9,3 +9,4 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
 tags: [visualization widgets]
 release_note:
   1.1.3: variant table hover highlights lollipop
+private: true

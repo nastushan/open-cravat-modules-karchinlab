@@ -1293,7 +1293,7 @@ widgetGenerators['lollipop'] = {
                 var myVariants = v['myvariants'];
                 if (myVariants.length == 0) {
                     var sdiv = getEl('div');
-                    sdiv.textContent = 'No mapping to UniProt';
+                    sdiv.textContent = 'No mapping to UniProt canonical transcript';
                     sdiv.style.position = 'relative';
                     sdiv.style.left = '4px';
                     addEl(div, sdiv);
