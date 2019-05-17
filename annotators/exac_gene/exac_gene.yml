@@ -89,4 +89,6 @@ tags:
 - populations
 title: ExAC Gene and CNV
 type: annotator
-version: 0.3.16
+version: 0.3.17
+requires:
+- wgexac_gene

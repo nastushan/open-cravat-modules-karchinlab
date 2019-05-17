@@ -1,7 +1,7 @@
 datasource: v7
 description: Genotype-tissue expression
 developer:
-  citation:  "https://gtexportal.org/home/faq#citePortal"
+  citation: https://gtexportal.org/home/faq#citePortal
   email: support@cravat.us
   name: GTEx Consortium
   organization: The Broad Institute of MIT and Harvard
@@ -24,4 +24,6 @@ tags:
 - germline
 title: GTEx
 type: annotator
-version: 7.0.2
+version: 7.0.3
+requires:
+- wggtex

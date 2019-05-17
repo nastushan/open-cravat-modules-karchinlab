@@ -35,4 +35,6 @@ tags:
 - genes
 title: InterPro
 type: annotator
-version: 71.0.4
+version: 71.0.5
+requires:
+- wginterpro

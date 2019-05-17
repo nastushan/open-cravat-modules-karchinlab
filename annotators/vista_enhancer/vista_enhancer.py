@@ -20,7 +20,6 @@ class CravatAnnotator (BaseAnnotator):
         )
         self.cursor.execute(q)
         for r in self.cursor:
-            print(r[1])
             if r[0] is not None:
                 features.append(r[0].strip())
                 element = r[1].strip()

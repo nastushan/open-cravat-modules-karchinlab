@@ -22,4 +22,6 @@ tags:
 - variant effect prediction
 title: REVEL
 type: annotator
-version: 2019.03.27
+version: 2019.05.13
+requires:
+- wgrevel

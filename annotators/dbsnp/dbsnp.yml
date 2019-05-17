@@ -24,5 +24,7 @@ tags:
 - literature
 title: dbSNP
 type: annotator
-version: 151.0.7
+version: 151.0.8
 requires_opencravat: '>=1.4.0'
+requires:
+- wgdbsnp

@@ -1,9 +1,17 @@
 title: VEST
-version: 1.0.2
+version: 1.0.3
 type: webviewerwidget
 required_annotator: vest
 description: VEST webviewer widget
-developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
-  website: 'http://www.insilico.us.com', citation: ''}
-release_note: {1.0.1: fixed bar component color direction, 1.0.2: hide by default}
-tags: [visualization widgets]
+developer:
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
+release_note:
+  1.0.1: fixed bar component color direction
+  1.0.2: hide by default
+tags:
+- visualization widgets
+hidden: true

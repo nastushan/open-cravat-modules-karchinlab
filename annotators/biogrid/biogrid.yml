@@ -31,4 +31,6 @@ tags:
 - interactions
 title: BioGRID
 type: annotator
-version: 3.5.170
+version: 3.5.171
+requires:
+- wgbiogrid

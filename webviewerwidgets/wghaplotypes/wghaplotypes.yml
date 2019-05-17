@@ -1,8 +1,14 @@
 title: Haplotype Information
-version: 1.0.0
+version: 1.0.1
 type: webviewerwidget
 required_annotator: vcfinfo
 description: Haplotype information webviewer widget
-developer: {name: Mary Wood, organization: OHSU, email: mary.a.wood.91@gmail.com,
-  website: '', citation: ''}
-tags: [visualization widgets]
+developer:
+  name: Mary Wood
+  organization: OHSU
+  email: mary.a.wood.91@gmail.com
+  website: ''
+  citation: ''
+tags:
+- visualization widgets
+hidden: true

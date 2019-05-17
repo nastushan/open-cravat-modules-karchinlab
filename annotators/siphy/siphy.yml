@@ -31,4 +31,6 @@ tags:
 - evolution
 title: SiPhy
 type: annotator
-version: 3.5.3
+version: 3.5.4
+requires:
+- wgsiphy

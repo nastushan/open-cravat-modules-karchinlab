@@ -1,44 +1,39 @@
 import sys
-import os
-import sqlite3
 from cravat import BaseAnnotator
 from cravat import InvalidData
-from cravat.util import get_ucsc_bins
+import sqlite3
+import os
+import pickle
 
-class CravatAnnotator (BaseAnnotator):
+class CravatAnnotator(BaseAnnotator):
 
-    def annotate(self, input_data):
-        out = {}
+    def setup(self): 
+        pickle_path = os.path.join(self.data_dir,'ncrna.pickle')
+        with open(pickle_path,'rb') as f:
+            self.data = pickle.load(f)
+    
+    def annotate(self, input_data, secondary_data=None):
         
         chrom = input_data['chrom']
-        pos = input_data['pos']
-        
-        out = {'ncrnaclass': [],
-               'ncrnaname': []}
-        
-        bins = get_ucsc_bins(pos)
-        pos = str(pos)
-        for bin in bins:
-            query = 'select class, name from ncrna ' +\
-                'where binno=' + str(bin) + ' and ' +\
-                'chrom="' + chrom + '" and ' +\
-                'start<=' + pos + ' and end>=' + pos
-            self.cursor.execute(query) 
-            results = self.cursor.fetchall()
-            
-            if len(results) == 0:
-                continue
-            
-            for result in results:
-                (ncrna_class, ncrna_name) = result
-                out['ncrnaclass'].append(ncrna_class)
-                out['ncrnaname'].append(ncrna_name)
-        
-        out['ncrnaclass'] = ','.join(out['ncrnaclass'])
-        out['ncrnaname'] = ','.join(out['ncrnaname'])
-        
-        return out
+        if chrom in self.data:
+            pos = input_data['pos']
+            ivs = self.data[chrom][pos]
+            classes = []
+            names = []
+            for iv in ivs:
+                classes.append(iv.data[1])
+                names.append(iv.data[2])
+            if classes and names:
+                out = {
+                    'ncrnaclass': ','.join(classes),
+                    'ncrnaname': ','.join(names)                    
+                    }
+                return out
+        return None
+
+    def cleanup(self):
+        pass
         
 if __name__ == '__main__':
-    module = CravatAnnotator(sys.argv)
-    module.run()
+    annotator = CravatAnnotator(sys.argv)
+    annotator.run()

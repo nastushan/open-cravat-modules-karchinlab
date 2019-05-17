@@ -12,20 +12,23 @@ input_format: crv
 level: variant
 output_columns:
 - filterable: true
-  name: pseudogene_hugo
+  name: hugo
   title: Hugo
   type: string
   width: 90
   desc: Gene ID
-- name: pseudogene_transcript
+- name: transcript
   title: Transcript
   type: string
   width: 90
   filterable: false
 release_note:
   27.0.3: corrected test key
+  28.0.0: intervaltree and pickle
 tags:
 - genomic features
 title: Pseudogene
 type: annotator
-version: 27.0.6
+version: 28.0.1
+requires:
+- wgpseudogene

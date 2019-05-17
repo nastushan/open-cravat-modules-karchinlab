@@ -18,4 +18,6 @@ tags:
 - genes
 title: p(HI)
 type: annotator
-version: 3.5.3
+version: 3.5.4
+requires:
+- wgphi

@@ -47,4 +47,6 @@ tags:
 - genes
 title: Essential Genes
 type: annotator
-version: 3.5.5
+version: 3.5.6
+requires:
+- wgess_gene

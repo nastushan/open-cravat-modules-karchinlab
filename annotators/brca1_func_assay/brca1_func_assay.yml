@@ -1,4 +1,4 @@
-datasource: '2018.04.05'
+datasource: 2018.04.05
 description: Impact of BRCA1 missense variants on protein function as determined by
   multiplex homology-directed DNA repair assay
 developer:
@@ -29,4 +29,6 @@ tags:
 - multiplex assays
 title: BRCA1 Multiplex Assay
 type: annotator
-version: 2019.03.21
+version: 2019.05.13
+requires:
+- wgbrca1_func_assay

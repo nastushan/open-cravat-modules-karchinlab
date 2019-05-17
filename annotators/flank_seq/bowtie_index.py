@@ -182,9 +182,7 @@ class BowtieIndexReference(object):
         # Memory-map the .4.bt2 file
         #
         ln_bytes = (running_unambig + 3) // 4
-        self.fh4mm = mmap.mmap(
-            fh4.fileno(), ln_bytes, flags=mmap.MAP_SHARED, prot=mmap.PROT_READ
-        )
+        self.fh4mm = mmap.mmap(fh4.fileno(), ln_bytes, access=mmap.ACCESS_READ)
 
         # These are per-reference
         self.length = length

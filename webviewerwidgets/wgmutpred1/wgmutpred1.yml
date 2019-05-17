@@ -1,7 +1,14 @@
 title: MutPred
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 required_annotator: mutpred1
 description: MutPred webviewer widget
-developer: {name: '', organization: '', email: '', website: '', citation: ''}
-tags: [visualization widgets]
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+tags:
+- visualization widgets
+hidden: true
