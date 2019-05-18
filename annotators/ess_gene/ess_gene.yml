@@ -45,6 +45,7 @@ output_columns:
   width: 63
 tags:
 - genes
+- dbnsfp
 title: Essential Genes
 type: annotator
 version: 3.5.6

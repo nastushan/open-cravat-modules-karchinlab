@@ -31,6 +31,7 @@ output_columns:
   desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
 tags:
 - evolution
+- dbnsfp
 title: GERP++
 type: annotator
 version: 3.5.6

@@ -17,6 +17,7 @@ output_columns:
   desc: A percentile score for gene intolerance to functional change
 tags:
 - genes
+- dbnsfp
 title: LoFtool
 type: annotator
 version: 3.5.5

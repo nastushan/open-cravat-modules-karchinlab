@@ -15,13 +15,15 @@ output_columns:
   title: Element
   type: string
   width: 70
-  link_format: https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=presentation&show=1&experiment_id=${element (.*)}&organism_id=1
+  link_format: https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=presentation&show=1&experiment_id=${element
+    (.*)}&organism_id=1
 - desc: ''
   name: features
   title: Features
   type: string
   width: 70
 tags:
+- variants
 - noncoding
 - genomic features
 title: VISTA Enhancer Browser

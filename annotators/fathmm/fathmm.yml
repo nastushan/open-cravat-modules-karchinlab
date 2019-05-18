@@ -45,6 +45,7 @@ output_columns:
 tags:
 - variants
 - variant effect prediction
+- dbnsfp
 title: FATHMM
 type: annotator
 version: 2.3.5

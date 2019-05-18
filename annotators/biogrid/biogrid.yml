@@ -29,6 +29,7 @@ output_columns:
 tags:
 - genes
 - interactions
+- dbnsfp
 title: BioGRID
 type: annotator
 version: 3.5.171

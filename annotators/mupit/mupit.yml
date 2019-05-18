@@ -35,10 +35,10 @@ release_note:
 tags:
 - variants
 - genes
-- germline
 - denovo
 - cancer
 - variant effect prediction
+- protein visualization
 title: MuPIT
 type: annotator
 version: 4.2.6

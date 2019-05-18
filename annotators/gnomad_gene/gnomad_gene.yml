@@ -64,3 +64,6 @@ developer:
 datasource: v2.1
 requires:
 - wggnomad_gene
+tags:
+- genes
+- populations

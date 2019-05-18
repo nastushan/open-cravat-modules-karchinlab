@@ -51,6 +51,7 @@ output_columns:
   width: 56
 tags:
 - evolution
+- dbnsfp
 title: Phast Cons
 type: annotator
 version: 3.5.6

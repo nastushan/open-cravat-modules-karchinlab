@@ -29,6 +29,7 @@ output_columns:
 tags:
 - variants
 - evolution
+- dbnsfp
 title: SiPhy
 type: annotator
 version: 3.5.4

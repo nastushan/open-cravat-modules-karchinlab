@@ -24,6 +24,7 @@ output_columns:
 tags:
 - genes
 - interactions
+- dbnsfp
 title: IntAct
 type: annotator
 version: 2019.05.13

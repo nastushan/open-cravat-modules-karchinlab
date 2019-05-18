@@ -19,6 +19,7 @@ output_columns:
   filterable: true
   desc: Interacting regions
 tags:
+- variants
 - noncoding
 - genomic features
 title: Promoter IR
