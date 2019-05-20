@@ -1,0 +1,42 @@
+#CRAVAT Report
+#Created at Monday 05/20/2019 12:00:13
+#Report level: variant
+#
+Variant Annotation												Tag Sampler			Promoter IR
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Regions
+1	chr1	850622	G	T								1	sfake		RP11-54O7.16;RP11-54O7.1
+2	chr11	6718320	T	C								1	s4		ILK;RRP8;ILK;RP11-732A19.2;TAF10;ARFIP2;TIMM10B;APBB1;SMPD1
+3	chr1	235255683	GTTA	-		Yes	ARID4B	ENST00000366603.6	frameshift deletion	_83_	ENST00000264183.7:ARID4B:Q4LE39:frameshift deletion:_83_:TAAC248-; ENST00000349213.7:ARID4B:(na):frameshift deletion:_83_:TAAC248-; ENST00000366603.6:ARID4B:Q4LE39:frameshift deletion:_83_:TAAC248-	1	s4		IRF2BP2;RP4-781K5.2;U8
+4	chr17	39707007	A	T		Yes	ERBB2	ENST00000269571.9	missense	M31L	ENST00000269571.9:ERBB2:X5DNK3:missense:M31L:A91T; ENST00000406381.6:ERBB2:(na):missense:M1L:A1T; ENST00000445658.6:ERBB2:B4DTR1:intron:(na):(na); ENST00000541774.5:ERBB2:(na):missense:M16L:A46T; ENST00000578199.5:ERBB2:F5H1T4:missense:M1L:A1T; ENST00000584450.5:ERBB2:J3QLU9:missense:M31L:A91T; ENST00000584601.5:ERBB2:(na):missense:M1L:A1T	1	s4		AC004231.2
+5	chr7	27199497	C	G		Yes	HOXA13	ENST00000222753.5	missense	C194S	ENST00000222753.5:HOXA13:P31271:missense:C194S:G581C	1	s1		AC004540.4
+#CRAVAT Report
+#Created at Monday 05/20/2019 12:00:13
+#Report level: gene
+#
+Variant Annotation				
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
+ARID4B	1	frameshift deletion	frameshift deletion(1)	
+ERBB2	1	missense	missense(1)	
+HOXA13	1	missense	missense(1)	
+#CRAVAT Report
+#Created at Monday 05/20/2019 12:00:13
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	sfake
+2	s4
+3	s4
+4	s4
+5	s1
+#CRAVAT Report
+#Created at Monday 05/20/2019 12:00:13
+#Report level: mapping
+#
+Variant Annotation		
+Original Line	User Tags	UID
+1		1
+2		2
+3		3
+4		4
+5		5
