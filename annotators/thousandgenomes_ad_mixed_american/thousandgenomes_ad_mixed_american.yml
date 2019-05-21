@@ -37,3 +37,5 @@ tags:
 title: 1000 Genomes-Ad Mixed American
 type: annotator
 version: 3.1.0
+in_group:
+- thousandgenomes_group

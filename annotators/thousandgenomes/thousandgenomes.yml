@@ -237,3 +237,5 @@ type: annotator
 version: 4.0.1
 requires:
 - wgthousandgenomes
+in_group:
+- thousandgenomes_group
