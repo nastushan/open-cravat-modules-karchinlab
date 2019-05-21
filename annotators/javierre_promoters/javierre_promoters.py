@@ -4,20 +4,28 @@ import sqlite3
 from cravat import BaseAnnotator
 from cravat import InvalidData
 from cravat.util import get_ucsc_bins
+import pickle
 
 class CravatAnnotator (BaseAnnotator):
 
+    def setup(self):
+        pickle_path = os.path.join(self.data_dir, 'javierre_promoters.pickle')
+        self.data = pickle.load(open(pickle_path,'rb'))
+
     def annotate(self, input_data):
         out = {}
-        
         chrom = input_data['chrom']
         pos = input_data['pos']
-        
-        q = 'select Target_gene_name from capture where PIR_Chr="{cnum}" and PIR_Start<={pos} and PIR_End>={pos};'.format(cnum = chrom.replace('chr',''), pos=pos)
-        self.cursor.execute(q)
-        regions = [r[0] for r in self.cursor if r[0] is not None]
-        out['regions'] = ';'.join(regions)
-        return out
+        it = self.data.get(chrom)
+        if it:
+            regions = [iv.data for iv in it[pos]]
+        else:
+            regions = []
+        if regions:
+            out['regions'] = ';'.join(regions)
+            return out
+        else:
+            return None
         
 if __name__ == '__main__':
     module = CravatAnnotator(sys.argv)
