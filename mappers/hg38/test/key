@@ -2,7 +2,7 @@
 #Created at Wednesday 01/09/2019 11:19:29
 #Report level: variant
 #
-Base Information											Tag Sampler		
+Variant Annotation											Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr1	155208824	C	T	Yes	MTX1	ENST00000368376.7	missense	P7L	ENST00000316721.8:MTX1:A0A0C4DFQ1:missense:P7L:C20T; ENST00000368376.7:MTX1:A0A0A0MRK6:missense:P7L:C20T; ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	S1	plus_SBS_MIS
 2	chr1	155208824	C	G	Yes	MTX1	ENST00000368376.7	missense	P7R	ENST00000316721.8:MTX1:A0A0C4DFQ1:missense:P7R:C20G; ENST00000368376.7:MTX1:A0A0A0MRK6:missense:P7R:C20G; ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	S2	plus_SBS_MIS_NoReference
@@ -62,7 +62,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Wednesday 01/09/2019 11:19:29
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 MTX1	18	splice site	splice site(4),missense(2),synonymous(2),intron(2),5-prime utr(2),3-prime utr(2),2kb upstream(2),2kb downstream(2)
 HOOK1	1	stop gained	stop gained(1)
@@ -87,7 +87,7 @@ PTH2	1	inframe deletion	inframe deletion(1)
 #Created at Wednesday 01/09/2019 11:19:29
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	S1
 2	S2
@@ -147,7 +147,7 @@ UID	Sample
 #Created at Wednesday 01/09/2019 11:19:29
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 3	plus_SBS_MIS	1
 4	plus_SBS_MIS_NoReference	2
