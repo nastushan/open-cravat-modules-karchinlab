@@ -2,7 +2,7 @@ CRAVAT Report
 #Created at Tuesday 08/07/2018 09:50:50
 #Report level: variant
 #
-Base Information										ESP6500		Tag Sampler		
+Variant Annotation										ESP6500		Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	AF European American	AF African American	Number of Samples	Samples	Tags
 1	chr12	123619507	A	G	Y	DDX55	ENST00000238146.8	MIS	ENST00000238146.8:DDX55:Q8NHQ9:MIS:Q470R:A1409G; ENST00000421670.3:DDX55:(na):MIS:Q77R:A230G; ENST00000424014.6:EIF2B1:Q14232:2KD:(na):(na); ENST00000538744.5:DDX55:F5H5U2:MIS:Q439R:A1316G	0.0	0.000226963	1		plus_SBS_DDX55
 2	chr1	7970884	-	T		PARK7	ENST00000377488.5	INT	ENST00000338639.9:PARK7:Q99497:INT:(na):(na); ENST00000377488.5:PARK7:Q99497:INT:(na):(na); ENST00000377491.5:PARK7:Q99497:INT:(na):(na); ENST00000377493.9:PARK7:K7ELW0:INT:(na):(na); ENST00000493678.5:PARK7:Q99497:INT:(na):(na)	0.000121153	0.0	1		plus_ins_PARK7
@@ -20,7 +20,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 #Created at Tuesday 08/07/2018 09:50:50
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 DDX55	2	FD1	MIS(1),FD1(1)
 PARK7	3	IDV	INT(2),IDV(1)
@@ -32,7 +32,7 @@ BRAF	1	INT	INT(1)
 #Created at Tuesday 08/07/2018 09:50:50
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -50,7 +50,7 @@ UID	Sample
 #Created at Tuesday 08/07/2018 09:50:50
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	plus_SBS_DDX55	1
 3	plus_ins_PARK7	2

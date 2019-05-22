@@ -2,7 +2,7 @@
 #Created at Saturday 08/11/2018 04:05:58
 #Report level: variant
 #
-Base Information										REVEL	Tag Sampler		
+Variant Annotation										REVEL	Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	Score	Number of Samples	Samples	Tags
 1	chr10	121593817	T	A	Y	FGFR2	ENST00000358487.9	MIS	ENST00000346997.6:FGFR2:(na):MIS:M1L:A1T; ENST00000351936.10:FGFR2:A0A0A0MR25:MIS:M1L:A1T; ENST00000356226.8:FGFR2:(na):MIS:M1L:A1T; ENST00000357555.9:FGFR2:(na):MIS:M1L:A1T; ENST00000358487.9:FGFR2:P21802:MIS:M1L:A1T; ENST00000359354.6:FGFR2:(na):MIS:M1L:A1T; ENST00000360144.7:FGFR2:(na):MIS:M1L:A1T; ENST00000369056.5:FGFR2:(na):MIS:M1L:A1T; ENST00000369059.5:FGFR2:E7EVR7:MIS:M1L:A1T; ENST00000369060.8:FGFR2:(na):MIS:M1L:A1T; ENST00000369061.8:FGFR2:(na):MIS:M1L:A1T; ENST00000457416.6:FGFR2:(na):MIS:M1L:A1T; ENST00000611527.1:FGFR2:A0A087X2D1:MIS:M1L:A1T; ENST00000613048.4:FGFR2:D2CGD1:MIS:M1L:A1T	0.556	1	s0	
 2	chr10	2987654	T	A							1	s1	
@@ -381,7 +381,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 #Created at Saturday 08/11/2018 04:05:58
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 FGFR2	1	MIS	MIS(1)
 RET	1	MIS	MIS(1)
@@ -586,7 +586,7 @@ UTY	1	MIS	MIS(1)
 #Created at Saturday 08/11/2018 04:05:58
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	s0
 2	s1
@@ -965,7 +965,7 @@ UID	Sample
 #Created at Saturday 08/11/2018 04:05:58
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 1		1
 2		2

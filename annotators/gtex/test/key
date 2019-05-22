@@ -2,7 +2,7 @@
 #Created at Thursday 01/17/2019 13:23:09
 #Report level: variant
 #
-Base Information											GTEx		Tag Sampler		
+Variant Annotation											GTEx		Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Target Gene	Tissue Type	Number of Samples	Samples	Tags
 1	chr16	269512	A	G	Y	RGS11	ENST00000397770.7	missense	M427T	ENST00000301679.6:FAM234A:(na):2kb downstream:(na):(na); ENST00000316163.9:RGS11:(na):missense:M406T:T1217C; ENST00000359740.6:RGS11:(na):missense:M416T:T1247C; ENST00000397770.7:RGS11:Q4TT70:missense:M427T:T1280C; ENST00000600536.1:AC004754.3:B4DGG1:intron:(na):(na)	ENSG00000167930.11|ENSG00000242173.4|ENSG00000185615.11|ENSG00000242173.4|ENSG00000185615.11	Adipose_Subcutaneous|Colon_Transverse|Colon_Transverse|Esophagus_Mucosa|Small_Intestine_Terminal_Ileum	1		
 2	chr16	275035	G	A	Y	RGS11	ENST00000397770.7	missense	P87S	ENST00000316163.9:RGS11:(na):missense:P66S:C196T; ENST00000359740.6:RGS11:(na):missense:P87S:C259T; ENST00000397770.7:RGS11:Q4TT70:missense:P87S:C259T			1		
@@ -12,7 +12,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Thursday 01/17/2019 13:23:09
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 RGS11	2	missense	missense(2)
 TMEM8A	1	missense	missense(1)
@@ -21,7 +21,7 @@ POLR3K	1	missense	missense(1)
 #Created at Thursday 01/17/2019 13:23:09
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -31,7 +31,7 @@ UID	Sample
 #Created at Thursday 01/17/2019 13:23:09
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2		1
 3		2

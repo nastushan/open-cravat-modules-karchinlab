@@ -2,7 +2,7 @@
 #Created at Thursday 04/05/2018 16:56:09																					
 #Report level: variant																					
 #																					
-Base Information								VEST					Tag Sampler			VCF Info					
+Variant Annotation								VEST					Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Score Transcript	Score	P-value	All transcripts	HUGO	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr17	37284933	G	A	ACACA	ENST00000614428.4	"{""ACACA"":[[null,""R126*"",""STG"",""ENST00000616317.4"",""C376T""],[null,""R31*"",""STG"",""ENST00000612895.4"",""C91T""],[""Q13085"",""R89*"",""STG"",""ENST00000614428.4"",""C265T""],[null,""R11*"",""STG"",""ENST00000617649.4"",""C31T""]]}"	ENST00000616317.4	0.93	0.02059	"ENST00000612895.4(0.884:0.04118),ENST00000614428.4(0.928:0.02102),*ENST00000616317.4(0.93:0.02059),ENST00000617649.4(0.866:0.05418)"	ACACA	1	ACACA	r00094						
 2	chr6	135429934	G	A	AHI1	ENST00000265602.10	"{""AHI1"":[[""Q8N157"",""R814C"",""MIS"",""ENST00000367800.8"",""C2440T""],[""Q8N157"",""R814C"",""MIS"",""ENST00000457866.6"",""C2440T""],[""Q8N157"",""R814C"",""MIS"",""ENST00000265602.10"",""C2440T""],[null,""R814C"",""MIS"",""ENST00000327035.10"",""C2440T""]]}"	ENST00000367800.8	0.539	0.16496	"ENST00000265602.10(0.538:0.16567),ENST00000327035.10(0.49:0.19148),*ENST00000367800.8(0.539:0.16496),ENST00000457866.6(0.534:0.1682)"	AHI1	1	AHI1	r00282						

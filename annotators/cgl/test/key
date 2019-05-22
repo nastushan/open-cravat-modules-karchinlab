@@ -2,7 +2,7 @@
 #Created at Monday 04/09/2018 16:56:07
 #Report level: variant
 #
-Base Information								Tag Sampler			VCF Info					
+Variant Annotation								Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr9	130714320	A	T	ABL1	ENST00000372348.6	{"ABL1":[[null,"M1L","MIS","ENST00000372348.6","A1T"]]}	1		ABL1						
 2	chr12	51951744	A	T	ACVR1B	ENST00000257963.8	{"ACVR1B":[["P36896","M1L","MIS","ENST00000257963.8","A1T"],[null,"M1L","MIS","ENST00000541224.5","A1T"],[null,"M1L","MIS","ENST00000426655.6","A1T"],[null,"M1L","MIS","ENST00000415850.6","A1T"],[null,null,"2KU","ENST00000542485.1",null]]}	1		ACVR1B						
@@ -144,7 +144,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Created at Monday 04/09/2018 16:56:07
 #Report level: gene
 #
-Base Information				Cancer Genome Landscape
+Variant Annotation				Cancer Genome Landscape
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Class
 ABL1	1	MIS	MIS(1)	Oncogene
 ACVR1B	1	MIS	MIS(1)	TSG
@@ -286,7 +286,7 @@ WT1	1	MIS	MIS(1)	TSG
 #Created at Monday 04/09/2018 16:56:07
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -428,7 +428,7 @@ UID	Sample
 #Created at Monday 04/09/2018 16:56:07
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	ABL1	1
 3	ACVR1B	2

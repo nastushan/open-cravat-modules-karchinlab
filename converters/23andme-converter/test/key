@@ -2,7 +2,7 @@
 #Created at Wednesday 12/12/2018 10:11:42
 #Report level: variant
 #
-Base Information											Hg19		Tag Sampler		
+Variant Annotation											Hg19		Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Hg19 Chrom	Hg19 Position	Number of Samples	Samples	Tags
 2	chr1	630128	?	A							chr1	565508	1		rs9283150
 3	chr1	792461	?	G							chr1	727841	1		rs116587930
@@ -21,7 +21,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Wednesday 12/12/2018 10:11:42
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 NOC2L	2	SYN	SYN(2)
 PERM1	2	2KU	2KU(2)
@@ -30,7 +30,7 @@ C1orf174	2	2KD	2KD(2)
 #Created at Wednesday 12/12/2018 10:11:42
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 2	
 2	
@@ -53,7 +53,7 @@ UID	Sample
 #Created at Wednesday 12/12/2018 10:11:42
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 23	rs9283150	2
 25	rs116587930	3

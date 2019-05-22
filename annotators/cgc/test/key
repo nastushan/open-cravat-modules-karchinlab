@@ -2,7 +2,7 @@
 #Created at Wednesday 01/30/2019 12:25:07
 #Report level: variant
 #
-Base Information												Tag Sampler		
+Variant Annotation												Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr1	22563636	A	T		Y	EPHA8	ENST00000166244.7	missense	M1L	ENST00000166244.7:EPHA8:P29322:missense:M1L:A1T; ENST00000374644.8:EPHA8:(na):missense:M1L:A1T; ENST00000538803.1:EPHA8:(na):missense:M1L:A1T	0		EPHA8
 2	chr17	31095310	A	T		Y	NF1	ENST00000358273.8	missense	M1L	ENST00000356175.7:NF1:(na):missense:M1L:A1T; ENST00000358273.8:NF1:P21359:missense:M1L:A1T; ENST00000431387.8:NF1:(na):missense:M1L:A1T	0		NF1
@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontolo
 #Created at Wednesday 01/30/2019 12:25:07
 #Report level: gene
 #
-Base Information					Cancer Genome Census			
+Variant Annotation					Cancer Genome Census			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note	CGC driver class	CGC inheritance	CGC tumor types somatic	CGC tumor types germline
 EPHA8	1	missense	missense(1)					
 NF1	1	missense	missense(1)		TSG, fusion	somatic/germline	neurofibroma, glioma	neurofibroma, glioma
@@ -36,7 +36,7 @@ LATS1	1	missense	missense(1)		TSG	somatic	skin basal cell carcinoma
 #Created at Wednesday 01/30/2019 12:25:07
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -53,7 +53,7 @@ UID	Sample
 #Created at Wednesday 01/30/2019 12:25:07
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	EPHA8	1
 3	NF1	2

@@ -2,7 +2,7 @@
 #Created at Friday 01/18/2019 14:40:47
 #Report level: variant
 #
-Base Information												Tag Sampler		
+Variant Annotation												Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr2	218270086	T	A		Y	AAMP	ENST00000444053.5	missense	M1L	ENST00000248450.8:AAMP:Q13685:missense:M1L:A1T; ENST00000248451.7:PNKD:(na):2kb upstream:(na):(na); ENST00000273077.8:PNKD:Q8N490:2kb upstream:(na):(na); ENST00000420660.5:AAMP:C9JG97:2kb upstream:(na):(na); ENST00000444053.5:AAMP:C9JEH3:missense:M1L:A1T	1		AAMP
 2	chr13	32316461	A	T		Y	BRCA2	ENST00000380152.7	missense	M1L	ENST00000380152.7:BRCA2:(na):missense:M1L:A1T; ENST00000533490.6:ZAR1L:A6NP61:2kb upstream:(na):(na); ENST00000544455.5:BRCA2:(na):missense:M1L:A1T	1		BRCA2
@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontolo
 #Created at Friday 01/18/2019 14:40:47
 #Report level: gene
 #
-Base Information					gnomAD Gene									
+Variant Annotation					gnomAD Gene									
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note	Transcript	Obv/Exp LoF	Obv/Exp Mis	Obv/Exp Syn	LoF Z-Score	Mis Z-Score	Syn Z-Score	pLI	pRec	pNull
 AAMP	1	missense	missense(1)		ENST00000248450;ENST00000420660;ENST00000422731;ENST00000444053;ENST00000447885	0.18121;0.19394;0.35623;0.18248;0.096213	0.70074;0.68924;0.6207;0.7041;0.71338	0.99184;0.94278;0.89989;0.98922;1.0132	3.5852;3.4116;1.7411;3.5672;2.7155	1.7254;1.7496;1.4613;1.7068;1.108	0.064479;0.44259;0.53546;0.085301;-0.068802	0.75169;0.63778;0.083557;0.74086;0.84334	0.24829;0.36216;0.87526;0.25912;0.15612	1.6526e-05;5.2479e-05;0.041188;1.8723e-05;0.00054615
 BRCA2	1	missense	missense(1)		ENST00000380152;ENST00000530893;ENST00000544455	0.49774;0.34302;0.49829	1.0698;1.0783;1.0698	0.96433;0.85827;0.96433	5.0964;2.5608;5.0879	-1.0392;-0.43747;-1.0392	0.68844;1.0163;0.68844	5.7375e-24;0.019693;5.4597e-24	1.0;0.97676;1.0	5.2418e-09;0.003551;5.629e-09
@@ -36,7 +36,7 @@ UTY	1	missense	missense(1)		ENST00000329134;ENST00000331397;ENST00000362096;ENST
 #Created at Friday 01/18/2019 14:40:47
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -53,7 +53,7 @@ UID	Sample
 #Created at Friday 01/18/2019 14:40:47
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	AAMP	1
 3	BRCA2	2

@@ -2,7 +2,7 @@
 #Created at Monday 12/17/2018 16:31:52
 #Report level: variant
 #
-Base Information											gnomAD									Tag Sampler		
+Variant Annotation											gnomAD									Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	AF Total	AF African	AF American	AF Ashkenazi Jewish	AF East Asian	AF Finnish	AF Non-Fin Eur	AF Other	AF South Asian	Number of Samples	Samples	Tags
 1	chr10	2987654	T	A																1		Does_Not_Exist
 2	chr3	41194775	C	A		CTNNB1	ENST00000405570.5	2kb upstream		ENST00000405570.5:CTNNB1:P35222:2kb upstream:(na):(na)	0.000732764113674	0.00264124942582								1		plus_upstream_CTNNB1
@@ -24,7 +24,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Monday 12/17/2018 16:31:52
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 CTNNB1	1	2kb upstream	2kb upstream(1)
 EGFR	1	missense	missense(1)
@@ -40,7 +40,7 @@ TP53	1	intron	intron(1)
 #Created at Monday 12/17/2018 16:31:52
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -62,7 +62,7 @@ UID	Sample
 #Created at Monday 12/17/2018 16:31:52
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	Does_Not_Exist	1
 3	plus_upstream_CTNNB1	2

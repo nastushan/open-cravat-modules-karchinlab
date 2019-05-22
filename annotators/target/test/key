@@ -2,7 +2,7 @@
 #Created at Tuesday 04/10/2018 10:25:29
 #Report level: variant
 #
-Base Information								Tag Sampler			VCF Info					
+Variant Annotation								Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr13	32316461	A	T	BRCA2	ENST00000544455.5	{"BRCA2":[[null,"M1L","MIS","ENST00000380152.7","A1T"],[null,"M1L","MIS","ENST00000544455.5","A1T"]],"ZAR1L":[["A6NP61",null,"2KU","ENST00000533490.6",null]]}	1		BRCA2						
 2	chrX	71120077	A	T	MED12	ENST00000374080.7	{"MED12":[["Q7Z3Z5","M1L","MIS","ENST00000333646.10","A1T"],[null,"M154L","MIS","ENST00000374102.5","A460T"],["Q93074","M154L","MIS","ENST00000374080.7","A460T"]]}	1		MED12						
@@ -12,7 +12,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Created at Tuesday 04/10/2018 10:25:29
 #Report level: gene
 #
-Base Information				TARGET	
+Variant Annotation				TARGET	
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Recommended Therapy	Rationale
 BRCA2	1	MIS	MIS(1)	PARP Inhibitor	Biallelic inactivation predict sensitivity to PARP inhibitors. May signal the presence of a germline mutation.
 MED12	1	MIS	MIS(1)		May predict resistance to targeted therapies
@@ -22,7 +22,7 @@ MSH2	1	MIS	MIS(1)		Prognostic / Diagnostic in colon cancer
 #Created at Tuesday 04/10/2018 10:25:29
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -32,7 +32,7 @@ UID	Sample
 #Created at Tuesday 04/10/2018 10:25:29
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	BRCA2	1
 3	MED12	2

@@ -2,7 +2,7 @@
 #Created at Tuesday 12/11/2018 15:12:09
 #Report level: variant
 #
-Base Information											Tag Sampler		
+Variant Annotation											Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr2	218270086	T	A	Y	AAMP	ENST00000444053.5	missense	M1L	ENST00000248450.8:AAMP:Q13685:MIS:M1L:A1T; ENST00000248451.7:PNKD:(na):2KU:(na):(na); ENST00000273077.8:PNKD:Q8N490:2KU:(na):(na); ENST00000420660.5:AAMP:C9JG97:2KU:(na):(na); ENST00000444053.5:AAMP:C9JEH3:MIS:M1L:A1T	1		AAMP
 2	chr13	32316461	A	T	Y	BRCA2	ENST00000380152.7	missense	M1L	ENST00000380152.7:BRCA2:(na):MIS:M1L:A1T; ENST00000533490.6:ZAR1L:A6NP61:2KU:(na):(na); ENST00000544455.5:BRCA2:(na):MIS:M1L:A1T	1		BRCA2
@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Tuesday 12/11/2018 15:12:09
 #Report level: gene
 #
-Base Information				LoFtool
+Variant Annotation				LoFtool
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	LoF Score
 AAMP	1	MIS	MIS(1)	0.536
 BRCA2	1	MIS	MIS(1)	0.0896
@@ -36,7 +36,7 @@ UTY	1	MIS	MIS(1)
 #Created at Tuesday 12/11/2018 15:12:09
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -53,7 +53,7 @@ UID	Sample
 #Created at Tuesday 12/11/2018 15:12:09
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	AAMP	1
 3	BRCA2	2

@@ -2,7 +2,7 @@
 #Created at Thursday 08/09/2018 10:20:05
 #Report level: variant
 #
-Base Information										Denovo			Tag Sampler		
+Variant Annotation										Denovo			Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	PubmedId	PrimaryPhenotype	Validation	Number of Samples	Samples	Tags
 1	chr1	17250836	A	G		PADI3	ENST00000375460.3	INT	ENST00000375460.3:PADI3:Q9ULW8:INT:(na):(na)	25363760	autism	unknown	1	s_C_FD0W3T_G001_d	rs57174186_s_C_FD0W3T_G001_d
 2	chr1	31129272	A	T						28263302	autism	unknown	1	s_C_FD0W3T_G001_d	VAR15063_s_C_FD0W3T_G001_d
@@ -12,14 +12,14 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 #Created at Thursday 08/09/2018 10:20:05
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 PADI3	1	INT	INT(1)
 #CRAVAT Report
 #Created at Thursday 08/09/2018 10:20:05
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	s_C_FD0W3T_G001_d
 2	s_C_FD0W3T_G001_d
@@ -29,7 +29,7 @@ UID	Sample
 #Created at Thursday 08/09/2018 10:20:05
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	rs57174186_s_C_FD0W3T_G001_d	1
 3	VAR15063_s_C_FD0W3T_G001_d	2

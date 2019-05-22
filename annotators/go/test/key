@@ -2,7 +2,7 @@
 #Created at Thursday 01/03/2019 11:32:38
 #Report level: variant
 #
-Base Information											Tag Sampler		
+Variant Annotation											Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr2	218270086	T	A	Y	AAMP	ENST00000444053.5	missense	M1L	ENST00000248450.8:AAMP:Q13685:missense:M1L:A1T; ENST00000248451.7:PNKD:(na):2kb upstream:(na):(na); ENST00000273077.8:PNKD:Q8N490:2kb upstream:(na):(na); ENST00000420660.5:AAMP:C9JG97:2kb upstream:(na):(na); ENST00000444053.5:AAMP:C9JEH3:missense:M1L:A1T	1		AAMP
 2	chr19	10194899	T	A	Y	DNMT1	ENST00000340748.8	missense	M1L	ENST00000340748.8:DNMT1:P26358:missense:M1L:A1T; ENST00000359526.8:DNMT1:(na):missense:M1L:A1T; ENST00000540357.5:DNMT1:(na):intron:(na):(na)	1		DNMT1
@@ -17,7 +17,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Thursday 01/03/2019 11:32:38
 #Report level: gene
 #
-Base Information				Gene Ontology						
+Variant Annotation				Gene Ontology						
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Term	ID	GO Name	Full Aspects	Aspects	Reference	Evidence Code
 AAMP	1	missense	missense(1)	Angio-associated migratory cell protein	GO:0001525;GO:0005829;GO:0005886;GO:0008201;GO:0009986;GO:0010595;GO:0014909;GO:0015630;GO:0030154;GO:0042273;GO:0045171;GO:0051082	angiogenesis;cytosol;plasma membrane;heparin binding;cell surface;positive regulation of endothelial cell migration;smooth muscle cell migration;microtubule cytoskeleton;cell differentiation;ribosomal large subunit biogenesis;intercellular bridge;unfolded protein binding	P;C;C;F;C;P;P;C;P;P;C;F	C,F,P	PMID:10329261;GO_REF:0000052;GO_REF:0000039;PMID:7743515;PMID:10329261;GO_REF:0000024;PMID:18634987;GO_REF:0000052;GO_REF:0000037;PMID:21873635;GO_REF:0000052;PMID:21873635	NAS;IDA;IEA;IDA;IDA;ISS;IEP;IDA;IEA;IBA;IDA;IBA
 DNMT1	1	missense	missense(1)	DNA (cytosine-5)-methyltransferase 1	GO:0000122;GO:0000981;GO:0003677;GO:0003677;GO:0003723;GO:0003886;GO:0003886;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005515;GO:0005634;GO:0005634;GO:0005654;GO:0005654;GO:0005654;GO:0005657;GO:0005721;GO:0006306;GO:0006325;GO:0007265;GO:0008270;GO:0008327;GO:0009008;GO:0009008;GO:0010216;GO:0010216;GO:0010216;GO:0010424;GO:0010628;GO:0010629;GO:0016458;GO:0043045;GO:0045814;GO:0051571;GO:0051573;GO:0071230;GO:0090116;GO:0090309;GO:1904707;GO:1905460;GO:1905931;GO:1990841	negative regulation of transcription by RNA polymerase II;DNA-binding transcription factor activity, RNA polymerase II-specific;DNA binding;DNA binding;RNA binding;DNA (cytosine-5-)-methyltransferase activity;DNA (cytosine-5-)-methyltransferase activity;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;protein binding;nucleus;nucleus;nucleoplasm;nucleoplasm;nucleoplasm;replication fork;pericentric heterochromatin;DNA methylation;chromatin organization;Ras protein signal transduction;zinc ion binding;methyl-CpG binding;DNA-methyltransferase activity;DNA-methyltransferase activity;maintenance of DNA methylation;maintenance of DNA methylation;maintenance of DNA methylation;DNA methylation on cytosine within a CG sequence;positive regulation of gene expression;negative regulation of gene expression;gene silencing;DNA methylation involved in embryo development;negative regulation of gene expression, epigenetic;positive regulation of histone H3-K4 methylation;negative regulation of histone H3-K9 methylation;cellular response to amino acid stimulus;C-5 methylation of cytosine;positive regulation of methylation-dependent chromatin silencing;positive regulation of vascular smooth muscle cell proliferation;negative regulation of vascular associated smooth muscle cell apoptotic process;negative regulation of vascular smooth muscle cell differentiation involved in phenotypic switching;promoter-specific chromatin binding	P;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;F;C;C;C;C;C;C;C;P;P;P;F;F;F;F;P;P;P;P;P;P;P;P;P;P;P;P;P;P;P;P;P;F	C,F,P	GO_REF:0000107;GO_REF:0000113;PMID:18754681;PMID:21873635;GO_REF:0000107;PMID:21745816;PMID:21873635;PMID:16357870;PMID:16983096;PMID:17673620;PMID:17934516;PMID:17972916;PMID:19282482;PMID:19450230;PMID:19798101;PMID:21151116;PMID:21745816;PMID:21947282;PMID:22094255;PMID:25544563;PMID:25753001;PMID:27728808;PMID:16791210;PMID:21873635;Reactome:R-HSA-212222;Reactome:R-HSA-212269;Reactome:R-HSA-4655431;GO_REF:0000107;GO_REF:0000107;PMID:10888872;GO_REF:0000037;PMID:24623306;GO_REF:0000107;GO_REF:0000107;PMID:18754681;Reactome:R-HSA-212269;PMID:18754681;PMID:21745816;PMID:21873635;PMID:21873635;PMID:18413740;PMID:27021683;GO_REF:0000107;GO_REF:0000107;Reactome:R-HSA-212300;PMID:18413740;PMID:18413740;GO_REF:0000107;GO_REF:0000002;PMID:24623306;PMID:27021683;PMID:27021683;PMID:27021683;PMID:24623306	IEA;ISA;IDA;IBA;IEA;IDA;IBA;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;IPI;HDA;IBA;TAS;TAS;TAS;IEA;IEA;TAS;IEA;IMP;IEA;IEA;IDA;TAS;IDA;IDA;IBA;IBA;IMP;IMP;IEA;IEA;TAS;IMP;IMP;IEA;IEA;IMP;IMP;IMP;IMP;IDA
@@ -32,7 +32,7 @@ UTY	1	missense	missense(1)	Histone demethylase UTY	GO:0000978;GO:0003682;GO:0005
 #Created at Thursday 01/03/2019 11:32:38
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -47,7 +47,7 @@ UID	Sample
 #Created at Thursday 01/03/2019 11:32:38
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	AAMP	1
 3	DNMT1	2

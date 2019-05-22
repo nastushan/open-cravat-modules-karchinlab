@@ -2,7 +2,7 @@
 #Created at Thursday 04/05/2018 15:15:26
 #Report level: variant
 #
-Base Information					Repeat Sequences			Tag Sampler			VCF Info					
+Variant Annotation					Repeat Sequences			Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	Repeat Class	Repeat Family	Repeat Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr1	10100	C	T	Simple_repeat	Simple_repeat	(TAACCC)n	1		simplerepeat1						
 2	chr1	3694500	A	T	Satellite	Satellite	MSR1	1		satellite1						
@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Repeat Class	Repeat Family	Repeat Name	Numb
 #Created at Thursday 04/05/2018 15:15:26
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -36,7 +36,7 @@ UID	Sample
 #Created at Thursday 04/05/2018 15:15:26
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	simplerepeat1	1
 3	satellite1	2

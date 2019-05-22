@@ -2,7 +2,7 @@
 #Created at Thursday 12/20/2018 21:05:23
 #Report level: variant
 #
-Base Information											Tag Sampler		
+Variant Annotation											Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags
 1	chr22	30025797	A	T	Yes	MTMR3	ENST00000401950.6	missense	N1198I	ENST00000323630.9:MTMR3:G5E953:missense:N1062I:A3185T; ENST00000333027.7:MTMR3:(na):missense:N1170I:A3509T; ENST00000351488.7:MTMR3:(na):missense:N1161I:A3482T; ENST00000401950.6:MTMR3:Q13615:missense:N1198I:A3593T; ENST00000406629.1:MTMR3:(na):missense:N1170I:A3509T	2	sample_1,sample_2	TR1;TR1b
 2	chr22	40418496	T	C	Yes	MKL1	ENST00000618196.4	missense	S683G	ENST00000355630.7:MKL1:Q969V6:missense:S648G:A1942G; ENST00000396617.7:MKL1:E7ER32:missense:S648G:A1942G; ENST00000402042.5:MKL1:B0QY83:missense:S598G:A1792G; ENST00000407029.5:MKL1:Q969V6:missense:S648G:A1942G; ENST00000614754.4:MKL1:A0A087X287:missense:S649G:A1945G; ENST00000618196.4:MKL1:W0Z7M9:missense:S683G:A2047G; ENST00000618417.1:MKL1:Q29R68:intron:(na):(na); ENST00000620651.4:MKL1:A0A087WU73:missense:S599G:A1795G	1	sample_1	TR2;Smoker
@@ -16,7 +16,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Thursday 12/20/2018 21:05:23
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 MTMR3	1	missense	missense(1)
 MKL1	2	missense	missense(2)
@@ -26,7 +26,7 @@ AAMP	2	frameshift insertion	frameshift insertion(1),frameshift deletion(1)
 #Created at Thursday 12/20/2018 21:05:23
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	sample_1
 1	sample_2
@@ -41,7 +41,7 @@ UID	Sample
 #Created at Thursday 12/20/2018 21:05:23
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 1	TR1	1
 2	TR1b	1

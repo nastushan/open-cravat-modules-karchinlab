@@ -2,7 +2,7 @@
 #Created at Wednesday 11/14/2018 13:56:25
 #Report level: variant
 #
-Base Information										BRCA1 Functional Assay		Tag Sampler		
+Variant Annotation										BRCA1 Functional Assay		Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	Function Score Mean	Function Class	Number of Samples	Samples	Tags
 1	chr17	43124118	T	G		BRCA1	ENST00000471181.6	INT	ENST00000352993.7:BRCA1:(na):INT:(na):(na); ENST00000354071.7:BRCA1:Q5YLB2:INT:(na):(na); ENST00000357654.7:BRCA1:P38398:INT:(na):(na); ENST00000468300.5:BRCA1:(na):INT:(na):(na); ENST00000471181.6:BRCA1:(na):INT:(na):(na); ENST00000491747.6:BRCA1:(na):INT:(na):(na); ENST00000493795.5:BRCA1:(na):INT:(na):(na); ENST00000586385.5:BRCA1:C6YB45:INT:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:INT:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:INT:(na):(na)	-0.3726105034	FUNC	1	s1	41276135
 2	chr17	43124046	A	G	Y	BRCA1	ENST00000471181.6	SYN	ENST00000352993.7:BRCA1:(na):SYN:A17A:T51C; ENST00000354071.7:BRCA1:Q5YLB2:SYN:A17A:T51C; ENST00000357654.7:BRCA1:P38398:SYN:A17A:T51C; ENST00000468300.5:BRCA1:(na):SYN:A17A:T51C; ENST00000471181.6:BRCA1:(na):SYN:A17A:T51C; ENST00000491747.6:BRCA1:(na):SYN:A17A:T51C; ENST00000493795.5:BRCA1:(na):UT5:(na):(na); ENST00000586385.5:BRCA1:C6YB45:INT:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:INT:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:INT:(na):(na)	0.4958803585	FUNC	1	s1	41276063
@@ -16,14 +16,14 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 #Created at Wednesday 11/14/2018 13:56:25
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 BRCA1	8	MIS	MIS(2),SYN(2),INT(4)
 #CRAVAT Report
 #Created at Wednesday 11/14/2018 13:56:25
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	s1
 2	s1
@@ -37,7 +37,7 @@ UID	Sample
 #Created at Wednesday 11/14/2018 13:56:25
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	41276135	1
 3	41276063	2

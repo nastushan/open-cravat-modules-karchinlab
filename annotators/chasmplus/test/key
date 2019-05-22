@@ -2,7 +2,7 @@
 #Created at Tuesday 08/07/2018 09:44:17
 #Report level: variant
 #
-Base Information										CHASMplus				Tag Sampler		
+Variant Annotation										CHASMplus				Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	All Mappings	P-value	Score	Transcript	All results	Number of Samples	Samples	Tags
 1	chr4	1804372	A	G	Y	FGFR3	ENST00000440486.6	MIS	ENST00000260795.6:FGFR3:P22607:MIS:Y373C:A1118G; ENST00000340107.8:FGFR3:(na):MIS:Y375C:A1124G; ENST00000352904.5:FGFR3:(na):INT:(na):(na); ENST00000412135.6:FGFR3:(na):INT:(na):(na); ENST00000440486.6:FGFR3:P22607:MIS:Y373C:A1118G; ENST00000481110.6:FGFR3:F8W9L4:MIS:Y373C:A1118G; ENST00000613647.4:FGFR3:I6LM06:UT3:(na):(na)	4.8e-07	0.738	ENST00000481110.6	ENST00000260795.6:(0.740:4.8e-07),*ENST00000481110.6:(0.738:4.8e-07),NM_000142.4:(0.750:4.8e-07),NM_001163213.1:(0.744:4.8e-07)	1		plus_SBS_FGFR3
 2	chr12	25245372	T	C	Y	KRAS	ENST00000256078.8	MIS	ENST00000256078.8:KRAS:P01116:MIS:K5E:A13G; ENST00000311936.7:KRAS:(na):MIS:K5E:A13G; ENST00000556131.1:KRAS:G3V4K2:MIS:K5E:A13G; ENST00000557334.5:KRAS:G3V5T7:MIS:K5E:A13G	5.8e-05	0.557	NM_033360.3	ENST00000556131.1:(0.630:8.33e-06),ENST00000557334.5:(0.698:1.6e-06),NM_004985.4:(0.687:1.76e-06),*NM_033360.3:(0.557:5.8e-05)	1		minus_SBS_KRAS
@@ -20,7 +20,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Al
 #Created at Tuesday 08/07/2018 09:44:17
 #Report level: gene
 #
-Base Information				CHASMplus		
+Variant Annotation				CHASMplus		
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Max Score	Mean Score	Gene p-value
 FGFR3	1	MIS	MIS(1)	0.738	0.738	0.0
 KRAS	1	MIS	MIS(1)	0.557	0.557	0.0
@@ -36,7 +36,7 @@ TLE2	1	STL	STL(1)	0.174	0.174	0.072
 #Created at Tuesday 08/07/2018 09:44:17
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -54,7 +54,7 @@ UID	Sample
 #Created at Tuesday 08/07/2018 09:44:17
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	plus_SBS_FGFR3	1
 3	minus_SBS_KRAS	2

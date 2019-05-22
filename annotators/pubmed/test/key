@@ -2,7 +2,7 @@
 #Created at Tuesday 04/10/2018 09:50:06
 #Report level: variant
 #
-Base Information								Tag Sampler			VCF Info					
+Variant Annotation								Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr1	11847684	T	A	NPPA	ENST00000610706.1	{"NPPA":[["P01160","M1L","MIS","ENST00000376480.7","A1T"],["A0A087X094","M1L","MIS","ENST00000610706.1","A1T"],["B0ZBE8",null,"INT","ENST00000376476.1",null]]}	1		NPPA						
 2	chr6	30715175	T	A	MDC1	ENST00000613547.4	{"MDC1":[["Q14676","M1L","MIS","ENST00000376406.7","A1T"],["A0A087X0R2","M1L","MIS","ENST00000613547.4","A1T"]]}	1		MDC1						
@@ -13,7 +13,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Hugo	Transcript	All Mappings	Number of Samp
 #Created at Tuesday 04/10/2018 09:50:06
 #Report level: gene
 #
-Base Information				PubMed	
+Variant Annotation				PubMed	
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Article Count	Search Link
 AADACL4	1	MIS	MIS(1)		
 MDC1	1	MIS	MIS(1)	45	http://www.ncbi.nlm.nih.gov/pubmed?term=MDC1[TIAB] AND cancer[MH]
@@ -24,7 +24,7 @@ VCAM1	1	MIS	MIS(1)	36	http://www.ncbi.nlm.nih.gov/pubmed?term=VCAM1[TIAB] AND ca
 #Created at Tuesday 04/10/2018 09:50:06
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -35,7 +35,7 @@ UID	Sample
 #Created at Tuesday 04/10/2018 09:50:06
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	NPPA	1
 3	MDC1	2

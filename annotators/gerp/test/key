@@ -2,7 +2,7 @@
 #Created at Tuesday 12/11/2018 13:49:17
 #Report level: variant
 #
-Base Information											GERP++			Tag Sampler		
+Variant Annotation											GERP++			Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Neutral Rate	RS Score	RS Ranked Score	Number of Samples	Samples	Tags
 1	chr16	47430	C	A	Y	POLR3K	ENST00000293860.5	stop lost	*109Y	ENST00000293860.5:POLR3K:(na):STL:*109Y:G327T	3.97	0.895	0.18302	1		
 2	chr16	47461	T	C	Y	POLR3K	ENST00000293860.5	missense	N99S	ENST00000293860.5:POLR3K:(na):MIS:N99S:A296G	4.47	-0.596	0.1102	1		
@@ -12,14 +12,14 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Tuesday 12/11/2018 13:49:17
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 POLR3K	3	STL	STL(1),MIS(2)
 #CRAVAT Report
 #Created at Tuesday 12/11/2018 13:49:17
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -29,7 +29,7 @@ UID	Sample
 #Created at Tuesday 12/11/2018 13:49:17
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2		1
 3		2

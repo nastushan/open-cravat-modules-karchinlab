@@ -2,7 +2,7 @@
 #Created at Wednesday 12/12/2018 14:52:25
 #Report level: variant
 #
-Base Information											Hg19		Tag Sampler		
+Variant Annotation											Hg19		Tag Sampler		
 UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Hg19 Chrom	Hg19 Position	Number of Samples	Samples	Tags
 1	chr7	11806482	?	A		THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	chr7	11846108	1		rs1815109
 2	chr7	11806482	?	G		THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	chr7	11846108	1		rs1815109
@@ -17,7 +17,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Pr
 #Created at Wednesday 12/12/2018 14:52:25
 #Report level: gene
 #
-Base Information			
+Variant Annotation			
 Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
 THSD7A	2	intron	intron(2)
 CFAP74	2	missense	missense(1),synonymous(1)
@@ -26,7 +26,7 @@ PRKCZ	2	intron	intron(2)
 #Created at Wednesday 12/12/2018 14:52:25
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -44,7 +44,7 @@ UID	Sample
 #Created at Wednesday 12/12/2018 14:52:25
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 20	rs1815109	1
 20	rs1815109	2

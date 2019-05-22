@@ -2,7 +2,7 @@
 #Created at Thursday 04/05/2018 15:27:46
 #Report level: variant
 #
-Base Information					1000 Genomes	Tag Sampler			VCF Info					
+Variant Annotation					1000 Genomes	Tag Sampler			VCF Info					
 UID	Chrom	Position	Ref Base	Alt Base	AF	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
 1	chr3	146085328	C	T	0.000199681	1		plus_SBS_PLOD2						
 2	chr20	52414564	-	T	0.478235	1		plus_ins_GNAS						
@@ -19,7 +19,7 @@ UID	Chrom	Position	Ref Base	Alt Base	AF	Number of Samples	Samples	Tags	Phred	VCF
 #Created at Thursday 04/05/2018 15:27:46
 #Report level: sample
 #
-Base Information	
+Variant Annotation	
 UID	Sample
 1	
 2	
@@ -36,7 +36,7 @@ UID	Sample
 #Created at Thursday 04/05/2018 15:27:46
 #Report level: mapping
 #
-Base Information		
+Variant Annotation		
 Original Line	User Tags	UID
 2	plus_SBS_PLOD2	1
 3	plus_ins_GNAS	2
