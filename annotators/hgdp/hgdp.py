@@ -20,7 +20,6 @@ class CravatAnnotator(BaseAnnotator):
 
         sql_q = 'SELECT  African, European, Middle_Eastern, CS_Asian, East_Asian, Oceanian, Native_American FROM hgdp_table WHERE CHR="%s" AND POS=%s AND REF="%s" and ALT="%s";' \
             %(input_chrom, input_pos, input_ref, input_alt)
-        self.logger.warn(sql_q)
         self.cursor.execute(sql_q)
         sql_q_result = self.cursor.fetchone()
         if sql_q_result:
