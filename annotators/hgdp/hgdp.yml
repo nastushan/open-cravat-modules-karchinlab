@@ -1,0 +1,52 @@
+title: HGDP
+version: 1.0.0
+type: annotator
+level: variant
+output_columns:
+- filterable: true
+  name: european_allele_freq
+  title: European AF
+  type: float
+  width: 68
+- filterable: true
+  name: african_allele_freq
+  title: African AF
+  type: float
+  width: 68
+- filterable: true
+  name: middle_eastern_allele_freq
+  title: Middle Eastern AF
+  type: float
+  width: 68
+- filterable: true
+  name: east_asian_allele_freq
+  title: East Asian AF
+  type: float
+  width: 68
+- filterable: true
+  name: cs_asian_allele_freq
+  title: CS Asian AF
+  type: float
+  width: 68
+- filterable: true
+  name: oceanian_allele_freq
+  title: Oceanian AF
+  type: float
+  width: 68
+- filterable: true
+  name:  native_american_allele_freq
+  title:  Native American AF
+  type: float
+  width: 68
+tags:
+- variants
+- populations
+- human
+- diversity
+description: Human Genome Diversity Panel (HGDP) DNA from individuals among 51 different populations.
+developer:
+  name: 'Jun Z. Li et al.'
+  organization: 'Stanford University School of Medicine'
+  email: ''
+  website: 'https://www.hagsc.org/hgdp/'
+  citation: ''

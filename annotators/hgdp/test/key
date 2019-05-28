@@ -1,0 +1,27 @@
+#CRAVAT Report
+#Created at Tuesday 05/28/2019 04:43:54
+#Report level: variant
+#
+Variant Annotation												Tag Sampler			HGDP						
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	European AF	African AF	Middle Eastern AF	East Asian AF	CS Asian AF	Oceanian AF	Native American AF
+1	chr1	752566	G	A								1	sfake		0.141025641025641	0.538759689922481	0.236842105263158	0.0984682713347921	0.235588972431078	0.0892857142857143	0.246031746031746
+#CRAVAT Report
+#Created at Tuesday 05/28/2019 04:43:54
+#Report level: gene
+#
+Variant Annotation				
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
+#CRAVAT Report
+#Created at Tuesday 05/28/2019 04:43:54
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	sfake
+#CRAVAT Report
+#Created at Tuesday 05/28/2019 04:43:54
+#Report level: mapping
+#
+Variant Annotation		
+Original Line	User Tags	UID
+1		1
