@@ -8,3 +8,4 @@ developer:
 tags:
 - visualization widgets
 hidden: true
+required_annotator: go
