@@ -25,3 +25,4 @@ tags:
 title: Promoter IR
 type: annotator
 version: 2019.05.20
+requires_opencravat: '>=1.4.4'

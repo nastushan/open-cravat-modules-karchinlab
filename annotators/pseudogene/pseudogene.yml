@@ -32,3 +32,4 @@ type: annotator
 version: 28.0.1
 requires:
 - wgpseudogene
+requires_opencravat: '>=1.4.4'

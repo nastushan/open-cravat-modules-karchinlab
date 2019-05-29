@@ -30,3 +30,4 @@ release_note:
   2019.05.13: intervaltree and pickle
 requires:
 - wgncrna
+requires_opencravat: '>=1.4.4'
