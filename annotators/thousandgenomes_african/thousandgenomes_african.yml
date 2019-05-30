@@ -52,5 +52,5 @@ tags:
 title: 1000 Genomes-African
 type: annotator
 version: 3.1.0
-in_group:
+groups:
 - thousandgenomes_group
