@@ -279,7 +279,7 @@ widgetGenerators['lollipop'] = {
 							y, 
 							width, height).
 							fill(color);
-					var civariantrcle = stage.circle(x, y + height, v.variantRadius).
+					var circle = stage.circle(x, y + height, v.variantRadius).
 							fill(color);
                     var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
                     rect.domElement_.setAttribute('aachange', aachange);
