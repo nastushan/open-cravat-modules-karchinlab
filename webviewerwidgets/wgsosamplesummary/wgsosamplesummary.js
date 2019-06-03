@@ -9,11 +9,20 @@ widgetGenerators['sosamplesummary'] = {
             this['variables']['data'] = data;
         },
         'shoulddraw': function () {
-            if (this['variables']['data'] == null) {
+            var data = this['variables']['data'];
+            if (data == null) {
                 return false;
             } else {
-                return true;
+                if (data['samples'].length > 20) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
+        },
+        'onresize': function () {
+            var v = this['variables'];
+            this['function'](v['div'], v['data']);
         },
 		'function': function (div, data) {
 			var colorPalette = {
@@ -38,38 +47,76 @@ widgetGenerators['sosamplesummary'] = {
 			if (div != null) {
 				emptyElement(div);
 			}
-			div.style.width = 'calc(100% - 37px)';
+            this['variables']['div'] = div;
+            this['variables']['data'] = data;
+            div.style.position = 'relative';
+            div.style.overflowX = 'scroll';
+            $(div).width($(div).width());
+            var sdiv = getEl('div');
+            sdiv.style.position = 'relative';
+            sdiv.style.width = '100%';
+            sdiv.style.height = '100%';
+            addEl(div, sdiv);
 			var chartDiv = getEl('canvas');
-			chartDiv.style.width = 'calc(100% - 20px)';
-			chartDiv.style.height = 'calc(100% - 20px)';
-			addEl(div, chartDiv);
+            var canvasWidth = data['samples'].length * 30 + 100;
+            var canvasHeight = div.clientHeight;
+            chartDiv.style.position = 'absolute';
+            chartDiv.style.top = '0';
+            chartDiv.style.left = '0';
+            chartDiv.style.pointerEvents = 'none';
+			//chartDiv.style.width = canvasWidth + 'px';
+			//chartDiv.style.height = '200px';
+            //chartDiv.width = canvasWidth;
+            //chartDiv.height = canvasHeight;
+			addEl(sdiv, chartDiv);
 			var samples = data['samples'];
             var labelLenCutoff = 10;
+            var initDrawNum = 10;
             var origSamples = [];
+            var initSamples = [];
+            var nextSamples = [];
             for (var i = 0; i < samples.length; i++) {
                 var sample = samples[i];
                 origSamples.push(sample);
                 if (sample.length > labelLenCutoff) {
                     sample = sample.substring(0, 4) + '..' + sample.substring(sample.length - 4, sample.length);
                 }
+                if (i < initDrawNum) {
+                    initSamples.push(sample);
+                } else {
+                    nextSamples.push(sample);
+                }
                 samples[i] = sample;
             }
 			var sos = data['sos'];
 			var socountdata = data['socountdata'];
 			var datasets = [];
+            var initDatasets = [];
+            var nextDatasets = [];
 			for (var i = 0; i < sos.length; i++) {
 				var so = sos[i];
 				row = {};
-				row['label'] = so
-				row['backgroundColor'] = colorPalette[so];
+				var label = so
+				var backgroundColor = colorPalette[so];
+                var counts = socountdata[so];
+                var initDatasetCounts = [];
+                var nextDatasetCounts = [];
+                for (var j = 0; j < counts.length; j++) {
+                    if (j < initDrawNum) {
+                        initDatasetCounts.push(counts[j]);
+                    } else {
+                        nextDatasetCounts.push(counts[j]);
+                    }
+                }
 				row['data'] = socountdata[so];
-				datasets.push(row);
+                initDatasets.push({'label': label, 'backgroundColor': backgroundColor, 'data': initDatasetCounts});
+                nextDatasets.push({'label': label, 'backgroundColor': backgroundColor, 'data': nextDatasetCounts});
 			}
 			var chart = new Chart(chartDiv, {
 				type: 'bar',
 				data: {
-					labels: samples,
-					datasets: datasets
+					labels: initSamples,
+					datasets: initDatasets
 				},
 				options: {
 					title: {
@@ -86,13 +133,17 @@ widgetGenerators['sosamplesummary'] = {
                         },
 					},
                     legend: {
-                        position: 'right',
+                        position: 'left',
                     },
 					responsive: true,
                     responsiveAnimationDuration: 500,
                     maintainAspectRatio: false,
 					scales: {
 						xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Samples',
+                            },
 							stacked: true,
                             ticks: {
                                 maxRotation: 90,
@@ -100,11 +151,27 @@ widgetGenerators['sosamplesummary'] = {
                             }
 						}],
 						yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Fraction of Sequence Ontology',
+                            },
 							stacked: true
 						}]
-					}
-				}
+					},
+				},
 			});
+            setTimeout(function () {
+                for (var j = 0; j < nextSamples.length; j++) {
+                    chart.data.labels.push(nextSamples[j]);
+                }
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                    for (var j = 0; j < nextDatasets[i].data.length; j++) {
+                        chart.data.datasets[i].data.push(nextDatasets[i].data[j]);
+                    }
+                }
+                var newWidth = $(sdiv).width() + nextSamples.length * 20;
+                $(sdiv).width(newWidth);
+            }, 100);
 		}
 	}
 };
