@@ -16,3 +16,4 @@ tags:
 title: 1000 Genomes
 type: group
 version: 3.1.0
+requires_opencravat: '>=1.4.4'

@@ -21,3 +21,4 @@ tags:
 title: CHASMplus
 type: group
 version: 1.0.10
+requires_opencravat: '>=1.4.4'
