@@ -20,6 +20,12 @@ widgetGenerators['sosamplesummary'] = {
                 }
             }
         },
+        'beforeresize': function () {
+            var contentDiv = this['variables']['div'];
+            $(contentDiv).empty();
+            contentDiv.style.width = '0px';
+            contentDiv.style.height = '0px';
+        },
         'onresize': function () {
             var v = this['variables'];
             this['function'](v['div'], v['data']);
@@ -51,7 +57,8 @@ widgetGenerators['sosamplesummary'] = {
             this['variables']['data'] = data;
             div.style.position = 'relative';
             div.style.overflowX = 'scroll';
-            $(div).width($(div).width());
+            var divWidth = $(div).width();
+            $(div).width(divWidth);
             var sdiv = getEl('div');
             sdiv.style.position = 'relative';
             sdiv.style.width = '100%';
@@ -70,7 +77,7 @@ widgetGenerators['sosamplesummary'] = {
             //chartDiv.height = canvasHeight;
 			addEl(sdiv, chartDiv);
 			var samples = data['samples'];
-            var labelLenCutoff = 10;
+            var labelLenCutoff = Math.floor((divWidth - 150) / 30);
             var initDrawNum = 10;
             var origSamples = [];
             var initSamples = [];
