@@ -1,5 +1,5 @@
 title: Flanking Sequence
-version: 0.0.2
+version: 0.0.3
 type: annotator
 level: variant
 output_columns:
