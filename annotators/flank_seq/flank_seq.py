@@ -10,7 +10,6 @@ class CravatAnnotator(BaseAnnotator):
 
     def setup(self): 
         self.server_url = 'https://rest.ensembl.org'
-        print(self.data_dir)
         fprefix = 'GCA_000001405.15_GRCh38_no_alt_analysis_set'
         prefix = os.path.join(self.data_dir,fprefix)
         self.btr = BowtieIndexReference(prefix)
@@ -18,6 +17,9 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
         out = {}
         chrom = input_data['chrom']
+        # Avoid exception thrown for alt chromosomes
+        if chrom not in self.btr.recs:
+            return None
         start = input_data['pos']
         ref_bases = input_data['ref_base'].replace('-','')
         alt_bases = input_data['alt_base'].replace('-','')
@@ -31,7 +33,9 @@ class CravatAnnotator(BaseAnnotator):
             alt_seq = ref_seq[:nflank] + alt_bases + ref_seq[nflank+len(ref_bases):]
             out['ref_seq'] = ref_seq
             out['alt_seq'] = alt_seq
-        return out
+            return out
+        else:
+            return None
  
     
     def cleanup(self):
