@@ -1,33 +1,30 @@
 #CRAVAT Report
-#Created at Wednesday 12/12/2018 10:11:42
+#Created at Thursday 06/06/2019 12:39:30
 #Report level: variant
 #
-Variant Annotation											Hg19		Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Hg19 Chrom	Hg19 Position	Number of Samples	Samples	Tags
-2	chr1	630128	?	A							chr1	565508	1		rs9283150
-3	chr1	792461	?	G							chr1	727841	1		rs116587930
-4	chr1	817341	?	G							chr1	752721	1		rs3131972
-5	chr1	818725	?	C							chr1	754105	1		rs12184325
-6	chrM	10	?	T							chrM	10	1		i703360
-7	chr1	984121	?	G							chr1	919501	1		rs4970414
-8	chr1	984121	?	T							chr1	919501	1		rs4970414
-9	chr1	946247	C	A	Y	NOC2L	ENST00000327044.6	synonymous	L615L	ENST00000327044.6:NOC2L:Q9Y3T9:SYN:L615L:G1843T; ENST00000342066.7:SAMD11:Q96NU1:2KD:(na):(na); ENST00000616016.4:SAMD11:I7G285:2KD:(na):(na); ENST00000616125.4:SAMD11:A0A087X223:2KD:(na):(na); ENST00000617307.4:SAMD11:A0A087WYU3:2KD:(na):(na); ENST00000618181.4:SAMD11:A0A087WXB3:2KD:(na):(na); ENST00000618323.4:SAMD11:A0A087WX24:2KD:(na):(na); ENST00000618779.4:SAMD11:A0A087X1J5:2KD:(na):(na); ENST00000620200.4:SAMD11:A0A087X2A3:2KD:(na):(na); ENST00000622503.4:SAMD11:A0A087WYW1:2KD:(na):(na)	chr1	881627	1		rs2272757
-10	chr1	946247	C	G	Y	NOC2L	ENST00000327044.6	synonymous	L615L	ENST00000327044.6:NOC2L:Q9Y3T9:SYN:L615L:G1843C; ENST00000342066.7:SAMD11:Q96NU1:2KD:(na):(na); ENST00000616016.4:SAMD11:I7G285:2KD:(na):(na); ENST00000616125.4:SAMD11:A0A087X223:2KD:(na):(na); ENST00000617307.4:SAMD11:A0A087WYU3:2KD:(na):(na); ENST00000618181.4:SAMD11:A0A087WXB3:2KD:(na):(na); ENST00000618323.4:SAMD11:A0A087WX24:2KD:(na):(na); ENST00000618779.4:SAMD11:A0A087X1J5:2KD:(na):(na); ENST00000620200.4:SAMD11:A0A087X2A3:2KD:(na):(na); ENST00000622503.4:SAMD11:A0A087WYW1:2KD:(na):(na)	chr1	881627	1		rs2272757
-11	chr1	982260	?	A		PERM1	ENST00000433179.3	2kb upstream		ENST00000341290.6:PERM1:(na):2KU:(na):(na); ENST00000433179.3:PERM1:Q5SV97:2KU:(na):(na)	chr1	917640	1		rs41285816
-12	chr1	982260	?	G		PERM1	ENST00000433179.3	2kb upstream		ENST00000341290.6:PERM1:(na):2KU:(na):(na); ENST00000433179.3:PERM1:Q5SV97:2KU:(na):(na)	chr1	917640	1		rs41285816
-13	chr1	3888534	?	C		C1orf174	ENST00000361605.3	2kb downstream		ENST00000361605.3:C1orf174:Q8IYL3:2KD:(na):(na)	chr1	3805098	1		rs7530189
-14	chr1	3888534	?	T		C1orf174	ENST00000361605.3	2kb downstream		ENST00000361605.3:C1orf174:Q8IYL3:2KD:(na):(na)	chr1	3805098	1		rs7530189
+Variant Annotation												Tag Sampler		
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
+2	chr1	565508	?	A								0		rs9283150
+3	chr1	727841	?	G								0		rs116587930
+4	chr1	752721	?	G								0		rs3131972
+5	chr1	754105	?	C								0		rs12184325
+6	chrM	10	?	T								0		i703360
+7	chr1	919501	?	G								0		rs4970414
+8	chr1	919501	?	T								0		rs4970414
+9	chr1	881627	?	A								0		rs2272757
+10	chr1	881627	?	G								0		rs2272757
+11	chr1	917640	?	A								0		rs41285816
+12	chr1	917640	?	G								0		rs41285816
+13	chr1	3805098	?	C								0		rs7530189
+14	chr1	3805098	?	T								0		rs7530189
 #CRAVAT Report
-#Created at Wednesday 12/12/2018 10:11:42
+#Created at Thursday 06/06/2019 12:39:30
 #Report level: gene
 #
-Variant Annotation			
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies
-NOC2L	2	SYN	SYN(2)
-PERM1	2	2KU	2KU(2)
-C1orf174	2	2KD	2KD(2)
+Variant Annotation				
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
 #CRAVAT Report
-#Created at Wednesday 12/12/2018 10:11:42
+#Created at Thursday 06/06/2019 12:39:30
 #Report level: sample
 #
 Variant Annotation	
@@ -50,7 +47,7 @@ UID	Sample
 13	
 14	
 #CRAVAT Report
-#Created at Wednesday 12/12/2018 10:11:42
+#Created at Thursday 06/06/2019 12:39:30
 #Report level: mapping
 #
 Variant Annotation		
