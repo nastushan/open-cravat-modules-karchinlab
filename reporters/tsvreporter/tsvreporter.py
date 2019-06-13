@@ -4,6 +4,7 @@ import datetime
 import re
 import csv
 import zipfile
+import os
 
 class Reporter(CravatReport):
 
@@ -21,9 +22,9 @@ class Reporter(CravatReport):
     def end (self):
         if self.wf is not None:
             self.wf.close()
-        zf = zipfile.ZipFile(self.filename_prefix + '.tsv.zip', mode='w')
+        zf = zipfile.ZipFile(self.filename_prefix + '.tsv.zip', mode='w', compression=zipfile.ZIP_DEFLATED)
         for filename in self.filenames:
-            zf.write(filename)
+            zf.write(filename, os.path.relpath(filename, start=os.path.dirname(filename)))
         zf.close()
         
     def write_preface (self, level): 
@@ -48,7 +49,7 @@ class Reporter(CravatReport):
             if count == 0:
                 continue
             for col in self.colinfo[level]['columns'][colno:colno+count]:
-                line += colgroup['name'] + ':' + col['col_name'] + '\t'
+                line += ':'.join(col['col_name'].split('__')) + '\t'
                 colno += 1
         if line[-1] == '\t':
             line = line[:-1]
