@@ -59,3 +59,15 @@ version: 2019.05.13
 requires_opencravat: '>=1.4.0'
 requires:
 - wgclinvar
+smartfilters:
+- name: sig
+  title: ClinVar Pathogenicity
+  description: Select clinvar pathogenicity codes to include
+  selector:
+    type: select
+    optionsColumn: clinvar__sig
+    multiple: True
+  filter:
+    column: clinvar__sig
+    test: in
+    value: '${value}'
