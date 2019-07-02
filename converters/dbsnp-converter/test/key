@@ -1,0 +1,28 @@
+#CRAVAT Report
+#Created at Tuesday 06/04/2019 18:34:17
+#Report level: variant
+#
+Variant Annotation												Tag Sampler			ClinVar				
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Clinical Significance	Disease Ref Nums	Disease Names	Review Status	ClinVar ID
+1	chr7	117587778	N	T		Yes	CFTR	ENST00000003084.10	stop gained	G542*	ENST00000003084.10:CFTR:P13569:stop gained:G542*:N1624T	1	s01	cystic_fibrosis					
+#CRAVAT Report
+#Created at Tuesday 06/04/2019 18:34:17
+#Report level: gene
+#
+Variant Annotation				
+Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
+CFTR	1	stop gained	stop gained(1)	
+#CRAVAT Report
+#Created at Tuesday 06/04/2019 18:34:17
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	s01
+#CRAVAT Report
+#Created at Tuesday 06/04/2019 18:34:17
+#Report level: mapping
+#
+Variant Annotation		
+Original Line	User Tags	UID
+2	cystic_fibrosis	1

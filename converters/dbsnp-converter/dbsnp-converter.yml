@@ -1,5 +1,5 @@
 title: dbSNP Converter
-version: 1.0.0
+version: 1.0.1
 sourcedata: '151'
 type: converter
 description: Input converter for dbSNP rsid input

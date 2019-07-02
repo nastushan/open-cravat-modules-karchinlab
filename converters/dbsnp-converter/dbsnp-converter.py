@@ -20,6 +20,7 @@ class CravatConverter(BaseConverter):
         self.query_template = 'select chrom, pos, ref_len, alt from dbsnp where rsid=?;'
     
     def check_format(self, f):
+        return f.readline().startswith('#rsid')
         if self.cursor is None:
             return False
         for l in f:
@@ -35,7 +36,10 @@ class CravatConverter(BaseConverter):
     def convert_line(self, l):
         if l.startswith('#'):
             return []
-        rsid = l.rstrip('\r\n')
+        toks = l.rstrip('\r\n').split()
+        rsid = toks[0]
+        sample_id = toks[1] if len(toks) > 1 else None
+        tags = toks[2] if len(toks) > 2 else None
         rsnum = int(rsid.replace('rs',''))
         self.cursor.execute(self.query_template, [rsnum])
         out = []
@@ -47,8 +51,8 @@ class CravatConverter(BaseConverter):
                 'pos':pos,
                 'ref_base':'N'*reflen,
                 'alt_base':alt,
-                'tags': None,
-                'sample_id': None
+                'tags': tags,
+                'sample_id': sample_id
             }
         out.append(wdict)
         return out
