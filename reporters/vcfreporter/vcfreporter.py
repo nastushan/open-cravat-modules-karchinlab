@@ -19,6 +19,15 @@ class Reporter(CravatReport):
             self.filename_prefix = 'cravat_result'
         else:
             self.filename_prefix = self.savepath
+        if not 'type' in self.confs:
+            self.info_type = 'separate'
+        else:
+            info_type = self.confs['type']
+            if info_type in ['separate', 'combined']:
+                self.info_type = self.confs['type']
+            else:
+                self.info_type = 'separate'
+        self.info_fieldname_prefix = 'CRV'
 
     def end (self):
         if self.wf is not None:
@@ -67,20 +76,36 @@ class Reporter(CravatReport):
         self.level = level
         if self.level != 'variant':
             return
-        for column in self.colinfo[self.level]['columns']:
-            col_name = column['col_name']
-            col_type = column['col_type'].capitalize()
-            col_desc = column['col_desc']
-            if col_name in ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base']:
-                continue
-            if col_desc is None:
-                col_desc = ''
-            line = '#INFO=<ID={},Number=A,Type={},Description="{}">'.format(col_name, col_type, col_desc)
+        if self.info_type == 'separate':
+            for column in self.colinfo[self.level]['columns']:
+                col_name = column['col_name']
+                col_type = column['col_type'].capitalize()
+                col_desc = column['col_desc']
+                if col_name in ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base']:
+                    continue
+                if col_desc is None:
+                    col_desc = ''
+                line = '#INFO=<ID={},Number=A,Type={},Description="{}">'.format(col_name, col_type, col_desc)
+                self.write_preface_line(line)
+            line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
+            line += '\t'.join(self.samples)
             self.write_preface_line(line)
-        line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
-        line += '\t'.join(self.samples)
-        self.write_preface_line(line)
-
+        elif self.info_type == 'combined':
+            line = '#INFO=<ID={},Number=A,Type=String,Description="OpenCRAVAT annotation. Format: '.format(self.info_fieldname_prefix)
+            columns_to_add = []
+            for column in self.colinfo[self.level]['columns']:
+                col_name = column['col_name']
+                col_type = column['col_type'].capitalize()
+                col_desc = column['col_desc']
+                if col_name in ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base']:
+                    continue
+                columns_to_add.append(col_name)
+            line += '|'.join(columns_to_add)
+            self.write_preface_line(line)
+            line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
+            line += '\t'.join(self.samples)
+            self.write_preface_line(line)
+            
     def write_table_row (self, row):
         if self.level != 'variant':
             return
@@ -101,7 +126,10 @@ class Reporter(CravatReport):
             col_name = column['col_name']
             cell = row[i]
             if cell is None or cell == '':
-                continue
+                if self.info_type == 'separate':
+                    continue
+                elif self.info_type == 'combined':
+                    info.append('')
             else:
                 if col_name == 'base__uid':
                     uid = cell
@@ -117,8 +145,12 @@ class Reporter(CravatReport):
                 elif col_name == 'base__all_mappings':
                     cell = cell.replace('; ', '&')
                     cell = cell.replace(' ', '-')
-                    infocell = col_name + '=' + cell
-                    info.append(infocell)
+                    if self.info_type == 'separated':
+                        infocell = col_name + '=' + cell
+                        info.append(infocell)
+                    elif self.info_type == 'combined':
+                        infocell = cell
+                        info.append(infocell)
                 elif col_name == 'tagsampler__numsample':
                     continue
                 elif col_name == 'tagsampler__samples':
@@ -132,9 +164,16 @@ class Reporter(CravatReport):
                 else:
                     if type(cell) is str and ' ' in cell:
                         cell = cell.replace(' ', '~')
-                    infocell = column['col_name'] + '=' + str(cell)
+                    if self.info_type == 'separate':
+                        infocell = column['col_name'] + '=' + str(cell)
+                    elif self.info_type == 'combined':
+                        infocell = str(cell)
                     info.append(infocell)
-        writerow = [chrom, str(pos), str(uid), ref, alt, qual, filt, ';'.join(info), fmt]
+        if self.info_type == 'separate':
+            infoline = ';'.join(info)
+        elif self.info_type == 'combined':
+            infoline = self.info_fieldname_prefix + '=' + '|'.join(info)
+        writerow = [chrom, str(pos), str(uid), ref, alt, qual, filt, infoline, fmt]
         writerow.extend(sample_cols)
         self.write_body_line(writerow)
 
