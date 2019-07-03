@@ -20,7 +20,7 @@ class Reporter(CravatReport):
         else:
             self.filename_prefix = self.savepath
         if not 'type' in self.confs:
-            self.info_type = 'separate'
+            self.info_type = 'combined'
         else:
             info_type = self.confs['type']
             if info_type in ['separate', 'combined']:
@@ -93,14 +93,18 @@ class Reporter(CravatReport):
         elif self.info_type == 'combined':
             line = '#INFO=<ID={},Number=A,Type=String,Description="OpenCRAVAT annotation. Format: '.format(self.info_fieldname_prefix)
             columns_to_add = []
+            desc = []
             for column in self.colinfo[self.level]['columns']:
                 col_name = column['col_name']
-                col_type = column['col_type'].capitalize()
                 col_desc = column['col_desc']
                 if col_name in ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base']:
                     continue
                 columns_to_add.append(col_name)
+                if col_desc is not None:
+                    desc.append(col_name + '=' + col_desc)
             line += '|'.join(columns_to_add)
+            line += ' Explanation: {}'.format('|'.join(desc))
+            line += '">'
             self.write_preface_line(line)
             line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
             line += '\t'.join(self.samples)
@@ -162,8 +166,10 @@ class Reporter(CravatReport):
                         else:
                             sample_cols.append('')
                 else:
-                    if type(cell) is str and ' ' in cell:
-                        cell = cell.replace(' ', '~')
+                    if type(cell) is str:
+                        cell = cell.replace('; ', '&')
+                        cell = cell.replace(';', '&')
+                        cell = cell.replace(' ', '-')
                     if self.info_type == 'separate':
                         infocell = column['col_name'] + '=' + str(cell)
                     elif self.info_type == 'combined':
