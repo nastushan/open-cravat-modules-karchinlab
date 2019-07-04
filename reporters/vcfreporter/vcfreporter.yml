@@ -2,6 +2,7 @@ title: VCF Reporter
 version: 1.0.0
 type: reporter
 description: VCF format text file reporter
+requires_opencravat: '>=1.5.0'
 developer:
   name: 'Rick Kim'
   organization: 'In Silico Solutions'
