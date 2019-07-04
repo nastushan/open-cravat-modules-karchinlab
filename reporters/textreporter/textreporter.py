@@ -39,7 +39,7 @@ class Reporter(CravatReport):
         self.write_body_line('\t'.join(
             [column['col_title'] for column in self.colinfo[level]['columns']]))
     
-    def write_table_row (self, row):
+    async def write_table_row (self, row):
         self.write_body_line('\t'.join([
             str(v) if v != None else '' for v in list(row)]))
         

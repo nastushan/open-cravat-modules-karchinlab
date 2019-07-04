@@ -55,7 +55,7 @@ class Reporter(CravatReport):
             line = line[:-1]
         self.write_preface_line(line)
     
-    def write_table_row (self, row):
+    async def write_table_row (self, row):
         self.write_body_line([
             str(v) if v != None else '' for v in list(row)])
         
