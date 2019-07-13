@@ -30,20 +30,17 @@ class CravatAnnotator(BaseAnnotator):
             out = {'link': link, 'hugo': input_data['hugo']}
             return out
 
-    def build_gene_collection (self, hugo, input_data, gene_data):
-        link = input_data['link']
-        if link != None:
-            gm = link.split('=')[1]
-            if gm not in gene_data[hugo]['link']:
-                gene_data[hugo]['link'].append(gm)
-    
-    def summarize_by_gene (self, hugo, gene_collection):
-        input_data = gene_collection[hugo]
-        gm = ','.join(input_data['link'])
-        if gm == '':
-            out = None
-        else:
-            link = 'http://www.cravat.us/MuPIT_Interactive?gm=' + gm
+    def summarize_by_gene (self, hugo, input_data):
+        out = None
+        links = input_data['link']
+        gms = []
+        for link in links:
+            if link is not None:
+                gm = link.split('=')[1]
+                if gm not in gms:
+                    gms.append(gm)
+        if len(gms) > 0:
+            link = 'http://www.cravat.us/MuPIT_Interactive?gm=' + ','.join(gms)
             out = {'link': link}
         return out
 

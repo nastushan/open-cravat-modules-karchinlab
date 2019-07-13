@@ -22,8 +22,7 @@ output_columns:
   type: string
   width: 80
   filterable: false
-- category: multi
-  filterable: true
+- filterable: true
   name: networkname
   title: Network Name
   type: string
@@ -35,8 +34,10 @@ tags:
 - interactions
 title: NDEx
 type: annotator
-version: 4.0.7
+version: 4.0.9
 requires:
 - wgndexchasmplussummary
 - wgndexvestsummary
 - wgndex
+release_note:
+  4.0.9: removed categorical column definition for better UI in webresult

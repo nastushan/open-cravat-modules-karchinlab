@@ -11,8 +11,7 @@ developer:
 input_format: crg
 level: gene
 output_columns:
-- category: multi
-  name: therapy
+- name: therapy
   title: Recommended Therapy
   type: string
   width: 190
@@ -27,6 +26,8 @@ tags:
 - cancer
 title: TARGET
 type: annotator
-version: 3.0.15
+version: 3.0.16
 requires:
 - wgtarget
+release_note:
+  3.0.16: removed categorical column for better UI in webresult

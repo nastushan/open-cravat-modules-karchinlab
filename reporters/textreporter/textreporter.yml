@@ -10,5 +10,5 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 release_note:
-  1.0.4: async write_table_row
+  1.0.4: no async write_table_row
   1.0.2: regex substitution

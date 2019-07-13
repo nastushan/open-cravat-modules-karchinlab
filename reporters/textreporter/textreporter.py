@@ -39,7 +39,7 @@ class Reporter(CravatReport):
         self.write_body_line('\t'.join(
             [column['col_title'] for column in self.colinfo[level]['columns']]))
     
-    async def write_table_row (self, row):
+    def write_table_row (self, row):
         self.write_body_line('\t'.join([
             str(v) if v != None else '' for v in list(row)]))
         
@@ -57,6 +57,7 @@ class Reporter(CravatReport):
     def write_preface_line (self, line):
         self.wf.write('#' + line + '\n')
 
+    '''
     def substitute_val (self, level, row):
         if level in self.column_subs:
             for i in self.column_subs[level]:
@@ -65,6 +66,7 @@ class Reporter(CravatReport):
                     for target in sub:
                         row[i] = re.sub('\\b' + target + '\\b', sub[target], row[i])
         return row
+    '''
 
 def main ():
     reporter = Reporter(sys.argv)

@@ -109,18 +109,12 @@ class CravatAnnotator(BaseAnnotator):
     
         return pval_tab
 
-    def build_gene_collection (self, hugo, input_data, gene_data):
-        score = input_data['score']
-        pval = input_data['pval']
-        if score != None:
-            gene_data[hugo]['score'].append(score)
-            gene_data[hugo]['pval'].append(pval)
-    
-    def summarize_by_gene (self, hugo, gene_collection):
+    def summarize_by_gene (self, hugo, input_data):
         out = None
-        input_data = gene_collection[hugo]
-        scores = input_data['score']
-        pvals_non_unique = input_data['pval']
+        in_scores = input_data['score']
+        in_pvals = input_data['pval']
+        scores = [s for s in in_scores if s is not None]
+        pvals_non_unique = [v for v in in_pvals if v is not None]
         pvals = list(set(pvals_non_unique))
         if len(scores) > 0:
             out = {}

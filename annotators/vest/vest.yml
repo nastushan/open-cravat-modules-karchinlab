@@ -56,7 +56,10 @@ tags:
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.0.9
+version: 4.1.0
+release_note:
+  4.1.0: new gene summary architecture for open-cravat 1.5.0
+requires_opencravat: '>=1.5.0'
 requires:
 - wgndexvestsummary
 - wgvest
