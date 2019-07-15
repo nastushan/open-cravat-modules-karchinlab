@@ -52,7 +52,7 @@ tags:
 - populations
 title: 1000 Genomes
 type: annotator
-version: 4.0.1
+version: 4.0.2
 requires:
 - wgthousandgenomes
 groups:

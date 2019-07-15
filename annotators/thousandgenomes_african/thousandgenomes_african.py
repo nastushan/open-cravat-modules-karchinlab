@@ -13,9 +13,10 @@ class CravatAnnotator(BaseAnnotator):
         ref = input_data['ref_base']
         alt = input_data['alt_base']
         
-        q = 'select ACB_AF,ASW_AF,ESN_AF,GWD_AF,LWK_AF,MSL_AF,YRI_AF from '\
-            +'thousandgenomes_%s where position=%s and refbase="%s" and altbase="%s";' \
+        q = 'select ACB, ASW, ESN, GWD, LWK, MSL, YRI from '\
+            +'%s where pos=%s and ref="%s" and alt="%s";' \
             %(chrom, pos, ref, alt)
+        self.logger.warn(q)
         self.cursor.execute(q)
         result = self.cursor.fetchone()
         if result:

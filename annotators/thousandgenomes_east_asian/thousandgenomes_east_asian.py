@@ -13,8 +13,8 @@ class CravatAnnotator(BaseAnnotator):
         ref = input_data['ref_base']
         alt = input_data['alt_base']
         
-        q = 'select CDX_AF,CHB_AF,CHS_AF,JPT_AF,KHV_AF from '\
-            +'thousandgenomes_%s where position=%s and refbase="%s" and altbase="%s";' \
+        q = 'select CDX, CHB, CHS, JPT, KHV from '\
+            +'%s where pos=%s and ref="%s" and alt="%s";' \
             %(chrom, pos, ref, alt)
         self.cursor.execute(q)
         result = self.cursor.fetchone()
