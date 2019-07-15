@@ -2,6 +2,7 @@ widgetGenerators['exac_gene'] = {
 	'gene': {
 		'width': 425, 
 		'height': 280, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			var noise = infomgr.getRowValue(tabName, row, 'exac_gene__exac_cnv_flag');
 			if(noise === 'N'){
