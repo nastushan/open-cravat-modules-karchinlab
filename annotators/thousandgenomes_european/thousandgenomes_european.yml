@@ -9,27 +9,27 @@ developer:
   website: http://www.internationalgenome.org/home
 level: variant
 output_columns:
-- desc: 'Utah Residents (CEPH) with Northern and Western European Ancestry'
+- desc: Utah Residents (CEPH) with Northern and Western European Ancestry
   name: ceu_af
   title: CEU_AF
   type: float
   width: 60
-- desc: 'Toscani in Italia'
+- desc: Toscani in Italia
   name: tsi_af
   title: TSI_AF
   type: float
   width: 60
-- desc: 'Finnish in Finland'
+- desc: Finnish in Finland
   name: fin_af
   title: FIN_AF
   type: float
   width: 60
-- desc: 'British in England and Scotland'
+- desc: British in England and Scotland
   name: gbr_af
   title: GBR_AF
   type: float
   width: 60
-- desc: 'Iberian Population in Spain'
+- desc: Iberian Population in Spain
   name: ibs_af
   title: IBS_AF
   type: float
@@ -41,6 +41,6 @@ tags:
 - populations
 title: 1000 Genomes-European
 type: annotator
-version: 3.1.0
+version: 3.1.1
 groups:
 - thousandgenomes_group

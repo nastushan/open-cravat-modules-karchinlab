@@ -9,27 +9,27 @@ developer:
   website: http://www.internationalgenome.org/home
 level: variant
 output_columns:
-- desc: 'Han Chinese in Beijing, China'
+- desc: Han Chinese in Beijing, China
   name: chb_af
   title: CHB_AF
   type: float
   width: 60
-- desc: 'Japanese in Tokyo, Japan'
+- desc: Japanese in Tokyo, Japan
   name: jpt_af
   title: JPT_AF
   type: float
   width: 60
-- desc: 'Southern Han Chinese'
+- desc: Southern Han Chinese
   name: chs_af
   title: CHS_AF
   type: float
   width: 60
-- desc: 'Chinese Dai in Xishuangbanna, China'
+- desc: Chinese Dai in Xishuangbanna, China
   name: cdx_af
   title: CDX_AF
   type: float
   width: 60
-- desc: 'Kinh in Ho Chi Minh City, Vietnam'
+- desc: Kinh in Ho Chi Minh City, Vietnam
   name: khv_af
   title: KHV_AF
   type: float
@@ -41,6 +41,6 @@ tags:
 - populations
 title: 1000 Genomes-East Asian
 type: annotator
-version: 3.1.0
+version: 3.1.1
 groups:
 - thousandgenomes_group

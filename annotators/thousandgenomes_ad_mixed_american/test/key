@@ -1,22 +1,22 @@
 #CRAVAT Report
-#Created at Friday 04/12/2019 19:28:45
+#Created at Monday 07/08/2019 14:59:17
 #Report level: variant
 #
 Variant Annotation												Tag Sampler			1000 Genomes-Ad Mixed American			
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Number of Samples	Samples	Tags	MXL_AF	PUR_AF	CLM_AF	PEL_AF
-1	chr3	146085328	C	T		Yes	PLOD2	ENST00000461497.5	missense	S18N	ENST00000282903.9:PLOD2:(na):intron:(na):(na); ENST00000360060.7:PLOD2:O00469:intron:(na):(na); ENST00000461497.5:PLOD2:(na):missense:S18N:G53A; ENST00000494950.5:PLOD2:E7ETU9:intron:(na):(na)	0		plus_SBS_PLOD2	0.0	0.0	0.0027	0.0
-2	chr20	52414564	-	T								0		plus_ins_GNAS				
-3	chr3	116584450	-	CAAA								0		plus_ins_PIK3CA				
-4	chr20	117745	A	-								0		plus_del_GNAS				
-5	chr3	179198726	AT	-			PIK3CA	ENST00000263967.3	intron		ENST00000263967.3:PIK3CA:P42336:intron:(na):(na)	1	sample3	plus_del_PIK3CA				
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	MXL_AF	PUR_AF	CLM_AF	PEL_AF
+1	chr3	146085328	C	T		Yes	PLOD2	ENST00000461497.5	missense	S18N	ENST00000282903.9:PLOD2:(na):intron:(na):(na); ENST00000360060.7:PLOD2:O00469:intron:(na):(na); ENST00000461497.5:PLOD2:(na):missense:S18N:G53A; ENST00000494950.5:PLOD2:E7ETU9:intron:(na):(na)	0		plus_SBS_PLOD2	0.0	0.0	0.005319148936170213	0.0
+2	chr20	52414564	-	T								0		plus_ins_GNAS	0.484375	0.4182692307692308	0.46808510638297873	0.4705882352941176
+3	chr3	116584450	-	CAAA								0		plus_ins_PIK3CA	0.0	0.0	0.0	0.0
+4	chr20	117745	A	-								0		plus_del_GNAS	0.0	0.0	0.0	0.0
+5	chr3	179198726	AT	-			PIK3CA	ENST00000263967.3	intron		ENST00000263967.3:PIK3CA:P42336:intron:(na):(na)	1	sample3	plus_del_PIK3CA	0.0	0.0	0.0	0.0
 6	chr7	140734758	T	C		Yes	BRAF	ENST00000288602.10	missense	I714V	ENST00000288602.10:BRAF:P15056:missense:I714V:A2140G	0		minus_SBS_BRAF	0.0	0.0	0.0	0.0
-7	chr7	140742186	-	T			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_ins_BRAF				
-8	chr17	37101975	-	TC			ACACA	ENST00000616317.4	intron		ENST00000612895.4:ACACA:(na):intron:(na):(na); ENST00000614428.4:ACACA:Q13085:intron:(na):(na); ENST00000616317.4:ACACA:(na):intron:(na):(na); ENST00000617649.4:ACACA:(na):intron:(na):(na)	0		minus_ins_ACACA				
-9	chr7	140736487	GTGCGAT	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_del_BRAF				
+7	chr7	140742186	-	T			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_ins_BRAF	0.0234375	0.057692307692307696	0.05319148936170213	0.029411764705882353
+8	chr17	37101975	-	TC			ACACA	ENST00000616317.4	intron		ENST00000612895.4:ACACA:(na):intron:(na):(na); ENST00000614428.4:ACACA:Q13085:intron:(na):(na); ENST00000616317.4:ACACA:(na):intron:(na):(na); ENST00000617649.4:ACACA:(na):intron:(na):(na)	0		minus_ins_ACACA	0.7109375	0.5673076923076923	0.6276595744680851	0.8176470588235294
+9	chr7	140736487	GTGCGAT	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_del_BRAF	0.0	0.019230769230769232	0.0	0.0
 10	chr20	52414564	-	C								0		fuzzy_ins_GNAS				
 11	chr7	140736487	GTGCGA	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		fuzzy_del_BRAF				
 #CRAVAT Report
-#Created at Friday 04/12/2019 19:28:45
+#Created at Monday 07/08/2019 14:59:17
 #Report level: gene
 #
 Variant Annotation				
@@ -26,7 +26,7 @@ PIK3CA	1	intron	intron(1)
 BRAF	4	missense	missense(1),intron(3)	
 ACACA	1	intron	intron(1)	
 #CRAVAT Report
-#Created at Friday 04/12/2019 19:28:45
+#Created at Monday 07/08/2019 14:59:17
 #Report level: sample
 #
 Variant Annotation	
@@ -43,7 +43,7 @@ UID	Sample
 10	
 11	
 #CRAVAT Report
-#Created at Friday 04/12/2019 19:28:45
+#Created at Monday 07/08/2019 14:59:17
 #Report level: mapping
 #
 Variant Annotation		

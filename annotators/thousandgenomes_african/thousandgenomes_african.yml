@@ -9,37 +9,37 @@ developer:
   website: http://www.internationalgenome.org/home
 level: variant
 output_columns:
-- desc: 'Yoruba in Ibadan, Nigeria'
+- desc: Yoruba in Ibadan, Nigeria
   name: yri_af
   title: YRI_AF
   type: float
   width: 60
-- desc: 'Luhya in Webuye, Kenya'
+- desc: Luhya in Webuye, Kenya
   name: lwk_af
   title: LWK_AF
   type: float
   width: 60
-- desc: 'Gambian in Western Divisions in the Gambia'
+- desc: Gambian in Western Divisions in the Gambia
   name: gwd_af
   title: GWD_AF
   type: float
   width: 60
-- desc: 'Mende in Sierra Leone'
+- desc: Mende in Sierra Leone
   name: msl_af
   title: MSL_AF
   type: float
   width: 60
-- desc: 'Esan in Nigeria'
+- desc: Esan in Nigeria
   name: esn_af
   title: ESN_AF
   type: float
   width: 60
-- desc: 'Americans of African Ancestry in SW USA'
+- desc: Americans of African Ancestry in SW USA
   name: asw_af
   title: ASW_AF
   type: float
   width: 60
-- desc: 'African Caribbeans in Barbados'
+- desc: African Caribbeans in Barbados
   name: acb_af
   title: ACB_AF
   type: float
@@ -51,6 +51,6 @@ tags:
 - populations
 title: 1000 Genomes-African
 type: annotator
-version: 3.1.0
+version: 3.1.1
 groups:
 - thousandgenomes_group
