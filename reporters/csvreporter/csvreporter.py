@@ -2,21 +2,38 @@ from cravat.cravat_report import CravatReport
 import sys
 import datetime
 import re
+import csv
+import zipfile
+import os
 
 class Reporter(CravatReport):
 
     def setup (self):
+        self.wf = None
+        self.csvwriter = None
+        self.filenames = []
+        self.filename = None
+        self.filename_prefix = None
         if self.savepath == None:
-            self.savepath = 'cravat_result.tsv'
-        else: 
-            if self.savepath[-5:] != '.tsv':
-                self.savepath = self.savepath + '.tsv'
-        self.wf = open(self.savepath, 'w', encoding='utf-8')
+            self.filename_prefix = 'cravat_result'
+        else:
+            self.filename_prefix = self.savepath
     
     def end (self):
-        self.wf.close()
+        if self.wf is not None:
+            self.wf.close()
+        zf = zipfile.ZipFile(self.filename_prefix + '.csv.zip', mode='w', compression=zipfile.ZIP_DEFLATED)
+        for filename in self.filenames:
+            zf.write(filename, os.path.relpath(filename, start=os.path.dirname(filename)))
+        zf.close()
         
     def write_preface (self, level): 
+        if self.wf is not None:
+            self.wf.close()
+        self.filename = self.filename_prefix + '.' + level + '.csv'
+        self.filenames.append(self.filename)
+        self.wf = open(self.filename, 'w', encoding='utf-8', newline='')
+        self.csvwriter = csv.writer(self.wf, lineterminator='\n')
         lines = ['CRAVAT Report', 
             'Created at ' + 
                 datetime.datetime.now().strftime('%A %m/%d/%Y %X'),
@@ -25,30 +42,29 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
     
     def write_header (self, level):
-        line = ''
+        line = '#'
+        colno = 0
         for colgroup in self.colinfo[level]['colgroups']:
             count = colgroup['count']
             if count == 0:
                 continue
-            line += colgroup['displayname']
-            for i in range(count):
-                line += '\t'
-        if line[-1] == '\t':
+            for col in self.colinfo[level]['columns'][colno:colno+count]:
+                line += ':'.join(col['col_name'].split('__')) + ','
+                colno += 1
+        if line[-1] == ',':
             line = line[:-1]
-        self.write_body_line(line)
-        self.write_body_line('\t'.join(
-            [column['col_title'] for column in self.colinfo[level]['columns']]))
+        self.write_preface_line(line)
     
-    def write_table_row (self, row):
-        self.write_body_line('\t'.join([
-            str(v) if v != None else '' for v in list(row)]))
+    async def write_table_row (self, row):
+        self.write_body_line([
+            str(v) if v != None else '' for v in list(row)])
         
     def write_body_lines (self, lines):
         for line in lines:
             self.write_body_line(line)
     
-    def write_body_line (self, line):
-        self.wf.write(line + '\n')
+    def write_body_line (self, row):
+        self.csvwriter.writerow(row)
     
     def write_preface_lines (self, lines):
         for line in lines:
@@ -57,7 +73,6 @@ class Reporter(CravatReport):
     def write_preface_line (self, line):
         self.wf.write('#' + line + '\n')
 
-    '''
     def substitute_val (self, level, row):
         if level in self.column_subs:
             for i in self.column_subs[level]:
@@ -66,7 +81,6 @@ class Reporter(CravatReport):
                     for target in sub:
                         row[i] = re.sub('\\b' + target + '\\b', sub[target], row[i])
         return row
-    '''
 
 def main ():
     reporter = Reporter(sys.argv)

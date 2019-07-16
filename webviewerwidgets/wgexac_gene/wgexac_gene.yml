@@ -1,5 +1,5 @@
 title: ExAC Gene Constraint & CNV Score
-version: 1.0.2
+version: 1.0.3
 type: webviewerwidget
 required_annotator: exac_gene
 description: ExAC Constraint & CNV webviewer widget

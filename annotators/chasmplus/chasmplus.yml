@@ -48,15 +48,17 @@ pval_file: pvals.txt
 release_note:
   1.0.3: added gene level summary
   1.0.4: updated email,
+  1.1.0: new gene summary architecture for open-cravat 1.5.0
 tags:
 - variants
 - cancer
 - variant effect prediction
 title: CHASMplus
 type: annotator
-version: 1.0.10
+version: 1.1.0
 requires:
 - wgndexchasmplussummary
 - wgchasmplus
+requires_opencravat: '>=1.5.0'
 groups:
 - chasmplus_group

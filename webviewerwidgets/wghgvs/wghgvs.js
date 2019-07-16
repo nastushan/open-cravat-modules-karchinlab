@@ -2,6 +2,7 @@ widgetGenerators['hgvs'] = {
 	'variant': {
 		'width': 380, 
 		'height': 280, 
+		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Genomic', 'hgvs__genomic', tabName);
 			addInfoLine(div, row, 'RNA', 'hgvs__rna', tabName);

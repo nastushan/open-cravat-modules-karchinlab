@@ -1,7 +1,8 @@
 title: Base information
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 required_annotator: base
+requires_opencravat: '>=1.5.0'
 description: Base information webviewer widget
 developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
   website: 'http://www.insilico.us.com', citation: ''}
@@ -10,3 +11,5 @@ columnwidth:
 - {base__chrom: 100}
 - {base__pos: 200}
 tags: [visualization widgets]
+release_note:
+- 1.0.5: uses full sequence ontology names.

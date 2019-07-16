@@ -5,6 +5,7 @@ import cravat
 import json
 from collections import OrderedDict
 from distutils.version import LooseVersion
+from cravat.util import most_severe_so
 
 class Mapper(cravat.BaseMapper):
     """
@@ -444,6 +445,30 @@ class Mapper(cravat.BaseMapper):
                                               separators=(',', ':'))
         return crx_data, alt_transcripts
     
+    def summarize_by_gene (self, hugo, input_data):
+        out = {}
+        sos = list(set(input_data['so']))
+        out['so'] = most_severe_so(sos)
+        out['num_variants'] = len(input_data['uid'])
+        so_counts = {}
+        for line in input_data['all_mappings']:
+            all_mappings = json.loads(line)
+            if hugo in all_mappings:
+                counts = {}
+                for mapping in all_mappings[hugo]:
+                    so = mapping[2]
+                    if so not in counts:
+                        counts[so] = True
+                for so in counts:
+                    if so not in so_counts:
+                        so_counts[so] = 0
+                    so_counts[so] += 1
+        so_count_keys = list(so_counts.keys())
+        so_count_keys.sort()
+        so_count_l = ['{} ({})'.format(so, so_counts[so]) for so in so_count_keys]
+        out['all_so'] = ','.join(so_count_l)
+        return out
+
 def tpos_to_codon(tpos):
     """
     Convert a transcript coordinate to an amino-acid number and codon index

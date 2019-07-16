@@ -1,5 +1,6 @@
+name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.1.8
+version: 1.2.0
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -62,9 +63,28 @@ report_substitution:
     IND: inframe deletion
   coding:
     Y: "Yes"
-
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: num_variants
+  title: Variants in Gene
+  type: int
+  width: 60
+  filterable: false
+- name: so
+  title: Sequence Ontology
+  type: string
+  width: 120
+  category: single
+  filterable: true
+- name: all_so
+  title: All Sequence Ontologies
+  type: string
+  width: 90
+  filterable: false
+requires_opencravat: '>=1.5.0'
 release_note:
     1.1.0: Sequence ontology terms change. FI1 and FI2 to FSI, FD1 and FD2 to FSD, IIV to INI, IDV to IND.
     1.1.1: Fix on SO sub
     1.1.2: Backward compatibility
     1.1.7: fixed test key
+    1.2.0: added gene level summary feature

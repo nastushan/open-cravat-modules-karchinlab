@@ -1,7 +1,7 @@
-title: Text Reporter
+title: TSV Reporter
 version: 1.0.4
 type: reporter
-description: Text format reporter
+description: Tab-delimited format text file reporter
 requires_opencravat: '>=1.5.0'
 developer:
   name: 'Rick Kim'
@@ -10,5 +10,5 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 release_note:
-  1.0.4: no async write_table_row
-  1.0.2: regex substitution
+  1.0.4: async write_table_row
+  1.0.0: initial release
