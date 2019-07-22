@@ -5,6 +5,7 @@ import cravat
 import json
 from collections import OrderedDict
 from distutils.version import LooseVersion
+from cravat.exceptions import InvalidData
 
 class Mapper(cravat.BaseMapper):
     """
@@ -75,6 +76,8 @@ class Mapper(cravat.BaseMapper):
         """
         Takes a dict with crv fields and return a dict with crx fields
         """
+        if 'N' in crv_data['alt_base']:
+            raise InvalidData('alt='+crv_data['alt_base'])
         all_hits = []
         self.hit_tr = {}
         all_hits += self._get_coding_hits(crv_data)
