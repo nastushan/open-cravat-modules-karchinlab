@@ -6,6 +6,7 @@ import json
 from collections import OrderedDict
 from distutils.version import LooseVersion
 from cravat.util import most_severe_so
+from cravat.exceptions import InvalidData
 
 class Mapper(cravat.BaseMapper):
     """
@@ -76,6 +77,8 @@ class Mapper(cravat.BaseMapper):
         """
         Takes a dict with crv fields and return a dict with crx fields
         """
+        if 'N' in crv_data['alt_base']:
+            raise InvalidData('alt='+crv_data['alt_base'])
         all_hits = []
         self.hit_tr = {}
         all_hits += self._get_coding_hits(crv_data)
@@ -170,7 +173,8 @@ class Mapper(cravat.BaseMapper):
         if crv_data['ref_base'] is None: 
             end_gpos = start_gpos
             crv_data['ref_base'] = '?'
-        else: end_gpos = start_gpos + len(crv_data['ref_base']) - 1
+        else:
+            end_gpos = start_gpos + len(crv_data['ref_base']) - 1
         gstart_tdata = self._coding_query(chrom=chrom, gpos=start_gpos)
         gend_tdata = self._coding_query(chrom=chrom, gpos=end_gpos)
         all_tids = set(list(gstart_tdata.keys()) + list(gend_tdata.keys()))
