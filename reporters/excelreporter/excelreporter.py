@@ -91,7 +91,7 @@ class Reporter(CravatReport):
             self.colno += 1
         self.rowno += 1
         
-    async def write_table_row (self, row):
+    def write_table_row (self, row):
         row = [v if v != None else '' for v in list(row)]
         self.colno = 0
         for cellvalue in row:
