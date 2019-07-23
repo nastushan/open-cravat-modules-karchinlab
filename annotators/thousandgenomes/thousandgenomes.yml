@@ -52,8 +52,11 @@ tags:
 - populations
 title: 1000 Genomes
 type: annotator
-version: 4.0.2
+version: 4.0.3
 requires:
 - wgthousandgenomes
+- thousandgenomes_group
 groups:
 - thousandgenomes_group
+release_note:
+  4.0.3: added group to requires.
