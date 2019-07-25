@@ -7,6 +7,7 @@ from collections import OrderedDict
 from distutils.version import LooseVersion
 from cravat.util import most_severe_so
 from cravat.exceptions import InvalidData
+from cravat.constants import gene_level_so_exclude
 
 class Mapper(cravat.BaseMapper):
     """
@@ -461,6 +462,8 @@ class Mapper(cravat.BaseMapper):
                 counts = {}
                 for mapping in all_mappings[hugo]:
                     so = mapping[2]
+                    if so in gene_level_so_exclude:
+                        continue
                     if so not in counts:
                         counts[so] = True
                 for so in counts:
