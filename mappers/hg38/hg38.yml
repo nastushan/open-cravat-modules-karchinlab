@@ -1,6 +1,6 @@
 name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.2.1
+version: 1.2.2
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -65,10 +65,15 @@ report_substitution:
     Y: "Yes"
 can_summarize_by_gene: true
 gene_summary_output_columns:
-- name: num_variants
-  title: Variants in Gene
+- name: num_coding_variants
+  title: Number of Coding Variants
   type: int
-  width: 60
+  width: 100
+  filterable: false
+- name: num_noncoding_variants
+  title: Number of Noncoding Variants
+  type: int
+  width: 120
   filterable: false
 - name: so
   title: Sequence Ontology
@@ -89,3 +94,4 @@ release_note:
     1.1.7: fixed test key
     1.2.0: added gene level summary feature
     1.2.1: an N in the alt will error out the line
+    1.2.2: 2kb SOs are excluded from gene tab. Added number of coding and noncoding variants columns.

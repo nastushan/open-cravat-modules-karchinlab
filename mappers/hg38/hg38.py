@@ -454,7 +454,8 @@ class Mapper(cravat.BaseMapper):
         out = {}
         sos = list(set(input_data['so']))
         out['so'] = most_severe_so(sos)
-        out['num_variants'] = len(input_data['uid'])
+        out['num_noncoding_variants'] = len([c for c in input_data['coding'] if c != 'Y'])
+        out['num_coding_variants'] = len([c for c in input_data['coding'] if c == 'Y'])
         so_counts = {}
         for line in input_data['all_mappings']:
             all_mappings = json.loads(line)
