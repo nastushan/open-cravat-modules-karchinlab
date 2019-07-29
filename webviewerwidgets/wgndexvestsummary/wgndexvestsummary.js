@@ -6,6 +6,7 @@ widgetGenerators['ndexvestsummary'] = {
         'width': 580, 
         'height': 380, 
         'callserver': true,
+        'default_hidden': true,
         'beforecallserver': function () {
             var pvalCutoff = 0.05;
             var hugos = [];
