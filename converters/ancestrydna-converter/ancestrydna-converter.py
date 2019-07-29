@@ -37,7 +37,7 @@ class CravatConverter(BaseConverter):
             ref = self.btr.get_stretch(chrom38, pos38-1, 1)
         else:
             ref = ''      
-        sample = None
+        sample = ''
         for var in toks[3:]:
             if var != '0':
                 alt = var

@@ -34,7 +34,7 @@ class CravatConverter(BaseConverter):
             ref = self.btr.get_stretch(chrom38, pos38-1, 1)
         else:
             ref = ''      
-        sample = None
+        sample = ''
         geno = list(toks[3])
         for var in geno:
             if var != '-' and var != 'D' and var != 'I':
