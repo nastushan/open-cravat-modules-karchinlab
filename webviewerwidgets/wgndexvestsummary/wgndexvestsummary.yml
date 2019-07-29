@@ -1,5 +1,5 @@
 title: NDEX Enriched Pathogentic Pathways
-version: 1.0.10
+version: 1.0.11
 type: webviewerwidget
 requires_opencravat: '>=1.4.2'
 required_annotator: vest
