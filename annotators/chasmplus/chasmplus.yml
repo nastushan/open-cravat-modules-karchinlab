@@ -59,7 +59,6 @@ version: 1.1.0
 requires:
 - wgndexchasmplussummary
 - wgchasmplus
-- chasmplus_group
 requires_opencravat: '>=1.5.0'
 groups:
 - chasmplus_group
