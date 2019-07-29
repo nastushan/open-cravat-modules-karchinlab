@@ -25,9 +25,14 @@ class CravatConverter(BaseConverter):
         if l.startswith('rsid'): return []
         toks = l.strip('\r\n').split('\t')
         tags = toks[0]
-        if int(toks[1]) == 26: chrom = 'M'
-        elif int(toks[1]) == 25: chrom = 'Y'
-        else: chrom = toks[1]
+        chrom = toks[1]
+        chromint = int(chrom)
+        if chromint == 23:
+            chrom = 'X'
+        elif chromint==24 or chromint==25:
+            chrom = 'Y'
+        elif chromint == 26:
+            chrom = 'M'
         chrom = 'chr'+chrom
         pos = toks[2]
         hg38_coords = self.lifter.convert_coordinate(chrom, int(pos))
