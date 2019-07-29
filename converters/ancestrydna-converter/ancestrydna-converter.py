@@ -38,8 +38,9 @@ class CravatConverter(BaseConverter):
         else:
             ref = ''      
         sample = ''
+        good_vars = set(['T','C','G','A'])
         for var in toks[3:]:
-            if var != '0':
+            if var in good_vars:
                 alt = var
                 wdict = {'tags':tags,
                     'chrom':chrom,
@@ -275,7 +276,6 @@ class BowtieIndexReference(object):
         @param count: # of characters
         @return: string extracted from reference
         """
-        assert ref_id in self.recs
         # Account for negative reference offsets by padding with Ns
         N_count = min(abs(min(ref_off, 0)), count)
         stretch = ["N"] * N_count
@@ -284,7 +284,6 @@ class BowtieIndexReference(object):
             return "".join(stretch)
         ref_off = max(ref_off, 0)
         starting_rec = bisect_right(self.offset_in_ref[ref_id], ref_off) - 1
-        assert starting_rec >= 0
         off = self.offset_in_ref[ref_id][starting_rec]
         buf_off = self.unambig_preceding[ref_id][starting_rec]
         # Naive to scan these records linearly; obvious speedup is binary search
