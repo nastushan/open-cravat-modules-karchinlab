@@ -41,8 +41,6 @@ output_columns:
 tags:
 - variants
 - populations
-- human
-- diversity
 description: Human Genome Diversity Panel (HGDP) DNA from individuals among 51 different populations.
 developer:
   name: 'Jun Z. Li et al.'
