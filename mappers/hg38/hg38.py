@@ -461,6 +461,7 @@ class Mapper(cravat.BaseMapper):
             all_mappings = json.loads(line)
             if hugo in all_mappings:
                 counts = {}
+                numsample = input_data['numsample']
                 for mapping in all_mappings[hugo]:
                     so = mapping[2]
                     if so in gene_level_so_exclude:
@@ -470,7 +471,7 @@ class Mapper(cravat.BaseMapper):
                 for so in counts:
                     if so not in so_counts:
                         so_counts[so] = 0
-                    so_counts[so] += 1
+                    so_counts[so] += numsample
         so_count_keys = list(so_counts.keys())
         so_count_keys.sort()
         so_count_l = ['{}({})'.format(so, so_counts[so]) for so in so_count_keys]
