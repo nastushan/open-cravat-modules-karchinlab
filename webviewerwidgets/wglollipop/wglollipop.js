@@ -188,6 +188,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVariant () {
+                console.log('@ row=', row);
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
@@ -209,7 +210,7 @@ widgetGenerators['lollipop'] = {
 							variant['start'] = start;
 							variant['refaa'] = refaa;
 							variant['altaa'] = altaa;
-							variant['count'] = infomgr.getRowValue(tabName, row, 'tagsampler__numsample');
+							variant['count'] = infomgr.getRowValue(tabName, row, 'base__numsample');
 							break;
 						}
 					}
@@ -916,38 +917,6 @@ widgetGenerators['lollipop'] = {
 				return id;
 			}
 			
-            /*
-			function getMyVariant () {
-				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
-				var hugos = Object.keys(allMappings);
-				variant = {};
-				for (var i = 0; i < hugos.length; i++) {
-					var hugo = hugos[i];
-					var uniprot_ds = allMappings[hugo];
-					for (var j = 0; j < uniprot_ds.length; j++) {
-						var transcript = uniprot_ds[j][3];
-						if (transcript == v.reftranscript) {
-							var protchange = uniprot_ds[j][1];
-							if (protchange == null) {
-								continue;
-							}
-							variant['so'] = uniprot_ds[j][2];
-							var refaa = protchange[0];
-							var protchangelen = protchange.length;
-							var altaa = protchange.substring(protchangelen - 1, protchangelen);
-							var start = protchange.substring(1, protchangelen - 1);
-							variant['start'] = start;
-							variant['refaa'] = refaa;
-							variant['altaa'] = altaa;
-							variant['count'] = infomgr.getRowValue(tabName, row, 'tagsampler__numsample');
-							break;
-						}
-					}
-				}
-				return variant;
-			}
-            */
-			
 			function onChangeOtherVariantDatasource (select, data) {
 				var categorySelect = 
 					document.getElementById(getVarCategorySelectorId());
@@ -1272,7 +1241,8 @@ widgetGenerators['lollipop'] = {
                 addEl(contentDiv, div);
                 var table = getEl('table');
                 table.className = 'lollipop_gene_varianttable';
-                table.style.fontSize = '12px';
+                table.style.fontSize = '8px';
+                table.style.width = '160px';
                 addEl(div, table);
                 var thead = getEl('thead');
                 var tr = getEl('tr');
@@ -1477,6 +1447,7 @@ widgetGenerators['lollipop'] = {
 			}
 
 			function getMyVariant (row) {
+                console.log('@ row=', row);
 				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
@@ -1498,7 +1469,7 @@ widgetGenerators['lollipop'] = {
 							variant['start'] = start;
 							variant['refaa'] = refaa;
 							variant['altaa'] = altaa;
-							variant['count'] = infomgr.getRowValue('variant', row, 'tagsampler__numsample');
+							variant['count'] = infomgr.getRowValue('variant', row, 'base__numsample');
 							break;
 						}
 					}

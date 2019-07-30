@@ -1,6 +1,6 @@
 title: Protein diagram
-version: 1.1.5
-requires_opencravat: '>=1.4.2'
+version: 1.1.6
+requires_opencravat: '>=1.5.0'
 required_annotator: base
 type: webviewerwidget
 description: Protein diagram webviewer widget
@@ -9,3 +9,4 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
 tags: [visualization widgets]
 release_note:
   1.1.3: variant table hover highlights lollipop
+  1.1.6: works with 1.5.0. variant table size fix.
