@@ -1,6 +1,6 @@
 name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.2.4
+version: 1.2.5
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -97,3 +97,4 @@ release_note:
     1.2.2: 2kb SOs are excluded from gene tab. Added number of coding and noncoding variants columns.
     1.2.3: updated test key
     1.2.4: gene level all so shows variant count per sample
+    1.2.5: gene level summary columns can have categories.
