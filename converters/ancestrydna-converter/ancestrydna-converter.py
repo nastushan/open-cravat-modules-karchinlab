@@ -25,9 +25,14 @@ class CravatConverter(BaseConverter):
         if l.startswith('rsid'): return []
         toks = l.strip('\r\n').split('\t')
         tags = toks[0]
-        if int(toks[1]) == 26: chrom = 'M'
-        elif int(toks[1]) == 25: chrom = 'Y'
-        else: chrom = toks[1]
+        chrom = toks[1]
+        chromint = int(chrom)
+        if chromint == 23:
+            chrom = 'X'
+        elif chromint==24 or chromint==25:
+            chrom = 'Y'
+        elif chromint == 26:
+            chrom = 'M'
         chrom = 'chr'+chrom
         pos = toks[2]
         hg38_coords = self.lifter.convert_coordinate(chrom, int(pos))
@@ -37,9 +42,10 @@ class CravatConverter(BaseConverter):
             ref = self.btr.get_stretch(chrom38, pos38-1, 1)
         else:
             ref = ''      
-        sample = None
+        sample = ''
+        good_vars = set(['T','C','G','A'])
         for var in toks[3:]:
-            if var != '0':
+            if var in good_vars:
                 alt = var
                 wdict = {'tags':tags,
                     'chrom':chrom,
@@ -275,7 +281,6 @@ class BowtieIndexReference(object):
         @param count: # of characters
         @return: string extracted from reference
         """
-        assert ref_id in self.recs
         # Account for negative reference offsets by padding with Ns
         N_count = min(abs(min(ref_off, 0)), count)
         stretch = ["N"] * N_count
@@ -284,7 +289,6 @@ class BowtieIndexReference(object):
             return "".join(stretch)
         ref_off = max(ref_off, 0)
         starting_rec = bisect_right(self.offset_in_ref[ref_id], ref_off) - 1
-        assert starting_rec >= 0
         off = self.offset_in_ref[ref_id][starting_rec]
         buf_off = self.unambig_preceding[ref_id][starting_rec]
         # Naive to scan these records linearly; obvious speedup is binary search
