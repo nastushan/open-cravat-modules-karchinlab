@@ -188,7 +188,6 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVariant () {
-                console.log('@ row=', row);
 				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
@@ -1447,7 +1446,6 @@ widgetGenerators['lollipop'] = {
 			}
 
 			function getMyVariant (row) {
-                console.log('@ row=', row);
 				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
