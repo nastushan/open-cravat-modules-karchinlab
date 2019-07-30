@@ -1,5 +1,5 @@
 title: IGV
-version: 1.0.3
+version: 1.0.4
 type: webviewerwidget
 required_annotator: base
 required_resource: bam
@@ -12,3 +12,5 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
     \ Viewer (IGV): high-performance genomics data visualization and exploration.\
     \ Briefings in Bioinformatics 14, 178-192 (2013)."}
 tags: [visualization widgets]
+release_note:
+  1.0.4: supports hg18 and other genomes

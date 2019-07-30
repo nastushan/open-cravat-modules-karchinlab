@@ -15,9 +15,9 @@ widgetGenerators['igv'] = {
                 var chrom = null;
                 var pos = null;
                 var genome = infomgr.jobinfo['Input genome']; 
-                if (genome == 'hg19') {
-                    chrom = infomgr.getRowValue(tabName, row, 'hg19__chrom');
-                    pos = infomgr.getRowValue(tabName, row, 'hg19__pos');
+                if (genome != 'hg38') {
+                    chrom = infomgr.getRowValue(tabName, row, genome + '__chrom');
+                    pos = infomgr.getRowValue(tabName, row, genome + '__pos');
                 } else {
                     chrom = infomgr.getRowValue(tabName, row, 'base__chrom');
                     pos = infomgr.getRowValue(tabName, row, 'base__pos');
@@ -182,9 +182,9 @@ widgetGenerators['igv'] = {
             var chrom = null;
             var pos = null;
             var genome = infomgr.jobinfo['Input genome']; 
-            if (genome == 'hg19') {
-                chrom = infomgr.getRowValue(tabName, row, 'hg19__chrom');
-                pos = infomgr.getRowValue(tabName, row, 'hg19__pos');
+            if (genome != 'hg38') {
+                chrom = infomgr.getRowValue(tabName, row, genome + '__chrom');
+                pos = infomgr.getRowValue(tabName, row, genome + '__pos');
             } else {
                 chrom = infomgr.getRowValue(tabName, row, 'base__chrom');
                 pos = infomgr.getRowValue(tabName, row, 'base__pos');
