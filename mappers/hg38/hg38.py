@@ -457,11 +457,13 @@ class Mapper(cravat.BaseMapper):
         out['num_noncoding_variants'] = len([c for c in input_data['coding'] if c != 'Y'])
         out['num_coding_variants'] = len([c for c in input_data['coding'] if c == 'Y'])
         so_counts = {}
-        for line in input_data['all_mappings']:
+        all_mappings_lines = input_data['all_mappings']
+        for lineno in range(len(all_mappings_lines)):
+            line = all_mappings_lines[lineno]
             all_mappings = json.loads(line)
+            numsample = input_data['numsample'][lineno]
             if hugo in all_mappings:
                 counts = {}
-                numsample = input_data['numsample']
                 for mapping in all_mappings[hugo]:
                     so = mapping[2]
                     if so in gene_level_so_exclude:
