@@ -16,22 +16,25 @@ output_columns:
   type: string
   width: 76
   filterable: false
+  hidden: true
 - desc: Score based on 29 mammal genomes
   filterable: true
   name: logodds
   title: Score
   type: float
+  hidden: true
 - desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
   name: logodds_rank
   title: Rank Score
   type: float
   filterable: false
+  hidden: false
 tags:
 - variants
 - evolution
 - dbnsfp
 title: SiPhy
 type: annotator
-version: 3.5.4
+version: 3.5.5
 requires:
 - wgsiphy

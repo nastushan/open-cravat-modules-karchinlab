@@ -13,6 +13,7 @@ output_columns:
 - name: dname
   title: Term
   type: string
+  hidden: false
 - hidden: true
   name: id
   title: ID
@@ -39,6 +40,7 @@ output_columns:
   title: Aspects
   type: string
   width: 60
+  hidden: true
 - hidden: true
   name: go_ref
   title: Reference
@@ -57,6 +59,6 @@ tags:
 - genes
 title: Gene Ontology
 type: annotator
-version: 2019.05.13
+version: 2019.08.02
 requires:
 - wggo

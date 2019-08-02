@@ -15,18 +15,20 @@ output_columns:
   title: Recommended Therapy
   type: string
   width: 190
+  hidden: false
 - name: rationale
   title: Rationale
   type: string
   width: 95
   filterable: false
+  hidden: true
 tags:
 - genes
 - clinical relevance
 - cancer
 title: TARGET
 type: annotator
-version: 3.0.16
+version: 3.0.17
 requires:
 - wgtarget
 release_note:

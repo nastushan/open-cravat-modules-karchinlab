@@ -18,6 +18,7 @@ output_columns:
   type: string
   width: 90
   filterable: false
+  hidden: true
 - hidden: true
   name: disease_refs
   title: Disease Ref Nums
@@ -29,12 +30,14 @@ output_columns:
   title: Disease Names
   type: string
   width: 55
+  hidden: false
 - desc: The level of review supporting the assertion of clinical significance
   name: rev_stat
   title: Review Status
   type: string
   width: 55
   filterable: false
+  hidden: true
 - filterable: false
   hidden: true
   name: id
@@ -55,7 +58,7 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.05.13
+version: 2019.08.02
 requires_opencravat: '>=1.4.0'
 requires:
 - wgclinvar

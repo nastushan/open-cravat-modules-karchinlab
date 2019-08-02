@@ -26,11 +26,13 @@ output_columns:
   title: Diseases
   type: string
   width: 75
+  hidden: false
 - name: id
   title: ID
   type: string
   filterable: false
   link_format: https://civicdb.org/links/variant/${.*}
+  hidden: true
 tags:
 - variants
 - clinical relevance
@@ -38,7 +40,7 @@ tags:
 - literature
 title: CIViC
 type: annotator
-version: 1.0.9
+version: 1.0.10
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcivic

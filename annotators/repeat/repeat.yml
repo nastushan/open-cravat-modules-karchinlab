@@ -17,20 +17,23 @@ output_columns:
   type: string
   width: 100
   filterable: false
+  hidden: false
 - name: repeatfamily
   title: Repeat Family
   type: string
   width: 100
   filterable: false
+  hidden: true
 - filterable: true
   name: repeatname
   title: Repeat Name
   type: string
   width: 110
+  hidden: true
 tags:
 - genomic features
 title: Repeat Sequences
 type: annotator
-version: 2019.05.13
+version: 2019.08.02
 requires:
 - wgrepeat

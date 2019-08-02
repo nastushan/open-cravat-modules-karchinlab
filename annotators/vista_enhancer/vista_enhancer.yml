@@ -17,15 +17,17 @@ output_columns:
   width: 70
   link_format: https://enhancer.lbl.gov/cgi-bin/imagedb3.pl?form=presentation&show=1&experiment_id=${element
     (.*)}&organism_id=1
+  hidden: true
 - desc: ''
   name: features
   title: Features
   type: string
   width: 70
+  hidden: false
 tags:
 - variants
 - noncoding
 - genomic features
 title: VISTA Enhancer Browser
 type: annotator
-version: 2019.05.09
+version: 2019.08.02

@@ -17,47 +17,56 @@ output_columns:
   title: AF Total
   type: float
   width: 70
+  hidden: false
 - filterable: true
   name: af_afr
   title: AF African
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_amr
   title: AF American
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_asj
   title: AF Ashkenazi Jewish
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_eas
   title: AF East Asian
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_fin
   title: AF Finnish
   type: float
   width: 70
+  hidden: true
 - desc: AF non-Finnish European
   filterable: true
   name: af_nfe
   title: AF Non-Fin Eur
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_oth
   title: AF Other
   type: float
   width: 70
+  hidden: true
 - filterable: true
   name: af_sas
   title: AF South Asian
   type: float
   width: 70
+  hidden: true
 tags:
 - variants
 - noncoding
@@ -65,6 +74,6 @@ tags:
 - populations
 title: gnomAD
 type: annotator
-version: 2.1.6
+version: 2.1.7
 requires:
 - wggnomad

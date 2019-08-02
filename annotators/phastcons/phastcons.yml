@@ -16,18 +16,21 @@ output_columns:
   name: phastcons100_vert
   title: Vert Score
   type: float
+  hidden: true
 - desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
   filterable: false
   name: phastcons100_vert_r
   title: Vert Ranked Score
   type: float
   width: 58
+  hidden: false
 - desc: phastCons conservation score based on the multiple alignments of 30 mammalian
     genomes (including human). The larger the score, the more conserved the site.
   filterable: true
   name: phastcons30_mamm
   title: Mamm Score
   type: float
+  hidden: true
 - desc: phastCons30way_mammalian scores were ranked among all phastCons30way_mammalian
     scores in dbNSFP. The rankscore is the ratio of the rank of the score over the
     total number of phastCons30way_mammalian scores in dbNSFP.
@@ -36,12 +39,14 @@ output_columns:
   title: Mamm Ranked Score
   type: float
   width: 56
+  hidden: false
 - desc: Conservation score based on 17way alignment primate set. The larger the score,
     the more conserved the site.
   filterable: true
   name: phastcons17way_primate
   title: Primate Score
   type: float
+  hidden: true
 - desc: Rank of the phastCons17way_primate score among all phastCons17way_primate
     scores in dbNSFP.
   filterable: false
@@ -49,11 +54,12 @@ output_columns:
   title: Primate Ranked Score
   type: float
   width: 56
+  hidden: false
 tags:
 - evolution
 - dbnsfp
 title: Phast Cons
 type: annotator
-version: 3.5.6
+version: 3.5.7
 requires:
 - wgphastcons

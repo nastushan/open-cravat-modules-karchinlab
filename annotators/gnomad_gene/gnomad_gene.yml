@@ -1,5 +1,5 @@
 title: gnomAD Gene
-version: 2.1.6
+version: 2.1.7
 type: annotator
 level: gene
 description: Gene level population statistics from gnomAD
@@ -15,11 +15,13 @@ output_columns:
   type: string
   width: 70
   desc: Observed/Expected for loss of function variants
+  hidden: true
 - name: oe_mis
   title: Obv/Exp Mis
   type: string
   width: 70
   desc: Observed/Expected for missense variants
+  hidden: true
 - name: oe_syn
   title: Obv/Exp Syn
   type: string
@@ -31,10 +33,12 @@ output_columns:
   title: LoF Z-Score
   type: string
   desc: Z-score for loss of function variants
+  hidden: true
 - name: mis_z
   title: Mis Z-Score
   type: string
   desc: Z-score for missense variants
+  hidden: true
 - name: syn_z
   title: Syn Z-Score
   type: string
@@ -45,10 +49,12 @@ output_columns:
   title: pLI
   type: string
   desc: Probability of being loss-of-function intolerant
+  hidden: false
 - name: pRec
   title: pRec
   type: string
   desc: Probability of being tolerant of homozygous LOF variants
+  hidden: true
 - name: pNull
   title: pNull
   type: string

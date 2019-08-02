@@ -26,11 +26,13 @@ output_columns:
   title: Variant Count (Tissue)
   type: string
   width: 110
+  hidden: false
 - name: variant_count
   title: Variant Count
   type: int
   width: 80
   desc: Occurences in COSMIC
+  hidden: true
 - filterable: false
   hidden: true
   name: transcript
@@ -48,7 +50,7 @@ tags:
 - cancer
 title: COSMIC
 type: annotator
-version: 85.0.13
+version: 85.0.14
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcosmic

@@ -15,12 +15,14 @@ output_columns:
   type: string
   width: 130
   desc: Driver class
+  hidden: false
 - name: inheritance
   title: Inheritance
   type: string
   width: 105
   filterable: false
   desc: Somatic or germline
+  hidden: true
 - name: tts
   title: Tumor types somatic
   type: string
@@ -37,11 +39,12 @@ output_columns:
   title: Link
   type: string
   link_format: https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=${.*}
+  hidden: true
 tags:
 - genes
 - cancer
 title: Cancer Gene Census
 type: annotator
-version: 85.0.11
+version: 85.0.12
 requires:
 - wgcgc
