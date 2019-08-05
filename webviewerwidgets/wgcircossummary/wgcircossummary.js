@@ -64,7 +64,13 @@ widgetGenerators['circossummary'] = {
             var width = null;
             var height = null;
             width = div.offsetWidth;
+            if (width == 0) {
+                width = parseInt(div.style.width.trimRight('px'));
+            }
             height = div.offsetHeight;
+            if (height == 0) {
+                height = parseInt(div.style.height.trimRight('px'));
+            }
             v['width'] = width;
             v['height'] = height;
             var zoom = v['zoom'];
