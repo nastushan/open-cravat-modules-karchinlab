@@ -33,10 +33,12 @@ output_columns:
 - name: score
   title: Score
   type: float
+  hidden: false
 - name: pval
   title: P-value
   type: float
   filterable: false
+  hidden: true
 - hidden: true
   name: all_results
   title: All transcripts
@@ -56,7 +58,7 @@ tags:
 - variant effect prediction
 title: VEST
 type: annotator
-version: 4.1.0
+version: 4.1.1
 release_note:
   4.1.0: new gene summary architecture for open-cravat 1.5.0
 requires_opencravat: '>=1.5.0'

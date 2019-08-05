@@ -20,18 +20,20 @@ output_columns:
   title: Interactors
   type: string
   width: 80
+  hidden: false
 - name: id
   title: ID
   type: string
   width: 58
   filterable: false
   desc: BioGRID ID
+  hidden: true
 tags:
 - genes
 - interactions
 - dbnsfp
 title: BioGRID
 type: annotator
-version: 3.5.171
+version: 3.5.172
 requires:
 - wgbiogrid

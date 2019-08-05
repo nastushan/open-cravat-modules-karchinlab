@@ -13,15 +13,17 @@ output_columns:
   title: Description
   type: string
   width: 200
+  hidden: false
 - name: entrez
   title: Entrez ID
   type: string
   link_format: https://www.ncbi.nlm.nih.gov/gene/${.*}
+  hidden: true
 tags:
 - genes
 title: NCBI Gene
 type: annotator
-version: 2019.05.13
+version: 2019.08.02
 datasource: 2019.03.23
 requires:
 - wgncbigene

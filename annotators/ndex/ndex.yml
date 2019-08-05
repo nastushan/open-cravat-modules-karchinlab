@@ -16,6 +16,7 @@ output_columns:
   type: int
   width: 105
   filterable: false
+  hidden: true
 - hidden: true
   name: networkid
   title: Network ID
@@ -27,6 +28,7 @@ output_columns:
   title: Network Name
   type: string
   width: 185
+  hidden: false
 tags:
 - variants
 - genes
@@ -34,7 +36,7 @@ tags:
 - interactions
 title: NDEx
 type: annotator
-version: 4.0.9
+version: 4.0.10
 requires:
 - wgndexchasmplussummary
 - wgndexvestsummary

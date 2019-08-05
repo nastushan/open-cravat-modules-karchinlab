@@ -15,36 +15,42 @@ output_columns:
   title: AF
   type: float
   width: 80
+  hidden: false
 - desc: African Allele Frequency
   filterable: true
   name: afr_af
   title: AFR_AF
   type: float
   width: 80
+  hidden: true
 - desc: Ad Mixed American Allele Frequency
   filterable: true
   name: amr_af
   title: AMR_AF
   type: float
   width: 80
+  hidden: true
 - desc: East Asian Allele Frequency
   filterable: true
   name: eas_af
   title: EAS_AF
   type: float
   width: 80
+  hidden: true
 - desc: European Allele Frequency
   filterable: true
   name: eur_af
   title: EUR_AF
   type: float
   width: 80
+  hidden: true
 - desc: South Asian Allele Frequency
   filterable: true
   name: sas_af
   title: SAS_AF
   type: float
   width: 80
+  hidden: true
 tags:
 - variants
 - noncoding
@@ -52,7 +58,7 @@ tags:
 - populations
 title: 1000 Genomes
 type: annotator
-version: 4.0.3
+version: 4.0.4
 requires:
 - wgthousandgenomes
 - thousandgenomes_group

@@ -22,10 +22,12 @@ output_columns:
   title: Primary RNA
   type: string
   width: 55
+  hidden: true
 - name: protein
   title: Primary protein
   type: string
   width: 55
+  hidden: false
 - hidden: true
   name: all_rna
   title: All RNA
@@ -40,6 +42,6 @@ tags:
 - variants
 title: HGVS Format
 type: annotator
-version: 1.0.5
+version: 1.0.6
 requires:
 - wghgvs

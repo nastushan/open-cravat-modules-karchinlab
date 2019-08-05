@@ -14,14 +14,17 @@ output_columns:
   name: exac_pli
   title: pLI
   type: float
+  hidden: false
 - desc: Probability LoF Intolerance (hom)
   name: exac_prec
   title: pLI (Hom)
   type: float
+  hidden: true
 - desc: Probability LoF Tolerance (hom & het)
   name: exac_pnull
   title: pLT
   type: float
+  hidden: true
 - desc: Probability LoF Intolerance (hom & het) NonTCGA
   hidden: true
   name: exac_nontcga_pli
@@ -69,26 +72,30 @@ output_columns:
   title: Del Int Z-Score
   type: float
   width: 54
+  hidden: true
 - desc: Duplication Intolerance Z-Score
   name: exac_dup_score
   title: Dup Int Z-Score
   type: float
   width: 54
+  hidden: true
 - desc: CNV Intolerance Z-Score
   name: exac_cnv_score
   title: CNV Int Z-Score
   type: float
   width: 54
+  hidden: true
 - name: exac_cnv_flag
   title: CNV Bias/Noise
   type: string
   width: 70
+  hidden: true
 tags:
 - genes
 - germline
 - populations
 title: ExAC Gene and CNV
 type: annotator
-version: 0.3.17
+version: 0.3.18
 requires:
 - wgexac_gene

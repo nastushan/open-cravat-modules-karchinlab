@@ -21,18 +21,21 @@ output_columns:
   title: Score
   type: float
   desc: Functional impact combined score
+  hidden: true
 - name: mut_rscore
   title: Ranked Score
   type: float
   width: 54
   filterable: false
   desc: Rank of the score in dbNSFP divided by the total number of scores in dbNSFP
+  hidden: true
 - name: mut_pred
   title: Functional Impact
   type: string
   width: 68
   filterable: false
   desc: 'Functional impact: high (H), medium (M), low (L) or neutral (N)'
+  hidden: false
 tags:
 - variants
 - germline
@@ -41,6 +44,6 @@ tags:
 - dbnsfp
 title: Mutation Assessor
 type: annotator
-version: 3.0.5
+version: 3.0.6
 requires:
 - wgmutation_assessor
