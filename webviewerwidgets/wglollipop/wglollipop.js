@@ -5,6 +5,22 @@ widgetGenerators['lollipop'] = {
 		'height': 180, 
 		'variables': {
 			'varColors': {
+					'synonymous': 'rgb(250, 250, 250)',
+					'missense': 'rgb(255, 251, 123)',
+					'complex substitution': 'rgb(141, 237, 255)',
+					'inframe insertion': 'rgb(181, 255, 131)',
+					'inframe deletion': 'rgb(181, 255, 131)',
+					'stop lost': 'rgb(63, 255, 193)',
+					'splice site': 'rgb(255, 118, 35)',
+					'stop gained': 'rgb(250, 0, 0)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
 					'SYN': 'rgb(250, 250, 250)',
 					'MIS': 'rgb(255, 251, 123)',
 					'CSS': 'rgb(141, 237, 255)',
@@ -444,6 +460,7 @@ widgetGenerators['lollipop'] = {
 					Math.max(v.varHeightMin, 
 							variant.count * varHeightInc)
 					);
+                console.log('@', variant, v.varColors);
 				var color = v.varColors[variant.so];
 				if (color == undefined) {
 					color = v.varColorNoSo;
@@ -734,6 +751,22 @@ widgetGenerators['lollipop'] = {
 		'height': 180, 
 		'variables': {
 			'varColors': {
+					'synonymous': 'rgb(250, 250, 250)',
+					'missense': 'rgb(255, 251, 123)',
+					'complex substitution': 'rgb(141, 237, 255)',
+					'inframe insertion': 'rgb(181, 255, 131)',
+					'inframe deletion': 'rgb(181, 255, 131)',
+					'stop lost': 'rgb(63, 255, 193)',
+					'splice site': 'rgb(255, 118, 35)',
+					'stop gained': 'rgb(250, 0, 0)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift insertion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
+					'frameshift deletion': 'rgb(200, 0, 255)',
 					'SYN': 'rgb(250, 250, 250)',
 					'MIS': 'rgb(255, 251, 123)',
 					'CSS': 'rgb(141, 237, 255)',
