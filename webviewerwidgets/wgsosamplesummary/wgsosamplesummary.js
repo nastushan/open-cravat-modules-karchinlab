@@ -176,7 +176,7 @@ widgetGenerators['sosamplesummary'] = {
                         chart.data.datasets[i].data.push(nextDatasets[i].data[j]);
                     }
                 }
-                var newWidth = $(sdiv).width() + nextSamples.length * 20;
+                var newWidth = Math.max(divWidth, $(sdiv).width() + nextSamples.length * 20);
                 $(sdiv).width(newWidth);
             }, 100);
 		}
