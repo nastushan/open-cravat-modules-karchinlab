@@ -460,7 +460,6 @@ widgetGenerators['lollipop'] = {
 					Math.max(v.varHeightMin, 
 							variant.count * varHeightInc)
 					);
-                console.log('@', variant, v.varColors);
 				var color = v.varColors[variant.so];
 				if (color == undefined) {
 					color = v.varColorNoSo;
