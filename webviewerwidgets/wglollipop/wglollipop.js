@@ -1272,18 +1272,20 @@ widgetGenerators['lollipop'] = {
                 addEl(contentDiv, div);
                 var table = getEl('table');
                 table.className = 'lollipop_gene_varianttable';
-                table.style.fontSize = '8px';
                 table.style.width = '160px';
                 addEl(div, table);
                 var thead = getEl('thead');
                 var tr = getEl('tr');
                 var th = getEl('th');
+                th.style.fontSize = '8px';
                 addEl(th, getTn('Change'));
                 addEl(tr, th);
                 var th = getEl('th');
+                th.style.fontSize = '8px';
                 addEl(th, getTn('Seq Ont'));
                 addEl(tr, th);
                 var th = getEl('th');
+                th.style.fontSize = '8px';
                 addEl(th, getTn('# Samples'));
                 addEl(tr, th);
                 addEl(thead, tr);
@@ -1315,6 +1317,7 @@ widgetGenerators['lollipop'] = {
                     var variant = myVariants[i];
                     tr = getEl('tr');
                     td = getEl('td');
+                    td.style.fontSize = '8px';
                     td.style.cursor = 'default';
                     td.addEventListener('mouseover', function (evt) {
                         var aachange = evt.target.textContent;
@@ -1336,10 +1339,12 @@ widgetGenerators['lollipop'] = {
                     addEl(td, getTn(variant.refaa + variant.start + variant.altaa));
                     addEl(tr, td);
                     td = getEl('td');
+                    td.style.fontSize = '8px';
                     addEl(td, getTn(variant.so));
                     addEl(tr, td);
                     td = getEl('td');
                     addEl(td, getTn(variant.count));
+                    td.style.fontSize = '8px';
                     addEl(tr, td);
                     addEl(tbody, tr);
                 }
