@@ -11,6 +11,19 @@ class CravatPostAggregator (BasePostAggregator):
 
     def setup (self):
         self.cursor_a = self.dbconn.cursor()
+        q = 'select distinct(base__sample_id) from sample'
+        self.cursor.execute(q)
+        rs = self.cursor.fetchall()
+        sample_is_all_null = True
+        for r in rs:
+            if r[0] is not None:
+                sample_is_all_null = False
+                break
+        print('@ sample is all null=', sample_is_all_null)
+        if sample_is_all_null == False:
+            q = 'update sample set base__sample_id="no-sample" where base__sample_id is null'
+            self.cursor.execute(q)
+            self.dbconn.commit()
     
     def cleanup (self):
         self.cursor_a.close()
