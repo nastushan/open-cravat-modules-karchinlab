@@ -462,9 +462,6 @@ class Mapper(cravat.BaseMapper):
             line = all_mappings_lines[lineno]
             all_mappings = json.loads(line)
             numsample = input_data['numsample'][lineno]
-            # +1 is to account for no sample id.
-            if numsample == 0:
-                numsample = 1
             if hugo in all_mappings:
                 counts = {}
                 for mapping in all_mappings[hugo]:
