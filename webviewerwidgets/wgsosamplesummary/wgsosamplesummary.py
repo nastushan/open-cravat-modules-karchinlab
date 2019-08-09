@@ -56,11 +56,9 @@ async def get_data (queries):
     q = 'select distinct base__sample_id from sample where base__sample_id is not null'
     await cursor.execute(q)
     samples = [v[0] for v in await cursor.fetchall() if v[0]]
-    '''
     if len(samples) == 1:
         response = {'data': None}
         return response
-    '''
     samples.sort()
     
     q = 'select distinct variant.base__so from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid'
