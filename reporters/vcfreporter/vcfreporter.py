@@ -5,6 +5,7 @@ import re
 import csv
 import zipfile
 import os
+import sqlite3
 import aiosqlite3
 
 class Reporter(CravatReport):
@@ -25,7 +26,7 @@ class Reporter(CravatReport):
             if info_type in ['separate', 'combined']:
                 self.info_type = self.confs['type']
             else:
-                self.info_type = 'separate'
+                self.info_type = 'combined'
         self.info_fieldname_prefix = 'CRV'
         self.col_names_to_skip = ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base', 'tagsampler__numsample', 'tagsampler__samples', 'tagsampler__tags', 'vcfinfo__phred', 'vcfinfo__filter', 'vcfinfo__zygosity', 'vcfinfo__alt_reads', 'vcfinfo__tot_reads', 'vcfinfo__af', 'vcfinfo__hap_block', 'vcfinfo__hap_strand']
         if len(self.args.inputfiles) > 1:
@@ -51,17 +52,8 @@ class Reporter(CravatReport):
             exit()
         self.conn = await aiosqlite3.connect(self.dbpath)
         self.cursor = await self.conn.cursor()
-        self.cursor2 = await self.conn.cursor()
-        '''
-        await self.cursor.execute('select distinct(base__sample_id) from sample')
-        self.samples = []
-        rows = await self.cursor.fetchall()
-        if rows is None or len(rows) == 0:
-            self.samples.append('NOSAMPLEID')
-        else:
-            for row in rows:
-                self.samples.append(row[0])
-        '''
+        self.conn2 = sqlite3.connect(self.dbpath)
+        self.cursor2 = self.conn2.cursor()
 
     def write_preface (self, level): 
         self.level = level
@@ -78,38 +70,54 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
         self.vcflines = {}
         self.input_path_dict = {}
-        if self.args.inputfiles is not None:
-            if type(self.args.inputfiles) is str:
-                self.args.inputfiles = [self.args.inputfiles]
-            for i in range(len(self.args.inputfiles)):
-                self.input_path_dict[self.args.inputfiles[i]] = i
-            written_headers = []
+        self.input_is_vcf = False
+        if len(self.args.inputfiles) == 1:
+            f = open(self.args.inputfiles[0])
+            if f.readline().startswith('##fileformat=VCF'):
+                self.input_is_vcf = True
+            f.close()
+        if self.input_is_vcf:
+            if self.args.inputfiles is not None:
+                if type(self.args.inputfiles) is str:
+                    self.args.inputfiles = [self.args.inputfiles]
+                for i in range(len(self.args.inputfiles)):
+                    self.input_path_dict[self.args.inputfiles[i]] = i
+                written_headers = []
+                self.samples = []
+                num_inputfiles = len(self.args.inputfiles)
+                for inputfile in self.args.inputfiles:
+                    inputfile_prefix = os.path.basename(inputfile).split('.')[0]
+                    input_path_no = self.input_path_dict[inputfile]
+                    f = open(inputfile)
+                    lineno = 0
+                    self.vcflines[input_path_no] = {}
+                    for line in f:
+                        lineno += 1
+                        if line.startswith('##fileformat='):
+                            continue
+                        if line.startswith('##'):
+                            if not line in written_headers:
+                                self.wf.write(line)
+                                written_headers.append(line)
+                        elif line.startswith('#CHROM'):
+                            toks = line[:-1].split('\t')
+                            if len(toks) >= 10:
+                                if num_inputfiles == 1:
+                                    self.samples.extend([v for v in toks[9:]])
+                                else:
+                                    self.samples.extend([inputfile_prefix + '_' + v for v in toks[9:]])
+                        elif line.startswith('#') == False:
+                            self.vcflines[input_path_no][lineno] = line.rstrip('\n').rstrip('\r')
+                    f.close()
+        else:
+            self.cursor2.execute('select distinct(base__sample_id) from sample')
             self.samples = []
-            num_inputfiles = len(self.args.inputfiles)
-            for inputfile in self.args.inputfiles:
-                inputfile_prefix = os.path.basename(inputfile).split('.')[0]
-                input_path_no = self.input_path_dict[inputfile]
-                self.vcflines[input_path_no] = {}
-                f = open(inputfile)
-                lineno = 0
-                for line in f:
-                    lineno += 1
-                    if line.startswith('##fileformat='):
-                        continue
-                    if line.startswith('##'):
-                        if not line in written_headers:
-                            self.wf.write(line)
-                            written_headers.append(line)
-                    elif line.startswith('#CHROM'):
-                        toks = line[:-1].split('\t')
-                        if len(toks) >= 10:
-                            if num_inputfiles == 1:
-                                self.samples.extend([v for v in toks[9:]])
-                            else:
-                                self.samples.extend([inputfile_prefix + '_' + v for v in toks[9:]])
-                    elif line.startswith('#') == False:
-                        self.vcflines[input_path_no][lineno] = line[:-1]
-                f.close()
+            rows = self.cursor2.fetchall()
+            if rows is None or len(rows) == 0:
+                self.samples.append('NOSAMPLEID')
+            else:
+                for row in rows:
+                    self.samples.append(row[0])
 
     def write_header (self, level):
         self.level = level
@@ -153,7 +161,7 @@ class Reporter(CravatReport):
             line += '\t'.join(self.samples)
             self.write_preface_line(line)
             
-    async def write_table_row (self, row):
+    def write_table_row (self, row):
         if self.level != 'variant':
             return
         columns = self.colinfo[self.level]['columns']
@@ -177,63 +185,66 @@ class Reporter(CravatReport):
             if col_name == 'base__uid':
                 uid = cell
                 q = 'select base__fileno, base__original_line from mapping where base__uid={}'.format(uid)
-                await self.cursor2.execute(q)
-                rows2 = await self.cursor2.fetchall()
+                self.cursor2.execute(q)
+                rows2 = self.cursor2.fetchall()
                 for row2 in rows2:
                     (pathno, lineno) = row2
                     if pathno not in self.output_candidate:
                         self.output_candidate[pathno] = {}
-                    vcfline = self.vcflines[pathno][lineno]
-                    if lineno not in self.output_candidate[pathno]:
-                        alts = vcfline.split('\t')[4].split(',')
-                        noalts = len(alts)
-                        self.output_candidate[pathno][lineno] = {'noalts': noalts, 'line': vcfline, 'annots': []}
+                    if self.input_is_vcf:
+                        vcfline = self.vcflines[pathno][lineno]
+                        if lineno not in self.output_candidate[pathno]:
+                            alts = vcfline.split('\t')[4].split(',')
+                            noalts = len(alts)
+                            self.output_candidate[pathno][lineno] = {'noalts': noalts, 'line': vcfline, 'annots': []}
+                continue
             elif col_name == 'base__all_mappings':
                 cell = cell.replace('; ', '&')
                 cell = cell.replace(' ', '-')
                 info.append(cell)
-            elif col_name in self.col_names_to_skip:
                 continue
+            if self.input_is_vcf and col_name in self.col_names_to_skip:
+                    continue
+            if cell is None:
+                infocell = ''
+            elif type(cell) is str:
+                cell = cell.replace('; ', '&')
+                cell = cell.replace(';', '&')
+                cell = cell.replace(' ', '-')
+                infocell = '"' + cell + '"'
             else:
-                if cell is None:
-                    infocell = ''
-                elif type(cell) is str:
-                    cell = cell.replace('; ', '&')
-                    cell = cell.replace(';', '&')
-                    cell = cell.replace(' ', '-')
-                    infocell = '"' + cell + '"'
-                else:
-                    infocell = str(cell)
-                info.append(infocell)
-            '''
-            elif col_name == 'base__chrom':
-                chrom = cell.lstrip('chr')
-            elif col_name == 'base__pos':
-                pos = cell
-            elif col_name == 'base__ref_base':
-                ref = cell
-            elif col_name == 'base__alt_base':
-                alt = cell
-            '''
-            '''
-            elif col_name == 'tagsampler__numsample':
-                continue
-            elif col_name == 'tagsampler__samples':
-                samples_with_variant = cell.split(',')
-                sample_cols = []
-                for s in self.samples:
-                    if s in samples_with_variant:
-                        sample_cols.append('1|1')
-                    else:
-                        sample_cols.append('')
-            elif col_name == 'vcfinfo__phred':
-                qual = cell.split(';')[0]
-            elif col_name == 'vcfinfo__filter':
-                filt = cell.split(';')[0]
-            '''
-        out = self.output_candidate[pathno][lineno]
-        noalts = out['noalts']
-        annots = out['annots']
+                infocell = str(cell)
+            info.append(infocell)
+            if self.input_is_vcf == False:
+                if col_name == 'base__chrom':
+                    chrom = cell.lstrip('chr')
+                elif col_name == 'base__pos':
+                    pos = cell
+                elif col_name == 'base__ref_base':
+                    ref = cell
+                elif col_name == 'base__alt_base':
+                    alt = cell
+                elif col_name == 'base__numsample':
+                    continue
+                elif col_name == 'base__samples':
+                    samples_with_variant = cell.split(',')
+                    sample_cols = []
+                    for s in self.samples:
+                        if s in samples_with_variant:
+                            sample_cols.append('1|1')
+                        else:
+                            sample_cols.append('')
+                elif col_name == 'vcfinfo__phred':
+                    qual = cell.split(';')[0]
+                elif col_name == 'vcfinfo__filter':
+                    filt = cell.split(';')[0]
+        if self.input_is_vcf:
+            out = self.output_candidate[pathno][lineno]
+            noalts = out['noalts']
+            annots = out['annots']
+        else:
+            noalts = 1
+            annots = []
         annots.append(info)
         if len(annots) == noalts:
             numfields = len(annots[0])
@@ -248,11 +259,15 @@ class Reporter(CravatReport):
                 info_add_str = ';'.join(info_add_list)
             elif self.info_type == 'combined':
                 info_add_str = self.info_fieldname_prefix + '=' + '|'.join([','.join(altlist) for altlist in combined_annots])
-            toks = out['line'].split('\t')
-            toks[7] = toks[7] + ';' + info_add_str
-            writerow = toks
+            if self.input_is_vcf:
+                toks = out['line'].split('\t')
+                toks[7] = toks[7] + ';' + info_add_str
+                writerow = toks
+                del self.output_candidate[pathno][lineno]
+            else:
+                writerow = [str(chrom), str(pos), str(uid), ref, alt, '.', '.', info_add_str, 'GT']
+                writerow.extend(sample_cols)
             self.write_body_line(writerow)
-            del self.output_candidate[pathno][lineno]
 
     def write_body_lines (self, lines):
         if self.level != 'variant':
