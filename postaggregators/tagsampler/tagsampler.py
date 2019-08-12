@@ -19,7 +19,6 @@ class CravatPostAggregator (BasePostAggregator):
             if r[0] is not None:
                 sample_is_all_null = False
                 break
-        print('@ sample is all null=', sample_is_all_null)
         if sample_is_all_null == False:
             q = 'update sample set base__sample_id="no-sample" where base__sample_id is null'
             self.cursor.execute(q)
