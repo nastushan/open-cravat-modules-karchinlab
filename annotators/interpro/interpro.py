@@ -24,26 +24,23 @@ class CravatAnnotator(BaseAnnotator):
         self.dbconn.close()
         pass
 
-    def build_gene_collection (self, hugo, input_data, gene_data):
-        domain = input_data['domain']
-        if domain == None:
-            return
-        domain_toks = domain.split(';')
-        for domain_tok in domain_toks:
-            if domain_tok == '.':
+    def summarize_by_gene (self, hugo, input_data):
+        domains = []
+        for domain in input_data['domain']:
+            if domain is None:
                 continue
-            domain_toks2 = domain_tok.split('|')
-            for domain_tok2 in domain_toks2:
-                if domain_tok2 not in gene_data[hugo]['domain']:
-                    gene_data[hugo]['domain'].append(domain_tok2)
-
-    def summarize_by_gene (self, hugo, gene_collection):
-        input_data = gene_collection[hugo]
-        domains = '; '.join(input_data['domain'])
-        if domains == '':
+            ds = domain.split(';')
+            for d in ds:
+                if d == '.':
+                    continue
+                es = d.split('|')
+                for e in es:
+                    if e not in domains:
+                        domains.append(e)
+        if len(domains) == 0:
             out = None
         else:
-            out = {'domain': domains}
+            out = {'domain': ';'.join(domains)}
         return out
 
 if __name__ == '__main__':

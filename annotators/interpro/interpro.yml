@@ -36,6 +36,8 @@ tags:
 - dbnsfp
 title: InterPro
 type: annotator
-version: 71.0.5
+version: 71.0.6
 requires:
 - wginterpro
+release_note:
+  71.0.6: gene level aggregation for 1.5.0
