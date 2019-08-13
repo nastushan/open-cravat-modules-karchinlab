@@ -1,7 +1,7 @@
 widgetGenerators['haplotypes'] = {
 	'variant': {
 		'width': 280, 
-		'height': 280, 
+		'height': 180, 
 		'word-break': 'break-word',
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Chromosome', 'base__chrom', tabName);
