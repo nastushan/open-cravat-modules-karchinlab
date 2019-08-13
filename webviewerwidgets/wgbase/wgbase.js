@@ -1,7 +1,7 @@
 widgetGenerators['base'] = {
 	'variant': {
 		'width': 380, 
-		'height': 280, 
+		'height': 200, 
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'UID', 'base__uid', tabName);
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
@@ -45,7 +45,7 @@ widgetGenerators['base'] = {
 	},
 	'gene': {
 		'width': 280,
-		'height': 280,
+		'height': 200,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
 			addInfoLine(div, row, '# Variants', 'base__num_variants', tabName);

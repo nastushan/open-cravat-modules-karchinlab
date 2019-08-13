@@ -1,7 +1,7 @@
 widgetGenerators['grasp'] = {
 	'variant': {
 		'width': 280, 
-		'height': 280, 
+		'height': 180, 
 		'function': function (div, row, tabName) {
 			var table = getWidgetTableFrame();
 			addEl(div, table);

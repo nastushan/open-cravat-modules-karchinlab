@@ -1,7 +1,7 @@
 widgetGenerators['note'] = {
 	'variant': {
 		'width': 280, 
-		'height': 280, 
+		'height': 80, 
 		'donterase': true,
         'variables': {'noterow': ''},
 		'function': function (div, row, tabName) {
@@ -43,7 +43,7 @@ widgetGenerators['note'] = {
 	},
 	'gene': {
 		'width': 280,
-		'height': 280,
+		'height': 80,
 		'donterase': true,
         'variables': {'noterow': ''},
 		'function': function (div, row, tabName) {
