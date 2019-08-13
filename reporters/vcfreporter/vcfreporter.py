@@ -36,10 +36,12 @@ class Reporter(CravatReport):
     def end (self):
         if self.wf is not None:
             self.wf.close()
+        '''
         zf = zipfile.ZipFile(self.filename_prefix + '.vcf.zip', mode='w', compression=zipfile.ZIP_DEFLATED)
         for filename in self.filenames:
             zf.write(filename, os.path.relpath(filename, start=os.path.dirname(filename)))
         zf.close()
+        '''
 
     async def connect_db (self, dbpath=None):
         if dbpath != None:
@@ -61,7 +63,7 @@ class Reporter(CravatReport):
             self.wf.close()
         if level != 'variant':
             return
-        self.filename = self.filename_prefix + '.' + level + '.vcf'
+        self.filename = self.filename_prefix + '.vcf'
         self.filenames.append(self.filename)
         self.wf = open(self.filename, 'w', encoding='utf-8', newline='')
         lines = ['#fileformat=VCFv4.2',
