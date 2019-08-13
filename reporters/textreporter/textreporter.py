@@ -57,7 +57,6 @@ class Reporter(CravatReport):
     def write_preface_line (self, line):
         self.wf.write('#' + line + '\n')
 
-    '''
     def substitute_val (self, level, row):
         if level in self.column_subs:
             for i in self.column_subs[level]:
@@ -66,7 +65,6 @@ class Reporter(CravatReport):
                     for target in sub:
                         row[i] = re.sub('\\b' + target + '\\b', sub[target], row[i])
         return row
-    '''
 
 def main ():
     reporter = Reporter(sys.argv)
