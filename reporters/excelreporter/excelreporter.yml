@@ -1,5 +1,5 @@
 title: Excel Reporter
-version: 1.0.4
+version: 1.0.5
 type: reporter
 description: Microsoft Excel reporter
 requires_opencravat: '>=1.5.0'
@@ -11,6 +11,7 @@ developer:
   citation: ''
 
 release_note:
+  1.0.5: sync write_table_row
   1.0.4: async write_table_row
   1.0.2: regex substitution
   1.0.1: changed hyperlink format to use "[WEB:]"
