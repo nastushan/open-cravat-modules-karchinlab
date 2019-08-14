@@ -12,13 +12,13 @@ class Reporter(CravatReport):
 
     def setup (self):
         self.wf = None
-        self.filenames = []
         self.filename = None
         self.filename_prefix = None
         if self.savepath == None:
             self.filename_prefix = 'cravat_result'
         else:
             self.filename_prefix = self.savepath
+        self.filename = self.filename_prefix + '.vcf'
         if not 'type' in self.confs:
             self.info_type = 'combined'
         else:
@@ -29,19 +29,22 @@ class Reporter(CravatReport):
                 self.info_type = 'combined'
         self.info_fieldname_prefix = 'CRV'
         self.col_names_to_skip = ['base__uid', 'base__chrom', 'base__pos', 'base__ref_base', 'base__alt_base', 'tagsampler__numsample', 'tagsampler__samples', 'tagsampler__tags', 'vcfinfo__phred', 'vcfinfo__filter', 'vcfinfo__zygosity', 'vcfinfo__alt_reads', 'vcfinfo__tot_reads', 'vcfinfo__af', 'vcfinfo__hap_block', 'vcfinfo__hap_strand']
-        if len(self.args.inputfiles) > 1:
-            self.logger.error(Exception('Only 1 input file can be taken. Exiting without creating a report.'))
+        q = 'select colval from info where colkey="_converter_format"'
+        self.cursor2.execute(q)
+        r = self.cursor2.fetchone()
+        self.input_format = r[0]
+        if self.input_format == 'vcf' and '_and_' in self.args.inputfiles[0]:
+            msg = 'VCF reporter can handle jobs with only 1 VCF input file'
+            self.logger.info(msg)
+            print(msg)
+            wf = open(self.filename, 'w')
+            wf.write(msg + '\n')
+            wf.close()
             return False
 
     def end (self):
         if self.wf is not None:
             self.wf.close()
-        '''
-        zf = zipfile.ZipFile(self.filename_prefix + '.vcf.zip', mode='w', compression=zipfile.ZIP_DEFLATED)
-        for filename in self.filenames:
-            zf.write(filename, os.path.relpath(filename, start=os.path.dirname(filename)))
-        zf.close()
-        '''
 
     async def connect_db (self, dbpath=None):
         if dbpath != None:
@@ -63,8 +66,6 @@ class Reporter(CravatReport):
             self.wf.close()
         if level != 'variant':
             return
-        self.filename = self.filename_prefix + '.vcf'
-        self.filenames.append(self.filename)
         self.wf = open(self.filename, 'w', encoding='utf-8', newline='')
         lines = ['#fileformat=VCFv4.2',
             '#OpenCRAVATFileDate=' + datetime.datetime.now().strftime('%Y%m%d'),
@@ -72,13 +73,7 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
         self.vcflines = {}
         self.input_path_dict = {}
-        self.input_is_vcf = False
-        if len(self.args.inputfiles) == 1:
-            f = open(self.args.inputfiles[0])
-            if f.readline().startswith('##fileformat=VCF'):
-                self.input_is_vcf = True
-            f.close()
-        if self.input_is_vcf:
+        if self.input_format == 'vcf':
             if self.args.inputfiles is not None:
                 if type(self.args.inputfiles) is str:
                     self.args.inputfiles = [self.args.inputfiles]
@@ -193,7 +188,7 @@ class Reporter(CravatReport):
                     (pathno, lineno) = row2
                     if pathno not in self.output_candidate:
                         self.output_candidate[pathno] = {}
-                    if self.input_is_vcf:
+                    if self.input_format == 'vcf':
                         vcfline = self.vcflines[pathno][lineno]
                         if lineno not in self.output_candidate[pathno]:
                             alts = vcfline.split('\t')[4].split(',')
@@ -205,7 +200,7 @@ class Reporter(CravatReport):
                 cell = cell.replace(' ', '-')
                 info.append(cell)
                 continue
-            if self.input_is_vcf and col_name in self.col_names_to_skip:
+            if self.input_format == 'vcf' and col_name in self.col_names_to_skip:
                     continue
             if cell is None:
                 infocell = ''
@@ -217,7 +212,7 @@ class Reporter(CravatReport):
             else:
                 infocell = str(cell)
             info.append(infocell)
-            if self.input_is_vcf == False:
+            if self.input_format != 'vcf':
                 if col_name == 'base__chrom':
                     chrom = cell.lstrip('chr')
                 elif col_name == 'base__pos':
@@ -240,7 +235,7 @@ class Reporter(CravatReport):
                     qual = cell.split(';')[0]
                 elif col_name == 'vcfinfo__filter':
                     filt = cell.split(';')[0]
-        if self.input_is_vcf:
+        if self.input_format == 'vcf':
             out = self.output_candidate[pathno][lineno]
             noalts = out['noalts']
             annots = out['annots']
@@ -261,7 +256,7 @@ class Reporter(CravatReport):
                 info_add_str = ';'.join(info_add_list)
             elif self.info_type == 'combined':
                 info_add_str = self.info_fieldname_prefix + '=' + '|'.join([','.join(altlist) for altlist in combined_annots])
-            if self.input_is_vcf:
+            if self.input_format == 'vcf':
                 toks = out['line'].split('\t')
                 toks[7] = toks[7] + ';' + info_add_str
                 writerow = toks
