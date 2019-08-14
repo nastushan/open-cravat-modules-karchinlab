@@ -48,7 +48,8 @@ widgetGenerators['base'] = {
 		'height': 200,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
-			addInfoLine(div, row, '# Variants', 'base__num_variants', tabName);
+			addInfoLine(div, row, '# Coding Variants', 'base__num_coding_variants', tabName);
+			addInfoLine(div, row, '# Non-coding Variants', 'base__num_noncoding_variants', tabName);
 			addInfoLine(div, row, 'Most Severe Seq Ont', 'base__so', tabName);
 			var allMappings = infomgr.getRowValue(tabName, row, 'base__all_so');
 			if (allMappings != null && allMappings != '') {
