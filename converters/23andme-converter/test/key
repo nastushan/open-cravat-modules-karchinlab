@@ -1,67 +1,44 @@
 #CRAVAT Report
-#Created at Thursday 06/06/2019 12:39:30
+#Created at Thursday 08/15/2019 11:37:57
 #Report level: variant
 #
-Variant Annotation												Tag Sampler		
+Variant Annotation														
 UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
-2	chr1	565508	?	A								0		rs9283150
-3	chr1	727841	?	G								0		rs116587930
-4	chr1	752721	?	G								0		rs3131972
-5	chr1	754105	?	C								0		rs12184325
-6	chrM	10	?	T								0		i703360
-7	chr1	919501	?	G								0		rs4970414
-8	chr1	919501	?	T								0		rs4970414
-9	chr1	881627	?	A								0		rs2272757
-10	chr1	881627	?	G								0		rs2272757
-11	chr1	917640	?	A								0		rs41285816
-12	chr1	917640	?	G								0		rs41285816
-13	chr1	3805098	?	C								0		rs7530189
-14	chr1	3805098	?	T								0		rs7530189
+2	chr1	565508	G	A								0		rs9283150
+4	chr1	752721	A	G								0		rs3131972
+8	chr1	919501	G	T								0		rs4970414
+9	chr1	881627	G	A								0		rs2272757
+11	chr1	917640	G	A								0		rs41285816
+14	chr1	3805098	C	T								0		rs7530189
 #CRAVAT Report
-#Created at Thursday 06/06/2019 12:39:30
+#Created at Thursday 08/15/2019 11:37:57
 #Report level: gene
 #
-Variant Annotation				
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
 #CRAVAT Report
-#Created at Thursday 06/06/2019 12:39:30
+#Created at Thursday 08/15/2019 11:37:57
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
 2	
 2	
-3	
-3	
 4	
 4	
-5	
-5	
-6	
-7	
 8	
 9	
-10	
 11	
-12	
-13	
 14	
 #CRAVAT Report
-#Created at Thursday 06/06/2019 12:39:30
+#Created at Thursday 08/15/2019 11:37:57
 #Report level: mapping
 #
-Variant Annotation		
-Original Line	User Tags	UID
-23	rs9283150	2
-25	rs116587930	3
-26	rs3131972	4
-27	rs12184325	5
-30	i703360	6
-31	rs4970414	7
-31	rs4970414	8
-32	rs2272757	9
-32	rs2272757	10
-33	rs41285816	11
-33	rs41285816	12
-34	rs7530189	13
-34	rs7530189	14
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+23	rs9283150	2	0
+26	rs3131972	4	0
+31	rs4970414	8	0
+32	rs2272757	9	0
+33	rs41285816	11	0
+34	rs7530189	14	0
