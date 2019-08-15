@@ -1,0 +1,39 @@
+title: GWAS Catalog
+version: 1.0.0
+description: GWAS Catalog Annotator
+level: variant
+developer: 
+  name: 'NHGRI-EBI'
+  organization: 'NHGRI-EBI'
+  email: 'gwas-info@ebi.ac.uk.'
+  website: ‘https://www.ebi.ac.uk/gwas/home’
+  citation: 'Buniello A, MacArthur JAL, Cerezo M, Harris LW, Hayhurst J, Malangone C, McMahon A, Morales J, Mountjoy E, Sollis E, Suveges D, Vrousgou O, Whetzel PL, Amode R, Guillen JA, Riat HS, Trevanion SJ, Hall P, Junkins H, Flicek P, Burdett T, Hindorff LA, Cunningham F and Parkinson H. The NHGRI-EBI GWAS Catalog of published genome-wide association studies, targeted arrays and summary statistics 2019. Nucleic Acids Research, 2019, Vol. 47 (Database issue): D1005-D1012.'
+
+output_columns:
+  - name: disease
+    title: Disease/Trait
+    type: string
+  - name: init_samp
+    title: Initial Sample
+    type: string
+  - name: rep_samp
+    title: Replication Sample
+    type: string
+  - name: strongest_snp
+    title: Strongest SNP
+    type: string
+  - name: snps
+    title: SNPs
+    type: string
+  - name: cur_snp
+    title: Current SNP
+    type: string
+  - name: pval
+    title: P-value
+    type: float
+  - name: or_beta
+    title: Odds Ratio/Beta Coeff
+    type: float
+  - name: ci
+    title: Confidence Interval
+    type: string
