@@ -4,7 +4,7 @@ from cravat import BadFormatError
 import re
 
 class CravatConverter(BaseConverter):
-    
+
     def __init__(self):
         self.format_name = 'vcf'
         self.samples = []
@@ -33,7 +33,14 @@ class CravatConverter(BaseConverter):
                           {'name': 'hap_strand',
                            'title': 'Haplotype strand ID',
                            'type': 'int'}]
-    
+        self.info_field_coltype_dict = {
+            'integer': 'int',
+            'float': 'float',
+            'flag': 'string',
+            'character': 'string',
+            'string': 'string'
+        }
+
     def check_format(self, f): 
         vcf_format = False
         if f.name.endswith('.vcf'):
@@ -42,8 +49,9 @@ class CravatConverter(BaseConverter):
         if first_line.startswith('##fileformat=VCF'):
             vcf_format = True
         return vcf_format
-    
+
     def setup(self, f):
+        self.info_cols = []
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
                 self.vcf_format = 'varscan'
@@ -51,12 +59,49 @@ class CravatConverter(BaseConverter):
                 self.vcf_format = 'unknown'
             if len(l) < 6:
                 continue
+            if l.startswith('##INFO='):
+                colname, coltype, coltitle, coldesc = self.parse_info_field(l)
+                if coltype is None:
+                    continue
+                else:
+                    self.info_cols.append({'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc})
             if l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
-    
+        self.vcfinfowf = open(
+
+    def parse_info_field (self, l):
+        l = l[7:].rstrip('>')
+        if 'ID=' in l:
+            idx = l.index('ID=')
+            l2 = l[idx + 3:]
+            idx2 = l2.index(',')
+            colname = l2[:idx2]
+        else:
+            colname = None
+        coltitle = colname
+        if 'Type=' in l:
+            idx = l.index('Type=')
+            l2 = l[idx + 5:]
+            idx2 = l2.index(',')
+            coltype = l2[:idx2].lower()
+            if coltype in self.info_field_coltype_dict:
+                coltype = self.info_field_coltype_dict[coltype]
+            else:
+                coltype = None
+        else:
+            coltype = None
+        if 'Description="' in l:
+            idx = l.index('Description="')
+            l2 = l[idx + 13:]
+            idx2 = l2.index('"')
+            coldesc = l2[:idx2]
+        else:
+            coldesc = None
+        return colname, coltype, coltitle, coldesc
+
     def convert_line(self, l):
         if l.startswith('#'): return None
         self.var_counter += 1
@@ -172,13 +217,13 @@ class CravatConverter(BaseConverter):
                                      }
                         all_wdicts.append(wdict)
         return all_wdicts
- 
+
     #The vcf genotype string has a call for each allele separated by '\' or '/'
     #If the call is the same for all allels, return 'hom' otherwise 'het'
     def homo_hetro(self, gt_str):
         if '.' in gt_str:
             return '';
-        
+
         gts = gt_str.strip().replace('/', '|').split('|')
         for gt in gts:
             if gt != gts[0]:
@@ -265,23 +310,23 @@ class CravatConverter(BaseConverter):
 
         reflen = len(ref)
         altlen = len(alt)
-        
+
         # Returns without change if same single nucleotide for ref and alt. 
         if reflen == 1 and altlen == 1 and ref == alt:
             return pos, ref, alt
-        
+
         # Trimming from the start and then the end of the sequence 
         # where the sequences overlap with the same nucleotides
         new_ref2, new_alt2, new_pos = \
             self.trimming_vcf_input(ref, alt, pos, strand)
-                
+
         if new_ref2 == '' or new_ref2 == '.':
             new_ref2 = '-'
         if new_alt2 == '' or new_alt2 == '.':
             new_alt2 = '-'
-        
+
         return new_pos, new_ref2, new_alt2
-    
+
     # This function looks at the ref and alt sequences and removes 
     # where the overlapping sequences contain the same nucleotide.
     # This trims from the end first but does not remove the first nucleotide 
