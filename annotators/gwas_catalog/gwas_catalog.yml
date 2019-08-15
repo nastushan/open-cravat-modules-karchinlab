@@ -1,3 +1,4 @@
+private: true
 title: GWAS Catalog
 version: 1.0.0
 description: GWAS Catalog Annotator
