@@ -3,7 +3,7 @@ from cravat import BadFormatError
 import cravat.constants as constants
 from pyliftover import LiftOver
 import os
-
+from cravat.exceptions import LiftoverFailure
 class CravatConverter(BaseConverter):
     
     def __init__(self):
@@ -34,7 +34,7 @@ class CravatConverter(BaseConverter):
             pos38 = hg38_coords[0][1]      
             ref = self.btr.get_stretch(chrom38, pos38-1, 1)
         else:
-            ref = ''      
+            raise(LiftoverFailure('Liftover failure'))      
         sample = ''
         good_vars = set(['T','C','G','A'])
         geno = toks[3]
