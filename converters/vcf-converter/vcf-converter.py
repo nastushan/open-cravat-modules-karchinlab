@@ -1,7 +1,7 @@
 from cravat import BaseConverter
 from cravat import BadFormatError
-
 import re
+from collections import OrderedDict
 
 class CravatConverter(BaseConverter):
 
@@ -40,6 +40,7 @@ class CravatConverter(BaseConverter):
             'character': 'string',
             'string': 'string'
         }
+        self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
 
     def check_format(self, f): 
         vcf_format = False
@@ -51,7 +52,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
-        self.info_cols = []
+        self.info_field_cols = OrderedDict()
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
                 self.vcf_format = 'varscan'
@@ -60,35 +61,50 @@ class CravatConverter(BaseConverter):
             if len(l) < 6:
                 continue
             if l.startswith('##INFO='):
-                colname, coltype, coltitle, coldesc = self.parse_info_field(l)
-                if coltype is None:
+                colname, coltype, coltitle, coldesc, coloritype, colnumber = self.parse_header_info_field(l)
+                if coltype is None or colnumber not in self.allowed_info_colnumbers:
                     continue
                 else:
-                    self.info_cols.append({'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc})
+                    self.info_field_cols[colname] = {'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber}
             if l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
-        self.vcfinfowf = open(
+        print('@ header info cols=', self.info_field_cols)
 
-    def parse_info_field (self, l):
+    def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
         if 'ID=' in l:
             idx = l.index('ID=')
             l2 = l[idx + 3:]
-            idx2 = l2.index(',')
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
             colname = l2[:idx2]
         else:
             colname = None
-        coltitle = colname
+        if 'Number=' in l:
+            idx = l.index('Number=')
+            l2 = l[idx + 7:]
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
+            colnumber = l2[:idx2].lower()
+        else:
+            colnumber = None
         if 'Type=' in l:
             idx = l.index('Type=')
             l2 = l[idx + 5:]
-            idx2 = l2.index(',')
-            coltype = l2[:idx2].lower()
-            if coltype in self.info_field_coltype_dict:
-                coltype = self.info_field_coltype_dict[coltype]
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
+            coloritype = l2[:idx2].lower()
+            if coloritype in self.info_field_coltype_dict:
+                coltype = self.info_field_coltype_dict[coloritype]
             else:
                 coltype = None
         else:
@@ -100,7 +116,42 @@ class CravatConverter(BaseConverter):
             coldesc = l2[:idx2]
         else:
             coldesc = None
-        return colname, coltype, coltitle, coldesc
+        if coldesc is not None and len(coldesc) < 20:
+            coltitle = coldesc
+        else:
+            coltitle = colname
+        return colname, coltype, coltitle, coldesc, coloritype, colnumber
+
+    def parse_data_info_field (self, infoline, len_alts):
+        toks = infoline.split(';')
+        info_dict = {}
+        for tok in toks:
+            idx = tok.index('=')
+            colname = tok[:idx]
+            if colname not in self.info_field_cols:
+                continue
+            coldef = self.info_field_cols[colname]
+            coloritype = coldef['oritype']
+            colnumber = coldef['number']
+            colvals = tok[idx + 1:].split(',')
+            if coloritype == 'integer':
+                colvals = [int(v) for v in colvals]
+            elif coloritype == 'float':
+                colvals = [float(v) for v in colvals]
+            elif coloritype in ['string', 'character', 'flag']:
+                colvals = colvals
+            if colnumber == '0':
+                data = [colvals[0]] * len_alts
+            if colnumber == '1':
+                data = [colvals[0]] * len_alts
+            elif colnumber == 'a':
+                data = colvals
+            elif colnumber == 'r':
+                data = colvals[1:]
+            elif colnumber == '.':
+                data = [','.join(colvals)] * len_alts
+            info_dict[colname] = data
+        return info_dict
 
     def convert_line(self, l):
         if l.startswith('#'): return None
@@ -123,13 +174,16 @@ class CravatConverter(BaseConverter):
             filter = None
         if toklen >= 8:
             info = toks[7]
-            if info == '.': info = None
+            if info == '.': 
+                info = None
         else:
             info = None
         if tag == '.':
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
+        if info is not None:
+            info_field_data = self.parse_data_info_field(info, len_alts)
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
