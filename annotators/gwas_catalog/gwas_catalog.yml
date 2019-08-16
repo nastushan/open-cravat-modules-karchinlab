@@ -50,3 +50,5 @@ output_columns:
     type: string
     hidden: true
     width: 75
+requires:
+  - wggwas_catalog
