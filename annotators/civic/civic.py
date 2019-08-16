@@ -15,7 +15,7 @@ class CravatAnnotator(BaseAnnotator):
         lifter = LiftOver(constants.liftover_chain_paths['hg19'])
         page_url = 'https://civicdb.org/api/variants?count=500&page=1'
         while page_url is not None:
-            r = requests.get(page_url)
+            r = requests.get(page_url, timeout=5)
             d = json.loads(r.text)
             records = d['records']
             page_url = d['_meta']['links']['next']

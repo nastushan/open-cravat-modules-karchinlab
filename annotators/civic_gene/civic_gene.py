@@ -12,7 +12,7 @@ class CravatAnnotator(BaseAnnotator):
         self.civicdata = {}
         page_url = 'https://civicdb.org/api/genes?count=500&page=1'
         while page_url is not None:
-            r = requests.get(page_url)
+            r = requests.get(page_url, timeout=5)
             d = json.loads(r.text)
             records = d['records']
             self.civicdata.update({x['name']:x for x in records})
