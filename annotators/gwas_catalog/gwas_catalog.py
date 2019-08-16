@@ -17,8 +17,6 @@ class CravatAnnotator(BaseAnnotator):
             'init_samp',
             'rep_samp',
             'risk_allele',
-            'snps',
-            'cur_snp',
             'pval',
             'or_beta',
             'ci'

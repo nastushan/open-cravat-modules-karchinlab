@@ -16,6 +16,11 @@ output_columns:
     title: Disease/Trait
     type: string
     width: 120
+  - name: or_beta
+    title: Odds Ratio/Beta Coeff
+    type: float
+    hidden: true
+    width: 75
   - name: pval
     title: P-value
     type: float
@@ -40,21 +45,6 @@ output_columns:
     title: Risk Allele
     type: string
     hidden: true
-  - name: snps
-    title: SNPs
-    type: string
-    width: 70
-    hidden: true
-  - name: cur_snp
-    title: Current SNP
-    type: string
-    width: 70
-    hidden: true
-  - name: or_beta
-    title: Odds Ratio/Beta Coeff
-    type: float
-    hidden: true
-    width: 75
   - name: ci
     title: Confidence Interval
     type: string
