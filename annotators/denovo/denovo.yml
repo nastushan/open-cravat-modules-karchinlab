@@ -23,12 +23,12 @@ output_columns:
   name: PrimaryPhenotype
   title: Phenotype
   type: string
-  width: 68
+  width: 70
   hidden: false
 - name: Validation
   title: Validation
   type: string
-  width: 68
+  width: 70
   filterable: false
   desc: Validation status
   hidden: true
@@ -40,7 +40,7 @@ tags:
 - clinical relevance
 title: Denovo-DB
 type: annotator
-version: 1.6.9
+version: 1.6.10
 requires_opencravat: '>=1.4.0'
 requires:
 - wgdenovo

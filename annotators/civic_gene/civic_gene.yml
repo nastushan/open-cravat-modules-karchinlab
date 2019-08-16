@@ -27,7 +27,7 @@ tags:
 - literature
 title: CIViC Gene
 type: annotator
-version: 1.0.7
+version: 1.0.8
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcivic_gene
