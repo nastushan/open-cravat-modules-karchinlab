@@ -1,5 +1,5 @@
 title: NDEx
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 required_annotator: ndex
 description: NDEx webviewer widget
@@ -10,6 +10,7 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 release_note:
+  1.0.5: fix for TP53 due to NDEx data change
   1.0.1: improved resize and redraw
 tags:
 - visualization widgets
