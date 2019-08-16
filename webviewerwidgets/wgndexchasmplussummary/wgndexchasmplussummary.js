@@ -743,9 +743,6 @@ widgetGenerators['ndexchasmplussummary'] = {
                 var overlapNodes = [];
                 for (var i = 0; i < genesInTheOverlap.length; i++) {
                     var geneInTheOverlap = genesInTheOverlap[i];
-                    if (geneInTheOverlap == 'TP53') {
-                        geneInTheOverlap = 'P53';
-                    }
                     var nodeId = niceCX.nodeidofgene[geneInTheOverlap];
                     overlapNodes.push(nodeId);
                 }
