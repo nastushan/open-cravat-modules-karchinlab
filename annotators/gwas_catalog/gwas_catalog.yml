@@ -3,6 +3,7 @@ title: GWAS Catalog
 version: 1.0.0
 description: GWAS Catalog Annotator
 level: variant
+type: annotator
 developer: 
   name: 'NHGRI-EBI'
   organization: 'NHGRI-EBI'
@@ -14,27 +15,48 @@ output_columns:
   - name: disease
     title: Disease/Trait
     type: string
-  - name: init_samp
-    title: Initial Sample
-    type: string
-  - name: rep_samp
-    title: Replication Sample
-    type: string
-  - name: strongest_snp
-    title: Strongest SNP
-    type: string
-  - name: snps
-    title: SNPs
-    type: string
-  - name: cur_snp
-    title: Current SNP
-    type: string
+    width: 120
   - name: pval
     title: P-value
     type: float
+    hidden: true
+  - name: pmid
+    title: Study
+    type: string
+    link_format: https://www.ncbi.nlm.nih.gov/pubmed/${.*}
+    hidden: true
+    width: 65
+  - name: init_samp
+    title: Initial Sample
+    type: string
+    hidden: true
+    width: 70
+  - name: rep_samp
+    title: Replication Sample
+    type: string
+    hidden: true
+    width: 70
+  - name: risk_allele
+    title: Risk Allele
+    type: string
+    hidden: true
+  - name: snps
+    title: SNPs
+    type: string
+    width: 70
+    hidden: true
+  - name: cur_snp
+    title: Current SNP
+    type: string
+    width: 70
+    hidden: true
   - name: or_beta
     title: Odds Ratio/Beta Coeff
     type: float
+    hidden: true
+    width: 75
   - name: ci
     title: Confidence Interval
     type: string
+    hidden: true
+    width: 75

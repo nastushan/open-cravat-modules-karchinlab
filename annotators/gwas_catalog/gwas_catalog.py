@@ -13,9 +13,10 @@ class CravatAnnotator(BaseAnnotator):
         out = {}
         cols = [
             'disease',
+            'pmid',
             'init_samp',
             'rep_samp',
-            'strongest_snp',
+            'risk_allele',
             'snps',
             'cur_snp',
             'pval',
