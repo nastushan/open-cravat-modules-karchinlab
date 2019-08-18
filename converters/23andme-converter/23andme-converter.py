@@ -3,9 +3,8 @@ from cravat import BadFormatError
 import cravat.constants as constants
 from pyliftover import LiftOver
 import os
-
+from cravat.exceptions import LiftoverFailure
 class CravatConverter(BaseConverter):
-    comp_base = {'A':'T','T':'A','C':'G','G':'C','-':'-','N':'N'}
     
     def __init__(self):
         self.format_name = '23andme'
@@ -25,19 +24,22 @@ class CravatConverter(BaseConverter):
         toks = l.strip('\r\n').split('\t')
         tags = toks[0]
         chrom = toks[1]
-        pos = toks[2]
+        if chrom=='MT':
+            chrom = 'M'
         chrom = 'chr'+chrom
+        pos = toks[2]
         hg38_coords = self.lifter.convert_coordinate(chrom, int(pos))
         if hg38_coords != None and len(hg38_coords) > 0:
             chrom38 = hg38_coords[0][0]
             pos38 = hg38_coords[0][1]      
             ref = self.btr.get_stretch(chrom38, pos38-1, 1)
         else:
-            ref = ''      
+            raise(LiftoverFailure('Liftover failure'))      
         sample = ''
-        geno = list(toks[3])
+        good_vars = set(['T','C','G','A'])
+        geno = toks[3]
         for var in geno:
-            if var != '-' and var != 'D' and var != 'I':
+            if var in good_vars:
                 alt = var
                 wdict = {'tags':tags,
                     'chrom':chrom,
