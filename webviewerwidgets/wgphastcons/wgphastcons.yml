@@ -1,5 +1,5 @@
 title: Phast Cons
-version: 1.0.2
+version: 1.0.3
 type: webviewerwidget
 required_annotator: phastcons
 description: phastCons web viewer widget
