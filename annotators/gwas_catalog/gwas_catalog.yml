@@ -26,7 +26,7 @@ output_columns:
     type: float
     hidden: true
   - name: pmid
-    title: Study
+    title: PMID
     type: string
     link_format: https://www.ncbi.nlm.nih.gov/pubmed/${.*}
     hidden: true
