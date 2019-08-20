@@ -1,61 +1,61 @@
 #CRAVAT Report
-#Created at Monday 07/08/2019 14:59:36
+#Created at Monday 08/19/2019 23:37:25
 #Report level: variant
 #
-Variant Annotation												Tag Sampler			1000 Genomes-European				
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	CEU_AF	TSI_AF	FIN_AF	GBR_AF	IBS_AF
-1	chr3	146085328	C	T		Yes	PLOD2	ENST00000461497.5	missense	S18N	ENST00000282903.9:PLOD2:(na):intron:(na):(na); ENST00000360060.7:PLOD2:O00469:intron:(na):(na); ENST00000461497.5:PLOD2:(na):missense:S18N:G53A; ENST00000494950.5:PLOD2:E7ETU9:intron:(na):(na)	0		plus_SBS_PLOD2	0.0	0.0	0.0	0.0	0.0
-2	chr20	52414564	-	T								0		plus_ins_GNAS	0.404040404040404	0.4672897196261682	0.3838383838383838	0.41208791208791207	0.4392523364485981
-3	chr3	116584450	-	CAAA								0		plus_ins_PIK3CA	0.005050505050505051	0.004672897196261682	0.0	0.005494505494505495	0.0
-4	chr20	117745	A	-								0		plus_del_GNAS	0.0	0.0	0.04040404040404041	0.0	0.0
+Variant Annotation															1000 Genomes-European				
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	CEU AF	TSI AF	FIN AF	GBR AF	IBS AF
+1	chr3	146085328	C	T		Yes	PLOD2	ENST00000461497.5	missense	S18N	ENST00000282903.9:PLOD2:(na):intron:(na):(na); ENST00000360060.7:PLOD2:O00469:intron:(na):(na); ENST00000461497.5:PLOD2:(na):missense:S18N:G53A; ENST00000494950.5:PLOD2:E7ETU9:intron:(na):(na)	1	no-sample	plus_SBS_PLOD2	0.0	0.0	0.0	0.0	0.0
+2	chr20	52414564	-	T								1	no-sample	plus_ins_GNAS	0.404040404040404	0.4672897196261682	0.3838383838383838	0.41208791208791207	0.4392523364485981
+3	chr3	116584450	-	CAAA								1	no-sample	plus_ins_PIK3CA	0.005050505050505051	0.004672897196261682	0.0	0.005494505494505495	0.0
+4	chr20	117745	A	-								1	no-sample	plus_del_GNAS	0.0	0.0	0.04040404040404041	0.0	0.0
 5	chr3	179198726	AT	-			PIK3CA	ENST00000263967.3	intron		ENST00000263967.3:PIK3CA:P42336:intron:(na):(na)	1	sample3	plus_del_PIK3CA	0.0	0.0	0.0	0.0	0.0
-6	chr7	140734758	T	C		Yes	BRAF	ENST00000288602.10	missense	I714V	ENST00000288602.10:BRAF:P15056:missense:I714V:A2140G	0		minus_SBS_BRAF	0.0	0.0	0.0	0.0	0.0
-7	chr7	140742186	-	T			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_ins_BRAF	0.0707070707070707	0.04672897196261682	0.06565656565656566	0.07692307692307693	0.08878504672897196
-8	chr17	37101975	-	TC			ACACA	ENST00000616317.4	intron		ENST00000612895.4:ACACA:(na):intron:(na):(na); ENST00000614428.4:ACACA:Q13085:intron:(na):(na); ENST00000616317.4:ACACA:(na):intron:(na):(na); ENST00000617649.4:ACACA:(na):intron:(na):(na)	0		minus_ins_ACACA	0.3888888888888889	0.2850467289719626	0.4595959595959596	0.3956043956043956	0.4345794392523365
-9	chr7	140736487	GTGCGAT	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		minus_del_BRAF	0.0	0.0	0.0	0.0	0.0
-10	chr20	52414564	-	C								0		fuzzy_ins_GNAS					
-11	chr7	140736487	GTGCGA	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	0		fuzzy_del_BRAF					
+6	chr7	140734758	T	C		Yes	BRAF	ENST00000288602.10	missense	I714V	ENST00000288602.10:BRAF:P15056:missense:I714V:A2140G	1	no-sample	minus_SBS_BRAF	0.0	0.0	0.0	0.0	0.0
+7	chr7	140742186	-	T			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	1	no-sample	minus_ins_BRAF	0.0707070707070707	0.04672897196261682	0.06565656565656566	0.07692307692307693	0.08878504672897196
+8	chr17	37101975	-	TC			ACACA	ENST00000616317.4	intron		ENST00000612895.4:ACACA:(na):intron:(na):(na); ENST00000614428.4:ACACA:Q13085:intron:(na):(na); ENST00000616317.4:ACACA:(na):intron:(na):(na); ENST00000617649.4:ACACA:(na):intron:(na):(na)	1	no-sample	minus_ins_ACACA	0.3888888888888889	0.2850467289719626	0.4595959595959596	0.3956043956043956	0.4345794392523365
+9	chr7	140736487	GTGCGAT	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	1	no-sample	minus_del_BRAF	0.0	0.0	0.0	0.0	0.0
+10	chr20	52414564	-	C								1	no-sample	fuzzy_ins_GNAS					
+11	chr7	140736487	GTGCGA	-			BRAF	ENST00000288602.10	intron		ENST00000288602.10:BRAF:P15056:intron:(na):(na)	1	no-sample	fuzzy_del_BRAF					
 #CRAVAT Report
-#Created at Monday 07/08/2019 14:59:36
+#Created at Monday 08/19/2019 23:37:25
 #Report level: gene
 #
-Variant Annotation				
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
-PLOD2	1	missense	missense(1)	
-PIK3CA	1	intron	intron(1)	
-BRAF	4	missense	missense(1),intron(3)	
-ACACA	1	intron	intron(1)	
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+PLOD2		1	0	missense	intron(1),missense(1)
+PIK3CA		0	1	intron	intron(1)
+BRAF		1	3	missense	intron(3),missense(1)
+ACACA		0	1	intron	intron(1)
 #CRAVAT Report
-#Created at Monday 07/08/2019 14:59:36
+#Created at Monday 08/19/2019 23:37:25
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
-1	
-2	
-3	
-4	
+1	no-sample
+2	no-sample
+3	no-sample
+4	no-sample
 5	sample3
-6	
-7	
-8	
-9	
-10	
-11	
+6	no-sample
+7	no-sample
+8	no-sample
+9	no-sample
+10	no-sample
+11	no-sample
 #CRAVAT Report
-#Created at Monday 07/08/2019 14:59:36
+#Created at Monday 08/19/2019 23:37:25
 #Report level: mapping
 #
-Variant Annotation		
-Original Line	User Tags	UID
-2	plus_SBS_PLOD2	1
-3	plus_ins_GNAS	2
-4	plus_ins_PIK3CA	3
-5	plus_del_GNAS	4
-6	plus_del_PIK3CA	5
-7	minus_SBS_BRAF	6
-8	minus_ins_BRAF	7
-9	minus_ins_ACACA	8
-10	minus_del_BRAF	9
-11	fuzzy_ins_GNAS	10
-12	fuzzy_del_BRAF	11
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2	plus_SBS_PLOD2	1	0
+3	plus_ins_GNAS	2	0
+4	plus_ins_PIK3CA	3	0
+5	plus_del_GNAS	4	0
+6	plus_del_PIK3CA	5	0
+7	minus_SBS_BRAF	6	0
+8	minus_ins_BRAF	7	0
+9	minus_ins_ACACA	8	0
+10	minus_del_BRAF	9	0
+11	fuzzy_ins_GNAS	10	0
+12	fuzzy_del_BRAF	11	0

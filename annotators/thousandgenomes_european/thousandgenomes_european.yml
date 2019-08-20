@@ -11,27 +11,27 @@ level: variant
 output_columns:
 - desc: Utah Residents (CEPH) with Northern and Western European Ancestry
   name: ceu_af
-  title: CEU_AF
+  title: CEU AF
   type: float
   width: 60
 - desc: Toscani in Italia
   name: tsi_af
-  title: TSI_AF
+  title: TSI AF
   type: float
   width: 60
 - desc: Finnish in Finland
   name: fin_af
-  title: FIN_AF
+  title: FIN AF
   type: float
   width: 60
 - desc: British in England and Scotland
   name: gbr_af
-  title: GBR_AF
+  title: GBR AF
   type: float
   width: 60
 - desc: Iberian Population in Spain
   name: ibs_af
-  title: IBS_AF
+  title: IBS AF
   type: float
   width: 60
 tags:
@@ -41,7 +41,7 @@ tags:
 - populations
 title: 1000 Genomes-European
 type: annotator
-version: 3.1.2
+version: 3.1.3
 requires:
 - thousandgenomes_group
 groups:

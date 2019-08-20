@@ -1,20 +1,28 @@
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:37:52
+#Created at Monday 08/19/2019 23:37:00
 #Report level: variant
 #
-Variant Annotation					ncRNA		Tag Sampler			VCF Info					
-UID	Chrom	Position	Ref Base	Alt Base	Class	Name	Number of Samples	Samples	Tags	Phred	VCF filter	Zygosity	Alternate reads	Total reads	Variant allele frequency
-1	chr1	157790	A	T	snRNA	U6	1		snrna_NA						
-2	chr15	45433048	T	A			1		not_mirna2_2beforeFirst						
-3	chr15	45433049	C	T			1		not_mirna1_1before						
-4	chr15	45433050	T	C	miRNA	hsa-mir-147b	1		mirna_first						
-5	chr15	45433061	C	G	miRNA	hsa-mir-147b	1		mirna_middle						
-6	chr15	45201222	A	C	tRNA	His	1		trna_last						
-7	chr15	45201223	T	C			1		not_trna_after						
-8	chr9	62802322	C	T	rRNA	5S	1		rrna_middle						
-9	chr2	132147927	C	T	lincRNA,lincRNA,lincRNA	TCONS_l2_00014916:1,TCONS_l2_00014914:1,TCONS_l2_00015978:1	1		lincrna_middle						
+Variant Annotation															ncRNA	
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Class	Name
+1	chr1	157790	A	T								0		snrna_NA	snRNA	U6
+2	chr15	45433048	T	A			C15orf48	ENST00000344300.3	3-prime utr		ENST00000344300.3:C15orf48:Q9C002:3-prime utr:(na):(na); ENST00000396650.6:C15orf48:Q9C002:3-prime utr:(na):(na)	0		not_mirna2_2beforeFirst		
+3	chr15	45433049	C	T			C15orf48	ENST00000344300.3	3-prime utr		ENST00000344300.3:C15orf48:Q9C002:3-prime utr:(na):(na); ENST00000396650.6:C15orf48:Q9C002:3-prime utr:(na):(na)	0		not_mirna1_1before		
+4	chr15	45433050	T	C			C15orf48	ENST00000344300.3	3-prime utr		ENST00000344300.3:C15orf48:Q9C002:3-prime utr:(na):(na); ENST00000396650.6:C15orf48:Q9C002:3-prime utr:(na):(na)	0		mirna_first	miRNA	hsa-mir-147b
+5	chr15	45433061	C	G			C15orf48	ENST00000344300.3	3-prime utr		ENST00000344300.3:C15orf48:Q9C002:3-prime utr:(na):(na); ENST00000396650.6:C15orf48:Q9C002:3-prime utr:(na):(na)	0		mirna_middle	miRNA	hsa-mir-147b
+6	chr15	45201222	A	C			SHF	ENST00000290894.12	2kb upstream		ENST00000290894.12:SHF:Q7M4L6:2kb upstream:(na):(na)	0		trna_last	tRNA	His
+7	chr15	45201223	T	C			SHF	ENST00000290894.12	2kb upstream		ENST00000290894.12:SHF:Q7M4L6:2kb upstream:(na):(na)	0		not_trna_after		
+8	chr9	62802322	C	T								0		rrna_middle	rRNA	5S
+9	chr2	132147927	C	T			ANKRD30BL	ENST00000409867.5	3-prime utr		ENST00000409867.5:ANKRD30BL:A7E2S9:3-prime utr:(na):(na)	0		lincrna_middle	lincRNA,lincRNA,lincRNA	TCONS_l2_00014914:1,TCONS_l2_00015978:1,TCONS_l2_00014916:1
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:37:52
+#Created at Monday 08/19/2019 23:37:00
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+C15orf48		0	4	3-prime utr	3-prime utr(0)
+ANKRD30BL		0	1	3-prime utr	3-prime utr(0)
+#CRAVAT Report
+#Created at Monday 08/19/2019 23:37:00
 #Report level: sample
 #
 Variant Annotation	
@@ -29,17 +37,17 @@ UID	Sample
 8	
 9	
 #CRAVAT Report
-#Created at Thursday 04/05/2018 09:37:52
+#Created at Monday 08/19/2019 23:37:00
 #Report level: mapping
 #
-Variant Annotation		
-Original Line	User Tags	UID
-2	snrna_NA	1
-3	not_mirna2_2beforeFirst	2
-4	not_mirna1_1before	3
-5	mirna_first	4
-6	mirna_middle	5
-7	trna_last	6
-8	not_trna_after	7
-9	rrna_middle	8
-10	lincrna_middle	9
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2	snrna_NA	1	0
+3	not_mirna2_2beforeFirst	2	0
+4	not_mirna1_1before	3	0
+5	mirna_first	4	0
+6	mirna_middle	5	0
+7	trna_last	6	0
+8	not_trna_after	7	0
+9	rrna_middle	8	0
+10	lincrna_middle	9	0

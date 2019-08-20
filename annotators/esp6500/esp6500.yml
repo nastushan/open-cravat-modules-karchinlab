@@ -12,12 +12,12 @@ level: variant
 output_columns:
 - filterable: true
   name: ea_pop_af
-  title: AF European American
+  title: European American AF
   type: float
   width: 68
 - filterable: true
   name: aa_pop_af
-  title: AF African American
+  title: African American AF
   type: float
   width: 68
 tags:
@@ -26,6 +26,6 @@ tags:
 - populations
 title: ESP6500
 type: annotator
-version: 6500.2.5
+version: 6500.2.6
 requires:
 - wgesp6500

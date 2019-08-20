@@ -11,27 +11,27 @@ level: variant
 output_columns:
 - desc: Gujarati Indian from Houston, Texas
   name: gih_af
-  title: GIH_AF
+  title: GIH AF
   type: float
   width: 60
 - desc: Punjabi from Lahore, Pakistan
   name: pjl_af
-  title: PJL_AF
+  title: PJL AF
   type: float
   width: 60
 - desc: Bengali from Bangladesh
   name: beb_af
-  title: BEB_AF
+  title: BEB AF
   type: float
   width: 60
 - desc: Sri Lankan Tamil from the UK
   name: stu_af
-  title: STU_AF
+  title: STU AF
   type: float
   width: 60
 - desc: Indian Telugu from the UK
   name: itu_af
-  title: ITU_AF
+  title: ITU AF
   type: float
   width: 60
 tags:
@@ -41,7 +41,7 @@ tags:
 - populations
 title: 1000 Genomes-South Asian
 type: annotator
-version: 3.1.2
+version: 3.1.3
 requires:
 - thousandgenomes_group
 groups:

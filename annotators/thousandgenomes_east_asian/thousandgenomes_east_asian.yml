@@ -11,27 +11,27 @@ level: variant
 output_columns:
 - desc: Han Chinese in Beijing, China
   name: chb_af
-  title: CHB_AF
+  title: CHB AF
   type: float
   width: 60
 - desc: Japanese in Tokyo, Japan
   name: jpt_af
-  title: JPT_AF
+  title: JPT AF
   type: float
   width: 60
 - desc: Southern Han Chinese
   name: chs_af
-  title: CHS_AF
+  title: CHS AF
   type: float
   width: 60
 - desc: Chinese Dai in Xishuangbanna, China
   name: cdx_af
-  title: CDX_AF
+  title: CDX AF
   type: float
   width: 60
 - desc: Kinh in Ho Chi Minh City, Vietnam
   name: khv_af
-  title: KHV_AF
+  title: KHV AF
   type: float
   width: 60
 tags:
@@ -41,7 +41,7 @@ tags:
 - populations
 title: 1000 Genomes-East Asian
 type: annotator
-version: 3.1.2
+version: 3.1.3
 requires:
 - thousandgenomes_group
 groups:
