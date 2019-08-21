@@ -15,6 +15,12 @@ widgetGenerators['note'] = {
             v['noterow'] = row[0];
             var colNo = infomgr.getColumnNo(tabName, 'base__note');
             var note = row[colNo];
+            var textbox = getEl('textarea');
+            textbox.style.width = '100%';
+            textbox.style.height = 'calc(100% - 24px)';
+            textbox.value = note;
+            addEl(div, textbox);
+            addEl(div, getEl('br'));
             var button = getEl('button');
             button.textContent = 'Save';
             button.addEventListener('click', function (evt) {
@@ -33,12 +39,6 @@ widgetGenerators['note'] = {
                 });
             });
             addEl(div, button);
-            addEl(div, getEl('br'));
-            var textbox = getEl('textarea');
-            textbox.style.width = '100%';
-            textbox.style.height = 'calc(100% - 24px)';
-            textbox.value = note;
-            addEl(div, textbox);
 		}
 	},
 	'gene': {
@@ -57,6 +57,12 @@ widgetGenerators['note'] = {
             v['noterow'] = row[0];
             var colNo = infomgr.getColumnNo(tabName, 'base__note');
             var note = row[colNo];
+            var textbox = getEl('textarea');
+            textbox.style.width = '100%';
+            textbox.style.height = 'calc(100% - 24px)';
+            textbox.value = note;
+            addEl(div, textbox);
+            addEl(div, getEl('br'));
             var button = getEl('button');
             button.textContent = 'Save';
             button.addEventListener('click', function (evt) {
@@ -75,12 +81,6 @@ widgetGenerators['note'] = {
                 });
             });
             addEl(div, button);
-            addEl(div, getEl('br'));
-            var textbox = getEl('textarea');
-            textbox.style.width = '100%';
-            textbox.style.height = 'calc(100% - 24px)';
-            textbox.value = note;
-            addEl(div, textbox);
 		}
 	}
 }
