@@ -3,7 +3,8 @@ widgetGenerators['ncbigene'] = {
 		'width': 280, 
 		'height': 80, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Genomic', 'ncbigene__ncbi_desc', tabName);
+			div.innerText = infomgr.getRowValue('gene',row,'ncbigene__ncbi_desc');
+			div.style['word-break'] = 'break-word';
 		}
 	}
 }

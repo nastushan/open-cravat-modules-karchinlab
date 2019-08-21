@@ -5,6 +5,7 @@ widgetGenerators['civic_gene'] = {
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			div.innerText = infomgr.getRowValue('gene',row,'civic_gene__description');
+			div.style['word-break'] = 'break-word';
 		}
 	}
 }
