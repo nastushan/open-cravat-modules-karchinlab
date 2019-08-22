@@ -1,5 +1,5 @@
 title: Base information
-version: 1.0.7
+version: 1.0.8
 type: webviewerwidget
 required_annotator: base
 requires_opencravat: '>=1.5.0'

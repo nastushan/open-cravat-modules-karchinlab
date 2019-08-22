@@ -1,5 +1,5 @@
 title: CIViC Gene
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 required_annotator: civic_gene
 description: CIViC Gene webviewer widget
