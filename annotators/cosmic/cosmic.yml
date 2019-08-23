@@ -54,3 +54,12 @@ version: 85.0.14
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcosmic
+smartfilters:
+  - name: hasdata
+    title: COSMIC Data
+    description: Only include variants with data from COSMIC
+    selector:
+      type: empty
+    filter:
+      column: cosmic__cosmic_id
+      test: hasData
