@@ -38,6 +38,15 @@ tags:
 - literature
 title: GRASP
 type: annotator
-version: 2.0.6
+version: 2.0.7
 requires:
 - wggrasp
+smartfilters:
+- name: hasdata
+  title: GRASP Data
+  description: Only include variants with data from GRASP
+  selector:
+    type: empty
+  filter:
+    column: grasp__phenotype
+    test: hasData

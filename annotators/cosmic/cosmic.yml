@@ -50,7 +50,16 @@ tags:
 - cancer
 title: COSMIC
 type: annotator
-version: 85.0.14
+version: 85.0.15
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcosmic
+smartfilters:
+- name: hasdata
+  title: COSMIC Data
+  description: Only include variants with data from COSMIC
+  selector:
+    type: empty
+  filter:
+    column: cosmic__cosmic_id
+    test: hasData

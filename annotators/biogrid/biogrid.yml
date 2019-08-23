@@ -34,6 +34,17 @@ tags:
 - dbnsfp
 title: BioGRID
 type: annotator
-version: 3.5.172
+version: 3.5.173
 requires:
 - wgbiogrid
+requires_opencravat: '>=1.5.2'
+smartfilters:
+- name: searchPartners
+  title: BioGRID Partner
+  description: Include variants on genes which interact with a partner gene
+  selector:
+    type: inputString
+  filter:
+    column: biogrid__acts
+    test: stringContains
+    value: ${value}
