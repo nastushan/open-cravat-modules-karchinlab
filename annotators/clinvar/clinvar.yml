@@ -59,7 +59,7 @@ tags:
 title: ClinVar
 type: annotator
 version: 2019.08.02
-requires_opencravat: '>=1.5.2'
+requires_opencravat: '>=1.4.0'
 requires:
 - wgclinvar
 smartfilters:

@@ -28,3 +28,15 @@ version: 151.0.8
 requires_opencravat: '>=1.4.0'
 requires:
 - wgdbsnp
+smartfilters:
+  - name: rsid
+    title: dbSNP ID
+    description: Include variants which do/do not have a dbSNP ID (rsid)
+    selector:
+      type: select
+      options:
+        'Has ID': 'hasData'
+        'No ID': 'noData'
+    filter:
+      column: dbsnp__snp
+      test: ${value}
