@@ -1,5 +1,5 @@
 title: UniProt
-version: 2019.05.13
+version: 2019.08.22
 type: annotator
 level: gene
 output_columns:
@@ -19,8 +19,6 @@ developer:
     Nucleic acids research, 46(5), 2699.'
 datasource: 201809
 requires_opencravat: '>=1.4.0'
-requires:
-- wguniprot
 tags:
 - genes
 - dbnsfp
