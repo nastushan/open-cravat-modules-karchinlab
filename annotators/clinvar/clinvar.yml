@@ -58,16 +58,16 @@ tags:
 - literature
 title: ClinVar
 type: annotator
-version: 2019.08.02
+version: 2019.08.23
 requires_opencravat: '>=1.4.0'
 requires:
 - wgclinvar
 smartfilters:
-  - name: hasdata
-    title: ClinVar Data
-    description: Only include variants with data from ClinVar
-    selector:
-      type: empty
-    filter:
-      column: clinvar__id
-      test: hasData
+- name: hasdata
+  title: ClinVar Data
+  description: Only include variants with data from ClinVar
+  selector:
+    type: empty
+  filter:
+    column: clinvar__id
+    test: hasData
