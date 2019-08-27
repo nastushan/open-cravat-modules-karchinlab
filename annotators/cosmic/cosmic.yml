@@ -56,7 +56,7 @@ requires:
 - wgcosmic
 smartfilters:
 - name: hasdata
-  title: COSMIC Data
+  title: COSMIC
   description: Only include variants with data from COSMIC
   selector:
     type: empty
