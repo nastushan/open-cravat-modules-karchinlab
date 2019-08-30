@@ -1,28 +1,31 @@
 #CRAVAT Report
-#Created at Tuesday 06/04/2019 18:34:17
+#Created at Friday 08/30/2019 11:51:00
 #Report level: variant
 #
-Variant Annotation												Tag Sampler			ClinVar				
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Clinical Significance	Disease Ref Nums	Disease Names	Review Status	ClinVar ID
-1	chr7	117587778	N	T		Yes	CFTR	ENST00000003084.10	stop gained	G542*	ENST00000003084.10:CFTR:P13569:stop gained:G542*:N1624T	1	s01	cystic_fibrosis					
+Variant Annotation														
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
+1	chr7	117587778	G	A		Yes	CFTR	ENST00000003084.10	missense	G542R	ENST00000003084.10:CFTR:P13569:missense:G542R:G1624A	1	s01	cystic_fibrosis
+2	chr7	117587778	G	T		Yes	CFTR	ENST00000003084.10	stop gained	G542*	ENST00000003084.10:CFTR:P13569:stop gained:G542*:G1624T	1	s01	cystic_fibrosis
 #CRAVAT Report
-#Created at Tuesday 06/04/2019 18:34:17
+#Created at Friday 08/30/2019 11:51:00
 #Report level: gene
 #
-Variant Annotation				
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
-CFTR	1	stop gained	stop gained(1)	
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+CFTR		2	0	stop gained	missense(1),stop gained(1)
 #CRAVAT Report
-#Created at Tuesday 06/04/2019 18:34:17
+#Created at Friday 08/30/2019 11:51:00
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
 1	s01
+2	s01
 #CRAVAT Report
-#Created at Tuesday 06/04/2019 18:34:17
+#Created at Friday 08/30/2019 11:51:00
 #Report level: mapping
 #
-Variant Annotation		
-Original Line	User Tags	UID
-2	cystic_fibrosis	1
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2	cystic_fibrosis	1	0
+2	cystic_fibrosis	2	0
