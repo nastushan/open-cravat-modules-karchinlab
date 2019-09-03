@@ -230,7 +230,7 @@ class Reporter(CravatReport):
                         if s in samples_with_variant:
                             sample_cols.append('1|1')
                         else:
-                            sample_cols.append('')
+                            sample_cols.append('.|.')
                 elif col_name == 'vcfinfo__phred':
                     qual = cell.split(';')[0]
                 elif col_name == 'vcfinfo__filter':
