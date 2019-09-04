@@ -64,7 +64,7 @@ function linkify(disease, db_id){
 			links.EFO = link;
 		}
 		else if(idls[i].startsWith('Human')){
-			link = 'http://www.human-phenotype-ontology.org/hpoweb/showterm?id='+idls[i].slice(idls[i].indexOf(':')+1);
+			link = 'https://www.human-phenotype-ontology.org/hpoweb/showterm?id='+idls[i].slice(idls[i].indexOf(':')+1);
 			links.HPO = link;
 		}
 		else if(idls[i].startsWith('Gene')){
@@ -72,7 +72,7 @@ function linkify(disease, db_id){
 			links.Gene = link;
 		}
 		else if(idls[i].startsWith('Orphanet')){
-			link = 'http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert='+idls[i].slice(idls[i].indexOf(':')+6);
+			link = 'https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=EN&Expert='+idls[i].slice(idls[i].indexOf(':')+6);
 			links.Orphanet = link;
 		}
 		else if(idls[i].startsWith('MeSH')){

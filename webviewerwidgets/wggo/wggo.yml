@@ -1,5 +1,5 @@
 title: Gene ontology
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 description: Gene ontology webviewer widget
 developer:
@@ -9,3 +9,5 @@ tags:
 - visualization widgets
 hidden: true
 required_annotator: go
+release_note:
+  1.0.5: uses https.

@@ -227,7 +227,7 @@ widgetGenerators['ndexchasmplussummary'] = {
                     selectDiv.style.border = '2px outset #dddddd';
                     selectDiv.style.fontWeight = 'bold';
                     if (networkUUID != '') {
-                        var url = 'http://www.ndexbio.org/v2/network/' + networkUUID;
+                        var url = 'https://www.ndexbio.org/v2/network/' + networkUUID;
                         var request = new XMLHttpRequest();
                         request.open('GET', url, true);
                         request.setRequestHeader('Authorization', 'Basic ' + btoa('cravat2017:cravat2017'));
@@ -285,7 +285,7 @@ widgetGenerators['ndexchasmplussummary'] = {
                             = '> ' + func.selectedNetworkName;
                         selectDiv.style.border = '2px outset #dddddd';
                         if (networkUUID != '') {
-                            var url = 'http://www.ndexbio.org/v2/network/' + networkUUID;
+                            var url = 'https://www.ndexbio.org/v2/network/' + networkUUID;
                             var request = new XMLHttpRequest();
                             request.open('GET', url, true);
                             request.setRequestHeader('Authorization', 'Basic ' + btoa('cravat2017:cravat2017'));
@@ -823,7 +823,7 @@ widgetGenerators['ndexchasmplussummary'] = {
             select.textContent = '> ' + networkName;
             select.style.border = '2px outset #dddddd';
             if (networkUUID != '') {
-                var url = 'http://www.ndexbio.org/v2/network/' + networkUUID;
+                var url = 'https://www.ndexbio.org/v2/network/' + networkUUID;
                 var request = new XMLHttpRequest();
                 request.open('GET', url, true);
                 request.setRequestHeader('Authorization', 'Basic ' + btoa('cravat2017:cravat2017'));

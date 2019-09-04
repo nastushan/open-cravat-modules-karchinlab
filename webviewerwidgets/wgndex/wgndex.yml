@@ -15,3 +15,5 @@ release_note:
 tags:
 - visualization widgets
 hidden: true
+release_note:
+  1.0.5: uses https.
