@@ -1,5 +1,5 @@
 title: VCF Reporter
-version: 1.0.9
+version: 1.0.10
 type: reporter
 description: VCF format text file reporter
 requires_opencravat: '>=1.5.0'
@@ -10,6 +10,7 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 release_note:
+  1.0.10: fix for no sample in input
   1.0.9: gt for no data for a sample is .|.
   1.0.8: no zip. 1 vcf input handled.
   1.0.5: sync write_table_row
