@@ -1,0 +1,45 @@
+title: PharmGKB
+version: 1.0.0
+type: annotator
+level: variant
+output_columns:
+- name: chemical
+  title: Chemical
+  type: string
+  width: 85
+- name: pmid
+  title: Study
+  type: string
+  link_format: 'https://www.ncbi.nlm.nih.gov/pubmed/${.*}'
+  hidden: true
+  width: 65
+- name: pheno_cat
+  title: Phenotype Category
+  type: string
+  hidden: true
+  width: 70
+- name: sig
+  title: Significance
+  type: string
+  hidden: true
+  width: 78
+- name: notes
+  title: Notes
+  type: string
+  hidden: true
+- name: sentence
+  title: Description
+  type: string
+  hidden: true
+  width: 120
+
+description: Clinically actionable gene-drug associations and genotype-phenotype relationships
+
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+
+private: true
