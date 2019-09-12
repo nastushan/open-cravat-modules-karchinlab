@@ -1265,9 +1265,8 @@ widgetGenerators['lollipop'] = {
 
             function drawMyVariantsTable (data) {
                 var div = getEl('div');
-                div.style.position = 'absolute';
-                div.style.top = '50px';
-                div.style.left = '4px';
+                div.style.position = 'relative';
+                div.style.top = '-100px';
                 var contentDiv = document.getElementById('widgetcontentdiv_lollipop_gene');
                 addEl(contentDiv, div);
                 var table = getEl('table');
