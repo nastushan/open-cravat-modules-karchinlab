@@ -64,7 +64,7 @@ requires:
 - wgclinvar
 smartfilters:
 - name: hasdata
-  title: ClinVar Data
+  title: ClinVar
   description: Only include variants with data from ClinVar
   selector:
     type: empty

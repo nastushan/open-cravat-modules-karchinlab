@@ -43,7 +43,7 @@ requires:
 - wggrasp
 smartfilters:
 - name: hasdata
-  title: GRASP Data
+  title: GRASP
   description: Only include variants with data from GRASP
   selector:
     type: empty
