@@ -102,7 +102,7 @@ class Mapper(cravat.BaseMapper):
         hit_list = []
         chrom = crv_data['chrom']
         pos = crv_data['pos']
-        bins = cravat.get_ucsc_bins(pos)
+        bins = cravat.util.get_ucsc_bins(pos)
         pos = str(pos)
         for gbin in bins:
             query = 'select tid, desc from noncoding ' +\
@@ -134,7 +134,7 @@ class Mapper(cravat.BaseMapper):
         Creates CodingHit object and fills with relevant information
         """
         hit_list = []
-        gbin = cravat.get_ucsc_bins(crv_data['pos'])[0]
+        gbin = cravat.util.get_ucsc_bins(crv_data['pos'])[0]
         q = 'select * from splice where chrom="%s" and binno=%d and gpos=%d;' \
             %(crv_data['chrom'], gbin, crv_data['pos'])
         self.c.execute(q)
@@ -200,8 +200,8 @@ class Mapper(cravat.BaseMapper):
                         tstart_info = gstart_tdata[tid]
                         tend_info = gend_tdata[tid]
                     else:
-                        hit.cref = cravat.reverse_complement(hit.gref)
-                        hit.calt = cravat.reverse_complement(hit.galt)
+                        hit.cref = cravat.util.reverse_complement(hit.gref)
+                        hit.calt = cravat.util.reverse_complement(hit.galt)
                         # Adjust the position for inserts on minus strand transcript
                         if hit.cref == '-': 
                             adj_tpos = gstart_tdata[tid]['tpos'] + 1
@@ -239,7 +239,7 @@ class Mapper(cravat.BaseMapper):
         Queries can be made using either chrom and gpos or tid and tpos.
         """
         if chrom is not None and gpos is not None:
-            gbin = cravat.get_ucsc_bins(gpos)[0]
+            gbin = cravat.util.get_ucsc_bins(gpos)[0]
             q = 'select v.tid, v.apos, v.cpos, v.tpos, v.base from '\
                 +'coding as v join chrom as c on v.chromid=c.chromid '\
                 +'where c.chrom="'+chrom+'" '\
@@ -335,8 +335,8 @@ class Mapper(cravat.BaseMapper):
         hit.full_alt = hit.full_ref[:hit.cpos_start - 1] \
                        + hit.calt \
                        + hit.full_ref[hit.cpos_start:]
-        hit.aref = cravat.translate_codon(hit.full_ref)
-        hit.aalt = cravat.translate_codon(hit.full_alt)
+        hit.aref = cravat.util.translate_codon(hit.full_ref)
+        hit.aalt = cravat.util.translate_codon(hit.full_alt)
     
     def _fill_transcript_info(self, hit):
         """
@@ -369,7 +369,7 @@ class Mapper(cravat.BaseMapper):
         Combine all Hit objects to make a dict with crx fields
         """
         # Define the crx dict
-        crx_data = {x['name']:'' for x in cravat.crx_def}
+        crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         # Crv data gets duplicated in crx dict
         for col_name, value in crv_data.items():
             crx_data[col_name] = value
@@ -416,7 +416,7 @@ class Mapper(cravat.BaseMapper):
                         alt_transcripts[transc].append(t_name)
                 # Determine whether current hit is more deleterious than
                 # all previous hits
-                more_severe = cravat.more_severe_so(so, primary_so)
+                more_severe = cravat.util.more_severe_so(so, primary_so)
                 equally_severe = so == primary_so
                 longer = hit.transcript.alen > primary_transc_alen
                 cur_has_protein = protein is not None

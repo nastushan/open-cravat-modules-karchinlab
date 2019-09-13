@@ -1,7 +1,8 @@
 import sys
 from cravat import BaseAnnotator
 from cravat import InvalidData
-from cravat import translate_codon, aa_let_to_abbv, AllMappingsParser
+from cravat.util import translate_codon, aa_let_to_abbv
+from cravat.inout import AllMappingsParser
 import sqlite3
 import os
 import re
