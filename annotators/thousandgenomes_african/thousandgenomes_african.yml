@@ -11,37 +11,37 @@ level: variant
 output_columns:
 - desc: Yoruba in Ibadan, Nigeria
   name: yri_af
-  title: YRI_AF
+  title: YRI AF
   type: float
   width: 60
 - desc: Luhya in Webuye, Kenya
   name: lwk_af
-  title: LWK_AF
+  title: LWK AF
   type: float
   width: 60
 - desc: Gambian in Western Divisions in the Gambia
   name: gwd_af
-  title: GWD_AF
+  title: GWD AF
   type: float
   width: 60
 - desc: Mende in Sierra Leone
   name: msl_af
-  title: MSL_AF
+  title: MSL AF
   type: float
   width: 60
 - desc: Esan in Nigeria
   name: esn_af
-  title: ESN_AF
+  title: ESN AF
   type: float
   width: 60
 - desc: Americans of African Ancestry in SW USA
   name: asw_af
-  title: ASW_AF
+  title: ASW AF
   type: float
   width: 60
 - desc: African Caribbeans in Barbados
   name: acb_af
-  title: ACB_AF
+  title: ACB AF
   type: float
   width: 60
 tags:
@@ -51,7 +51,7 @@ tags:
 - populations
 title: 1000 Genomes-African
 type: annotator
-version: 3.1.2
+version: 3.1.4
 requires:
 - thousandgenomes_group
 groups:

@@ -16,7 +16,6 @@ class CravatAnnotator(BaseAnnotator):
         q = 'select ACB, ASW, ESN, GWD, LWK, MSL, YRI from '\
             +'%s where pos=%s and ref="%s" and alt="%s";' \
             %(chrom, pos, ref, alt)
-        self.logger.warn(q)
         self.cursor.execute(q)
         result = self.cursor.fetchone()
         if result:

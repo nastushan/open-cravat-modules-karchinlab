@@ -23,9 +23,9 @@ output_columns:
 tags:
 - noncoding
 - genomic features
-title: ncRNA IT
+title: ncRNA
 type: annotator
-version: 2019.05.13
+version: 2019.08.19
 release_note:
   2019.05.13: intervaltree and pickle
 requires:

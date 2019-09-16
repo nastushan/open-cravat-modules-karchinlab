@@ -27,6 +27,17 @@ tags:
 - dbnsfp
 title: IntAct
 type: annotator
-version: 2019.05.13
+version: 2019.08.23
 requires:
 - wgintact
+requires_opencravat: '>=1.5.2'
+smartfilters:
+- name: searchPartners
+  title: InAct Partner
+  description: Include variants on genes which interact with a partner gene
+  selector:
+    type: inputString
+  filter:
+    column: intact__acts
+    test: stringContains
+    value: ${value}

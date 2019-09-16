@@ -4,9 +4,13 @@ widgetGenerators['intact'] = {
 		'height': 250, 
 		'function': function (div, row, tabName) {
 			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
-			var head = hugo+' IntAct';
-			var link = 'https://www.ebi.ac.uk/intact/query/geneName:'+hugo;
-			addInfoLineLink(div, head, 'Link', link);
+			if (hugo) {
+				var a = getEl('a');
+				a.text = hugo+' IntAct';
+				a.href = 'https://www.ebi.ac.uk/intact/query/geneName:'+hugo;
+				addEl(div, a);
+				addEl(div, getEl('br'));
+			}
 			var acts = infomgr.getRowValue(tabName, row, 'intact__acts');
 			var actsls = acts != null ? acts.split(';') : [];
 			var table = getWidgetTableFrame();

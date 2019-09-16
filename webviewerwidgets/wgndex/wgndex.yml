@@ -1,5 +1,5 @@
 title: NDEx
-version: 1.0.5
+version: 1.0.6
 type: webviewerwidget
 required_annotator: ndex
 description: NDEx webviewer widget
@@ -15,3 +15,5 @@ release_note:
 tags:
 - visualization widgets
 hidden: true
+release_note:
+  1.0.6: uses https.

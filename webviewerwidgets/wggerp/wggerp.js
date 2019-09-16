@@ -1,7 +1,7 @@
 widgetGenerators['gerp'] = {
 	'variant': {
 		'width': 280, 
-		'height': 80, 
+		'height': 120, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Neutral Rate', 'gerp__gerp_nr', tabName);

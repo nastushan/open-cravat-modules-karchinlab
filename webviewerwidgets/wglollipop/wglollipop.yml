@@ -1,5 +1,5 @@
 title: Protein diagram
-version: 1.1.8
+version: 1.1.9
 requires_opencravat: '>=1.5.0'
 required_annotator: base
 type: webviewerwidget
@@ -12,3 +12,4 @@ release_note:
   1.1.6: works with 1.5.0. variant table size fix.
   1.1.7: my variant color works with 1.5.0 and before.
   1.1.8: fixed table width.
+  1.1.9: long variant list stays in widget div.

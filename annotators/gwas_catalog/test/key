@@ -1,0 +1,28 @@
+#CRAVAT Report
+#Created at Sunday 08/18/2019 21:48:40
+#Report level: variant
+#
+Variant Annotation															GWAS Catalog							
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Disease/Trait	Odds Ratio/Beta Coeff	P-value	PMID	Initial Sample	Replication Sample	Risk Allele	Confidence Interval
+1	chr6	32441752	A	T			HLA-DRA	ENST00000395388.6	intron		ENST00000374982.5:HLA-DRA:Q30118:intron:(na):(na); ENST00000395388.6:HLA-DRA:(na):intron:(na):(na)	1	s0	t0	Systemic sclerosis	2.17	2e-27	21779181	2,296 European ancestry cases, 5,172 European ancestry controls	3,175 European ancestry cases, 4,210 European ancestry controls	?	[1.88-2.50]
+#CRAVAT Report
+#Created at Sunday 08/18/2019 21:48:40
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+HLA-DRA		0	1	intron	intron(1)
+#CRAVAT Report
+#Created at Sunday 08/18/2019 21:48:40
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	s0
+#CRAVAT Report
+#Created at Sunday 08/18/2019 21:48:40
+#Report level: mapping
+#
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2	t0	1	0

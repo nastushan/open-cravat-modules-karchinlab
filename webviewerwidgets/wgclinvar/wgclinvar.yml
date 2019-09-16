@@ -1,5 +1,5 @@
 title: Clinvar
-version: 1.0.3
+version: 1.0.4
 type: webviewerwidget
 required_annotator: clinvar
 description: Clinvar webviewer widget
@@ -12,3 +12,5 @@ developer:
   citation: ''
 tags:
 - visualization widgets
+release_note:
+  1.0.4: uses https.

@@ -71,10 +71,6 @@ widgetGenerators['sosamplesummary'] = {
             chartDiv.style.top = '0';
             chartDiv.style.left = '0';
             chartDiv.style.pointerEvents = 'none';
-			//chartDiv.style.width = canvasWidth + 'px';
-			//chartDiv.style.height = '200px';
-            //chartDiv.width = canvasWidth;
-            //chartDiv.height = canvasHeight;
 			addEl(sdiv, chartDiv);
 			var samples = data['samples'];
             var labelLenCutoff = Math.floor((divWidth - 150) / 30);
@@ -176,7 +172,11 @@ widgetGenerators['sosamplesummary'] = {
                         chart.data.datasets[i].data.push(nextDatasets[i].data[j]);
                     }
                 }
-                var newWidth = Math.max(divWidth, $(sdiv).width() + nextSamples.length * 20);
+                console.log('@ sdiv width=', $(sdiv).width());
+                console.log('@ div width=', divWidth);
+                console.log('@ next samples len=', nextSamples.length);
+                var newWidth = Math.max(divWidth, nextSamples.length * 40 + 300);
+                console.log('@ new width=', newWidth);
                 $(sdiv).width(newWidth);
             }, 100);
 		}

@@ -15,7 +15,6 @@ class CravatAnnotator(BaseAnnotator):
             self.d[r[0]] = r[1]
     
     def annotate(self, input_data):
-        self.logger.debug(input_data)
         out = {}
         hugo = input_data['hugo']
         if hugo in self.d:

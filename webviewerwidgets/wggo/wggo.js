@@ -22,7 +22,7 @@ widgetGenerators['go'] = {
 				var iditr = idls[i];
 				var nameitr = namels[i];
 				var ontolitr = ontolls[i];
-				var link = 'http://amigo.geneontology.org/amigo/term/'+iditr;
+				var link = 'https://amigo.geneontology.org/amigo/term/'+iditr;
 				if(!inTable.includes(iditr)){
 					var tr = getWidgetTableTr([link, nameitr, ontolitr],[iditr]);
 					addEl(tbody, tr);

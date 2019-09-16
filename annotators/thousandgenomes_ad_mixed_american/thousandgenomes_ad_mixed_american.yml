@@ -11,22 +11,22 @@ level: variant
 output_columns:
 - name: mxl_af
   desc: Mexican Ancestry from Los Angeles USA
-  title: MXL_AF
+  title: MXL AF
   type: float
   width: 60
 - name: pur_af
   desc: Puerto Ricans from Puerto Rico
-  title: PUR_AF
+  title: PUR AF
   type: float
   width: 60
 - name: clm_af
   desc: Colombians from Medellin, Colombia
-  title: CLM_AF
+  title: CLM AF
   type: float
   width: 60
 - name: pel_af
   desc: Peruvians from Lima, Peru
-  title: PEL_AF
+  title: PEL AF
   type: float
   width: 60
 tags:
@@ -36,7 +36,7 @@ tags:
 - populations
 title: 1000 Genomes-Ad Mixed American
 type: annotator
-version: 3.1.2
+version: 3.1.3
 requires:
 - thousandgenomes_group
 groups:

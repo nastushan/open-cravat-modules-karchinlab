@@ -1,0 +1,14 @@
+title: GWAS Catalog
+version: 1.0.0
+type: webviewerwidget
+required_annotator: gwas_catalog
+description: GWAS Catalog webviewer widget
+developer:
+  name: Kyle Moad
+  organization: In Silico Solutions
+  email: kmoad@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
+tags:
+- visualization widgets
+hidden: true

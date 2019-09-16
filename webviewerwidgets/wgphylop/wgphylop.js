@@ -1,7 +1,7 @@
 widgetGenerators['phylop'] = {
 	'variant': {
 		'width': 280, 
-		'height': 80, 
+		'height': 120, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Vertebrate Score', 'phylop__phylop100_vert', tabName);

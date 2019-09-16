@@ -1,5 +1,5 @@
 title: NDEX Enriched Pathogentic Pathways
-version: 1.0.12
+version: 1.0.13
 type: webviewerwidget
 requires_opencravat: '>=1.4.2'
 required_annotator: vest
@@ -11,4 +11,5 @@ release_note: {1.0.10: aiosqlite3 version, 1.0.4: improved resize and redraw, 1.
 hidden: true
 tags: [visualization widgets]
 release_note:
+  1.0.13: uses https.
   1.0.12: fix for TP53 due to NDEx data change

@@ -110,11 +110,15 @@ class Reporter(CravatReport):
             self.cursor2.execute('select distinct(base__sample_id) from sample')
             self.samples = []
             rows = self.cursor2.fetchall()
+            print('@ rows=', rows)
             if rows is None or len(rows) == 0:
                 self.samples.append('NOSAMPLEID')
             else:
                 for row in rows:
-                    self.samples.append(row[0])
+                    v = row[0]
+                    if v is None:
+                        v = 'NOSAMPLEID'
+                    self.samples.append(v)
 
     def write_header (self, level):
         self.level = level
@@ -155,6 +159,7 @@ class Reporter(CravatReport):
             line += '">'
             self.write_preface_line(line)
             line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
+            print('@ samples=', self.samples)
             line += '\t'.join(self.samples)
             self.write_preface_line(line)
             
@@ -230,7 +235,7 @@ class Reporter(CravatReport):
                         if s in samples_with_variant:
                             sample_cols.append('1|1')
                         else:
-                            sample_cols.append('')
+                            sample_cols.append('.|.')
                 elif col_name == 'vcfinfo__phred':
                     qual = cell.split(';')[0]
                 elif col_name == 'vcfinfo__filter':

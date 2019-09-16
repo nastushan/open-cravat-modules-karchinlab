@@ -7,7 +7,7 @@ widgetGenerators['base'] = {
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
 				addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
 			}
-			addInfoLine(div, row, 'Chromosome', 'base__chrom', tabName);
+			addInfoLine(div, row, 'Chrom', 'base__chrom', tabName);
 			addInfoLine(div, row, 'Position', 'base__pos', tabName);
 			addInfoLine(div, row, 'Ref base(s)', 'base__ref_base', tabName);
 			addInfoLine(div, row, 'Alt base(s)', 'base__alt_base', tabName);

@@ -15,7 +15,7 @@ output_columns:
   title: pLI
   type: float
   hidden: false
-  width: 60
+  width: 70
 - desc: Probability LoF Intolerance (hom)
   name: exac_prec
   title: pLI (Hom)
@@ -97,6 +97,4 @@ tags:
 - populations
 title: ExAC Gene and CNV
 type: annotator
-version: 0.3.19
-requires:
-- wgexac_gene
+version: 0.3.21

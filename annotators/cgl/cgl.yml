@@ -18,6 +18,4 @@ tags:
 - cancer
 title: Cancer Gene Landscape
 type: annotator
-version: 1.0.7
-requires:
-- wgcgl
+version: 1.0.9
