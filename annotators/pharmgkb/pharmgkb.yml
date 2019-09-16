@@ -36,10 +36,10 @@ output_columns:
 description: Clinically actionable gene-drug associations and genotype-phenotype relationships
 
 developer:
-  name: ''
-  organization: ''
-  email: ''
-  website: ''
-  citation: ''
+  name: 'Teri E. Klein'
+  organization: 'Shriram Center for Bioengineering and Chemical Engineering'
+  email: 'feedback@pharmgkb.org'
+  website: 'https://www.pharmgkb.org/'
+  citation: 'M. Whirl-Carrillo, E.M. McDonagh, J. M. Hebert, L. Gong, K. Sangkuhl, C.F. Thorn, R.B. Altman and T.E. Klein. "Pharmacogenomics Knowledge for Personalized Medicine" Clinical Pharmacology & Therapeutics (2012) 92(4): 414-417'
 
 private: true

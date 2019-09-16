@@ -1,0 +1,15 @@
+title: PharmGKB
+version: 1.0.0
+type: webviewerwidget
+required_annotator: pharmgkb
+description: PharmGKB webviewer widget
+hidden: true
+developer:
+  name: Kyle Moad
+  organization: In Silico Solutions
+  email: kmoad@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
+tags:
+- visualization widgets
+private: true
