@@ -62,3 +62,39 @@ smartfilters:
       column: sift__score
       test: lessThanEq
       value: ${value}
+  - name: damaging
+    title: SIFT Damaging
+    selector:
+      type: empty
+    filter:
+      column: sift__prediction
+      test: equals
+      value: DAMAGING
+  - name: highc
+    title: SIFT High Confidence
+    selector:
+      type: empty
+    filter:
+      column: sift__confidence
+      test: equals
+      value: HIGH
+  - name: prediction
+    title: SIFT Prediction
+    selector:
+      type: select
+      optionsColumn: sift__prediction
+      defaultValue: DAMAGING
+    filter:
+      column: sift__prediction
+      test: equals
+      value: ${value}
+  - name: confidence
+    title: SIFT Confidence
+    selector:
+      type: select
+      optionsColumn: sift__confidence
+      defaultValue: HIGH
+    filter:
+      column: sift__prediction
+      test: equals
+      value: ${value}
