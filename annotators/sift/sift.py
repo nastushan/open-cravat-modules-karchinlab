@@ -22,6 +22,14 @@ class CravatAnnotator(BaseAnnotator):
         r = self.cursor.fetchone()
         if r:
             out['score'], out['med'], out['seqs'] = r
+            if out['score'] <= 0.05:
+                out['prediction'] = 'DAMAGING'
+            else:
+                out['prediction'] = 'TOLERATED'
+            if out['med'] <= 3.25:
+                out['confidence'] = 'HIGH'
+            else:
+                out['confidence'] = 'LOW'
         return out
     
     def cleanup(self):

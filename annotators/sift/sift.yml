@@ -3,10 +3,30 @@ version: 1.0.0
 type: annotator
 level: variant
 output_columns:
+- name: prediction
+  title: Prediction
+  type: string
+  desc: TOLERATED if Score > 0.05. DAMAGING if Score <= 0.05
+  width: 70
+  category: 'single'
+  categories:
+    - TOLERATED
+    - DAMAGING
+- name: confidence
+  title: Confidence
+  type: string
+  desc: LOW if Median Info > 3.25
+  width: 71
+  category: 'single'
+  categories:
+    - HIGH
+    - LOW
+  hidden: true
 - name: score
   title: Score
   type: float
   desc: Ranges from 0 to 1. The amino acid substitution is predicted damaging is the score is <= 0.05, and tolerated if the score is > 0.05. 
+  hidden: true
 - name: med
   title: Median Info
   type: float
@@ -30,3 +50,15 @@ developer:
 
 datasource: 'SIFT4G 2016-02-22'
 private: true
+
+
+smartfilters:
+  - name: score
+    title: SIFT score
+    selector:
+      type: inputFloat
+      defaultValue: 0.05
+    filter:
+      column: sift__score
+      test: lessThanEq
+      value: ${value}
