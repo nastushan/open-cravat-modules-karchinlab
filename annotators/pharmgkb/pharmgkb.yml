@@ -42,4 +42,11 @@ developer:
   website: 'https://www.pharmgkb.org/'
   citation: 'M. Whirl-Carrillo, E.M. McDonagh, J. M. Hebert, L. Gong, K. Sangkuhl, C.F. Thorn, R.B. Altman and T.E. Klein. "Pharmacogenomics Knowledge for Personalized Medicine" Clinical Pharmacology & Therapeutics (2012) 92(4): 414-417'
 
+requires:
+  - wgpharmgkb
+
+tags:
+  - clinical relevance
+  - variants
+
 private: true

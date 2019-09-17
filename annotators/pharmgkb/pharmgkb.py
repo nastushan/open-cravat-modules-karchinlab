@@ -19,9 +19,7 @@ class CravatAnnotator(BaseAnnotator):
             input_data['ref_base'],
             input_data['alt_base'],
         ]))
-        self.logger.warn(key)
         out = self.data.get(key)
-        self.logger.warn(out)
         return out
     
     def cleanup(self):
