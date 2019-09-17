@@ -10,14 +10,14 @@ class CravatConverter(BaseConverter):
         self.format_name = 'dbsnp'
         self.rsid_re = re.compile('rs\d+')
         curdir = os.path.dirname(__file__)
-        dbpath = os.path.join(curdir,'data','dbsnp.sqlite')
+        dbpath = os.path.join(curdir,'data','dbsnp-converter.sqlite')
         try:
             self.dbconn = sqlite3.connect(dbpath)
             self.cursor = self.dbconn.cursor()
         except sqlite3.OperationalError:
             self.dbconn = None
             self.cursor = None
-        self.query_template = 'select chrom, pos, ref_len, alt from dbsnp where rsid=?;'
+        self.query_template = 'select chrom, pos, ref, alt from dbsnp where snp=?;'
     
     def check_format(self, f):
         return f.readline().startswith('#rsid')
@@ -45,14 +45,24 @@ class CravatConverter(BaseConverter):
         out = []
         for r in self.cursor:
             wdict = {}
-            chrom, pos, reflen, alt = r
+            chrom, pos, ref, alt = r
+            if chrom<=22:
+                chrom = 'chr'+str(chrom)
+            elif chrom==23:
+                chrom = 'chrX'
+            elif chrom==24:
+                chrom = 'chrY'
+            else:
+                continue
+            ref = ref if ref else '-'
+            alt = alt if alt else '-'
             wdict = {
                 'chrom':chrom,
                 'pos':pos,
-                'ref_base':'N'*reflen,
+                'ref_base':ref,
                 'alt_base':alt,
                 'tags': tags,
                 'sample_id': sample_id
             }
-        out.append(wdict)
+            out.append(wdict)
         return out
