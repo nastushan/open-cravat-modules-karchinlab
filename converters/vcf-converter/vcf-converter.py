@@ -2,6 +2,8 @@ from cravat import BaseConverter
 from cravat import BadFormatError
 import re
 from collections import OrderedDict
+from cravat.inout import CravatWriter
+from cravat import constants
 
 class CravatConverter(BaseConverter):
 
@@ -35,7 +37,9 @@ class CravatConverter(BaseConverter):
                            'type': 'int'}]
         self.info_field_coltype_dict = {
             'integer': 'int',
+            #'integer': 'string',
             'float': 'float',
+            #'float': 'string',
             'flag': 'string',
             'character': 'string',
             'string': 'string'
@@ -44,6 +48,7 @@ class CravatConverter(BaseConverter):
 
     def check_format(self, f): 
         vcf_format = False
+        self.input_path = f.name
         if f.name.endswith('.vcf'):
             vcf_format = True
         first_line = f.readline()
@@ -71,7 +76,19 @@ class CravatConverter(BaseConverter):
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
-        print('@ header info cols=', self.info_field_cols)
+        self.open_ex_info_writer()
+
+    def open_ex_info_writer (self):
+        self.ex_info_fpath = self.input_path + '.extra_vcf_info.var'
+        self.ex_info_writer = CravatWriter(self.ex_info_fpath)
+        cols = list(self.info_field_cols.values())
+        cols.insert(0, constants.crv_def[0])
+        self.ex_info_writer.add_columns(cols)
+        self.ex_info_writer.write_definition()
+        for index_columns in constants.crv_idx:
+            self.ex_info_writer.add_index(index_columns)
+        self.ex_info_writer.write_meta_line('name', 'extra_vcf_info');
+        self.ex_info_writer.write_meta_line('displayname', 'Extra VCF INFO Annotations');
 
     def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
@@ -116,40 +133,54 @@ class CravatConverter(BaseConverter):
             coldesc = l2[:idx2]
         else:
             coldesc = None
+        '''
         if coldesc is not None and len(coldesc) < 20:
             coltitle = coldesc
         else:
             coltitle = colname
+        '''
+        coltitle = coldesc
         return colname, coltype, coltitle, coldesc, coloritype, colnumber
 
     def parse_data_info_field (self, infoline, len_alts):
         toks = infoline.split(';')
         info_dict = {}
         for tok in toks:
-            idx = tok.index('=')
-            colname = tok[:idx]
-            if colname not in self.info_field_cols:
-                continue
-            coldef = self.info_field_cols[colname]
-            coloritype = coldef['oritype']
-            colnumber = coldef['number']
-            colvals = tok[idx + 1:].split(',')
-            if coloritype == 'integer':
-                colvals = [int(v) for v in colvals]
-            elif coloritype == 'float':
-                colvals = [float(v) for v in colvals]
-            elif coloritype in ['string', 'character', 'flag']:
-                colvals = colvals
-            if colnumber == '0':
-                data = [colvals[0]] * len_alts
-            if colnumber == '1':
-                data = [colvals[0]] * len_alts
-            elif colnumber == 'a':
-                data = colvals
-            elif colnumber == 'r':
-                data = colvals[1:]
-            elif colnumber == '.':
-                data = [','.join(colvals)] * len_alts
+            if '=' in tok:
+                idx = tok.index('=')
+                colname = tok[:idx]
+                if colname not in self.info_field_cols:
+                    continue
+                coldef = self.info_field_cols[colname]
+                coloritype = coldef['oritype']
+                colnumber = coldef['number']
+                colvals = tok[idx + 1:].split(',')
+                if coloritype == 'integer':
+                    colvals = [int(v) for v in colvals]
+                elif coloritype == 'float':
+                    colvals = [float(v) for v in colvals]
+                elif coloritype in ['string', 'character', 'flag']:
+                    colvals = colvals
+                if colnumber == '0':
+                    data = [colvals[0]] * len_alts
+                if colnumber == '1':
+                    data = [colvals[0]] * len_alts
+                elif colnumber == 'a':
+                    data = colvals
+                elif colnumber == 'r':
+                    data = colvals[1:]
+                elif colnumber == '.':
+                    data = [','.join(colvals)] * len_alts
+            else:
+                colname = tok
+                col = self.info_field_cols[colname]
+                if col['oritype'] == 'flag':
+                    data = True
+                else:
+                    print('{} cannot be processed: {}'.format(colname, tok))
+                    continue
+            #if type(data) is list:
+            #    data = ','.join([str(v) for v in data])
             info_dict[colname] = data
         return info_dict
 
@@ -183,7 +214,7 @@ class CravatConverter(BaseConverter):
         alts = alts.split(',')
         len_alts = len(alts)
         if info is not None:
-            info_field_data = self.parse_data_info_field(info, len_alts)
+            self.info_field_data = self.parse_data_info_field(info, len_alts)
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
@@ -271,6 +302,17 @@ class CravatConverter(BaseConverter):
                                      }
                         all_wdicts.append(wdict)
         return all_wdicts
+
+    def addl_operation_for_unique_variant (self, wdict, wdict_no):
+        uid = wdict['uid']
+        row_data = {}
+        for k, v in self.info_field_data.items():
+            if type(v) is list:
+                row_data[k] = v[wdict_no]
+            else:
+                row_data[k] = v
+        row_data['uid'] = uid
+        self.ex_info_writer.write_data(row_data)
 
     #The vcf genotype string has a call for each allele separated by '\' or '/'
     #If the call is the same for all allels, return 'hom' otherwise 'het'

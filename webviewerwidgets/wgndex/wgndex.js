@@ -249,9 +249,7 @@ widgetGenerators['ndex'] = {
                 var nodes = asCXResponse[5]['nodes'];
                 for (var i = 0; i < nodes.length; i++) {
                     var uniprot = nodes[i]['n'].replace('_HUMAN', '');
-                    console.log('@ uniprot=', uniprot);
                     var hugo = ndex_prot_hugo_dic[uniprot];
-                    console.log('@ hugo=', hugo);
                     if (hugo != undefined) {
                         nodes[i]['n'] = hugo;
                     }
@@ -973,9 +971,7 @@ widgetGenerators['ndex'] = {
 				var nodes = asCXResponse[5]['nodes'];
 				for (var i = 0; i < nodes.length; i++) {
 					var uniprot = nodes[i]['n'].replace('_HUMAN', '');
-                    console.log('@ uniprot=', uniprot);
 					var hugo = ndex_prot_hugo_dic[uniprot];
-                    console.log('@ hugo=', hugo);
 					if (hugo != undefined) {
 						nodes[i]['n'] = hugo;
 					}
