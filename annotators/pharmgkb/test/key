@@ -1,15 +1,15 @@
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 13:37:46
+#Created at Tuesday 09/17/2019 14:00:56
 #Report level: variant
 #
 Variant Annotation															PharmGKB					
 UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Chemical	Study	Phenotype Category	Significance	Notes	Description
-1	chr6_GL000250v2_alt	1096643	A	G			HLA-G	ENST00000615464.4	3-prime utr		ENST00000612360.4:HLA-G:A0A0G2JNX1:3-prime utr:(na):(na); ENST00000615098.4:HLA-G:Q8MH48:3-prime utr:(na):(na); ENST00000615464.4:HLA-G:A0A0G2JPQ3:3-prime utr:(na):(na); ENST00000618812.1:HLA-G:Q8MH48:3-prime utr:(na):(na); ENST00000622601.4:HLA-G:Q29897:3-prime utr:(na):(na)	1	s0							
-2	chr22	19965038	G	A			COMT	ENST00000361682.10	intron		ENST00000361682.10:COMT:P21964:intron:(na):(na); ENST00000403184.5:COMT:E7EUU8:3-prime utr:(na):(na); ENST00000403710.5:COMT:P21964:intron:(na):(na); ENST00000406520.7:COMT:P21964:intron:(na):(na); ENST00000407537.5:COMT:P21964:intron:(na):(na); ENST00000449653.5:COMT:(na):intron:(na):(na)	1	s0							
+1	chr6_GL000250v2_alt	1096643	A	G			HLA-G	ENST00000615464.4	3-prime utr		ENST00000612360.4:HLA-G:A0A0G2JNX1:3-prime utr:(na):(na); ENST00000615098.4:HLA-G:Q8MH48:3-prime utr:(na):(na); ENST00000615464.4:HLA-G:A0A0G2JPQ3:3-prime utr:(na):(na); ENST00000618812.1:HLA-G:Q8MH48:3-prime utr:(na):(na); ENST00000622601.4:HLA-G:Q29897:3-prime utr:(na):(na)	1	s0		capecitabine (PA448771),fluorouracil (PA128406956)	26633805	efficacy	yes	The authors examined disease free survival (DFS) as well as overall survival (OS). The GG genotype was associated with decreased DFS and OS.	Genotype GG is associated with decreased response to capecitabine or fluorouracil in people with Colorectal Neoplasms as compared to genotypes AA + AG.
+2	chr22	19965038	G	A			COMT	ENST00000361682.10	intron		ENST00000361682.10:COMT:P21964:intron:(na):(na); ENST00000403184.5:COMT:E7EUU8:3-prime utr:(na):(na); ENST00000403710.5:COMT:P21964:intron:(na):(na); ENST00000406520.7:COMT:P21964:intron:(na):(na); ENST00000407537.5:COMT:P21964:intron:(na):(na); ENST00000449653.5:COMT:(na):intron:(na):(na)	1	s0		morphine (PA450550)	26902643	dosage,efficacy	no	Haplotype of the six COMT variants studied in the paper was also not significantly associated with morphine dose requirements.	Allele G is not associated with dose of morphine in people with Pain, Postoperative as compared to allele A.
 3	chr3	49682366	G	T		Yes	APEH	ENST00000438011.5	missense	T541M	ENST00000296456.9:APEH:P13798:missense:T541M:G1622T; ENST00000438011.5:APEH:C9JIF9:missense:T541M:G1622T; ENST00000449682.2:MST1:G3XAK1:2kb downstream:(na):(na)	1	s0		valproic acid (PA451846)	27406852	metabolism/PK	yes	as measured by dose adjusted plasma VPA. Note: the mean age differed between CC and CT patient groups but was not significant (0.066) No TT homozygotes were observed.	Genotype CC is associated with increased concentrations of valproic acid in people with Epilepsy as compared to genotype CT.
 4	chr3	49682366	G	A		Yes	APEH	ENST00000438011.5	missense	T541K	ENST00000296456.9:APEH:P13798:missense:T541K:G1622A; ENST00000438011.5:APEH:C9JIF9:missense:T541K:G1622A; ENST00000449682.2:MST1:G3XAK1:2kb downstream:(na):(na)	1	s0							
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 13:37:46
+#Created at Tuesday 09/17/2019 14:00:56
 #Report level: gene
 #
 Variant Annotation					
@@ -18,7 +18,7 @@ HLA-G		0	1	3-prime utr	3-prime utr(1)
 COMT		0	1	intron	intron(1),3-prime utr(1)
 APEH		2	0	missense	missense(2)
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 13:37:46
+#Created at Tuesday 09/17/2019 14:00:56
 #Report level: sample
 #
 Variant Annotation	
@@ -28,7 +28,7 @@ UID	Sample
 3	s0
 4	s0
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 13:37:46
+#Created at Tuesday 09/17/2019 14:00:56
 #Report level: mapping
 #
 Variant Annotation			
