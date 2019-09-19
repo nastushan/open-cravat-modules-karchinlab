@@ -51,6 +51,9 @@ developer:
 datasource: 'SIFT4G 2016-02-22'
 private: true
 
+tags:
+- variants
+- variant effect prediction
 
 smartfilters:
   - name: score
