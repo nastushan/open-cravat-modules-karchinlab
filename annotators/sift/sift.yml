@@ -6,21 +6,21 @@ output_columns:
 - name: prediction
   title: Prediction
   type: string
-  desc: TOLERATED if Score > 0.05. DAMAGING if Score <= 0.05
+  desc: Tolerated if Score > 0.05. Damaging if Score <= 0.05
   width: 70
   category: 'single'
   categories:
-    - TOLERATED
-    - DAMAGING
+    - Tolerated
+    - Damaging
 - name: confidence
   title: Confidence
   type: string
-  desc: LOW if Median Info > 3.25
-  width: 71
+  desc: Low if Median Info > 3.25
+  width: 75
   category: 'single'
   categories:
-    - HIGH
-    - LOW
+    - High
+    - Low
   hidden: true
 - name: score
   title: Score
@@ -56,47 +56,12 @@ tags:
 - variant effect prediction
 
 smartfilters:
-  - name: score
-    title: SIFT score
-    selector:
-      type: inputFloat
-      defaultValue: 0.05
-    filter:
-      column: sift__score
-      test: lessThanEq
-      value: ${value}
-  - name: damaging
-    title: SIFT Damaging
-    selector:
-      type: empty
-    filter:
-      column: sift__prediction
-      test: equals
-      value: DAMAGING
-  - name: highc
-    title: SIFT High Confidence
-    selector:
-      type: empty
-    filter:
-      column: sift__confidence
-      test: equals
-      value: HIGH
   - name: prediction
     title: SIFT Prediction
     selector:
       type: select
       optionsColumn: sift__prediction
-      defaultValue: DAMAGING
-    filter:
-      column: sift__prediction
-      test: equals
-      value: ${value}
-  - name: confidence
-    title: SIFT Confidence
-    selector:
-      type: select
-      optionsColumn: sift__confidence
-      defaultValue: HIGH
+      defaultValue: Damaging
     filter:
       column: sift__prediction
       test: equals

@@ -23,13 +23,13 @@ class CravatAnnotator(BaseAnnotator):
         if r:
             out['score'], out['med'], out['seqs'] = r
             if out['score'] <= 0.05:
-                out['prediction'] = 'DAMAGING'
+                out['prediction'] = 'Damaging'
             else:
-                out['prediction'] = 'TOLERATED'
+                out['prediction'] = 'Tolerated'
             if out['med'] <= 3.25:
-                out['confidence'] = 'HIGH'
+                out['confidence'] = 'High'
             else:
-                out['confidence'] = 'LOW'
+                out['confidence'] = 'Low'
         return out
     
     def cleanup(self):
