@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 14:00:56
+#Created at Wednesday 09/18/2019 16:41:31
 #Report level: variant
 #
 Variant Annotation															PharmGKB					
@@ -9,7 +9,7 @@ UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontolo
 3	chr3	49682366	G	T		Yes	APEH	ENST00000438011.5	missense	T541M	ENST00000296456.9:APEH:P13798:missense:T541M:G1622T; ENST00000438011.5:APEH:C9JIF9:missense:T541M:G1622T; ENST00000449682.2:MST1:G3XAK1:2kb downstream:(na):(na)	1	s0		valproic acid (PA451846)	27406852	metabolism/PK	yes	as measured by dose adjusted plasma VPA. Note: the mean age differed between CC and CT patient groups but was not significant (0.066) No TT homozygotes were observed.	Genotype CC is associated with increased concentrations of valproic acid in people with Epilepsy as compared to genotype CT.
 4	chr3	49682366	G	A		Yes	APEH	ENST00000438011.5	missense	T541K	ENST00000296456.9:APEH:P13798:missense:T541K:G1622A; ENST00000438011.5:APEH:C9JIF9:missense:T541K:G1622A; ENST00000449682.2:MST1:G3XAK1:2kb downstream:(na):(na)	1	s0							
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 14:00:56
+#Created at Wednesday 09/18/2019 16:41:31
 #Report level: gene
 #
 Variant Annotation					
@@ -18,7 +18,7 @@ HLA-G		0	1	3-prime utr	3-prime utr(1)
 COMT		0	1	intron	intron(1),3-prime utr(1)
 APEH		2	0	missense	missense(2)
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 14:00:56
+#Created at Wednesday 09/18/2019 16:41:31
 #Report level: sample
 #
 Variant Annotation	
@@ -28,7 +28,7 @@ UID	Sample
 3	s0
 4	s0
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 14:00:56
+#Created at Wednesday 09/18/2019 16:41:31
 #Report level: mapping
 #
 Variant Annotation			
