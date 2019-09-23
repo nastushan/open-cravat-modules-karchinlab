@@ -13,7 +13,7 @@ class Mapper(cravat.BaseMapper):
     """
     Map genomic positions to transcripts from knowngene
     """
-    
+
     def _define_additional_cmd_args(self):
         """
         Setup cmd arg parsing in addition to that in BaseMapper.
@@ -34,7 +34,7 @@ class Mapper(cravat.BaseMapper):
                                      help='Specify a preffered gene source '\
                                           +'to be reported in the transcript '\
                                           +'column.')
-    
+
     def setup(self):
         """
         Setup attributes will be used by this mapper
@@ -73,7 +73,7 @@ class Mapper(cravat.BaseMapper):
         if hasattr(self, 'cravat_version') == False:
             import pkg_resources
             self.cravat_version = pkg_resources.get_distribution('open-cravat').version
- 
+
     def map(self, crv_data):
         """
         Takes a dict with crv fields and return a dict with crx fields
@@ -92,11 +92,11 @@ class Mapper(cravat.BaseMapper):
             all_hits.append(hit)
         crx_data, alt_transcripts = self._combine_to_crx_data(crv_data, all_hits)
         return crx_data, alt_transcripts
-        
+
     def _get_non_coding_hits(self, crv_data):
         """
         Query noncoding table for hit start position in noncoding range.
-            
+
         Creates NonCodingHit object and fills with relevant information
         """
         hit_list = []
@@ -126,11 +126,11 @@ class Mapper(cravat.BaseMapper):
                 except DiscardHit:
                     continue
         return hit_list
-    
+
     def _get_splice_site_hits(self, crv_data):
         """
         Query splice table for hit start position on splice site.
-        
+
         Creates CodingHit object and fills with relevant information
         """
         hit_list = []
@@ -156,14 +156,14 @@ class Mapper(cravat.BaseMapper):
                 self.hit_tr[hit.tid] = True
             except DiscardHit:
                 continue
-            
+
         return hit_list
-    
+
     def _get_coding_hits(self, crv_data):
         """
         Query coding table for affected transcripts and determine sequence
         changes within those transcripts.
-        
+
         Check both genomic start and end position of variant since
         transcripts can occur on both strands. Swap start and end in the
         case of a minus strand transcript.
@@ -228,14 +228,14 @@ class Mapper(cravat.BaseMapper):
                 coding_hits.append(hit)
             except DiscardHit:
                 continue    
-        
+
         return coding_hits
-        
+
     def _coding_query(self, chrom=None, gpos=None, tid=None, tpos=None):
         """
         Query the coding table to generate a dict keyed by tid and containing 
         the transcript-coordinate positions of the genomic position.
-        
+
         Queries can be made using either chrom and gpos or tid and tpos.
         """
         if chrom is not None and gpos is not None:
@@ -262,7 +262,7 @@ class Mapper(cravat.BaseMapper):
             del d['tid']
             td[tid] = d
         return td
-        
+
     def _fill_positions(self, hit, map_dict):
         """ 
         Fill Hit object with info relevant to transcript sequence
@@ -286,7 +286,7 @@ class Mapper(cravat.BaseMapper):
             hit.apos_start, hit.cpos_start = tpos_to_codon(hit.tpos_start)
         hit.tpos_end = hit.tpos_start + len(hit.gref) - 1
         hit.apos_end, hit.cpos_end = tpos_to_codon(hit.tpos_end)
-        
+
     def _fill_coding_so(self, hit):
         """
         Predict sequence ontology based on ref and alt base
@@ -323,7 +323,7 @@ class Mapper(cravat.BaseMapper):
                     hit.so = 'SYN'
             else:
                 hit.so = 'CSS'
-    
+
     def _fill_snv_pchange(self, hit):
         """
         Get amino-acid change from single nucleotide variant
@@ -337,11 +337,11 @@ class Mapper(cravat.BaseMapper):
                        + hit.full_ref[hit.cpos_start:]
         hit.aref = cravat.util.translate_codon(hit.full_ref)
         hit.aalt = cravat.util.translate_codon(hit.full_alt)
-    
+
     def _fill_transcript_info(self, hit):
         """
         Query transcript and transcript info
-        
+
         Put information into Transcript object stored in Hit.transcript
         """
         q = 'select * from transcript where tid="%s"  and source in ("%s");'\
@@ -359,11 +359,11 @@ class Mapper(cravat.BaseMapper):
         transcript_info_headers = [x[0] for x in self.c.description]
         transcript_info = dict(zip(transcript_info_headers, self.c.fetchone()))
         hit.transcript.load_from_transcript_info_table(transcript_info)
-            
+
     def _get_placeholder_uniprot(self):
         placeholder_uniprots = ['uniprot1']*1+['uniprot2']*3+['uniprot3']*3
         return random.choice(placeholder_uniprots)
-    
+
     def _combine_to_crx_data(self, crv_data, all_hits):
         """
         Combine all Hit objects to make a dict with crx fields
@@ -449,7 +449,7 @@ class Mapper(cravat.BaseMapper):
         crx_data['all_mappings'] = json.dumps(all_maps_ordered,
                                               separators=(',', ':'))
         return crx_data, alt_transcripts
-    
+
     def summarize_by_gene (self, hugo, input_data):
         out = {}
         sos = list(set(input_data['so']))
@@ -513,7 +513,7 @@ class FrozenClass(object):
     def __str__(self):
         return ', '.join(['%s:(%s)' %(k, str(v)) 
                           for k, v in self.__dict__.items()])
-        
+
 class Transcript(FrozenClass):
     """
     Holds information from transcript and transcript info tables
@@ -528,11 +528,11 @@ class Transcript(FrozenClass):
         self.strand = None
         self.names_by_source = {}
         self.freeze()
-        
+
     def load_from_transcript_table(self, d):
         self.tid = d['tid']
         self.names_by_source[d['source']] = d['name']
-    
+
     def load_from_transcript_info_table(self, d):
         self.protein = d['sprot']
         self.hugo = d['hugo']
@@ -552,7 +552,7 @@ class Hit(FrozenClass):
         self.gref = None
         self.galt = None
         self.hit_type = None
-    
+
     def load_crv(self, crv_data):
         self.uid = crv_data['uid']
         self.chrom = crv_data['chrom']
@@ -568,7 +568,7 @@ class IntergenicHit(Hit):
         super().__init__()
         self.hit_type = 'intergenic'
         self.freeze()
-        
+
 class NoncodingHit(Hit):
     """
     Holds information from noncoding table
@@ -622,13 +622,13 @@ class CodingHit(Hit):
         # Transcript information is held here
         self.transcript = Transcript()
         self.freeze()
-        
+
 class DiscardHit(Exception):
     """
     Used internally to signal that a hit should not be included in the main list
     """
     pass
-        
+
 if __name__ == '__main__':
     mapper = Mapper()
     mapper.run()                

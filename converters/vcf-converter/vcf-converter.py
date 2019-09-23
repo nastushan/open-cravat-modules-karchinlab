@@ -1,10 +1,12 @@
 from cravat import BaseConverter
 from cravat import BadFormatError
-
 import re
+from collections import OrderedDict
+from cravat.inout import CravatWriter
+from cravat import constants
 
 class CravatConverter(BaseConverter):
-    
+
     def __init__(self):
         self.format_name = 'vcf'
         self.samples = []
@@ -33,17 +35,29 @@ class CravatConverter(BaseConverter):
                           {'name': 'hap_strand',
                            'title': 'Haplotype strand ID',
                            'type': 'int'}]
-    
+        self.info_field_coltype_dict = {
+            'integer': 'int',
+            #'integer': 'string',
+            'float': 'float',
+            #'float': 'string',
+            'flag': 'string',
+            'character': 'string',
+            'string': 'string'
+        }
+        self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
+
     def check_format(self, f): 
         vcf_format = False
+        self.input_path = f.name
         if f.name.endswith('.vcf'):
             vcf_format = True
         first_line = f.readline()
         if first_line.startswith('##fileformat=VCF'):
             vcf_format = True
         return vcf_format
-    
+
     def setup(self, f):
+        self.info_field_cols = OrderedDict()
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
                 self.vcf_format = 'varscan'
@@ -51,12 +65,125 @@ class CravatConverter(BaseConverter):
                 self.vcf_format = 'unknown'
             if len(l) < 6:
                 continue
+            if l.startswith('##INFO='):
+                colname, coltype, coltitle, coldesc, coloritype, colnumber = self.parse_header_info_field(l)
+                if coltype is None or colnumber not in self.allowed_info_colnumbers:
+                    continue
+                else:
+                    self.info_field_cols[colname] = {'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber}
             if l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
-    
+        self.open_ex_info_writer()
+
+    def open_ex_info_writer (self):
+        self.ex_info_fpath = self.input_path + '.extra_vcf_info.var'
+        self.ex_info_writer = CravatWriter(self.ex_info_fpath)
+        cols = list(self.info_field_cols.values())
+        cols.insert(0, constants.crv_def[0])
+        self.ex_info_writer.add_columns(cols)
+        self.ex_info_writer.write_definition()
+        for index_columns in constants.crv_idx:
+            self.ex_info_writer.add_index(index_columns)
+        self.ex_info_writer.write_meta_line('name', 'extra_vcf_info');
+        self.ex_info_writer.write_meta_line('displayname', 'Extra VCF INFO Annotations');
+
+    def parse_header_info_field (self, l):
+        l = l[7:].rstrip('>')
+        if 'ID=' in l:
+            idx = l.index('ID=')
+            l2 = l[idx + 3:]
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
+            colname = l2[:idx2]
+        else:
+            colname = None
+        if 'Number=' in l:
+            idx = l.index('Number=')
+            l2 = l[idx + 7:]
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
+            colnumber = l2[:idx2].lower()
+        else:
+            colnumber = None
+        if 'Type=' in l:
+            idx = l.index('Type=')
+            l2 = l[idx + 5:]
+            try:
+                idx2 = l2.index(',')
+            except:
+                idx2 = len(l2)
+            coloritype = l2[:idx2].lower()
+            if coloritype in self.info_field_coltype_dict:
+                coltype = self.info_field_coltype_dict[coloritype]
+            else:
+                coltype = None
+        else:
+            coltype = None
+        if 'Description="' in l:
+            idx = l.index('Description="')
+            l2 = l[idx + 13:]
+            idx2 = l2.index('"')
+            coldesc = l2[:idx2]
+        else:
+            coldesc = None
+        '''
+        if coldesc is not None and len(coldesc) < 20:
+            coltitle = coldesc
+        else:
+            coltitle = colname
+        '''
+        coltitle = coldesc
+        return colname, coltype, coltitle, coldesc, coloritype, colnumber
+
+    def parse_data_info_field (self, infoline, len_alts):
+        toks = infoline.split(';')
+        info_dict = {}
+        for tok in toks:
+            if '=' in tok:
+                idx = tok.index('=')
+                colname = tok[:idx]
+                if colname not in self.info_field_cols:
+                    continue
+                coldef = self.info_field_cols[colname]
+                coloritype = coldef['oritype']
+                colnumber = coldef['number']
+                colvals = tok[idx + 1:].split(',')
+                if coloritype == 'integer':
+                    colvals = [int(v) for v in colvals]
+                elif coloritype == 'float':
+                    colvals = [float(v) for v in colvals]
+                elif coloritype in ['string', 'character', 'flag']:
+                    colvals = colvals
+                if colnumber == '0':
+                    data = [colvals[0]] * len_alts
+                if colnumber == '1':
+                    data = [colvals[0]] * len_alts
+                elif colnumber == 'a':
+                    data = colvals
+                elif colnumber == 'r':
+                    data = colvals[1:]
+                elif colnumber == '.':
+                    data = [','.join(colvals)] * len_alts
+            else:
+                colname = tok
+                col = self.info_field_cols[colname]
+                if col['oritype'] == 'flag':
+                    data = True
+                else:
+                    print('{} cannot be processed: {}'.format(colname, tok))
+                    continue
+            #if type(data) is list:
+            #    data = ','.join([str(v) for v in data])
+            info_dict[colname] = data
+        return info_dict
+
     def convert_line(self, l):
         if l.startswith('#'): return None
         self.var_counter += 1
@@ -78,13 +205,16 @@ class CravatConverter(BaseConverter):
             filter = None
         if toklen >= 8:
             info = toks[7]
-            if info == '.': info = None
+            if info == '.': 
+                info = None
         else:
             info = None
         if tag == '.':
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
+        if info is not None:
+            self.info_field_data = self.parse_data_info_field(info, len_alts)
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
@@ -172,13 +302,24 @@ class CravatConverter(BaseConverter):
                                      }
                         all_wdicts.append(wdict)
         return all_wdicts
- 
+
+    def addl_operation_for_unique_variant (self, wdict, wdict_no):
+        uid = wdict['uid']
+        row_data = {}
+        for k, v in self.info_field_data.items():
+            if type(v) is list:
+                row_data[k] = v[wdict_no]
+            else:
+                row_data[k] = v
+        row_data['uid'] = uid
+        self.ex_info_writer.write_data(row_data)
+
     #The vcf genotype string has a call for each allele separated by '\' or '/'
     #If the call is the same for all allels, return 'hom' otherwise 'het'
     def homo_hetro(self, gt_str):
         if '.' in gt_str:
             return '';
-        
+
         gts = gt_str.strip().replace('/', '|').split('|')
         for gt in gts:
             if gt != gts[0]:
@@ -265,23 +406,23 @@ class CravatConverter(BaseConverter):
 
         reflen = len(ref)
         altlen = len(alt)
-        
+
         # Returns without change if same single nucleotide for ref and alt. 
         if reflen == 1 and altlen == 1 and ref == alt:
             return pos, ref, alt
-        
+
         # Trimming from the start and then the end of the sequence 
         # where the sequences overlap with the same nucleotides
         new_ref2, new_alt2, new_pos = \
             self.trimming_vcf_input(ref, alt, pos, strand)
-                
+
         if new_ref2 == '' or new_ref2 == '.':
             new_ref2 = '-'
         if new_alt2 == '' or new_alt2 == '.':
             new_alt2 = '-'
-        
+
         return new_pos, new_ref2, new_alt2
-    
+
     # This function looks at the ref and alt sequences and removes 
     # where the overlapping sequences contain the same nucleotide.
     # This trims from the end first but does not remove the first nucleotide 
