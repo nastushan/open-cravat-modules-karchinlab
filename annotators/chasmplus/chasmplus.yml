@@ -70,3 +70,4 @@ requires:
 requires_opencravat: '>=1.5.0'
 groups:
 - chasmplus_group
+commercial_warning: For commercial use, contact karchin@jhu.edu

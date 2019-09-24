@@ -13,10 +13,14 @@ output_columns:
 tags:
 - variants
 - populations
-description: Exomic allele frequencies of an elderly cohort of Brazilians in the ABraOM database
+description: Exomic allele frequencies of an elderly cohort of Brazilians in the ABraOM
+  database
 developer:
-  name: 'Naslavsky, Yamamoto et al.'
-  organization: 'NCBI Hackathon 2019'
+  name: Naslavsky, Yamamoto et al.
+  organization: NCBI Hackathon 2019
   email: ''
-  website: 'http://abraom.ib.usp.br/'
-  citation: 'Naslavsky, Yamamoto et al. (2017). Exomic variants of an elderly cohort of Brazilians in the ABraOM database. Human Mutation, 38(7), 751–763.'
+  website: http://abraom.ib.usp.br/
+  citation: "Naslavsky, Yamamoto et al. (2017). Exomic variants of an elderly cohort\
+    \ of Brazilians in the ABraOM database. Human Mutation, 38(7), 751\xE2\u20AC\u201C\
+    763."
+commercial_warning: 'For academic use only. '

@@ -50,3 +50,4 @@ smartfilters:
   filter:
     column: grasp__phenotype
     test: hasData
+commercial_warning: 'For commercial use, contact johnsonad2@nhlbi.nih.gov. '

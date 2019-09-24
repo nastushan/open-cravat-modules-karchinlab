@@ -32,3 +32,4 @@ type: annotator
 version: 2019.05.13
 requires:
 - wgbrca1_func_assay
+commercial_warning: 'For commercial use, contact lstarita@uw.edu. '

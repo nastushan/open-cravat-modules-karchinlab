@@ -34,17 +34,19 @@ output_columns:
   type: float
   width: 68
 - filterable: true
-  name:  native_american_allele_freq
-  title:  Native American AF
+  name: native_american_allele_freq
+  title: Native American AF
   type: float
   width: 68
 tags:
 - variants
 - populations
-description: Human Genome Diversity Panel (HGDP) DNA from individuals among 51 different populations.
+description: Human Genome Diversity Panel (HGDP) DNA from individuals among 51 different
+  populations.
 developer:
-  name: 'Jun Z. Li et al.'
-  organization: 'Stanford University School of Medicine'
+  name: Jun Z. Li et al.
+  organization: Stanford University School of Medicine
   email: ''
-  website: 'https://www.hagsc.org/hgdp/'
+  website: https://www.hagsc.org/hgdp/
   citation: ''
+commercial_warning: 'For academic use only. '

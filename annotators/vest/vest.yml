@@ -65,3 +65,4 @@ requires_opencravat: '>=1.5.0'
 requires:
 - wgndexvestsummary
 - wgvest
+commercial_warning: For commercial use, contact HOPKINS

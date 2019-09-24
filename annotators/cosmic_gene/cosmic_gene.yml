@@ -34,3 +34,4 @@ type: annotator
 version: 85.0.6
 requires:
 - wgcosmic_gene
+commercial_warning: 'For commercial use, contact cosmic@sanger.ac.uk '

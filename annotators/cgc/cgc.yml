@@ -48,3 +48,4 @@ type: annotator
 version: 85.0.12
 requires:
 - wgcgc
+commercial_warning: For commercial use, contact cosmic@sanger.ac.uk
