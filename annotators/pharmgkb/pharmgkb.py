@@ -19,7 +19,15 @@ class CravatAnnotator(BaseAnnotator):
             input_data['ref_base'],
             input_data['alt_base'],
         ]))
-        out = self.data.get(key)
+        d = self.data.get(key)
+        if d:
+            out = {}
+            out.update(d)
+            out['chemical'] = ';'.join(out['chemical'])
+            out['chemid'] = ';'.join(out['chemid'])
+        else:
+            return None
+
         return out
     
     def cleanup(self):
