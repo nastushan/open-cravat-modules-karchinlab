@@ -1,0 +1,19 @@
+datasource: 2019.09
+description: Chromatin state annotations from Segway
+developer:
+  name: Michael Hoffman
+  organization: Princess Margaret Cancer Centre
+  email: michael.hoffman@utoronto.ca
+  website: https://segway.hoffmanlab.org/
+  citation: 'Libbrecht, Maxwell W., et al. "A unified encyclopedia of human functional
+    DNA elements through fully automated annotation of 164 human cell types." Genome
+    Biology 20.1 (2019): 1-14.'
+level: variant
+tags:
+- variants
+- noncoding
+title: Segway
+type: group
+version: 1.0.0
+requires_opencravat: '>=1.4.4'
+private: false

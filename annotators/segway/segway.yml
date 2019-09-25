@@ -1,0 +1,32 @@
+title: Segway
+version: 1.0.0
+type: annotator
+level: variant
+output_columns:
+- name: sum_score
+  title: Sum Score
+  type: float
+  desc: Sum conservation-associated activity score across all base pairs in the region
+    containing the query variant
+- name: mean_score
+  title: Mean Score
+  type: float
+  desc: Mean conservation-associated activity score across all base pairs in the region
+    containing the query variant
+description: Chromatin state activity scores
+developer:
+  name: Michael Hoffman
+  organization: Princess Margaret Cancer Centre
+  email: michael.hoffman@utoronto.ca
+  website: https://segway.hoffmanlab.org/
+  citation: 'Libbrecht, Maxwell W., et al. "A unified encyclopedia of human functional
+    DNA elements through fully automated annotation of 164 human cell types." Genome
+    Biology 20.1 (2019): 1-14.'
+private: false
+groups:
+- segway_group
+tags:
+- variants
+- noncoding
+requires:
+- segway_group
