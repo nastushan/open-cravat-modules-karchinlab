@@ -3,7 +3,32 @@ widgetGenerators['pharmgkb'] = {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Chemical', 'pharmgkb__chemical', tabName);
+			var chemical = infomgr.getRowValue('variant',row,'pharmgkb__chemical');
+			var chemid = infomgr.getRowValue('variant',row,'pharmgkb__chemid');
+			var chemsDiv = getEl('div');
+			addEl(div, chemsDiv);
+			var titleSpan = getEl('span');
+			addEl(chemsDiv, titleSpan);
+			addEl(titleSpan, getTn('Chemicals: '));
+			titleSpan.style['font-weight'] = 'bold';
+			if (chemical && chemid) {
+				var chemicals = chemical.split(';');
+				var chemids = chemid.split(';');
+				for (let i=0; i<chemicals.length; i++) {
+					var curchem = chemicals[i];
+					var curid = chemids[i];
+					var url = `https://pharmgkb.org/chemical/${curid}`;
+					var link = getEl('a');
+					addEl(chemsDiv, link);
+					link.href = url;
+					link.target = '_blank';
+					addEl(link, getTn(curchem));
+					if (i + 1 < chemicals.length) {
+						addEl(chemsDiv, getTn(', '));
+					}
+				}
+			}
+
 			addInfoLine(div, row, 'Description', 'pharmgkb__sentence', tabName);
 		}
 	}
