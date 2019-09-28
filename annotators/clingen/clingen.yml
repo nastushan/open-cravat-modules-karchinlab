@@ -1,0 +1,36 @@
+title: ClinGen
+version: 1.0.0
+type: annotator
+level: gene
+output_columns:
+- name: disease
+  title: Disease
+  type: string
+  width: 180
+- name: mondo
+  title: ID
+  type: string
+  link_format: 'https://monarchinitiative.org/disease/${[^;]+}'
+  width: 110
+  hidden: true
+- name: classification
+  title: Classification
+  type: string
+  width: 90
+  hidden: true
+- name: link
+  title: Link
+  type: string
+  hidden: true
+
+
+description: Template annotator. If you see this description in production, someone is wrong.
+
+developer:
+  name: ''
+  organization: ''
+  email: ''
+  website: ''
+  citation: ''
+
+private: true
