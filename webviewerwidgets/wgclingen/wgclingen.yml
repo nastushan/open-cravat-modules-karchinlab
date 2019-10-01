@@ -15,4 +15,3 @@ tags:
 release_note:
 - 1.0.7: added gene tab aggregated columns.
 - 1.0.5: uses full sequence ontology names.
-private: true
