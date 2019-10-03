@@ -1,0 +1,17 @@
+title: ClinGen
+version: 1.0.8
+type: webviewerwidget
+required_annotator: clingen
+requires_opencravat: '>=1.5.0'
+description: Base information webviewer widget
+developer:
+  name: Kyle Moad
+  organization: In Silico Solutions
+  email: kmoad@insilico.us.com
+  website: http://www.insilico.us.com
+  citation: ''
+tags:
+- visualization widgets
+release_note:
+- 1.0.7: added gene tab aggregated columns.
+- 1.0.5: uses full sequence ontology names.
