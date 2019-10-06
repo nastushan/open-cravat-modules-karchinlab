@@ -30,7 +30,7 @@ developer:
   name: 'Katrina Goddard'
   organization: 'National Institutes of Health'
   email: 'clingen@clinicalgenome.org'
-  website: 'clinicalgenome.org'
+  website: 'https://clinicalgenome.org'
   citation: 'Strande NT, Riggs ER, Buchanan AH, Ceyhan-Birsoy O, DiStefano M, Dwight SS, Goldstein J, Ghosh R, Seifert BA, Sneddon TP, Wright MW, Milko LV, Cherry JM, Giovanni MA, Murray MF, O''Daniel JM, Ramos EM, Santani AB, Scott AF, Plon SE, Rehm HL, Martin CL, Berg JS. Evaluating the Clinical Validity of Gene-Disease Associations: An Evidence-Based Framework Developed by the Clinical Genome Resource. Am J Hum Genet. 2017 Jun 1;100(6):895-906. doi: 10.1016/j.ajhg.2017.04.015. Epub 2017 May 25. PubMed PMID: 28552198; PubMed Central PMCID: PMC5473734.'
 
 requires:
