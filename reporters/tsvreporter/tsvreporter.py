@@ -42,6 +42,16 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
     
     def write_header (self, level):
+        colno = 0
+        for colgroup in self.colinfo[level]['colgroups']:
+            count = colgroup['count']
+            if count == 0:
+                continue
+            for col in self.colinfo[level]['columns'][colno:colno+count]:
+                [module_name, col_name] = col['col_name'].split('__')
+                line = 'Column description. Column {} {}:{}={}'.format(colno, module_name, col_name, col['col_title'])
+                self.write_preface_line(line)
+                colno += 1
         line = '#'
         colno = 0
         for colgroup in self.colinfo[level]['colgroups']:

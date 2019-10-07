@@ -1,5 +1,5 @@
 title: TSV Reporter
-version: 1.0.6
+version: 1.0.7
 type: reporter
 description: Tab-delimited format text file reporter
 requires_opencravat: '>=1.5.0'
@@ -12,6 +12,7 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 release_note:
+  1.0.7: added column description header.
   1.0.6: added output_filename_schema.
   1.0.5: async write_table_row removed
   1.0.4: async write_table_row
