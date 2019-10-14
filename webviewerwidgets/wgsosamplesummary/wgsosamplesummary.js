@@ -56,7 +56,7 @@ widgetGenerators['sosamplesummary'] = {
             this['variables']['div'] = div;
             this['variables']['data'] = data;
             div.style.position = 'relative';
-            div.style.overflowX = 'scroll';
+            div.style.overflowX = 'auto';
             var divWidth = $(div).width();
             $(div).width(divWidth);
             var sdiv = getEl('div');
