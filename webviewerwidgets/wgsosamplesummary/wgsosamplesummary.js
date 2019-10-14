@@ -136,7 +136,7 @@ widgetGenerators['sosamplesummary'] = {
                         },
 					},
                     legend: {
-                        position: 'left',
+                        position: 'right',
                     },
 					responsive: true,
                     responsiveAnimationDuration: 500,
