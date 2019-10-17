@@ -49,7 +49,6 @@ developer:
   citation: 'Vaser R, Adusumalli S, Leng SN, Sikic M, Ng PC (2016) SIFT missense predictions for genomes. Nat Protocols 11: 1-9.'
 
 datasource: 'SIFT4G 2016-02-22'
-private: true
 
 tags:
 - variants
