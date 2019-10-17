@@ -10,12 +10,31 @@ class CravatAnnotator(BaseAnnotator):
         pass
     
     def annotate(self, input_data, secondary_data=None):
-        self.logger.warn(secondary_data)
-        out = {}
-        out['snps'] = 'a'
-        out['r2s'] = 'b'
-        out['dprimes'] = 'c'
-        return out
+        if not secondary_data['dbsnp']:
+            return None
+        rsids = secondary_data['dbsnp'][0]['snp'].split(',')
+        self.logger.warn(rsids)
+        snps = []
+        r2s = []
+        dprimes = []
+        for rsid in rsids:
+            rsnum = int(rsid.replace('rs',''))
+            q = f'select ldsnp, r2, dprime from haploreg where qsnp={rsnum}'
+            self.cursor.execute(q)
+            for r in self.cursor:
+                snp, r2, dprime = r
+                snps.append('rs'+str(snp))
+                r2s.append(str(r2))
+                dprimes.append(str(dprime))
+        if snps and r2s and dprimes:
+            out = {
+                'snps': ','.join(snps),
+                'r2s': ','.join(r2s),
+                'dprimes': ','.join(dprimes),
+            }
+            return out
+        else:
+            return None
     
     def cleanup(self):
         pass
