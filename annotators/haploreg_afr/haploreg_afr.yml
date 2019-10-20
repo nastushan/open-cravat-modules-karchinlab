@@ -26,6 +26,8 @@ secondary_inputs:
       secondary: uid
     use_columns:
       - snp
+requires:
+  - dbsnp
 developer:
   name: ''
   organization: ''
