@@ -28,26 +28,23 @@ class CravatAnnotator(BaseAnnotator):
         else:
             chrom_num = chrom_short
             
-        hgvs_g = 'NC_0000%s.%s:g.' \
-            %(chrom_num, self.conf['nc_assembly_version'])
+        hgvs_g = f'NC_0000{chrom_num}.11:g.'
         
         hgvs_g += self._get_hgvs_nuc(pos, ref, alt)
         
         return hgvs_g
     
-    def _get_hgvs_r(self, transcript, pos, ref, alt):
+    def _get_hgvs_c(self, transcript, pos, ref, alt):
         """
         Gets transcript level hgvs variant.
         """
-        ref = ref.replace('T','u').lower()
-        alt = alt.replace('T','u').lower()
         hgvs_nuc = self._get_hgvs_nuc(pos, ref, alt)
-        hgvs_r = '%s:r.%s' %(transcript, hgvs_nuc)
+        hgvs_r = f'{transcript}:c.{hgvs_nuc}'
         return hgvs_r
     
     def _get_hgvs_nuc(self, pos, ref, alt):
         """
-        Gets nucleotide level hgvs change (.g and .r).
+        Gets nucleotide level hgvs change (g. and c.).
         """
         hgvs_nuc = ''
         start = pos
@@ -188,25 +185,23 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data):
         out = {
                'genomic':'',
-               'rna':'',
+               'coding':'',
                'protein':'',
-               'all_rna':'',
+               'all_coding':'',
                'all_protein':''
                }
         chrom = input_data['chrom']
         pos = input_data['pos']
         ref = input_data['ref_base']
         alt = input_data['alt_base']
-        # print('#'*25)
-        # print(pos,ref,alt)
         map_parser = AllMappingsParser(input_data['all_mappings'])
         primary_transcript = input_data['transcript']
         
         hgvs_g = self._get_hgvs_g(chrom, pos, ref, alt)
         
-        all_hgvs_r = []
+        all_hgvs_c = []
         all_hgvs_p = []
-        primary_hgvs_r = ''
+        primary_hgvs_c = ''
         primary_hgvs_p = ''
         for mapping in map_parser.get_all_mappings():
             if not(mapping.tchange):
@@ -220,11 +215,11 @@ class CravatAnnotator(BaseAnnotator):
             tseq = TranscriptSequence(rd)
             tseq.set_aligned_protein(mapping.protein)
             tseq.alter_sequence(int(mapping.tpos_start), mapping.tref, mapping.talt)
-            hgvs_r = self._get_hgvs_r(mapping.transcript,
-                                      mapping.tpos_start+tseq.cds_start,
+            hgvs_c = self._get_hgvs_c(mapping.transcript,
+                                      mapping.tpos_start,
                                       mapping.tref,
                                       mapping.talt)
-            all_hgvs_r.append(hgvs_r)
+            all_hgvs_c.append(hgvs_c)
             hgvs_p = None
             if tseq.protein is not None:
                 hgvs_p = self._get_hgvs_p(tseq)
@@ -232,12 +227,12 @@ class CravatAnnotator(BaseAnnotator):
                 continue
             all_hgvs_p.append(hgvs_p)
             if mapping.transcript == primary_transcript:
-                primary_hgvs_r = hgvs_r
+                primary_hgvs_c = hgvs_c
                 primary_hgvs_p = hgvs_p
                 
         out['genomic'] = hgvs_g
-        out['rna'] = primary_hgvs_r
-        out['all_rna'] = ','.join(all_hgvs_r)
+        out['coding'] = primary_hgvs_c
+        out['all_coding'] = ','.join(all_hgvs_c)
         out['protein'] = primary_hgvs_p
         out['all_protein'] = ','.join(all_hgvs_p)
         
