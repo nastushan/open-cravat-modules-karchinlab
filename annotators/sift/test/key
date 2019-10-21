@@ -1,21 +1,21 @@
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 21:08:17
+#Created at Sunday 10/20/2019 23:33:05
 #Report level: variant
 #
 Variant Annotation															SIFT				
 UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Prediction	Confidence	Score	Median Info	Seqs at Position
-1	chr10	121593817	T	A		Yes	FGFR2	ENST00000358487.9	missense	M1L	ENST00000346997.6:FGFR2:(na):missense:M1L:A1T; ENST00000351936.10:FGFR2:A0A0A0MR25:missense:M1L:A1T; ENST00000356226.8:FGFR2:(na):missense:M1L:A1T; ENST00000357555.9:FGFR2:(na):missense:M1L:A1T; ENST00000358487.9:FGFR2:P21802:missense:M1L:A1T; ENST00000359354.6:FGFR2:(na):missense:M1L:A1T; ENST00000360144.7:FGFR2:(na):missense:M1L:A1T; ENST00000369056.5:FGFR2:(na):missense:M1L:A1T; ENST00000369059.5:FGFR2:E7EVR7:missense:M1L:A1T; ENST00000369060.8:FGFR2:(na):missense:M1L:A1T; ENST00000369061.8:FGFR2:(na):missense:M1L:A1T; ENST00000457416.6:FGFR2:(na):missense:M1L:A1T; ENST00000611527.1:FGFR2:A0A087X2D1:missense:M1L:A1T; ENST00000613048.4:FGFR2:D2CGD1:missense:M1L:A1T	1	s0		DAMAGING	LOW	0.0	4.32	17
+1	chr10	121593817	T	A		Yes	FGFR2	ENST00000358487.9	missense	M1L	ENST00000346997.6:FGFR2:(na):missense:M1L:A1T; ENST00000351936.10:FGFR2:A0A0A0MR25:missense:M1L:A1T; ENST00000356226.8:FGFR2:(na):missense:M1L:A1T; ENST00000357555.9:FGFR2:(na):missense:M1L:A1T; ENST00000358487.9:FGFR2:P21802:missense:M1L:A1T; ENST00000359354.6:FGFR2:(na):missense:M1L:A1T; ENST00000360144.7:FGFR2:(na):missense:M1L:A1T; ENST00000369056.5:FGFR2:(na):missense:M1L:A1T; ENST00000369059.5:FGFR2:E7EVR7:missense:M1L:A1T; ENST00000369060.8:FGFR2:(na):missense:M1L:A1T; ENST00000369061.8:FGFR2:(na):missense:M1L:A1T; ENST00000457416.6:FGFR2:(na):missense:M1L:A1T; ENST00000611527.1:FGFR2:A0A087X2D1:missense:M1L:A1T; ENST00000613048.4:FGFR2:D2CGD1:missense:M1L:A1T	1	s0		Damaging	Low	0.0	4.32	17
 2	chr10	2987654	T	A								1	s1						
-3	chr10	43077259	A	T		Yes	RET	ENST00000355710.7	missense	M1L	ENST00000340058.5:RET:(na):missense:M1L:A1T; ENST00000355710.7:RET:P07949:missense:M1L:A1T; ENST00000615310.4:RET:Q9BTX6:missense:M1L:A1T	1	s2		DAMAGING	LOW	0.0	4.32	3
-4	chr10	8055656	A	T		Yes	GATA3	ENST00000379328.7	missense	M1L	ENST00000346208.3:GATA3:P23771:missense:M1L:A1T; ENST00000379328.7:GATA3:(na):missense:M1L:A1T	1	s3		DAMAGING	HIGH	0.0	2.82	38
-5	chr10	87864470	A	T		Yes	PTEN	ENST00000371953.7	missense	M1L	ENST00000371953.7:PTEN:P60484:missense:M1L:A1T; ENST00000445946.3:KLLN:B2CW77:2kb upstream:(na):(na); ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	s4		DAMAGING	HIGH	0.037	2.67	34
+3	chr10	43077259	A	T		Yes	RET	ENST00000355710.7	missense	M1L	ENST00000340058.5:RET:(na):missense:M1L:A1T; ENST00000355710.7:RET:P07949:missense:M1L:A1T; ENST00000615310.4:RET:Q9BTX6:missense:M1L:A1T	1	s2		Damaging	Low	0.0	4.32	3
+4	chr10	8055656	A	T		Yes	GATA3	ENST00000379328.7	missense	M1L	ENST00000346208.3:GATA3:P23771:missense:M1L:A1T; ENST00000379328.7:GATA3:(na):missense:M1L:A1T	1	s3		Damaging	High	0.0	2.82	38
+5	chr10	87864470	A	T		Yes	PTEN	ENST00000371953.7	missense	M1L	ENST00000371953.7:PTEN:P60484:missense:M1L:A1T; ENST00000445946.3:KLLN:B2CW77:2kb upstream:(na):(na); ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	s4		Damaging	High	0.037	2.67	34
 6	chr10	87864486	A	-		Yes	PTEN	ENST00000371953.7	frameshift deletion	_6_	ENST00000371953.7:PTEN:P60484:frameshift deletion:_6_:A17-; ENST00000445946.3:KLLN:B2CW77:2kb upstream:(na):(na); ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	s0						
 7	chr10	87864486	AA	-		Yes	PTEN	ENST00000371953.7	frameshift deletion	_6_	ENST00000371953.7:PTEN:P60484:frameshift deletion:_6_:AA17-; ENST00000445946.3:KLLN:B2CW77:2kb upstream:(na):(na); ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	s1						
 8	chr6	87464233	GA	CT		Yes	CFAP206	ENST00000369562.8	complex substitution	_618_	ENST00000369562.8:CFAP206:Q8IYR0:complex substitution:_618_:GA1852CT	1	s4						
 9	chr6	87464233	GAT	CACTAG		Yes	CFAP206	ENST00000369562.8	complex substitution	_618_	ENST00000369562.8:CFAP206:Q8IYR0:complex substitution:_618_:GAT1852CACTAG	1	s3						
-10	chr1	114716160	T	A		Yes	NRAS	ENST00000369535.4	missense	M1L	ENST00000261443.9:CSDE1:(na):2kb downstream:(na):(na); ENST00000339438.10:CSDE1:(na):2kb downstream:(na):(na); ENST00000358528.8:CSDE1:O75534:2kb downstream:(na):(na); ENST00000369530.5:CSDE1:(na):2kb downstream:(na):(na); ENST00000369535.4:NRAS:Q5U091:missense:M1L:A1T; ENST00000438362.6:CSDE1:(na):2kb downstream:(na):(na); ENST00000530886.5:CSDE1:E9PLT0:2kb downstream:(na):(na); ENST00000534699.5:CSDE1:O75534:2kb downstream:(na):(na); ENST00000610726.4:CSDE1:(na):2kb downstream:(na):(na)	1	s3		TOLERATED	HIGH	0.234	2.81	239
+10	chr1	114716160	T	A		Yes	NRAS	ENST00000369535.4	missense	M1L	ENST00000261443.9:CSDE1:(na):2kb downstream:(na):(na); ENST00000339438.10:CSDE1:(na):2kb downstream:(na):(na); ENST00000358528.8:CSDE1:O75534:2kb downstream:(na):(na); ENST00000369530.5:CSDE1:(na):2kb downstream:(na):(na); ENST00000369535.4:NRAS:Q5U091:missense:M1L:A1T; ENST00000438362.6:CSDE1:(na):2kb downstream:(na):(na); ENST00000530886.5:CSDE1:E9PLT0:2kb downstream:(na):(na); ENST00000534699.5:CSDE1:O75534:2kb downstream:(na):(na); ENST00000610726.4:CSDE1:(na):2kb downstream:(na):(na)	1	s3		Tolerated	High	0.234	2.81	239
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 21:08:17
+#Created at Sunday 10/20/2019 23:33:05
 #Report level: gene
 #
 Variant Annotation					
@@ -27,7 +27,7 @@ PTEN		3	0	frameshift deletion	frameshift deletion(2),missense(1),5-prime utr(3)
 CFAP206		2	0	complex substitution	complex substitution(2)
 NRAS		1	0	missense	missense(1)
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 21:08:17
+#Created at Sunday 10/20/2019 23:33:05
 #Report level: sample
 #
 Variant Annotation	
@@ -43,7 +43,7 @@ UID	Sample
 9	s3
 10	s3
 #CRAVAT Report
-#Created at Tuesday 09/17/2019 21:08:17
+#Created at Sunday 10/20/2019 23:33:05
 #Report level: mapping
 #
 Variant Annotation			
