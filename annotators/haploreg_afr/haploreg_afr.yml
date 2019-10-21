@@ -21,9 +21,6 @@ output_columns:
 description: SNPs in LD with the variant in African populations
 secondary_inputs:
   dbsnp:
-    match_columns:
-      primary: uid
-      secondary: uid
     use_columns:
       - snp
 requires:
