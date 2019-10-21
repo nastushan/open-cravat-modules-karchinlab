@@ -20,9 +20,7 @@ output_columns:
   hidden: true
 description: SNPs in LD with the variant in African populations
 secondary_inputs:
-  dbsnp:
-    use_columns:
-      - snp
+  dbsnp: {}
 requires:
   - dbsnp
 developer:
