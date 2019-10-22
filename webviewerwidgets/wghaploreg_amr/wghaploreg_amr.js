@@ -1,4 +1,4 @@
-widgetGenerators['haploreg_mr'] = {
+widgetGenerators['haploreg_amr'] = {
 	'variant': {
 		'width': 380, 
 		'height': 200, 
