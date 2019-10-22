@@ -1,9 +1,9 @@
-title: Haploreg African
+title: Haploreg European
 version: 1.0.0
 type: webviewerwidget
-required_annotator: haploreg_afr
+required_annotator: haploreg_eur
 requires_opencravat: '>=1.5.0'
-description: Haploreg African information webviewer widget
+description: Haploreg European information webviewer widget
 developer:
   name: Rick Kim
   organization: In Silico Solutions
