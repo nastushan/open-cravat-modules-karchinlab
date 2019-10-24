@@ -48,3 +48,4 @@ requires_opencravat: '>=1.6.0'
 release-note:
     1.0.7: fixed cravat import for open-cravat 1.6.0.
     1.1.0: Coding (c.) instead of RNA (r.)
+private: true
