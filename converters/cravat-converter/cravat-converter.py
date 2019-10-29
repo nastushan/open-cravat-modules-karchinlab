@@ -20,7 +20,7 @@ class CravatConverter(BaseConverter):
     def _check_line(self, l): #could take tokens not l
         toks = l.strip('\r\n').split('\t')
         if len(toks) == 1:
-            toks = toks[0].split(' ')
+            toks = toks[0].split()
         if len(toks) == 7:
             _, pos, strand, ref, alt, _, _ = toks
         elif len(toks) == 6:
@@ -61,7 +61,7 @@ class CravatConverter(BaseConverter):
         if not(format_correct): raise BadFormatError(format_msg)
         toks = l.strip('\r\n').split('\t')
         if len(toks) == 1:
-            toks = toks[0].split(' ')
+            toks = toks[0].split()
         if len(toks) == 5: 
             toks.append('')
         if len(toks) == 6:
