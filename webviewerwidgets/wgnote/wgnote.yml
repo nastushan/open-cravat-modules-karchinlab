@@ -12,4 +12,5 @@ tags:
 - notes
 title: Note
 type: webviewerwidget
-version: 1.0.3
+requires_opencravat: '>=1.6.0'
+version: 1.0.4
