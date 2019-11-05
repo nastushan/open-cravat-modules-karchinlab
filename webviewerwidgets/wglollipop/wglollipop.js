@@ -81,76 +81,90 @@ widgetGenerators['lollipop'] = {
                 addEl(div, sdiv);
 				return;
 			}
-			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
+			if (hugo != v.hugo || v['resized'] != false || v.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
-					    $(div).empty();
+					$(div).empty();
 				}
-				v.hugo = hugo;
-				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
+                    v.drawing = true;
+                    v['resized'] = false;
 					$(div).empty();
                     var spinner = getSpinner();
                     spinner.className = 'widgetspinner';
                     addEl(div, spinner);
-					$.get('/result/runwidget/' + widgetName, 
-							{hugo: hugo}).done(function (data) {
-                        var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
-                        var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
-                        $(spinner).remove();
-						widgetGenerators[widgetName]['data'] = data;
-						if (data['hugo'] != v.hugo) {
-						    return;
-						}
-                        if (data['len'] == undefined) {
-                            var sdiv = getEl('div');
-                            sdiv.textContent = 'No protein diagram in UniProt';
-                            addEl(div, sdiv);
-                            return;
-                        }
-						draw(data);
-						if (v.variantdatasource != null) {
-							var select = 
-								document.getElementById(
-									getVarDatasourceSelectorId());
-							var idx = getOptionIndex(select, v.variantdatasource);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx;
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-						if (v.variantcategory != null) {
-							var select = 
-								document.getElementById(getVarCategorySelectorId());
-							var idx = getOptionIndex(select, v.variantcategory);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-						if (v.sitedatasource != null) {
-							var select = 
-								document.getElementById(
-										getProtSiteSourceSelectorId());
-							var idx = getOptionIndex(select, v.sitedatasource);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx;
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-						this.drawing = false;
-					});
-				}, 200);
+                    if (hugo != v.hugo) {
+                        $.ajax({
+                            url: '/result/runwidget/' + widgetName, 
+                            data: {hugo: hugo},
+                            success: function (data) {
+                                v['data'] = data;
+                                drawMain();
+                            }
+                        });
+                    } else {
+                        drawMain();
+                    }
+                    v.hugo = hugo;
+                }, 200);
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
 			}
 			
+            function drawMain () {
+                var data = v['data'];
+                var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
+                var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
+                $(spinner).remove();
+                widgetGenerators[widgetName]['data'] = data;
+                if (data['hugo'] != v.hugo) {
+                    return;
+                }
+                if (data['len'] == undefined) {
+                    var sdiv = getEl('div');
+                    sdiv.textContent = 'No protein diagram in UniProt';
+                    addEl(div, sdiv);
+                    return;
+                }
+                draw(data);
+                if (v.variantdatasource != null) {
+                    var select = 
+                        document.getElementById(
+                            getVarDatasourceSelectorId());
+                    var idx = getOptionIndex(select, v.variantdatasource);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+                if (v.variantcategory != null) {
+                    var select = 
+                        document.getElementById(getVarCategorySelectorId());
+                    var idx = getOptionIndex(select, v.variantcategory);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+                if (v.sitedatasource != null) {
+                    var select = 
+                        document.getElementById(
+                                getProtSiteSourceSelectorId());
+                    var idx = getOptionIndex(select, v.sitedatasource);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+                v.drawing = false;
+            }
+
 			function getOptionIndex (select, value) {
 				var options = select.options;
 				var index = -1;
@@ -529,7 +543,7 @@ widgetGenerators['lollipop'] = {
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
-				this.drawing = false;
+				v.drawing = false;
 			}
 			
 			function drawControlPanel (data) {
@@ -826,76 +840,89 @@ widgetGenerators['lollipop'] = {
                 addEl(div, sdiv);
 				return;
 			}
-			
 			if (hugo != v.hugo || v['resized'] != false || this.drawing == true) {
 				if (v.drawing) {
 					clearTimeout(self.runTimeout);
                     $(div).empty();
 				}
-                v.hugo = hugo;
-				v.drawing = true;
 				self.runTimeout = setTimeout(function () {
+                    v.drawing = true;
+                    v['resized'] = false;
 					$(div).empty();
                     var spinner = getSpinner();
                     spinner.className = 'widgetspinner';
                     addEl(div, spinner);
-					$.get('/result/runwidget/' + widgetName, 
-							{hugo: hugo}).done(function (data) {
-                        var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
-                        var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
-                        $(spinner).remove();
-						widgetGenerators[widgetName]['data'] = data;
-                        if (data['hugo'] != v.hugo) {
-                            return;
-                        }
-                        if (data['len'] == undefined) {
-                            var sdiv = getEl('div');
-                            sdiv.textContent = 'No protein diagram in UniProt';
-                            addEl(div, sdiv);
-                            return;
-                        }
-						draw(data);
-						if (v.variantdatasource != null) {
-							var select = 
-								document.getElementById(
-									getVarDatasourceSelectorId());
-							var idx = getOptionIndex(select, v.variantdatasource);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx;
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-						if (v.variantcategory != null) {
-							var select = 
-								document.getElementById(getVarCategorySelectorId());
-							var idx = getOptionIndex(select, v.variantcategory);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-						if (v.sitedatasource != null) {
-							var select = 
-								document.getElementById(
-										getProtSiteSourceSelectorId());
-							var idx = getOptionIndex(select, v.sitedatasource);
-							if (idx == -1) {
-								idx = 0;
-							} else {
-								select.selectedIndex = idx;
-								select.dispatchEvent(new Event('change'));
-							}
-						}
-					});
+                    if (hugo != v.hugo) {
+                        $.ajax({
+                            url: '/result/runwidget/' + widgetName, 
+                            data: {hugo: hugo},
+                            success: function (data) {
+                                v['data'] = data;
+                                drawMain();
+                            }
+                        });
+                    } else {
+                        drawMain();
+                    }
+                    v.hugo = hugo;
 				}, 200);
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
 			}
-			
+
+            function drawMain () {
+                var data = v['data'];
+                var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
+                var spinner = widgetContentDiv.getElementsByClassName('widgetspinner')[0];
+                $(spinner).remove();
+                widgetGenerators[widgetName]['data'] = data;
+                if (data['hugo'] != v.hugo) {
+                    return;
+                }
+                if (data['len'] == undefined) {
+                    var sdiv = getEl('div');
+                    sdiv.textContent = 'No protein diagram in UniProt';
+                    addEl(div, sdiv);
+                    return;
+                }
+                draw(data);
+                if (v.variantdatasource != null) {
+                    var select = 
+                        document.getElementById(
+                            getVarDatasourceSelectorId());
+                    var idx = getOptionIndex(select, v.variantdatasource);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+                if (v.variantcategory != null) {
+                    var select = 
+                        document.getElementById(getVarCategorySelectorId());
+                    var idx = getOptionIndex(select, v.variantcategory);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+                if (v.sitedatasource != null) {
+                    var select = 
+                        document.getElementById(
+                                getProtSiteSourceSelectorId());
+                    var idx = getOptionIndex(select, v.sitedatasource);
+                    if (idx == -1) {
+                        idx = 0;
+                    } else {
+                        select.selectedIndex = idx;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }
+            }
+
 			function getOptionIndex (select, value) {
 				var options = select.options;
 				var index = -1;
