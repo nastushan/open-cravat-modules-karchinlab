@@ -172,11 +172,7 @@ widgetGenerators['sosamplesummary'] = {
                         chart.data.datasets[i].data.push(nextDatasets[i].data[j]);
                     }
                 }
-                console.log('@ sdiv width=', $(sdiv).width());
-                console.log('@ div width=', divWidth);
-                console.log('@ next samples len=', nextSamples.length);
                 var newWidth = Math.max(divWidth, nextSamples.length * 40 + 300);
-                console.log('@ new width=', newWidth);
                 $(sdiv).width(newWidth);
             }, 100);
 		}

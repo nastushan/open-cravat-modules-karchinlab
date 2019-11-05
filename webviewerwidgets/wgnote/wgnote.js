@@ -24,12 +24,12 @@ widgetGenerators['note'] = {
             var button = getEl('button');
             button.textContent = 'Save';
             button.addEventListener('click', function (evt) {
-                var note = evt.target.nextSibling.nextSibling.value;
+                var note = evt.target.previousSibling.previousSibling.value;
                 $grids[tabName].pqGrid('getData')[selectedRowNos[tabName]][colNo] = note;
                 $grids[tabName].pqGrid('refresh');
                 $.ajax({
                     url: '/result/runwidget/note',
-                    data: {'dbpath': dbPath, 
+                    data: {'job_id': jobId, 
                            'tab': tabName, 
                            'rowkey': row[0],
                            'note': note,
@@ -66,12 +66,12 @@ widgetGenerators['note'] = {
             var button = getEl('button');
             button.textContent = 'Save';
             button.addEventListener('click', function (evt) {
-                var note = evt.target.nextSibling.nextSibling.value;
+                var note = evt.target.previousSibling.previousSibling.value;
                 $grids[tabName].pqGrid('getData')[selectedRowNos[tabName]][colNo] = note;
                 $grids[tabName].pqGrid('refresh');
                 $.ajax({
                     url: '/result/runwidget/note',
-                    data: {'dbpath': dbPath, 
+                    data: {'job_id': jobId,
                            'tab': tabName, 
                            'rowkey': row[0],
                            'note': note,
