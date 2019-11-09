@@ -39,6 +39,7 @@ widgetGenerators['ndexvestsummary'] = {
         'init': function (data) {
             this['variables']['data'] = data;
         },
+        'requestmethod': 'POST',
         'function': function (parentDiv, data) {
             var v = this['variables'];
             if (parentDiv != undefined) {

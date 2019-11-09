@@ -1,12 +1,13 @@
 title: Circos Summary
-version: 1.1.7
-requires_opencravat: '>=1.4.2'
+version: 1.1.8
+requires_opencravat: '>=1.6.1'
 required_annotator: base
 type: webviewerwidget
 description: Circos Summary result viewer widget
 developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
   website: 'http://www.insilico.us.com', citation: ''}
 release_note:
+  1.1.8: works with open-cravat 1.6.1.
   1.1.7: properly redraws after filters have been applied.
   1.1.6: aiosqlite3 version
   1.1.5: improved resize and redraw
