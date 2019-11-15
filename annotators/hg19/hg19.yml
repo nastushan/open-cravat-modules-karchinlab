@@ -1,5 +1,5 @@
 title: hg19
-version: 1.0.0
+version: 1.0.1
 type: annotator
 level: variant
 output_columns:
@@ -17,4 +17,6 @@ developer:
   email: 'rkim@insilico.us.com'
   website: 'https://github.com/KarchinLab/open-cravat-modules-karchinlab'
   citation: ''
+release_note:
+  1.0.1: fix added regarding 0-based mapping
 

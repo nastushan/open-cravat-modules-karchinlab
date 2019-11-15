@@ -13,7 +13,7 @@ class CravatAnnotator(BaseAnnotator):
     
     def annotate(self, input_data, secondary_data=None):
         out = {}
-        hg19_data = self.liftover.convert_coordinate(input_data['chrom'], int(input_data['pos']))
+        hg19_data = self.liftover.convert_coordinate(input_data['chrom'], int(input_data['pos']) - 1)
         out['chrom'] = hg19_data[0][0]
         out['pos'] = hg19_data[0][1] + 1
         return out
