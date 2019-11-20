@@ -38,6 +38,7 @@ widgetGenerators['ndexchasmplussummary'] = {
         'init': function (data) {
             this['variables']['data'] = data;
         },
+        'requestmethod': 'post',
         'function': function (parentDiv, data) {
             var v = this['variables'];
             if (parentDiv != undefined) {

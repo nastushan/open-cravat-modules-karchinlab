@@ -1,0 +1,35 @@
+#CRAVAT Report
+#Created at Friday 11/15/2019 10:40:36
+#Report level: variant
+#
+Variant Annotation															hg19	
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Chrom	Position
+1	chr10	121593817	T	A		Yes	FGFR2	ENST00000358487.9	missense	M1L	ENST00000346997.6:FGFR2:(na):missense:M1L:A1T; ENST00000351936.10:FGFR2:A0A0A0MR25:missense:M1L:A1T; ENST00000356226.8:FGFR2:(na):missense:M1L:A1T; ENST00000357555.9:FGFR2:(na):missense:M1L:A1T; ENST00000358487.9:FGFR2:P21802:missense:M1L:A1T; ENST00000359354.6:FGFR2:(na):missense:M1L:A1T; ENST00000360144.7:FGFR2:(na):missense:M1L:A1T; ENST00000369056.5:FGFR2:(na):missense:M1L:A1T; ENST00000369059.5:FGFR2:E7EVR7:missense:M1L:A1T; ENST00000369060.8:FGFR2:(na):missense:M1L:A1T; ENST00000369061.8:FGFR2:(na):missense:M1L:A1T; ENST00000457416.6:FGFR2:(na):missense:M1L:A1T; ENST00000611527.1:FGFR2:A0A087X2D1:missense:M1L:A1T; ENST00000613048.4:FGFR2:D2CGD1:missense:M1L:A1T	1	s0		chr10	123353331
+2	chr10	2987654	T	A								1	s1		chr10	3029846
+3	chr1	12644547	A	T		Yes	AADACL4	ENST00000376221.1	missense	M1L	ENST00000376221.1:AADACL4:Q5VUY2:missense:M1L:A1T	1	s3		chr1	12704566
+#CRAVAT Report
+#Created at Friday 11/15/2019 10:40:36
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+FGFR2		1	0	missense	missense(1)
+AADACL4		1	0	missense	missense(1)
+#CRAVAT Report
+#Created at Friday 11/15/2019 10:40:36
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	s0
+2	s1
+3	s3
+#CRAVAT Report
+#Created at Friday 11/15/2019 10:40:36
+#Report level: mapping
+#
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+1		1	0
+2		2	0
+3		3	0

@@ -1,0 +1,23 @@
+title: hg19 coordinate
+version: 1.0.4
+type: annotator
+level: variant
+output_columns:
+  - name: chrom
+    title: Chrom
+    type: string
+  - name: pos
+    title: Position
+    type: int
+description: hg38 input coordinate is mapped to hg19 by liftover.
+requires_opencravat: '>=1.6.1'
+developer:
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'rkim@insilico.us.com'
+  website: 'https://github.com/KarchinLab/open-cravat-modules-karchinlab'
+  citation: ''
+release_note:
+  1.0.2: fixed test key.
+  1.0.1: fix added regarding 0-based mapping.
+

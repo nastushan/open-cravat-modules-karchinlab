@@ -19,7 +19,7 @@ def run_query (hugos):
     return result
 
 async def get_data (queries):
-    params = json.loads(queries['params'])
+    params = queries['params']
     hugos = params['hugos']
     response = {'data': run_query(hugos)}
     return response

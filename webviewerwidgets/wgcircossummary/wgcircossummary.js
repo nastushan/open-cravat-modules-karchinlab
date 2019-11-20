@@ -58,9 +58,6 @@ widgetGenerators['circossummary'] = {
             } else if (v['data'] != undefined) {
                 data = v['data'];
             }
-			if (div != null) {
-				$(div).empty();
-			}
             var width = null;
             var height = null;
             width = div.offsetWidth;
@@ -73,6 +70,9 @@ widgetGenerators['circossummary'] = {
             }
             v['width'] = width;
             v['height'] = height;
+			if (div != null) {
+				$(div).empty();
+			}
             var zoom = v['zoom'];
             var wHMin = Math.min(width, height);
             div.style.textAlign = 'center';
