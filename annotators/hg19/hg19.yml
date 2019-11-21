@@ -9,7 +9,7 @@ output_columns:
   - name: pos
     title: Position
     type: int
-description: hg38 input coordinate is mapped to hg19 by liftover.
+description: Input coordinate is mapped to hg19 by liftover.
 requires_opencravat: '>=1.6.1'
 developer:
   name: 'Rick Kim'
