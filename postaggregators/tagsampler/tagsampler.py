@@ -13,9 +13,8 @@ class CravatPostAggregator (BasePostAggregator):
         self.cursor_a = self.dbconn.cursor()
         q = 'select distinct(base__sample_id) from sample'
         self.cursor.execute(q)
-        rs = self.cursor.fetchall()
         sample_is_all_null = True
-        for r in rs:
+        for r in self.cursor:
             if r[0] is not None:
                 sample_is_all_null = False
                 break
@@ -32,7 +31,7 @@ class CravatPostAggregator (BasePostAggregator):
         q = 'select base__sample_id from sample where base__uid=' + uid + ' and base__sample_id is not null'
         self.cursor_a.execute(q)
         samples = {}
-        for row in self.cursor_a.fetchall():
+        for row in self.cursor_a:
             samples[row[0]] = True
         numsample = len(samples)
         samples = list(samples.keys())
@@ -41,7 +40,7 @@ class CravatPostAggregator (BasePostAggregator):
         q = 'select base__tags from mapping where base__uid=' + uid
         self.cursor_a.execute(q)
         tags = {}
-        for row in self.cursor_a.fetchall():
+        for row in self.cursor_a:
             if row[0] is not None:
                 tags[row[0]] = True
         tags = list(tags.keys())
