@@ -5,7 +5,7 @@ type: annotator
 level: variant
 
 output_columns:
-- name: uniprot_acc
+- name: uniprot
   title: Uniprot
   type: string
   hidden: true
