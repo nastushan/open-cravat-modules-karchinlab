@@ -13,3 +13,4 @@ private: true
 tags:
 - visualization widgets
 hidden: true
+requires_opencravat: '>=1.7.0'

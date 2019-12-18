@@ -1,9 +1,10 @@
 title: Clinvar
-version: 1.0.4
+version: 1.0.5
 type: webviewerwidget
 required_annotator: clinvar
 description: Clinvar webviewer widget
 hidden: true
+requires_opencravat: '>=1.7.0'
 developer:
   name: Rick Kim
   organization: In Silico Solutions
@@ -13,4 +14,5 @@ developer:
 tags:
 - visualization widgets
 release_note:
+  1.0.5: works with single variant page.
   1.0.4: uses https.

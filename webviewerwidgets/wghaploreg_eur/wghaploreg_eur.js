@@ -4,9 +4,9 @@ widgetGenerators['haploreg_eur'] = {
 		'height': 200, 
 		'function': function (div, row, tabName) {
 			if (infomgr.getColumnNo('variant', 'base__hugo')) {
-				var snps = infomgr.getRowValue(tabName, row, 'haploreg_eur__snps').split(',');
-				var r2s = infomgr.getRowValue(tabName, row, 'haploreg_eur__r2s').split(',').map(parseFloat);
-				var dprimes = infomgr.getRowValue(tabName, row, 'haploreg_eur__dprimes').split(',').map(parseFloat);
+				var snps = getWidgetData(tabName, 'haploreg_eur', row, 'snps').split(',');
+				var r2s = getWidgetData(tabName, 'haploreg_eur', row, 'r2s').split(',').map(parseFloat);
+				var dprimes = getWidgetData(tabName, 'haploreg_eur', row, 'dprimes').split(',').map(parseFloat);
 				if (snps && r2s && dprimes) {
 					var table = getWidgetTableFrame();
                     table.style.tableLayout = 'auto';

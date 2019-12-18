@@ -7,6 +7,7 @@ class CravatAnnotator(BaseAnnotator):
 
     def annotate (self, input_data):
         out = {}
+        '''
         allowed_sos = ['MIS', 'INI', 'IND']
         sos = input_data['mapping_parser'].get_uniq_sos()
         proceed = False
@@ -16,6 +17,7 @@ class CravatAnnotator(BaseAnnotator):
                 break
         if proceed == False:
             return
+        '''
         chrom = input_data['chrom']
         pos = str(input_data['pos'])
         sql = 'select * from mupit where ' +\

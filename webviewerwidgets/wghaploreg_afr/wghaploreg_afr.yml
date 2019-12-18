@@ -2,7 +2,7 @@ title: Haploreg African
 version: 1.0.0
 type: webviewerwidget
 required_annotator: haploreg_afr
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.7.0'
 description: Haploreg African information webviewer widget
 developer:
   name: Rick Kim

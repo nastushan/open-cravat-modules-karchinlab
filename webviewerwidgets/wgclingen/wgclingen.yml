@@ -2,7 +2,7 @@ title: ClinGen
 version: 1.0.8
 type: webviewerwidget
 required_annotator: clingen
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.7.0'
 description: Base information webviewer widget
 developer:
   name: Kyle Moad

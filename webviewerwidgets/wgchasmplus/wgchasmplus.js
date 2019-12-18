@@ -4,15 +4,15 @@ widgetGenerators['chasmplus'] = {
 		'height': 180, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Score', 'chasmplus__score', tabName);
+			addInfoLine(div, 'Score', getWidgetData(tabName, 'chasmplus', row, 'score'), tabName);
 			if(typeof addGradientBarComponent == 'function'){
 				addGradientBarComponent(div, row, 'P-value', 'chasmplus__pval', tabName, {'0.01':[255,0,0], '0.05':[255,255,0], '0.050000001':[255,255,255]});
 			}
 			else{
 				addInfoLine(div, row, 'P-value', 'chasmplus__pval', tabName);
 			}
-			addInfoLine(div, row, 'Transcript', 'chasmplus__transcript', tabName);
-            var allMappings = infomgr.getRowValue(tabName, row, 'chasmplus__results');
+			addInfoLine(div, 'Transcript', getWidgetData(tabName, 'chasmplus', row, 'transcript'), tabName);
+            var allMappings = getWidgetData(tabName, 'chasmplus', row, 'results');
             if (allMappings != null) {
                 var table = getWidgetTableFrame();
                 table.style.width = '100%';

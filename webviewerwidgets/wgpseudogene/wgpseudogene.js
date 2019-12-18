@@ -4,8 +4,8 @@ widgetGenerators['pseudogene'] = {
 		'height': 80, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Gene', 'pseudogene__pseudogene_hugo', tabName);
-			addInfoLine(div, row, 'Transcript', 'pseudogene__pseudogene_transcript', tabName);
+			addInfoLine(div, 'Gene', getWidgetData(tabName, 'pseudogene', row, 'pseudogene_hugo'), tabName);
+			addInfoLine(div, 'Transcript', getWidgetData(tabName, 'pseudogene', row, 'pseudogene_transcript'), tabName);
 		}
 	}
 }

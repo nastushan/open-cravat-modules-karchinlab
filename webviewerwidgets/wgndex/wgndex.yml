@@ -17,3 +17,4 @@ tags:
 hidden: true
 release_note:
   1.0.6: uses https.
+requires_opencravat: '>=1.7.0'

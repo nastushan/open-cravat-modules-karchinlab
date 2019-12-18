@@ -4,16 +4,18 @@ widgetGenerators['vest'] = {
 		'height': 180, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
-			if(typeof addGradientBarComponent == 'function'){
-				addGradientBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName, colors={'0.0':[255,0,0],'0.05':[255,230,230],'1.0':[255,255,255]});
-			}
-			else{
-				addBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName);
-			}
-			var allMappings = infomgr.getRowValue(tabName, row, 'vest__all_results');
+			var allMappings = getWidgetData(tabName, 'vest', row, 'all_results');
 			if (allMappings == null) {
-				addEl(div, addEl(getEl('span'), getTn('N/A')));
+                var span = getEl('span');
+                span.classList.add('nodata');
+				addEl(div, addEl(span, getTn('No data')));
 			} else {
+                if(typeof addGradientBarComponent == 'function'){
+                    addGradientBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName, colors={'0.0':[255,0,0],'0.05':[255,230,230],'1.0':[255,255,255]});
+                }
+                else{
+                    addBarComponent(div, row, 'VEST p-value', 'vest__pval', tabName);
+                }
 				allMappings = allMappings.split(',');
 				var table = getWidgetTableFrame();
 				var thead = getWidgetTableHead(['Transcript', 'Score', 'P-value']);

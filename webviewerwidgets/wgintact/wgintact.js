@@ -3,7 +3,14 @@ widgetGenerators['intact'] = {
 		'width': 162, 
 		'height': 250, 
 		'function': function (div, row, tabName) {
-			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			var value = getWidgetData(tabName, 'intact', row, 'acts');
+			if (value == null) {
+                var span = getEl('span');
+                span.classList.add('nodata');
+				addEl(div, addEl(span, getTn('No data')));
+                return;
+			}
+			var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (hugo) {
 				var a = getEl('a');
 				a.text = hugo+' IntAct';
@@ -11,7 +18,7 @@ widgetGenerators['intact'] = {
 				addEl(div, a);
 				addEl(div, getEl('br'));
 			}
-			var acts = infomgr.getRowValue(tabName, row, 'intact__acts');
+			var acts = getWidgetData(tabName, 'intact', row, 'acts');
 			var actsls = acts != null ? acts.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);

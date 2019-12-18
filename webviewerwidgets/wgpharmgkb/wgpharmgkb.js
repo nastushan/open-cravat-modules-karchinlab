@@ -3,8 +3,8 @@ widgetGenerators['pharmgkb'] = {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			var chemical = infomgr.getRowValue('variant',row,'pharmgkb__chemical');
-			var chemid = infomgr.getRowValue('variant',row,'pharmgkb__chemid');
+			var chemical = getWidgetData(tabName, 'pharmgkb', row, 'chemical');
+			var chemid = getWidgetData(tabName, 'pharmgkb', row, 'chemid');
 			var chemsDiv = getEl('div');
 			addEl(div, chemsDiv);
 			var titleSpan = getEl('span');
@@ -29,7 +29,7 @@ widgetGenerators['pharmgkb'] = {
 				}
 			}
 
-			addInfoLine(div, row, 'Description', 'pharmgkb__sentence', tabName);
+			addInfoLine(div, 'Description', getWidgetData(tabName, 'pharmgkb', row, 'sentence'), tabName);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-title: Hgvs
+title: HGVS
 version: 1.1.0
 type: webviewerwidget
 required_annotator: hgvs
@@ -12,3 +12,4 @@ developer:
 tags:
 - visualization widgets
 hidden: true
+requires_opencravat: '>=1.7.0'

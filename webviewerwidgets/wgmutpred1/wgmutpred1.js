@@ -4,8 +4,15 @@ widgetGenerators['mutpred1'] = {
 		'height': 180, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
+			var value = getWidgetData(tabName, 'mutpred1', row, 'mutpred_general_score');
+			if (value == null) {
+                var span = getEl('span');
+                span.classList.add('nodata');
+				addEl(div, addEl(span, getTn('No data')));
+                return;
+			}
 			addBarComponent(div, row, 'MutPred Score', 'mutpred1__mutpred_general_score', tabName);
-			var top5Mechs = infomgr.getRowValue(tabName, row, 'mutpred1__mutpred_top5_mechanisms');
+			var top5Mechs = getWidgetData(tabName, 'mutpred1', row, 'mutpred_top5_mechanisms');
 			if (top5Mechs == null) {
 				addEl(div, addEl(getEl('span'), getTn('N/A')));
 			} else {

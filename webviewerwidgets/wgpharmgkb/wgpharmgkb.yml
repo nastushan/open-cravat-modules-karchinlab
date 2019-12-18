@@ -12,3 +12,4 @@ developer:
   citation: ''
 tags:
 - visualization widgets
+requires_opencravat: '>=1.7.0'

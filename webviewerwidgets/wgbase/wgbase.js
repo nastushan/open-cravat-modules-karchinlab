@@ -3,54 +3,37 @@ widgetGenerators['base'] = {
 		'width': 380, 
 		'height': 200, 
 		'function': function (div, row, tabName) {
-            if (row == null) {
-                row = {};
+            var uid = getWidgetData(tabName, 'base', row, 'uid');
+            if (uid != null && uid != '') {
+                addInfoLine(div, 'UID', uid, tabName);
             }
-            if (Object.keys(row).length == 0) {
-                row['uid'] = null;
-                row['hugo'] = null;
-                row['chrom'] = null;
-                row['pos'] = null;
-                row['ref_base'] = null;
-                row['alt_base'] = null;
-                row['sample_id'] = null;
-                row['all_mappings'] = null;
+            var hugo = getWidgetData(tabName, 'base', row, 'hugo');
+            if (hugo != null) {
+                addInfoLine(div, 'Gene', hugo, tabName);
             }
-            var rowType = typeof(row);
-            var dictDataGiven = (rowType === 'object' && row.constructor == Object);
-            if (dictDataGiven) {
-                if (row['uid'] != 'noid') {
-                    addInfoLine(div, 'UID', row['uid'], tabName);
+            addInfoLine(div, 'Chrom', getWidgetData(tabName, 'base', row, 'chrom'), tabName);
+            addInfoLine(div, 'Position', getWidgetData(tabName, 'base', row, 'pos'), tabName);
+            addInfoLine(div, 'Ref base(s)', getWidgetData(tabName, 'base', row, 'ref_base'), tabName);
+            addInfoLine(div, 'Alt base(s)', getWidgetData(tabName, 'base', row, 'alt_base'), tabName);
+            var sample = getWidgetData(tabName, 'base', row, 'sample_id');
+            if (sample != null) {
+                addInfoLine(div, 'Sample', sample, tabName);
+            }
+            var snp = row['snp'];
+            if (snp != undefined) {
+                var link = '';
+                if(snp != null){
+                    link = 'http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=' + snp;
                 }
-                if (row['hugo'] != null) {
-                    addInfoLine(div, 'Gene', row['hugo'], tabName);
+                else{
+                    snp = '';
                 }
-                addInfoLine(div, 'Chrom', row['chrom'], tabName);
-                addInfoLine(div, 'Position', row['pos'], tabName);
-                addInfoLine(div, 'Ref base(s)', row['ref_base'], tabName);
-                addInfoLine(div, 'Alt base(s)', row['alt_base'], tabName);
-                addInfoLine(div, 'Sample', row['sample_id'], tabName);
-            } else {
-                addInfoLine(div, row, 'UID', 'base__uid', tabName);
-                if (infomgr.getColumnNo('variant', 'base__hugo')) {
-                    addInfoLine(div, row, 'Gene', 'base__hugo', tabName);
-                }
-                addInfoLine(div, row, 'Chrom', 'base__chrom', tabName);
-                addInfoLine(div, row, 'Position', 'base__pos', tabName);
-                addInfoLine(div, row, 'Ref base(s)', 'base__ref_base', tabName);
-                addInfoLine(div, row, 'Alt base(s)', 'base__alt_base', tabName);
-                if (infomgr.getColumnNo('variant', 'base__sample_id')) {
-                    addInfoLine(div, row, 'Sample', 'base__sample_id', tabName);
-                }
+                addInfoLineLink(div, 'dbSNP', snp, link, 30);
             }
             var allMappings = null;
-            if (dictDataGiven) {
-                allMappings = row['all_mappings'];
-            } else {
-                allMappings = infomgr.getRowValue(tabName, row, 'base__all_mappings');
-            }
+            allMappings = getWidgetData(tabName, 'base', row, 'all_mappings');
             allMappings = JSON.parse(allMappings);
-			if ((dictDataGiven && row['hugo'] != null) || (!dictDataGiven && infomgr.getColumnNo('variant', 'base__hugo'))) {
+            if (hugo != null) {
 				if (allMappings != {}) {
 					var table = getWidgetTableFrame();
                     table.style.tableLayout = 'auto';

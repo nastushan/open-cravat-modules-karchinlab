@@ -4,11 +4,11 @@ widgetGenerators['rvis'] = {
 		'height': 140, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Residual Variation Intolerance Score', 'rvis__rvis_evs', tabName)
-			addInfoLine(div, row, 'RVIS Percentile Rank', 'rvis__rvis_perc_evs', tabName)
-			addInfoLine(div, row, 'ExAC-based RVIS', 'rvis__rvis_exac', tabName)
-			addInfoLine(div, row, 'ExAC-based RVIS Percentile Rank', 'rvis__rvis_perc_exac', tabName)
-			addInfoLine(div, row, 'FDR p-value', 'rvis__rvis_fdr_exac', tabName)
+			addInfoLine(div, 'Residual Variation Intolerance Score', getWidgetData(tabName, 'rvis', row, 'rvis_evs'), tabName)
+			addInfoLine(div, 'RVIS Percentile Rank', getWidgetData(tabName, 'rvis', row, 'rvis_perc_evs'), tabName)
+			addInfoLine(div, 'ExAC-based RVIS', getWidgetData(tabName, 'rvis', row, 'rvis_exac'), tabName)
+			addInfoLine(div, 'ExAC-based RVIS Percentile Rank', getWidgetData(tabName, 'rvis', row, 'rvis_perc_exac'), tabName)
+			addInfoLine(div, 'FDR p-value', getWidgetData(tabName, 'rvis', row, 'rvis_fdr_exac'), tabName)
 		}
 	}
 }

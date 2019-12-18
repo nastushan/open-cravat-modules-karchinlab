@@ -4,9 +4,9 @@ widgetGenerators['interpro'] = {
 		'height': 140, 
 		'word-break': 'normal',
 		'function': function (div, row, tabName) {
-			var acc = infomgr.getRowValue(tabName, row, 'interpro__uniprot_acc');
+			var acc = getWidgetData(tabName, 'interpro', row, 'uniprot_acc');
 			var accls = acc != null ? acc.split(';') : [];
-			var dom = infomgr.getRowValue(tabName, row, 'interpro__domain');
+			var dom = getWidgetData(tabName, 'interpro', row, 'domain');
 			var domls = dom != null ? dom.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);

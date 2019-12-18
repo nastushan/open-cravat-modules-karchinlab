@@ -4,12 +4,12 @@ widgetGenerators['hgvs'] = {
 		'height': 180, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Genomic', 'hgvs__genomic', tabName);
-			addInfoLine(div, row, 'Coding', 'hgvs__coding', tabName);
-			addInfoLine(div, row, 'Protein', 'hgvs__protein', tabName);
-			var codStr = infomgr.getRowValue(tabName, row, 'hgvs__all_coding');
+			addInfoLine(div, 'Genomic', getWidgetData(tabName, 'hgvs', row, 'genomic'), tabName);
+			addInfoLine(div, 'Coding', getWidgetData(tabName, 'hgvs', row, 'coding'), tabName);
+			addInfoLine(div, 'Protein', getWidgetData(tabName, 'hgvs', row, 'protein'), tabName);
+			var codStr = getWidgetData(tabName, 'hgvs', row, 'all_coding');
 			var codAll = codStr != null ? codStr.split(',') : [];
-			var protStr = infomgr.getRowValue(tabName, row, 'hgvs__all_protein');
+			var protStr = getWidgetData(tabName, 'hgvs', row, 'all_protein');
 			var protAll = protStr != null ? protStr.split(',') : [];
 			var prot2Hgvs = {}
 			for (var i=0; i<protAll.length; i++) {
@@ -17,7 +17,7 @@ widgetGenerators['hgvs'] = {
 				var acc = prot.split(':')[0]
 				prot2Hgvs[acc] = prot;
 			}
-			var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
+			var allMappings = JSON.parse(getWidgetData(tabName, 'base', row, 'all_mappings'));
 			var transc2Prot = {};
 			for (var gene in allMappings) {
 				var tlist = allMappings[gene];

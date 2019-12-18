@@ -3,10 +3,9 @@ widgetGenerators['haploreg_afr'] = {
 		'width': 380, 
 		'height': 200, 
 		'function': function (div, row, tabName) {
-			if (infomgr.getColumnNo('variant', 'base__hugo')) {
-				var snps = infomgr.getRowValue(tabName, row, 'haploreg_afr__snps').split(',');
-				var r2s = infomgr.getRowValue(tabName, row, 'haploreg_afr__r2s').split(',').map(parseFloat);
-				var dprimes = infomgr.getRowValue(tabName, row, 'haploreg_afr__dprimes').split(',').map(parseFloat);
+				var snps = getWidgetData(tabName, 'haploreg_afr', row, 'snps').split(',');
+				var r2s = getWidgetData(tabName, 'haploreg_afr', row, 'r2s').split(',').map(parseFloat);
+				var dprimes = getWidgetData(tabName, 'haploreg_afr', row, 'dprimes').split(',').map(parseFloat);
 				if (snps && r2s && dprimes) {
 					var table = getWidgetTableFrame();
                     table.style.tableLayout = 'auto';
@@ -20,7 +19,6 @@ widgetGenerators['haploreg_afr'] = {
 					}
 					addEl(div, addEl(table, tbody));
 				}
-			}
 		}
 	}
 }

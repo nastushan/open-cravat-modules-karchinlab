@@ -3,11 +3,12 @@ widgetGenerators['clingen'] = {
 		'width': 380,
 		'height': 200,
 		'function': function (div, row, tabName) {
-			if (infomgr.getRowValue(tabName, row, 'clingen__disease') !== null) {
-				var diseases = infomgr.getRowValue(tabName, row, 'clingen__disease').split(';');
-				var classifications = infomgr.getRowValue(tabName, row, 'clingen__classification').split(';');
-				var links = infomgr.getRowValue(tabName, row, 'clingen__link').split(';');
-				var mondos = infomgr.getRowValue(tabName, row, 'clingen__mondo').split(';');
+            var disease = getWidgetData(tabName, 'clingen', row, 'disease');
+			if (disease != undefined && disease != null) {
+				var diseases = getWidgetData(tabName, 'clingen', row, 'disease').split(';');
+				var classifications = getWidgetData(tabName, 'clingen', row, 'classification').split(';');
+				var links = getWidgetData(tabName, 'clingen', row, 'link').split(';');
+				var mondos = getWidgetData(tabName, 'clingen', row, 'mondo').split(';');
 				var table = getWidgetTableFrame();
 				addEl(div, table);
 				var thead = getWidgetTableHead(['Disease', 'Classification','ClinGen','Monarch'],[180,110,45,45]);

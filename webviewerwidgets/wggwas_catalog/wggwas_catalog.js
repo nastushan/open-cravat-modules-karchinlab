@@ -3,17 +3,17 @@ widgetGenerators['gwas_catalog'] = {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Risk Allele', 'gwas_catalog__risk_allele', tabName);
-			var riskAllele = infomgr.getRowValue('variant',row,'gwas_catalog__risk_allele');
-			var altBase = infomgr.getRowValue('variant',row,'base__alt_base')
+			addInfoLine(div, 'Risk Allele', getWidgetData(tabName, 'gwas_catalog', row, 'risk_allele'), tabName);
+			var riskAllele = getWidgetData(tabName, 'gwas_catalog', row, 'risk_allele');
+			var altBase = getWidgetData(tabName, 'base', row, 'alt_base');
 			var riskSpan = $(div).find('.detail-info-line-content')[0].children[0];
 			if (riskAllele === altBase) {
 				$(riskSpan).css('color','red');
 			}
-			addInfoLine(div, row, 'P-value', 'gwas_catalog__pval', tabName);
-			addInfoLine(div, row, 'Initial Sample', 'gwas_catalog__init_samp', tabName);
-			addInfoLine(div, row, 'Replication Sample', 'gwas_catalog__rep_samp', tabName);
-			addInfoLine(div, row, 'Confidence Interval', 'gwas_catalog__ci', tabName);
+			addInfoLine(div, 'P-value', getWidgetData(tabName, 'gwas_catalog', row, 'pval'), tabName);
+			addInfoLine(div, 'Initial Sample', getWidgetData(tabName, 'gwas_catalog', row, 'init_samp'), tabName);
+			addInfoLine(div, 'Replication Sample', getWidgetData(tabName, 'gwas_catalog', row, 'rep_samp'), tabName);
+			addInfoLine(div, 'Confidence Interval', getWidgetData(tabName, 'gwas_catalog', row, 'ci'), tabName);
 		}
 	}
 }

@@ -4,7 +4,7 @@ widgetGenerators['ess_gene'] = {
 		'height': 100, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			var gene = infomgr.getRowValue(tabName, row, 'ess_gene__ess_gene');
+			var gene = getWidgetData(tabName, 'ess_gene', row, 'ess_gene');
 			if(gene === 'N'){
 				gene ='Non-essential';
 			}

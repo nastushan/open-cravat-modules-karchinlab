@@ -3,6 +3,7 @@ version: 1.0.2
 type: webviewerwidget
 required_annotator: biogrid
 description: BioGRID webviewer widget
+requires_opencravat: '>=1.7.0'
 developer:
   name: Rick Kim
   organization: In Silico Solutions

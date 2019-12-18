@@ -3,9 +3,9 @@ widgetGenerators['gtex'] = {
 		'width': 280, 
 		'height': 80, 
 		'function': function (div, row, tabName) {
-			var genes = infomgr.getRowValue(tabName, row, 'gtex__gtex_gene');
+			var genes = getWidgetData(tabName, 'gtex', row, 'gtex_gene');
 			var genels = genes != null ? genes.split('|') : [];
-			var tissues = infomgr.getRowValue(tabName, row, 'gtex__gtex_tissue');
+			var tissues = getWidgetData(tabName, 'gtex', row, 'gtex_tissue');
 			var tissuels = tissues != null ? tissues.split('|') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);

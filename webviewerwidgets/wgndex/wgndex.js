@@ -32,7 +32,7 @@ widgetGenerators['ndex'] = {
             }
             var self = this;
             self.selectedNetworkName = '';
-            
+            console.log('@', row);
             var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
             if (hugo == '' || hugo == null) {
                 $(parentDiv).empty();
@@ -769,11 +769,14 @@ widgetGenerators['ndex'] = {
 			var self = this;
 			$(parentDiv).empty();
 			self.selectedNetworkName = '';
-			var networkids = infomgr.getRowValue(tabName, row, 'ndex__networkid');
-			var networknames = infomgr.getRowValue(tabName, row, 'ndex__networkname');
-			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			//var networkids = infomgr.getRowValue(tabName, row, 'ndex__networkid');
+			//var networknames = infomgr.getRowValue(tabName, row, 'ndex__networkname');
+			//var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+            var networkids = getWidgetData(tabName, 'ndex', row, 'networkid');
+            var networknames = getWidgetData(tabName, 'ndex', row, 'networkname');
+            var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (networkids == null) {
-				return;
+				return 'No data';
 			}
 			// configureEnrichmentScoresForTable port
 			self.data = {};

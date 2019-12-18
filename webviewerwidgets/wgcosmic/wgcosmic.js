@@ -4,12 +4,12 @@ widgetGenerators['cosmic'] = {
 		'height': 220, 
 		'word-break': 'normal',
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'ID', 'cosmic__cosmic_id', tabName, 4);
-			addInfoLine(div, row, 'Variant Count', 'cosmic__variant_count', tabName);
-			addInfoLine(div, row, 'Transcript', 'cosmic__transcript', tabName);
-			addInfoLine(div, row, 'Protein Change', 'cosmic__protein_change', tabName);
-			var vcTissue = infomgr.getRowValue(tabName, row, 'cosmic__variant_count_tissue');
-			if (vcTissue !== null) {
+			addInfoLine(div, 'ID', getWidgetData(tabName, 'cosmic', row, 'cosmic_id'), tabName, 4);
+			addInfoLine(div, 'Variant Count', getWidgetData(tabName, 'cosmic', row, 'variant_count'), tabName);
+			addInfoLine(div, 'Transcript', getWidgetData(tabName, 'cosmic', row, 'transcript'), tabName);
+			addInfoLine(div, 'Protein Change', getWidgetData(tabName, 'cosmic', row, 'protein_change'), tabName);
+			var vcTissue = getWidgetData(tabName, 'cosmic', row, 'variant_count_tissue');
+			if (vcTissue != undefined && vcTissue !== null) {
 				var table = getWidgetTableFrame();
 				var thead = getWidgetTableHead(['Tissue', 'Count'],['85%','15%']);
 				addEl(table, thead);

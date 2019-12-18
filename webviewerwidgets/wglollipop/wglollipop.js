@@ -73,7 +73,7 @@ widgetGenerators['lollipop'] = {
 			v.widgetContentDiv = div;
             v.tabName = tabName;
 			
-			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (hugo == '') {
 				$(div).empty();
                 var sdiv = getEl('div');
@@ -218,7 +218,7 @@ widgetGenerators['lollipop'] = {
 			}
 			
 			function getMyVariant () {
-				var allMappings = JSON.parse(infomgr.getRowValue(tabName, row, 'base__all_mappings'));
+                var allMappings = JSON.parse(getWidgetData(tabName, 'base', row, 'all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
 				for (var i = 0; i < hugos.length; i++) {
@@ -239,7 +239,7 @@ widgetGenerators['lollipop'] = {
 							variant['start'] = start;
 							variant['refaa'] = refaa;
 							variant['altaa'] = altaa;
-							variant['count'] = infomgr.getRowValue(tabName, row, 'base__numsample');
+                            variant['count'] = getWidgetData(tabName, 'base', row, 'numsample');
 							break;
 						}
 					}
@@ -832,7 +832,7 @@ widgetGenerators['lollipop'] = {
 			v.widgetContentDiv = div;
             v.tabName = tabName;
 			
-			var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+			var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (hugo == '') {
 				$(div).empty();
                 var sdiv = getEl('div');
@@ -1509,7 +1509,7 @@ widgetGenerators['lollipop'] = {
 			}
 
 			function getMyVariant (row) {
-				var allMappings = JSON.parse(infomgr.getRowValue('variant', row, 'base__all_mappings'));
+				var allMappings = JSON.parse(getWidgetData('variant', 'base', row, 'all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
 				for (var i = 0; i < hugos.length; i++) {
@@ -1530,7 +1530,7 @@ widgetGenerators['lollipop'] = {
 							variant['start'] = start;
 							variant['refaa'] = refaa;
 							variant['altaa'] = altaa;
-							variant['count'] = infomgr.getRowValue('variant', row, 'base__numsample');
+                            variant['count'] = getWidgetData('variant', 'base', row, 'numsample');
 							break;
 						}
 					}

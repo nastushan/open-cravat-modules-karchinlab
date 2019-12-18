@@ -4,7 +4,7 @@ widgetGenerators['linsight'] = {
 		'height': 80, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'LINSIGHT Score', 'linsight__value', tabName);
+			addInfoLine(div, 'LINSIGHT Score', getWidgetData(tabName, 'linsight', row, 'value'), tabName);
 		}
 	}
 }

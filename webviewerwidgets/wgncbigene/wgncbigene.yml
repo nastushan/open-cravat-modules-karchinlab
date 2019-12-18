@@ -1,4 +1,4 @@
-title: NCBI Gene Widget
+title: NCBI Gene
 version: 1.0.2
 type: webviewerwidget
 required_annotator: ncbigene
@@ -12,3 +12,4 @@ developer:
 tags:
 - visualization widgets
 hidden: true
+requires_opencravat: '>=1.7.0'

@@ -3,10 +3,10 @@ widgetGenerators['cgc'] = {
 		'width': 280, 
 		'height': 180, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Class', 'cgc__class', tabName);
-			addInfoLine(div, row, 'Inheritance', 'cgc__inheritance', tabName);
-			addInfoLine(div, row, 'Somatic Types', 'cgc__tts', tabName);
-			addInfoLine(div, row, 'Genomic Types', 'cgc__ttg', tabName);
+			addInfoLine(div, 'Class', getWidgetData(tabName, 'cgc', row, 'class'), tabName);
+			addInfoLine(div, 'Inheritance', getWidgetData(tabName, 'cgc', row, 'inheritance'), tabName);
+			addInfoLine(div, 'Somatic Types', getWidgetData(tabName, 'cgc', row, 'tts'), tabName);
+			addInfoLine(div, 'Genomic Types', getWidgetData(tabName, 'cgc', row, 'ttg'), tabName);
 		}
 	}
 }

@@ -31,6 +31,7 @@ output_columns:
   filterable: false
   desc: Gene ID
 release_note:
+  4.3.1: reports regardless of sequence ontology
   4.3.0: new gene summary architecture
   4.2.2: data in sync with production MuPIT
 tags:
@@ -42,8 +43,8 @@ tags:
 - protein visualization
 title: MuPIT
 type: annotator
-version: 4.3.0
+version: 4.3.1
 requires:
 - wgmupit
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.7.0'
 commercial_warning: null

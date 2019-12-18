@@ -14,3 +14,4 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
 tags: [visualization widgets]
 release_note:
   1.0.4: supports hg18 and other genomes
+requires_opencravat: '>=1.7.0'

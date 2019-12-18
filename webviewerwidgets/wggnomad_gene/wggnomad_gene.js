@@ -3,25 +3,25 @@ widgetGenerators['gnomad_gene'] = {
 		'width': 840, 
 		'height': 150, 
 		'function': function (div, row, tabName) {
-			var trx = infomgr.getRowValue(tabName, row, 'gnomad_gene__transcript');
+			var trx = getWidgetData(tabName, 'gnomad_gene', row, 'transcript');
 			var trxls = trx != null ? trx.split(';') : [];
-			var oelof = infomgr.getRowValue(tabName, row, 'gnomad_gene__oe_lof');
+			var oelof = getWidgetData(tabName, 'gnomad_gene', row, 'oe_lof');
 			var oelofls = oelof != null ? oelof.split(';').map(Number) : [];
-			var oemis = infomgr.getRowValue(tabName, row, 'gnomad_gene__oe_mis');
+			var oemis = getWidgetData(tabName, 'gnomad_gene', row, 'oe_mis');
 			var oemisls = oemis != null ? oemis.split(';').map(Number) : [];
-			var oesyn = infomgr.getRowValue(tabName, row, 'gnomad_gene__oe_syn');
+			var oesyn = getWidgetData(tabName, 'gnomad_gene', row, 'oe_syn');
 			var oesynls = oesyn != null ? oesyn.split(';').map(Number) : [];
-			var lofz = infomgr.getRowValue(tabName, row, 'gnomad_gene__lof_z');
+			var lofz = getWidgetData(tabName, 'gnomad_gene', row, 'lof_z');
 			var lofzls = lofz != null ? lofz.split(';').map(Number) : [];
-			var misz = infomgr.getRowValue(tabName, row, 'gnomad_gene__mis_z');
+			var misz = getWidgetData(tabName, 'gnomad_gene', row, 'mis_z');
 			var miszls = misz != null ? misz.split(';').map(Number) : [];
-			var synz = infomgr.getRowValue(tabName, row, 'gnomad_gene__syn_z');
+			var synz = getWidgetData(tabName, 'gnomad_gene', row, 'syn_z');
 			var synzls = synz != null ? synz.split(';').map(Number) : [];
-			var pli = infomgr.getRowValue(tabName, row, 'gnomad_gene__pLI');
+			var pli = getWidgetData(tabName, 'gnomad_gene', row, 'pLI');
 			var plils = pli != null ? pli.split(';').map(Number) : [];
-			var prec = infomgr.getRowValue(tabName, row, 'gnomad_gene__pRec');
+			var prec = getWidgetData(tabName, 'gnomad_gene', row, 'pRec');
 			var precls = prec != null ? prec.split(';').map(Number) : [];
-			var pnull = infomgr.getRowValue(tabName, row, 'gnomad_gene__pNull');
+			var pnull = getWidgetData(tabName, 'gnomad_gene', row, 'pNull');
 			var pnullls = pnull != null ? pnull.split(';').map(Number) : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);

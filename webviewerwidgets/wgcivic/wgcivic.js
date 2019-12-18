@@ -3,9 +3,9 @@ widgetGenerators['civic'] = {
 		'width': 280, 
 		'height': 80, 
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'Clinical actionability score', 'civic__clinical_a_score', tabName);
-			addInfoLine(div, row, 'Description', 'civic__description', tabName);
-			addInfoLine(div, row, 'Diseases', 'civic__diseases', tabName);
+			addInfoLine(div, 'Clinical actionability score', getWidgetData(tabName, 'civic', row, 'clinical_a_score'), tabName);
+			addInfoLine(div, 'Description', getWidgetData(tabName, 'civic', row, 'description'), tabName);
+			addInfoLine(div, 'Diseases', getWidgetData(tabName, 'civic', row, 'diseases'), tabName);
 		}
 	}
 }

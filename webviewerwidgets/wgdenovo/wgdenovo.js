@@ -4,9 +4,9 @@ widgetGenerators['denovo'] = {
 		'height': 80, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
-			addInfoLine(div, row, 'PubMed ID', 'denovo__PubmedId', tabName);
-			addInfoLine(div, row, 'Primary phenotype', 'denovo__PrimaryPhenotype', tabName);
-			addInfoLine(div, row, 'Validation', 'denovo__Validation', tabName);
+			addInfoLine(div, 'PubMed ID', getWidgetData(tabName, 'denovo', row, 'PubmedId'), tabName);
+			addInfoLine(div, 'Primary phenotype', getWidgetData(tabName, 'denovo', row, 'PrimaryPhenotype'), tabName);
+			addInfoLine(div, 'Validation', getWidgetData(tabName, 'denovo', row, 'Validation'), tabName);
 		}
 	}
 }

@@ -14,13 +14,18 @@ widgetGenerators['igv'] = {
             if (self['variables']['drawn'] == true) {
                 var chrom = null;
                 var pos = null;
-                var genome = infomgr.jobinfo['Input genome']; 
-                if (genome != 'hg38') {
-                    chrom = infomgr.getRowValue(tabName, row, genome + '__chrom');
-                    pos = infomgr.getRowValue(tabName, row, genome + '__pos');
+                var genome = null;
+                if (typeof(infomgr) == 'undefined') {
+                    genome = 'hg38';
                 } else {
-                    chrom = infomgr.getRowValue(tabName, row, 'base__chrom');
-                    pos = infomgr.getRowValue(tabName, row, 'base__pos');
+                    genome = infomgr.jobinfo['Input genome']; 
+                }
+                if (genome != 'hg38') {
+                    chrom = getWidgetData(tabName, genome, row, 'chrom');
+                    pos = getWidgetData(tabName, genome, row, 'pos');
+                } else {
+                    chrom = getWidgetData(tabName, 'base', row, 'chrom');
+                    pos = getWidgetData(tabName, 'base', row, 'pos');
                 }
                 var locus = chrom + ':' + pos;
                 self['variables']['browser'].search(locus);
@@ -181,21 +186,28 @@ widgetGenerators['igv'] = {
             addEl(div, drawDiv);
             var chrom = null;
             var pos = null;
-            var genome = infomgr.jobinfo['Input genome']; 
-            if (genome != 'hg38') {
-                chrom = infomgr.getRowValue(tabName, row, genome + '__chrom');
-                pos = infomgr.getRowValue(tabName, row, genome + '__pos');
+            var genome = null;
+            if (typeof(infomgr) == 'undefined') {
+                genome = 'hg38';
             } else {
-                chrom = infomgr.getRowValue(tabName, row, 'base__chrom');
-                pos = infomgr.getRowValue(tabName, row, 'base__pos');
+                genome = infomgr.jobinfo['Input genome']; 
+            }
+            if (genome != 'hg38') {
+                chrom = getWidgetData(tabName, genome, row, 'chrom');
+                pos = getWidgetData(tabName, genome, row, 'pos');
+            } else {
+                chrom = getWidgetData(tabName, 'base', row, 'chrom');
+                pos = getWidgetData(tabName, 'base', row, 'pos');
             }
             var locus = chrom + ':' + pos;
             var options = {locus: locus, genome: genome};
-            igv.createBrowser(drawDiv, options).then(function (b) {
-                self['variables']['browser'] = b;
-                document.getElementById('igv_draw_variant').getElementsByClassName('igv-content-div')[0].style.height = 'auto';
-            });
-            self['variables']['drawn'] = true;
+            setTimeout(function () {
+                igv.createBrowser(drawDiv, options).then(function (b) {
+                    self['variables']['browser'] = b;
+                    document.getElementById('igv_draw_variant').getElementsByClassName('igv-content-div')[0].style.height = 'auto';
+                });
+                self['variables']['drawn'] = true;
+            }, 1000);
 		}
 	}
 }
