@@ -15,8 +15,8 @@ widgetGenerators[widgetName] = {
 			var d = infomgr.getData('variant'); 
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
-				var hugo = infomgr.getRowValue('variant', row, 'base__hugo'); 
-                var so = infomgr.getRowValue('variant', row, 'base__so');
+				var hugo = getWidgetData('variant', 'base', row, 'hugo'); 
+                var so = getWidgetData('variant', 'base', row, 'so');
 				if (hugo == '') {
 					noNoncoding++;
 				} else {

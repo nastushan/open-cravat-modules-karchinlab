@@ -14,7 +14,7 @@ widgetGenerators[widgetName] = {
 			var d = infomgr.getData('gene'); 
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
-				var cgl = infomgr.getRowValue('gene', row, 'cgl__class'); 
+				var cgl = getWidgetData('gene', 'cgl', row, 'class'); 
 				if (cgl == '') {
 					noNeutral++;
 				} else if (cgl == 'TSG'){

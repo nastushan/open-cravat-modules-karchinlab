@@ -78,7 +78,7 @@ widgetGenerators[widgetName] = {
 			var d = infomgr.getData('variant'); 
 			for (var i = 0; i < d.length; i++) {
 				var row = d[i]; 
-				var so = infomgr.getRowValue('variant', row, 'base__so'); 
+				var so = getWidgetData('variant', 'base', row, 'so'); 
 				so = so_dic[so];
 				if (so != '') {
 					if (counts[so] == undefined) {

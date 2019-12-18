@@ -5,11 +5,11 @@ widgetGenerators['go'] = {
 		'word-break':'normal',
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Gene Name', 'go__dname', tabName, 66)
-			var goid = infomgr.getRowValue(tabName, row, 'go__id');
+			var goid = getWidgetData(tabName, 'go', row, 'id');
 			var idls = goid != null ? goid.split(';') : [];
-			var goname = infomgr.getRowValue(tabName, row, 'go__name');
+			var goname = getWidgetData(tabName, 'go', row, 'name');
 			var namels = goname != null ? goname.split(';') : [];
-			var ontol = infomgr.getRowValue(tabName, row, 'go__aspect');
+			var ontol = getWidgetData(tabName, 'go', row, 'aspect');
 			var ontolls = ontol != null ? ontol.split(';') : [];
 			var table = getWidgetTableFrame();
 			addEl(div, table);

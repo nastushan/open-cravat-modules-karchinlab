@@ -6,7 +6,7 @@ widgetGenerators['mupit'] = {
 		'height': 80, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			var link = infomgr.getRowValue(tabName, row, 'mupit__link');
+			var link = getWidgetData(tabName, 'mupit', row, 'link');
 			if (link == null) {
 				link = 'None';
 				addInfoLineText(div, 'Hit', link);
@@ -21,7 +21,7 @@ widgetGenerators['mupit'] = {
 		'height': 80, 
         'default_hidden': true,
 		'function': function (div, row, tabName) {
-			var link = infomgr.getRowValue(tabName, row, 'mupit__link');
+			var link = getWidgetData(tabName, 'mupit', row, 'link');
 			if (link == null) {
 				link = 'None';
 				addInfoLineText(div, 'Hit', link);

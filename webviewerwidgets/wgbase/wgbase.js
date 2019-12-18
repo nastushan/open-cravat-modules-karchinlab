@@ -69,7 +69,7 @@ widgetGenerators['base'] = {
 			addInfoLine(div, row, '# Coding Variants', 'base__num_coding_variants', tabName);
 			addInfoLine(div, row, '# Non-coding Variants', 'base__num_noncoding_variants', tabName);
 			addInfoLine(div, row, 'Most Severe Seq Ont', 'base__so', tabName);
-			var allMappings = infomgr.getRowValue(tabName, row, 'base__all_so');
+            var allMappings = getWidgetData(tabName, 'base', row, 'all_so');
 			if (allMappings != null && allMappings != '') {
 				allMappings = allMappings.split(',');
 				var table = getWidgetTableFrame();

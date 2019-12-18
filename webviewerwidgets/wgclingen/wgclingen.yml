@@ -14,5 +14,5 @@ tags:
 - visualization widgets
 release_note:
   1.1.0: works with single variant page in oc 1.7.0.
-- 1.0.7: added gene tab aggregated columns.
-- 1.0.5: uses full sequence ontology names.
+  1.0.7: added gene tab aggregated columns.
+  1.0.5: uses full sequence ontology names.

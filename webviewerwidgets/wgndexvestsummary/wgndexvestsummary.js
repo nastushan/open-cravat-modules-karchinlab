@@ -13,8 +13,8 @@ widgetGenerators['ndexvestsummary'] = {
             var geneRows = infomgr.getData('gene');
             for (var i = 0; i < geneRows.length; i++) {
                 var row = geneRows[i];
-                var hugo = infomgr.getRowValue('gene', row, 'base__hugo');
-                var pval = infomgr.getRowValue('gene', row, 'vest__gene_pval');
+                var hugo = getWidgetData('gene', 'base', row, 'hugo');
+                var pval = getWidgetData('gene', 'vest', row, 'gene_pval');
                 if (pval == undefined) {
                     continue;
                 }

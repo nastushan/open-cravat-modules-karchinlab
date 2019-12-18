@@ -5,7 +5,7 @@ widgetGenerators['cosmic_gene'] = {
 		'word-break': 'normal',
 		'function': function (div, row, tabName) {
 			addInfoLine(div, row, 'Occurrences', 'cosmic_gene__occurrences', tabName);
-			var vcTissue = infomgr.getRowValue(tabName, row, 'cosmic_gene__gene_count');
+            var vcTissue = getWidgetData(tabName, 'cosmic_gene', row, 'gene_count');
 			if (vcTissue !== null) {
 				var table = getWidgetTableFrame();
 				var thead = getWidgetTableHead(['Tissue', 'Count'],['85%','15%']);

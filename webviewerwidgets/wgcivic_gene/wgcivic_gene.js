@@ -4,7 +4,7 @@ widgetGenerators['civic_gene'] = {
 		'height': 80, 
 		'default_hidden': true,
 		'function': function (div, row, tabName) {
-			div.innerText = infomgr.getRowValue('gene',row,'civic_gene__description');
+			div.innerText = getWidgetData('gene', 'civic_gene', row, 'description');
 			div.style['word-break'] = 'break-word';
 		}
 	}

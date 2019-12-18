@@ -33,7 +33,7 @@ widgetGenerators['ndex'] = {
             var self = this;
             self.selectedNetworkName = '';
             console.log('@', row);
-            var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
+            var hugo = getWidgetData(tabName, 'base', row, 'hugo');
             if (hugo == '' || hugo == null) {
                 $(parentDiv).empty();
                 v.nodata = true;
@@ -46,8 +46,8 @@ widgetGenerators['ndex'] = {
             $(parentDiv).empty();
             v.hugo = hugo;
             var geneRow = infomgr.geneRows[hugo];
-            var networkids = infomgr.getRowValue('gene', geneRow, 'ndex__networkid');
-            var networknames = infomgr.getRowValue('gene', geneRow, 'ndex__networkname');
+            var networkids = getWidgetData('gene', 'ndex', geneRow, 'networkid');
+            var networknames = getWidgetData('gene', 'ndex', geneRow, 'networkname');
             if (networkids == null) {
                 v.nodata = true;
                 return;
@@ -769,9 +769,6 @@ widgetGenerators['ndex'] = {
 			var self = this;
 			$(parentDiv).empty();
 			self.selectedNetworkName = '';
-			//var networkids = infomgr.getRowValue(tabName, row, 'ndex__networkid');
-			//var networknames = infomgr.getRowValue(tabName, row, 'ndex__networkname');
-			//var hugo = infomgr.getRowValue(tabName, row, 'base__hugo');
             var networkids = getWidgetData(tabName, 'ndex', row, 'networkid');
             var networknames = getWidgetData(tabName, 'ndex', row, 'networkname');
             var hugo = getWidgetData(tabName, 'base', row, 'hugo');

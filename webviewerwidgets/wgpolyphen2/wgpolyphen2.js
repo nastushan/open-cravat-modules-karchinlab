@@ -9,14 +9,14 @@ widgetGenerators['polyphen2'] = {
 				'P': 'Possibly damaging',
 				'B': 'Benign',
 			}
-			let hdivRank = infomgr.getRowValue(tabName, row, 'polyphen2__hdiv_rank');
-			let hvarRank = infomgr.getRowValue(tabName, row, 'polyphen2__hvar_rank');
+			let hdivRank = getWidgetData(tabName, 'polyphen2', row, 'hdiv_rank');
+			let hvarRank = getWidgetData(tabName, 'polyphen2', row, 'hvar_rank');
 			let string_vals = {}
-			string_vals.uniprot = infomgr.getRowValue(tabName, row, 'polyphen2__uniprot');
-			string_vals.hdiv_score = infomgr.getRowValue(tabName, row, 'polyphen2__hdiv_score');
-			string_vals.hvar_score = infomgr.getRowValue(tabName, row, 'polyphen2__hvar_score');
-			string_vals.hdiv_pred = infomgr.getRowValue(tabName, row, 'polyphen2__hdiv_pred');
-			string_vals.hvar_pred = infomgr.getRowValue(tabName, row, 'polyphen2__hvar_pred');
+			string_vals.uniprot = getWidgetData(tabName, 'polyphen2', row, 'uniprot');
+			string_vals.hdiv_score = getWidgetData(tabName, 'polyphen2', row, 'hdiv_score');
+			string_vals.hvar_score = getWidgetData(tabName, 'polyphen2', row, 'hvar_score');
+			string_vals.hdiv_pred = getWidgetData(tabName, 'polyphen2', row, 'hdiv_pred');
+			string_vals.hvar_pred = getWidgetData(tabName, 'polyphen2', row, 'hvar_pred');
 			if (string_vals.uniprot === null) return;
 			let list_vals = {};
 			for (let [n, sv] of Object.entries(string_vals)) {

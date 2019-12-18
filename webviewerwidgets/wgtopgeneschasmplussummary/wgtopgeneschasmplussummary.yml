@@ -1,5 +1,5 @@
 title: Top Genes CHASMplus Summary
-version: 1.0.4
+version: 1.1.0
 type: webviewerwidget
 requires_opencravat: '>=1.4.2'
 required_annotator: chasmplus
@@ -9,3 +9,5 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
 hidden: true
 release_note: {1.0.4: aiosqlite3 version}
 tags: [visualization widgets]
+release_note:
+  1.1.0: works with single variant page in oc 1.7.0.

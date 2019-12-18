@@ -2,6 +2,7 @@ title: InterPro
 version: 1.1.0
 type: webviewerwidget
 required_annotator: interpro
+requires_opencravat: '>=1.7.0'
 description: InterPro webviewer widget
 developer:
   name: Rick Kim
@@ -12,5 +13,6 @@ developer:
 tags:
 - visualization widgets
 hidden: true
+requires_opencravat: '>=1.7.0'
 release_note:
   1.1.0: works with single variant page in oc 1.7.0.
