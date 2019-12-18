@@ -9,7 +9,6 @@ developer:
   email: kmoad@insilico.us.com
   website: http://www.insilico.us.com
   citation: ''
-private: true
 tags:
 - visualization widgets
 hidden: true

@@ -1,0 +1,36 @@
+#CRAVAT Report
+#Created at Tuesday 12/10/2019 01:22:14
+#Report level: variant
+#
+Variant Annotation															PolyPhen-2						
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Uniprot	HDIV Raw Score	HDIV Rank Score	HDIV Prediction	HVAR Raw Score	HVAR Rank Score	HVAR Prediction
+1	chr12	123619507	A	G		Yes	DDX55	ENST00000238146.8	missense	Q470R	ENST00000238146.8:DDX55:Q8NHQ9:missense:Q470R:A1409G; ENST00000421670.3:DDX55:(na):missense:Q77R:A230G; ENST00000424014.6:EIF2B1:Q14232:2kb downstream:(na):(na); ENST00000538744.5:DDX55:F5H5U2:missense:Q439R:A1316G	1	s0		Q8NHQ9	0.0	0.02946	B	0.002	0.06944	B
+2	chr1	193122201	A	T		Yes	CDC73	ENST00000367435.3	missense	M1L	ENST00000367435.3:CDC73:Q6P1J9:missense:M1L:A1T	1	s0		Q6P1J9;Q6P1J9	0.997;0.997	0.70673	D;D	0.951;0.951	0.68939	D;D
+3	chr12	101395640	T	G		Yes	ARL1	ENST00000261636.12	stop lost	*182Y	ENST00000261636.12:ARL1:P40616:stop lost:*182Y:A546C; ENST00000536227.5:ARL1:(na):stop lost:*165Y:A495C; ENST00000539055.5:ARL1:B4DZG7:stop lost:*136Y:A408C; ENST00000551671.5:ARL1:F8VYN9:2kb downstream:(na):(na); ENST00000551688.1:ARL1:F8W1Z8:stop lost:*53Y:A159C; ENST00000551828.5:ARL1:(na):stop lost:*165Y:A495C	1	s0								
+#CRAVAT Report
+#Created at Tuesday 12/10/2019 01:22:14
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+DDX55		1	0	missense	missense(1)
+CDC73		1	0	missense	missense(1)
+ARL1		1	0	stop lost	stop lost(1)
+#CRAVAT Report
+#Created at Tuesday 12/10/2019 01:22:14
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	s0
+2	s0
+3	s0
+#CRAVAT Report
+#Created at Tuesday 12/10/2019 01:22:14
+#Report level: mapping
+#
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+1		1	0
+2		2	0
+3		3	0
