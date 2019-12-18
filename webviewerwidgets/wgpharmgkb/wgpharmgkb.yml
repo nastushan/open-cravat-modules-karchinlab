@@ -1,5 +1,5 @@
 title: PharmGKB
-version: 1.0.0
+version: 1.1.0
 type: webviewerwidget
 required_annotator: pharmgkb
 description: PharmGKB webviewer widget
@@ -13,3 +13,5 @@ developer:
 tags:
 - visualization widgets
 requires_opencravat: '>=1.7.0'
+release_note:
+  1.1.0: works with single variant page in oc 1.7.0.

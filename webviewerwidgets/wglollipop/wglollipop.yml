@@ -1,5 +1,5 @@
 title: Protein diagram
-version: 1.1.11
+version: 1.2.0
 requires_opencravat: '>=1.7.0'
 required_annotator: base
 type: webviewerwidget
@@ -8,6 +8,7 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
   website: 'http://www.insilico.us.com', citation: ''}
 tags: [visualization widgets]
 release_note:
+  1.2.0: works with single variant page in oc 1.7.0.
   1.1.11: works with a call with a data object.
   1.1.10: works with 1.6.0 and improved drawing.
   1.1.9: long variant list stays in widget div.

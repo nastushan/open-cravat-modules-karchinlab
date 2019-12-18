@@ -1,5 +1,5 @@
 title: PubMed
-version: 1.0.2
+version: 1.1.0
 data_version: 1.0.0
 type: webviewerwidget
 required_annotator: pubmed
@@ -14,3 +14,5 @@ tags:
 - visualization widgets
 hidden: true
 requires_opencravat: '>=1.7.0'
+release_note:
+  1.1.0: works with single variant page in oc 1.7.0.

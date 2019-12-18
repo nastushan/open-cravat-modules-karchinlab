@@ -1,5 +1,5 @@
 title: Variant Annotation
-version: 1.0.8
+version: 1.1.0
 type: webviewerwidget
 required_annotator: base
 requires_opencravat: '>=1.7.0'
@@ -17,6 +17,6 @@ columnwidth:
 tags:
 - visualization widgets
 release_note:
-  1.0.8: works with single variant page.
+  1.1.0: works with single variant page in oc 1.7.0.
   1.0.7: added gene tab aggregated columns.
   1.0.5: uses full sequence ontology names.
