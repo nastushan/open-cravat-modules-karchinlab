@@ -31,18 +31,18 @@ class CravatConverter(BaseConverter):
         for char in alt.upper():
             if char not in valid_bases: return False, 'Bad alt base'
         return True, ''
-    
+
     def check_format(self, f):
         for l in f:
             if not(l.startswith('#')):
                 format_correct, _ = self._check_line(l)
                 return format_correct
-    
+
     def setup(self, f):
         pass
-    
+
     def convert_line(self, l):
-        if l.startswith('#'): return []
+        if l.startswith('#'): return False
         format_correct, format_msg= self._check_line(l)
         if not(format_correct): raise BadFormatError(format_msg)
         toks = l.strip('\r\n').split('\t')
@@ -57,5 +57,6 @@ class CravatConverter(BaseConverter):
                  'pos':pos,
                  'ref_base':ref,                 
                  'alt_base':alt,
-                 'sample_id':sample}
+                 'sample_id':sample, 
+                 }
         return [wdict]

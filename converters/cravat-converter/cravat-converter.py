@@ -76,7 +76,7 @@ class CravatConverter(BaseConverter):
         pass
     
     def convert_line(self, l):
-        if l.startswith('#'): return []
+        if l.startswith('#'): return False
         format_correct, format_msg= self._check_line(l)
         if not(format_correct): raise BadFormatError(format_msg)
         toks = l.strip('\r\n').split('\t')
@@ -98,5 +98,6 @@ class CravatConverter(BaseConverter):
                  'pos':pos,
                  'ref_base':ref,                 
                  'alt_base':alt,
-                 'sample_id':sample}
+                 'sample_id':sample,
+                 }
         return [wdict]

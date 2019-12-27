@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.1.6
+version: 1.2.0
 type: converter
 description: Converter for VCF format input
 developer:
@@ -8,8 +8,9 @@ developer:
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
-
+requires_opencravat: '>=1.7.0'
 release_note:
+  1.2.0: no-data line returns False
   1.1.6: does not error when format is forced. 0 DP results in None AF instead of error. Excludes refbase of * (VCF 4.2)
   1.1.5: . in most fields becomes empty value
   1.1.4: handles CHROM POS ID REF ALT only rows.

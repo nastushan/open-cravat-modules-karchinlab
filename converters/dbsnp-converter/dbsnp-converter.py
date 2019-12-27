@@ -35,7 +35,7 @@ class CravatConverter(BaseConverter):
     
     def convert_line(self, l):
         if l.startswith('#'):
-            return []
+            return False
         toks = l.rstrip('\r\n').split()
         rsid = toks[0]
         sample_id = toks[1] if len(toks) > 1 else None

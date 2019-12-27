@@ -34,7 +34,8 @@ class CravatConverter(BaseConverter):
                            'type': 'int'},
                           {'name': 'hap_strand',
                            'title': 'Haplotype strand ID',
-                           'type': 'int'}]
+                           'type': 'int'}
+        ]
         self.info_field_coltype_dict = {
             'integer': 'int',
             #'integer': 'string',
@@ -71,12 +72,21 @@ class CravatConverter(BaseConverter):
                     continue
                 else:
                     self.info_field_cols[colname] = {'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber}
-            if l[:6] == '#CHROM':
+            elif l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
                     self.samples = toks[9:]
                 break
+        self.genotype_fields = []
+        for l in f:
+            toks = l.split('\t')
+            if len(toks) >= 9:
+                gtfs = toks[8].split(':')
+                for gtf in gtfs:
+                    if gtf not in self.genotype_fields:
+                        self.genotype_fields.append(gtf)
         self.open_ex_info_writer()
+        #self.write_genotype_fields_on_crs()
 
     def open_ex_info_writer (self):
         self.ex_info_fpath = self.input_path + '.extra_vcf_info.var'
@@ -90,6 +100,8 @@ class CravatConverter(BaseConverter):
         self.ex_info_writer.write_meta_line('name', 'extra_vcf_info');
         self.ex_info_writer.write_meta_line('displayname', 'Extra VCF INFO Annotations');
 
+    #def write_genotype_fields_on_crs (self):
+        
     def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
         if 'ID=' in l:
@@ -185,7 +197,7 @@ class CravatConverter(BaseConverter):
         return info_dict
 
     def convert_line(self, l):
-        if l.startswith('#'): return None
+        if l.startswith('#'): return False
         self.var_counter += 1
         toks = l.strip('\r\n').split('\t')
         toklen = len(toks)
@@ -215,6 +227,8 @@ class CravatConverter(BaseConverter):
         len_alts = len(alts)
         if info is not None:
             self.info_field_data = self.parse_data_info_field(info, len_alts)
+        else:
+            self.info_field_data = {}
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
@@ -234,14 +248,16 @@ class CravatConverter(BaseConverter):
                 all_wdicts.append(wdict)
         elif toklen > 8:
             sample_datas = toks[9:]
-            genotype_fields = {}
-            genotype_field_no = 0
-            for genotype_field in toks[8].split(':'):
-                genotype_fields[genotype_field] = genotype_field_no
-                genotype_field_no += 1
-            if not ('GT' in genotype_fields):
+            gtf_nos = {}
+            gtfs = []
+            gtf_no = 0
+            for gtf in toks[8].split(':'):
+                gtf_nos[gtf] = gtf_no
+                gtfs.append(gtf)
+                gtf_no += 1
+            if not ('GT' in gtfs):
                 raise BadFormatError('No GT Field')
-            gt_field_no = genotype_fields['GT']
+            gt_field_no = gtf_nos['GT']
             for sample_no in range(len(sample_datas)):
                 sample = self.samples[sample_no]
                 sample_data = sample_datas[sample_no].split(':')
@@ -261,12 +277,12 @@ class CravatConverter(BaseConverter):
                         if newalt == '*': # VCF 4.2
                             continue
                         zyg = self.homo_hetro(sample_data[gt_field_no])
-                        depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, genotype_fields)
+                        depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
                         if depth == '.': depth = None
                         if alt_reads == '.': alt_reads = None
                         if af == '.': af = None
-                        if 'HP' in genotype_fields:
-                            hp_field_no = genotype_fields['HP']
+                        if 'HP' in gtf_nos:
+                            hp_field_no = gtf_nos['HP']
                             haplotype_block = sample_data[hp_field_no].split(',')[0].split('-')[0]
                             haplotype_strand = sample_data[hp_field_no].split(',')[0].split('-')[1]
                             wdict = {'tags':tag,
@@ -300,6 +316,10 @@ class CravatConverter(BaseConverter):
                                      'hap_block': None,
                                      'hap_strand': None,                               
                                      }
+                        for gtf in gtfs:
+                            gtf_no = gtf_nos[gtf]
+                            value = sample_data[gtf_no]
+                            wdict[gtf] = value
                         all_wdicts.append(wdict)
         return all_wdicts
 

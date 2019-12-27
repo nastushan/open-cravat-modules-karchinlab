@@ -1,5 +1,5 @@
 title: dbSNP Converter
-version: 1.0.2
+version: 1.1.0
 datasource: '153'
 type: converter
 description: Input converter for dbSNP rsid input
@@ -11,5 +11,8 @@ developer:
   citation: 'Database of Single Nucleotide Polymorphisms (dbSNP). Bethesda (MD): National
     Center for Biotechnology Information, National Library of Medicine. (dbSNP Build
     ID: 151).'
+requires_opencravat: '>=1.7.0'
 tags:
 - converters
+release_note:
+  1.1.0: no-data line returns False

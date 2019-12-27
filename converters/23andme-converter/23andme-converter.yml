@@ -1,5 +1,5 @@
 title: 23andMe Converter
-version: 1.0.4
+version: 1.1.0
 type: converter
 description: File converter for 23andMe format
 developer:
@@ -8,5 +8,8 @@ developer:
   email: kmoad@insilico.us.com
   website: http://www.insilico.us.com
   citation: ''
+requires_opencravat: '>=1.7.0'
 tags:
 - converters
+release_note:
+  1.1.0: no-data line returns False
