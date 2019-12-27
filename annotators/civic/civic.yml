@@ -40,7 +40,7 @@ tags:
 - literature
 title: CIViC
 type: annotator
-version: 1.0.12
+version: 1.0.13
 requires_opencravat: '>=1.4.0'
 requires:
 - wgcivic
