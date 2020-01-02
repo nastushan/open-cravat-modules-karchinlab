@@ -1,5 +1,5 @@
 title: Sequence Ontology Sample Summary
-version: 1.2.2
+version: 1.2.3
 type: webviewerwidget
 requires_opencravat: '>=1.4.4'
 required_annotator: base
@@ -7,6 +7,7 @@ description: Sequence Ontology Sample Summary webviewer widget
 developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insilico.us.com,
   website: 'http://www.insilico.us.com', citation: ''}
 release_note:
+    1.2.3: no sample hides widget.
     1.2.2: legend on right. scroll auto.
     1.2.1: better display of many samples
     1.2.0: minor fix

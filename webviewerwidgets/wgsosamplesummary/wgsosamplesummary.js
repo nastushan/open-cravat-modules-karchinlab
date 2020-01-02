@@ -10,7 +10,7 @@ widgetGenerators['sosamplesummary'] = {
         },
         'shoulddraw': function () {
             var data = this['variables']['data'];
-            if (data == null) {
+            if (data == null || data.samples.length == 0) {
                 return false;
             } else {
                 if (data['samples'].length > 20) {
