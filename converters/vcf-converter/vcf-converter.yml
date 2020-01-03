@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.2.0
+version: 1.2.1
 type: converter
 description: Converter for VCF format input
 developer:
@@ -10,6 +10,7 @@ developer:
   citation: ''
 requires_opencravat: '>=1.7.0'
 release_note:
+  1.2.1: works with -i option.
   1.2.0: no-data line returns False
   1.1.6: does not error when format is forced. 0 DP results in None AF instead of error. Excludes refbase of * (VCF 4.2)
   1.1.5: . in most fields becomes empty value

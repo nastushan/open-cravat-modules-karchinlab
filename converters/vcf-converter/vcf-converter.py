@@ -49,7 +49,6 @@ class CravatConverter(BaseConverter):
 
     def check_format(self, f): 
         vcf_format = False
-        self.input_path = f.name
         if f.name.endswith('.vcf'):
             vcf_format = True
         first_line = f.readline()
@@ -58,6 +57,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
+        self.input_path = f.name
         self.info_field_cols = OrderedDict()
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
