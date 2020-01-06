@@ -1,5 +1,5 @@
 title: hg19 coordinates
-version: 1.0.4
+version: 1.0.5
 type: annotator
 level: variant
 output_columns:
@@ -20,4 +20,5 @@ developer:
 release_note:
   1.0.2: fixed test key.
   1.0.1: fix added regarding 0-based mapping.
+  1.0.5: documentation update
 
