@@ -4,6 +4,7 @@ import re
 from collections import OrderedDict
 from cravat.inout import CravatWriter
 from cravat import constants
+import os
 
 class CravatConverter(BaseConverter):
 
@@ -89,7 +90,7 @@ class CravatConverter(BaseConverter):
         #self.write_genotype_fields_on_crs()
 
     def open_ex_info_writer (self):
-        self.ex_info_fpath = self.input_path + '.extra_vcf_info.var'
+        self.ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_vcf_info.var')
         self.ex_info_writer = CravatWriter(self.ex_info_fpath)
         cols = list(self.info_field_cols.values())
         cols.insert(0, constants.crv_def[0])
