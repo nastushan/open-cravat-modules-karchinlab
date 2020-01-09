@@ -20,7 +20,7 @@ class CravatConverter(BaseConverter):
     
     def convert_line(self, l):
         ret = []
-        if l.startswith('#'): return False
+        if l.startswith('#'): return self.IGNORE
         toks = l.strip('\r\n').split('\t')
         tags = toks[0]
         chrom = toks[1]

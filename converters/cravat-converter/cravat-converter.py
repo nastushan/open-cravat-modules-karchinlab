@@ -76,7 +76,7 @@ class CravatConverter(BaseConverter):
         pass
     
     def convert_line(self, l):
-        if l.startswith('#'): return False
+        if l.startswith('#'): return self.IGNORE
         format_correct, format_msg= self._check_line(l)
         if not(format_correct): raise BadFormatError(format_msg)
         toks = l.strip('\r\n').split('\t')

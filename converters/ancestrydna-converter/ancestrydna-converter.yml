@@ -1,5 +1,5 @@
 title: AncestryDNA Converter
-version: 1.1.0
+version: 1.1.1
 type: converter
 description: File converter for AncestryDNA format
 developer:
@@ -12,4 +12,5 @@ requires_opencravat: '>=1.7.0'
 tags:
 - converters
 release_note:
+  1.1.1: comment lines return IGNORE.
   1.1.0: no-data line returns False

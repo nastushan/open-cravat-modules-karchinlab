@@ -198,7 +198,7 @@ class CravatConverter(BaseConverter):
         return info_dict
 
     def convert_line(self, l):
-        if l.startswith('#'): return False
+        if l.startswith('#'): return self.IGNORE
         self.var_counter += 1
         toks = l.strip('\r\n').split('\t')
         toklen = len(toks)

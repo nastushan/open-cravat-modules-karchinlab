@@ -1,5 +1,5 @@
 title: OldCravat Converter
-version: 1.1.0
+version: 1.1.1
 type: converter
 description: File converter for old architecture cravat input
 developer:
@@ -10,4 +10,5 @@ developer:
   itation: ''
 requires_opencravat: '>=1.7.0'
 release_note:
+  1.1.1: comment lines return IGNORE.
   1.1.0: no-data line returns False
