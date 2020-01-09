@@ -75,3 +75,8 @@ smartfilters:
       column: polyphen2__hvar_rank
       test: greaterThanEq
       value: ${value}
+    
+tags:
+- variants
+- variant effect prediction
+- germline
