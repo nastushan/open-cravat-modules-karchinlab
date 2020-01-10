@@ -86,8 +86,9 @@ class CravatConverter(BaseConverter):
                 for gtf in gtfs:
                     if gtf not in self.genotype_fields:
                         self.genotype_fields.append(gtf)
-        self.open_ex_info_writer()
-        #self.write_genotype_fields_on_crs()
+        self.write_ex_info = (len(self.info_field_cols) > 0)
+        if self.write_ex_info:
+            self.open_ex_info_writer()
 
     def open_ex_info_writer (self):
         self.ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_vcf_info.var')
@@ -101,7 +102,9 @@ class CravatConverter(BaseConverter):
         self.ex_info_writer.write_meta_line('name', 'extra_vcf_info');
         self.ex_info_writer.write_meta_line('displayname', 'Extra VCF INFO Annotations');
 
-    #def write_genotype_fields_on_crs (self):
+    def end (self):
+        if write_ex_info:
+            self.ex_info_writer.close()
         
     def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
@@ -325,15 +328,16 @@ class CravatConverter(BaseConverter):
         return all_wdicts
 
     def addl_operation_for_unique_variant (self, wdict, wdict_no):
-        uid = wdict['uid']
-        row_data = {}
-        for k, v in self.info_field_data.items():
-            if type(v) is list:
-                row_data[k] = v[wdict_no]
-            else:
-                row_data[k] = v
-        row_data['uid'] = uid
-        self.ex_info_writer.write_data(row_data)
+        if self.write_ex_info:
+            uid = wdict['uid']
+            row_data = {}
+            for k, v in self.info_field_data.items():
+                if type(v) is list:
+                    row_data[k] = v[wdict_no]
+                else:
+                    row_data[k] = v
+            row_data['uid'] = uid
+            self.ex_info_writer.write_data(row_data)
 
     #The vcf genotype string has a call for each allele separated by '\' or '/'
     #If the call is the same for all allels, return 'hom' otherwise 'het'
