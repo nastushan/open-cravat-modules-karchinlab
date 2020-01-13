@@ -33,7 +33,7 @@ class Reporter(CravatReport):
         self.cursor2.execute(q)
         r = self.cursor2.fetchone()
         self.input_format = r[0]
-        if self.input_format == 'vcf' and '_and_' in self.args.inputfiles[0]:
+        if self.input_format == 'vcf' and len(self.args.inputfiles) > 1:
             msg = 'VCF reporter can handle jobs with only 1 VCF input file'
             self.logger.info(msg)
             print(msg)
@@ -110,7 +110,6 @@ class Reporter(CravatReport):
             self.cursor2.execute('select distinct(base__sample_id) from sample')
             self.samples = []
             rows = self.cursor2.fetchall()
-            print('@ rows=', rows)
             if rows is None or len(rows) == 0:
                 self.samples.append('NOSAMPLEID')
             else:
@@ -159,7 +158,6 @@ class Reporter(CravatReport):
             line += '">'
             self.write_preface_line(line)
             line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
-            print('@ samples=', self.samples)
             line += '\t'.join(self.samples)
             self.write_preface_line(line)
             
