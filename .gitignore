@@ -22,3 +22,4 @@ example_annotator
 **/**/endofinstall
 annotators/segway*
 annotators/haploreg*
+*.swp
