@@ -2,7 +2,7 @@ title: VCF Reporter
 version: 1.0.1
 type: reporter
 description: VCF format text file reporter
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.7.0'
 output_filename_schema:
   - '{run_name}.vcf'
 developer:
