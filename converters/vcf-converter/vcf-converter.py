@@ -91,7 +91,7 @@ class CravatConverter(BaseConverter):
             self.open_ex_info_writer()
 
     def open_ex_info_writer (self):
-        self.ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_vcf_info.var')
+        self.ex_info_fpath = os.path.join(self.output_dir, self.input_path + '.extra_vcf_info.var')
         self.ex_info_writer = CravatWriter(self.ex_info_fpath)
         cols = list(self.info_field_cols.values())
         cols.insert(0, constants.crv_def[0])
@@ -105,7 +105,7 @@ class CravatConverter(BaseConverter):
     def end (self):
         if write_ex_info:
             self.ex_info_writer.close()
-        
+
     def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
         if 'ID=' in l:
