@@ -38,7 +38,7 @@ class CravatConverter(BaseConverter):
                            'type': 'int'}
         ]
         self.info_field_coltype_dict = {
-            'integer': 'int',
+            'integer': 'float',
             #'integer': 'string',
             'float': 'float',
             #'float': 'string',
@@ -172,7 +172,7 @@ class CravatConverter(BaseConverter):
                 colnumber = coldef['number']
                 colvals = tok[idx + 1:].split(',')
                 if coloritype == 'integer':
-                    colvals = [int(v) for v in colvals]
+                    colvals = [float(v) for v in colvals]
                 elif coloritype == 'float':
                     colvals = [float(v) for v in colvals]
                 elif coloritype in ['string', 'character', 'flag']:
