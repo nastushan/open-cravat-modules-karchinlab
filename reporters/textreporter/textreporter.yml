@@ -4,15 +4,17 @@ type: reporter
 description: Text format reporter
 requires_opencravat: '>=1.5.0'
 output_filename_schema:
-  - '{run_name}.tsv'
+- '{run_name}.tsv'
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
 release_note:
   1.0.6: added output_filename_schema.
   1.0.5: version up
   1.0.4: no async write_table_row
   1.0.2: regex substitution
+tags:
+- reporter

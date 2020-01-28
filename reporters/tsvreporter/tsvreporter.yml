@@ -4,12 +4,12 @@ type: reporter
 description: Tab-delimited format text file reporter
 requires_opencravat: '>=1.5.0'
 output_filename_schema:
-  - '{run_name}.tsv.zip'
+- '{run_name}.tsv.zip'
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
 release_note:
   1.0.7: added column description header.
@@ -17,3 +17,5 @@ release_note:
   1.0.5: async write_table_row removed
   1.0.4: async write_table_row
   1.0.0: initial release
+tags:
+- reporter

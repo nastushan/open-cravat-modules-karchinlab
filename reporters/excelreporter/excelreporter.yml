@@ -4,12 +4,12 @@ type: reporter
 description: Microsoft Excel reporter
 requires_opencravat: '>=1.5.0'
 output_filename_schema:
-  - '{run_name}.xlsx'
+- '{run_name}.xlsx'
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
 release_note:
   1.0.6: added output_filename_schema.
@@ -17,3 +17,5 @@ release_note:
   1.0.4: async write_table_row
   1.0.2: regex substitution
   1.0.1: changed hyperlink format to use "[WEB:]"
+tags:
+- reporter

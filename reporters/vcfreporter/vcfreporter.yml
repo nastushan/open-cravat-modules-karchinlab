@@ -4,12 +4,12 @@ type: reporter
 description: VCF format text file reporter
 requires_opencravat: '>=1.7.0'
 output_filename_schema:
-  - '{run_name}.vcf'
+- '{run_name}.vcf'
 developer:
-  name: 'Rick Kim'
-  organization: 'In Silico Solutions'
-  email: 'rkim@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Rick Kim
+  organization: In Silico Solutions
+  email: rkim@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
 release_note:
   1.0.12: fixed vcfreporter only handling one input file jobs.
@@ -20,3 +20,5 @@ release_note:
   1.0.5: sync write_table_row
   1.0.4: async write_table_row
   1.0.0: initial release
+tags:
+- reporter
