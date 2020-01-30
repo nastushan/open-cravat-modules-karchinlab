@@ -18,4 +18,4 @@ release_note:
   1.0.2: regex substitution
   1.0.1: changed hyperlink format to use "[WEB:]"
 tags:
-- reporter
+- reporters
