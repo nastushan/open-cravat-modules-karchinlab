@@ -186,7 +186,7 @@ class CravatConverter(BaseConverter):
                 elif colnumber == 'r':
                     data = colvals[1:]
                 elif colnumber == '.':
-                    data = [','.join(map(str,colvals))] * len_alts
+                    data = [colvals] * len_alts
             else:
                 colname = tok
                 col = self.info_field_cols[colname]
