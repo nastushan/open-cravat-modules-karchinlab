@@ -57,10 +57,14 @@ class CravatConverter(BaseConverter):
         sample = ''
         good_vars = set(['T','C','G','A'])
         geno = toks[3]
-        if geno[0]==geno[1]:
+        try:
+            if geno[0]==geno[1]:
+                self.cur_zygosity = 'hom'
+            else:
+                self.cur_zygosity = 'het'
+        except IndexError:
             self.cur_zygosity = 'hom'
-        else:
-            self.cur_zygosity = 'het'
+            
         for var in geno:
             if var in good_vars:
                 alt = var
