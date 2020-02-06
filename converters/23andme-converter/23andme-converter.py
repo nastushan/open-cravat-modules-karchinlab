@@ -4,6 +4,8 @@ import cravat.constants as constants
 from pyliftover import LiftOver
 import os
 from cravat.exceptions import LiftoverFailure
+from cravat.inout import CravatWriter
+
 class CravatConverter(BaseConverter):
     
     def __init__(self):
@@ -17,7 +19,24 @@ class CravatConverter(BaseConverter):
         fprefix = 'GCA_000001405.15_GRCh38_no_alt_analysis_set'
         prefix = os.path.join(os.path.dirname(os.path.abspath(__file__)),'data',fprefix)
         self.btr = BowtieIndexReference(prefix)
-    
+        ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_variant_info.var')
+        self.ex_info_writer = CravatWriter(ex_info_fpath)
+        cols = [
+            constants.crv_def[0],
+            {
+                'name': 'zygosity',
+                'title': 'Zygosity',
+                'type': 'string',
+                'category': 'single',
+                'categories': ['het','hom'],
+            }
+        ]
+        self.ex_info_writer.add_columns(cols)
+        self.ex_info_writer.write_definition()
+        self.ex_info_writer.write_meta_line('name', 'extra_variant_info')
+        self.ex_info_writer.write_meta_line('displayname', 'Extra Variant Info')
+        self.cur_zygosity = None
+
     def convert_line(self, l):
         ret = []
         if l.startswith('#'): return self.IGNORE
@@ -38,18 +57,34 @@ class CravatConverter(BaseConverter):
         sample = ''
         good_vars = set(['T','C','G','A'])
         geno = toks[3]
+        if geno[0]==geno[1]:
+            self.cur_zygosity = 'hom'
+        else:
+            self.cur_zygosity = 'het'
         for var in geno:
             if var in good_vars:
                 alt = var
-                wdict = {'tags':tags,
+                wdict = {
+                    'tags':tags,
                     'chrom':chrom,
                     'pos':pos,
                     'ref_base':ref,
                     'alt_base':alt,
-                    'sample_id':sample}
+                    'sample_id':sample,
+                }
                 ret.append(wdict)
         return ret
 
+    def addl_operation_for_unique_variant (self, wdict, wdict_no):
+        uid = wdict['uid']
+        row_data = {
+            'uid': wdict['uid'],
+            'zygosity': self.cur_zygosity,
+        }
+        self.ex_info_writer.write_data(row_data)
+
+    def cleanup(self):
+        self.ex_info_writer.close()
 ###################################################################################################
 """
 bowtie_index.py
