@@ -29,6 +29,7 @@ class CravatConverter(BaseConverter):
                 'type': 'string',
                 'category': 'single',
                 'categories': ['het','hom'],
+                'width': 60,
             }
         ]
         self.ex_info_writer.add_columns(cols)
