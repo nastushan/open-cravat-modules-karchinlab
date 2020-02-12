@@ -69,6 +69,7 @@ class CravatConverter(BaseConverter):
                 continue
             if l.startswith('##INFO='):
                 colname, coltype, coltitle, coldesc, coloritype, colnumber = self.parse_header_info_field(l)
+                colname = colname.replace('.', '_')
                 if coltype is None or colnumber not in self.allowed_info_colnumbers:
                     continue
                 else:
@@ -164,7 +165,7 @@ class CravatConverter(BaseConverter):
         for tok in toks:
             if '=' in tok:
                 idx = tok.index('=')
-                colname = tok[:idx]
+                colname = tok[:idx].replace('.', '_')
                 if colname not in self.info_field_cols:
                     continue
                 coldef = self.info_field_cols[colname]
