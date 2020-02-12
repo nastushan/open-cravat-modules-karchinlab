@@ -72,4 +72,3 @@ smartfilters:
   filter:
     column: clinvar__id
     test: hasData
-private: true
