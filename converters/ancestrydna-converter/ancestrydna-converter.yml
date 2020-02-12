@@ -1,5 +1,5 @@
 title: AncestryDNA Converter
-version: 1.1.2
+version: 1.2.0
 type: converter
 description: Allows user to input files in AncestryDNA format. In both the graphical interface and command line usage, file format will be automatically detected after this converter is installed.
 developer:
@@ -12,6 +12,7 @@ requires_opencravat: '>=1.7.0'
 tags:
 - converters
 release_note:
+  1.2.0: include zygosity
   1.1.2: better documentation
   1.1.1: comment lines return IGNORE.
   1.1.0: no-data line returns False

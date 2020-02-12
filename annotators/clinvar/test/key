@@ -1,54 +1,54 @@
 #CRAVAT Report
-#Created at Tuesday 03/26/2019 15:36:05
+#Created at Tuesday 02/11/2020 20:59:03
 #Report level: variant
 #
-Variant Annotation												ClinVar					Tag Sampler		
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Clinical Significance	Disease Ref Nums	Disease Names	Review Status	ClinVar ID	Number of Samples	Samples	Tags
-1	chr11	64810053	-	A		Yes	MEN1	ENST00000394374.6	frameshift insertion	_20_	ENST00000312049.10:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000315422.8:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000337652.5:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000377313.5:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000377316.6:MEN1:E7EN32:frameshift insertion:_20_:-58T; ENST00000377321.5:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000377326.7:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000394374.6:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000394376.5:MEN1:O00255:frameshift insertion:_20_:-58T	Pathogenic	MedGen:CN517202	not provided	criteria provided, single submitter	200993	0		minus_ins_MEN1
-2	chr10	87894026	-	TC		Yes	PTEN	ENST00000371953.7	frameshift insertion	_27_	ENST00000371953.7:PTEN:P60484:frameshift insertion:_27_:-81TC; ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	Pathogenic	MedGen:C0027672,SNOMED CT:699346009	Hereditary cancer-predisposing syndrome	criteria provided, single submitter	187107	0		plus_ins_PTEN
-3	chr17	21703214	C	-		Yes	KCNJ18	ENST00000567955.3	frameshift deletion	_143_	ENST00000567955.3:KCNJ18:B7U540:frameshift deletion:_143_:C428-	Pathogenic, risk factor	MedGen:C0268446,OMIM:188580,Orphanet:ORPHA79102,SNOMED CT:30967002|MedGen:C2750473,OMIM:613239	Thyrotoxic periodic paralysis|Thyrotoxic periodic paralysis 2	no assertion criteria provided	204	0		plus_del_KCNJ18
-4	chr1	7965348	G	T		Yes	PARK7	ENST00000338639.9	missense	A39S	ENST00000338639.9:PARK7:Q99497:missense:A39S:G115T; ENST00000377488.5:PARK7:Q99497:missense:A39S:G115T; ENST00000377491.5:PARK7:Q99497:missense:A39S:G115T; ENST00000377493.9:PARK7:K7ELW0:missense:A39S:G115T; ENST00000493678.5:PARK7:Q99497:missense:A39S:G115T	Pathogenic	MedGen:C2751533	Parkinson disease, autosomal recessive early-onset, digenic, PINK1/DJ1	no assertion criteria provided	7069	0		plus_SBS_PARK7
-5	chr15	48756289	G	A		Yes	CEP152	ENST00000380950.6	stop gained	R987*	ENST00000325747.9:CEP152:(na):stop gained:R894*:C2680T; ENST00000380950.6:CEP152:O94986:stop gained:R987*:C2959T; ENST00000399334.7:CEP152:(na):stop gained:R987*:C2959T	Pathogenic	MedGen:C3553886,OMIM:614852	Primary autosomal recessive microcephaly 9	no assertion criteria provided	56	1	minus_CEP152_2	
-6	chr17	7674904	TC	-		Yes	TP53	ENST00000445888.6	frameshift deletion	_209_	ENST00000269305.8:TP53:P04637:frameshift deletion:_209_:GA626-; ENST00000359597.8:TP53:J3KP33:frameshift deletion:_209_:GA626-; ENST00000413465.6:TP53:E7EQX7:frameshift deletion:_209_:GA626-; ENST00000420246.6:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000445888.6:TP53:P04637:frameshift deletion:_209_:GA626-; ENST00000455263.6:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000504290.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000504937.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000510385.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000610292.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000610538.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000610623.4:TP53:A0A087WT22:frameshift deletion:_50_:GA149-; ENST00000615910.4:TP53:A0A087WZU8:frameshift deletion:_198_:GA593-; ENST00000617185.4:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000618944.4:TP53:A0A087WXZ1:frameshift deletion:_50_:GA149-; ENST00000619186.4:TP53:A0A087X1Q1:frameshift deletion:_50_:GA149-; ENST00000619485.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000620739.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000622645.4:TP53:(na):frameshift deletion:_170_:GA509-	Pathogenic	MedGen:C0027672,SNOMED CT:699346009|MedGen:C0085390,Orphanet:ORPHA524,SNOMED CT:428850001|MedGen:CN517202	Hereditary cancer-predisposing syndrome|Li-Fraumeni syndrome|not provided	criteria provided, multiple submitters, no conflicts	372539	0		minus_del_TP53
-7	chr10	87894027	-	CG		Yes	PTEN	ENST00000371953.7	frameshift insertion	_28_	ENST00000371953.7:PTEN:P60484:frameshift insertion:_28_:-82CG; ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)						0		no_result
-8	chr17	7674904	T	-		Yes	TP53	ENST00000445888.6	frameshift deletion	_209_	ENST00000269305.8:TP53:P04637:frameshift deletion:_209_:A627-; ENST00000359597.8:TP53:J3KP33:frameshift deletion:_209_:A627-; ENST00000413465.6:TP53:E7EQX7:frameshift deletion:_209_:A627-; ENST00000420246.6:TP53:(na):frameshift deletion:_209_:A627-; ENST00000445888.6:TP53:P04637:frameshift deletion:_209_:A627-; ENST00000455263.6:TP53:(na):frameshift deletion:_209_:A627-; ENST00000504290.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000504937.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000510385.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000610292.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000610538.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000610623.4:TP53:A0A087WT22:frameshift deletion:_50_:A150-; ENST00000615910.4:TP53:A0A087WZU8:frameshift deletion:_198_:A594-; ENST00000617185.4:TP53:(na):frameshift deletion:_209_:A627-; ENST00000618944.4:TP53:A0A087WXZ1:frameshift deletion:_50_:A150-; ENST00000619186.4:TP53:A0A087X1Q1:frameshift deletion:_50_:A150-; ENST00000619485.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000620739.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000622645.4:TP53:(na):frameshift deletion:_170_:A510-	Pathogenic	MedGen:C0027672,SNOMED CT:699346009|MedGen:C0085390,Orphanet:ORPHA524,SNOMED CT:428850001|MedGen:CN517202	Hereditary cancer-predisposing syndrome|Li-Fraumeni syndrome|not provided	criteria provided, multiple submitters, no conflicts	372539	0		fuzzy_del_TP53
+Variant Annotation															ClinVar				
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Clinical Significance	Disease Ref Nums	Disease Names	Review Status	ClinVar ID
+1	chr11	64810053	-	A		Yes	MEN1	ENST00000394374.6	frameshift insertion	_20_	ENST00000312049.10:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000315422.8:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000337652.5:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000377313.5:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000377316.6:MEN1:E7EN32:frameshift insertion:_20_:-58T; ENST00000377321.5:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000377326.7:MEN1:(na):frameshift insertion:_20_:-58T; ENST00000394374.6:MEN1:O00255:frameshift insertion:_20_:-58T; ENST00000394376.5:MEN1:O00255:frameshift insertion:_20_:-58T	1	no-sample	minus_ins_MEN1	Pathogenic	MedGen:CN517202	not provided	criteria provided, single submitter	200993
+2	chr10	87894026	-	TC		Yes	PTEN	ENST00000371953.7	frameshift insertion	_27_	ENST00000371953.7:PTEN:P60484:frameshift insertion:_27_:-81TC; ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	no-sample	plus_ins_PTEN	Pathogenic	MedGen:C0027672,SNOMED CT:699346009	Hereditary cancer-predisposing syndrome	criteria provided, single submitter	187107
+3	chr17	21703214	C	-		Yes	KCNJ18	ENST00000567955.3	frameshift deletion	_143_	ENST00000567955.3:KCNJ18:B7U540:frameshift deletion:_143_:C428-	1	no-sample	plus_del_KCNJ18	Pathogenic, risk factor	MedGen:C2749982,OMIM:188580|MedGen:C2750473,OMIM:613239	Thyrotoxic periodic paralysis, susceptibility to, 1|Thyrotoxic periodic paralysis 2	no assertion criteria provided	204
+4	chr1	7965348	G	T		Yes	PARK7	ENST00000338639.9	missense	A39S	ENST00000338639.9:PARK7:Q99497:missense:A39S:G115T; ENST00000377488.5:PARK7:Q99497:missense:A39S:G115T; ENST00000377491.5:PARK7:Q99497:missense:A39S:G115T; ENST00000377493.9:PARK7:K7ELW0:missense:A39S:G115T; ENST00000493678.5:PARK7:Q99497:missense:A39S:G115T	1	no-sample	plus_SBS_PARK7	Pathogenic	MedGen:C2751533	Parkinson disease, autosomal recessive early-onset, digenic, PINK1/DJ1	no assertion criteria provided	7069
+5	chr15	48756289	G	A		Yes	CEP152	ENST00000380950.6	stop gained	R987*	ENST00000325747.9:CEP152:(na):stop gained:R894*:C2680T; ENST00000380950.6:CEP152:O94986:stop gained:R987*:C2959T; ENST00000399334.7:CEP152:(na):stop gained:R987*:C2959T	1	minus_CEP152_2		Pathogenic	MedGen:C3553886,OMIM:614852	Primary autosomal recessive microcephaly 9	no assertion criteria provided	56
+6	chr17	7674904	TC	-		Yes	TP53	ENST00000445888.6	frameshift deletion	_209_	ENST00000269305.8:TP53:P04637:frameshift deletion:_209_:GA626-; ENST00000359597.8:TP53:J3KP33:frameshift deletion:_209_:GA626-; ENST00000413465.6:TP53:E7EQX7:frameshift deletion:_209_:GA626-; ENST00000420246.6:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000445888.6:TP53:P04637:frameshift deletion:_209_:GA626-; ENST00000455263.6:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000504290.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000504937.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000510385.5:TP53:(na):frameshift deletion:_77_:GA230-; ENST00000610292.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000610538.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000610623.4:TP53:A0A087WT22:frameshift deletion:_50_:GA149-; ENST00000615910.4:TP53:A0A087WZU8:frameshift deletion:_198_:GA593-; ENST00000617185.4:TP53:(na):frameshift deletion:_209_:GA626-; ENST00000618944.4:TP53:A0A087WXZ1:frameshift deletion:_50_:GA149-; ENST00000619186.4:TP53:A0A087X1Q1:frameshift deletion:_50_:GA149-; ENST00000619485.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000620739.4:TP53:(na):frameshift deletion:_170_:GA509-; ENST00000622645.4:TP53:(na):frameshift deletion:_170_:GA509-	1	no-sample	minus_del_TP53	Pathogenic	MeSH:D010051,MedGen:CN236629|MedGen:C0027672,SNOMED CT:699346009|MedGen:C0085390,Orphanet:ORPHA524,SNOMED CT:428850001|MedGen:CN517202	Ovarian Neoplasms|Hereditary cancer-predisposing syndrome|Li-Fraumeni syndrome|not provided	criteria provided, multiple submitters, no conflicts	372539
+7	chr10	87894027	-	CG		Yes	PTEN	ENST00000371953.7	frameshift insertion	_28_	ENST00000371953.7:PTEN:P60484:frameshift insertion:_28_:-82CG; ENST00000610634.1:PTEN:A0A087WT17:5-prime utr:(na):(na)	1	no-sample	no_result					
+8	chr17	7674904	T	-		Yes	TP53	ENST00000445888.6	frameshift deletion	_209_	ENST00000269305.8:TP53:P04637:frameshift deletion:_209_:A627-; ENST00000359597.8:TP53:J3KP33:frameshift deletion:_209_:A627-; ENST00000413465.6:TP53:E7EQX7:frameshift deletion:_209_:A627-; ENST00000420246.6:TP53:(na):frameshift deletion:_209_:A627-; ENST00000445888.6:TP53:P04637:frameshift deletion:_209_:A627-; ENST00000455263.6:TP53:(na):frameshift deletion:_209_:A627-; ENST00000504290.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000504937.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000510385.5:TP53:(na):frameshift deletion:_77_:A231-; ENST00000610292.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000610538.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000610623.4:TP53:A0A087WT22:frameshift deletion:_50_:A150-; ENST00000615910.4:TP53:A0A087WZU8:frameshift deletion:_198_:A594-; ENST00000617185.4:TP53:(na):frameshift deletion:_209_:A627-; ENST00000618944.4:TP53:A0A087WXZ1:frameshift deletion:_50_:A150-; ENST00000619186.4:TP53:A0A087X1Q1:frameshift deletion:_50_:A150-; ENST00000619485.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000620739.4:TP53:(na):frameshift deletion:_170_:A510-; ENST00000622645.4:TP53:(na):frameshift deletion:_170_:A510-	1	no-sample	fuzzy_del_TP53	Pathogenic	MeSH:D010051,MedGen:CN236629|MedGen:C0027672,SNOMED CT:699346009|MedGen:C0085390,Orphanet:ORPHA524,SNOMED CT:428850001|MedGen:CN517202	Ovarian Neoplasms|Hereditary cancer-predisposing syndrome|Li-Fraumeni syndrome|not provided	criteria provided, multiple submitters, no conflicts	372539
 #CRAVAT Report
-#Created at Tuesday 03/26/2019 15:36:05
+#Created at Tuesday 02/11/2020 20:59:03
 #Report level: gene
 #
-Variant Annotation				
-Hugo	Variants in Gene	Sequence Ontology	All Sequence Ontologies	Note
-MEN1	1	frameshift insertion	frameshift insertion(1)	
-PTEN	2	frameshift insertion	frameshift insertion(2)	
-KCNJ18	1	frameshift deletion	frameshift deletion(1)	
-PARK7	1	missense	missense(1)	
-CEP152	1	stop gained	stop gained(1)	
-TP53	2	frameshift deletion	frameshift deletion(2)	
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+MEN1		1	0	frameshift insertion	frameshift insertion(1)
+PTEN		2	0	frameshift insertion	frameshift insertion(2),5-prime utr(2)
+KCNJ18		1	0	frameshift deletion	frameshift deletion(1)
+PARK7		1	0	missense	missense(1)
+CEP152		1	0	stop gained	stop gained(1)
+TP53		2	0	frameshift deletion	frameshift deletion(2)
 #CRAVAT Report
-#Created at Tuesday 03/26/2019 15:36:05
+#Created at Tuesday 02/11/2020 20:59:03
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
-1	
-2	
-3	
-4	
+1	no-sample
+2	no-sample
+3	no-sample
+4	no-sample
 5	minus_CEP152_2
-6	
-7	
-8	
+6	no-sample
+7	no-sample
+8	no-sample
 #CRAVAT Report
-#Created at Tuesday 03/26/2019 15:36:05
+#Created at Tuesday 02/11/2020 20:59:03
 #Report level: mapping
 #
-Variant Annotation		
-Original Line	User Tags	UID
-2	minus_ins_MEN1	1
-3	plus_ins_PTEN	2
-4	plus_del_KCNJ18	3
-5	plus_SBS_PARK7	4
-7		5
-8	minus_del_TP53	6
-9	no_result	7
-10	fuzzy_del_TP53	8
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2	minus_ins_MEN1	1	0
+3	plus_ins_PTEN	2	0
+4	plus_del_KCNJ18	3	0
+5	plus_SBS_PARK7	4	0
+7		5	0
+8	minus_del_TP53	6	0
+9	no_result	7	0
+10	fuzzy_del_TP53	8	0
