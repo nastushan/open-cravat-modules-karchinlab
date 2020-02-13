@@ -5,6 +5,8 @@ from collections import OrderedDict
 from cravat.inout import CravatWriter
 from cravat import constants
 import os
+import logging
+import traceback
 
 class CravatConverter(BaseConverter):
 
@@ -58,6 +60,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
+        self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
         for n, l in enumerate(f):
@@ -73,6 +76,9 @@ class CravatConverter(BaseConverter):
                 if coltype is None or colnumber not in self.allowed_info_colnumbers:
                     continue
                 else:
+                    #if colnumber == '.':
+                        #coltype = 'string'
+                        #coloritype = 'string'
                     self.info_field_cols[colname] = {'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber}
             elif l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
@@ -187,7 +193,10 @@ class CravatConverter(BaseConverter):
                 elif colnumber == 'r':
                     data = colvals[1:]
                 elif colnumber == '.':
-                    data = [colvals] * len_alts
+                    if len(colvals) == len_alts:
+                        data = colvals
+                    elif len(colvals) == 1 and len_alts > 1:
+                        data = [colvals[0]] * len_alts
             else:
                 colname = tok
                 col = self.info_field_cols[colname]
@@ -231,7 +240,11 @@ class CravatConverter(BaseConverter):
         alts = alts.split(',')
         len_alts = len(alts)
         if info is not None:
-            self.info_field_data = self.parse_data_info_field(info, len_alts)
+            try:
+                self.info_field_data = self.parse_data_info_field(info, len_alts)
+            except Exception as e:
+                self._log_conversion_error(l, e)
+                self.info_field_data = {}
         else:
             self.info_field_data = {}
         if toklen <= 8 and toklen >= 5:
@@ -492,3 +505,16 @@ class CravatConverter(BaseConverter):
                 new_alt2 = new_alt[nt_pos:]
                 break  
         return new_ref2, new_alt2, new_pos
+
+    def _log_conversion_error(self, line, e):
+        """ Log exceptions thrown by primary converter.
+            All exceptions are written to the .err file with the exception type
+            and message. Exceptions are also written to the log file once, with the 
+            traceback. 
+        """
+        err_str = traceback.format_exc().rstrip()
+        #if err_str not in self.unique_excs:
+        #    self.unique_excs.append(err_str)
+        #    self.logger.error(err_str)
+        self.error_logger.error('\nLINE:NA\nINPUT:{}\nERROR:{}\n#'.format(line[:-1], str(e)))
+

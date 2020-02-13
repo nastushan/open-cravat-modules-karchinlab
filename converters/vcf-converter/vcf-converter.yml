@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.2.9
+version: 1.2.10
 type: converter
 description: Converter for VCF format input
 developer:
@@ -10,6 +10,7 @@ developer:
   citation: ''
 requires_opencravat: '>=1.7.0'
 release_note:
+  1.2.10: vcf extra info handles number dot better.
   1.2.9: vcf extra info handles dot in column name.
   1.2.8: reads number type . correctly.
   1.2.7: bugfixes to previous release
