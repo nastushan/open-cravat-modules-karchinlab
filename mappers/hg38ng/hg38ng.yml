@@ -1,0 +1,92 @@
+name: hg38ng
+title: UCSC hg38 Gene Mapper Next Generation
+version: 0.0.2
+type: mapper
+description: Gene mapper using UCSC Gencode
+developer:
+  name: 'Rick Kim'
+  organization: 'In Silico Solutions'
+  email: 'support@cravat.su'
+  website: 'http://www.insilico.us.com'
+  citation: ''
+report_substitution:
+  so:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FSD: frameshift deletion
+    FSI: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+  all_so:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FSD: frameshift deletion
+    FSI: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+  all_mappings:
+    2KD: 2kb downstream
+    2KU: 2kb upstream
+    UT3: 3-prime utr
+    UT5: 5-prime utr
+    INT: intron
+    UNK: unknown
+    SYN: synonymous
+    MIS: missense
+    CSS: complex substitution
+    STL: stop lost
+    SPL: splice site
+    STG: stop gained
+    FSD: frameshift deletion
+    FSI: frameshift insertion
+    INI: inframe insertion
+    IND: inframe deletion
+  coding:
+    Y: "Yes"
+can_summarize_by_gene: true
+gene_summary_output_columns:
+- name: num_coding_variants
+  title: Number of Coding Variants
+  type: int
+  width: 100
+  filterable: false
+- name: num_noncoding_variants
+  title: Number of Noncoding Variants
+  type: int
+  width: 120
+  filterable: false
+- name: so
+  title: Sequence Ontology
+  type: string
+  width: 120
+  category: single
+  filterable: true
+- name: all_so
+  title: All Sequence Ontologies
+  type: string
+  width: 90
+  filterable: false
+requires_opencravat: '>=1.8.0'
+private: true
+release_note:
+  0.0.2: works with python and cython
