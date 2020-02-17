@@ -1,3 +1,4 @@
+# cython: profile=True
 import sqlite3
 import cravat
 import pickle
@@ -9,52 +10,104 @@ from cravat.util import most_severe_so
 from cravat.constants import gene_level_so_exclude
 import importlib
 
+# bases
+cdef int ADENINENUM = 0
+cdef int THYMINENUM = 1
+cdef int GUANINENUM = 2
+cdef int CYTOSINENUM = 3
+cdef int NBASENUM = -1
+cdef char ADENINECHAR = ord('A')
+cdef char THYMINECHAR = ord('T')
+cdef char GUANINECHAR = ord('G')
+cdef char CYTOSINECHAR = ord('C')
+cdef char NBASECHAR = ord('N')
+cdef char* bases_dict = 'ATGC'
+cdef int base_to_basenum (char c):
+    if c == ADENINECHAR:
+        return ADENINENUM
+    if c == THYMINECHAR:
+        return THYMINENUM
+    if c == GUANINECHAR:
+        return GUANINENUM
+    if c == CYTOSINECHAR:
+        return CYTOSINENUM
+
+# mapping
+cdef class Mapping:
+    cdef str uniprot
+    cdef str achange
+    cdef str tr
+    cdef str cchange
+    cdef str genename
+    cdef str coding
+    cdef int so, aalen, csn
+    def __init__ (self, str uniprot, str achange, int so, str tr, str cchange, int aalen, str genename, str coding, int csn):
+        self.uniprot = uniprot
+        self.achange = achange
+        self.so = so
+        self.tr = tr
+        self.cchange = cchange
+        self.aalen = aalen
+        self.genename = genename
+        self.coding = coding
+        self.csn = csn
+
+cdef int _compare_mapping (Mapping m1, Mapping m2):
+    cdef bint better_csn = m1.csn > m2.csn
+    cdef bint same_csn = m1.csn == m2.csn
+    cdef bint acceptable_uniprot = m1.uniprot is not None or m2.uniprot is None
+    cdef bint higher_so = m1.so > m2.so
+    cdef bint same_so = m1.so == m2.so
+    cdef bint longer_aa = m1.aalen > m2.aalen
+    cdef bint same_aalen = m1.aalen == m2.aalen
+    cdef bint self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
+    if self_is_better:
+        return -1
+    else:
+        return 1
+
 # strands
 cdef int PLUSSTRAND = 1
 cdef int MINUSSTRAND = -1
-# bases
-cdef int ADENINE = 0
-cdef int THYMINE = 1
-cdef int GUANINE = 2
-cdef int CYTOSINE = 3
-base_dict = {ADENINE: 'A', THYMINE: 'T', GUANINE: 'G', CYTOSINE: 'C'}
-base_to_basenum = {'A': ADENINE, 'T': THYMINE, 'G': GUANINE, 'C': CYTOSINE}
+#base_dict = {ADENINENUM: 'A', THYMINENUM: 'T', GUANINENUM: 'G', CYTOSINENUM: 'C'}
+#base_to_basenum = {'A': ADENINENUM, 'T': THYMINENUM, 'G': GUANINENUM, 'C': CYTOSINENUM}
+#cdef dict rev_bases = {ord('A'):ord('T'), ord('T'):ord('A'), ord('G'):ord('C'), ord('C'):ord('G'), ord('-'):ord('-')}
 rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-'}
 # frag kind
-cdef int UP2K = -10
-cdef int UTR5 = -5
-cdef int CDS = 1
-cdef int NCRNA = 2
-cdef int INTRON = 0
-cdef int UTR3 = 5
-cdef int DN2K = 10
+UP2K = -10
+UTR5 = -5
+CDS = 1
+NCRNA = 2
+INTRON = 0
+UTR3 = 5
+DN2K = 10
 # variant kind
-cdef int SNV = 1
-cdef int INS = 2
-cdef int DEL = 3
-cdef int COM = 4
+SNV = 1
+INS = 2
+DEL = 3
+COM = 4
 # sequence ontology
-cdef int NSO = 0
-cdef int D2K = 1
-cdef int U2K = 2
-cdef int UT3 = 3
-cdef int UT5 = 4
-cdef int INT = 5
-cdef int UNK = 6
-cdef int SYN = 7
-cdef int MIS = 8
-cdef int CSS = 9
-cdef int IND = 10
-cdef int INI = 11
-cdef int STL = 12
-cdef int SPL = 13
-cdef int STG = 14
-cdef int FSD = 15
-cdef int FSI = 16
+NSO = 0
+D2K = 1
+U2K = 2
+UT3 = 3
+UT5 = 4
+INT = 5
+UNK = 6
+SYN = 7
+MIS = 8
+CSS = 9
+IND = 10
+INI = 11
+STL = 12
+SPL = 13
+STG = 14
+FSD = 15
+FSI = 16
 # csn: coding, splice, noncoding (legacy from old hg38)
-cdef int CODING = -1
-cdef int SPLICE = -2
-cdef int NONCODING = -3
+CODING = -1
+SPLICE = -2
+NONCODING = -3
 sonum_to_so = {
     D2K: '2KD',
     U2K: '2KU',
@@ -75,30 +128,30 @@ sonum_to_so = {
     NSO: '',
 }
 # aa
-cdef int NDA = -10
-cdef int NOA = -2
-cdef int UNA = -1
-cdef int STP = 0
-cdef int ALA = 1
-cdef int CYS = 2
-cdef int ASP = 3
-cdef int GLU = 4
-cdef int PHE = 5
-cdef int GLY = 6
-cdef int HIS = 7
-cdef int ILE = 8
-cdef int LYS = 9
-cdef int LEU = 10
-cdef int MET = 11
-cdef int ASN = 12
-cdef int PRO = 13
-cdef int GLN = 14
-cdef int ARG = 15
-cdef int SER = 16
-cdef int THR = 17
-cdef int VAL = 18
-cdef int TRP = 19
-cdef int TYR = 20
+NDA = -10
+NOA = -2
+UNA = -1
+STP = 0
+ALA = 1
+CYS = 2
+ASP = 3
+GLU = 4
+PHE = 5
+GLY = 6
+HIS = 7
+ILE = 8
+LYS = 9
+LEU = 10
+MET = 11
+ASN = 12
+PRO = 13
+GLN = 14
+ARG = 15
+SER = 16
+THR = 17
+VAL = 18
+TRP = 19
+TYR = 20
 aa_to_num = {'A':ALA, 'C': CYS, 'D': ASP, 'E': GLU, 'F': PHE,
     'G': GLY, 'H': HIS, 'I': ILE, 'K': LYS, 'L': LEU,
     'M': MET, 'N': ASN, 'P': PRO, 'Q': GLN, 'R': ARG,
@@ -111,10 +164,23 @@ aanum_to_aa = {
     SER: 'S', THR: 'T', VAL: 'V', TRP: 'W', TYR: 'Y',
     STP: '*', NOA: '_', UNA: '?', NDA: ''}
 
-def convert_codon_to_codonnum (codon):
+cdef int convert_codon_to_codonnum (char* codon):
     cdef int codonnum = 0
-    for i in range(len(codon)):
-        codonnum = codonnum | base_to_basenum[codon[i]] << ((2 - i) << 1)
+    cdef char base1 = codon[0]
+    cdef char base2 = codon[1]
+    cdef char base3 = codon[2]
+    cdef char basenum = 0
+    if base1 == ADENINECHAR:
+        basenum = ADENINENUM
+    elif base1 == THYMINECHAR:
+        basenum = THYMINENUM
+    elif base1 == GUANINECHAR:
+        basenum = GUANINENUM
+    elif base1 == CYTOSINECHAR:
+        basenum = CYTOSINENUM
+    codonnum = codonnum | (base_to_basenum(codon[0]) << 4)
+    codonnum = codonnum | (base_to_basenum(codon[1]) << 2)
+    codonnum = codonnum | base_to_basenum(codon[2])
     return codonnum
 
 codon_to_codonnum = {
@@ -247,50 +313,15 @@ codon_to_aa = {
     'TAC':'Y', 'TGA':'*', 'TAA':'*', 
     'TAG':'*'}
 
-class Mapping:
-    def __init__ (self, uniprot=None, achange=None, so=NSO, tr=None, cchange=None, aalen=-1, genename=None, coding=None, csn=NONCODING):
-        self.uniprot = uniprot
-        self.achange = achange
-        self.so = so
-        self.tr = tr
-        self.cchange = cchange
-        self.aalen = aalen
-        self.genename = genename
-        self.coding = coding
-        self.csn = csn
-
-    def better_than (self, mapping):
-        better_csn = self.csn > mapping.csn
-        same_csn = self.csn == mapping.csn
-        acceptable_uniprot = self.uniprot is not None or mapping.uniprot is None
-        #same_uniprot = ((self.uniprot is None) and (mapping.uniprot is None)) or ((self.uniprot is not None) and (mapping.uniprot is not None))
-        higher_so = self.so > mapping.so
-        same_so = self.so == mapping.so
-        longer_aa = self.aalen > mapping.aalen
-        same_aalen = self.aalen == mapping.aalen
-        #self_is_better = (self.uniprot is not None or mapping.uniprot is None) and (higher_so or (same_so and longer_aa))
-        #self_is_better = (better_csn) or ((same_csn and acceptable_uniprot) and (higher_so or (same_so and longer_aa)))
-        self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
-        # TODO: revert below back to correct logic.
-        #if better_uniprot or (same_uniprot and higher_so) or (same_uniprot and same_so and longer_aa):
-        if self_is_better:
-            return True
-        else:
-            return False
-
-    def __repr__ (self):
-        return str([self.genename, self.uniprot, self.achange, self.so, self.tr, self.cchange, self.coding])
-
-    def _get_crx_data (self):
-        return [self.uniprot, self.achange, sonum_to_so[self.so], self.tr, self.cchange]
-
 class Mapper (cravat.BaseMapper):
     def setup (self):
+        self.module_dir = os.path.dirname(__file__)
         data_dir = os.path.join(self.module_dir, 'data')
         db_path = os.path.join(data_dir, 'gene_24_10000_old.sqlite')
-        db = self._get_db(db_path)
-        self.c = db.cursor()
-        self.c2 = db.cursor()
+        self.db = self._get_db(db_path)
+        self.c = self.db.cursor()
+        self.c2 = self.db.cursor()
+        self.c.execute('pragma synchronous=0;')
         q = 'select v from info where k="binsize"'
         self.c.execute(q)
         self.binsize = int(self.c.fetchone()[0])
@@ -302,17 +333,47 @@ class Mapper (cravat.BaseMapper):
         self.mrnas = pickle.load(f)
         f.close()
         self.logger.info(f'mapper database: {db_path}')
+        self._make_tr_info()
+
+    def end (self):
+        self.c.execute('pragma synchronous=2;')
+        self.c.close()
+        self.c2.close()
+        self.db.close()
+        
+    def _make_tr_info (self):
+        t = time.time()
+        q = f'select t.tid, t.name, t.strand, t.refseq, t.uniprot, t.aalen, g.desc from transcript as t, genenames as g where t.genename=g.genename'
+        self.c.execute(q)
+        self.tr_info = {}
+        for r in self.c.fetchall():
+            (tid, name, strand, refseq, uniprot, aalen, genename) = r
+            if refseq is None:
+                refseqs = []
+            else:
+                refseqs = [v.encode() for v in refseq.split(',')]
+            if uniprot is None:
+                uniprot = ''
+            if genename is None:
+                genename = ''
+            self.tr_info[tid] = [name, strand, refseqs, uniprot, aalen, genename]
 
     def _get_db (self, db_path):
         t = time.time()
-        if importlib.util.find_spec('aspw') is not None:
+        db = sqlite3.connect(':memory:')
+        diskdb = sqlite3.connect(db_path)
+        diskdb.backup(db)
+        '''
+        if importlib.util.find_spec('apsw') is not None:
+            import apsw
             self.logger.info(f'using in-memory db')
-            db = aspw.Connection(':memory:')
-            diskdb = sqlite3.Connection(db_path)
+            db = apsw.Connection(':memory:')
+            diskdb = apsw.Connection(db_path)
             db.backup('main', diskdb, 'main').step()
         else:
             self.logger.info(f'using disk db')
             db = sqlite3.connect(db_path)
+        '''
         return db
 
     def get_addl_tr_info (self, tid):
@@ -321,33 +382,378 @@ class Mapper (cravat.BaseMapper):
         row = self.c2.fetchone()
         return row
 
+    def _get_snv_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno):
+        if kind == CDS:
+            so, ref_aanum, alt_aanum = self._get_svn_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base, strand)
+            ref_aas = [aanum_to_aa[ref_aanum]]
+            alt_aas = [aanum_to_aa[alt_aanum]]
+            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
+            coding = 'Y'
+            csn = CODING
+        elif kind == UTR5:
+            so = UT5
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == UTR3:
+            so = UT3
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == INTRON:
+            achange = ''
+            cchange = ''
+            coding = ''
+            if gpos == start or gpos == start + 1:
+                so = SPL
+                csn = SPLICE
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            elif gpos == end or gpos == end - 1:
+                so = SPL
+                csn = SPLICE
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                apos, so, csn = self._get_splice_apos_minusstrand(tid, fragno, chrom)
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            else:
+                so = INT
+                csn = NONCODING
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+        elif kind == NCRNA:
+            so = UNK
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == UP2K:
+            so = U2K
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == DN2K:
+            so = D2K
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+
+    def _get_ins_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, alt_base, fragno):
+        if kind == CDS:
+            so, ref_aas, alt_aas = self._get_ins_cds_so(tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand)
+            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
+            coding = 'Y'
+            csn = CODING
+        elif kind == UTR5:
+            so = UT5
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == UTR3:
+            so = UTR3
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == INTRON:
+            achange = ''
+            cchange = ''
+            coding = ''
+            if gpos == start or gpos == start + 1:
+                so = SPL
+                csn = SPLICE
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            elif gpos == end or gpos == end - 1:
+                so = SPL
+                csn = SPLICE
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                apos, so, csn = self._get_splice_apos_minusstrand(tid, fragno, chrom)
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+            else:
+                so = INT
+                csn = NONCODING
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+        elif kind == NCRNA:
+            so = UNK
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == UP2K:
+            so = U2K
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        elif kind == DN2K:
+            so = D2K
+            achange = ''
+            cchange = ''
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = ''
+            csn = NONCODING
+        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+
+    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, lenref, fragno):
+        q = f'select kind from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
+        self.c2.execute(q)
+        gposend_kind = self.c2.fetchone()
+        if gposend_kind is not None:
+            gposend_kind = gposend_kind[0]
+        if kind != gposend_kind:
+            so = UNK
+            coding = ''
+            achange = ''
+            cchange = ''
+            csn = NONCODING
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+        else:
+            if kind == CDS:
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                lenref_3 = lenref % 3
+                if lenref_3 == 0:
+                    so = IND
+                else:
+                    so = FSD
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
+                coding = 'Y'
+                csn = CODING
+            elif kind == UTR5:
+                so = UT5
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == UTR3:
+                so = UT3
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == INTRON:
+                achange = ''
+                cchange = ''
+                coding = ''
+                if gpos == start or gpos == start + 1:
+                    so = SPL
+                    csn = SPLICE
+                    ref_aas = [aanum_to_aa[NOA]]
+                    alt_aas = [aanum_to_aa[NOA]]
+                    apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
+                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                elif gpos == end or gpos == end - 1:
+                    so = SPL
+                    csn = SPLICE
+                    ref_aas = [aanum_to_aa[NOA]]
+                    alt_aas = [aanum_to_aa[NOA]]
+                    apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
+                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                else:
+                    so = INT
+                    csn = NONCODING
+                    ref_aas = [aanum_to_aa[NDA]]
+                    alt_aas = [aanum_to_aa[NDA]]
+            elif kind == NCRNA:
+                so = UNK
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == UP2K:
+                so = U2K
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == DN2K:
+                so = D2K
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+
+    def _get_com_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, lenref, fragno):
+        if lenref > 1:
+            q = f'select kind from transcript_frags_{chrom} where binno={gposendbin} and start<={gposend} and end>={gposend} and tid={tid}'
+            self.c2.execute(q)
+            gposend_kind = self.c2.fetchone()
+            if gposend_kind is not None:
+                gposend_kind = gposend_kind[0]
+        else:
+            gposend_kind = kind
+        if kind != gposend_kind:
+            so = UNK
+            coding = ''
+            achange = ''
+            cchange = ''
+            csn = NONCODING
+        else:
+            if kind == CDS:
+                so = CSS
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NOA]]
+                alt_aas = [aanum_to_aa[NOA]]
+                achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
+                coding = 'Y'
+                csn = CODING
+            elif kind == UTR5:
+                so = UT5
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == UTR3:
+                so = UTR3
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == INTRON:
+                achange = ''
+                cchange = ''
+                coding = ''
+                if gpos == start or gpos == start + 1:
+                    so = SPL
+                    csn = SPLICE
+                    ref_aas = [aanum_to_aa[NOA]]
+                    alt_aas = [aanum_to_aa[NOA]]
+                    apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
+                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                elif gpos == end or gpos == end - 1:
+                    so = SPL
+                    csn = SPLICE
+                    ref_aas = [aanum_to_aa[NOA]]
+                    alt_aas = [aanum_to_aa[NOA]]
+                    apos, so, csn = self._get_splice_apos_minusstrand(tid, fragno, chrom)
+                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
+                else:
+                    so = INT
+                    csn = NONCODING
+                    ref_aas = [aanum_to_aa[NDA]]
+                    alt_aas = [aanum_to_aa[NDA]]
+            elif kind == NCRNA:
+                so = UNK
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == UP2K:
+                so = U2K
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+            elif kind == DN2K:
+                so = D2K
+                achange = ''
+                cchange = ''
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = ''
+                csn = NONCODING
+        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+
+    def _get_tr_map_data (self, chrom, gpos):
+        gposbin = int(gpos / self.binsize)
+        q = f'select * from transcript_frags_{chrom} where binno={gposbin} and start<={gpos} and end>={gpos} order by tid'
+        self.c.execute(q)
+        ret = self.c.fetchall()
+        return ret
+
     def map (self, crv_data):
-        cdef int fragno, start, end, kind, exonno, tstart, cstart, binno, aalen
-        cdef int ref_codonnum, alt_codonnum, ref_aanum, alt_aanum
-        cdef int lenref_3
-        cdef int lentr_ref_base = -1
-        cdef int csn # coding, splice, noncoding flag
-        cdef int gposend # for deletion and complex substitution
-        cdef int gpos
-        cdef int tpos = -1
-        cdef int cpos
-        cdef int apos
-        cdef int gposbin
-        cdef int var_type
-        cdef int lenref, lenalt
+        cdef str coding
+        cdef int i, j, k
+        cdef bytes ref_base
+        cdef bytes alt_base
+        cdef bytes tr_ref_base
+        cdef bytes tr_alt_base
+        cdef bytes tr_ref_base_plus
+        cdef bytes tr_ref_base_minus
+        cdef bytes tr_alt_base_plus
+        cdef bytes tr_alt_base_minus
+        cdef Mapping mapping, mapping1, mapping2
+        cdef Mapping primary_mapping
+        tpos = -1
         uid = crv_data['uid']
         chrom = crv_data['chrom']
         gpos = crv_data['pos']
-        gposbin = int(gpos / self.binsize)
-        ref_base = crv_data['ref_base']
-        alt_base = crv_data['alt_base']
-        lenref = len(ref_base)
-        lenalt = len(alt_base)
-        if ref_base == '-' and alt_base != '-' and lenalt >= 1:
+        ref_base_str = crv_data['ref_base']
+        alt_base_str = crv_data['alt_base']
+        lenref = len(ref_base_str)
+        lenalt = len(alt_base_str)
+        tr_ref_base_minus_str = ''.join([rev_bases[b] for b in ref_base_str])
+        tr_alt_base_minus_str = ''.join([rev_bases[b] for b in alt_base_str])
+        tr_ref_base_minus_str = tr_ref_base_minus_str[::-1]
+        tr_alt_base_minus_str = tr_alt_base_minus_str[::-1]
+        tr_ref_base_minus = tr_ref_base_minus_str.encode()
+        tr_alt_base_minus = tr_alt_base_minus_str.encode()
+        ref_base = ref_base_str.encode()
+        alt_base = alt_base_str.encode()
+        tr_ref_base_plus = ref_base
+        tr_alt_base_plus = alt_base
+        if ref_base == b'-' and alt_base != b'-' and lenalt >= 1:
             var_type = INS
-        elif alt_base == '-' and ref_base != '-' and lenref >= 1:
+        elif alt_base == b'-' and ref_base != b'-' and lenref >= 1:
             var_type = DEL
-        elif ref_base != '-' and alt_base != '-' and lenref == 1 and lenalt == 1:
+        elif ref_base != b'-' and alt_base != b'-' and lenref == 1 and lenalt == 1:
             var_type = SNV
         else:
             var_type = COM
@@ -357,31 +763,27 @@ class Mapper (cravat.BaseMapper):
         else:
             gposend = -1
             gposendbin = -1
-        q = f'select f.*, t.strand, t.name, g.desc, t.uniprot, t.aalen, t.refseq from transcript_frags_{chrom} as f, transcript as t, genenames as g where f.binno={gposbin} and f.start<={gpos} and f.end>={gpos} and t.tid=f.tid and t.genename=g.genename'
-        #q = f'select * from transcript_frags_{chrom} where binno={gposbin} and start<={gpos} and end>={gpos}'
-        self.c.execute(q)
+        rs = self._get_tr_map_data(chrom, gpos)
         all_mappings = {}
         alt_transcripts = {}
-        coding = None
-        for r in self.c.fetchall():
-            [tid, fragno, start, end, kind, exonno, tstart, cstart, binno, strand, tr, genename, uniprot, aalen, refseqs] = r
-            strand = int(strand)
+        coding = ''
+        for r in rs:
+            [tid, fragno, start, end, kind, exonno, tstart, cstart, binno] = r
+            [tr, strand, refseqs, uniprot, aalen, genename] = self.tr_info[tid]
+            #strand = int(strand)
             if tr not in alt_transcripts:
                 alt_transcripts[tr] = []
-            for refseq in refseqs.split(','):
+            for refseq in refseqs:
                 if refseq not in alt_transcripts[tr]:
                     alt_transcripts[tr].append(refseq)
             if strand == PLUSSTRAND:
                 tpos = gpos - start + tstart 
-                tr_ref_base = ref_base
-                tr_alt_base = alt_base
+                tr_ref_base = tr_ref_base_plus
+                tr_alt_base = tr_alt_base_plus
             elif strand == MINUSSTRAND:
                 tpos = end - gpos + tstart
-                tr_ref_base = ''.join([rev_bases[b] for b in ref_base])
-                tr_alt_base = ''.join([rev_bases[b] for b in alt_base])
-                tr_ref_base = tr_ref_base[::-1]
-                tr_alt_base = tr_alt_base[::-1]
-            lentr_ref_base = len(tr_ref_base)
+                tr_ref_base = tr_ref_base_minus
+                tr_alt_base = tr_alt_base_minus
             # cpos, apos
             if kind == CDS:
                 if strand == PLUSSTRAND:
@@ -402,324 +804,14 @@ class Mapper (cravat.BaseMapper):
             ref_codonnum = -1
             alt_codonnum = -1
             if var_type == SNV:
-                if kind == CDS:
-                    so, ref_aanum, alt_aanum = self._get_svn_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base, strand)
-                    ref_aas = [aanum_to_aa[ref_aanum]]
-                    alt_aas = [aanum_to_aa[alt_aanum]]
-                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
-                    coding = 'Y'
-                    csn = CODING
-                elif kind == UTR5:
-                    so = UT5
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == UTR3:
-                    so = UT3
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == INTRON:
-                    achange = None
-                    cchange = None
-                    coding = ''
-                    if gpos == start or gpos == start + 1:
-                        so = SPL
-                        csn = SPLICE
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    elif gpos == end or gpos == end - 1:
-                        so = SPL
-                        csn = SPLICE
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        apos = self._get_splice_apos_minusstrand(tid, fragno, chrom)
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    else:
-                        so = INT
-                        csn = NONCODING
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                elif kind == NCRNA:
-                    so = UNK
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == UP2K:
-                    so = U2K
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == DN2K:
-                    so = D2K
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-            elif var_type == INS:
-                if kind == CDS:
-                    so, ref_aas, alt_aas = self._get_ins_cds_so(tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand)
-                    achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
-                    coding = 'Y'
-                    csn = CODING
-                elif kind == UTR5:
-                    so = UT5
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == UTR3:
-                    so = UTR3
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == INTRON:
-                    achange = None
-                    cchange = None
-                    coding = ''
-                    if gpos == start or gpos == start + 1:
-                        so = SPL
-                        csn = SPLICE
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    elif gpos == end or gpos == end - 1:
-                        so = SPL
-                        csn = SPLICE
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        apos = self._get_splice_apos_minusstrand(tid, fragno, chrom)
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                    else:
-                        so = INT
-                        csn = NONCODING
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                elif kind == NCRNA:
-                    so = UNK
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == UP2K:
-                    so = U2K
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-                elif kind == DN2K:
-                    so = D2K
-                    achange = None
-                    cchange = None
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
-                    coding = ''
-                    csn = NONCODING
-            elif var_type == DEL:
-                q = f'select kind from transcript_frags_{chrom} where binno={gposendbin} and start<={gposend} and end>={gposend} and tid={tid}'
-                self.c2.execute(q)
-                gposend_kind = self.c2.fetchone()
-                if gposend_kind is not None:
-                    gposend_kind = gposend_kind[0]
-                if kind != gposend_kind:
-                    so = UNK
-                    coding = ''
-                    achange = None
-                    cchange = None
-                    csn = NONCODING
-                else:
-                    if kind == CDS:
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        lenref_3 = lenref % 3
-                        if lenref_3 == 0:
-                            so = IND
-                        else:
-                            so = FSD
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
-                        coding = 'Y'
-                        csn = CODING
-                    elif kind == UTR5:
-                        so = UT5
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == UTR3:
-                        so = UT3
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == INTRON:
-                        achange = None
-                        cchange = None
-                        coding = ''
-                        if gpos == start or gpos == start + 1:
-                            so = SPL
-                            csn = SPLICE
-                            ref_aas = [aanum_to_aa[NOA]]
-                            alt_aas = [aanum_to_aa[NOA]]
-                            apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
-                            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        elif gpos == end or gpos == end - 1:
-                            so = SPL
-                            csn = SPLICE
-                            ref_aas = [aanum_to_aa[NOA]]
-                            alt_aas = [aanum_to_aa[NOA]]
-                            apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
-                            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        else:
-                            so = INT
-                            csn = NONCODING
-                            ref_aas = [aanum_to_aa[NDA]]
-                            alt_aas = [aanum_to_aa[NDA]]
-                    elif kind == NCRNA:
-                        so = UNK
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == UP2K:
-                        so = U2K
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == DN2K:
-                        so = D2K
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-            elif var_type == COM:
-                if lenref > 1:
-                    q = f'select kind from transcript_frags_{chrom} where binno={gposendbin} and start<={gposend} and end>={gposend} and tid={tid}'
-                    self.c2.execute(q)
-                    gposend_kind = self.c2.fetchone()
-                    if gposend_kind is not None:
-                        gposend_kind = gposend_kind[0]
-                else:
-                    gposend_kind = kind
-                if kind != gposend_kind:
-                    so = UNK
-                    coding = ''
-                    achange = None
-                    cchange = None
-                    csn = NONCODING
-                else:
-                    if kind == CDS:
-                        so = CSS
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NOA]]
-                        alt_aas = [aanum_to_aa[NOA]]
-                        achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        cchange = f'{tr_ref_base}{cpos}{tr_alt_base}'
-                        coding = 'Y'
-                        csn = CODING
-                    elif kind == UTR5:
-                        so = UT5
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == UTR3:
-                        so = UTR3
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == INTRON:
-                        achange = None
-                        cchange = None
-                        coding = ''
-                        if gpos == start or gpos == start + 1:
-                            so = SPL
-                            csn = SPLICE
-                            ref_aas = [aanum_to_aa[NOA]]
-                            alt_aas = [aanum_to_aa[NOA]]
-                            apos = self._get_splice_apos_plusstrand(tid, fragno, chrom)
-                            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        elif gpos == end or gpos == end - 1:
-                            so = SPL
-                            csn = SPLICE
-                            ref_aas = [aanum_to_aa[NOA]]
-                            alt_aas = [aanum_to_aa[NOA]]
-                            apos = self._get_splice_apos_minusstrand(tid, fragno, chrom)
-                            achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                        else:
-                            so = INT
-                            csn = NONCODING
-                            ref_aas = [aanum_to_aa[NDA]]
-                            alt_aas = [aanum_to_aa[NDA]]
-                    elif kind == NCRNA:
-                        so = UNK
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == UP2K:
-                        so = U2K
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
-                    elif kind == DN2K:
-                        so = D2K
-                        achange = None
-                        cchange = None
-                        ref_aas = [aanum_to_aa[NDA]]
-                        alt_aas = [aanum_to_aa[NDA]]
-                        coding = ''
-                        csn = NONCODING
+                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno)
+            if var_type == INS:
+                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, alt_base, fragno)
+            if var_type == DEL:
+                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, lenref, fragno)
+            if var_type == COM:
+                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, lenref, fragno)
+            #mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
             mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
             if genename not in all_mappings:
                 all_mappings[genename] = []
@@ -734,15 +826,17 @@ class Mapper (cravat.BaseMapper):
         crx_data['achange'] = primary_mapping.achange
         amd = {}
         for genename in sorted(all_mappings.keys()):
-            if genename not in amd:
-                amd[genename] = []
-            for mapping in sorted(all_mappings[genename], key=lambda mapping: mapping.tr):
-                amd[genename].append(mapping._get_crx_data())
-        crx_data['all_mappings'] = json.dumps(amd, separators=(',', ':'))
+            amd[genename] = []
+            for mapping in all_mappings[genename]:
+                amd[genename].append([mapping.uniprot, mapping.achange, sonum_to_so[mapping.so], mapping.tr, mapping.cchange])
+        crx_data['all_mappings'] = json.dumps(amd) #, separators=(',', ':'))
+        #crx_data['all_mappings'] = amd
         return crx_data, alt_transcripts
 
     def _get_splice_apos_plusstrand (self, tid, fragno, chrom):
-        cdef int apos = -1
+        apos = None
+        so = None
+        csn = None
         for search_frag_no in range(fragno - 1, -1, -1):
             q = f'select kind, start, end, cpos from transcript_frags_{chrom} where tid={tid} and fragno={search_frag_no}'
             self.c2.execute(q)
@@ -750,12 +844,23 @@ class Mapper (cravat.BaseMapper):
             if kind == CDS:
                 prev_last_cpos = prev_frag_cpos + (prev_frag_end - prev_frag_start)
                 apos = int((prev_last_cpos - 1) / 3) + 1
+                so = SPL
+                csn = SPLICE
                 break
-        return apos
+            elif kind == UTR3 or kind == UTR5 or kind == UP2K or kind == DN2K:
+                apos = -1
+                so = INT
+                csn = SPLICE
+                break
+        if apos is None:
+            raise
+        return apos, so, csn
 
     def _get_splice_apos_minusstrand (self, tid, fragno, chrom):
-        cdef int apos = -1
-        q = f'select max(fragno) from transcript_frags_{chrom}'
+        apos = None
+        so = None
+        csn = None
+        q = f'select max(fragno) from transcript_frags_{chrom} where tid={tid}'
         self.c2.execute(q)
         max_fragno = self.c2.fetchone()[0]
         for search_frag_no in range(fragno + 1, max_fragno + 1, 1):
@@ -765,8 +870,17 @@ class Mapper (cravat.BaseMapper):
             if kind == CDS:
                 next_first_cpos = next_frag_cpos
                 apos = int((next_first_cpos - 1) / 3) + 1
+                so = SPL
+                csn = SPLICE
                 break
-        return apos
+            elif kind == UTR3 or kind == UTR5 or kind == UP2K or kind == DN2K:
+                apos = -1
+                so = INT
+                csn = SPLICE
+                break
+        if apos is None:
+            raise
+        return apos, so, csn
 
     def _get_ins_cds_so (self, tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand):
         if len(alt_base) % 3 == 0:
@@ -864,18 +978,13 @@ class Mapper (cravat.BaseMapper):
         '''
         return so, ref_aas, alt_aas
 
-    def _get_svn_cds_so (self, tid, cpos, cstart, tpos, tstart, alt_base, strand):
-        cdef int ref_codonnum
-        cdef int alt_codonnum
-        cdef int tpos_q
-        cdef int cpos_codonstart
-        cdef int tpos_codonstart
+    def _get_svn_cds_so (self, int tid, int cpos, int cstart, int tpos, int tstart, bytes alt_base, int strand):
         [seq, ex] = self.mrnas[tid]
         cpos_codonstart = int((cpos - 1) / 3) * 3 + 1
         ref_codonnum = 0
         alt_codonnum = 0
         tpos_codonstart = tstart + (cpos_codonstart - cstart)
-        alt_basebits = base_to_basenum[alt_base]
+        alt_basebits = base_to_basenum(alt_base[0])
         for i in range(3):
             tpos_q = tpos_codonstart + i
             if tpos_q in ex:
@@ -910,10 +1019,12 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        primary_mapping = Mapping()
+        cdef Mapping primary_mapping
+        primary_mapping = Mapping('', '', NSO, '', '', -1, '', '', NSO)
         for genename, mappings in all_mappings.items():
             for mapping in mappings:
-                if primary_mapping is None or mapping.better_than(primary_mapping):
+                #if primary_mapping.so == NSO or mapping.better_than(primary_mapping):
+                if primary_mapping.so == NSO or _compare_mapping(mapping, primary_mapping) > 0:
                     primary_mapping = mapping
         return primary_mapping
 
@@ -939,7 +1050,7 @@ class Mapper (cravat.BaseMapper):
             ref_codonnum += base_bits << num_shift
             if altbase:
                 if tpos_codon == tpos:
-                    alt_codonnum += base_to_basenum[alt_base] << num_shift
+                    alt_codonnum += base_to_basenum(alt_base) << num_shift
                 else:
                     alt_codonnum += base_bits << num_shift
         ref_aanum = codonnum_to_aanum[ref_codonnum]
@@ -948,6 +1059,7 @@ class Mapper (cravat.BaseMapper):
     '''
 
     def _get_codons (self, tid, chrom, tstart, cstart, cpos_start, cpos_end=None):
+        cdef char base
         if cpos_end is None:
             cpos_end = cpos_start
         [seq, ex] = self.mrnas[tid]
@@ -973,11 +1085,11 @@ class Mapper (cravat.BaseMapper):
                         codonnum = codonnum | base_bits
                     except IndexError:
                         base = self.hg38reader[chrom][tpos - 1].upper()
-                        if base == 'N':
+                        if base == NBASECHAR:
                             codonnum = codonnum | 0b10000000
                             break
                         else:
-                            base_bits = base_to_basenum[base] << ((2 - i) << 1)
+                            base_bits = base_to_basenum(base) << ((2 - i) << 1)
                             codonnum = codonnum | base_bits
             if codonnum & 0b10000000 > 0:
                 aanum = UNA
@@ -1010,7 +1122,7 @@ class Mapper (cravat.BaseMapper):
                             codonnum = codonnum | 0b10000000
                             break
                         else:
-                            base_bits = base_to_basenum[base] << ((2 - i) << 1)
+                            base_bits = base_to_basenum(base) << ((2 - i) << 1)
                             codonnum = codonnum | base_bits
             if codonnum & 0b10000000 > 0:
                 aanum = UNA
@@ -1050,3 +1162,22 @@ class Mapper (cravat.BaseMapper):
         out['all_so'] = ','.join(so_count_l)
         return out
 
+    def empty_map (self, crv_data):
+        return
+
+if __name__ == '__main__':
+    crv_data_snv = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'C', 'alt_base':'T'}
+    crv_data_ini = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'-', 'alt_base':'TTT'}
+    crv_data_ind = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'CCC', 'alt_base':'-'}
+    crv_data_fsi = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'-', 'alt_base':'T'}
+    crv_data_fsd = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'C', 'alt_base':'-'}
+    crv_data_com = {'uid':1, 'chrom':'chr1', 'pos':155208824, 'ref_base':'CA', 'alt_base':'TAA'}
+    m = Mapper('', None, live=True)
+    m.setup()
+    for i in range(10000):
+        crx_data = m.map(crv_data_snv)
+        crx_data = m.map(crv_data_ini)
+        crx_data = m.map(crv_data_ind)
+        crx_data = m.map(crv_data_fsi)
+        crx_data = m.map(crv_data_fsd)
+        crx_data = m.map(crv_data_com)
