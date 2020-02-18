@@ -23,3 +23,5 @@ example_annotator
 annotators/segway*
 annotators/haploreg*
 *.swp
+**/**/*.so
+**/**/*.pyd
