@@ -1,6 +1,6 @@
 name: hg38ng
 title: UCSC hg38 Gene Mapper Next Generation
-version: 0.0.2
+version: 0.0.6
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -89,4 +89,6 @@ gene_summary_output_columns:
 requires_opencravat: '>=1.8.0'
 private: true
 release_note:
+  0.0.6: py version works with 3.6 diskdb and 3.7 memory db
+  0.0.4: binaries for platforms
   0.0.2: works with python and cython

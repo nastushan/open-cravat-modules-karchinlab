@@ -1,5 +1,4 @@
 # cython: profile=False
-import sqlite3
 import cravat
 import pickle
 import time
@@ -8,19 +7,26 @@ import json
 from cravat.util import most_severe_so
 from cravat.constants import gene_level_so_exclude
 import importlib
-from libc.stdlib cimport malloc, free
 
 # bases
-cdef int ADENINENUM = 0
-cdef int THYMINENUM = 1
-cdef int GUANINENUM = 2
-cdef int CYTOSINENUM = 3
-cdef char ADENINECHAR = ord('A')
-cdef char THYMINECHAR = ord('T')
-cdef char GUANINECHAR = ord('G')
-cdef char CYTOSINECHAR = ord('C')
-cdef char NBASECHAR = ord('N')
-cdef int base_to_basenum (char c):
+ADENINENUM = 0
+THYMINENUM = 1
+GUANINENUM = 2
+CYTOSINENUM = 3
+'''
+ADENINECHAR = ord('A')
+THYMINECHAR = ord('T')
+GUANINECHAR = ord('G')
+CYTOSINECHAR = ord('C')
+NBASECHAR = ord('N')
+'''
+ADENINECHAR = 'A'
+THYMINECHAR = 'T'
+GUANINECHAR = 'G'
+CYTOSINECHAR = 'C'
+NBASECHAR = 'N'
+
+def base_to_basenum (c):
     if c == ADENINECHAR:
         return ADENINENUM
     if c == THYMINECHAR:
@@ -31,15 +37,9 @@ cdef int base_to_basenum (char c):
         return CYTOSINENUM
 
 # mapping
-cdef class Mapping:
-    cdef str uniprot
-    cdef str achange
-    cdef str tr
-    cdef str cchange
-    cdef str genename
-    cdef str coding
-    cdef int so, aalen, csn
-    def __init__ (self, str uniprot, str achange, int so, str tr, str cchange, int aalen, str genename, str coding, int csn):
+class Mapping:
+
+    def __init__ (self, uniprot, achange, so, tr, cchange, aalen, genename, coding, csn):
         self.uniprot = uniprot
         self.achange = achange
         self.so = so
@@ -50,63 +50,63 @@ cdef class Mapping:
         self.coding = coding
         self.csn = csn
 
-cdef int _compare_mapping (Mapping m1, Mapping m2):
-    cdef bint better_csn = m1.csn > m2.csn
-    cdef bint same_csn = m1.csn == m2.csn
-    cdef bint acceptable_uniprot = m1.uniprot is not None or m2.uniprot is None
-    cdef bint higher_so = m1.so > m2.so
-    cdef bint same_so = m1.so == m2.so
-    cdef bint longer_aa = m1.aalen > m2.aalen
-    cdef bint same_aalen = m1.aalen == m2.aalen
-    cdef bint self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
+def _compare_mapping (m1, m2):
+    better_csn = m1.csn > m2.csn
+    same_csn = m1.csn == m2.csn
+    acceptable_uniprot = m1.uniprot is not None or m2.uniprot is None
+    higher_so = m1.so > m2.so
+    same_so = m1.so == m2.so
+    longer_aa = m1.aalen > m2.aalen
+    same_aalen = m1.aalen == m2.aalen
+    self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
     if self_is_better:
         return -1
     else:
         return 1
 
 # strands
-cdef int PLUSSTRAND = 1
-cdef int MINUSSTRAND = -1
+PLUSSTRAND = 1
+MINUSSTRAND = -1
 #base_dict = {ADENINENUM: 'A', THYMINENUM: 'T', GUANINENUM: 'G', CYTOSINENUM: 'C'}
 #base_to_basenum = {'A': ADENINENUM, 'T': THYMINENUM, 'G': GUANINENUM, 'C': CYTOSINENUM}
-cdef dict rev_bases = {ord('A'):ord('T'), ord('T'):ord('A'), ord('G'):ord('C'), ord('C'):ord('G'), ord('-'):ord('-')}
-#rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-'}
+#rev_bases = {ord('A'):ord('T'), ord('T'):ord('A'), ord('G'):ord('C'), ord('C'):ord('G'), ord('-'):ord('-')}
+rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-'}
 # frag kind
-cdef int FRAG_UP2K = -10
-cdef int FRAG_UTR5 = -5
-cdef int FRAG_CDS = 1
-cdef int FRAG_NCRNA = 2
-cdef int FRAG_INTRON = 0
-cdef int FRAG_UTR3 = 5
-cdef int FRAG_DN2K = 10
+FRAG_UP2K = -10
+FRAG_UTR5 = -5
+FRAG_CDS = 1
+FRAG_NCRNA = 2
+FRAG_INTRON = 0
+FRAG_UTR3 = 5
+FRAG_DN2K = 10
 # variant kind
-cdef int SNV = 21
-cdef int INS = 22
-cdef int DEL = 23
-cdef int COM = 24
+SNV = 21
+INS = 22
+DEL = 23
+COM = 24
 # sequence ontology
-cdef int SO_NSO = 30
-cdef int SO_2KD = 31
-cdef int SO_2KU = 32
-cdef int SO_UT3 = 33
-cdef int SO_UT5 = 34
-cdef int SO_INT = 35
-cdef int SO_UNK = 36
-cdef int SO_SYN = 37
-cdef int SO_MIS = 38
-cdef int SO_CSS = 39
-cdef int SO_IND = 40
-cdef int SO_INI = 41
-cdef int SO_STL = 42
-cdef int SO_SPL = 43
-cdef int SO_STG = 44
-cdef int SO_FSD = 45
-cdef int SO_FSI = 46
+SO_NSO = 30
+SO_2KD = 31
+SO_2KU = 32
+SO_UT3 = 33
+SO_UT5 = 34
+SO_INT = 35
+SO_UNK = 36
+SO_SYN = 37
+SO_MIS = 38
+SO_CSS = 39
+SO_IND = 40
+SO_INI = 41
+SO_STL = 42
+SO_SPL = 43
+SO_STG = 44
+SO_FSD = 45
+SO_FSI = 46
 # csn: coding, splice, noncoding (legacy from old hg38)
-cdef int CODING = 53
-cdef int SPLICE = 52
-cdef int NONCODING = 51
-cdef int NOCSN = 50
+CODING = 53
+SPLICE = 52
+NONCODING = 51
+NOCSN = 50
 sonum_to_so = {
     SO_2KD: '2KD',
     SO_2KU: '2KU',
@@ -127,30 +127,30 @@ sonum_to_so = {
     SO_NSO: '',
 }
 # aa
-cdef int NDA = 60
-cdef int NOA = 61
-cdef int UNA = 62
-cdef int STP = 63
-cdef int ALA = 64
-cdef int CYS = 65
-cdef int ASP = 66
-cdef int GLU = 67
-cdef int PHE = 68
-cdef int GLY = 69
-cdef int HIS = 70
-cdef int ILE = 71
-cdef int LYS = 72
-cdef int LEU = 73
-cdef int MET = 74
-cdef int ASN = 75
-cdef int PRO = 76
-cdef int GLN = 77
-cdef int ARG = 78
-cdef int SER = 79
-cdef int THR = 80
-cdef int VAL = 81
-cdef int TRP = 82
-cdef int TYR = 83
+NDA = 60
+NOA = 61
+UNA = 62
+STP = 63
+ALA = 64
+CYS = 65
+ASP = 66
+GLU = 67
+PHE = 68
+GLY = 69
+HIS = 70
+ILE = 71
+LYS = 72
+LEU = 73
+MET = 74
+ASN = 75
+PRO = 76
+GLN = 77
+ARG = 78
+SER = 79
+THR = 80
+VAL = 81
+TRP = 82
+TYR = 83
 aa_to_num = {'A':ALA, 'C': CYS, 'D': ASP, 'E': GLU, 'F': PHE,
     'G': GLY, 'H': HIS, 'I': ILE, 'K': LYS, 'L': LEU,
     'M': MET, 'N': ASN, 'P': PRO, 'Q': GLN, 'R': ARG,
@@ -163,12 +163,12 @@ aanum_to_aa = {
     SER: 'S', THR: 'T', VAL: 'V', TRP: 'W', TYR: 'Y',
     STP: '*', NOA: '_', UNA: '?', NDA: ''}
 
-cdef int convert_codon_to_codonnum (char* codon):
-    cdef int codonnum = 0
-    cdef char base1 = codon[0]
-    cdef char base2 = codon[1]
-    cdef char base3 = codon[2]
-    cdef char basenum = 0
+def convert_codon_to_codonnum (codon):
+    codonnum = 0
+    base1 = codon[0]
+    base2 = codon[1]
+    base3 = codon[2]
+    basenum = 0
     if base1 == ADENINECHAR:
         basenum = ADENINENUM
     elif base1 == THYMINECHAR:
@@ -312,10 +312,9 @@ codon_to_aa = {
     'TAC':'Y', 'TGA':'*', 'TAA':'*', 
     'TAG':'*'}
 
-cdef str _get_base_str (char* tr_base, int lenbase):
-    cdef str tr_base_str = ''
-    cdef char base
-    cdef i
+
+def _get_base_str (tr_base, lenbase):
+    tr_base_str = ''
     for i in range(lenbase):
         tr_base_str += chr(tr_base[i])
     return tr_base_str
@@ -363,31 +362,35 @@ class Mapper (cravat.BaseMapper):
             self.tr_info[tid] = [name, strand, refseqs, uniprot, aalen, genename]
 
     def _get_db (self, db_path):
-        t = time.time()
-        db = sqlite3.connect(':memory:')
-        diskdb = sqlite3.connect(db_path)
-        diskdb.backup(db)
-        '''
-        if importlib.util.find_spec('apsw') is not None:
-            import apsw
-            self.logger.info(f'using in-memory db')
-            db = apsw.Connection(':memory:')
-            diskdb = apsw.Connection(db_path)
-            db.backup('main', diskdb, 'main').step()
-        else:
-            self.logger.info(f'using disk db')
-            db = sqlite3.connect(db_path)
-        '''
+        try:
+            import sqlite3
+            diskdb = sqlite3.connect(db_path)
+            db = sqlite3.connect(':memory:')
+            diskdb.backup(db)
+        except:
+            try:
+                import apsw
+                diskdb = apsw.Connection(db_path)
+                db = apsw.Connection(':memory:')
+                db.backup('main', diskdb, 'main').step()
+            except:
+                try:
+                    from supersqlite import sqlite3
+                    diskdb = sqlite3.connect(db_path)
+                    db = sqlite3.connect(':memory:')
+                    diskdb.backup(db)
+                except:
+                    db = sqlite3.connect(db_path)
         return db
 
-    def _get_snv_map_data (self, int tid, int cpos, int cstart, int tpos, int tstart, char* tr_ref_base, char* tr_alt_base, int strand, int kind, int apos, int gpos, int start, int end, str chrom, int fragno, int lenref, int lenalt, int prevcont, int nextcont):
-        cdef int so = SO_NSO
-        cdef int csn = NOCSN
-        cdef str tr_ref_base_str
-        cdef str tr_alt_base_str
+    def _get_snv_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont):
+        so = SO_NSO
+        csn = NOCSN
         if kind == FRAG_CDS:
-            tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
-            tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+            #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
+            #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+            tr_ref_base_str = tr_ref_base
+            tr_alt_base_str = tr_alt_base
             so, ref_aanum, alt_aanum = self._get_svn_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base)
             ref_aas = [aanum_to_aa[ref_aanum]]
             alt_aas = [aanum_to_aa[alt_aanum]]
@@ -472,12 +475,14 @@ class Mapper (cravat.BaseMapper):
             csn = NONCODING
         return so, ref_aas, alt_aas, achange, cchange, coding, csn
 
-    def _get_ins_map_data (self, int tid, int cpos, int cstart, int tpos, int tstart, char* tr_ref_base, char* tr_alt_base, int strand, int kind, int apos, int gpos, int start, int end, str chrom, int fragno, int lenref, int lenalt, int prevcont, int nextcont):
-        cdef int so = SO_NSO
+    def _get_ins_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont):
+        so = SO_NSO
         if kind == FRAG_CDS:
             so, ref_aas, alt_aas = self._get_ins_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt)
-            tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
-            tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+            #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
+            #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+            tr_ref_base_str = tr_ref_base
+            tr_alt_base_str = tr_alt_base
             achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
             cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
             coding = 'Y'
@@ -559,10 +564,10 @@ class Mapper (cravat.BaseMapper):
             csn = NONCODING
         return so, ref_aas, alt_aas, achange, cchange, coding, csn
 
-    def _get_del_map_data (self, int tid, int cpos, int cstart, int tpos, int tstart, char* tr_ref_base, char* tr_alt_base, int strand, int kind, int apos, int gpos, int start, int end, str chrom, int gposendbin, int gposend, int fragno, int lenref, int lenalt, int prevcont, int nextcont):
-        cdef int so = SO_NSO
-        cdef int startplus = start + 1
-        cdef int endminus = end - 1
+    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
+        so = SO_NSO
+        startplus = start + 1
+        endminus = end - 1
         q = f'select kind from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
         self.c2.execute(q)
         gposend_kind = self.c2.fetchone()
@@ -584,8 +589,10 @@ class Mapper (cravat.BaseMapper):
                     so = SO_IND
                 else:
                     so = SO_FSD
-                tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
-                tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+                #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
+                #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+                tr_ref_base_str = tr_ref_base
+                tr_alt_base_str = tr_alt_base
                 achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
                 cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
                 coding = 'Y'
@@ -667,10 +674,10 @@ class Mapper (cravat.BaseMapper):
                 csn = NONCODING
         return so, ref_aas, alt_aas, achange, cchange, coding, csn
 
-    def _get_com_map_data (self, int tid, int cpos, int cstart, int tpos, int tstart, char* tr_ref_base, char* tr_alt_base, int strand, int kind, int apos, int gpos, int start, int end, str chrom, int gposendbin, int gposend, int fragno, int lenref, int lenalt, int prevcont, int nextcont):
-        cdef int so = SO_NSO
-        cdef int startplus = start + 1
-        cdef int endminus = end - 1
+    def _get_com_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
+        so = SO_NSO
+        startplus = start + 1
+        endminus = end - 1
         if lenref > 1:
             q = f'select kind from transcript_frags_{chrom} where binno={gposendbin} and start<={gposend} and end>={gposend} and tid={tid}'
             self.c2.execute(q)
@@ -692,8 +699,10 @@ class Mapper (cravat.BaseMapper):
                 cchange = None
                 ref_aas = [aanum_to_aa[NOA]]
                 alt_aas = [aanum_to_aa[NOA]]
-                tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
-                tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+                #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
+                #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
+                tr_ref_base_str = tr_ref_base
+                tr_alt_base_str = tr_alt_base
                 achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
                 cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
                 coding = 'Y'
@@ -783,35 +792,11 @@ class Mapper (cravat.BaseMapper):
         return ret
 
     def map (self, crv_data):
-        cdef str coding
-        cdef int i, j, k
-        cdef str ref_base_str
-        cdef str alt_base_str
-        cdef char* tr_ref_base
-        cdef char* tr_alt_base
-        cdef char* tr_ref_base_plus
-        cdef char* tr_ref_base_minus
-        cdef char* tr_alt_base_plus
-        cdef char* tr_alt_base_minus
-        cdef str tr_ref_base_minus_str
-        cdef str tr_alt_base_minus_str
-        cdef str tr_ref_base_plus_str
-        cdef str tr_alt_base_plus_str
-        cdef Mapping mapping, mapping1, mapping2
-        cdef Mapping primary_mapping
-        cdef int tpos = -1
-        cdef int uid
-        cdef str chrom
-        cdef int gpos
-        cdef int so = SO_NSO
-        cdef int tid, fragno, start, end, kind, exonno, tstart, cstart, binno, prevcont, nextconv
-        cdef str tr
-        cdef int strand, aalen
-        cdef str uniprot
-        cdef str genename
-        uid = <int> crv_data['uid']
+        tpos = -1
+        so = SO_NSO
+        uid = crv_data['uid']
         chrom = crv_data['chrom']
-        gpos = <int> crv_data['pos']
+        gpos = crv_data['pos']
         ref_base_str = crv_data['ref_base']
         alt_base_str = crv_data['alt_base']
         lenref = len(ref_base_str)
@@ -824,20 +809,20 @@ class Mapper (cravat.BaseMapper):
         #tr_alt_base_minus = tr_alt_base_minus_str.encode()
         #tr_ref_base_plus = ref_base_str.encode()
         #tr_alt_base_plus = alt_base_str.encode()
-        tr_ref_base_plus = <char*> malloc(sizeof(char) * lenref)
+        tr_ref_base_plus = ''
         for i in range(lenref):
-            tr_ref_base_plus[i] = <char> ref_base_str[i]
-        tr_alt_base_plus = <char*> malloc(sizeof(char) * lenalt)
+            tr_ref_base_plus += ref_base_str[i]
+        tr_alt_base_plus = ''
         for i in range(lenalt):
-            tr_alt_base_plus[i] = <char> alt_base_str[i]
-        tr_ref_base_minus = <char*> malloc(sizeof(char) * lenref)
+            tr_alt_base_plus += alt_base_str[i]
+        tr_ref_base_minus = ''
         for i in range(lenref):
             j = lenref - 1 - i
-            tr_ref_base_minus[i] = rev_bases[<char> ref_base_str[j]]
-        tr_alt_base_minus = <char*> malloc(sizeof(char) * lenalt)
+            tr_ref_base_minus += rev_bases[ref_base_str[j]]
+        tr_alt_base_minus = ''
         for i in range(lenalt):
             j = lenalt - 1 - i
-            tr_alt_base_minus[i] = rev_bases[<char> alt_base_str[j]]
+            tr_alt_base_minus += rev_bases[alt_base_str[j]]
         tr_ref_base = tr_ref_base_plus
         tr_alt_base = tr_alt_base_plus
         if ref_base_str == '-' and alt_base_str != '-' and lenalt >= 1:
@@ -922,18 +907,12 @@ class Mapper (cravat.BaseMapper):
                 amd[genename].append([mapping.uniprot, mapping.achange, sonum_to_so[mapping.so], mapping.tr, mapping.cchange])
         crx_data['all_mappings'] = json.dumps(amd) #, separators=(',', ':'))
         #crx_data['all_mappings'] = amd
-        free(tr_ref_base_plus)
-        free(tr_alt_base_plus)
-        free(tr_ref_base_minus)
-        free(tr_alt_base_minus)
         return crx_data, alt_transcripts
 
-    def _get_splice_apos_prevfrag (self, int tid, int fragno, str chrom):
-        cdef int apos = -1
-        cdef int so = SO_NSO
-        cdef int csn = NOCSN
-        cdef int cpos_for_apos
-        cdef int rem
+    def _get_splice_apos_prevfrag (self, tid, fragno, chrom):
+        apos = -1
+        so = SO_NSO
+        csn = NOCSN
         for search_frag_no in range(fragno - 1, -1, -1):
             q = f'select kind, start, end, cpos from transcript_frags_{chrom} where tid={tid} and fragno={search_frag_no}'
             self.c2.execute(q)
@@ -958,11 +937,9 @@ class Mapper (cravat.BaseMapper):
         return apos, so, csn
 
     def _get_splice_apos_nextfrag (self, tid, fragno, chrom):
-        cdef int apos = -1
-        cdef int so = SO_INT
-        cdef int csn = NOCSN
-        cdef int cpos_for_apos
-        cdef int rem
+        apos = -1
+        so = SO_INT
+        csn = NOCSN
         q = f'select max(fragno) from transcript_frags_{chrom} where tid={tid}'
         self.c2.execute(q)
         max_fragno = self.c2.fetchone()[0]
@@ -1087,7 +1064,7 @@ class Mapper (cravat.BaseMapper):
         '''
         return so, ref_aas, alt_aas
 
-    def _get_svn_cds_so (self, int tid, int cpos, int cstart, int tpos, int tstart, bytes alt_base):
+    def _get_svn_cds_so (self, tid, cpos, cstart, tpos, tstart, alt_base):
         [seq, ex] = self.mrnas[tid]
         cpos_codonstart = int((cpos - 1) / 3) * 3 + 1
         ref_codonnum = 0
@@ -1128,9 +1105,6 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        cdef Mapping primary_mapping
-        cdef Mapping mapping
-        cdef int i
         primary_mapping = Mapping('', '', SO_NSO, '', '', -1, '', '', NOCSN)
         for genename, mappings in all_mappings.items():
             for i in range(len(mappings)):
@@ -1172,7 +1146,6 @@ class Mapper (cravat.BaseMapper):
     '''
 
     def _get_codons (self, tid, chrom, tstart, cstart, cpos_start, cpos_end=None):
-        cdef char base
         if cpos_end is None:
             cpos_end = cpos_start
         [seq, ex] = self.mrnas[tid]
