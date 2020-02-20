@@ -13,10 +13,16 @@ class CravatConverter(BaseConverter):
         self.format_name = 'ftdna'
     
     def check_format(self, f):
+        for l in f:
+            if l.startswith('#'):
+                continue
+            else:
+                break
         f.readline()
+        l = f.readline().replace('"','')
         return re.match(
-            r'"rs\d+","[0-9xXyYmMtT]{1,2}","\d+","[TCGA]{2}"',
-            f.readline()
+            r'rs\d+,[0-9xXyYmMtT]{1,2},\d+,[TCGA-]{2}',
+            l
             ) is not None
     
     def setup(self, f):
@@ -45,9 +51,10 @@ class CravatConverter(BaseConverter):
         self.good_vars = set(['T','C','G','A'])
 
     def convert_line(self, l):
-        ret = []
+        if l.startswith('#'): return self.IGNORE
         if l.upper().startswith('RSID'): return self.IGNORE
-        toks = l.strip('\r\n')[1:-1].split('","')
+        ret = []
+        toks = l.strip('\r\n').replace('"','').split(',')
         tags = toks[0]
         chrom = toks[1]
         if chrom=='MT':
@@ -72,7 +79,7 @@ class CravatConverter(BaseConverter):
             self.cur_zygosity = 'hom'
             
         for var in geno:
-            if var in self.good_vars:
+            if var in self.good_vars and var != ref:
                 alt = var
                 wdict = {
                     'tags':tags,
