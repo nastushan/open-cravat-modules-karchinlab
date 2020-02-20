@@ -1,0 +1,22 @@
+title: Variant Metadata
+version: 1.0.0
+type: postaggregator
+level: variant
+output_columns:
+- name: zygosity
+  title: Zygosity
+  type: string
+  categorical: single
+  categories:
+  - het
+  - hom
+
+description: Aggregates tags and samples
+developer:
+  name: 'Kyle Moad'
+  organization: 'In Silico Solutions'
+  email: 'support@cravat.us'
+  website: 'http://www.insilico.us.com'
+  citation: ''
+release_note:
+  1.0.0: initial release

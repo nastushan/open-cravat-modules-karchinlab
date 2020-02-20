@@ -1,5 +1,5 @@
 title: VCF Info
-version: 1.1.4
+version: 1.1.5
 type: postaggregator
 name: vcfinfo
 level: variant
@@ -53,6 +53,7 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 release_note:
+  1.1.5: check info table to see if runnable
   1.1.1: handles vcf with only first 5 columns.
   1.1.0: Handle copy number information
   1.0.7: altread and af None to empty string to accommodate error handling of vcf-converter
