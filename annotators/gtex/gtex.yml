@@ -23,8 +23,8 @@ tags:
 - noncoding
 - germline
 - dbnsfp
-title: GTEx
+title: GTEx eQTLs
 type: annotator
-version: 7.0.3
+version: 7.0.4
 requires:
 - wggtex
