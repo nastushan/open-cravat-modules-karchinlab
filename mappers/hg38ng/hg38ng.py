@@ -36,6 +36,39 @@ def base_to_basenum (c):
     if c == CYTOSINECHAR:
         return CYTOSINENUM
 
+MAPPING_UNIPROT_I = 0
+MAPPING_ACHANGE_I = 1
+MAPPING_SO_I = 2
+MAPPING_TR_I = 3
+MAPPING_CCHANGE_I = 4
+MAPPING_AALEN_I = 5
+MAPPING_GENENAME_I = 6
+MAPPING_CODING_I = 7
+MAPPING_CSN_I = 8
+
+def _compare_mapping (m1, m2):
+    m1csn = m1[MAPPING_CSN_I]
+    m2csn = m2[MAPPING_CSN_I]
+    m1uniprot = m1[MAPPING_UNIPROT_I]
+    m2uniprot = m2[MAPPING_UNIPROT_I]
+    m1so = m1[MAPPING_SO_I]
+    m2so = m2[MAPPING_SO_I]
+    m1aalen = m1[MAPPING_AALEN_I]
+    m2aalen = m2[MAPPING_AALEN_I]
+    better_csn = m1csn > m2csn
+    same_csn = m1csn == m2csn
+    acceptable_uniprot = m1uniprot is not None or m2uniprot is None
+    higher_so = m1so > m2so
+    same_so = m1so == m2so
+    longer_aa = m1aalen > m2aalen
+    same_aalen = m1aalen == m2aalen
+    self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
+    if self_is_better:
+        return -1
+    else:
+        return 1
+
+'''
 # mapping
 class Mapping:
 
@@ -63,6 +96,7 @@ def _compare_mapping (m1, m2):
         return -1
     else:
         return 1
+'''
 
 # strands
 PLUSSTRAND = 1
@@ -887,24 +921,23 @@ class Mapper (cravat.BaseMapper):
                 so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == COM:
                 so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
-            #mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
-            mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
+            mapping = (uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
             if genename not in all_mappings:
                 all_mappings[genename] = []
             all_mappings[genename].append(mapping)
         primary_mapping = self._get_primary_mapping(all_mappings)
         crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         crx_data.update(crv_data)
-        crx_data['hugo'] = primary_mapping.genename
-        crx_data['coding'] = primary_mapping.coding
-        crx_data['transcript'] = primary_mapping.tr
-        crx_data['so'] = sonum_to_so[primary_mapping.so]
-        crx_data['achange'] = primary_mapping.achange
+        crx_data['hugo'] = primary_mapping[MAPPING_GENENAME_I]
+        crx_data['coding'] = primary_mapping[MAPPING_CODING_I]
+        crx_data['transcript'] = primary_mapping[MAPPING_TR_I]
+        crx_data['so'] = sonum_to_so[primary_mapping[MAPPING_SO_I]]
+        crx_data['achange'] = primary_mapping[MAPPING_ACHANGE_I]
         amd = {}
         for genename in sorted(all_mappings.keys()):
             amd[genename] = []
             for mapping in all_mappings[genename]:
-                amd[genename].append([mapping.uniprot, mapping.achange, sonum_to_so[mapping.so], mapping.tr, mapping.cchange])
+                amd[genename].append([mapping[MAPPING_UNIPROT_I], mapping[MAPPING_ACHANGE_I], sonum_to_so[mapping[MAPPING_SO_I]], mapping[MAPPING_TR_I], mapping[MAPPING_CCHANGE_I]])
         crx_data['all_mappings'] = json.dumps(amd) #, separators=(',', ':'))
         #crx_data['all_mappings'] = amd
         return crx_data, alt_transcripts
@@ -1105,11 +1138,11 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        primary_mapping = Mapping('', '', SO_NSO, '', '', -1, '', '', NOCSN)
+        primary_mapping = ('', '', SO_NSO, '', '', -1, '', '', NOCSN)
         for genename, mappings in all_mappings.items():
             for i in range(len(mappings)):
                 mapping = mappings[i]
-                if primary_mapping.so == SO_NSO:
+                if primary_mapping[MAPPING_SO_I] == SO_NSO:
                     primary_mapping = mapping
                 elif _compare_mapping(mapping, primary_mapping) < 0:
                     primary_mapping = mapping

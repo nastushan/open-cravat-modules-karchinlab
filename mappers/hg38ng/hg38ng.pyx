@@ -1,5 +1,4 @@
 # cython: profile=False
-import sqlite3
 import cravat
 import pickle
 import time
@@ -30,35 +29,33 @@ cdef int base_to_basenum (char c):
     if c == CYTOSINECHAR:
         return CYTOSINENUM
 
-# mapping
-cdef class Mapping:
-    cdef str uniprot
-    cdef str achange
-    cdef str tr
-    cdef str cchange
-    cdef str genename
-    cdef str coding
-    cdef int so, aalen, csn
-    def __init__ (self, str uniprot, str achange, int so, str tr, str cchange, int aalen, str genename, str coding, int csn):
-        self.uniprot = uniprot
-        self.achange = achange
-        self.so = so
-        self.tr = tr
-        self.cchange = cchange
-        self.aalen = aalen
-        self.genename = genename
-        self.coding = coding
-        self.csn = csn
+MAPPING_UNIPROT_I = 0
+MAPPING_ACHANGE_I = 1
+MAPPING_SO_I = 2
+MAPPING_TR_I = 3
+MAPPING_CCHANGE_I = 4
+MAPPING_AALEN_I = 5
+MAPPING_GENENAME_I = 6
+MAPPING_CODING_I = 7
+MAPPING_CSN_I = 8
 
-cdef int _compare_mapping (Mapping m1, Mapping m2):
-    cdef bint better_csn = m1.csn > m2.csn
-    cdef bint same_csn = m1.csn == m2.csn
-    cdef bint acceptable_uniprot = m1.uniprot is not None or m2.uniprot is None
-    cdef bint higher_so = m1.so > m2.so
-    cdef bint same_so = m1.so == m2.so
-    cdef bint longer_aa = m1.aalen > m2.aalen
-    cdef bint same_aalen = m1.aalen == m2.aalen
-    cdef bint self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
+def _compare_mapping (m1, m2):
+    m1csn = m1[MAPPING_CSN_I]
+    m2csn = m2[MAPPING_CSN_I]
+    m1uniprot = m1[MAPPING_UNIPROT_I]
+    m2uniprot = m2[MAPPING_UNIPROT_I]
+    m1so = m1[MAPPING_SO_I]
+    m2so = m2[MAPPING_SO_I]
+    m1aalen = m1[MAPPING_AALEN_I]
+    m2aalen = m2[MAPPING_AALEN_I]
+    better_csn = m1csn > m2csn
+    same_csn = m1csn == m2csn
+    acceptable_uniprot = m1uniprot is not None or m2uniprot is None
+    higher_so = m1so > m2so
+    same_so = m1so == m2so
+    longer_aa = m1aalen > m2aalen
+    same_aalen = m1aalen == m2aalen
+    self_is_better = (better_csn) or ((same_csn) and (higher_so or (same_so and longer_aa)))
     if self_is_better:
         return -1
     else:
@@ -363,21 +360,25 @@ class Mapper (cravat.BaseMapper):
             self.tr_info[tid] = [name, strand, refseqs, uniprot, aalen, genename]
 
     def _get_db (self, db_path):
-        t = time.time()
-        db = sqlite3.connect(':memory:')
-        diskdb = sqlite3.connect(db_path)
-        diskdb.backup(db)
-        '''
-        if importlib.util.find_spec('apsw') is not None:
-            import apsw
-            self.logger.info(f'using in-memory db')
-            db = apsw.Connection(':memory:')
-            diskdb = apsw.Connection(db_path)
-            db.backup('main', diskdb, 'main').step()
-        else:
-            self.logger.info(f'using disk db')
-            db = sqlite3.connect(db_path)
-        '''
+        try:
+            import sqlite3
+            diskdb = sqlite3.connect(db_path)
+            db = sqlite3.connect(':memory:')
+            diskdb.backup(db)
+        except:
+            try:
+                import apsw
+                diskdb = apsw.Connection(db_path)
+                db = apsw.Connection(':memory:')
+                db.backup('main', diskdb, 'main').step()
+            except:
+                try:
+                    from supersqlite import sqlite3
+                    diskdb = sqlite3.connect(db_path)
+                    db = sqlite3.connect(':memory:')
+                    diskdb.backup(db)
+                except:
+                    db = sqlite3.connect(db_path)
         return db
 
     def _get_snv_map_data (self, int tid, int cpos, int cstart, int tpos, int tstart, char* tr_ref_base, char* tr_alt_base, int strand, int kind, int apos, int gpos, int start, int end, str chrom, int fragno, int lenref, int lenalt, int prevcont, int nextcont):
@@ -797,8 +798,6 @@ class Mapper (cravat.BaseMapper):
         cdef str tr_alt_base_minus_str
         cdef str tr_ref_base_plus_str
         cdef str tr_alt_base_plus_str
-        cdef Mapping mapping, mapping1, mapping2
-        cdef Mapping primary_mapping
         cdef int tpos = -1
         cdef int uid
         cdef str chrom
@@ -902,24 +901,23 @@ class Mapper (cravat.BaseMapper):
                 so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == COM:
                 so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
-            #mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
-            mapping = Mapping(uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
+            mapping = (uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
             if genename not in all_mappings:
                 all_mappings[genename] = []
             all_mappings[genename].append(mapping)
         primary_mapping = self._get_primary_mapping(all_mappings)
         crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         crx_data.update(crv_data)
-        crx_data['hugo'] = primary_mapping.genename
-        crx_data['coding'] = primary_mapping.coding
-        crx_data['transcript'] = primary_mapping.tr
-        crx_data['so'] = sonum_to_so[primary_mapping.so]
-        crx_data['achange'] = primary_mapping.achange
+        crx_data['hugo'] = primary_mapping[MAPPING_GENENAME_I]
+        crx_data['coding'] = primary_mapping[MAPPING_CODING_I]
+        crx_data['transcript'] = primary_mapping[MAPPING_TR_I]
+        crx_data['so'] = sonum_to_so[primary_mapping[MAPPING_SO_I]]
+        crx_data['achange'] = primary_mapping[MAPPING_ACHANGE_I]
         amd = {}
         for genename in sorted(all_mappings.keys()):
             amd[genename] = []
             for mapping in all_mappings[genename]:
-                amd[genename].append([mapping.uniprot, mapping.achange, sonum_to_so[mapping.so], mapping.tr, mapping.cchange])
+                amd[genename].append([mapping[MAPPING_UNIPROT_I], mapping[MAPPING_ACHANGE_I], sonum_to_so[mapping[MAPPING_SO_I]], mapping[MAPPING_TR_I], mapping[MAPPING_CCHANGE_I]])
         crx_data['all_mappings'] = json.dumps(amd) #, separators=(',', ':'))
         #crx_data['all_mappings'] = amd
         free(tr_ref_base_plus)
@@ -942,11 +940,9 @@ class Mapper (cravat.BaseMapper):
                 prev_last_cpos = prev_frag_cpos + (prev_frag_end - prev_frag_start)
                 cpos_for_apos = prev_last_cpos - 1
                 apos = int(cpos_for_apos / 3) + 1
-                '''
-                rem = cpos_for_apos % 3
-                if rem == 0:
-                    apos += 1
-                '''
+                #rem = cpos_for_apos % 3
+                #if rem == 0:
+                #    apos += 1
                 so = SO_SPL
                 csn = SPLICE
                 break
@@ -974,11 +970,9 @@ class Mapper (cravat.BaseMapper):
                 next_first_cpos = next_frag_cpos
                 cpos_for_apos = next_first_cpos - 1
                 apos = int(cpos_for_apos / 3) + 1
-                '''
-                rem = cpos_for_apos % 3
-                if rem == 0:
-                    apos -= 1
-                '''
+                #rem = cpos_for_apos % 3
+                #if rem == 0:
+                #    apos -= 1
                 so = SO_SPL
                 csn = SPLICE
                 break
@@ -998,7 +992,10 @@ class Mapper (cravat.BaseMapper):
             so = SO_FSI
         ref_aas = ['_']
         alt_aas = ['_']
-        '''
+        return so, ref_aas, alt_aas
+
+    # TODO: insert below into _get_ins_cds_so for getting aas.
+    def __get_aas_for_get_ins_cds_so (self, tid, chrom, tstart, cstart, cpos, strand, alt_base):
         ref_codonnum = self._get_codons(tid, chrom, tstart, cstart, cpos, cpos)[0]
         ref_aanum = codonnum_to_aanum[ref_codonnum]
         ref_aas = [aanum_to_aa[ref_aanum]]
@@ -1084,8 +1081,6 @@ class Mapper (cravat.BaseMapper):
                             if stp_found == False:
                                 alt_aas += '?'
                 ref_codonnum = self._get_codons(tid, chrom, tstart, cstart, cpos, cpos)[0]
-        '''
-        return so, ref_aas, alt_aas
 
     def _get_svn_cds_so (self, int tid, int cpos, int cstart, int tpos, int tstart, bytes alt_base):
         [seq, ex] = self.mrnas[tid]
@@ -1128,20 +1123,18 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        cdef Mapping primary_mapping
-        cdef Mapping mapping
+        primary_mapping = ('', '', SO_NSO, '', '', -1, '', '', NOCSN)
         cdef int i
-        primary_mapping = Mapping('', '', SO_NSO, '', '', -1, '', '', NOCSN)
         for genename, mappings in all_mappings.items():
             for i in range(len(mappings)):
                 mapping = mappings[i]
-                if primary_mapping.so == SO_NSO:
+                if primary_mapping[MAPPING_SO_I] == SO_NSO:
                     primary_mapping = mapping
                 elif _compare_mapping(mapping, primary_mapping) < 0:
                     primary_mapping = mapping
         return primary_mapping
 
-    '''
+    # TODO: probably below will not be used.
     def _get_codon (self, tid, tstart, cstart, cpos, altbase=None):
         [seq, ex] = self.mrnas[tid]
         cpos_codonstart = int((cpos - 1) / 3) * 3 + 1
@@ -1163,13 +1156,12 @@ class Mapper (cravat.BaseMapper):
             ref_codonnum += base_bits << num_shift
             if altbase:
                 if tpos_codon == tpos:
-                    alt_codonnum += base_to_basenum(alt_base) << num_shift
+                    alt_codonnum += base_to_basenum(altbase) << num_shift
                 else:
                     alt_codonnum += base_bits << num_shift
         ref_aanum = codonnum_to_aanum[ref_codonnum]
         alt_aanum = codonnum_to_aanum[alt_codonnum]
         return ref_codonnum, ref_aanum, alt_codonnum, alt_aanum
-    '''
 
     def _get_codons (self, tid, chrom, tstart, cstart, cpos_start, cpos_end=None):
         cdef char base
@@ -1211,8 +1203,7 @@ class Mapper (cravat.BaseMapper):
             codonnums.append(codonnum)
         return codonnums
 
-    '''
-    def _get_cdna_bases_until_end (self, tid, cpos_start, cstart, tstart):
+    def _get_cdna_bases_until_end (self, tid, cpos_start, cstart, tstart, tpos_start_codonstart, tpos_end_codonend, tpos_codonstart, chrom):
         [seq, ex] = self.mrnas[tid]
         tpos_start = tstart + (cpos_start - cstart)
         codonnums = []
@@ -1243,7 +1234,6 @@ class Mapper (cravat.BaseMapper):
                 aanum = codonnum_to_aanum[codonnum]
             codonnums.append(codonnum)
         return codonnums
-    '''
 
     def summarize_by_gene (self, hugo, input_data):
         out = {}
