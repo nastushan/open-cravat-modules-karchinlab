@@ -1,44 +1,44 @@
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:37:57
+#Created at Friday 02/21/2020 17:12:40
 #Report level: variant
 #
-Variant Annotation														
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
-2	chr1	565508	G	A								0		rs9283150
-4	chr1	752721	A	G								0		rs3131972
-8	chr1	919501	G	T								0		rs4970414
-9	chr1	881627	G	A								0		rs2272757
-11	chr1	917640	G	A								0		rs41285816
-14	chr1	3805098	C	T								0		rs7530189
+Variant Annotation															Extra Variant Info
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Zygosity
+1	chr1	565508	G	A								0		rs9283150	hom
+2	chr1	752721	A	G								0		rs3131972	hom
+3	chr1	919501	G	T								0		rs4970414	het
+4	chr1	881627	G	A								0		rs2272757	het
+5	chr1	917640	G	A								0		rs41285816	het
+6	chr1	3805098	C	T								0		rs7530189	het
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:37:57
+#Created at Friday 02/21/2020 17:12:40
 #Report level: gene
 #
 Variant Annotation					
 Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:37:57
+#Created at Friday 02/21/2020 17:12:40
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
+1	
+1	
 2	
 2	
+3	
 4	
-4	
-8	
-9	
-11	
-14	
+5	
+6	
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:37:57
+#Created at Friday 02/21/2020 17:12:40
 #Report level: mapping
 #
 Variant Annotation			
 Original Line	User Tags	UID	Input File Number
-23	rs9283150	2	0
-26	rs3131972	4	0
-31	rs4970414	8	0
-32	rs2272757	9	0
-33	rs41285816	11	0
-34	rs7530189	14	0
+23	rs9283150	1	0
+26	rs3131972	2	0
+31	rs4970414	3	0
+32	rs2272757	4	0
+33	rs41285816	5	0
+34	rs7530189	6	0
