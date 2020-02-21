@@ -3,11 +3,10 @@ from cravat import BadFormatError
 import cravat.constants as constants
 from pyliftover import LiftOver
 import os
-from cravat.exceptions import LiftoverFailure
+from cravat.exceptions import LiftoverFailure, InvalidData
 from cravat.inout import CravatWriter
 
 class CravatConverter(BaseConverter):
-    comp_base = {'A':'T','T':'A','C':'G','G':'C','-':'-','N':'N'}
     
     def __init__(self):
         self.format_name = 'ancestrydna'
@@ -73,7 +72,7 @@ class CravatConverter(BaseConverter):
             self.cur_zygosity = 'hom'
 
         for var in toks[3:]:
-            if var in good_vars:
+            if var in good_vars and var != ref:
                 alt = var
                 wdict = {'tags':tags,
                     'chrom':chrom,
@@ -318,6 +317,8 @@ class BowtieIndexReference(object):
         @param count: # of characters
         @return: string extracted from reference
         """
+        if ref_id not in self.recs:
+            raise InvalidData('Reference base not available for this chromosome')
         # Account for negative reference offsets by padding with Ns
         N_count = min(abs(min(ref_off, 0)), count)
         stretch = ["N"] * N_count

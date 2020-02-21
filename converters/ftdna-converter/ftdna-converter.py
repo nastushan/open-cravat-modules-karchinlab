@@ -3,7 +3,7 @@ from cravat import BadFormatError
 import cravat.constants as constants
 from pyliftover import LiftOver
 import os
-from cravat.exceptions import LiftoverFailure
+from cravat.exceptions import LiftoverFailure, InvalidData
 from cravat.inout import CravatWriter
 import re
 
@@ -325,7 +325,8 @@ class BowtieIndexReference(object):
         @param count: # of characters
         @return: string extracted from reference
         """
-        assert ref_id in self.recs
+        if ref_id not in self.recs:
+            raise InvalidData('Reference base not available for this chromosome')
         # Account for negative reference offsets by padding with Ns
         N_count = min(abs(min(ref_off, 0)), count)
         stretch = ["N"] * N_count
