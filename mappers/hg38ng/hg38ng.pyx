@@ -779,8 +779,14 @@ class Mapper (cravat.BaseMapper):
     def _get_tr_map_data (self, chrom, gpos):
         gposbin = int(gpos / self.binsize)
         q = f'select * from transcript_frags_{chrom} where binno={gposbin} and start<={gpos} and end>={gpos} order by tid'
-        self.c.execute(q)
-        ret = self.c.fetchall()
+        try:
+            self.c.execute(q)
+            ret = self.c.fetchall()
+        except Exception as e:
+            if str(e).startswith('no such table'):
+                ret = []
+            else:
+                raise
         return ret
 
     def map (self, crv_data):
@@ -940,9 +946,6 @@ class Mapper (cravat.BaseMapper):
                 prev_last_cpos = prev_frag_cpos + (prev_frag_end - prev_frag_start)
                 cpos_for_apos = prev_last_cpos - 1
                 apos = int(cpos_for_apos / 3) + 1
-                #rem = cpos_for_apos % 3
-                #if rem == 0:
-                #    apos += 1
                 so = SO_SPL
                 csn = SPLICE
                 break
@@ -970,9 +973,6 @@ class Mapper (cravat.BaseMapper):
                 next_first_cpos = next_frag_cpos
                 cpos_for_apos = next_first_cpos - 1
                 apos = int(cpos_for_apos / 3) + 1
-                #rem = cpos_for_apos % 3
-                #if rem == 0:
-                #    apos -= 1
                 so = SO_SPL
                 csn = SPLICE
                 break
