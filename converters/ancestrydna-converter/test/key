@@ -1,19 +1,19 @@
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:38:02
+#Created at Friday 02/21/2020 17:12:45
 #Report level: variant
 #
-Variant Annotation														
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
-2	chr7	11806482	A	G			THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	0		rs1815109
-3	chr1	894801	G	A								0		rs28444699
-4	chrY	3042992	T	G								0		rs9786252
-5	chrX	3121862	C	T								0		rs59756922
-6	chr1	1956754	T	A		Yes	CFAP74	ENST00000493964.5	missense	G628C	ENST00000493964.5:CFAP74:Q9C0B2:missense:G628C:A1882T	0		rs3820011
-7	chr1	1956754	T	C		Yes	CFAP74	ENST00000493964.5	synonymous	G628G	ENST00000493964.5:CFAP74:Q9C0B2:synonymous:G628G:A1882G	0		rs3820011
-8	chr1	2101817	T	A			PRKCZ	ENST00000378567.7	intron		ENST00000378567.7:PRKCZ:Q05513:intron:(na):(na); ENST00000400921.6:PRKCZ:(na):intron:(na):(na); ENST00000461106.6:PRKCZ:(na):intron:(na):(na)	0		rs908742
-9	chr1	2101817	T	G			PRKCZ	ENST00000378567.7	intron		ENST00000378567.7:PRKCZ:Q05513:intron:(na):(na); ENST00000400921.6:PRKCZ:(na):intron:(na):(na); ENST00000461106.6:PRKCZ:(na):intron:(na):(na)	0		rs908742
+Variant Annotation															Extra Variant Info
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Zygosity
+1	chr7	11806482	A	G			THSD7A	ENST00000423059.8	intron		ENST00000423059.8:THSD7A:Q9UPZ6:intron:(na):(na); ENST00000617773.1:THSD7A:A0A087WY08:intron:(na):(na)	0		rs1815109	het
+2	chr1	894801	G	A								0		rs28444699	hom
+3	chrY	3042992	T	G								0		rs9786252	hom
+4	chrX	3121862	C	T								0		rs59756922	hom
+5	chr1	1956754	T	A		Yes	CFAP74	ENST00000493964.5	missense	G628C	ENST00000493964.5:CFAP74:Q9C0B2:missense:G628C:A1882T	0		rs3820011	het
+6	chr1	1956754	T	C		Yes	CFAP74	ENST00000493964.5	synonymous	G628G	ENST00000493964.5:CFAP74:Q9C0B2:synonymous:G628G:A1882G	0		rs3820011	het
+7	chr1	2101817	T	A			PRKCZ	ENST00000378567.7	intron		ENST00000378567.7:PRKCZ:Q05513:intron:(na):(na); ENST00000400921.6:PRKCZ:(na):intron:(na):(na); ENST00000461106.6:PRKCZ:(na):intron:(na):(na)	0		rs908742	het
+8	chr1	2101817	T	G			PRKCZ	ENST00000378567.7	intron		ENST00000378567.7:PRKCZ:Q05513:intron:(na):(na); ENST00000400921.6:PRKCZ:(na):intron:(na):(na); ENST00000461106.6:PRKCZ:(na):intron:(na):(na)	0		rs908742	het
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:38:02
+#Created at Friday 02/21/2020 17:12:45
 #Report level: gene
 #
 Variant Annotation					
@@ -22,33 +22,33 @@ THSD7A		0	1	intron	intron(0)
 CFAP74		2	0	missense	missense(0),synonymous(0)
 PRKCZ		0	2	intron	intron(0)
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:38:02
+#Created at Friday 02/21/2020 17:12:45
 #Report level: sample
 #
 Variant Annotation	
 UID	Sample
+1	
+2	
 2	
 3	
 3	
 4	
 4	
 5	
-5	
 6	
 7	
 8	
-9	
 #CRAVAT Report
-#Created at Thursday 08/15/2019 11:38:02
+#Created at Friday 02/21/2020 17:12:45
 #Report level: mapping
 #
 Variant Annotation			
 Original Line	User Tags	UID	Input File Number
-4	rs1815109	2	0
-5	rs28444699	3	0
-6	rs9786252	4	0
-7	rs59756922	5	0
+4	rs1815109	1	0
+5	rs28444699	2	0
+6	rs9786252	3	0
+7	rs59756922	4	0
+9	rs3820011	5	0
 9	rs3820011	6	0
-9	rs3820011	7	0
+10	rs908742	7	0
 10	rs908742	8	0
-10	rs908742	9	0

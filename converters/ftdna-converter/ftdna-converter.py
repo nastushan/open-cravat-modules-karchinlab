@@ -5,14 +5,25 @@ from pyliftover import LiftOver
 import os
 from cravat.exceptions import LiftoverFailure, InvalidData
 from cravat.inout import CravatWriter
+import re
 
 class CravatConverter(BaseConverter):
     
     def __init__(self):
-        self.format_name = 'ancestrydna'
+        self.format_name = 'ftdna'
     
     def check_format(self, f):
-        return 'AncestryDNA' in f.readline()
+        for l in f:
+            if l.startswith('#'):
+                continue
+            else:
+                break
+        f.readline()
+        l = f.readline().replace('"','')
+        return re.match(
+            r'rs\d+,[0-9xXyYmMtT]{1,2},\d+,[TCGA-]{2}',
+            l
+            ) is not None
     
     def setup(self, f):
         self.lifter = LiftOver(constants.liftover_chain_paths['hg19'])
@@ -37,24 +48,20 @@ class CravatConverter(BaseConverter):
         self.ex_info_writer.write_meta_line('name', 'extra_variant_info')
         self.ex_info_writer.write_meta_line('displayname', 'Extra Variant Info')
         self.cur_zygosity = None
+        self.good_vars = set(['T','C','G','A'])
 
     def convert_line(self, l):
-        ret = []
         if l.startswith('#'): return self.IGNORE
-        if l.startswith('rsid'): return self.IGNORE
-        toks = l.strip('\r\n').split('\t')
+        if l.upper().startswith('RSID'): return self.IGNORE
+        ret = []
+        toks = l.strip('\r\n').replace('"','').split(',')
         tags = toks[0]
         chrom = toks[1]
-        chromint = int(chrom)
-        if chromint == 23:
-            chrom = 'X'
-        elif chromint==24 or chromint==25:
-            chrom = 'Y'
-        elif chromint == 26:
+        if chrom=='MT':
             chrom = 'M'
-        chrom = 'chr'+chrom
-        pos = toks[2]
-        hg38_coords = self.lifter.convert_coordinate(chrom, int(pos))
+        chrom = 'chr'+chrom.upper()
+        pos = int(toks[2])
+        hg38_coords = self.lifter.convert_coordinate(chrom, pos)
         if hg38_coords != None and len(hg38_coords) > 0:
             chrom38 = hg38_coords[0][0]
             pos38 = hg38_coords[0][1]      
@@ -62,24 +69,26 @@ class CravatConverter(BaseConverter):
         else:
             raise(LiftoverFailure('Liftover failure'))      
         sample = ''
-        good_vars = set(['T','C','G','A'])
+        geno = toks[3]
         try:
-            if toks[3]==toks[4]:
+            if geno[0]==geno[1]:
                 self.cur_zygosity = 'hom'
             else:
                 self.cur_zygosity = 'het'
         except IndexError:
             self.cur_zygosity = 'hom'
-
-        for var in toks[3:]:
-            if var in good_vars and var != ref:
+            
+        for var in geno:
+            if var in self.good_vars and var != ref:
                 alt = var
-                wdict = {'tags':tags,
+                wdict = {
+                    'tags':tags,
                     'chrom':chrom,
                     'pos':pos,
                     'ref_base':ref,
                     'alt_base':alt,
-                    'sample_id':sample}
+                    'sample_id':sample,
+                }
                 ret.append(wdict)
         return ret
 
@@ -93,7 +102,6 @@ class CravatConverter(BaseConverter):
 
     def cleanup(self):
         self.ex_info_writer.close()
-
 ###################################################################################################
 """
 bowtie_index.py
@@ -327,6 +335,7 @@ class BowtieIndexReference(object):
             return "".join(stretch)
         ref_off = max(ref_off, 0)
         starting_rec = bisect_right(self.offset_in_ref[ref_id], ref_off) - 1
+        assert starting_rec >= 0
         off = self.offset_in_ref[ref_id][starting_rec]
         buf_off = self.unambig_preceding[ref_id][starting_rec]
         # Naive to scan these records linearly; obvious speedup is binary search

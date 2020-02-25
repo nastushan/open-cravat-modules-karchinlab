@@ -7,9 +7,8 @@ import sqlite3
 class CravatPostAggregator (BasePostAggregator):
 
     def check(self):
-        self.cursor.execute('select col_name from sample_header ' +\
-                            'where col_name="base__zygosity"')
-        return self.cursor.fetchone() != None
+        self.cursor.execute('select colval from info where colkey="_converter_format"')
+        return self.cursor.fetchone()[0] == 'vcf'
 
     def setup (self):
         pass
