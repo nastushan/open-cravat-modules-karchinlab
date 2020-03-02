@@ -7,6 +7,7 @@ import zipfile
 import os
 import sqlite3
 import aiosqlite3
+from cravat.util import detect_encoding
 
 class Reporter(CravatReport):
 
@@ -85,7 +86,12 @@ class Reporter(CravatReport):
                 for inputfile in self.args.inputfiles:
                     inputfile_prefix = os.path.basename(inputfile).split('.')[0]
                     input_path_no = self.input_path_dict[inputfile]
-                    f = open(inputfile)
+                    encoding = detect_encoding(inputfile)
+                    if inputfile.endswith('.gz'):
+                        import gzip
+                        f = gzip.open(inputfile, 'rt', encoding=encoding)
+                    else:
+                        f = open(inputfile)
                     lineno = 0
                     self.vcflines[input_path_no] = {}
                     for line in f:
