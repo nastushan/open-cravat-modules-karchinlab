@@ -63,6 +63,7 @@ class CravatConverter(BaseConverter):
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
+        self.sepcols = {}
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
                 self.vcf_format = 'varscan'
@@ -71,15 +72,12 @@ class CravatConverter(BaseConverter):
             if len(l) < 6:
                 continue
             if l.startswith('##INFO='):
-                colname, coltype, coltitle, coldesc, coloritype, colnumber = self.parse_header_info_field(l)
-                colname = colname.replace('.', '_')
-                if coltype is None or colnumber not in self.allowed_info_colnumbers:
-                    continue
-                else:
-                    #if colnumber == '.':
-                        #coltype = 'string'
-                        #coloritype = 'string'
-                    self.info_field_cols[colname] = {'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber}
+                coldefs = self.parse_header_info_field(l)
+                for coldef in coldefs:
+                    if coldef['type'] is None or coldef['number'] not in self.allowed_info_colnumbers:
+                        continue
+                    else:
+                        self.info_field_cols[coldef['name']] = coldef
             elif l[:6] == '#CHROM':
                 toks = re.split(r'\s+', l.rstrip())
                 if len(toks) > 8:
@@ -123,6 +121,7 @@ class CravatConverter(BaseConverter):
             except:
                 idx2 = len(l2)
             colname = l2[:idx2]
+            colname = colname.replace('.', '_')
         else:
             colname = None
         if 'Number=' in l:
@@ -154,60 +153,166 @@ class CravatConverter(BaseConverter):
             l2 = l[idx + 13:]
             idx2 = l2.index('"')
             coldesc = l2[:idx2]
+            if len(coldesc.split()) > 5:
+                coltitle = colname
+            else:
+                coltitle = coldesc
         else:
             coldesc = None
-        '''
-        if coldesc is not None and len(coldesc) < 20:
-            coltitle = coldesc
+            coltitle = None
+        coldefs = []
+        if colname == 'CSQ': # VEP annotation
+            self.vep_present = True
+            colsep = True
+            self.sepcols[colname] = []
+            colname2s = coldesc.split(' Format: ')[1].split('|')
+            for colname2 in colname2s:
+                newcolname = colname + '_' + colname2
+                newdesc = f'VEP annotation: {colname2}'
+                coldef = {'name': newcolname, 'type': coltype, 'title': newcolname, 'desc': newdesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}
+                coldefs.append(coldef)
+                self.sepcols[colname].append(coldef)
         else:
-            coltitle = colname
-        '''
-        coltitle = coldesc
-        return colname, coltype, coltitle, coldesc, coloritype, colnumber
+            colsep = False
+            self.vep_present = False
+            coldefs = [{'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}]
+        return coldefs
 
-    def parse_data_info_field (self, infoline, len_alts):
+    def parse_data_info_field (self, infoline, ref, alts, l, all_wdicts):
+        len_alts = len(alts)
         toks = infoline.split(';')
         info_dict = {}
+        lenref = len(ref)
+        self.alts = []
+        if self.vep_present == False:
+            for wdict in all_wdicts:
+                alt = wdict['alt_base']
+                info_dict[alt] = {}
+                self.alts.append(alt)
+        else:
+            alt_1st_same = True
+            if len(set([alt[0] for alt in alts])) == 1:
+                alt_1st_same = True
+            else:
+                alt_1st_same = False
+            for alt in alts:
+                lenalt = len(alt)
+                if lenalt < lenref:
+                    if ref.startswith(alt):
+                        if lenalt == 1:
+                            if alt_1st_same:
+                                vepalt = '-'
+                            else:
+                                vepalt = alt
+                        else:
+                            if alt_1st_same:
+                                vepalt = alt[1:]
+                            else:
+                                vepalt = alt
+                    else:
+                        vepalt = alt
+                elif lenalt > lenref:
+                    if alt.startswith(ref):
+                        if alt_1st_same:
+                            vepalt = alt[1:]
+                        else:
+                            vepalt = alt
+                    else:
+                        if alt_1st_same:
+                            vepalt = alt[1:]
+                        else:
+                            vepalt = alt
+                elif lenalt == lenref:
+                    if lenalt == 1:
+                        vepalt = alt
+                    else:
+                        if alt_1st_same:
+                            vepalt = alt[1:]
+                        else:
+                            vepalt = alt
+                else:
+                    print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
+                    exit()
+                if vepalt in self.alts:
+                    vepalt = alt
+                self.alts.append(vepalt)
+                info_dict[vepalt] = {}
         for tok in toks:
+            data = None
             if '=' in tok:
                 idx = tok.index('=')
                 colname = tok[:idx].replace('.', '_')
-                if colname not in self.info_field_cols:
-                    continue
-                coldef = self.info_field_cols[colname]
-                coloritype = coldef['oritype']
-                colnumber = coldef['number']
                 colvals = tok[idx + 1:].split(',')
-                if coloritype == 'integer':
-                    colvals = [float(v) for v in colvals]
-                elif coloritype == 'float':
-                    colvals = [float(v) for v in colvals]
-                elif coloritype in ['string', 'character', 'flag']:
-                    colvals = colvals
-                if colnumber == '0':
-                    data = [colvals[0]] * len_alts
-                if colnumber == '1':
-                    data = [colvals[0]] * len_alts
-                elif colnumber == 'a':
-                    data = colvals
-                elif colnumber == 'r':
-                    data = colvals[1:]
-                elif colnumber == '.':
-                    if len(colvals) == len_alts:
-                        data = colvals
-                    elif len(colvals) == 1 and len_alts > 1:
-                        data = [colvals[0]] * len_alts
+                if colname == 'CSQ':
+                    coldefs = self.sepcols[colname]
+                    colvalss = [v.split('|') for v in colvals]
+                    for i in range(len(colvalss)):
+                        vepalt = colvalss[i][0]
+                        for j in range(1, len(coldefs)):
+                            coldef = coldefs[j]
+                            val = colvalss[i][j]
+                            colname = coldef['name']
+                            try:
+                                if colname not in info_dict[vepalt]:
+                                    info_dict[vepalt][colname] = []
+                                info_dict[vepalt][colname].append(val)
+                            except:
+                                raise
+                    for vepalt in info_dict:
+                        for colname in info_dict[vepalt]:
+                            if colname.startswith('CSQ_'):
+                                try:
+                                    info_dict[vepalt][colname] = ';'.join(info_dict[vepalt][colname])
+                                except:
+                                    raise
+                else:
+                    if colname not in self.info_field_cols:
+                        continue
+                    coldef = self.info_field_cols[colname]
+                    coloritype = coldef['oritype']
+                    colnumber = coldef['number']
+                    colsep = coldef['separate']
+                    if coloritype == 'integer':
+                        colvals = [float(v) for v in colvals]
+                    elif coloritype == 'float':
+                        colvals = [float(v) for v in colvals]
+                    elif coloritype in ['string', 'character', 'flag']:
+                        colvals = colvals
+                    if colnumber == '0':
+                        for vepalt in self.alts:
+                            info_dict[vepalt][colname] = colvals[0]
+                        #data = [colvals[0]] * len_alts
+                    if colnumber == '1':
+                        for vepalt in self.alts:
+                            info_dict[vepalt][colname] = colvals[0]
+                        #data = [colvals[0]] * len_alts
+                    elif colnumber == 'a':
+                        for i in range(len(self.alts)):
+                            info_dict[self.alts[i]][colname] = colvals[i]
+                        #data = colvals
+                    elif colnumber == 'r':
+                        for i in range(len(self.alts)):
+                            info_dict[self.alts[i]][colname] = colvals[i + 1]
+                        #data = colvals[1:]
+                    elif colnumber == '.':
+                        if len(colvals) == len_alts:
+                            for i in range(len(self.alts)):
+                                info_dict[self.alts[i]][colname] = colvals[i]
+                            #data = colvals
+                        elif len(colvals) == 1 and len_alts > 1:
+                            for vepalt in self.alts:
+                                info_dict[vepalt][colname] = colvals[0]
+                            #data = [colvals[0]] * len_alts
             else:
                 colname = tok
                 col = self.info_field_cols[colname]
                 if col['oritype'] == 'flag':
                     data = True
+                    for vepalt in self.alts:
+                        info_dict[vepalt][colname] = data
                 else:
                     print('{} cannot be processed: {}'.format(colname, tok))
                     continue
-            #if type(data) is list:
-            #    data = ','.join([str(v) for v in data])
-            info_dict[colname] = data
         return info_dict
 
     def convert_line(self, l):
@@ -239,14 +344,6 @@ class CravatConverter(BaseConverter):
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
-        if info is not None:
-            try:
-                self.info_field_data = self.parse_data_info_field(info, len_alts)
-            except Exception as e:
-                self._log_conversion_error(l, e)
-                self.info_field_data = {}
-        else:
-            self.info_field_data = {}
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
@@ -339,13 +436,23 @@ class CravatConverter(BaseConverter):
                             value = sample_data[gtf_no]
                             wdict[gtf] = value
                         all_wdicts.append(wdict)
+        if info is not None:
+            try:
+                self.info_field_data = self.parse_data_info_field(info, ref, alts, l, all_wdicts)
+            except Exception as e:
+                self._log_conversion_error(l, e)
+                self.info_field_data = {}
+        else:
+            self.info_field_data = {}
         return all_wdicts
 
     def addl_operation_for_unique_variant (self, wdict, wdict_no):
         if self.write_ex_info:
             uid = wdict['uid']
             row_data = {}
-            for k, v in self.info_field_data.items():
+            alt = self.alts[wdict_no]
+            data = self.info_field_data[alt]
+            for k, v in data.items():
                 if type(v) is list:
                     row_data[k] = v[wdict_no]
                 else:
