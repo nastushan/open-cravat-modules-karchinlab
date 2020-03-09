@@ -63,6 +63,10 @@ class CravatConverter(BaseConverter):
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
+        # TODO: make this a generic one in cravat_convert.py. This is just a first aid measure due to request from the CF group.
+        self.info_field_cols['oripos'] = {'name': 'oripos', 'type': 'string', 'title': 'Input position', 'desc': 'Position in input', 'oritype': 'string', 'number': '1', 'separate': False}
+        self.info_field_cols['oriref'] = {'name': 'oriref', 'type': 'string', 'title': 'Input Ref', 'desc': 'Reference bases in input', 'oritype': 'string', 'number': '1', 'separate': False}
+        self.info_field_cols['orialt'] = {'name': 'orialt', 'type': 'string', 'title': 'Input Alt', 'desc': 'Alternate bases in input', 'oritype': 'string', 'number': '1', 'separate': False}
         self.sepcols = {}
         for n, l in enumerate(f):
             if n==2 and l.startswith('##source=VarScan'):
@@ -178,7 +182,7 @@ class CravatConverter(BaseConverter):
             coldefs = [{'name': colname, 'type': coltype, 'title': coltitle, 'desc': coldesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}]
         return coldefs
 
-    def parse_data_info_field (self, infoline, ref, alts, l, all_wdicts):
+    def parse_data_info_field (self, infoline, pos, ref, alts, l, all_wdicts):
         len_alts = len(alts)
         toks = infoline.split(';')
         info_dict = {}
@@ -237,6 +241,9 @@ class CravatConverter(BaseConverter):
                     vepalt = alt
                 self.alts.append(vepalt)
                 info_dict[vepalt] = {}
+                info_dict[vepalt]['oripos'] = str(pos)
+                info_dict[vepalt]['oriref'] = ref
+                info_dict[vepalt]['orialt'] = alt
         for tok in toks:
             data = None
             if '=' in tok:
@@ -438,7 +445,7 @@ class CravatConverter(BaseConverter):
                         all_wdicts.append(wdict)
         if info is not None:
             try:
-                self.info_field_data = self.parse_data_info_field(info, ref, alts, l, all_wdicts)
+                self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
             except Exception as e:
                 self._log_conversion_error(l, e)
                 self.info_field_data = {}
