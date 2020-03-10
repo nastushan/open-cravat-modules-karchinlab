@@ -190,9 +190,13 @@ class CravatConverter(BaseConverter):
         self.alts = []
         if self.vep_present == False:
             for wdict in all_wdicts:
+                ref = wdict['ref_base']
                 alt = wdict['alt_base']
-                info_dict[alt] = {}
-                self.alts.append(alt)
+                sample = wdict['sample_id']
+                refalt = f'{ref}:{alt}'
+                if alt not in info_dict:
+                    info_dict[refalt] = {}
+                    self.alts.append(refalt)
         else:
             alt_1st_same = True
             if len(set([alt[0] for alt in alts])) == 1:
@@ -238,12 +242,14 @@ class CravatConverter(BaseConverter):
                     print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
                     exit()
                 if vepalt in self.alts:
-                    vepalt = alt
-                self.alts.append(vepalt)
-                info_dict[vepalt] = {}
-                info_dict[vepalt]['oripos'] = str(pos)
-                info_dict[vepalt]['oriref'] = ref
-                info_dict[vepalt]['orialt'] = alt
+                    refalt = f'{ref}:{alt}'
+                else:
+                    refalt = f'{ref}:{vepalt}'
+                self.alts.append(refalt)
+                info_dict[refalt] = {}
+                info_dict[refalt]['oripos'] = str(pos)
+                info_dict[refalt]['oriref'] = ref
+                info_dict[refalt]['orialt'] = alt
         for tok in toks:
             data = None
             if '=' in tok:
@@ -255,21 +261,22 @@ class CravatConverter(BaseConverter):
                     colvalss = [v.split('|') for v in colvals]
                     for i in range(len(colvalss)):
                         vepalt = colvalss[i][0]
+                        refalt = f'{ref}:{vepalt}'
                         for j in range(1, len(coldefs)):
                             coldef = coldefs[j]
                             val = colvalss[i][j]
                             colname = coldef['name']
                             try:
-                                if colname not in info_dict[vepalt]:
-                                    info_dict[vepalt][colname] = []
-                                info_dict[vepalt][colname].append(val)
+                                if colname not in info_dict[refalt]:
+                                    info_dict[refalt][colname] = []
+                                info_dict[refalt][colname].append(val)
                             except:
                                 raise
-                    for vepalt in info_dict:
-                        for colname in info_dict[vepalt]:
+                    for refalt in info_dict:
+                        for colname in info_dict[refalt]:
                             if colname.startswith('CSQ_'):
                                 try:
-                                    info_dict[vepalt][colname] = ';'.join(info_dict[vepalt][colname])
+                                    info_dict[refalt][colname] = ';'.join(info_dict[refalt][colname])
                                 except:
                                     raise
                 else:
@@ -286,12 +293,12 @@ class CravatConverter(BaseConverter):
                     elif coloritype in ['string', 'character', 'flag']:
                         colvals = colvals
                     if colnumber == '0':
-                        for vepalt in self.alts:
-                            info_dict[vepalt][colname] = colvals[0]
+                        for refalt in self.alts:
+                            info_dict[refalt][colname] = colvals[0]
                         #data = [colvals[0]] * len_alts
                     if colnumber == '1':
-                        for vepalt in self.alts:
-                            info_dict[vepalt][colname] = colvals[0]
+                        for refalt in self.alts:
+                            info_dict[refalt][colname] = colvals[0]
                         #data = [colvals[0]] * len_alts
                     elif colnumber == 'a':
                         for i in range(len(self.alts)):
@@ -307,16 +314,16 @@ class CravatConverter(BaseConverter):
                                 info_dict[self.alts[i]][colname] = colvals[i]
                             #data = colvals
                         elif len(colvals) == 1 and len_alts > 1:
-                            for vepalt in self.alts:
-                                info_dict[vepalt][colname] = colvals[0]
+                            for refalt in self.alts:
+                                info_dict[refalt][colname] = colvals[0]
                             #data = [colvals[0]] * len_alts
             else:
                 colname = tok
                 col = self.info_field_cols[colname]
                 if col['oritype'] == 'flag':
                     data = True
-                    for vepalt in self.alts:
-                        info_dict[vepalt][colname] = data
+                    for refalt in self.alts:
+                        info_dict[refalt][colname] = data
                 else:
                     print('{} cannot be processed: {}'.format(colname, tok))
                     continue
@@ -457,15 +464,16 @@ class CravatConverter(BaseConverter):
         if self.write_ex_info:
             uid = wdict['uid']
             row_data = {}
-            alt = self.alts[wdict_no]
-            data = self.info_field_data[alt]
-            for k, v in data.items():
-                if type(v) is list:
-                    row_data[k] = v[wdict_no]
-                else:
-                    row_data[k] = v
-            row_data['uid'] = uid
-            self.ex_info_writer.write_data(row_data)
+            refalt = self.alts[wdict_no]
+            if refalt in self.info_field_data:
+                data = self.info_field_data[refalt]
+                for k, v in data.items():
+                    if type(v) is list:
+                        row_data[k] = v[wdict_no]
+                    else:
+                        row_data[k] = v
+                row_data['uid'] = uid
+                self.ex_info_writer.write_data(row_data)
 
     #The vcf genotype string has a call for each allele separated by '\' or '/'
     #If the call is the same for all allels, return 'hom' otherwise 'het'
