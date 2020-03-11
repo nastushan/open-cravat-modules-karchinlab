@@ -1,5 +1,6 @@
 from cravat import BaseConverter
 from cravat import BadFormatError
+from cravat import ExpectedException
 import re
 from collections import OrderedDict
 from cravat.inout import CravatWriter
@@ -388,6 +389,7 @@ class CravatConverter(BaseConverter):
             if not ('GT' in gtfs):
                 raise BadFormatError('No GT Field')
             gt_field_no = gtf_nos['GT']
+            conversion_done = False
             for sample_no in range(len(sample_datas)):
                 sample = self.samples[sample_no]
                 sample_data = sample_datas[sample_no].split(':')
@@ -451,6 +453,9 @@ class CravatConverter(BaseConverter):
                             value = sample_data[gtf_no]
                             wdict[gtf] = value
                         all_wdicts.append(wdict)
+                        conversion_done = True
+            if conversion_done == False:
+                raise ExpectedException('No alternative genotype')
         if info is not None:
             try:
                 self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
