@@ -172,8 +172,9 @@ class CravatConverter(BaseConverter):
             colname2s = coldesc.split(' Format: ')[1].split('|')
             for colname2 in colname2s:
                 newcolname = colname + '_' + colname2
+                newcoltitle = colname + ' ' + colname2
                 newdesc = f'VEP annotation: {colname2}'
-                coldef = {'name': newcolname, 'type': coltype, 'title': newcolname, 'desc': newdesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}
+                coldef = {'name': newcolname, 'type': coltype, 'title': newcoltitle, 'desc': newdesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}
                 coldefs.append(coldef)
                 self.sepcols[colname].append(coldef)
         else:
