@@ -18,4 +18,6 @@ release_note:
   1.1.2: better documentation
   1.1.1: comment lines return IGNORE.
   1.1.0: no-data line returns False.
+requires:
+- varmeta
 private: true

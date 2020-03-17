@@ -26,24 +26,6 @@ class CravatConverter(BaseConverter):
         fprefix = 'GCA_000001405.15_GRCh38_no_alt_analysis_set'
         prefix = os.path.join(os.path.dirname(os.path.abspath(__file__)),'data',fprefix)
         self.btr = BowtieIndexReference(prefix)
-        # ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_variant_info.var')
-        # self.ex_info_writer = CravatWriter(ex_info_fpath)
-        # cols = [
-        #     constants.crv_def[0],
-        #     {
-        #         'name': 'zygosity',
-        #         'title': 'Zygosity',
-        #         'type': 'string',
-        #         'category': 'single',
-        #         'categories': ['het','hom'],
-        #         'width': 60,
-        #     }
-        # ]
-        # self.ex_info_writer.add_columns(cols)
-        # self.ex_info_writer.write_definition()
-        # self.ex_info_writer.write_meta_line('name', 'extra_variant_info')
-        # self.ex_info_writer.write_meta_line('displayname', 'Extra Variant Info')
-        # self.cur_zygosity = None
 
     def convert_line(self, l):
         ret = []
@@ -91,16 +73,6 @@ class CravatConverter(BaseConverter):
             ret = ret[:1]
         return ret
 
-    # def addl_operation_for_unique_variant (self, wdict, wdict_no):
-    #     uid = wdict['uid']
-    #     row_data = {
-    #         'uid': wdict['uid'],
-    #         'zygosity': self.cur_zygosity,
-    #     }
-    #     self.ex_info_writer.write_data(row_data)
-
-    def cleanup(self):
-        self.ex_info_writer.close()
 ###################################################################################################
 """
 bowtie_index.py
