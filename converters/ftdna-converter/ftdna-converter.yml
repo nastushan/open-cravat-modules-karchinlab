@@ -16,4 +16,4 @@ release_note:
   1.0.0: initial version
 requires:
 - varmeta
-private: true
+- vcfinfo>=1.1.5

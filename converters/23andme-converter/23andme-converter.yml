@@ -20,4 +20,4 @@ release_note:
   1.1.0: no-data line returns False.
 requires:
 - varmeta
-private: true
+- vcfinfo>=1.1.5
