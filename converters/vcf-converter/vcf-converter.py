@@ -200,11 +200,7 @@ class CravatConverter(BaseConverter):
                     info_dict[refalt] = {}
                     self.alts.append(refalt)
         else:
-            alt_1st_same = True
-            if len(set([alt[0] for alt in alts])) == 1:
-                alt_1st_same = True
-            else:
-                alt_1st_same = False
+            alt_1st_same = len(set([alt[0] for alt in alts])) == 1
             for alt in alts:
                 lenalt = len(alt)
                 if lenalt < lenref:
@@ -219,6 +215,11 @@ class CravatConverter(BaseConverter):
                                 vepalt = alt[1:]
                             else:
                                 vepalt = alt
+                    elif ref[0] == alt[0]:
+                        if alt_1st_same:
+                            vepalt = alt[1:]
+                        else:
+                            vepalt = alt
                     else:
                         vepalt = alt
                 elif lenalt > lenref:
@@ -233,13 +234,14 @@ class CravatConverter(BaseConverter):
                         else:
                             vepalt = alt
                 elif lenalt == lenref:
-                    if lenalt == 1:
-                        vepalt = alt
-                    else:
-                        if alt_1st_same:
-                            vepalt = alt[1:]
-                        else:
-                            vepalt = alt
+                    vepalt = alt
+                    # if lenalt == 1:
+                    #     vepalt = alt
+                    # else:
+                    #     if alt_1st_same:
+                    #         vepalt = alt[1:]
+                    #     else:
+                    #         vepalt = alt
                 else:
                     print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
                     exit()
@@ -460,6 +462,8 @@ class CravatConverter(BaseConverter):
             try:
                 self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
             except Exception as e:
+                # print(l)
+                # traceback.print_exc()
                 self._log_conversion_error(l, e)
                 self.info_field_data = {}
         else:

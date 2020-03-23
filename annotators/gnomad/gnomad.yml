@@ -1,4 +1,4 @@
-datasource: v2.1
+datasource: v3
 description: Genome Aggregation Database (gnomAD) is a resource developed by an international
   coalition of investigators, with the goal of aggregating and harmonizing both exome
   and genome sequencing data from a wide variety of large-scale sequencing projects
@@ -74,6 +74,7 @@ tags:
 - populations
 title: gnomAD
 type: annotator
-version: 2.1.8
+version: 3.0.0
 requires:
 - wggnomad
+private: true
