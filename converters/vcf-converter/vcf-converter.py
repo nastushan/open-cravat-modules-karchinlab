@@ -233,7 +233,7 @@ class CravatConverter(BaseConverter):
                         else:
                             vepalt = alt
                 elif lenalt == lenref:
-                        vepalt = alt
+                    vepalt = alt
                     # if lenalt == 1:
                     #     vepalt = alt
                     # else:
@@ -241,7 +241,7 @@ class CravatConverter(BaseConverter):
                     #         vepalt = alt[1:]
                     #     else:
                     #         vepalt = alt
-                    else:
+                else:
                     print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
                     exit()
                 if vepalt in self.alts:
