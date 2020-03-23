@@ -390,6 +390,7 @@ class CravatConverter(BaseConverter):
             if not ('GT' in gtfs):
                 raise BadFormatError('No GT Field')
             gt_field_no = gtf_nos['GT']
+            gt_all_zero = True
             for sample_no in range(len(sample_datas)):
                 sample = self.samples[sample_no]
                 sample_data = sample_datas[sample_no].split(':')
@@ -403,56 +404,58 @@ class CravatConverter(BaseConverter):
                     wdict = None
                     if gt == 0:
                         continue
+                    gt_all_zero = False
+                    alt = alts[gt - 1]
+                    newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                    if newalt == '*': # VCF 4.2
+                        continue
+                    zyg = self.homo_hetro(sample_data[gt_field_no])
+                    depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
+                    if depth == '.': depth = None
+                    if alt_reads == '.': alt_reads = None
+                    if af == '.': af = None
+                    if 'HP' in gtf_nos:
+                        hp_field_no = gtf_nos['HP']
+                        haplotype_block = sample_data[hp_field_no].split(',')[0].split('-')[0]
+                        haplotype_strand = sample_data[hp_field_no].split(',')[0].split('-')[1]
+                        wdict = {'tags':tag,
+                                    'chrom':chrom,
+                                    'pos':newpos,
+                                    'ref_base':newref,
+                                    'alt_base':newalt,
+                                    'sample_id':sample,
+                                    'phred': qual,
+                                    'filter': filter,
+                                    'zygosity': zyg,
+                                    'tot_reads': depth,
+                                    'alt_reads': alt_reads,
+                                    'af': af,
+                                    'hap_block': haplotype_block,
+                                    'hap_strand': haplotype_strand,                               
+                                    } 
                     else:
-                        alt = alts[gt - 1]
-                        newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                        if newalt == '*': # VCF 4.2
-                            continue
-                        zyg = self.homo_hetro(sample_data[gt_field_no])
-                        depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
-                        if depth == '.': depth = None
-                        if alt_reads == '.': alt_reads = None
-                        if af == '.': af = None
-                        if 'HP' in gtf_nos:
-                            hp_field_no = gtf_nos['HP']
-                            haplotype_block = sample_data[hp_field_no].split(',')[0].split('-')[0]
-                            haplotype_strand = sample_data[hp_field_no].split(',')[0].split('-')[1]
-                            wdict = {'tags':tag,
-                                     'chrom':chrom,
-                                     'pos':newpos,
-                                     'ref_base':newref,
-                                     'alt_base':newalt,
-                                     'sample_id':sample,
-                                     'phred': qual,
-                                     'filter': filter,
-                                     'zygosity': zyg,
-                                     'tot_reads': depth,
-                                     'alt_reads': alt_reads,
-                                     'af': af,
-                                     'hap_block': haplotype_block,
-                                     'hap_strand': haplotype_strand,                               
-                                     } 
-                        else:
-                            wdict = {'tags':tag,
-                                     'chrom':chrom,
-                                     'pos':newpos,
-                                     'ref_base':newref,
-                                     'alt_base':newalt,
-                                     'sample_id':sample,
-                                     'phred': qual,
-                                     'filter': filter,
-                                     'zygosity': zyg,
-                                     'tot_reads': depth,
-                                     'alt_reads': alt_reads,
-                                     'af': af, 
-                                     'hap_block': None,
-                                     'hap_strand': None,                               
-                                     }
-                        for gtf in gtfs:
-                            gtf_no = gtf_nos[gtf]
-                            value = sample_data[gtf_no]
-                            wdict[gtf] = value
-                        all_wdicts.append(wdict)
+                        wdict = {'tags':tag,
+                                    'chrom':chrom,
+                                    'pos':newpos,
+                                    'ref_base':newref,
+                                    'alt_base':newalt,
+                                    'sample_id':sample,
+                                    'phred': qual,
+                                    'filter': filter,
+                                    'zygosity': zyg,
+                                    'tot_reads': depth,
+                                    'alt_reads': alt_reads,
+                                    'af': af, 
+                                    'hap_block': None,
+                                    'hap_strand': None,                               
+                                    }
+                    for gtf in gtfs:
+                        gtf_no = gtf_nos[gtf]
+                        value = sample_data[gtf_no]
+                        wdict[gtf] = value
+                    all_wdicts.append(wdict)
+            if gt_all_zero:
+                raise BadFormatError('All sample GT are zero')
         if info is not None:
             try:
                 self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
