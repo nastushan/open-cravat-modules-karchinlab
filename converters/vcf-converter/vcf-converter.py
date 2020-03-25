@@ -362,6 +362,7 @@ class CravatConverter(BaseConverter):
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
+        newalts = []
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
@@ -455,6 +456,7 @@ class CravatConverter(BaseConverter):
                         value = sample_data[gtf_no]
                         wdict[gtf] = value
                     all_wdicts.append(wdict)
+                    newalts.append(newalt)
             if gt_all_zero:
                 raise BadFormatError('All sample GT are zero')
         if info is not None:
@@ -467,6 +469,7 @@ class CravatConverter(BaseConverter):
                 self.info_field_data = {}
         else:
             self.info_field_data = {}
+            self.alts = newalts
         return all_wdicts
 
     def addl_operation_for_unique_variant (self, wdict, wdict_no):
