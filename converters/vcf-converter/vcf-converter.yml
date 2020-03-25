@@ -9,9 +9,9 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 requires_opencravat: '>=1.7.0'
-private: True
 release_note:
   1.3.6: does not err when info field is empty.
+  1.3.5: better handling of VEP's CSQ field
   1.3.4: logs no alternate base in all samples.
   1.3.1: adds original input pos, ref, and alt as a temporary measure.
   1.3.0: separates existing VEP annotations.
