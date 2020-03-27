@@ -140,6 +140,8 @@ class Reporter(CravatReport):
                     continue
                 if col_desc is None:
                     col_desc = ''
+                if col_type == 'Int':
+                    col_type = 'Integer'
                 line = '#INFO=<ID={},Number=A,Type={},Description="{}">'.format(col_name, col_type, col_desc)
                 self.write_preface_line(line)
                 self.col_names.append(col_name)
