@@ -263,13 +263,24 @@ class Reporter(CravatReport):
             if self.info_type == 'separate':
                 info_add_list = []
                 for colno in range(len(self.col_names)):
-                    info_add_list.append(self.col_names[colno] + '=' + ','.join(combined_annots[colno]))
+                    vals = combined_annots[colno]
+                    print(f'@ colname={self.col_names[colno]}, val={vals}')
+                    has_value = False
+                    for val in vals:
+                        if val != '' and val != '""':
+                            has_value = True
+                            break
+                    if has_value:
+                        info_add_list.append(self.col_names[colno] + '=' + ','.join(combined_annots[colno]))
                 info_add_str = ';'.join(info_add_list)
             elif self.info_type == 'combined':
                 info_add_str = self.info_fieldname_prefix + '=' + '|'.join([','.join(altlist) for altlist in combined_annots])
             if self.input_format == 'vcf':
                 toks = out['line'].split('\t')
-                toks[7] = toks[7] + ';' + info_add_str
+                if toks[7] == '.' or toks[7] == '':
+                    toks[7] = info_add_str
+                else:
+                    toks[7] = toks[7] + ';' + info_add_str
                 writerow = toks
                 del self.output_candidate[pathno][lineno]
             else:
