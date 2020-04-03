@@ -11,56 +11,56 @@ developer:
   citation: ''
 report_substitution:
   so:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
+    2KD: 2kb_downstream
+    2KU: 2kb_upstream
+    UT3: 3-prime_utr
+    UT5: 5-prime_utr
     INT: intron
     UNK: unknown
     SYN: synonymous
     MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site
+    STG: stop_gained
+    FSD: frameshift_deletion
+    FSI: frameshift_insertion
+    INI: inframe_insertion
+    IND: inframe_deletion
   all_so:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
+    2KD: 2kb_downstream
+    2KU: 2kb_upstream
+    UT3: 3-prime_utr
+    UT5: 5-prime_utr
     INT: intron
     UNK: unknown
     SYN: synonymous
     MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site
+    STG: stop_gained
+    FSD: frameshift_deletion
+    FSI: frameshift_insertion
+    INI: inframe_insertion
+    IND: inframe_deletion
   all_mappings:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
+    2KD: 2kb_downstream
+    2KU: 2kb_upstream
+    UT3: 3-prime_utr
+    UT5: 5-prime_utr
     INT: intron
     UNK: unknown
     SYN: synonymous
     MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site
+    STG: stop_gained
+    FSD: frameshift_deletion
+    FSI: frameshift_insertion
+    INI: inframe_insertion
+    IND: inframe_deletion
   coding:
     Y: "Yes"
 can_summarize_by_gene: true
