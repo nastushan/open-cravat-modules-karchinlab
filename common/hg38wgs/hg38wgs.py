@@ -15,7 +15,7 @@ class CravatCommonModule (BaseCommonModule):
             end = start
         if chrom not in self.wgs_reader:
             return None
-        if strand is None or strand == '+':
+        if strand is None or strand == 1 or strand == '+':
             if start <= end:
                 return self.wgs_reader[chrom][start - 1:end]
             else:
@@ -23,7 +23,7 @@ class CravatCommonModule (BaseCommonModule):
                 for pos in range(start - 1, end - 2, -1):
                     bases += self.wgs_reader[chrom][pos]
                 return bases
-        elif strand == '-':
+        elif strand == -1 or strand == '-':
             if start <= end:
                 bases = ''
                 for pos in range(end - 1, start - 2, -1):
