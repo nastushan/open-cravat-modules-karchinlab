@@ -368,9 +368,9 @@ class CravatConverter(BaseConverter):
                 wdict = None
                 alt = alts[altno]
                 newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                if newalt == '*': # VCF 4.2
-                    self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate base * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
-                    continue
+                #if newalt == '*': # VCF 4.2
+                    #self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate base * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
+                    #continue
                 wdict = {'tags':tag,
                          'chrom':chrom,
                          'pos':newpos,
@@ -410,9 +410,9 @@ class CravatConverter(BaseConverter):
                     gt_all_zero = False
                     alt = alts[gt - 1]
                     newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                    if newalt == '*': # VCF 4.2
-                        self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate allele * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
-                        continue
+                    #if newalt == '*': # VCF 4.2
+                        #self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate allele * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
+                        #continue
                     zyg = self.homo_hetro(sample_data[gt_field_no])
                     depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
                     if depth == '.': depth = None
