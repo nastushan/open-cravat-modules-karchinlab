@@ -37,7 +37,7 @@ def basenum_to_base (n):
         return THYMINECHAR
     elif n == GUANINENUM:
         return GUANINECHAR
-    elif n == CYTOSINENUM
+    elif n == CYTOSINENUM:
         return CYTOSINECHAR
     elif n == NBASENUM:
         return NBASECHAR
@@ -376,16 +376,17 @@ class Mapper (cravat.BaseMapper):
         
     def _make_tr_info (self):
         t = time.time()
-        q = f'select t.tid, t.name, t.strand, t.refseq, t.uniprot, t.aalen, g.desc from transcript as t, genenames as g where t.genename=g.genename'
+        q = f'select t.tid, t.name, t.strand, t.refseq, t.uniprot, t.alen, t.tlen, g.desc from transcript as t, genenames as g where t.genename=g.genename'
         self.c.execute(q)
-        self.tr_info = {}
+        tr_info = {}
         for r in self.c.fetchall():
-            (tid, name, strand, refseq, uniprot, aalen, genename) = r
+            (tid, name, strand, refseq, uniprot, alen, tlen, genename) = r
             if refseq is None:
-                refseqs = []
+                refseqs = ()
             else:
                 refseqs = [v for v in refseq.split(',')]
-            self.tr_info[tid] = [name, strand, refseqs, uniprot, aalen, genename]
+            tr_info[tid] = (name, strand, refseqs, uniprot, alen, tlen, genename)
+        self.tr_info = tr_info
 
     def _get_db (self, db_path):
         try:
@@ -434,28 +435,20 @@ class Mapper (cravat.BaseMapper):
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = 'Y'
             csn = CODING
-            ref_aas = [ref_aa]
-            alt_aas = [alt_aa]
         elif kind == FRAG_UTR5:
             so = SO_UT5
             achange = None
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
         elif kind == FRAG_UTR3:
             so = SO_UT3
             achange = None
             cchange = f'c.*{cpos}{tr_ref_base}>{tr_alt_base}'
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
         elif kind & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
             coding = None
-            ref_aas = [aanum_to_aa[NOA]]
-            alt_aas = [aanum_to_aa[NOA]]
             achange = None
             if gpos == start or gpos == start + 1:
                 if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
@@ -488,8 +481,6 @@ class Mapper (cravat.BaseMapper):
             else:
                 so = SO_INT
                 csn = NONCODING
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
             if so == SO_INT:
                 if prevcont != 0:
                     q = f'select start from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and prevcont=0'
@@ -524,24 +515,18 @@ class Mapper (cravat.BaseMapper):
             so = SO_UNK
             achange = None
             cchange = None
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
         elif kind == FRAG_UP2K:
             so = SO_2KU
             achange = None
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
         elif kind == FRAG_DN2K:
             so = SO_2KD
             achange = None
             cchange = f'c.*{cpos}{tr_ref_base}>{tr_alt_base}'
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
         return so, achange, cchange, coding, csn
@@ -623,7 +608,6 @@ class Mapper (cravat.BaseMapper):
         return hgvs_cpos
 
     def _get_hgvs_cpos (self, tid, kind, start, end, cstart, gpos_q, chrom, strand):
-        t = time.time()
         if gpos_q >= start and gpos_q <= end:
             kind_q = kind
             start_q = start
@@ -675,8 +659,6 @@ class Mapper (cravat.BaseMapper):
         so = SO_NSO
         coding = None
         achange = None
-        ref_aas = [aanum_to_aa[NDA]]
-        alt_aas = [aanum_to_aa[NDA]]
         if kind == FRAG_CDS:
             if cpos == 1:
                 fragkind = self._get_gpos_fragkind(tid, chrom, gpos - 1)
@@ -821,12 +803,8 @@ class Mapper (cravat.BaseMapper):
             achange = None
             cchange = None
             csn = NONCODING
-            ref_aas = [aanum_to_aa[NDA]]
-            alt_aas = [aanum_to_aa[NDA]]
         else:
             if kind == FRAG_CDS:
-                ref_aas = [aanum_to_aa[NOA]]
-                alt_aas = [aanum_to_aa[NOA]]
                 if lenref % 3 == 0:
                     so = SO_IND
                 else:
@@ -843,23 +821,17 @@ class Mapper (cravat.BaseMapper):
                 so = SO_UT5
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UTR3:
                 so = SO_UT3
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_INTRON:
                 cchange = None
                 coding = None
-                ref_aas = [aanum_to_aa[NOA]]
-                alt_aas = [aanum_to_aa[NOA]]
                 achange = None
                 if gpos == start or gpos == startplus or gposend == start or gposend == startplus:
                     if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
@@ -888,30 +860,22 @@ class Mapper (cravat.BaseMapper):
                 else:
                     so = SO_INT
                     csn = NONCODING
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
             elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UP2K:
                 so = SO_2KU
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_DN2K:
                 so = SO_2KD
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
         return so, achange, cchange, coding, csn
@@ -939,8 +903,6 @@ class Mapper (cravat.BaseMapper):
                 so = SO_CSS
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NOA]]
-                alt_aas = [aanum_to_aa[NOA]]
                 #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
                 #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
                 tr_ref_base_str = tr_ref_base
@@ -953,23 +915,17 @@ class Mapper (cravat.BaseMapper):
                 so = SO_UT5
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UTR3:
                 so = SO_UT3
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_INTRON:
                 cchange = None
                 coding = None
-                ref_aas = [aanum_to_aa[NOA]]
-                alt_aas = [aanum_to_aa[NOA]]
                 achange = None
                 if gpos == start or gpos == startplus or gposend == start or gposend == startplus:
                     if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
@@ -998,30 +954,22 @@ class Mapper (cravat.BaseMapper):
                 else:
                     so = SO_INT
                     csn = NONCODING
-                    ref_aas = [aanum_to_aa[NDA]]
-                    alt_aas = [aanum_to_aa[NDA]]
             elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UP2K:
                 so = SO_2KU
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_DN2K:
                 so = SO_2KD
                 achange = None
                 cchange = None
-                ref_aas = [aanum_to_aa[NDA]]
-                alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
         return so, achange, cchange, coding, csn
@@ -1034,12 +982,14 @@ class Mapper (cravat.BaseMapper):
             ret = self.c.fetchall()
         except Exception as e:
             if str(e).startswith('no such table'):
-                ret = []
+                ret = ()
             else:
                 raise
         return ret
 
     def map (self, crv_data):
+        print(f'@@@@@@ crv_data={crv_data}')
+        tr_info = self.tr_info
         tpos = -1
         so = SO_NSO
         uid = crv_data['uid']
@@ -1084,8 +1034,8 @@ class Mapper (cravat.BaseMapper):
         alt_transcripts = {}
         coding = None
         for r in rs:
-            [tid, fragno, start, end, kind, exonno, tstart, cstart, binno, prevcont, nextcont] = r
-            [tr, strand, refseqs, uniprot, aalen, genename] = self.tr_info[tid]
+            (tid, fragno, start, end, kind, exonno, tstart, cstart, binno, prevcont, nextcont) = r
+            (tr, strand, refseqs, uniprot, alen, tlen, genename) = tr_info[tid]
             if tr not in alt_transcripts:
                 alt_transcripts[tr] = []
             for refseq in refseqs:
@@ -1124,10 +1074,6 @@ class Mapper (cravat.BaseMapper):
                 cpos = -1
                 apos = -1
             # so, refaa, altaa
-            ref_aanums = []
-            alt_aanums = []
-            ref_codonnum = -1
-            alt_codonnum = -1
             if var_type == SNV:
                 so, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno)
             if var_type == INS:
@@ -1136,10 +1082,10 @@ class Mapper (cravat.BaseMapper):
                 so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == COM:
                 so, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
-            mapping = (uniprot, achange, so, tr, cchange, aalen, genename, coding, csn)
+            mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding, csn)
             if genename not in all_mappings:
-                all_mappings[genename] = []
-            all_mappings[genename].append(mapping)
+                all_mappings[genename] = set()
+            all_mappings[genename].add(mapping)
         primary_mapping = self._get_primary_mapping(all_mappings)
         crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         crx_data.update(crv_data)
@@ -1153,7 +1099,7 @@ class Mapper (cravat.BaseMapper):
         for genename in sorted(all_mappings.keys()):
             amd[genename] = []
             for mapping in all_mappings[genename]:
-                amd[genename].append([mapping[MAPPING_UNIPROT_I], mapping[MAPPING_ACHANGE_I], sonum_to_so[mapping[MAPPING_SO_I]], mapping[MAPPING_TR_I], mapping[MAPPING_CCHANGE_I]])
+                amd[genename].append((mapping[MAPPING_UNIPROT_I], mapping[MAPPING_ACHANGE_I], sonum_to_so[mapping[MAPPING_SO_I]], mapping[MAPPING_TR_I], mapping[MAPPING_CCHANGE_I]))
         crx_data['all_mappings'] = json.dumps(amd) #, separators=(',', ':'))
         #crx_data['all_mappings'] = amd
         return crx_data, alt_transcripts
@@ -1198,185 +1144,219 @@ class Mapper (cravat.BaseMapper):
             raise
         return apos, so, csn
 
+    def _get_ins_cds_on_ter_p_hgvs (self, alt_aas, apos, pseq):
+        alt_aas = alt_aas[:alt_aas.index('*') + 1]
+        last_apos_comp = apos + len(alt_aas) - 2
+        if alt_aas[:-1] == pseq[apos - 1:last_apos_comp]:
+            achange = f'p.{pseq[last_apos_comp]}{last_apos_comp + 1}*'
+        else:
+            prev_ref_aa = pseq[apos - 2]
+            ref_aa = pseq[apos - 1]
+            achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
+        return achange
+
     def _get_ins_cds_data (self, tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand, lenalt, apos, gpos):
+        pseq = self.prots[tid]
         if lenalt % 3 == 0: # inframe_insertion
             so = SO_INI
             ref_codonpos = cpos % 3
             if ref_codonpos == 1: # conservative_inframe_insertion
                 alt_aas = ''
-                for i in range(lenalt, 3):
+                for i in range(0, lenalt, 3):
                     alt_aas += codon_to_aa[alt_base[i:i+3]]
                 lenaltaas = len(alt_aas)
+                '''
                 if lenaltaas >= apos:
-                    prev_ref_aa = self.prots[tid][apos - 2]
-                    ref_aa = self.prots[tid][apos - 1]
-                    achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
+                    if '*' in alt_aas:
+                        so = SO_STG
+                        achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                    else:
+                        prev_ref_aa = pseq[apos - 2]
+                        ref_aa = pseq[apos - 1]
+                        achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
                 else:
-                    prev_ref_aas_start = apos - lenaltaas
-                    prev_ref_aas = self.prots[tid][prev_ref_aas_start - 1:apos - 1]
+                '''
+                if '*' in alt_aas:
+                    so = SO_STG
+                    achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                else:
+                    prev_ref_aas_start = max(1, apos - lenaltaas)
+                    prev_ref_aas = pseq[prev_ref_aas_start - 1:apos - 1]
                     if prev_ref_aas == alt_aas:
                         if lenalt == 3:
                             achange = f'p.{prev_ref_aas_start}{prev_ref_aas[0]}dup'
                         else:
                             achange = f'p.{prev_ref_aas_start}{prev_ref_aas[0]}_{apos - 1}{prev_ref_aas[-1]}dup'
                     else:
-                        ref_aa = self.prots[tid][apos - 1]
+                        ref_aa = pseq[apos - 1]
                         achange = f'p.{prev_ref_aas[-1]}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
             else: # disruptive_inframe_insertion
-                ref_cpos = cpos - ref_codonpos + 1
+                if ref_codonpos == 2:
+                    ref_cpos = cpos - 1
+                elif ref_codonpos == 0:
+                    ref_cpos = cpos - 2
                 ref_tpos = tstart + ref_cpos - cstart
                 ref_gpos = gpos + ref_cpos - cpos
-                ref_codonnum = self._get_codonnum(tid, chrom, ref_tpos, ref_gpos, strand)
+                ref_codonnum = self._get_codonnum(tid, ref_tpos)
                 ref_codon = codonnum_to_codon[ref_codonnum]
-                new_bases = ref_codon[:ref_codonpos] + alt_base + ref_codon[ref_codonpos:]
+                if ref_codonpos == 2:
+                    new_bases = ref_codon[0] + alt_base + ref_codon[1:]
+                elif ref_codonpos == 0:
+                    new_bases = ref_codon[:2] + alt_base + ref_codon[2]
                 lennew = len(new_bases)
                 alt_aas = ''
                 for i in range(0, lennew, 3):
                     alt_aas += codon_to_aa[new_bases[i:i+3]]
                 if lenalt == 3: # 1 aa insertion
-                    ref_aa = self.prots[tid][apos - 1]
+                    ref_aa = pseq[apos - 1]
                     if alt_aas[0] == ref_aa: # insertion after apos
                         if alt_aas[1] == ref_aa:
-                            achange = f'p.{ref_aa}{apos}dup'
+                            if ref_aa == '*':
+                                so = SO_SYN
+                                achange = f'p.{ref_aa}{apos}='
+                            else:
+                                achange = f'p.{ref_aa}{apos}dup'
                         else:
+                            next_ref_aa = pseq[apos]
                             achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1]}'
                     elif alt_aas[1] == ref_aa: # insertion before apos
                         if alt_aas[0] == ref_aa:
                             achange = f'p.{ref_aa}{apos}dup' # 3' rule
                         else:
-                            prev_ref_aa = self.prots[tid][apos - 2]
-                            achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas[0]}'
+                            if apos == 1:
+                                if alt_aas[0] == 'M':
+                                    achange = f'p.{ref_aa}{apos}dup'
+                                else:
+                                    so = SO_SYN
+                                    achange = f'p.{ref_aa}{apos}='
+                            else:
+                                prev_ref_aa = pseq[apos - 2]
+                                achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas[0]}'
+                    else:
+                        prev_ref_aa = pseq[apos - 2]
+                        achange = f'p.{ref_aa}{apos}delins{alt_aas}'
                 else: # multiple aa insertion
-                    ref_aa = self.prots[tid][apos - 1]
+                    ref_aa = pseq[apos - 1]
                     if ref_aa == alt_aas[0]: # insertion after apos
                         prev_ref_aas_start = max(1, apos - (lenalt / 3) + 1)
-                        prev_ref_aas = self.prots[tid][prev_ref_aas_start - 1:apos]
-                        if prev_ref_aas == alt_aas[1:]:
-                            achange = f'p.{prev_ref_aas[0]}{prev_ref_aas_start}_{ref_aa}{apos}dup'
+                        prev_ref_aas = pseq[prev_ref_aas_start - 1:apos]
+                        if '*' in alt_aas:
+                            so = SO_STG
+                            achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
                         else:
-                            next_ref_aa = self.prots[tid][apos]
-                            achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1:]}'
+                            if prev_ref_aas == alt_aas[1:]:
+                                achange = f'p.{prev_ref_aas[0]}{prev_ref_aas_start}_{ref_aa}{apos}dup'
+                            else:
+                                next_ref_aa = pseq[apos]
+                                achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1:]}'
                     elif alt_aas[-1] == ref_aa: # insertion before apos
-                        prev_ref_aas_start = max(1, apos - (lenalt / 3))
-                        prev_ref_aas = self.prots[tid][prev_ref_aas_start - 1:apos - 1]
-                        if prev_ref_aas == alt_aas[:-1]:
-                            achange = f'p.{prev_ref_aas[0]}{prev_ref_aas_start}_{prev_ref_aas_start[-1]}{apos - 1}dup'
+                        if apos == 1:
+                            if 'M' in alt_aas[:-1]:
+                                met_idx = alt_aas[:-1].index('M')
+                                next_ref_aa = pseq[apos]
+                                achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[met_idx + 1:]}'
+                            else:
+                                so = SO_SYN
+                                achange = f'p.{ref_aa}{apos}='
                         else:
-                            achange = f'p.{prev_ref_aas[-1]}{apos - 1}_{ref_aa}{apos}ins{alt_aas[:-1]}'
+                            if '*' in alt_aas:
+                                so = SO_STG
+                                achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                            else:
+                                prev_ref_aas_start = apos - (lenalt / 3)
+                                if prev_ref_aas_start < 1:
+                                    prev_ref_aas = pseq[prev_ref_aas_start - 1:apos - 1]
+                                    achange = f'p.{prev_ref_aas[-1]}{apos - 1}_{ref_aa}{apos}ins{alt_aas[:-1]}'
+                                else:
+                                    if prev_ref_aas == alt_aas[:-1]:
+                                        achange = f'p.{prev_ref_aas[0]}{prev_ref_aas_start}_{prev_ref_aas_start[-1]}{apos - 1}dup'
+                                    else:
+                                        achange = f'p.{prev_ref_aas[-1]}{apos - 1}_{ref_aa}{apos}ins{alt_aas[:-1]}'
+                    else:
+                        if '*' in alt_aas:
+                            so = SO_STG
+                            achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                        else:
+                            prev_ref_aa = pseq[apos - 2]
+                            achange = f'p.{ref_aa}{apos}delins{alt_aas}'
         else: # frameshift_insertion
             so = SO_FSI
             ref_codonpos = cpos % 3
-            ref_cpos = cpos - ref_codonpos + 1
+            if ref_codonpos == 0:
+                ref_cpos = cpos - 2
+            else:
+                ref_cpos = cpos - ref_codonpos + 1
             ref_tpos = tstart + ref_cpos - cstart
             ref_gpos = gpos + ref_cpos - cpos
-            ref_codonnum = self._get_codonnum(tid, chrom, ref_tpos, ref_gpos, strand)
+            ref_codonnum = self._get_codonnum(tid, ref_tpos)
             ref_codon = codonnum_to_codon[ref_codonnum]
-            new_bases = ref_codon[:ref_codonpos] + alt_base + ref_codon[ref_codonpos:]
+            # makes insertion result bases (3-bases multiple).
+            if ref_codonpos == 1:
+                lenalt_3 = lenalt % 3
+                if lenalt_3 == 1:
+                    new_bases = alt_base + ref_codon[:2]
+                    tpos_q_start = ref_tpos + 2
+                elif lenalt_3 == 2:
+                    new_bases = alt_base + ref_codon[0]
+                    tpos_q_start = ref_tpos + 1
+            elif ref_codonpos == 2:
+                lenalt_3 = lenalt % 3
+                if lenalt_3 == 1:
+                    new_bases = ref_codon[:1] + alt_base + ref_codon[2]
+                    tpos_q_start = ref_tpos + 2
+                elif lenalt_3 == 2:
+                    new_bases = ref_codon[:1] + alt_base
+                    tpos_q_start = ref_tpos + 1
+            elif ref_codonpos == 0:
+                lenalt_3 = lenalt % 3
+                if lenalt_3 == 1:
+                    new_bases = ref_codon[:2] + alt_base
+                    tpos_q_start = ref_tpos + 2
+                elif lenalt_3 == 2:
+                    codonnum = self._get_codonnum(tid, ref_tpos + 3)
+                    new_bases = ref_codon[:2] + alt_base + ref_codon[2] + codonnum_to_codon[codonnum][0]
+                    tpos_q_start = ref_tpos + 4
             stp_found = False
             len_newbases = len(new_bases)
             aanum = codon_to_aanum[new_bases[:3]]
-            if aanum == STP:
-                so = STG
-                ref_aa = self.prots[tid][apos - 1]
+            if aanum == STP: # first aa of insertion result
+                so = SO_STG
+                ref_aa = pseq[apos - 1]
                 achange = f'p.{ref_aa}{apos}*'
             else:
                 alt_aas = aanum_to_aa[aanum]
-                for i in range(3, len_newbases, 3):
+                for i in range(3, len(new_bases), 3): # rest of new_bases
                     aanum = codon_to_aanum[new_bases[i:i+3]]
                     alt_aas += aanum_to_aa[aanum]
-                    if new_aanum == STP:
-                        stp_found = True
-                        break
-                if stp_found == False:
-                    tpos_q = ref_tpos + 3
-                    len_newbases_rem3 = len_newbases % 3
-                    codon = new_bases[-len_newbases_rem3:] + self._get_bases_tpos(tid, tpos_q, tpos_q + 2 - len_newbases_rem3)
-                    aanum = codon_to_aanum[codon]
                     if aanum == STP:
                         stp_found = True
-                    if stp_found == False:
-                        tpos_q += 3 - len_newbases_rem3
-                        
-                if lennew_3 > 0:
-                    cur_apos += 1
-                    cur_cpos = cur_apos * 3
-                    rem_ref_codon = self._get_bases(tid, chrom, tstart, cstart, cpos, 3 - lennew_3, gpos, strand)
-    def _get_bases (self, tid, chrom, tstart, cstart, cpos, lenbases, gpos, strand):
-                    rem_ref_codon = codonnum_to_codon[self._get_codonnum(tid, chrom, cur_tpos, cur_gpos, strand)]
-                    new_codon = new_bases[ll:] + rem_ref_codon[lennew_3
-                print(f'@ rem_bases={rem_bases}')
-                for i in range(0, len_rembases - len_rembases_rem, 3):
-                    alt_aas += codon_to_aa[rem_bases[i:i+3]]
-                    new_aanum = codon_to_aanum[rem_bases[i:i+3]]
-                    if new_aanum == STP:
-                        stp_found = True
+                if stp_found == False: # until the end of transcript
+                    alt_aas = aanum_to_aa[aanum]
+                    tlen = self.tr_info[tid][TR_INFO_TLEN_I]
+                    for tpos_q in range(tpos_q_start, tlen, 3):
+                        codonnum = self._get_codonnum(tid, tpos_q)
+                        aanum = codonnum_to_aanum[codonnum]
+                        alt_aas += aanum_to_aa[aanum]
+                        if aanum == STP:
+                            stp_found = True
+                            break
+                ref_apos_found = None
+                ref_aa_found = None
+                i_found = None
+                for i in range(len(alt_aas)):
+                    apos_q = apos + i
+                    aa = pseq[apos_q - 1]
+                    if aa != alt_aas[i]:
+                        ref_apos_found = apos_q
+                        ref_aa_found = aa
+                        i_found = i
                         break
-                if stp_found == False:
-                    rem_bases_rem = rem_bases[-len_rembases_rem:]
-                    q = f'select start, end from transcript_frags_{chrom} where tid={tid} and kind={FRAG_DN2K}'
-                    self.c2.execute(q)
-                    rs = self.c2.fetchall()
-                    if strand == PLUSSTRAND:
-                        r = rs[-1]
-                        gpos_post_tr = r[0]
-                        if len_rembases_rem > 0:
-                            tmp_bases = self.hg38reader[chrom][gpos_post_tr - 1:gpos_post_tr + (3 - len_rembases_rem) - 1].upper()
-                            codon = rem_bases_rem + tmp_bases
-                            aanum = codon_to_aanum[codon]
-                            aa = codon_to_aa[codon]
-                            alt_aas += aa
-                            if aanum == STP:
-                                stp_found = True
-                        if stp_found == False:
-                            gpos_search_start = gpos_post_tr + (3 - len_rembases_rem)
-                            for gpos_search in range(gpos_search_start, gpos_search_start + 300, 3):
-                                codon = self.hg38reader[chrom][gpos_search:gpos_search + 3].upper()
-                                aa = codon_to_aa[codon]
-                                aanum = codon_to_aanum[codon]
-                                alt_aas += aa
-                                if aanum == STP:
-                                    stp_found = True
-                                    break
-                            if stp_found == False:
-                                alt_aas += '?'
-                    elif strand == MINUSSTRAND:
-                        r = rs[0]
-                        gpos_post_tr = r[1]
-                        if len_rembases_rem > 0:
-                            tmp_bases = self.hg38reader[chrom][gpos_post_tr - (3 - len_rembases_rem):gpos_post_tr].upper()
-                            codon = rem_bases_rem + tmp_bases
-                            aanum = codon_to_aanum[codon]
-                            aa = codon_to_aa[codon]
-                            alt_aas += aa
-                            if aanum == STP:
-                                stp_found = True
-                        if stp_found == False:
-                            gpos_search_start = gpos_post_tr - len_rembases_rem
-                            for gpos_search in range(gpos_search_start, gpos_search_start + 300, 3):
-                                codon = self.hg38reader[chrom][gpos_search:gpos_search + 3].upper()
-                                aa = codon_to_aa[codon]
-                                aanum = codon_to_aanum[codon]
-                                alt_aas += aa
-                                if aanum == STP:
-                                    stp_found = True
-                                    break
-                            if stp_found == False:
-                                alt_aas += '?'
-                ref_codonnum = self._get_codonnum(tid, chrom, tpos, gpos, strand)
-            print(f'@ alt_ass={alt_aas}')
-            if ref_aa == alt_aas[0]:
-                ref_apos += 1
-                alt_aa = alt_aas[1:]
-                ref_codonnum = self._get_codonnum(tid, chrom, tpos + 3, gpos + 3, strand)
-                ref_aa = codonnum_to_aa[ref_codonnum]
-            if alt_aas[0] == '*':
-                achange = f'p.{ref_aa}{ref_apos}*'
-            else:
-                achange = f'p.{ref_aa}{ref_apos}{alt_aas[0]}fs*'
-            if stp_found:
-                achange += f'{len(alt_aas)}'
-            else:
-                achange += '?'
+                ref_aa = pseq[apos - 1]
+                achange = f'p.{ref_aa_found}{ref_apos_found}{alt_aas[i_found]}fs*'
+                if stp_found:
+                    achange += f'{len(alt_aas) - i_found}'
+                else:
+                    achange += '?'
         return so, achange
 
     def _find_next_stp_apos (self, tid, tpos):
@@ -1452,41 +1432,40 @@ class Mapper (cravat.BaseMapper):
     def _get_primary_mapping (self, all_mappings):
         primary_mapping = ('', '', SO_NSO, '', '', -1, '', '', NOCSN)
         for genename, mappings in all_mappings.items():
-            for i in range(len(mappings)):
-                mapping = mappings[i]
+            #for i in range(len(mappings)):
+            for mapping in mappings:
+                #mapping = mappings[i]
                 if primary_mapping[MAPPING_SO_I] == SO_NSO:
                     primary_mapping = mapping
                 elif _compare_mapping(mapping, primary_mapping) < 0:
                     primary_mapping = mapping
         return primary_mapping
 
-    def _get_codonnum (self, tid, chrom, tpos, gpos, strand):
+    def _get_codonnum (self, tid, tpos):
         [seq, ex] = self.mrnas[tid]
+        tlen = self.tr_info[tid][TR_INFO_TLEN_I]
         codonnum = 0
+        incomplete_codon = False
         for i in range(3):
             tpos_q = tpos + i
             if tpos_q in ex:
                 codonnum = codonnum | NBASENUM
                 break
-            else:
-                try:
-                    tpos_q0 = tpos_q - 1
-                    seqbyteno = int(tpos_q0 / 4)
-                    seqbitno = (tpos_q0 % 4) * 2
-                    base_bits = ((seq[seqbyteno] >> (6 - seqbitno)) & 0b00000011) << ((2 - i) << 1)
-                    codonnum = codonnum | base_bits
-                except IndexError:
-                    base = self.hg38reader.get_bases(chrom, gpos + i - 1, strand=strand).upper()
-                    if base == NBASECHAR:
-                        codonnum = codonnum | NBASENUM
-                        break
-                    else:
-                        base_bits = base_to_basenum(base) << ((2 - i) << 1)
-                        codonnum = codonnum | base_bits
-        if codonnum & NBASENUM > 0:
-            aanum = XAA
+            if tpos_q > tlen:
+                incomplete_codon = True
+                break
+            tpos_q0 = tpos_q - 1
+            seqbyteno = int(tpos_q0 / 4)
+            seqbitno = (tpos_q0 % 4) * 2
+            base_bits = ((seq[seqbyteno] >> (6 - seqbitno)) & 0b00000011) << ((2 - i) << 1)
+            codonnum = codonnum | base_bits
+        if incomplete_codon:
+            codonnum = None
         else:
-            aanum = codonnum_to_aanum[codonnum]
+            if codonnum & NBASENUM > 0:
+                aanum = XAA
+            else:
+                aanum = codonnum_to_aanum[codonnum]
         return codonnum
 
     def _get_bases (self, tid, chrom, tstart, cstart, cpos, lenbases, gpos, strand):
@@ -1569,7 +1548,7 @@ class Mapper (cravat.BaseMapper):
                     so_counts[so] += numsample
         so_count_keys = list(so_counts.keys())
         so_count_keys.sort()
-        so_count_l = ['{}({})'.format(so, so_counts[so]) for so in so_count_keys]
+        so_count_l = [f'{so}({so_counts[so]}' for so in so_count_keys]
         out['all_so'] = ','.join(so_count_l)
         return out
 
