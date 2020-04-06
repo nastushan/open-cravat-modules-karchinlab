@@ -141,6 +141,7 @@ SO_STG = 45
 SO_FSD = 46
 SO_FSI = 47
 SO_MLO = 48 # start_lost
+SO_MGN = 49 # start gain
 # csn: coding, splice, noncoding (legacy from old hg38)
 CODING = 53
 SPLICE = 52
@@ -1144,19 +1145,49 @@ class Mapper (cravat.BaseMapper):
             raise
         return apos, so, csn
 
-    def _get_ins_cds_on_ter_p_hgvs (self, alt_aas, apos, pseq):
+    def _get_ins_cds_on_ter_p_hgvs (self, alt_aas, apos, pseq, so, ref_aa):
         alt_aas = alt_aas[:alt_aas.index('*') + 1]
+        diff_apos = None
+        diff_aa = None
+        diff_i = None
+        lenaltaas = len(alt_aas)
+        for i in range(lenaltaas - 1):
+            apos_q = apos + i
+            aa_q = pseq[apos_q - 1]
+            if alt_aas[i] != aa_q:
+                diff_apos = apos_q
+                diff_aa = aa_q
+                diff_i = i
+                break
+        if diff_apos is None:
+            print(f'@ diff_apos={diff_apos}')
+            next_ref_apos = apos + lenaltaas
+            next_ref_aa = pseq[next_ref_apos - 1]
+            if next_ref_aa == '*':
+                ref_aa = pseq[apos - 1]
+                so = SO_SYN
+                achange = f'p.{ref_aa}{apos}='
+            else:
+                achange = f'p.{next_ref_aa}{next_ref_apos}delins*'
+        else:
+            achange = f'p.{diff_aa}{diff_apos}delins{alt_aas[diff_i:]}'
+        '''
         last_apos_comp = apos + len(alt_aas) - 2
+        print(f'@@@@@ alt_aas={alt_aas} last_apos_comp={last_apos_comp} alt_aas[:-1]={alt_aas[:-1]} pseq[apos - 1:last_apos_comp]={pseq[apos - 1:last_apos_comp + 1]}')
         if alt_aas[:-1] == pseq[apos - 1:last_apos_comp]:
             achange = f'p.{pseq[last_apos_comp]}{last_apos_comp + 1}*'
         else:
             prev_ref_aa = pseq[apos - 2]
             ref_aa = pseq[apos - 1]
+            if ref_aa != '*' and alt_aas[-1] == '*':
+                so = SO_STG
             achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
-        return achange
+        '''
+        return so, achange
 
     def _get_ins_cds_data (self, tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand, lenalt, apos, gpos):
         pseq = self.prots[tid]
+        ref_aa = pseq[apos - 1]
         if lenalt % 3 == 0: # inframe_insertion
             so = SO_INI
             ref_codonpos = cpos % 3
@@ -1165,20 +1196,38 @@ class Mapper (cravat.BaseMapper):
                 for i in range(0, lenalt, 3):
                     alt_aas += codon_to_aa[alt_base[i:i+3]]
                 lenaltaas = len(alt_aas)
-                '''
-                if lenaltaas >= apos:
-                    if '*' in alt_aas:
-                        so = SO_STG
-                        achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
-                    else:
-                        prev_ref_aa = pseq[apos - 2]
-                        ref_aa = pseq[apos - 1]
-                        achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas}'
-                else:
-                '''
                 if '*' in alt_aas:
                     so = SO_STG
-                    achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                    #so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
+                    alt_aas = alt_aas[:alt_aas.index('*') + 1]
+                    diff_apos = None
+                    diff_aa = None
+                    diff_i = None
+                    lenaltaas = len(alt_aas)
+                    for i in range(lenaltaas - 1):
+                        apos_q = apos + i
+                        aa_q = pseq[apos_q - 1]
+                        if alt_aas[i] != aa_q:
+                            diff_apos = apos_q
+                            diff_aa = aa_q
+                            diff_i = i
+                            break
+                    if diff_apos is None:
+                        print(f'@ diff_apos={diff_apos}')
+                        next_ref_apos = apos + lenaltaas
+                        next_ref_aa = pseq[next_ref_apos - 1]
+                        if next_ref_aa == '*':
+                            ref_aa = pseq[apos - 1]
+                            so = SO_SYN
+                            achange = f'p.{ref_aa}{apos}='
+                        else:
+                            achange = f'p.{next_ref_aa}{next_ref_apos}delins*'
+                    else:
+                        achange = f'p.{diff_aa}{diff_apos}delins{alt_aas[diff_i:]}'
+
+
+
+
                 else:
                     prev_ref_aas_start = max(1, apos - lenaltaas)
                     prev_ref_aas = pseq[prev_ref_aas_start - 1:apos - 1]
@@ -1210,15 +1259,19 @@ class Mapper (cravat.BaseMapper):
                 if lenalt == 3: # 1 aa insertion
                     ref_aa = pseq[apos - 1]
                     if alt_aas[0] == ref_aa: # insertion after apos
-                        if alt_aas[1] == ref_aa:
+                        if alt_aas[1] == ref_aa: # duplication
                             if ref_aa == '*':
                                 so = SO_SYN
                                 achange = f'p.{ref_aa}{apos}='
                             else:
                                 achange = f'p.{ref_aa}{apos}dup'
                         else:
-                            next_ref_aa = pseq[apos]
-                            achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1]}'
+                            if '*' in alt_aas:
+                                so = SO_STG
+                                so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
+                            else:
+                                next_ref_aa = pseq[apos]
+                                achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1]}'
                     elif alt_aas[1] == ref_aa: # insertion before apos
                         if alt_aas[0] == ref_aa:
                             achange = f'p.{ref_aa}{apos}dup' # 3' rule
@@ -1230,19 +1283,33 @@ class Mapper (cravat.BaseMapper):
                                     so = SO_SYN
                                     achange = f'p.{ref_aa}{apos}='
                             else:
-                                prev_ref_aa = pseq[apos - 2]
-                                achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas[0]}'
+                                if '*' in alt_aas:
+                                    so = SO_STG
+                                    so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
+                                else:
+                                    prev_ref_aa = pseq[apos - 2]
+                                    achange = f'p.{prev_ref_aa}{apos - 1}_{ref_aa}{apos}ins{alt_aas[0]}'
                     else:
-                        prev_ref_aa = pseq[apos - 2]
-                        achange = f'p.{ref_aa}{apos}delins{alt_aas}'
+                        if apos == 1:
+                            so = SO_MLO
+                        elif '*' in alt_aas:
+                            so = SO_STG
+                            so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
+                        else:
+                            prev_ref_aa = pseq[apos - 2]
+                            achange = f'p.{ref_aa}{apos}delins{alt_aas}'
                 else: # multiple aa insertion
                     ref_aa = pseq[apos - 1]
+                    print(f'@ ref_aa={ref_aa} alt_aas={alt_aas}')
                     if ref_aa == alt_aas[0]: # insertion after apos
-                        prev_ref_aas_start = max(1, apos - (lenalt / 3) + 1)
+                        prev_ref_aas_start = apos - len(alt_aas) + 1
+                        if prev_ref_aas_start < 1:
+                            prev_ref_aas_start = 1
+                        print(f'@ pseq={pseq} prev_ref_aas_start={prev_ref_aas_start} apos={apos}')
                         prev_ref_aas = pseq[prev_ref_aas_start - 1:apos]
                         if '*' in alt_aas:
                             so = SO_STG
-                            achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                            so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
                         else:
                             if prev_ref_aas == alt_aas[1:]:
                                 achange = f'p.{prev_ref_aas[0]}{prev_ref_aas_start}_{ref_aa}{apos}dup'
@@ -1251,17 +1318,15 @@ class Mapper (cravat.BaseMapper):
                                 achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1:]}'
                     elif alt_aas[-1] == ref_aa: # insertion before apos
                         if apos == 1:
-                            if 'M' in alt_aas[:-1]:
-                                met_idx = alt_aas[:-1].index('M')
-                                next_ref_aa = pseq[apos]
-                                achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[met_idx + 1:]}'
+                            if 'M' in alt_aas[:-1]: # 5' extension
+                                ext_no = len(alt_aas) - alt_aas.index('M') - 1
+                                achange = f'p.{ref_aa}{apos}ext-{ext_no}'
                             else:
                                 so = SO_SYN
                                 achange = f'p.{ref_aa}{apos}='
                         else:
                             if '*' in alt_aas:
-                                so = SO_STG
-                                achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                                so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
                             else:
                                 prev_ref_aas_start = apos - (lenalt / 3)
                                 if prev_ref_aas_start < 1:
@@ -1273,12 +1338,31 @@ class Mapper (cravat.BaseMapper):
                                     else:
                                         achange = f'p.{prev_ref_aas[-1]}{apos - 1}_{ref_aa}{apos}ins{alt_aas[:-1]}'
                     else:
-                        if '*' in alt_aas:
-                            so = SO_STG
-                            achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq)
+                        if apos == 1:
+                            if 'M' not in alt_aas:
+                                so = SO_MLO
+                                prev_ref_aa = pseq[apos - 2]
+                                achange = f'p.{ref_aa}{apos}delins{alt_aas}'
+                            else:
+                                alt_aas = alt_aas[alt_aas.index('M'):]
+                                if '*' in alt_aas:
+                                    so = SO_STG
+                                    achange = f'p.{ref_aa}{apos}delins{alt_aas[:alt_aas.index("*") + 1]}'
+                                else:
+                                    next_ref_aa = pseq[apos]
+                                    achange = f'p.{ref_aa}{apos}_{next_ref_aa}{apos + 1}ins{alt_aas[1:]}'
                         else:
-                            prev_ref_aa = pseq[apos - 2]
-                            achange = f'p.{ref_aa}{apos}delins{alt_aas}'
+                            if '*' in alt_aas:
+                                tlen = self.tr_info[tid][TR_INFO_TLEN_I]
+                                if apos == tlen:
+                                    ext_no = alt_aas.index('*')
+                                    achange = f'p.{ref_aa}{apos}{alt_aas[0]}ext*{ext_no}'
+                                else:
+                                    so = SO_STG
+                                    so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
+                            else:
+                                prev_ref_aa = pseq[apos - 2]
+                                achange = f'p.{ref_aa}{apos}delins{alt_aas}'
         else: # frameshift_insertion
             so = SO_FSI
             ref_codonpos = cpos % 3
@@ -1352,11 +1436,15 @@ class Mapper (cravat.BaseMapper):
                         i_found = i
                         break
                 ref_aa = pseq[apos - 1]
-                achange = f'p.{ref_aa_found}{ref_apos_found}{alt_aas[i_found]}fs*'
-                if stp_found:
-                    achange += f'{len(alt_aas) - i_found}'
+                if ref_apos_found == 1:
+                    so = SO_MLO
+                    achange = ''
                 else:
-                    achange += '?'
+                    achange = f'p.{ref_aa_found}{ref_apos_found}{alt_aas[i_found]}fs*'
+                    if stp_found:
+                        achange += f'{len(alt_aas) - i_found}'
+                    else:
+                        achange += '?'
         return so, achange
 
     def _find_next_stp_apos (self, tid, tpos):
