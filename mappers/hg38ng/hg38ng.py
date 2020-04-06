@@ -1199,35 +1199,15 @@ class Mapper (cravat.BaseMapper):
                 if '*' in alt_aas:
                     so = SO_STG
                     #so, achange = self._get_ins_cds_on_ter_p_hgvs(alt_aas, apos, pseq, so, ref_aa)
-                    alt_aas = alt_aas[:alt_aas.index('*') + 1]
-                    diff_apos = None
-                    diff_aa = None
-                    diff_i = None
-                    lenaltaas = len(alt_aas)
-                    for i in range(lenaltaas - 1):
-                        apos_q = apos + i
-                        aa_q = pseq[apos_q - 1]
-                        if alt_aas[i] != aa_q:
-                            diff_apos = apos_q
-                            diff_aa = aa_q
-                            diff_i = i
-                            break
-                    if diff_apos is None:
-                        print(f'@ diff_apos={diff_apos}')
-                        next_ref_apos = apos + lenaltaas
-                        next_ref_aa = pseq[next_ref_apos - 1]
-                        if next_ref_aa == '*':
-                            ref_aa = pseq[apos - 1]
-                            so = SO_SYN
-                            achange = f'p.{ref_aa}{apos}='
-                        else:
-                            achange = f'p.{next_ref_aa}{next_ref_apos}delins*'
+                    start_idx = alt_aas.index('*')
+                    if ref_aa == '*':
+                        alt_aas = alt_aas[:start_idx]
                     else:
-                        achange = f'p.{diff_aa}{diff_apos}delins{alt_aas[diff_i:]}'
-
-
-
-
+                        alt_aas = alt_aas[:start_idx + 1]
+                    ref_aa = pseq[apos - 1]
+                    prev_ref_aa = pseq[apos - 2]
+                    prev_ref_apos = apos - 1
+                    achange = f'p.{pseq[apos - 2]}{apos -1}_{pseq[apos - 1]}{apos}ins{alt_aas}'
                 else:
                     prev_ref_aas_start = max(1, apos - lenaltaas)
                     prev_ref_aas = pseq[prev_ref_aas_start - 1:apos - 1]
