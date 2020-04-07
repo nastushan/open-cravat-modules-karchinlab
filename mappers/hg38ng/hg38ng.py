@@ -1184,8 +1184,8 @@ class Mapper (cravat.BaseMapper):
                     alt_aas += codon_to_aa[alt_base[i:i+3]]
                 lenaltaas = len(alt_aas)
                 if '*' in alt_aas:
-                    so = SO_STG
-                    #so, achange = self._get_hgvs_p_disruptive_inframe_insertion_with_ter(alt_aas, apos, pseq, so, ref_aa)
+                    if ref_aa != '*':
+                        so = SO_STG
                     start_idx = alt_aas.index('*')
                     if ref_aa == '*':
                         alt_aas = alt_aas[:start_idx]
