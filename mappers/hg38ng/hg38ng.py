@@ -756,9 +756,18 @@ class Mapper (cravat.BaseMapper):
                 prev_ref = None
             else:
                 prev_ref = self._get_bases_tpos(tid, tpos - lenalt, tpos - 1)
+                next_ref = self._get_bases_tpos(tid, tpos, tpos + lenalt - 1)
+            #if prev_ref is None: # or prev_ref[-1] != tr_alt_base[-1]:
             if prev_ref is None or prev_ref[-1] != tr_alt_base[-1]:
                 cchange = f'c.{cpos - 1}_{cpos}ins{tr_alt_base}'
             else:
+                '''
+                search_bases = prev_ref + tr_alt_base + next_ref
+                start2 = lenalt
+                for i in range(len(prev_ref)):
+                    if search_bases[i:i + lenalt] == search_bases[lenalt + i:lenalt + lenalt + i]:
+                        cchange = f'c.{'
+                '''
                 if prev_ref == tr_alt_base:
                     if lenalt == 1:
                         cchange = f'c.{cpos - 1}dup'
@@ -1247,6 +1256,7 @@ class Mapper (cravat.BaseMapper):
                         elif alt_aas2 == '*':
                             achange = f'p.{pseq[apos - 2]}{apos - 1}_*{apos}ins{alt_aas1}'
                         else:
+                            so = SO_STL
                             tlen = self.tr_info[tid][TR_INFO_TLEN_I]
                             tpos_q = ref_tpos + 3
                             stp_found = False
