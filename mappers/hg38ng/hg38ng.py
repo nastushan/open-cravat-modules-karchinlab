@@ -577,13 +577,14 @@ class Mapper (cravat.BaseMapper):
     def _get_bases_tpos (self, tid, start, end):
         bases = ''
         [seq, ex] = self.mrnas[tid]
+        seqv = memoryview(seq)
         for tpos_q in range(start, end + 1):
             if tpos_q in ex:
                 base = NBASECHAR
             else:
                 seqbyteno = int((tpos_q - 1) / 4)
                 seqbitno = ((tpos_q - 1) % 4) * 2
-                basebits = (seq[seqbyteno] >> (6 - seqbitno)) & 0b00000011
+                basebits = (seqv[seqbyteno] >> (6 - seqbitno)) & 0b00000011
                 if basebits == ADENINENUM:
                     base = ADENINECHAR
                 elif basebits == THYMINENUM:
@@ -874,16 +875,18 @@ class Mapper (cravat.BaseMapper):
         so = SO_NSO
         startplus = start + 1
         endminus = end - 1
-        q = f'select kind from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
-        self.c2.execute(q)
-        gposend_kind = self.c2.fetchone()
-        if gposend_kind is not None:
-            gposend_kind = gposend_kind[0]
+        if gposend == gpos:
+            gposend_kind = kind
+        else:
+            q = f'select kind from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
+            self.c2.execute(q)
+            gposend_kind = self.c2.fetchone()
+            if gposend_kind is not None:
+                gposend_kind = gposend_kind[0]
         if kind != gposend_kind:
             so = SO_UNK
             coding = None
             achange = None
-            cchange = None
             csn = NONCODING
         else:
             if kind == FRAG_CDS:
@@ -891,28 +894,22 @@ class Mapper (cravat.BaseMapper):
                     so = SO_IND
                 else:
                     so = SO_FSD
-                #tr_ref_base_str = _get_base_str(tr_ref_base, lenref)
-                #tr_alt_base_str = _get_base_str(tr_alt_base, lenalt)
-                tr_ref_base_str = tr_ref_base
-                tr_alt_base_str = tr_alt_base
+                _get_bases_tpos = self._get_bases_tpos
+                prev_ref = _get_bases_tpos(tid, tpos_prev_ref_start, tpos - 1)
                 achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
                 coding = 'Y'
                 csn = CODING
             elif kind == FRAG_UTR5:
                 so = SO_UT5
                 achange = None
-                cchange = None
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UTR3:
                 so = SO_UT3
                 achange = None
-                cchange = None
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_INTRON:
-                cchange = None
                 coding = None
                 achange = None
                 if gpos == start or gpos == startplus or gposend == start or gposend == startplus:
@@ -945,21 +942,123 @@ class Mapper (cravat.BaseMapper):
             elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
-                cchange = None
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_UP2K:
                 so = SO_2KU
                 achange = None
-                cchange = None
                 coding = None
                 csn = NONCODING
             elif kind == FRAG_DN2K:
                 so = SO_2KD
                 achange = None
-                cchange = None
                 coding = None
                 csn = NONCODING
+        # hgvs c.
+        if so == SO_SYN or so == SO_MIS or so == SO_IND or so == SO_INI or so == SO_STL or so == SO_STG or so == SO_FSD or so == SO_FSI:
+            _get_bases_tpos = self._get_bases_tpos
+            tpos_prev_ref_start = tpos - lenalt
+            if tpos_prev_ref_start < 0:
+                tpos_prev_ref_start = 0
+            tpos_next_ref_end = tpos + lenalt - 1
+            tlen = self.tr_info[tid][TR_INFO_TLEN_I]
+            if tpos_next_ref_end > tlen:
+                tpos_next_ref_end = tlen
+            prev_ref = _get_bases_tpos(tid, tpos_prev_ref_start, tpos - 1)
+            next_ref = _get_bases_tpos(tid, tpos, tpos_next_ref_end)
+            search_bases = prev_ref + tr_alt_base + next_ref
+            if dup_found == False:
+                for i in range(lenalt):
+                    if tr_alt_base[i] != next_ref[i]:
+                        cpos = cpos + i
+                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
+                        break
+                cchange = f'c.{-1 if cpos == 1 else cpos - 1}_{-1 if cpos == 0 else cpos}ins{tr_alt_base}'
+        else:
+            if strand == PLUSSTRAND:
+                prev_ref_start = gpos - lenalt
+                prev_ref_end = gpos - 1
+                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end)
+                next_ref_start = gpos
+                next_ref_end = gpos + lenalt - 1
+                next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end)
+            else:
+                prev_ref_start = gpos + lenalt
+                prev_ref_end = gpos + 1
+                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-')
+                next_ref_start = gpos
+                next_ref_end = gpos - lenalt + 1
+                next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-')
+            search_bases = prev_ref + tr_alt_base + next_ref
+            dup_found = False
+            for i in range(len(search_bases) - lenalt - lenalt + 1):
+                scan_frag = search_bases[i:i + lenalt]
+                if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
+                    dup_found = True
+                    if lenalt == 1:
+                        if strand == PLUSSTRAND:
+                            gpos_q_start = gpos - 1
+                            gpos_q_f = gpos_q_start
+                            while True:
+                                gpos_q_f = gpos_q_start + 1
+                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f)
+                                if base_q_f == scan_frag:
+                                    gpos_q_start = gpos_q_f
+                                else:
+                                    break
+                        else:
+                            gpos_q_start = gpos + 1
+                            gpos_q_f = gpos_q_start
+                            while True:
+                                gpos_q_f = gpos_q_start - 1
+                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, strand='-')
+                                if base_q_f == scan_frag:
+                                    gpos_q_start = gpos_q_f
+                                else:
+                                    break
+                        dup_start_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_start, chrom, strand)
+                        cchange = f'c.{dup_start_hgvs}dup'
+                    else:
+                        lenscanfrag = len(scan_frag)
+                        if strand == PLUSSTRAND:
+                            gpos_q_start = gpos - lenalt + i
+                            gpos_q_end = gpos + i - 1
+                            gpos_q_f = gpos_q_start
+                            while True:
+                                gpos_q_f = gpos_q_start + lenscanfrag
+                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenscanfrag - 1)
+                                if base_q_f == scan_frag:
+                                    gpos_q_start = gpos_q_f
+                                else:
+                                    break
+                        else:
+                            gpos_q_start = gpos + lenalt - i
+                            gpos_q_end = gpos - i + 1
+                            while True:
+                                gpos_q_f = gpos_q_start - lenscanfrag
+                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, strand='-')
+                                if base_q_f == scan_frag:
+                                    gpos_q_start = gpos_q_f
+                                    gpos_q_end = gpos_q_start - lenalt + 1
+                                else:
+                                    break
+                        dup_start_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_start, chrom, strand)
+                        dup_end_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_end, chrom, strand)
+                        cchange = f'c.{dup_start_hgvs}_{dup_end_hgvs}dup'
+                        break
+            if dup_found == False:
+                for i in range(lenalt):
+                    if tr_alt_base[i] != next_ref[i]:
+                        gpos = gpos + i
+                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
+                        break
+                if strand == PLUSSTRAND:
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
+                else:
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
+                cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
         return so, achange, cchange, coding, csn
 
     def _get_com_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
@@ -1253,7 +1352,7 @@ class Mapper (cravat.BaseMapper):
         return so, achange
 
     def _get_ins_cds_data (self, tid, cpos, cstart, tpos, tstart, alt_base, chrom, strand, lenalt, apos, gpos):
-        pseq = self.prots[tid]
+        pseq = memoryview(self.prots[tid])
         ref_aa = pseq[apos - 1]
         if lenalt % 3 == 0: # inframe_insertion
             so = SO_INI
