@@ -50,6 +50,7 @@ class CravatConverter(BaseConverter):
             'string': 'string'
         }
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
+        self.unique_excs = []
 
     def check_format(self, f): 
         vcf_format = False
@@ -61,6 +62,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
+        self.logger = logging.getLogger('cravat.converter')
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
@@ -649,8 +651,9 @@ class CravatConverter(BaseConverter):
             traceback. 
         """
         err_str = traceback.format_exc().rstrip()
-        #if err_str not in self.unique_excs:
-        #    self.unique_excs.append(err_str)
-        #    self.logger.error(err_str)
+        err_str_u = '\n'.join(err_str.split('\n')[:-1])
+        if err_str_u not in self.unique_excs:
+            self.unique_excs.append(err_str_u)
+            self.logger.error(err_str)
         self.error_logger.error('\nLINE:NA\nINPUT:{}\nERROR:{}\n#'.format(line[:-1], str(e)))
 
