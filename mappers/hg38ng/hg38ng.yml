@@ -11,59 +11,62 @@ developer:
   citation: ''
 report_substitution:
   so:
-    2KD: 2kb_downstream
-    2KU: 2kb_upstream
-    UT3: 3-prime_utr
-    UT5: 5-prime_utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3-prime_UTR_variant
+    UT5: 5-prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    MRT: start_retained
-    SYN: synonymous
-    MIS: missense
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
     CSS: complex_substitution
     STL: stop_lost
-    SPL: splice_site
+    SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_deletion
-    FSI: frameshift_insertion
+    FSD: frameshift_elongation
+    FSI: frameshift_truncation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
   all_so:
-    2KD: 2kb_downstream
-    2KU: 2kb_upstream
-    UT3: 3-prime_utr
-    UT5: 5-prime_utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3-prime_UTR_variant
+    UT5: 5-prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    MRT: start_retained
-    SYN: synonymous
-    MIS: missense
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
     CSS: complex_substitution
     STL: stop_lost
-    SPL: splice_site
+    SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_deletion
-    FSI: frameshift_insertion
+    FSD: frameshift_elongation
+    FSI: frameshift_truncation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
   all_mappings:
-    2KD: 2kb_downstream
-    2KU: 2kb_upstream
-    UT3: 3-prime_utr
-    UT5: 5-prime_utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3-prime_UTR_variant
+    UT5: 5-prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    MRT: start_retained
-    SYN: synonymous
-    MIS: missense
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
     CSS: complex_substitution
     STL: stop_lost
-    SPL: splice_site
+    SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_deletion
-    FSI: frameshift_insertion
+    FSD: frameshift_elongation
+    FSI: frameshift_truncation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost

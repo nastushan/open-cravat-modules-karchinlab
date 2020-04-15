@@ -130,33 +130,35 @@ SO_UT3 = 33
 SO_UT5 = 34
 SO_INT = 35
 SO_UNK = 36
-SO_MRT = 37 # start_retained_variant
-SO_SYN = 38
-SO_MIS = 39
-SO_CSS = 40
-SO_IND = 41
-SO_INI = 42
-SO_STL = 43
-SO_SPL = 44
-SO_STG = 45
-SO_FSD = 46
-SO_FSI = 47
-SO_MLO = 48 # start_lost
-SO_MGN = 49 # start gain
+SO_SYN = 37
+SO_MRT = 38 # start_retained_variant
+SO_STR = 39 # stop_retained_variant
+SO_MIS = 40
+SO_CSS = 41
+SO_IND = 42
+SO_INI = 43
+SO_STL = 44
+SO_SPL = 45
+SO_STG = 46
+SO_FSD = 47
+SO_FSI = 48
+SO_MLO = 49 # start_lost
 # csn: coding, splice, noncoding (legacy from old hg38)
-CODING = 53
-SPLICE = 52
-NONCODING = 51
-NOCSN = 50
+CODING = 54
+SPLICE = 53
+NONCODING = 52
+NOCSN = 51
 sonum_to_so = {
+    SO_NSO: '',
     SO_2KD: '2KD',
     SO_2KU: '2KU',
     SO_UT3: 'UT3',
     SO_UT5: 'UT5',
     SO_INT: 'INT',
     SO_UNK: 'UNK',
-    SO_MRT: 'MRT',
     SO_SYN: 'SYN',
+    SO_MRT: 'MRT',
+    SO_STR: 'STR',
     SO_MIS: 'MIS',
     SO_CSS: 'CSS',
     SO_IND: 'IND',
@@ -167,7 +169,6 @@ sonum_to_so = {
     SO_FSD: 'FSD',
     SO_FSI: 'FSI',
     SO_MLO: 'MLO',
-    SO_NSO: '',
 }
 # aa
 NDA = 32
@@ -350,7 +351,7 @@ class Mapper (cravat.BaseMapper):
     def map (self, crv_data):
         tr_info = self.tr_info
         tpos = -1
-        so = SO_NSO
+        so = (SO_NSO)
         uid = crv_data['uid']
         chrom = crv_data['chrom']
         gpos = crv_data['pos']
@@ -464,7 +465,6 @@ class Mapper (cravat.BaseMapper):
         return crx_data, alt_transcripts
 
     def _get_snv_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno):
-        so = SO_NSO
         csn = NOCSN
         if kind == FRAG_CDS:
             so, ref_aanum, alt_aanum = self._get_svn_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base, apos)
@@ -582,24 +582,25 @@ class Mapper (cravat.BaseMapper):
             cchange = f'c.*{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = None
             csn = NONCODING
-        return so, achange, cchange, coding, csn
+        return (so), achange, cchange, coding, csn
 
     def _get_ins_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont):
         csn = NONCODING
-        so = SO_NSO
         coding = None
         achange = None
+        so1 = None
+        so2 = None
         if kind == FRAG_CDS:
             if cpos == 1:
                 fragkind = self._get_gpos_fragkind(tid, chrom, gpos - 1)
                 if fragkind == FRAG_UTR5:
-                    so = SO_UT5
+                    so1 = SO_UT5
                 elif fragkind == FRAG_UP2K:
-                    so = SO_2KU
+                    so1 = SO_2KU
                 elif fragkind & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
-                    so = SO_UT5
+                    so1 = SO_UT5
                 else:
-                    so = SO_NSO
+                    so1 = SO_NSO
             else:
                 so, achange = self._get_ins_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
                 coding = 'Y'
@@ -636,7 +637,7 @@ class Mapper (cravat.BaseMapper):
                         so = SO_SPL
                         csn = SPLICE
                     else:
-                        so = INT
+                        so = SO_INT
                         csn = NONCODING
             elif gpos == end - 1:
                 if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
@@ -807,7 +808,7 @@ class Mapper (cravat.BaseMapper):
         return so, achange, cchange, coding, csn
 
     def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, gstart, gend, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
-        so = SO_NSO
+        so = (SO_NSO)
         gstartplus = gstart + 1
         gendminus = gend - 1
         if gposend == gpos:
@@ -888,6 +889,7 @@ class Mapper (cravat.BaseMapper):
                 coding = None
                 csn = NONCODING
         # hgvs c.
+        if kind == FRAG_CDS and gposend_kind == FRAG_CDS:
         if so == SO_SYN or so == SO_MIS or so == SO_IND or so == SO_INI or so == SO_STL or so == SO_STG or so == SO_FSD or so == SO_FSI:
             _get_bases_tpos = self._get_bases_tpos
             tend = tstart + gend - gstart # no 3' rule beyond exon
@@ -1343,7 +1345,7 @@ class Mapper (cravat.BaseMapper):
         pseq = memoryview(self.prots[tid])
         ref_aa = pseq[apos - 1]
         if lenalt % 3 == 0: # inframe_insertion
-            so = SO_INI
+            so = (SO_INI)
             ref_codonpos = cpos % 3
             if ref_codonpos == 1: # conservative_inframe_insertion
                 lenaltaas = int(lenalt / 3)
@@ -1354,7 +1356,7 @@ class Mapper (cravat.BaseMapper):
                     alt_aas[i] = codon_to_aanum[alt_base[basei:basei + 3]]
                 if TER in alt_aas:
                     if ref_aa != TER:
-                        so = SO_STG
+                        so = (SO_INI, SO_STG)
                     start_idx = alt_aas_ba.index(TER)
                     if ref_aa == TER:
                         alt_aas = alt_aas[:start_idx]
@@ -1409,20 +1411,20 @@ class Mapper (cravat.BaseMapper):
                                 achange = f'p.M1_{aanum_to_aa[pseq[apos]]}{apos + 1}ins{aanum_to_aa[alt_aas2]}'
                         else:
                             if alt_aas2 == MET:
-                                so = SO_SYN
+                                so = (SO_INI, SO_MRT)
                                 achange = f'p.M1='
                             else:
-                                so = SO_MLO
+                                so = (SO_INI, SO_MLO)
                                 alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
                                 achange = 'p.M1delins{alt_aas}'
                     elif ref_aa == TER: # Ter
                         if alt_aas1 == TER:
-                            so = SO_SYN
+                            so = (SO_INI, SO_STR)
                             achange = f'p.*{apos}='
                         elif alt_aas2 == '*':
                             achange = f'p.{aanum_to_aa[pseq[apos - 2]]}{apos - 1}_*{apos}ins{aanum_to_aa[alt_aas1]}'
                         else:
-                            so = SO_STL
+                            so = (SO_INI, SO_STL)
                             tlen = self.tr_info[tid][TR_INFO_TLEN_I]
                             tpos_q = ref_tpos + 3
                             stp_found = False
@@ -1442,11 +1444,11 @@ class Mapper (cravat.BaseMapper):
                             else:
                                 achange += '?'
                     elif alt_aas1 == TER: # STG in middle
-                        so = SO_STG
+                        so = (SO_INI, SO_STG)
                         achange = f'p.{aanum_to_aa[ref_aa]}{apos}*'
                     elif alt_aas2 == TER: # STG in middle with ref change
                         if alt_aas1 == ref_aa:
-                            so = SO_STG
+                            so = (SO_INI, SO_STG)
                             achange = f'p.{aanum_to_aa[pseq[apos]]}{apos + 1}*'
                         else:
                             alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
@@ -1474,7 +1476,7 @@ class Mapper (cravat.BaseMapper):
                         if MET in alt_aas:
                             atg_idx = alt_aas_ba.index(MET)
                             if atg_idx == lenaltaas - 1:
-                                so = SO_SYN
+                                so = (SO_INI, SO_MRT)
                                 achange = f'p.M1='
                             else:
                                 alt_aas = alt_aas[atg_idx + 1:]
@@ -1484,14 +1486,14 @@ class Mapper (cravat.BaseMapper):
                                     alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
                                     achange = f'p.M1_{aanum_to_aa[pseq[1]]}2ins{alt_aas}'
                         else:
-                            so = SO_MLO
+                            so = (SO_INI, SO_MLO)
                             alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
                             achange = f'p.M1delins{alt_aas}'
                     elif ref_aa == TER: # Ter
                         if TER in alt_aas:
                             ter_idx = alt_aas_ba.index(TER)
                             if ter_idx == 0:
-                                so = SO_SYN
+                                so = (SO_INI, SO_SYN)
                                 achange = f'p.*{apos}='
                             else:
                                 alt_aas = alt_aas[:ter_idx]
@@ -1516,7 +1518,7 @@ class Mapper (cravat.BaseMapper):
                             else:
                                 achange += '?'
                     elif alt_aas_first == TER: # STG in middle
-                        so = SO_STG
+                        so = (SO_INI, SO_STG)
                         achange = f'p.{aanum_to_aa[ref_aa]}{apos}*'
                     elif TER in alt_aas: # STG in middle with ref change
                         ter_idx = alt_aas_ba.index(TER)
@@ -1558,7 +1560,7 @@ class Mapper (cravat.BaseMapper):
                             alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
                             achange = f'p.{aanum_to_aa[ref_aa]}{apos}delins{alt_aas}'
         else: # frameshift_insertion
-            so = SO_FSI
+            so = (SO_FSI)
             ref_codonpos = cpos % 3
             if ref_codonpos == 0:
                 ref_cpos = cpos - 2
@@ -1598,7 +1600,7 @@ class Mapper (cravat.BaseMapper):
             len_newbases = len(new_bases)
             aanum = codon_to_aanum[new_bases[:3]]
             if aanum == TER: # first aa of insertion result
-                so = SO_STG
+                so = (SO_FSI, SO_STG)
                 ref_aa = pseq[apos - 1]
                 achange = f'p.{ref_aa}{apos}*'
             else:
@@ -1630,7 +1632,7 @@ class Mapper (cravat.BaseMapper):
                         break
                 ref_aa = pseq[apos - 1]
                 if ref_apos_found == 1:
-                    so = SO_MLO
+                    so = (SO_FSI, SO_MLO)
                     achange = 'p.M1fs?'
                 else:
                     achange = f'p.{ref_aa_found}{ref_apos_found}{alt_aas[i_found]}fs*'
@@ -1708,7 +1710,7 @@ class Mapper (cravat.BaseMapper):
                 so = SO_STL
             else:
                 so = SO_SYN
-        return so, ref_aanum, alt_aanum
+        return (so), ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
         primary_mapping = ('', '', SO_NSO, '', '', -1, '', '', NOCSN)
