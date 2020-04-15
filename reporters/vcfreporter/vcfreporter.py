@@ -264,7 +264,6 @@ class Reporter(CravatReport):
                 info_add_list = []
                 for colno in range(len(self.col_names)):
                     vals = combined_annots[colno]
-                    print(f'@ colname={self.col_names[colno]}, val={vals}')
                     has_value = False
                     for val in vals:
                         if val != '' and val != '""':
