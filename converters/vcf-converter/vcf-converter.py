@@ -104,7 +104,7 @@ class CravatConverter(BaseConverter):
             self.open_ex_info_writer()
 
     def open_ex_info_writer (self):
-        self.ex_info_fpath = os.path.join(self.output_dir, self.input_path + '.extra_vcf_info.var')
+        self.ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_vcf_info.var')
         self.ex_info_writer = CravatWriter(self.ex_info_fpath)
         cols = list(self.info_field_cols.values())
         cols.insert(0, constants.crv_def[0])
