@@ -9,6 +9,7 @@ output_columns:
   - name: pos
     title: Position
     type: int
+    width: 80
 description: Input coordinates are mapped to hg19 through liftOver.
 requires_opencravat: '>=1.6.1'
 developer:
