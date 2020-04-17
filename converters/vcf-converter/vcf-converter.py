@@ -50,6 +50,7 @@ class CravatConverter(BaseConverter):
             'string': 'string'
         }
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
+        self.unique_excs = []
 
     def check_format(self, f): 
         vcf_format = False
@@ -61,6 +62,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
+        self.logger = logging.getLogger('cravat.converter')
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
@@ -368,9 +370,9 @@ class CravatConverter(BaseConverter):
                 wdict = None
                 alt = alts[altno]
                 newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                if newalt == '*': # VCF 4.2
-                    self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate base * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
-                    continue
+                #if newalt == '*': # VCF 4.2
+                    #self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate base * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
+                    #continue
                 wdict = {'tags':tag,
                          'chrom':chrom,
                          'pos':newpos,
@@ -410,9 +412,9 @@ class CravatConverter(BaseConverter):
                     gt_all_zero = False
                     alt = alts[gt - 1]
                     newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                    if newalt == '*': # VCF 4.2
-                        self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate allele * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
-                        continue
+                    #if newalt == '*': # VCF 4.2
+                        #self.error_logger.error(f'\nLINE:NA\nINPUT:{l.rstrip()}\nERROR:Alternate allele * is ignored. Check https://gatkforums.broadinstitute.org/gatk/discussion/6926/spanning-or-overlapping-deletions-allele for more information.\n#')
+                        #continue
                     zyg = self.homo_hetro(sample_data[gt_field_no])
                     depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
                     if depth == '.': depth = None
@@ -649,8 +651,9 @@ class CravatConverter(BaseConverter):
             traceback. 
         """
         err_str = traceback.format_exc().rstrip()
-        #if err_str not in self.unique_excs:
-        #    self.unique_excs.append(err_str)
-        #    self.logger.error(err_str)
+        err_str_u = '\n'.join(err_str.split('\n')[:-1])
+        if err_str_u not in self.unique_excs:
+            self.unique_excs.append(err_str_u)
+            self.logger.error(err_str)
         self.error_logger.error('\nLINE:NA\nINPUT:{}\nERROR:{}\n#'.format(line[:-1], str(e)))
 
