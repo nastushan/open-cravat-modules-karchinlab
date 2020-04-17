@@ -13,8 +13,8 @@ report_substitution:
   so:
     2KD: 2kb_downstream_variant
     2KU: 2kb_upstream_variant
-    UT3: 3-prime_UTR_variant
-    UT5: 5-prime_UTR_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
     INT: intron_variant
     UNK: unknown
     SYN: synonymous_variant
@@ -25,16 +25,16 @@ report_substitution:
     STL: stop_lost
     SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_elongation
-    FSI: frameshift_truncation
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
   all_so:
     2KD: 2kb_downstream_variant
     2KU: 2kb_upstream_variant
-    UT3: 3-prime_UTR_variant
-    UT5: 5-prime_UTR_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
     INT: intron_variant
     UNK: unknown
     SYN: synonymous_variant
@@ -45,16 +45,16 @@ report_substitution:
     STL: stop_lost
     SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_elongation
-    FSI: frameshift_truncation
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
   all_mappings:
     2KD: 2kb_downstream_variant
     2KU: 2kb_upstream_variant
-    UT3: 3-prime_UTR_variant
-    UT5: 5-prime_UTR_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
     INT: intron_variant
     UNK: unknown
     SYN: synonymous_variant
@@ -65,8 +65,8 @@ report_substitution:
     STL: stop_lost
     SPL: splice_site_variant
     STG: stop_gained
-    FSD: frameshift_elongation
-    FSI: frameshift_truncation
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
