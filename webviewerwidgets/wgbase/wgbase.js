@@ -1,6 +1,6 @@
 widgetGenerators['base'] = {
 	'variant': {
-		'width': 380, 
+		'width': 480, 
 		'height': 200, 
 		'function': function (div, row, tabName) {
             var uid = getWidgetData(tabName, 'base', row, 'uid');
@@ -38,8 +38,8 @@ widgetGenerators['base'] = {
 					var table = getWidgetTableFrame();
                     table.style.tableLayout = 'auto';
 					table.style.width = '100%';
-					var thead = getWidgetTableHead(['UniProt', 'Prot Chng', 
-						'Seq Ont', 'Transcript'], ['25%', '18%', '18%', '39%']);
+					var thead = getWidgetTableHead(['Gene', 'UniProt', 'Prot Chng', 
+						'Seq Ont', 'Transcript'], ['10%', '15%', '18%', '23%', '34%']);
 					addEl(table, thead);
 					var tbody = getEl('tbody');
 					var hugos = Object.keys(allMappings);
@@ -52,7 +52,7 @@ widgetGenerators['base'] = {
 							var aachange = uniprot_d[1];
                             so = uniprot_d[2];
 							var transcript = uniprot_d[3];
-							var tr = getWidgetTableTr([uniprot, aachange, so, transcript]);
+							var tr = getWidgetTableTr([hugo, uniprot, aachange, so, transcript]);
 							addEl(tbody, tr);
 						}
 					}

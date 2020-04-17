@@ -50,7 +50,6 @@ class CravatConverter(BaseConverter):
             'string': 'string'
         }
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
-        self.unique_excs = []
 
     def check_format(self, f): 
         vcf_format = False
@@ -62,7 +61,6 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
-        self.logger = logging.getLogger('cravat.converter')
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
@@ -365,12 +363,13 @@ class CravatConverter(BaseConverter):
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
-        newalts = []
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
                 alt = alts[altno]
                 newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                if newalt == '*': # VCF 4.2
+                    continue
                 wdict = {'tags':tag,
                          'chrom':chrom,
                          'pos':newpos,
@@ -410,6 +409,8 @@ class CravatConverter(BaseConverter):
                     gt_all_zero = False
                     alt = alts[gt - 1]
                     newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                    if newalt == '*': # VCF 4.2
+                        raise BadFormatError('alternate allele is *')
                     zyg = self.homo_hetro(sample_data[gt_field_no])
                     depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
                     if depth == '.': depth = None
@@ -455,7 +456,6 @@ class CravatConverter(BaseConverter):
                         value = sample_data[gtf_no]
                         wdict[gtf] = value
                     all_wdicts.append(wdict)
-                    newalts.append(newalt)
             if gt_all_zero:
                 raise BadFormatError('All sample GT are zero')
         if info is not None:
@@ -468,7 +468,6 @@ class CravatConverter(BaseConverter):
                 self.info_field_data = {}
         else:
             self.info_field_data = {}
-            self.alts = newalts
         return all_wdicts
 
     def addl_operation_for_unique_variant (self, wdict, wdict_no):
@@ -646,9 +645,8 @@ class CravatConverter(BaseConverter):
             traceback. 
         """
         err_str = traceback.format_exc().rstrip()
-        err_str_u = '\n'.join(err_str.split('\n')[:-1])
-        if err_str_u not in self.unique_excs:
-            self.unique_excs.append(err_str_u)
-            self.logger.error(err_str)
+        #if err_str not in self.unique_excs:
+        #    self.unique_excs.append(err_str)
+        #    self.logger.error(err_str)
         self.error_logger.error('\nLINE:NA\nINPUT:{}\nERROR:{}\n#'.format(line[:-1], str(e)))
 
