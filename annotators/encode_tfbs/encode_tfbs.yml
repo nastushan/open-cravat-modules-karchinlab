@@ -17,18 +17,24 @@ output_columns:
 - name: factor
   title: Factor
   type: string
+  width: 100
 - name: cell
   title: Cell
   type: string
+  hidden: true
 - name: quality
   title: Quality
   type: string
+  hidden: true
 - name: antibody
   title: Antibody
   type: string
+  hidden: true
+  width: 70
 - name: study
   title: Study
   type: string
+  hidden: true
 
 developer:
   name: ''
