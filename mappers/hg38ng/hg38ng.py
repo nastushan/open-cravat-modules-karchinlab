@@ -338,6 +338,7 @@ codon_to_aa = {
 NO_NEXT_TER = -1
 CCHANGE_EXONIC = 1
 CCHANGE_NONEXONIC = 0
+TR_INFO_ALEN_I = 4
 TR_INFO_TLEN_I = 5
 
 def _get_base_str (tr_base, lenbase):
@@ -1594,8 +1595,55 @@ class Mapper (cravat.BaseMapper):
                         so = (SO_INI,)
                         alt_aa_first = alt_aas[0]
                         alt_aa_last = alt_aas[-1]
-                        if alt_aa_first == ref_aa:
-                            if alt_aa_last != # TODO
+                        if alt_aa_first == ref_aa and alt_aa_last == ref_aa:
+                            apos_prev_ref_start = apos - lenaltaas
+                            if apos_prev_ref_start < 1:
+                                apos_prev_ref_start = 1
+                            apos_next_ref_end = apos + lenaltaas - 1
+                            alen = self.tr_info[tid][TR_INFO_ALEN_I]
+                            if apos_next_ref_end > alen:
+                                apos_next_ref_end = alen
+                        alt_pseq = memoryview(bytearray(lenpseq + lenaltaas))
+                        alt_pseq[:apos - 1] = pseq[:apos - 1]
+                        alt_pseq[apos - 1: apos - 1 + lenaltaas] = alt_aas
+                        alt_pseq[apos - 1 + lenaltaas:] = pseq[apos - 1:]
+                            prev_ref = pseq[apos_prev_ref_start:apos - 1]
+                            next_ref = pseq[apos:apos_next_ref_end]
+                            search_bases = prev_ref + tr_alt_base + next_ref
+                            tpos_q_start = -1
+                            dup_found = False
+                            max_tpos_q_start = None
+                            for i in range(len(search_bases) - lenalt):
+                                scan_frag = search_bases[i:i + lenalt]
+                                if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
+                                    dup_found = True
+                                    tpos_q_start = tpos - lenalt + i
+                                    if max_tpos_q_start is None or tpos_q_start > max_tpos_q_start:
+                                        max_tpos_q_start = tpos_q_start
+                                    while True:
+                                        tpos_q_f = tpos_q_start + lenalt
+                                        base_q_f = _get_bases_tpos(tid, tpos_q_f, tpos_q_f + lenalt - 1)
+                                        if base_q_f == scan_frag:
+                                            tpos_q_start = tpos_q_f
+                                            if tpos_q_start > max_tpos_q_start:
+                                                max_tpos_q_start = tpos_q_start
+                                            tpos_q_f = tpos_q_start + lenalt
+                                        else:
+                                            break
+                            if dup_found:
+                                cpos_q_start = max_tpos_q_start - tpos + cpos
+                                if lenalt == 1:
+                                    cchange = f'c.{-1 if cpos_q_start == 0 else cpos_q_start}dup'
+                                else:
+                                    cpos_q_end = cpos_q_start + lenalt - 1
+                                    cchange = f'c.{-1 if cpos_q_start == 0 else cpos_q_start}_{-1 if cpos_q_end == 0 else cpos_q_end}dup'
+                            else:
+                                for i in range(lenalt):
+                                    if tr_alt_base[i] != next_ref[i]:
+                                        cpos = cpos + i
+                                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
+                                        break
+                                cchange = f'c.{-1 if cpos == 1 else cpos - 1}_{-1 if cpos == 0 else cpos}ins{tr_alt_base}'
 
 
                         lenpseq = len(pseq)
