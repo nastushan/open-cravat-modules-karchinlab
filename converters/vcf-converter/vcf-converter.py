@@ -199,7 +199,7 @@ class CravatConverter(BaseConverter):
                 alt = wdict['alt_base']
                 sample = wdict['sample_id']
                 refalt = f'{ref}:{alt}'
-                if alt not in info_dict:
+                if refalt not in info_dict:
                     info_dict[refalt] = {}
                     self.alts.append(refalt)
         else:
