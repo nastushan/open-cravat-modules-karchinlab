@@ -168,7 +168,7 @@ class Reporter(CravatReport):
             line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
             line += '\t'.join(self.samples)
             self.write_preface_line(line)
-            
+
     def write_table_row (self, row):
         if self.level != 'variant':
             return
