@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.4.0
+version: 1.4.1
 type: converter
 description: Converter for VCF format input
 developer:
@@ -11,6 +11,7 @@ developer:
 requires_opencravat: '>=1.7.0'
 private: true
 release_note:
+  1.4.1: fixed allele number miscount
   1.4.0: fixed vep_present.
   1.3.9: release candidate for star alleles
   1.3.8: leave * allele in crv

@@ -1,0 +1,80 @@
+datasource: v3
+description: Genome Aggregation Database (gnomAD) is a resource developed by an international
+  coalition of investigators, with the goal of aggregating and harmonizing both exome
+  and genome sequencing data from a wide variety of large-scale sequencing projects
+developer:
+  citation: Karczewski, Konrad J., et al. 
+    "The Mutational Constraint Spectrum Quantified from Variation in 141,456 Humans." 
+    BioRxiv, Apr. 2020, p. 531210. www.biorxiv.org, doi:10.1101/531210.
+  email: ''
+  name: Broad Institute
+  organization: Broad Institute
+  website: http://gnomad.broadinstitute.org/
+input_format: crv
+level: variant
+output_columns:
+- filterable: true
+  name: af
+  title: Global AF
+  type: float
+  width: 70
+  hidden: false
+- filterable: true
+  name: af_afr
+  title: African AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_asj
+  title: Ashkenazi Jewish AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_eas
+  title: East Asian AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_fin
+  title: Finnish AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_lat
+  title: Latino AF
+  type: float
+  width: 70
+  hidden: true
+- desc: non-Finnish European
+  filterable: true
+  name: af_nfe
+  title: Non-Fin Eur AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_oth
+  title: Other AF
+  type: float
+  width: 70
+  hidden: true
+- filterable: true
+  name: af_sas
+  title: South Asian AF
+  type: float
+  width: 70
+  hidden: true
+tags:
+- variants
+- noncoding
+- germline
+- populations
+title: gnomAD3
+type: annotator
+requires:
+  - wggnomad3
+version: 1.0.0
