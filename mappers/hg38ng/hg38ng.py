@@ -1420,6 +1420,7 @@ class Mapper (cravat.BaseMapper):
                     so = (SO_INI,)
                     prev_ref_aas_start = max(1, apos - lenaltaas)
                     prev_ref_aas = pseq[prev_ref_aas_start - 1:apos - 1]
+                    print(f'@ prev_ref_aas={prev_ref_aas}')
                     if prev_ref_aas == alt_aas:
                         if lenalt == 3:
                             achange = f'p.{aanum_to_aa[prev_ref_aas[0]]}{prev_ref_aas_start}dup'
@@ -1595,57 +1596,114 @@ class Mapper (cravat.BaseMapper):
                         so = (SO_INI,)
                         alt_aa_first = alt_aas[0]
                         alt_aa_last = alt_aas[-1]
-                        if alt_aa_first == ref_aa and alt_aa_last == ref_aa:
-                            apos_prev_ref_start = apos - lenaltaas
-                            if apos_prev_ref_start < 1:
-                                apos_prev_ref_start = 1
-                            apos_next_ref_end = apos + lenaltaas - 1
+                        dup_found = False
+                        if alt_aa_first == ref_aa and alt_aa_last != ref_aa:
+                            scan_frag = alt_aas[1:]
+                            apos_next_ref_end = apos + len(scan_frag)
                             alen = self.tr_info[tid][TR_INFO_ALEN_I]
                             if apos_next_ref_end > alen:
                                 apos_next_ref_end = alen
-                        alt_pseq = memoryview(bytearray(lenpseq + lenaltaas))
-                        alt_pseq[:apos - 1] = pseq[:apos - 1]
-                        alt_pseq[apos - 1: apos - 1 + lenaltaas] = alt_aas
-                        alt_pseq[apos - 1 + lenaltaas:] = pseq[apos - 1:]
-                            prev_ref = pseq[apos_prev_ref_start:apos - 1]
                             next_ref = pseq[apos:apos_next_ref_end]
-                            search_bases = prev_ref + tr_alt_base + next_ref
-                            tpos_q_start = -1
-                            dup_found = False
-                            max_tpos_q_start = None
-                            for i in range(len(search_bases) - lenalt):
-                                scan_frag = search_bases[i:i + lenalt]
-                                if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
+                            if scan_frag == next_ref:
+                                dup_found = True
+                                max_apos_q_start = apos + 1
+                        elif alt_aa_first != ref_aa and alt_aa_last == ref_aa:
+                            scan_frag = alt_aas[:-1]
+                            apos_prev_ref_start = apos - len(scan_frag)
+                            if apos_prev_ref_start < 1:
+                                apos_prev_ref_start = 1
+                            prev_ref = pseq[apos_prev_ref_start - 1:apos - 1]
+                            if scan_frag == prev_ref:
+                                dup_found = True
+                        elif alt_aa_first == ref_aa and alt_aa_last == ref_aa:
+                            apos_prev_ref_start = apos - lenaltaas + 1
+                            if apos_prev_ref_start < 1:
+                                apos_prev_ref_start = 1
+                            prev_ref = pseq[apos_prev_ref_start - 1:apos - 1]
+                            apos_next_ref_end = apos + lenaltaas
+                            alen = self.tr_info[tid][TR_INFO_ALEN_I]
+                            if apos_next_ref_end > alen:
+                                apos_next_ref_end = alen
+                            next_ref = pseq[apos:apos_next_ref_end]
+                            lenaltaas = len(alt_aas)
+                            lenaltaasrepeat = lenaltaas - 1
+                            print(f'@ apos={apos} prev_ref={prev_ref.tobytes()} alt_aas={alt_aas.tobytes()} next_ref={next_ref.tobytes()}')
+                            lenprev_ref = len(prev_ref)
+                            lenalt_ref = len(next_ref)
+                            search_pseq = bytearray(len(prev_ref) + lenaltaas + len(next_ref)) # TODO
+                            search_pseq = prev_ref.tobytes() + alt_aas.tobytes() + next_ref.tobytes()
+                            print(f'@ pseq={pseq.tobytes()}')
+                            print(f'@ search_pseq={search_pseq}')
+                            apos_q_start = -1
+                            max_apos_q_start = None
+                            for i in range(len(search_bases) - lenaltaasrepeat - lenaltaasrepeat + 1):
+                                scan_frag = search_bases[i:i + lenaltaasrepeat]
+                                if scan_frag == search_bases[i + lenaltaasrepeat:i + lenaltaasrepeat + lenaltaasrepeat]:
                                     dup_found = True
-                                    tpos_q_start = tpos - lenalt + i
-                                    if max_tpos_q_start is None or tpos_q_start > max_tpos_q_start:
-                                        max_tpos_q_start = tpos_q_start
+                                    apos_q_start = apos - lenaltaasrepeat + 1 + i
+                                    if max_apos_q_start is None or apos_q_start > max_apos_q_start:
+                                        max_apos_q_start = apos_q_start
                                     while True:
-                                        tpos_q_f = tpos_q_start + lenalt
-                                        base_q_f = _get_bases_tpos(tid, tpos_q_f, tpos_q_f + lenalt - 1)
-                                        if base_q_f == scan_frag:
-                                            tpos_q_start = tpos_q_f
-                                            if tpos_q_start > max_tpos_q_start:
-                                                max_tpos_q_start = tpos_q_start
-                                            tpos_q_f = tpos_q_start + lenalt
+                                        apos_q_f = apos_q_start + lenaltaasrepeat
+                                        aas_q_f = pseq[apos_q_f:apos_q_f + lenaltaasrepeat]
+                                        if aas_q_f == scan_frag:
+                                            apos_q_start = apos_q_f
+                                            if apos_q_start > max_apos_q_start:
+                                                max_apos_q_start = apos_q_start
+                                            apos_q_f = apos_q_start + lenaltaasrepeat
                                         else:
                                             break
                             if dup_found:
-                                cpos_q_start = max_tpos_q_start - tpos + cpos
-                                if lenalt == 1:
-                                    cchange = f'c.{-1 if cpos_q_start == 0 else cpos_q_start}dup'
+                                if lenaltaasrepeat == 1:
+                                    achange = f'p.{aanum_to_aa[pseq[max_apos_q_start]]}{max_apos_q_start}dup'
                                 else:
-                                    cpos_q_end = cpos_q_start + lenalt - 1
-                                    cchange = f'c.{-1 if cpos_q_start == 0 else cpos_q_start}_{-1 if cpos_q_end == 0 else cpos_q_end}dup'
+                                    max_apos_q_end = max_apos_q_start + lenaltaasrepeat - 1
+                                    achange = f'p.{aanum_to_aa[pseq[max_apos_q_start]]}{max_apos_q_start}_{aanum_to_aa[pseq[max_apos_q_end]]}{max_apos_q_end}dup'
                             else:
-                                for i in range(lenalt):
-                                    if tr_alt_base[i] != next_ref[i]:
-                                        cpos = cpos + i
-                                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
+                                for i in range(lenaltaas):
+                                    if alt_aas[i] != pseq[apos + i - 1]:
+                                        apos = apos + i
+                                        alt_aas = alt_aas[i:] + pseq[apos - 1:apos + i - 1]
                                         break
-                                cchange = f'c.{-1 if cpos == 1 else cpos - 1}_{-1 if cpos == 0 else cpos}ins{tr_alt_base}'
-
-
+                                alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
+                                achange = f'p.{aanum_to_aa[pseq[apos-1]]}{apos}_{aanum_to_aa[pseq[apos]]}{apos+1}ins{alt_aas}'
+                        elif alt_aa_first == ref_aa: # insertion after apos
+                            lenaltaas = len(alt_aas)
+                            lenaltaasrepeat = lenaltaas - 1
+                            scan_frag = alt_aas[1:]
+                            if scan_frag == pseq[apos:apos + lenaltaasrepeat]:
+                                apos_q_start = apos + 1
+                                max_apos_q_start = apos_q_start
+                                while True:
+                                    apos_q_f = apos_q_start + lenaltaasrepeat
+                                    aas_q_f = pseq[apos_q_f:apos_q_f + lenaltaasrepeat]
+                                    if aas_q_f == scan_frag:
+                                        apos_q_start = apos_q_f
+                                        if apos_q_start > max_apos_q_start:
+                                            max_apos_q_start = apos_q_start
+                                        apos_q_f = apos_q_start + lenaltaasrepeat
+                                    else:
+                                        break
+                            for i in range(lenaltaas):
+                                if alt_aas[i] != pseq[apos + i - 1]:
+                                    apos = apos + i
+                                    alt_aas = alt_aas[i:] + pseq[apos - 1:apos + i - 1]
+                                    break
+                            alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
+                            achange = f'p.{aanum_to_aa[pseq[apos-1]]}{apos}_{aanum_to_aa[pseq[apos]]}{apos+1}ins{alt_aas}'
+                                if alt_aas2 == ref_aa: # duplication
+                                    achange = f'p.{aanum_to_aa[ref_aa]}{apos}dup'
+                                else:
+                                    achange = f'p.{aanum_to_aa[ref_aa]}{apos}_{aanum_to_aa[pseq[apos]]}{apos + 1}ins{aanum_to_aa[alt_aas2]}'
+                            elif alt_aas2 == ref_aa: # insertion before apos
+                                if alt_aas1 == ref_aa:
+                                    achange = f'p.{aanum_to_aa[ref_aa]}{apos}dup' # 3' rule
+                                else:
+                                    achange = f'p.{aanum_to_aa[pseq[apos - 2]]}{apos - 1}_{aanum_to_aa[ref_aa]}{apos}ins{aanum_to_aa[alt_aas1]}'
+                            else:
+                                alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
+                                achange = f'p.{aanum_to_aa[ref_aa]}{apos}delins{alt_aas}'
+                        elif alt_aa_last == ref_aa: # insertion before apos
                         lenpseq = len(pseq)
                         alt_pseq = memoryview(bytearray(lenpseq + lenaltaas))
                         alt_pseq[:apos - 1] = pseq[:apos - 1]
