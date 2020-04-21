@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.3.9
+version: 1.4.0
 type: converter
 description: Converter for VCF format input
 developer:
@@ -11,6 +11,7 @@ developer:
 requires_opencravat: '>=1.7.0'
 private: true
 release_note:
+  1.4.0: keep correct order of alts so that in vcf reports alt and annot orders match.
   1.3.9: release candidate for star alleles
   1.3.8: leave * allele in crv
   1.3.7: logs why * alt_base is ignored in .err file.
