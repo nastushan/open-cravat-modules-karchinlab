@@ -144,10 +144,10 @@ SO_FSD = 47
 SO_FSI = 48
 SO_MLO = 49 # start_lost
 # csn: coding, splice, noncoding (legacy from old hg38)
-CODING = 54
-SPLICE = 53
-NONCODING = 52
-NOCSN = 51
+CSN_CODING = 54
+CSN_SPLICE = 53
+CSN_NONCODING = 52
+CSN_NOCSN = 51
 sonum_to_so = {
     SO_NSO: '',
     SO_2KD: '2KD',
@@ -439,7 +439,7 @@ class Mapper (cravat.BaseMapper):
             if var_type == INS:
                 so, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == DEL:
-                so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen)
             if var_type == COM:
                 so, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding, csn)
@@ -465,7 +465,7 @@ class Mapper (cravat.BaseMapper):
         return crx_data, alt_transcripts
 
     def _get_snv_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno):
-        csn = NOCSN
+        csn = CSN_NOCSN
         if kind == FRAG_CDS:
             so, ref_aanum, alt_aanum = self._get_svn_cds_so(tid, cpos, cstart, tpos, tstart, tr_alt_base, apos)
             ref_aa = aanum_to_aa[ref_aanum]
@@ -486,20 +486,20 @@ class Mapper (cravat.BaseMapper):
                         else:
                             achange = f'p.({ref_aa}{apos}{alt_aa}ext*{next_stp_apos})'
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
-            coding = 'Y'
-            csn = CODING
+            coding = b'Y'
+            csn = CSN_CODING
         elif kind == FRAG_UTR5:
             so = (SO_UT5,)
             achange = None
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         elif kind == FRAG_UTR3:
             so = (SO_UT3,)
             achange = None
             cchange = f'c.*{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         elif kind & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
             coding = None
             achange = None
@@ -507,11 +507,11 @@ class Mapper (cravat.BaseMapper):
                 if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
                     apos = -1
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     apos = -1
                     so = (SO_SPL, SO_INT)
-                    csn = SPLICE
+                    csn = CSN_SPLICE
                     offset = gpos - start + 1
                     if strand == PLUSSTRAND:
                         cchange = f'c.{cstart}+{offset}{tr_ref_base}>{tr_alt_base}'
@@ -521,11 +521,11 @@ class Mapper (cravat.BaseMapper):
                 if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
                     apos = -1
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     apos = -1
                     so = (SO_SPL, SO_INT)
-                    csn = SPLICE
+                    csn = CSN_SPLICE
                     offset = end - gpos + 1
                     if strand == PLUSSTRAND:
                         cchange = f'c.{cstart + 1}-{offset}{tr_ref_base}>{tr_alt_base}'
@@ -533,7 +533,7 @@ class Mapper (cravat.BaseMapper):
                         cchange = f'c.{cstart}+{offset}{tr_ref_base}>{tr_alt_base}'
             else:
                 so = (SO_INT,)
-                csn = NONCODING
+                csn = CSN_NONCODING
             if SO_INT in so:
                 if prevcont != 0:
                     q = f'select start from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and prevcont=0'
@@ -569,23 +569,23 @@ class Mapper (cravat.BaseMapper):
             achange = None
             cchange = None
             coding = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         elif kind == FRAG_UP2K:
             so = (SO_2KU,)
             achange = None
             cchange = f'c.{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         elif kind == FRAG_DN2K:
             so = (SO_2KD,)
             achange = None
             cchange = f'c.*{cpos}{tr_ref_base}>{tr_alt_base}'
             coding = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         return so, achange, cchange, coding, csn
 
     def _get_ins_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont):
-        csn = NONCODING
+        csn = CSN_NONCODING
         coding = None
         achange = None
         if kind == FRAG_CDS:
@@ -602,8 +602,8 @@ class Mapper (cravat.BaseMapper):
             else:
                 kind = FRAG_CDS
                 so, achange = self._get_ins_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
-                coding = 'Y'
-                csn = CODING
+                coding = b'Y'
+                csn = CSN_CODING
         elif kind == FRAG_UTR5:
             so = (SO_UT5,)
         elif kind == FRAG_UTR3:
@@ -612,7 +612,7 @@ class Mapper (cravat.BaseMapper):
             if gpos == start:
                 if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     if strand == PLUSSTRAND:
                         q = f'select start, end, tstart, cstart from transcript_frags_{chrom} where tid={tid} and fragno={fragno - 1}'
@@ -623,41 +623,41 @@ class Mapper (cravat.BaseMapper):
                         tpos = end - start + tstart
                         so, achange = self._get_ins_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
                         kind = FRAG_CDS
-                        coding = 'Y'
-                        csn = CODING
+                        coding = b'Y'
+                        csn = CSN_CODING
                     else:
                         so = (SO_SPL, SO_INT)
-                        csn = SPLICE
+                        csn = CSN_SPLICE
             elif gpos == start + 1:
                 if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     if strand == PLUSSTRAND:
                         so = (SO_SPL, SO_INT)
-                        csn = SPLICE
+                        csn = CSN_SPLICE
                     else:
                         so = (SO_INT,)
-                        csn = NONCODING
+                        csn = CSN_NONCODING
             elif gpos == end - 1:
                 if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     if strand == PLUSSTRAND:
                         so = (SO_INT,)
-                        csn = NONCODING
+                        csn = CSN_NONCODING
                     else:
                         so = (SO_SPL, SO_INT)
-                        csn = SPLICE
+                        csn = CSN_SPLICE
             elif gpos == end:
                 if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
                     so = (SO_INT,)
-                    csn = NONCODING
+                    csn = CSN_NONCODING
                 else:
                     if strand == PLUSSTRAND:
                         so = (SO_SPL, SO_INT)
-                        csn = SPLICE
+                        csn = CSN_SPLICE
                     else:
                         q = f'select start, end, tstart, cstart from transcript_frags_{chrom} where tid={tid} and fragno={fragno - 1}'
                         self.c2.execute(q)
@@ -667,11 +667,11 @@ class Mapper (cravat.BaseMapper):
                         tpos = end - start + tstart
                         so, achange = self._get_ins_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
                         kind = FRAG_CDS
-                        coding = 'Y'
-                        csn = CODING
+                        coding = b'Y'
+                        csn = CSN_CODING
             else:
                 so = (SO_INT,)
-                csn = NONCODING
+                csn = CSN_NONCODING
         elif kind == FRAG_NCRNA:
             so = (SO_UNK,)
         elif kind == FRAG_UP2K:
@@ -789,7 +789,7 @@ class Mapper (cravat.BaseMapper):
                 cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
         return so, achange, cchange, coding, csn
 
-    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, gstart, gend, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
+    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, gstart, gend, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen):
         gstartplus = gstart + 1
         gendminus = gend - 1
         if gposend == gpos:
@@ -801,10 +801,78 @@ class Mapper (cravat.BaseMapper):
             if gposend_kind is not None:
                 gposend_kind = gposend_kind[0]
         if kind != gposend_kind:
+            achange = None
+            coding = None
+            cchange = None
+            achange = None
+            if kind == FRAG_UP2K:
+                if gposend_kind == FRAG_UP2K:
+                    so = (SO_2KU,)
+                elif gposend_kind == FRAG_DN2K:
+                    so = (SO_MLO, SO_STL, SO_2KU, SO_2KD)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_UTR5:
+                    so = (SO_2KU, SO_UT5)
+                elif gposend_kind == FRAG_UTR3:
+                    so = (SO_MLO, SO_STL, SO_2KU, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDS:
+                    if apos == 1:
+                    so = (SO_MLO, SO_2KU) # TODO: TER should be checked?
+                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_cds
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNA:
+                    so = (SO_2KU,)
+                elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_2KU, SO_UT5)
+                elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO, SO_STL, SO_2KU, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_2KU,)
+                elif gposend_kind == FRAG_INTRON:
+                    so = (SO_2KU,)
+                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_cds
+                    coding = b'Y'
+            elif kind == FRAG_DN2K:
+                if gposend_kind == FRAG_UP2K:
+                    so = (SO_MLO, SO_STL, SO_2KU, SO_2KD)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_DN2K:
+                    so = (SO_2KD,)
+                elif gposend_kind == FRAG_UTR5:
+                    so = (So_MLN, SO_STL, SO_2KD, SO_UT5)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_UTR3:
+                    so = (SO_2KD, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDS:
+                    so = (SO_MLO, SO_2KU) # TODO: TER should be checked?
+                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_cds
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNA:
+                    so = (SO_2KU,)
+                elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_2KU, SO_UT5)
+                elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO, SO_STL, SO_2KU, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_2KU,)
+                elif gposend_kind == FRAG_INTRON:
+                    so = (SO_2KU,)
+                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_cds
+                    coding = b'Y'
+                    
+
             so = SO_UNK
             coding = None
             achange = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         else:
             if kind == FRAG_CDS:
                 if lenref % 3 == 0:
@@ -812,18 +880,18 @@ class Mapper (cravat.BaseMapper):
                 else:
                     so = SO_FSD
                 achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
-                coding = 'Y'
-                csn = CODING
+                coding = b'Y'
+                csn = CSN_CODING
             elif kind == FRAG_UTR5:
                 so = SO_UT5
                 achange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_UTR3:
                 so = SO_UT3
                 achange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_INTRON:
                 coding = None
                 achange = None
@@ -831,7 +899,7 @@ class Mapper (cravat.BaseMapper):
                     if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
                         apos = -1
                         so = SO_INT
-                        csn = NONCODING
+                        csn = CSN_NONCODING
                     else:
                         if strand == PLUSSTRAND:
                             apos, so, csn = self._get_splice_apos_prevfrag(tid, fragno, chrom)
@@ -843,7 +911,7 @@ class Mapper (cravat.BaseMapper):
                     if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
                         apos = -1
                         so = SO_INT
-                        csn = NONCODING
+                        csn = CSN_NONCODING
                     else:
                         if strand == PLUSSTRAND:
                             apos, so, csn = self._get_splice_apos_nextfrag(tid, fragno, chrom)
@@ -853,22 +921,22 @@ class Mapper (cravat.BaseMapper):
                             achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
                 else:
                     so = SO_INT
-                    csn = NONCODING
+                    csn = CSN_NONCODING
             elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_UP2K:
                 so = SO_2KU
                 achange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_DN2K:
                 so = SO_2KD
                 achange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
         # hgvs c.
         #if kind == FRAG_CDS and gposend_kind == FRAG_CDS:
         if so == SO_SYN or so == SO_MIS or so == SO_IND or so == SO_INI or so == SO_STL or so == SO_STG or so == SO_FSD or so == SO_FSI:
@@ -1012,7 +1080,7 @@ class Mapper (cravat.BaseMapper):
             coding = None
             achange = None
             cchange = None
-            csn = NONCODING
+            csn = CSN_NONCODING
         else:
             if kind == FRAG_CDS:
                 so = SO_CSS
@@ -1024,20 +1092,20 @@ class Mapper (cravat.BaseMapper):
                 tr_alt_base_str = tr_alt_base
                 achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
                 cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
-                coding = 'Y'
-                csn = CODING
+                coding = b'Y'
+                csn = CSN_CODING
             elif kind == FRAG_UTR5:
                 so = SO_UT5
                 achange = None
                 cchange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_UTR3:
                 so = SO_UT3
                 achange = None
                 cchange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_INTRON:
                 cchange = None
                 coding = None
@@ -1046,7 +1114,7 @@ class Mapper (cravat.BaseMapper):
                     if (prevcont == 1 and strand == PLUSSTRAND) or (nextcont == 1 and strand == MINUSSTRAND):
                         apos = -1
                         so = SO_INT
-                        csn = NONCODING
+                        csn = CSN_NONCODING
                     else:
                         if strand == PLUSSTRAND:
                             apos, so, csn = self._get_splice_apos_prevfrag(tid, fragno, chrom)
@@ -1058,7 +1126,7 @@ class Mapper (cravat.BaseMapper):
                     if (nextcont == 1 and strand == PLUSSTRAND) or (prevcont == 1 and strand == MINUSSTRAND):
                         apos = -1
                         so = SO_INT
-                        csn = NONCODING
+                        csn = CSN_NONCODING
                     else:
                         if strand == PLUSSTRAND:
                             apos, so, csn = self._get_splice_apos_nextfrag(tid, fragno, chrom)
@@ -1068,25 +1136,25 @@ class Mapper (cravat.BaseMapper):
                             achange = f'{"".join(ref_aas)}{apos}{"".join(alt_aas)}'
                 else:
                     so = SO_INT
-                    csn = NONCODING
+                    csn = CSN_NONCODING
             elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 cchange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_UP2K:
                 so = SO_2KU
                 achange = None
                 cchange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
             elif kind == FRAG_DN2K:
                 so = SO_2KD
                 achange = None
                 cchange = None
                 coding = None
-                csn = NONCODING
+                csn = CSN_NONCODING
         return so, achange, cchange, coding, csn
 
     def setup (self):
@@ -1284,19 +1352,19 @@ class Mapper (cravat.BaseMapper):
 
     def _get_splice_apos_prevfrag (self, tid, fragno, chrom, cpos, gpos, start, kind):
         apos = -1
-        csn = NOCSN
+        csn = CSN_NOCSN
         if kind == FRAG_CDSINTRON:
             prev_last_cpos = cpos
             so = (SO_SPL, SO_INT)
-            csn = SPLICE
+            csn = CSN_SPLICE
         elif kind == FRAG_UTR5INTON or kind == FRAG_UTR3INTRON:
             so = (SO_INT,)
-            csn = SPLICE
+            csn = CSN_SPLICE
         return apos, so, csn
 
     def _get_splice_apos_nextfrag (self, tid, fragno, chrom):
         apos = -1
-        csn = NOCSN
+        csn = CSN_NOCSN
         q = f'select max(fragno) from transcript_frags_{chrom} where tid={tid}'
         self.c2.execute(q)
         max_fragno = self.c2.fetchone()[0]
@@ -1309,12 +1377,12 @@ class Mapper (cravat.BaseMapper):
                 cpos_for_apos = next_first_cpos - 1
                 apos = int(cpos_for_apos / 3) + 1
                 so = (SO_SPL, SO_INT)
-                csn = SPLICE
+                csn = CSN_SPLICE
                 break
             elif kind == FRAG_UTR3 or kind == FRAG_UTR5 or kind == FRAG_UP2K or kind == FRAG_DN2K:
                 apos = -1
                 so = (SO_INT,)
-                csn = SPLICE
+                csn = CSN_SPLICE
                 break
         if apos is None:
             raise
@@ -1943,7 +2011,7 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        primary_mapping = ('', '', (SO_NSO,), '', '', -1, '', '', NOCSN)
+        primary_mapping = ('', '', (SO_NSO,), '', '', -1, '', '', CSN_NOCSN)
         for genename, mappings in all_mappings.items():
             #for i in range(len(mappings)):
             for mapping in mappings:
