@@ -116,7 +116,6 @@ FRAG_UTR5INTRON =  FRAG_FLAG_INTRON | FRAG_UTR5
 FRAG_UTR3INTRON =  FRAG_FLAG_INTRON | FRAG_UTR3
 FRAG_CDSINTRON =   FRAG_FLAG_INTRON | FRAG_CDS
 FRAG_NCRNAINTRON = FRAG_FLAG_INTRON | FRAG_NCRNA
-FRAG_INTRON =      FRAG_FLAG_INTRON
 # variant kind
 SNV = 21
 INS = 22
@@ -143,6 +142,8 @@ SO_STG = 46
 SO_FSD = 47
 SO_FSI = 48
 SO_MLO = 49 # start_lost
+SO_TBA = 50 # TFBS_ablation
+SO_TAB = 51 # transcript_ablation
 # csn: coding, splice, noncoding (legacy from old hg38)
 CSN_CODING = 54
 CSN_SPLICE = 53
@@ -808,46 +809,41 @@ class Mapper (cravat.BaseMapper):
             if kind == FRAG_UP2K:
                 if gposend_kind == FRAG_UP2K:
                     so = (SO_2KU,)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO, SO_STL, SO_2KU, SO_2KD)
+                elif gposend_kind == FRAG_DN2K: # no transcript
+                    so = (SO_TAB, SO_2KU, SO_2KD)
                     coding = b'Y'
                 elif gposend_kind == FRAG_UTR5:
                     so = (SO_2KU, SO_UT5)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_STL, SO_2KU, SO_UT3)
+                elif gposend_kind == FRAG_UTR3: # no transcript
+                    so = (SO_TAB, SO_2KU, SO_UT3)
                     coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    if apos == 1:
-                    so = (SO_MLO, SO_2KU) # TODO: TER should be checked?
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                elif gposend_kind == FRAG_CDS: # no transcript
+                    so = (SO_TAB, SO_2KU)
                     so = so + so_cds
                     coding = b'Y'
                 elif gposend_kind == FRAG_NCRNA:
                     so = (SO_2KU,)
                 elif gposend_kind == FRAG_UTR5INTRON:
                     so = (SO_2KU, SO_UT5)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO, SO_STL, SO_2KU, SO_UT3)
+                elif gposend_kind == FRAG_UTR3INTRON: # no transcript
+                    so = (SO_TAB, SO_2KU, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDSINTRON: # no transcript
+                    so = (SO_TAB, SO_2KU)
                     coding = b'Y'
                 elif gposend_kind == FRAG_NCRNAINTRON:
                     so = (SO_2KU,)
-                elif gposend_kind == FRAG_INTRON:
-                    so = (SO_2KU,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
-                    so = so + so_cds
-                    coding = b'Y'
             elif kind == FRAG_DN2K:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_MLO, SO_STL, SO_2KU, SO_2KD)
+                if gposend_kind == FRAG_UP2K: # no transcript
+                    so = (SO_TAB, SO_2KD)
                     coding = b'Y'
                 elif gposend_kind == FRAG_DN2K:
                     so = (SO_2KD,)
-                elif gposend_kind == FRAG_UTR5:
-                    so = (So_MLN, SO_STL, SO_2KD, SO_UT5)
+                elif gposend_kind == FRAG_UTR5: # no transcript
+                    so = (SO_TAB, SO_2KD, SO_UT5)
                     coding = b'Y'
                 elif gposend_kind == FRAG_UTR3:
                     so = (SO_2KD, SO_UT3)
-                    coding = b'Y'
                 elif gposend_kind == FRAG_CDS:
                     so = (SO_MLO, SO_2KU) # TODO: TER should be checked?
                     so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
