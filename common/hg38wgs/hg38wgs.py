@@ -32,4 +32,17 @@ class CravatCommonModule (BaseCommonModule):
             else:
                 return ''.join([self.revbases[b] for b in self.wgs_reader[chrom][end - 1:start]])
         else:
-            return base
+            return None
+
+    def slice (self, chrom, start, end=None):
+        if end is None:
+            end = start + 1
+        elif end == 0:
+            raise IndexError(end)
+        elif end > 0:
+            end = end - 1
+        if start <= 0:
+            raise IndexError(start)
+        else:
+            start = start - 1
+        return self.wgs_reader[chrom][start:end]
