@@ -1,5 +1,5 @@
 title: FamilyTreeDNA Converter
-version: 1.2.2
+version: 1.3.0
 type: converter
 description: Allows user to input files in FamilyTreeDNA format. In both the graphical interface and command line usage, file format will be automatically detected after this converter is installed.
 developer:
@@ -8,12 +8,14 @@ developer:
   email: kmoad@insilico.us.com
   website: http://www.insilico.us.com
   citation: ''
-requires_opencravat: '>=1.7.0'
+requires_opencravat: '>=1.8.0'
 tags:
 - converters
 release_note:
+  1.3.0: use hg19wgs module
   1.2.2: per-sample zygosity
   1.0.0: initial version
 requires:
 - varmeta
 - vcfinfo>=1.1.5
+- hg19wgs
