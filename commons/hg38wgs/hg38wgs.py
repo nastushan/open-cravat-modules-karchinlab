@@ -35,7 +35,7 @@ class CravatCommonModule (BaseCommonModule):
             return None
 
     def slice (self, chrom, start, end=None):
-        if end is None or end>=start:
+        if end is None or end<start:
             end = start
         elif end == 0:
             raise IndexError(end)
