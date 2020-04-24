@@ -2,6 +2,9 @@
 /*.zip
 /*/*/data/**
 !annotators/example_annotator/data/example_annotator.sqlite
+!converters/23andme-converter/data/placeholder.txt
+!converters/ancestrydna-converter/data/placeholder.txt
+!converters/ftdna-converter/data/placeholder.txt
 .pydevproject
 .project
 **.pyc
