@@ -15,7 +15,13 @@ class CravatAnnotator(BaseAnnotator):
         lifter = LiftOver(constants.liftover_chain_paths['hg19'])
         page_url = 'https://civicdb.org/api/variants?count=500&page=1'
         while page_url is not None:
-            r = requests.get(page_url, timeout=5)
+            try:
+                r = requests.get(page_url, timeout=5)
+            except requests.exceptions.ConnectionError:
+                msg = 'ERROR: Incomplete CIVIC data load'
+                print(msg)
+                self.logger.error(msg)
+                break
             d = json.loads(r.text)
             records = d['records']
             page_url = d['_meta']['links']['next']
@@ -39,10 +45,10 @@ class CravatAnnotator(BaseAnnotator):
                     continue        
 
     def annotate(self, input_data, secondary_data=None):
-        out = {}     
         var_key = ":".join([input_data["chrom"][3:],str(input_data["pos"]),input_data["ref_base"],input_data["alt_base"]])
         match = self.civicdata.get(var_key)
         if match is not None:
+            out = {}
             out["description"] = re.sub('\s',' ', match.get('description',''))
             out["clinical_a_score"] = match['civic_actionability_score']
             civic_id = match['id']
@@ -53,7 +59,7 @@ class CravatAnnotator(BaseAnnotator):
             diseases = {x['disease']['display_name'] for x in d['records']}
             if len(diseases) > 0:
                 out['diseases'] = ', '.join(sorted(list(diseases)))
-        return out
+            return out
     
     def cleanup(self):
         pass
