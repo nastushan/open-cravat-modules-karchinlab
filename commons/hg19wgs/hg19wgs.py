@@ -4,7 +4,7 @@ from cravat import BaseCommonModule
 
 class CravatCommonModule (BaseCommonModule):
     def setup (self):
-        self.wgs_reader = twobitreader.TwoBitFile(os.path.join(os.path.dirname(__file__), 'data', 'hg38.2bit'))
+        self.wgs_reader = twobitreader.TwoBitFile(os.path.join(os.path.dirname(__file__), 'data', 'hg19.2bit'))
         self.revbases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', 'N':'N', 'a':'t', 't':'a', 'g':'c', 'c':'g', 'n':'n'}
 
     def __getitem__ (self, chrom):
@@ -32,4 +32,17 @@ class CravatCommonModule (BaseCommonModule):
             else:
                 return ''.join([self.revbases[b] for b in self.wgs_reader[chrom][end - 1:start]])
         else:
-            return base
+            return None
+
+    def slice (self, chrom, start, end=None):
+        if end is None or end<start:
+            end = start
+        elif end == 0:
+            raise IndexError(end)
+        elif end > 0:
+            end = end - 1
+        if start <= 0:
+            raise IndexError(start)
+        else:
+            start = start - 1
+        return self.wgs_reader[chrom][start:end]

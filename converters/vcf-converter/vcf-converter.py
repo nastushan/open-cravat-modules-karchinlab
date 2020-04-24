@@ -42,14 +42,13 @@ class CravatConverter(BaseConverter):
         ]
         self.info_field_coltype_dict = {
             'integer': 'float',
-            #'integer': 'string',
             'float': 'float',
-            #'float': 'string',
             'flag': 'string',
             'character': 'string',
             'string': 'string'
         }
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
+        self.unique_excs = []
 
     def check_format(self, f): 
         vcf_format = False
@@ -61,6 +60,7 @@ class CravatConverter(BaseConverter):
         return vcf_format
 
     def setup(self, f):
+        self.logger = logging.getLogger('cravat.converter')
         self.error_logger = logging.getLogger('error.converter')
         self.input_path = f.name
         self.info_field_cols = OrderedDict()
@@ -101,7 +101,7 @@ class CravatConverter(BaseConverter):
             self.open_ex_info_writer()
 
     def open_ex_info_writer (self):
-        self.ex_info_fpath = os.path.join(self.output_dir, self.input_path + '.extra_vcf_info.var')
+        self.ex_info_fpath = os.path.join(self.output_dir, self.run_name + '.extra_vcf_info.var')
         self.ex_info_writer = CravatWriter(self.ex_info_fpath)
         cols = list(self.info_field_cols.values())
         cols.insert(0, constants.crv_def[0])
@@ -196,7 +196,7 @@ class CravatConverter(BaseConverter):
                 alt = wdict['alt_base']
                 sample = wdict['sample_id']
                 refalt = f'{ref}:{alt}'
-                if alt not in info_dict:
+                if refalt not in info_dict:
                     info_dict[refalt] = {}
                     self.alts.append(refalt)
         else:
@@ -235,13 +235,6 @@ class CravatConverter(BaseConverter):
                             vepalt = alt
                 elif lenalt == lenref:
                     vepalt = alt
-                    # if lenalt == 1:
-                    #     vepalt = alt
-                    # else:
-                    #     if alt_1st_same:
-                    #         vepalt = alt[1:]
-                    #     else:
-                    #         vepalt = alt
                 else:
                     print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
                     exit()
@@ -299,28 +292,22 @@ class CravatConverter(BaseConverter):
                     if colnumber == '0':
                         for refalt in self.alts:
                             info_dict[refalt][colname] = colvals[0]
-                        #data = [colvals[0]] * len_alts
                     if colnumber == '1':
                         for refalt in self.alts:
                             info_dict[refalt][colname] = colvals[0]
-                        #data = [colvals[0]] * len_alts
                     elif colnumber == 'a':
                         for i in range(len(self.alts)):
                             info_dict[self.alts[i]][colname] = colvals[i]
-                        #data = colvals
                     elif colnumber == 'r':
                         for i in range(len(self.alts)):
                             info_dict[self.alts[i]][colname] = colvals[i + 1]
-                        #data = colvals[1:]
                     elif colnumber == '.':
                         if len(colvals) == len_alts:
                             for i in range(len(self.alts)):
                                 info_dict[self.alts[i]][colname] = colvals[i]
-                            #data = colvals
                         elif len(colvals) == 1 and len_alts > 1:
                             for refalt in self.alts:
                                 info_dict[refalt][colname] = colvals[0]
-                            #data = [colvals[0]] * len_alts
             else:
                 colname = tok
                 col = self.info_field_cols[colname]
@@ -362,13 +349,12 @@ class CravatConverter(BaseConverter):
             tag = None
         alts = alts.split(',')
         len_alts = len(alts)
+        newalts = []
         if toklen <= 8 and toklen >= 5:
             for altno in range(len_alts):
                 wdict = None
                 alt = alts[altno]
                 newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                if newalt == '*': # VCF 4.2
-                    continue
                 wdict = {'tags':tag,
                          'chrom':chrom,
                          'pos':newpos,
@@ -392,6 +378,12 @@ class CravatConverter(BaseConverter):
                 raise BadFormatError('No GT Field')
             gt_field_no = gtf_nos['GT']
             gt_all_zero = True
+            used_alts = []
+            wdicts_by_gtno = {}
+            newalts_by_gtno = {}
+            for i in range(len(alts)):
+                wdicts_by_gtno[i + 1] = []
+                newalts_by_gtno[i + 1] = []
             for sample_no in range(len(sample_datas)):
                 sample = self.samples[sample_no]
                 sample_data = sample_datas[sample_no].split(':')
@@ -408,8 +400,6 @@ class CravatConverter(BaseConverter):
                     gt_all_zero = False
                     alt = alts[gt - 1]
                     newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
-                    if newalt == '*': # VCF 4.2
-                        raise BadFormatError('alternate allele is *')
                     zyg = self.homo_hetro(sample_data[gt_field_no])
                     depth, alt_reads, af = self.extract_read_info(sample_data, gt, gts, gtf_nos)
                     if depth == '.': depth = None
@@ -454,9 +444,44 @@ class CravatConverter(BaseConverter):
                         gtf_no = gtf_nos[gtf]
                         value = sample_data[gtf_no]
                         wdict[gtf] = value
-                    all_wdicts.append(wdict)
+                    wdicts_by_gtno[gt].append(wdict)
+                    newalts_by_gtno[gt].append(newalt)
+                    if alt not in used_alts:
+                        used_alts.append(alt)
+            for altno in range(len(alts)):
+                alt = alts[altno]
+                if alt not in used_alts:
+                    newpos, newref, newalt = self.extract_vcf_variant('+', pos, ref, alt)
+                    zyg = ''
+                    depth = None
+                    alt_reads = None
+                    af = None
+                    wdict = {'tags':tag,
+                        'chrom':chrom,
+                        'pos':newpos,
+                        'ref_base':newref,
+                        'alt_base':newalt,
+                        'sample_id':'',
+                        'phred': qual,
+                        'filter': filter,
+                        'zygosity': zyg,
+                        'tot_reads': depth,
+                        'alt_reads': alt_reads,
+                        'af': af, 
+                        'hap_block': None,
+                        'hap_strand': None,                               
+                        }
+                    wdicts_by_gtno[gt].append(wdict)
+                    newalts_by_gtno[gt].append(newalt)
+                    used_alts.insert(altno, alt)
             if gt_all_zero:
                 raise BadFormatError('All sample GT are zero')
+        for i in range(len(alts)):
+            gtno = i + 1
+            for wdict in wdicts_by_gtno[gtno]:
+                all_wdicts.append(wdict)
+            for newalt in newalts_by_gtno[gtno]:
+                newalts.append(newalt)
         if info is not None:
             try:
                 self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
@@ -467,6 +492,7 @@ class CravatConverter(BaseConverter):
                 self.info_field_data = {}
         else:
             self.info_field_data = {}
+            self.alts = newalts
         return all_wdicts
 
     def addl_operation_for_unique_variant (self, wdict, wdict_no):
@@ -644,8 +670,9 @@ class CravatConverter(BaseConverter):
             traceback. 
         """
         err_str = traceback.format_exc().rstrip()
-        #if err_str not in self.unique_excs:
-        #    self.unique_excs.append(err_str)
-        #    self.logger.error(err_str)
+        err_str_u = '\n'.join(err_str.split('\n')[:-1])
+        if err_str_u not in self.unique_excs:
+            self.unique_excs.append(err_str_u)
+            self.logger.error(err_str)
         self.error_logger.error('\nLINE:NA\nINPUT:{}\nERROR:{}\n#'.format(line[:-1], str(e)))
 

@@ -19,9 +19,10 @@ async def get_data (queries):
     cursor = await conn.cursor()
 
     # 1 sample?
-    q = 'select distinct base__sample_id from sample'
+    q = 'select count(distinct(base__sample_id)) from sample'
     await cursor.execute(q)
-    num_total_sample = len(await cursor.fetchall())
+    #num_total_sample = len(await cursor.fetchall())
+    num_total_sample = (await cursor.fetchone())[0]
     if num_total_sample == 1:
         response = {'data': None}
         return response
@@ -44,9 +45,9 @@ async def get_data (queries):
 
     genesampleperc = {}
     for hugo in extracted_hugos:
-        q = 'select distinct(sample.base__sample_id) from sample, variant where variant.base__uid=sample.base__uid and variant.base__hugo="' + hugo + '"'
+        q = 'select count(distinct(sample.base__sample_id)) from sample, variant where variant.base__uid=sample.base__uid and variant.base__hugo="' + hugo + '"'
         await cursor.execute(q)
-        num_sample = len(await cursor.fetchall())
+        num_sample = (await cursor.fetchone())[0]
         perc_sample = num_sample / num_total_sample * 100.0
         genesampleperc[hugo] = perc_sample
     sorted_hugos = sorted(genesampleperc, key=genesampleperc.get, reverse=True)

@@ -140,6 +140,8 @@ class Reporter(CravatReport):
                     continue
                 if col_desc is None:
                     col_desc = ''
+                if col_type == 'Int':
+                    col_type = 'Integer'
                 line = '#INFO=<ID={},Number=A,Type={},Description="{}">'.format(col_name, col_type, col_desc)
                 self.write_preface_line(line)
                 self.col_names.append(col_name)
@@ -166,7 +168,7 @@ class Reporter(CravatReport):
             line = 'CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t'
             line += '\t'.join(self.samples)
             self.write_preface_line(line)
-            
+
     def write_table_row (self, row):
         if self.level != 'variant':
             return
@@ -261,13 +263,23 @@ class Reporter(CravatReport):
             if self.info_type == 'separate':
                 info_add_list = []
                 for colno in range(len(self.col_names)):
-                    info_add_list.append(self.col_names[colno] + '=' + ','.join(combined_annots[colno]))
+                    vals = combined_annots[colno]
+                    has_value = False
+                    for val in vals:
+                        if val != '' and val != '""':
+                            has_value = True
+                            break
+                    if has_value:
+                        info_add_list.append(self.col_names[colno] + '=' + ','.join(combined_annots[colno]))
                 info_add_str = ';'.join(info_add_list)
             elif self.info_type == 'combined':
                 info_add_str = self.info_fieldname_prefix + '=' + '|'.join([','.join(altlist) for altlist in combined_annots])
             if self.input_format == 'vcf':
                 toks = out['line'].split('\t')
-                toks[7] = toks[7] + ';' + info_add_str
+                if toks[7] == '.' or toks[7] == '':
+                    toks[7] = info_add_str
+                else:
+                    toks[7] = toks[7] + ';' + info_add_str
                 writerow = toks
                 del self.output_candidate[pathno][lineno]
             else:

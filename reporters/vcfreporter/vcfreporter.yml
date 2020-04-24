@@ -1,5 +1,5 @@
 title: VCF Reporter
-version: 1.0.13
+version: 1.0.16
 type: reporter
 description: VCF format text file reporter
 requires_opencravat: '>=1.7.0'
@@ -11,7 +11,11 @@ developer:
   email: rkim@insilico.us.com
   website: http://www.insilico.us.com
   citation: ''
+private: true
 release_note:
+  1.0.16: release candidate for star alleles
+  1.0.15: separate output ignores empty columns.
+  1.0.14: Int to Integer in column def
   1.0.13: handles vcf.gz input files for preserving existing vcf annotation.
   1.0.12: fixed vcfreporter only handling one input file jobs.
   1.0.11: added output_filename_schema.
