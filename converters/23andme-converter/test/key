@@ -1,23 +1,23 @@
 #CRAVAT Report
-#Created at Thursday 04/23/2020 17:24:36
+#Created at Friday 04/24/2020 18:34:06
 #Report level: variant
 #
-Variant Annotation																Variant Metadata
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	cDNA change	Protein Change	All Mappings	Sample Count	Samples	Tags	Zygosity
-1	chr1	565508	G	A									0		rs9283150	hom
-2	chr1	752721	A	G									0		rs3131972	hom
-3	chr1	919501	G	T									0		rs4970414	het
-4	chr1	881627	G	A									0		rs2272757	het
-5	chr1	917640	G	A									0		rs41285816	het
-6	chr1	3805098	C	T									0		rs7530189	het
+Variant Annotation															Variant Metadata
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Zygosity
+1	chr1	565508	G	A								0		rs9283150	hom
+2	chr1	752721	A	G								0		rs3131972	hom
+3	chr1	919501	G	T								0		rs4970414	het
+4	chr1	881627	G	A								0		rs2272757	het
+5	chr1	917640	G	A								0		rs41285816	het
+6	chr1	3805098	C	T								0		rs7530189	het
 #CRAVAT Report
-#Created at Thursday 04/23/2020 17:24:36
+#Created at Friday 04/24/2020 18:34:06
 #Report level: gene
 #
 Variant Annotation					
 Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
 #CRAVAT Report
-#Created at Thursday 04/23/2020 17:24:36
+#Created at Friday 04/24/2020 18:34:06
 #Report level: sample
 #
 Variant Annotation		
@@ -29,7 +29,7 @@ UID	Sample	Zygosity
 5		het
 6		het
 #CRAVAT Report
-#Created at Thursday 04/23/2020 17:24:36
+#Created at Friday 04/24/2020 18:34:06
 #Report level: mapping
 #
 Variant Annotation			
