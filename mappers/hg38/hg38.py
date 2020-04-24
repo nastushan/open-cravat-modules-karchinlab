@@ -65,7 +65,7 @@ def _compare_mapping (m1, m2):
 # strands
 PLUSSTRAND = 1
 MINUSSTRAND = -1
-rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-'}
+rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-','N':'N'}
 # frag kind
 FRAG_FLAG_2K =          0b00000010
 FRAG_FLAG_UTR =         0b00000100
