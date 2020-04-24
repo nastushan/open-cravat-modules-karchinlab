@@ -1,0 +1,208 @@
+#CRAVAT Report
+#Created at Friday 04/24/2020 13:46:29
+#Report level: variant
+#
+Variant Annotation														
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags
+1	chr1	155208824	C	T		Yes	MTX1	ENST00000368376.7	missense	P7L	ENST00000316721.8:MTX1:A0A0C4DFQ1:missense:P7L:C20T; ENST00000368376.7:MTX1:A0A0A0MRK6:missense:P7L:C20T; ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	S1	plus_SBS_MIS
+2	chr1	155208824	C	G		Yes	MTX1	ENST00000368376.7	missense	P7R	ENST00000316721.8:MTX1:A0A0C4DFQ1:missense:P7R:C20G; ENST00000368376.7:MTX1:A0A0A0MRK6:missense:P7R:C20G; ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	S2	plus_SBS_MIS_NoReference
+3	chr1	155208825	C	A		Yes	MTX1	ENST00000368376.7	synonymous	P7P	ENST00000316721.8:MTX1:A0A0C4DFQ1:synonymous:P7P:C21A; ENST00000368376.7:MTX1:A0A0A0MRK6:synonymous:P7P:C21A; ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	S2	plus_SBS_MIS_NoReference2
+4	chr1	155210348	C	T		Yes	MTX1	ENST00000368376.7	synonymous	T177T	ENST00000316721.8:MTX1:A0A0C4DFQ1:synonymous:T177T:C531T; ENST00000368376.7:MTX1:A0A0A0MRK6:synonymous:T177T:C531T; ENST00000609421.1:MTX1:(na):synonymous:T28T:C84T	1	no-sample	plus_SBS_SYN
+5	chr1	155213481	C	T			MTX1	ENST00000368376.7	intron		ENST00000316721.8:MTX1:A0A0C4DFQ1:intron:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:intron:(na):(na); ENST00000609421.1:MTX1:(na):intron:(na):(na)	1	no-sample	plus_us_int
+6	chr1	155213482	A	C			MTX1	ENST00000368376.7	splice site	_396_	ENST00000316721.8:MTX1:A0A0C4DFQ1:splice site:_365_:(na); ENST00000368376.7:MTX1:A0A0A0MRK6:splice site:_396_:(na); ENST00000609421.1:MTX1:(na):splice site:_247_:(na)	1	no-sample	plus_us_ss1
+7	chr1	155213483	G	T			MTX1	ENST00000368376.7	splice site	_396_	ENST00000316721.8:MTX1:A0A0C4DFQ1:splice site:_365_:(na); ENST00000368376.7:MTX1:A0A0A0MRK6:splice site:_396_:(na); ENST00000609421.1:MTX1:(na):splice site:_247_:(na)	1	no-sample	plus_us_ss2
+8	chr1	155213392	G	T			MTX1	ENST00000368376.7	splice site	_396_	ENST00000316721.8:MTX1:A0A0C4DFQ1:splice site:_365_:(na); ENST00000368376.7:MTX1:A0A0A0MRK6:splice site:_396_:(na); ENST00000609421.1:MTX1:(na):splice site:_247_:(na)	1	no-sample	plus_ds_ss1
+9	chr1	155213393	T	C			MTX1	ENST00000368376.7	splice site	_396_	ENST00000316721.8:MTX1:A0A0C4DFQ1:splice site:_365_:(na); ENST00000368376.7:MTX1:A0A0A0MRK6:splice site:_396_:(na); ENST00000609421.1:MTX1:(na):splice site:_247_:(na)	1	no-sample	plus_ds_ss2
+10	chr1	155213394	A	T			MTX1	ENST00000368376.7	intron		ENST00000316721.8:MTX1:A0A0C4DFQ1:intron:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:intron:(na):(na); ENST00000609421.1:MTX1:(na):intron:(na):(na)	1	no-sample	plus_ds_int
+11	chr1	59868328	G	T		Yes	HOOK1	ENST00000371208.3	stop gained	E642*	ENST00000371208.3:HOOK1:Q9UJC3:stop gained:E642*:G1924T	1	no-sample	plus_STG
+12	chr6	42929620	-	AAA		Yes	CNPY3	ENST00000372836.4	inframe insertion	_17_	ENST00000372836.4:CNPY3:Q9BT09:inframe insertion:_17_:-50AAA; ENST00000394142.7:CNPY3:A0A0C4DFY8:inframe insertion:_17_:-50AAA	1	no-sample	plus_STG2
+13	chr8	43018497	A	G		Yes	HOOK3	ENST00000307602.8	stop lost	*719W	ENST00000307602.8:HOOK3:Q86VS8:stop lost:*719W:A2156G	1	no-sample	plus_STL
+14	chr17	47310203	-	CCC		Yes	ITGB3	ENST00000559488.5	inframe insertion	_789_	ENST00000559488.5:ITGB3:P05106:inframe insertion:_789_:-2366CCC	1	no-sample	plus_STL2
+15	chr6	42929621	-	ACC		Yes	CNPY3	ENST00000372836.4	inframe insertion	_17_	ENST00000372836.4:CNPY3:Q9BT09:inframe insertion:_17_:-51ACC; ENST00000394142.7:CNPY3:A0A0C4DFY8:inframe insertion:_17_:-51ACC	1	no-sample	plus_IFI
+16	chr18	54269588	CGA	-		Yes	POLI	ENST00000579534.5	inframe deletion	_14_	ENST00000406285.7:POLI:J3KQ09:inframe deletion:_14_:CGA42-; ENST00000579434.5:POLI:J3KSW2:5-prime utr:(na):(na); ENST00000579534.5:POLI:Q9UNA4:inframe deletion:_14_:CGA42-	1	no-sample	plus_IFD
+17	chr12	50081180	-	T		Yes	ASIC1	ENST00000228468.8	frameshift insertion	_505_	ENST00000228468.8:ASIC1:(na):frameshift insertion:_505_:-1514T; ENST00000447966.6:ASIC1:P78348:frameshift insertion:_459_:-1376T; ENST00000552438.5:ASIC1:(na):frameshift insertion:_493_:-1478T	1	no-sample	plus_FI1
+18	chr17	47310187	-	AAAAA		Yes	ITGB3	ENST00000559488.5	frameshift insertion	_784_	ENST00000559488.5:ITGB3:P05106:frameshift insertion:_784_:-2350AAAAA	1	no-sample	plus_FI2
+19	chr4	85972104	T	-		Yes	ARHGAP24	ENST00000395184.5	frameshift deletion	_223_	ENST00000264343.4:ARHGAP24:(na):frameshift deletion:_130_:T389-; ENST00000395183.6:ARHGAP24:(na):frameshift deletion:_128_:T383-; ENST00000395184.5:ARHGAP24:Q8N264:frameshift deletion:_223_:T668-; ENST00000503995.5:ARHGAP24:(na):frameshift deletion:_223_:T668-	1	no-sample	plus_FSD
+20	chr1	110340653	CGGCTTT	-		Yes	RBM15	ENST00000369784.7	frameshift deletion	_416_	ENST00000369784.7:RBM15:Q96T37:frameshift deletion:_416_:CGGCTTT1248-; ENST00000487146.6:RBM15:(na):frameshift deletion:_416_:CGGCTTT1248-; ENST00000602849.1:RBM15:(na):frameshift deletion:_416_:CGGCTTT1248-; ENST00000617047.1:RBM15:A0A087WWP4:frameshift deletion:_372_:CGGCTTT1116-; ENST00000618772.4:RBM15:Q96T37:frameshift deletion:_416_:CGGCTTT1248-	1	no-sample	plus_FSD7
+21	chr18	54292038	TGTAA	-			POLI	ENST00000579534.5	unknown		ENST00000406285.7:POLI:J3KQ09:unknown:(na):(na); ENST00000579434.5:POLI:J3KSW2:unknown:(na):(na); ENST00000579534.5:POLI:Q9UNA4:unknown:(na):(na)	1	no-sample	plus_del_beyond_exon
+22	chr1	155206796	C	G			THBS3	ENST00000368378.7	intron		ENST00000368376.7:MTX1:A0A0A0MRK6:2kb upstream:(na):(na); ENST00000368378.7:THBS3:P49746:intron:(na):(na); ENST00000457183.6:THBS3:(na):intron:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:intron:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:5-prime utr:(na):(na)	1	no-sample	plus_before_us_start
+23	chr1	155206797	G	C			THBS3	ENST00000368378.7	intron		ENST00000316721.8:MTX1:A0A0C4DFQ1:2kb upstream:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:2kb upstream:(na):(na); ENST00000368378.7:THBS3:P49746:intron:(na):(na); ENST00000457183.6:THBS3:(na):intron:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:intron:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:5-prime utr:(na):(na)	1	no-sample	plus_at_us_start
+24	chr1	155208796	G	T			MTX1	ENST00000368376.7	5-prime utr		ENST00000316721.8:MTX1:A0A0C4DFQ1:2kb upstream:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:5-prime utr:(na):(na); ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	no-sample	plus_before_us_end
+25	chr1	155208797	T	C			MTX1	ENST00000368376.7	5-prime utr		ENST00000316721.8:MTX1:A0A0C4DFQ1:5-prime utr:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:5-prime utr:(na):(na); ENST00000368378.7:THBS3:P49746:2kb upstream:(na):(na); ENST00000457183.6:THBS3:(na):2kb upstream:(na):(na); ENST00000541576.5:THBS3:F5H4Z8:2kb upstream:(na):(na); ENST00000541990.5:THBS3:Q2HIZ1:2kb upstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb upstream:(na):(na)	1	no-sample	plus_at_utr_start
+26	chr1	155213823	A	C			MTX1	ENST00000368376.7	3-prime utr		ENST00000316721.8:MTX1:A0A0C4DFQ1:3-prime utr:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:3-prime utr:(na):(na); ENST00000609421.1:MTX1:(na):3-prime utr:(na):(na)	1	no-sample	plus_at_utr_end
+27	chr1	155213824	C	A			MTX1	ENST00000609421.1	3-prime utr		ENST00000316721.8:MTX1:A0A0C4DFQ1:2kb downstream:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:2kb downstream:(na):(na); ENST00000609421.1:MTX1:(na):3-prime utr:(na):(na)	1	no-sample	plus_at_ds_start
+28	chr1	155215823	C	A			MTX1	ENST00000368376.7	2kb downstream		ENST00000316721.8:MTX1:A0A0C4DFQ1:2kb downstream:(na):(na); ENST00000368376.7:MTX1:A0A0A0MRK6:2kb downstream:(na):(na); ENST00000609421.1:MTX1:(na):2kb downstream:(na):(na)	1	no-sample	plus_at_ds_end
+29	chr1	155215824	A	C			MTX1	ENST00000609421.1	2kb downstream		ENST00000609421.1:MTX1:(na):2kb downstream:(na):(na)	1	no-sample	plus_after_ds_end
+30	chr17	43047643	C	T		Yes	BRCA1	ENST00000471181.6	missense	A1844T	ENST00000352993.7:BRCA1:(na):missense:A681T:G2041A; ENST00000357654.7:BRCA1:P38398:missense:A1823T:G5467A; ENST00000468300.5:BRCA1:(na):missense:C694Y:G2081A; ENST00000471181.6:BRCA1:(na):missense:A1844T:G5530A; ENST00000491747.6:BRCA1:(na):missense:A719T:G2155A; ENST00000493795.5:BRCA1:(na):missense:A1776T:G5326A; ENST00000586385.5:BRCA1:C6YB45:missense:A133T:G397A; ENST00000591534.5:BRCA1:K7EPC7:missense:A314T:G940A; ENST00000591849.5:BRCA1:K7EJW3:missense:A56T:G166A	1	S1	minus_SBS_MIS
+31	chr17	43047643	C	G		Yes	BRCA1	ENST00000471181.6	missense	A1844P	ENST00000352993.7:BRCA1:(na):missense:A681P:G2041C; ENST00000357654.7:BRCA1:P38398:missense:A1823P:G5467C; ENST00000468300.5:BRCA1:(na):missense:C694S:G2081C; ENST00000471181.6:BRCA1:(na):missense:A1844P:G5530C; ENST00000491747.6:BRCA1:(na):missense:A719P:G2155C; ENST00000493795.5:BRCA1:(na):missense:A1776P:G5326C; ENST00000586385.5:BRCA1:C6YB45:missense:A133P:G397C; ENST00000591534.5:BRCA1:K7EPC7:missense:A314P:G940C; ENST00000591849.5:BRCA1:K7EJW3:missense:A56P:G166C	1	S2	minus_SBS_MIS_NoReferende
+32	chr17	41624183	G	A		Yes	KRT17	ENST00000311208.12	synonymous	N109N	ENST00000311208.12:KRT17:Q04695:synonymous:N109N:C327T; ENST00000540235.5:KRT17:F5GWP8:synonymous:N26N:C78T	1	no-sample	minus_SBS_SYN
+33	chr17	41624191	C	T		Yes	KRT17	ENST00000311208.12	missense	E107K	ENST00000311208.12:KRT17:Q04695:missense:E107K:G319A; ENST00000540235.5:KRT17:F5GWP8:missense:M24I:G72A	1	no-sample	minus_SBS_weird
+34	chr17	43079400	C	T			BRCA1	ENST00000471181.6	splice site	_1453_	ENST00000352993.7:BRCA1:(na):intron:(na):(na); ENST00000357654.7:BRCA1:P38398:intron:(na):(na); ENST00000468300.5:BRCA1:(na):intron:(na):(na); ENST00000471181.6:BRCA1:(na):splice site:_1453_:(na); ENST00000491747.6:BRCA1:(na):intron:(na):(na); ENST00000493795.5:BRCA1:(na):intron:(na):(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_spl1
+35	chr17	43079401	T	C			BRCA1	ENST00000471181.6	splice site	_1453_	ENST00000352993.7:BRCA1:(na):intron:(na):(na); ENST00000357654.7:BRCA1:P38398:intron:(na):(na); ENST00000468300.5:BRCA1:(na):intron:(na):(na); ENST00000471181.6:BRCA1:(na):splice site:_1453_:(na); ENST00000491747.6:BRCA1:(na):intron:(na):(na); ENST00000493795.5:BRCA1:(na):intron:(na):(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_spl2
+36	chr17	43079402	G	T			BRCA1	ENST00000471181.6	intron		ENST00000352993.7:BRCA1:(na):intron:(na):(na); ENST00000357654.7:BRCA1:P38398:intron:(na):(na); ENST00000468300.5:BRCA1:(na):intron:(na):(na); ENST00000471181.6:BRCA1:(na):intron:(na):(na); ENST00000491747.6:BRCA1:(na):intron:(na):(na); ENST00000493795.5:BRCA1:(na):intron:(na):(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_int_start
+37	chr17	43082401	C	T			BRCA1	ENST00000471181.6	intron		ENST00000352993.7:BRCA1:(na):intron:(na):(na); ENST00000357654.7:BRCA1:P38398:intron:(na):(na); ENST00000468300.5:BRCA1:(na):intron:(na):(na); ENST00000471181.6:BRCA1:(na):intron:(na):(na); ENST00000491747.6:BRCA1:(na):intron:(na):(na); ENST00000493795.5:BRCA1:(na):intron:(na):(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_int_end
+38	chr17	43082402	A	T			BRCA1	ENST00000471181.6	splice site	_1453_	ENST00000352993.7:BRCA1:(na):splice site:_311_:(na); ENST00000357654.7:BRCA1:P38398:splice site:_1453_:(na); ENST00000468300.5:BRCA1:(na):splice site:_350_:(na); ENST00000471181.6:BRCA1:(na):splice site:_1453_:(na); ENST00000491747.6:BRCA1:(na):splice site:_350_:(na); ENST00000493795.5:BRCA1:(na):splice site:_1406_:(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_sple1
+39	chr17	43082403	C	T			BRCA1	ENST00000471181.6	splice site	_1453_	ENST00000352993.7:BRCA1:(na):splice site:_311_:(na); ENST00000357654.7:BRCA1:P38398:splice site:_1453_:(na); ENST00000468300.5:BRCA1:(na):splice site:_350_:(na); ENST00000471181.6:BRCA1:(na):splice site:_1453_:(na); ENST00000491747.6:BRCA1:(na):splice site:_350_:(na); ENST00000493795.5:BRCA1:(na):splice site:_1406_:(na); ENST00000586385.5:BRCA1:C6YB45:intron:(na):(na); ENST00000591534.5:BRCA1:K7EPC7:5-prime utr:(na):(na); ENST00000591849.5:BRCA1:K7EJW3:5-prime utr:(na):(na)	1	no-sample	minus_sple2
+40	chr12	101395640	T	G		Yes	ARL1	ENST00000261636.12	stop lost	*182Y	ENST00000261636.12:ARL1:P40616:stop lost:*182Y:A546C; ENST00000536227.5:ARL1:(na):stop lost:*165Y:A495C; ENST00000539055.5:ARL1:B4DZG7:stop lost:*136Y:A408C; ENST00000551671.5:ARL1:F8VYN9:2kb downstream:(na):(na); ENST00000551688.1:ARL1:F8W1Z8:stop lost:*53Y:A159C; ENST00000551828.5:ARL1:(na):stop lost:*165Y:A495C	1	no-sample	minus_STL
+41	chr1	235181776	G	C		Yes	ARID4B	ENST00000264183.7	stop gained	S1048*	ENST00000264183.7:ARID4B:Q4LE39:stop gained:S1048*:C3143G; ENST00000349213.7:ARID4B:(na):stop gained:S962*:C2885G; ENST00000366603.6:ARID4B:Q4LE39:stop gained:S1048*:C3143G	1	no-sample	minus_STG
+42	chr1	235255683	GTTA	-		Yes	ARID4B	ENST00000264183.7	frameshift deletion	_83_	ENST00000264183.7:ARID4B:Q4LE39:frameshift deletion:_83_:TAAC248-; ENST00000349213.7:ARID4B:(na):frameshift deletion:_83_:TAAC248-; ENST00000366603.6:ARID4B:Q4LE39:frameshift deletion:_83_:TAAC248-	1	no-sample	minus_FSD
+43	chr14	45223925	GTTTCTGT	-		Yes	MIS18BP1	ENST00000310806.8	frameshift deletion	_885_	ENST00000310806.8:MIS18BP1:Q6P0N0:frameshift deletion:_885_:ACAGAAAC2655-	1	no-sample	minus_FSD8
+44	chrX	153907795	-	G		Yes	ARHGAP4	ENST00000370028.7	frameshift insertion	_966_	ENST00000337474.5:AVPR2:P30518:2kb downstream:(na):(na); ENST00000350060.9:ARHGAP4:P98171:frameshift insertion:_926_:-2776C; ENST00000358927.6:AVPR2:P30518:2kb downstream:(na):(na); ENST00000370016.5:ARHGAP4:E7EQN5:frameshift insertion:_905_:-2713C; ENST00000370028.7:ARHGAP4:(na):frameshift insertion:_966_:-2896C; ENST00000370049.1:AVPR2:(na):2kb downstream:(na):(na); ENST00000393721.5:ARHGAP4:E9PCM6:frameshift insertion:_748_:-2242C	1	no-sample	minus_FSI
+45	chr5	180603295	-	CC		Yes	FLT4	ENST00000261937.10	frameshift insertion	_1330_	ENST00000261937.10:FLT4:P35916:frameshift insertion:_1330_:-3990GG	1	no-sample	minus_FSI2
+46	chr1	154869723	-	GCT		Yes	KCNN3	ENST00000618040.4	inframe insertion	_81_	ENST00000271915.8:KCNN3:A0A0A0MQW9:inframe insertion:_81_:-243AGC; ENST00000358505.2:KCNN3:(na):2kb upstream:(na):(na); ENST00000618040.4:KCNN3:A0A087WYJ0:inframe insertion:_81_:-243AGC	1	no-sample	minus_IFI
+47	chr19	49423274	CAG	-		Yes	PTH2	ENST00000270631.1	inframe deletion	_22_	ENST00000270631.1:PTH2:Q96A98:inframe deletion:_22_:CTG64-; ENST00000576655.5:GFY:I3L273:2kb upstream:(na):(na)	1	no-sample	minus_IFD
+48	chr17	41626578	C	G								1	no-sample	minus_before_us_start
+49	chr17	41626577	C	T			KRT17	ENST00000311208.12	2kb upstream		ENST00000311208.12:KRT17:Q04695:2kb upstream:(na):(na)	1	no-sample	minus_at_us_start
+50	chr17	41624578	G	C			KRT17	ENST00000311208.12	2kb upstream		ENST00000311208.12:KRT17:Q04695:2kb upstream:(na):(na); ENST00000540235.5:KRT17:F5GWP8:2kb upstream:(na):(na)	1	no-sample	minus_at_us_end
+51	chr17	41624577	G	C			KRT17	ENST00000311208.12	5-prime utr		ENST00000311208.12:KRT17:Q04695:5-prime utr:(na):(na); ENST00000540235.5:KRT17:F5GWP8:2kb upstream:(na):(na)	1	no-sample	minus_at_utr_start
+52	chr17	41619437	T	G			KRT17	ENST00000311208.12	3-prime utr		ENST00000311208.12:KRT17:Q04695:3-prime utr:(na):(na); ENST00000540235.5:KRT17:F5GWP8:2kb downstream:(na):(na)	1	no-sample	minus_at_utr_end
+53	chr17	41619436	A	G			KRT17	ENST00000311208.12	2kb downstream		ENST00000311208.12:KRT17:Q04695:2kb downstream:(na):(na); ENST00000540235.5:KRT17:F5GWP8:2kb downstream:(na):(na)	1	no-sample	minus_at_ds_start
+54	chr17	41617437	C	G			KRT17	ENST00000311208.12	2kb downstream		ENST00000311208.12:KRT17:Q04695:2kb downstream:(na):(na)	1	no-sample	minus_at_ds_end
+55	chr17	41617436	C	G								1	no-sample	minus_after_ds_end
+#CRAVAT Report
+#Created at Friday 04/24/2020 13:46:29
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+MTX1		4	12	splice site	intron(2),missense(2),splice site(4),synonymous(2),3-prime utr(2),5-prime utr(2)
+HOOK1		1	0	stop gained	stop gained(1)
+CNPY3		2	0	inframe insertion	inframe insertion(2)
+HOOK3		1	0	stop lost	stop lost(1)
+ITGB3		2	0	frameshift insertion	frameshift insertion(1),inframe insertion(1)
+POLI		1	1	inframe deletion	inframe deletion(1),unknown(1),5-prime utr(1)
+ASIC1		1	0	frameshift insertion	frameshift insertion(1)
+ARHGAP24		1	0	frameshift deletion	frameshift deletion(1)
+RBM15		1	0	frameshift deletion	frameshift deletion(1)
+THBS3		0	2	intron	intron(2),5-prime utr(2)
+BRCA1		2	6	splice site	intron(6),missense(2),splice site(4),5-prime utr(6)
+KRT17		2	6	missense	missense(1),synonymous(1),3-prime utr(1),5-prime utr(1)
+ARL1		1	0	stop lost	stop lost(1)
+ARID4B		2	0	frameshift deletion	frameshift deletion(1),stop gained(1)
+MIS18BP1		1	0	frameshift deletion	frameshift deletion(1)
+ARHGAP4		1	0	frameshift insertion	frameshift insertion(1)
+FLT4		1	0	frameshift insertion	frameshift insertion(1)
+KCNN3		1	0	inframe insertion	inframe insertion(1)
+PTH2		1	0	inframe deletion	inframe deletion(1)
+#CRAVAT Report
+#Created at Friday 04/24/2020 13:46:29
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	S1
+2	S2
+3	S2
+4	no-sample
+5	no-sample
+6	no-sample
+7	no-sample
+8	no-sample
+9	no-sample
+10	no-sample
+11	no-sample
+12	no-sample
+13	no-sample
+14	no-sample
+15	no-sample
+16	no-sample
+17	no-sample
+18	no-sample
+19	no-sample
+20	no-sample
+21	no-sample
+22	no-sample
+23	no-sample
+24	no-sample
+25	no-sample
+26	no-sample
+27	no-sample
+28	no-sample
+29	no-sample
+30	S1
+31	S2
+32	no-sample
+33	no-sample
+34	no-sample
+35	no-sample
+36	no-sample
+37	no-sample
+38	no-sample
+39	no-sample
+40	no-sample
+41	no-sample
+42	no-sample
+43	no-sample
+44	no-sample
+45	no-sample
+46	no-sample
+47	no-sample
+48	no-sample
+49	no-sample
+50	no-sample
+51	no-sample
+52	no-sample
+53	no-sample
+54	no-sample
+55	no-sample
+#CRAVAT Report
+#Created at Friday 04/24/2020 13:46:29
+#Report level: mapping
+#
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+3	plus_SBS_MIS	1	0
+4	plus_SBS_MIS_NoReference	2	0
+5	plus_SBS_MIS_NoReference2	3	0
+6	plus_SBS_SYN	4	0
+7	plus_us_int	5	0
+8	plus_us_ss1	6	0
+9	plus_us_ss2	7	0
+10	plus_ds_ss1	8	0
+11	plus_ds_ss2	9	0
+12	plus_ds_int	10	0
+13	plus_STG	11	0
+14	plus_STG2	12	0
+15	plus_STL	13	0
+16	plus_STL2	14	0
+17	plus_IFI	15	0
+18	plus_IFD	16	0
+19	plus_FI1	17	0
+20	plus_FI2	18	0
+21	plus_FSD	19	0
+22	plus_FSD7	20	0
+23	plus_del_beyond_exon	21	0
+24	plus_before_us_start	22	0
+25	plus_at_us_start	23	0
+26	plus_before_us_end	24	0
+27	plus_at_utr_start	25	0
+28	plus_at_utr_end	26	0
+29	plus_at_ds_start	27	0
+30	plus_at_ds_end	28	0
+31	plus_after_ds_end	29	0
+33	minus_SBS_MIS	30	0
+34	minus_SBS_MIS_NoReferende	31	0
+35	minus_SBS_SYN	32	0
+36	minus_SBS_weird	33	0
+37	minus_spl1	34	0
+38	minus_spl2	35	0
+39	minus_int_start	36	0
+40	minus_int_end	37	0
+41	minus_sple1	38	0
+42	minus_sple2	39	0
+43	minus_STL	40	0
+44	minus_STG	41	0
+45	minus_FSD	42	0
+46	minus_FSD8	43	0
+47	minus_FSI	44	0
+48	minus_FSI2	45	0
+49	minus_IFI	46	0
+50	minus_IFD	47	0
+51	minus_before_us_start	48	0
+52	minus_at_us_start	49	0
+53	minus_at_us_end	50	0
+54	minus_at_utr_start	51	0
+55	minus_at_utr_end	52	0
+56	minus_at_ds_start	53	0
+57	minus_at_ds_end	54	0
+58	minus_after_ds_end	55	0

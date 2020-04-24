@@ -1,6 +1,6 @@
 name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.5.1
+version: 1.5.2
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -88,6 +88,7 @@ gene_summary_output_columns:
   filterable: false
 requires_opencravat: '>=1.8.0'
 release_note:
+  1.5.2: added test.
   1.5.0: next-generation hg38 mapper 1st phase
   0.0.11: transcripts are the same as in the old hg38.
   0.0.7: parallelization and primary transcript choice change

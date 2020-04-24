@@ -1,0 +1,58 @@
+#Chrom	Position	Strand	Ref	Alt	Sample	Tag
+#Plus Strand Tests
+chr1	155208824	+	C	T	S1	plus_SBS_MIS
+chr1	155208824	+	C	G	S2	plus_SBS_MIS_NoReference
+chr1	155208825	+	C	A	S2	plus_SBS_MIS_NoReference2
+chr1	155210348	+	C	T		plus_SBS_SYN
+chr1	155213481	+	C	T		plus_us_int
+chr1	155213482	+	A	C		plus_us_ss1
+chr1	155213483	+	G	T		plus_us_ss2
+chr1	155213392	+	G	T		plus_ds_ss1
+chr1	155213393	+	T	C		plus_ds_ss2
+chr1	155213394	+	A	T		plus_ds_int
+chr1	59868328	+	G	T		plus_STG
+chr6	42929620	+	-	AAA		plus_STG2
+chr8	43018497	+	A	G		plus_STL
+chr17	47310203	+	-	CCC		plus_STL2
+chr6	42929621	+	-	ACC		plus_IFI
+chr18	54269588	+	CGA	-		plus_IFD
+chr12	50081180	+	-	T		plus_FI1
+chr17	47310187	+	-	AAAAA		plus_FI2
+chr4	85972104	+	T	-		plus_FSD
+chr1	110340653	+	CGGCTTT	-		plus_FSD7
+chr18	54292038	+	TGTAA	-		plus_del_beyond_exon
+chr1	155206796	+	C	G		plus_before_us_start
+chr1	155206797	+	G	C		plus_at_us_start
+chr1	155208796	+	G	T		plus_before_us_end
+chr1	155208797	+	T	C		plus_at_utr_start
+chr1	155213823	+	A	C		plus_at_utr_end
+chr1	155213824	+	C	A		plus_at_ds_start
+chr1	155215823	+	C	A		plus_at_ds_end
+chr1	155215824	+	A	C		plus_after_ds_end
+#Minus Strand
+chr17	43047643	+	C	T	S1	minus_SBS_MIS
+chr17	43047643	+	C	G	S2	minus_SBS_MIS_NoReferende
+chr17	41624183	+	G	A		minus_SBS_SYN
+chr17	41624191	+	C	T		minus_SBS_weird
+chr17	43079400	+	C	T		minus_spl1
+chr17	43079401	+	T	C		minus_spl2
+chr17	43079402	+	G	T		minus_int_start
+chr17	43082401	+	C	T		minus_int_end
+chr17	43082402	+	A	T		minus_sple1
+chr17	43082403	+	C	T		minus_sple2
+chr12	101395640	+	T	G		minus_STL
+chr1	235181776	+	G	C		minus_STG
+chr1	235255683	+	GTTA	-		minus_FSD
+chr14	45223925	+	GTTTCTGT	-		minus_FSD8
+chrX	153907795	+	-	G		minus_FSI
+chr5	180603295	+	-	CC		minus_FSI2
+chr1	154869723	+	-	GCT		minus_IFI
+chr19	49423274	+	CAG	-		minus_IFD
+chr17	41626578	+	C	G		minus_before_us_start
+chr17	41626577	+	C	T		minus_at_us_start
+chr17	41624578	+	G	C		minus_at_us_end
+chr17	41624577	+	G	C		minus_at_utr_start
+chr17	41619437	+	T	G		minus_at_utr_end
+chr17	41619436	+	A	G		minus_at_ds_start
+chr17	41617437	+	C	G		minus_at_ds_end
+chr17	41617436	+	C	G		minus_after_ds_end
