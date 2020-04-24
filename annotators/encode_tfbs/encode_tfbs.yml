@@ -37,10 +37,8 @@ output_columns:
   hidden: true
 
 developer:
-  name: ''
-  organization: ''
+  name: 'ENCODE Project Consortium'
+  organization: 'ENCODE Project Consortium'
   email: ''
   website: 'http://genome.ucsc.edu/cgi-bin/hgFileUi?db=hg19&g=wgEncodeAwgTfbsUniform#TRACK_HTML'
-  citation: ''
-
-private: true
+  citation: 'ENCODE Project Consortium. An integrated encyclopedia of DNA elements in the human genome. Nature 489, 57–74 (2012).'
