@@ -399,7 +399,7 @@ class Mapper (cravat.BaseMapper):
             cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
             coding = 'Y'
             csn = CODING
-        elif kind == FRAG_UTR5 or kind == FRAG_UTR5INTRON:
+        elif kind == FRAG_UTR5:
             so = SO_UT5
             achange = None
             cchange = None
@@ -407,8 +407,16 @@ class Mapper (cravat.BaseMapper):
             alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
-        elif kind == FRAG_UTR3 or kind == FRAG_UTR3INTRON:
+        elif kind == FRAG_UTR3:
             so = SO_UT3
+            achange = None
+            cchange = None
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = None
+            csn = NONCODING
+        elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON or kind == FRAG_NCRNAINTRON: # TODO: handle splice later.
+            so = SO_INT
             achange = None
             cchange = None
             ref_aas = [aanum_to_aa[NDA]]
@@ -450,7 +458,7 @@ class Mapper (cravat.BaseMapper):
                 csn = NONCODING
                 ref_aas = [aanum_to_aa[NDA]]
                 alt_aas = [aanum_to_aa[NDA]]
-        elif kind == FRAG_NCRNA or kind == FRAG_NCRNAINTRON:
+        elif kind == FRAG_NCRNA:
             so = SO_UNK
             achange = None
             cchange = None
@@ -486,7 +494,7 @@ class Mapper (cravat.BaseMapper):
             cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
             coding = 'Y'
             csn = CODING
-        elif kind == FRAG_UTR5 or kind == FRAG_UTR5INTRON:
+        elif kind == FRAG_UTR5:
             so = SO_UT5
             achange = None
             cchange = None
@@ -494,8 +502,16 @@ class Mapper (cravat.BaseMapper):
             alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
-        elif kind == FRAG_UTR3 or kind == FRAG_UTR3INTRON:
+        elif kind == FRAG_UTR3:
             so = SO_UT3
+            achange = None
+            cchange = None
+            ref_aas = [aanum_to_aa[NDA]]
+            alt_aas = [aanum_to_aa[NDA]]
+            coding = None
+            csn = NONCODING
+        elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON or kind == FRAG_NCRNAINTRON: # TODO: handle splice later.
+            so = SO_INT
             achange = None
             cchange = None
             ref_aas = [aanum_to_aa[NDA]]
@@ -537,7 +553,7 @@ class Mapper (cravat.BaseMapper):
                 csn = NONCODING
                 ref_aas = [aanum_to_aa[NDA]]
                 alt_aas = [aanum_to_aa[NDA]]
-        elif kind == FRAG_NCRNA or kind == FRAG_NCRNAINTRON:
+        elif kind == FRAG_NCRNA:
             so = SO_UNK
             achange = None
             cchange = None
@@ -594,7 +610,7 @@ class Mapper (cravat.BaseMapper):
                 cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
                 coding = 'Y'
                 csn = CODING
-            elif kind == FRAG_UTR5 or kind == FRAG_UTR5INTRON:
+            elif kind == FRAG_UTR5:
                 so = SO_UT5
                 achange = None
                 cchange = None
@@ -602,8 +618,16 @@ class Mapper (cravat.BaseMapper):
                 alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
-            elif kind == FRAG_UTR3 or kind == FRAG_UTR3INTRON:
+            elif kind == FRAG_UTR3:
                 so = SO_UT3
+                achange = None
+                cchange = None
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = None
+                csn = NONCODING
+            elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON or kind == FRAG_NCRNAINTRON: # TODO: handle splice later.
+                so = SO_INT
                 achange = None
                 cchange = None
                 ref_aas = [aanum_to_aa[NDA]]
@@ -645,7 +669,7 @@ class Mapper (cravat.BaseMapper):
                     csn = NONCODING
                     ref_aas = [aanum_to_aa[NDA]]
                     alt_aas = [aanum_to_aa[NDA]]
-            elif kind == FRAG_NCRNA or kind == FRAG_NCRNAINTRON:
+            elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 cchange = None
@@ -702,7 +726,7 @@ class Mapper (cravat.BaseMapper):
                 cchange = f'{tr_ref_base_str}{cpos}{tr_alt_base_str}'
                 coding = 'Y'
                 csn = CODING
-            elif kind == FRAG_UTR5 or kind == FRAG_UTR5INTRON:
+            elif kind == FRAG_UTR5:
                 so = SO_UT5
                 achange = None
                 cchange = None
@@ -710,8 +734,16 @@ class Mapper (cravat.BaseMapper):
                 alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
-            elif kind == FRAG_UTR3 or kind == FRAG_UTR3INTRON:
+            elif kind == FRAG_UTR3:
                 so = SO_UT3
+                achange = None
+                cchange = None
+                ref_aas = [aanum_to_aa[NDA]]
+                alt_aas = [aanum_to_aa[NDA]]
+                coding = None
+                csn = NONCODING
+            elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON or kind == FRAG_NCRNAINTRON: # TODO: handle splice later.
+                so = SO_INT
                 achange = None
                 cchange = None
                 ref_aas = [aanum_to_aa[NDA]]
@@ -753,7 +785,7 @@ class Mapper (cravat.BaseMapper):
                     csn = NONCODING
                     ref_aas = [aanum_to_aa[NDA]]
                     alt_aas = [aanum_to_aa[NDA]]
-            elif kind == FRAG_NCRNA or kind == FRAG_NCRNAINTRON:
+            elif kind == FRAG_NCRNA:
                 so = SO_UNK
                 achange = None
                 cchange = None
