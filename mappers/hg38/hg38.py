@@ -370,7 +370,7 @@ class Mapper (cravat.BaseMapper):
         q = 'select v from info where k="gencode_ver"'
         self.c.execute(q)
         self.ver = self.c.fetchone()[0]
-        mrnas_path = os.path.join(data_dir, 'mrnas_24_old')
+        mrnas_path = os.path.join(data_dir, 'mrnas_24_old.pickle')
         f = open(mrnas_path, 'rb')
         self.mrnas = pickle.load(f)
         f.close()
