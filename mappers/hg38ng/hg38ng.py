@@ -981,9 +981,101 @@ class Mapper (cravat.BaseMapper):
                 elif gposend_kind == FRAG_NCRNA:
                     so = (SO_NSO,)
                 elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_UT5,)
                 elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO,)
                 elif gposend_kind == FRAG_CDSINTRON:
+                    so = (SO_MLO,)
+                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_addl
+                    coding = b'Y'
                 elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_NSO,)
+            elif kind == FRAG_UTR3INTRON:
+                if gposend_kind == FRAG_UP2K:
+                    so = (SO_UT5, SO_2KU)
+                elif gposend_kind == FRAG_DN2K:
+                    so = (SO_MLO,)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_UTR5:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3:
+                    so = (SO_MLO, SO_UT5, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDS:
+                    so = (SO_MLO, SO_UT5)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNA:
+                    so = (SO_NSO,)
+                elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO,)
+                elif gposend_kind == FRAG_CDSINTRON:
+                    so = (SO_MLO,)
+                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_addl
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_NSO,)
+            elif kind == FRAG_CDSINTRON:
+                if gposend_kind == FRAG_UP2K:
+                    so = (SO_UT5, SO_2KU)
+                elif gposend_kind == FRAG_DN2K:
+                    so = (SO_MLO,)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_UTR5:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3:
+                    so = (SO_MLO, SO_UT5, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDS:
+                    so = (SO_MLO, SO_UT5)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNA:
+                    so = (SO_NSO,)
+                elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO,)
+                elif gposend_kind == FRAG_CDSINTRON:
+                    so = (SO_MLO,)
+                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_addl
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_NSO,)
+            elif kind == FRAG_NCRNAINTRON:
+                if gposend_kind == FRAG_UP2K:
+                    so = (SO_UT5, SO_2KU)
+                elif gposend_kind == FRAG_DN2K:
+                    so = (SO_MLO,)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_UTR5:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3:
+                    so = (SO_MLO, SO_UT5, SO_UT3)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_CDS:
+                    so = (SO_MLO, SO_UT5)
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNA:
+                    so = (SO_NSO,)
+                elif gposend_kind == FRAG_UTR5INTRON:
+                    so = (SO_UT5,)
+                elif gposend_kind == FRAG_UTR3INTRON:
+                    so = (SO_MLO,)
+                elif gposend_kind == FRAG_CDSINTRON:
+                    so = (SO_MLO,)
+                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos)
+                    so = so + so_addl
+                    coding = b'Y'
+                elif gposend_kind == FRAG_NCRNAINTRON:
+                    so = (SO_NSO,)
+                    
+
+                    
+
                     
 
 
