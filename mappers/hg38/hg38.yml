@@ -1,10 +1,10 @@
 name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.2.8
+version: 1.5.4
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
-  name: 'Kyle Moad'
+  name: 'Rick Kim'
   organization: 'In Silico Solutions'
   email: 'support@cravat.su'
   website: 'http://www.insilico.us.com'
@@ -86,18 +86,12 @@ gene_summary_output_columns:
   type: string
   width: 90
   filterable: false
-requires_opencravat: '>=1.6.0'
+requires_opencravat: '>=1.8.0'
 release_note:
-    1.1.0: Sequence ontology terms change. FI1 and FI2 to FSI, FD1 and FD2 to FSD, IIV to INI, IDV to IND.
-    1.1.1: Fix on SO sub
-    1.1.2: Backward compatibility
-    1.1.7: fixed test key
-    1.2.0: added gene level summary feature
-    1.2.1: an N in the alt will error out the line
-    1.2.2: 2kb SOs are excluded from gene tab. Added number of coding and noncoding variants columns.
-    1.2.3: updated test key
-    1.2.4: gene level all so shows variant count per sample
-    1.2.5: gene level summary columns can have categories.
-    1.2.6: fixed so counts.
-    1.2.7: reverted 1.2.6 change.
-    1.2.8: import change
+  1.5.2: added test.
+  1.5.0: next-generation hg38 mapper 1st phase
+  0.0.11: transcripts are the same as in the old hg38.
+  0.0.7: parallelization and primary transcript choice change
+  0.0.6: py version works with 3.6 diskdb and 3.7 memory db
+  0.0.4: binaries for platforms
+  0.0.2: works with python and cython

@@ -1,0 +1,1 @@
+This is here so that previously installed data gets deleted.

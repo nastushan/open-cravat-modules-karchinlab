@@ -1,9 +1,9 @@
 title: VCF Converter
-version: 1.4.0
+version: 1.4.1
 type: converter
 description: Converter for VCF format input
 developer:
-  name: 'Kyle Moad'
+  name: 'Kyle Moad, Rick Kim'
   organization: 'In Silico Solutions'
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
@@ -11,7 +11,8 @@ developer:
 requires_opencravat: '>=1.7.0'
 private: true
 release_note:
-  1.4.0: keep correct order of alts so that in vcf reports alt and annot orders match.
+  1.4.1: fixed allele number miscount
+  1.4.0: fixed vep_present.
   1.3.9: release candidate for star alleles
   1.3.8: leave * allele in crv
   1.3.7: logs why * alt_base is ignored in .err file.

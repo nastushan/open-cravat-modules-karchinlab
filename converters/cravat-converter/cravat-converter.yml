@@ -1,15 +1,16 @@
 title: Cravat Converter
-version: 1.1.1
+version: 1.1.2
 type: converter
 description: File converter for standard cravat input
 developer:
-  name: 'Kyle Moad'
-  organization: 'In Silico Solutions'
-  email: 'kmoad@insilico.us.com'
-  website: 'http://www.insilico.us.com'
+  name: Kyle Moad
+  organization: In Silico Solutions
+  email: kmoad@insilico.us.com
+  website: http://www.insilico.us.com
   citation: ''
-requires_opencravat: '>=1.7.0'
+requires_opencravat: '>=1.8.0'
 release_note:
+  1.1.2: test update for 1.8.0
   1.1.1: comment lines return IGNORE.
   1.1.0: no-data line returns False
   1.0.5: can handle multiple spaces
