@@ -832,6 +832,8 @@ class Mapper (cravat.BaseMapper):
         gpos = crv_data['pos']
         ref_base_str = crv_data['ref_base']
         alt_base_str = crv_data['alt_base']
+        if alt_base_str == '*':
+            return None, None
         if ref_base_str is None:
             ref_base_str = self.wgs.get_bases(chrom, gpos)
             crv_data['ref_base'] = ref_base_str
