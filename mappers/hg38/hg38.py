@@ -65,7 +65,7 @@ def _compare_mapping (m1, m2):
 # strands
 PLUSSTRAND = 1
 MINUSSTRAND = -1
-rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-'}
+rev_bases = {'A':'T', 'T':'A', 'G':'C', 'C':'G', '-':'-','N':'N'}
 # frag kind
 FRAG_FLAG_2K =          0b00000010
 FRAG_FLAG_UTR =         0b00000100
@@ -832,6 +832,8 @@ class Mapper (cravat.BaseMapper):
         gpos = crv_data['pos']
         ref_base_str = crv_data['ref_base']
         alt_base_str = crv_data['alt_base']
+        if alt_base_str == '*':
+            return None, None
         if ref_base_str is None:
             ref_base_str = self.wgs.get_bases(chrom, gpos)
             crv_data['ref_base'] = ref_base_str
