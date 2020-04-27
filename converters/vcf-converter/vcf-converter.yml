@@ -8,7 +8,7 @@ developer:
   email: 'kmoad@insilico.us.com'
   website: 'http://www.insilico.us.com'
   citation: ''
-requires_opencravat: '>=1.7.0'
+requires_opencravat: '>=1.8.0'
 private: true
 release_note:
   1.4.2: test key update
