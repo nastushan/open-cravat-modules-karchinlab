@@ -9,7 +9,6 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 requires_opencravat: '>=1.8.0'
-private: true
 release_note:
   1.4.2: test key update
   1.4.1: fixed allele number miscount
