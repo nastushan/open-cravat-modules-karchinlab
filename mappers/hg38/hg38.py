@@ -343,7 +343,7 @@ class Mapper (cravat.BaseMapper):
         f.close()
         self.logger.info(f'mapper database: {db_path}')
         self._make_tr_info()
-        self.wgs = cravat.get_wgs_reader('hg38')
+        #self.wgs = cravat.get_wgs_reader('hg38') # TODO: revive in the 2nd phase of this mapper.
 
     def end (self):
         self.c.execute('pragma synchronous=2;')
@@ -835,7 +835,8 @@ class Mapper (cravat.BaseMapper):
         if alt_base_str == '*':
             return None, None
         if ref_base_str is None:
-            ref_base_str = self.wgs.get_bases(chrom, gpos)
+            # TODO: replace below with ref_base_str = self.wgs.get_bases(chrom, gpos) and delete the part with _get_codons in the 2nd phase of this mapper.
+            ref_base_str = 'N'
             crv_data['ref_base'] = ref_base_str
         lenref = len(ref_base_str)
         lenalt = len(alt_base_str)
@@ -904,6 +905,15 @@ class Mapper (cravat.BaseMapper):
             else:
                 cpos = -1
                 apos = -1
+            # fill in missing base. # TODO: delete in the 2nd phase of this mapper.
+            if ref_base_str == 'N' and kind == FRAG_CDS:
+                codon = codonnum_to_codon[self._get_codons(tid, chrom, tstart, cstart, cpos)[0]]
+                cpos_codonpos = cpos % 3
+                base = codon[cpos_codonpos - 1]
+                if strand == MINUSSTRAND:
+                    base = rev_bases[base]
+                ref_base_str = base
+                crv_data['ref_base'] = ref_base_str
             # so, refaa, altaa
             ref_aanums = []
             alt_aanums = []
