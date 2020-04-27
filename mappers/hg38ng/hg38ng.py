@@ -1390,8 +1390,10 @@ class Mapper (cravat.BaseMapper):
                             so = (SO_MLO, SO_IND)
                             achange = f'p.M1{aanum_to_aa[new_aanum]}'
                         elif apos <= alen + 1 and apos_del_end >= alen + 1: # TER deletion
-                        so = (SO_STL, SO_IND)
-                        achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}_{aanum_to_aa[ref_aanum_end]}{apos_del_end}delins{aanum_to_aa[new_aanum]}'
+                            
+                        else:
+                            so = (SO_IND,)
+                            achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}_{aanum_to_aa[ref_aanum_end]}{apos_del_end}delins{aanum_to_aa[new_aanum]}'
                     else:
                         num_aas_del = lenref / 3
                         max_apos_del_start = apos + 1
@@ -1513,122 +1515,17 @@ class Mapper (cravat.BaseMapper):
                 achange = f'p.{ref_aa_start}{apos}='
             else:
                 achange = f'p.{pseq[altered_apos - 1]}{altered_apos}{aanum_to_aa[new_aanum]}fs*'
-                        ter_found = False
-                        max_tpos_del_end = max_apos_del_end * 3 - cstart + tstart
-                        for tpos_q in range(max_tpos_del_end + 1, tlen + 1, 3):
-                            codonnum = _get_codonnum(tid, tpos_q)
-                            aanum = codonnum_to_aanum[codonnum]
-                            if aanum == TER:
-                                apos_nextter = (tpos_q - max_tpos_del_end - 1) / 3 + 1
-                                achange += f'{apos_nextter}'
-                                ter_found = True
-                        if ter_found == False:
-                            achange += f'?'
-            achange = f'p.{aanum_to_aa[ref_aanum_start]}{altered_apos}{aanum_to_aa[new_aanum]}fs'
-                if new_aanum is None:
-
-
-                
-                if ref_codonpos_end == 1:
-                    new_bases = ref_codon_end[1:] + self._get_bases_tpos(tid, ref_tpos_end + 1)
-                elif ref_codonpos_end == 2:
-                    new_bases = ref_codon_end[2:] + self._get_bases_tpos(tid, ref_tpos_end + 1, ref_tpos_end + 2)
-            new_codon = ref_codon_start[:num_base_from_start_codon] + ref_codon_end[ref_codonpos_end:]
-            new_aanum = codon_to_aanum[new_codon]
-                if lenref == 1:
-                    ref_codon_next = codonnum_to_codon[self._get_codonnum(tid, ref_tpos + 3)]
-                    new_bases = ref_codon_start[2] + ref_codon_next[:2]
-                else:
-                    ref_tpos_end = tpos_end
-                    ref_codon_next = codonnum_to_codon[self._get_codonnum(tid, ref_tpos + 3)]
-                    new_bases = ref_codon_start[2] + ref_codon_next[:2]
-            if ref_codonpos == 0:
-                ref_cpos = cpos - 2
-            else:
-                ref_cpos = cpos - ref_codonpos + 1
-            ref_tpos = tstart + ref_cpos - cstart
-            ref_gpos = gpos + ref_cpos - cpos
-            ref_codonnum = self._get_codonnum(tid, ref_tpos)
-            ref_codon = codonnum_to_codon[ref_codonnum]
-            # makes insertion result bases (3-bases multiple).
-            if ref_codonpos == 1:
-                lenalt_3 = lenalt % 3
-                if lenalt_3 == 1:
-                    new_bases = alt_base + ref_codon[0] + ref_codon[1]
-                    tpos_q_start = ref_tpos + 2
-                elif lenalt_3 == 2:
-                    new_bases = alt_base + ref_codon[0]
-                    tpos_q_start = ref_tpos + 1
-            elif ref_codonpos == 2:
-                lenalt_3 = lenalt % 3
-                if lenalt_3 == 1:
-                    new_bases = ref_codon[0] + alt_base + ref_codon[1]
-                    tpos_q_start = ref_tpos + 2
-                elif lenalt_3 == 2:
-                    new_bases = ref_codon[0] + alt_base
-                    tpos_q_start = ref_tpos + 1
-            elif ref_codonpos == 0:
-                lenalt_3 = lenalt % 3
-                if lenalt_3 == 1:
-                    new_bases = ref_codon[0] + ref_codon[1] + alt_base
-                    tpos_q_start = ref_tpos + 2
-                elif lenalt_3 == 2:
-                    codonnum = self._get_codonnum(tid, ref_tpos + 3)
-                    new_bases = ref_codon[0] + ref_codon[1] + alt_base + ref_codon[2] + codonnum_to_codon[codonnum][0]
-                    tpos_q_start = ref_tpos + 4
-            stp_found = False
-            len_newbases = len(new_bases)
-            aanum = codon_to_aanum[new_bases[:3]]
-            if aanum == TER: # first aa of insertion result
-                ref_aa = pseq[apos - 1]
-                if ref_aa == TER:
-                    so = (SO_FSI, SO_STR)
-                    achange = f'p.*{apos}='
-                else:
-                    so = (SO_FSI, SO_STG)
-                    achange = f'p.{aanum_to_aa[ref_aa]}{apos}*'
-            else:
-                alt_aas = (aanum,)
-                for i in range(3, len(new_bases), 3): # rest of new_bases
-                    aanum = codon_to_aanum[new_bases[i:i+3]]
-                    alt_aas += (aanum,)
+                ter_found = False
+                for tpos_q in range(ref_tpos_after_new_codon, tlen + 1, 3):
+                    codonnum = _get_codonnum(tid, tpos_q)
+                    aanum = codonnum_to_aanum[codonnum]
                     if aanum == TER:
-                        stp_found = True
-                if stp_found == False: # until the end of transcript
-                    tlen = self.tr_info[tid][TR_INFO_TLEN_I]
-                    for tpos_q in range(tpos_q_start, tlen, 3):
-                        codonnum = self._get_codonnum(tid, tpos_q)
-                        aanum = codonnum_to_aanum[codonnum]
-                        alt_aas += (aanum,)
-                        if aanum == TER:
-                            stp_found = True
-                            break
-                ref_apos_found = None
-                ref_aa_found = None
-                i_found = None
-                for i in range(len(alt_aas)):
-                    apos_q = apos + i
-                    aa = pseq[apos_q - 1]
-                    if aa != alt_aas[i]:
-                        ref_apos_found = apos_q
-                        ref_aa_found = aa
-                        i_found = i
-                        break
-                if ref_apos_found == 1:
-                    so = (SO_FSI, SO_MLO)
-                    achange = f'p.M1fs?'
-                else:
-                    if ref_aa_found == TER:
-                        so = (SO_FSI, SO_STL)
-                    else:
-                        so = (SO_FSI,)
-                    achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs*'
-                    if stp_found:
-                        achange += f'{len(alt_aas) - i_found}'
-                    else:
-                        achange += '?'
+                        apos_nextter = (tpos_q - ref_tpos_after_new_codon) / 3 + 1
+                        achange += f'{apos_nextter}'
+                        ter_found = True
+                if ter_found == False:
+                    achange += f'?'
         return so, achange
-
 
     def setup (self):
         self.module_dir = dirname(__file__)
