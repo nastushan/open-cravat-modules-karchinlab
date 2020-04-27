@@ -910,10 +910,11 @@ class Mapper (cravat.BaseMapper):
                 codon = codonnum_to_codon[self._get_codons(tid, chrom, tstart, cstart, cpos)[0]]
                 cpos_codonpos = cpos % 3
                 base = codon[cpos_codonpos - 1]
+                if strand == PLUSSTRAND:
+                    crv_data['ref_base'] = base
                 if strand == MINUSSTRAND:
-                    base = rev_bases[base]
-                ref_base_str = base
-                crv_data['ref_base'] = ref_base_str
+                    crv_data['ref_base'] = rev_bases[base]
+                tr_ref_base = base
             # so, refaa, altaa
             ref_aanums = []
             alt_aanums = []
