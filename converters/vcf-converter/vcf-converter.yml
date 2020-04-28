@@ -1,5 +1,5 @@
 title: VCF Converter
-version: 1.4.2
+version: 1.4.3
 type: converter
 description: Converter for VCF format input
 developer:
@@ -10,6 +10,7 @@ developer:
   citation: ''
 requires_opencravat: '>=1.8.0'
 release_note:
+  1.4.3: Run on vcfs without INFO definitions
   1.4.2: test key update
   1.4.1: fixed allele number miscount
   1.4.0: fixed vep_present.
