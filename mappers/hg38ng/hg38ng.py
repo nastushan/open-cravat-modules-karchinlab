@@ -141,8 +141,9 @@ SO_SPL = 45
 SO_STG = 46
 SO_FSD = 47
 SO_FSI = 48
-SO_MLO = 49 # start_lost
-SO_TAB = 50 # transcript_ablation
+SO_EXL = 49 # exon_loss_variant
+SO_MLO = 50 # start_lost
+SO_TAB = 51 # transcript_ablation
 # csn: coding, splice, noncoding (legacy from old hg38)
 CSN_CODING = 54
 CSN_SPLICE = 53
@@ -168,6 +169,7 @@ sonum_to_so = {
     SO_STG: 'STG',
     SO_FSD: 'FSD',
     SO_FSI: 'FSI',
+    SO_EXL: 'EXL',
     SO_MLO: 'MLO',
 }
 # aa
@@ -393,6 +395,7 @@ class Mapper (cravat.BaseMapper):
         coding = None
         for r in rs:
             (tid, fragno, start, end, kind, exonno, tstart, cstart, binno, prevcont, nextcont) = r
+            print(f'@@@@@@ r={r}')
             (tr, strand, refseqs, uniprot, alen, tlen, genename) = tr_info[tid]
             if tr not in alt_transcripts:
                 alt_transcripts[tr] = []
@@ -400,46 +403,76 @@ class Mapper (cravat.BaseMapper):
                 if refseq not in alt_transcripts[tr]:
                     alt_transcripts[tr].append(refseq)
             if strand == PLUSSTRAND:
-                tpos = gpos - start + tstart 
                 tr_ref_base = tr_ref_base_plus
                 tr_alt_base = tr_alt_base_plus
+                gdist = gpos - start
             elif strand == MINUSSTRAND:
-                tpos = end - gpos + tstart
                 tr_ref_base = tr_ref_base_minus
                 tr_alt_base = tr_alt_base_minus
-            # cpos, apos
+                gdist = end - gpos
+            # tpos, cpos, apos
             if kind == FRAG_CDS:
-                if strand == PLUSSTRAND:
-                    cpos = gpos - start + cstart
-                else:
-                    cpos = end - gpos + cstart
-                    if var_type == DEL or var_type == COM:
-                        cpos = cpos - lenref + 1
-                    elif var_type == INS:
-                        cpos += 1
+                cpos = cstart + gdist
+                tpos = tstart + gdist
+                if strand == MINUSSTRAND and var_type == INS:
+                    cpos += 1
                 apos = int((cpos - 1) / 3) + 1
-            elif kind == FRAG_UTR5 or kind == FRAG_UTR3 or kind == FRAG_UP2K or kind == FRAG_DN2K or kind == FRAG_NCRNA:
+            elif kind == FRAG_CDSINTRON:
+                frag_mid = (start + end) / 2
                 if strand == PLUSSTRAND:
-                    cpos = cstart + gpos - start
+                    if gpos < frag_mid:
+                        cpos = cstart
+                        tpos = tstart
+                    else:
+                        cpos = cstart + 1
+                        tpos = tstart + 1
                 else:
-                    cpos = cstart + end - gpos
-                    if var_type == DEL or var_type == COM:
-                        cpos = cpos + lenref - 1
-                    elif var_type == INS:
-                        cpos -= 1
+                    if gpos > frag_mid:
+                        cpos = cstart
+                        tpos = tstart
+                    else:
+                        cpos = cstart + 1
+                        tpos = tstart + 1
+                apos = int((cpos - 1) / 3) + 1
+            elif kind == FRAG_UTR5 or kind == FRAG_UTR3:
+                tpos = gdist + tstart
+                cpos = -1
                 apos = -1
-            else:
+            elif kind == FRAG_UP2K or kind == FRAG_DN2K:
+                tpos = -1
+                cpos = -1
+                apos = -1
+            elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON:
+                frag_mid = (start + end) / 2
+                if strand == PLUSSTRAND:
+                    if gpos < frag_mid:
+                        tpos = tstart
+                    else:
+                        tpos = tstart + 1
+                else:
+                    if gpos > frag_mid:
+                        tpos = tstart
+                    else:
+                        tpos = tstart + 1
+                cpos = -1
+                apos = -1
+            elif kind == FRAG_UP2K or kind == FRAG_DN2K:
+                tpos = -1
                 cpos = -1
                 apos = -1
             # so, refaa, altaa
             if var_type == SNV:
-                so, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno)
+                so, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
+                        apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno)
             if var_type == INS:
-                so, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
+                        apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == DEL:
-                so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen, tlen)
+                so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
+                        apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen, tlen, exonno)
             if var_type == COM:
-                so, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
+                        apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding, csn)
             if genename not in all_mappings:
                 all_mappings[genename] = set()
@@ -762,15 +795,15 @@ class Mapper (cravat.BaseMapper):
                             break
             if dup_found:
                 if lenalt == 1:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand)
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
                     cchange = f'c.{hgvs_start}dup'
                 else:
                     if strand == PLUSSTRAND:
-                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand)
-                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start + lenalt - 1, chrom, strand)
+                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
+                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start + lenalt - 1, chrom, strand, prevcont, nextcont, exonno)
                     else:
-                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand)
-                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start - lenalt + 1, chrom, strand)
+                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
+                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start - lenalt + 1, chrom, strand, prevcont, nextcont, exonno)
                     cchange = f'c.{hgvs_start}_{hgvs_end}dup'
             else:
                 for i in range(lenalt):
@@ -779,424 +812,511 @@ class Mapper (cravat.BaseMapper):
                         tr_alt_base = tr_alt_base[i:] + next_ref[:i]
                         break
                 if strand == PLUSSTRAND:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand, prevcont, nextcont, exonno)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
                 else:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand, prevcont, nextcont, exonno)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
                 cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
         return so, achange, cchange, coding, csn
 
-    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, gstart, gend, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen, tlen):
+    def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, 
+            gstart, gend, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont, alen, tlen, exonno):
         if gposend == gpos:
             gposend_kind = kind
+            gposend_fragno = fragno
+            gposend_exonno = exonno
+            gposend_gstart = gstart
+            gposend_gend = gend
+            gposend_cstart = cstart
+            gposend_tstart = tstart
+            gposend_prevcont = prevcont
+            gposend_nextcont = nextcont
+            tpos_end = tpos
+            cpos_end = cpos
+            apos_end = apos
         else:
-            q = f'select kind, fragno, start, end, cstart, tstart from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
+            q = f'select kind, fragno, exonno, start, end, cstart, tstart, prevcont, nextcont from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
+            print(f'@ in _get_del_map_data. q={q}')
             self.c2.execute(q)
             row = self.c2.fetchone()
             if row is not None:
-                (gposend_kind, gposend_fragno, gposend_gstart, gposend_gend, gposend_cstart, gposend_tstart) = row[0]
+                (gposend_kind, gposend_fragno, gposend_exonno, gposend_gstart, gposend_gend, gposend_cstart, gposend_tstart, gposend_prevcont, gposend_nextcont) = row
+                print(f'  @ gposend_exonno={gposend_exonno}')
                 if strand == PLUSSTRAND:
                     gposend_gdist = gposend - gposend_gstart
                 else:
-                    gposend_gdist = gposend_end - gposend
-                tpos_end = gposend_gdist + gposend_tstart
-                cpos_end = gposend_gdist + gposend_cstart
-        if kind != gposend_kind:
-            achange = None
-            coding = None
-            cchange = None
-            achange = None
-            if kind == FRAG_UP2K:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_2KU,)
-                elif gposend_kind == FRAG_DN2K: # no transcript
-                    so = (SO_TAB, SO_2KU, SO_2KD)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_2KU, SO_UT5)
-                elif gposend_kind == FRAG_UTR3: # no transcript
-                    so = (SO_TAB, SO_2KU, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS: # no transcript
-                    so = (SO_TAB, SO_2KU)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_2KU, SO_NSO)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_2KU, SO_UT5)
-                elif gposend_kind == FRAG_UTR3INTRON: # no transcript
-                    so = (SO_TAB, SO_2KU, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDSINTRON: # no transcript
-                    so = (SO_TAB, SO_2KU)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_2KU, SO_NSO)
-            elif kind == FRAG_DN2K:
-                if gposend_kind == FRAG_UP2K: # no transcript
-                    so = (SO_TAB, SO_2KD)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_2KD,)
-                elif gposend_kind == FRAG_UTR5: # no transcript
-                    so = (SO_MLO, SO_2KD, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_2KD, SO_UT3)
-                elif gposend_kind == FRAG_CDS:
-                    if apos == alen:
-                        so = (SO_STL, SO_UT3, SO_2KU)
-                    elif apos == 1:
-                        so = (SO_MLO, SO_STL, SO_UT3, SO_2KD)
-                    else:
-                        so = (SO_UT3, SO_2KD)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_2KU, SO_NSO)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_MLO, SO_2KU, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_2KU, SO_UT3)
+                    gposend_gdist = gposend_gend - gposend
+                if gposend_kind == FRAG_CDS:
+                    tpos_end = gposend_gdist + gposend_tstart
+                    cpos_end = gposend_gdist + gposend_cstart
+                    apos_end = int((cpos_end - 1) / 3) + 1
                 elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_UT3, SO_2KD)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_2KU, SO_NSO)
-            elif kind == FRAG_UTR5:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_2KU, SO_UT5)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO, SO_UT5, SO_2KD)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_UT5,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_UT5, SO_NSO)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_UT5, SO_INT)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_UT5, SO_NSO)
-            elif kind == FRAG_UTR3:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_TAB, SO_2KU, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UP2D:
-                    so = (SO_UT3, SO_2KD)
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_UT3,)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_UT3,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_UT3, SO_NSO)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_UT3,)
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_UT3,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_UT3, SO_NSO)
-            elif kind == FRAG_CDS:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_TAB, SO_2KU)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_2KD,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_MLO, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_UT3,)
-                    so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_cds
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so, achange = self._get_del_cds_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_NSO, SO_NSO)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_MLO, SO_UTR5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_NSO,)
-                    coding = b'Y'
-            elif kind == FRAG_NCRNA:
-                so = (SO_NSO,)
-            elif kind == FRAG_UTR5INTRON:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_UT5, SO_2KU)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO,)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_MLO, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_NSO,)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO,)
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_MLO,)
-                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_addl
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_NSO,)
-            elif kind == FRAG_UTR3INTRON:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_UT5, SO_2KU)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO,)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_MLO, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_NSO,)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO,)
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_MLO,)
-                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_addl
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_NSO,)
-            elif kind == FRAG_CDSINTRON:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_UT5, SO_2KU)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO,)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_MLO, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_NSO,)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO,)
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_MLO,)
-                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_addl
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_NSO,)
-            elif kind == FRAG_NCRNAINTRON:
-                if gposend_kind == FRAG_UP2K:
-                    so = (SO_UT5, SO_2KU)
-                elif gposend_kind == FRAG_DN2K:
-                    so = (SO_MLO,)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_UTR5:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3:
-                    so = (SO_MLO, SO_UT5, SO_UT3)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_CDS:
-                    so = (SO_MLO, SO_UT5)
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNA:
-                    so = (SO_NSO,)
-                elif gposend_kind == FRAG_UTR5INTRON:
-                    so = (SO_UT5,)
-                elif gposend_kind == FRAG_UTR3INTRON:
-                    so = (SO_MLO,)
-                elif gposend_kind == FRAG_CDSINTRON:
-                    so = (SO_MLO,)
-                    so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                    so = so + so_addl
-                    coding = b'Y'
-                elif gposend_kind == FRAG_NCRNAINTRON:
-                    so = (SO_NSO,)
-        # hgvs c.
-        #if kind == FRAG_CDS and gposend_kind == FRAG_CDS:
-        if so == SO_SYN or so == SO_MIS or so == SO_IND or so == SO_INI or so == SO_STL or so == SO_STG or so == SO_FSD or so == SO_FSI:
-            _get_bases_tpos = self._get_bases_tpos
-            tend = tstart + gend - gstart # no 3' rule beyond exon
-            tpos_hgvs_start = tpos
-            tpos_hgvs_end = tpos + lenref - 1
-            for tpos_q_start in range(tpos + lenref, tend + 1, lenref):
-                tpos_q_end = tpos_q_start + lenref - 1
-                if tpos_q_end > tend:
-                    break
-                next_frag = _get_bases_tpos(tid, tpos_q_start, tpos_q_end)
-                if next_frag == tr_ref_base:
-                    tpos_hgvs_start = tpos_q_start
-                    tpos_hgvs_end = tpos_q_end
-            if lenref == 1:
-                cchange = f'c.{tpos_hgvs_start}del'
-            else:
-                cchange = f'c.{tpos_hgvs_start}_{tpos_hgvs_end}del'
-        else:
-            if strand == PLUSSTRAND:
-                gpos_hgvs_start = gpos
-                gpos_hgvs_end = gposend
-                for gpos_q_start in range(gpos + lenref, tend + 1, lenref):
-                    tpos_q_end = tpos_q_start + lenref - 1
-                    if tpos_q_end > tend:
-                        break
-                    next_frag = _get_bases_tpos(tid, tpos_q_start, tpos_q_end)
-                    if next_frag == tr_ref_base:
-                        tpos_hgvs_start = tpos_q_start
-                        tpos_hgvs_end = tpos_q_end
-            if lenref == 1:
-                cchange = f'c.{tpos_hgvs_start}del'
-            else:
-                cchange = f'c.{tpos_hgvs_start}_{tpos_hgvs_end}del'
-            '''
-            else:
-                gpos_hgvs_start = gposend
-                gpos_hgvs_end = gpos
-            '''
-            if strand == PLUSSTRAND:
-                prev_ref_start = gpos - lenalt
-                prev_ref_end = gpos - 1
-                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end)
-                next_ref_start = gpos
-                next_ref_end = gpos + lenalt - 1
-                next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end)
-            else:
-                prev_ref_start = gpos + lenalt
-                prev_ref_end = gpos + 1
-                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-')
-                next_ref_start = gpos
-                next_ref_end = gpos - lenalt + 1
-                next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-')
-            search_bases = prev_ref + tr_alt_base + next_ref
-            dup_found = False
-            for i in range(len(search_bases) - lenalt - lenalt + 1):
-                scan_frag = search_bases[i:i + lenalt]
-                if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
-                    dup_found = True
-                    if lenalt == 1:
-                        if strand == PLUSSTRAND:
-                            gpos_q_start = gpos - 1
-                            gpos_q_f = gpos_q_start
-                            while True:
-                                gpos_q_f = gpos_q_start + 1
-                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f)
-                                if base_q_f == scan_frag:
-                                    gpos_q_start = gpos_q_f
-                                else:
-                                    break
+                    frag_mid = (gposend_gstart + gposend_gend) / 2
+                    if strand == PLUSSTRAND:
+                        if gposend < frag_mid:
+                            cpos_end = gposend_cstart
+                            tpos_end = gposend_tstart
                         else:
-                            gpos_q_start = gpos + 1
-                            gpos_q_f = gpos_q_start
-                            while True:
-                                gpos_q_f = gpos_q_start - 1
-                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, strand='-')
-                                if base_q_f == scan_frag:
-                                    gpos_q_start = gpos_q_f
-                                else:
-                                    break
-                        dup_start_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_start, chrom, strand)
-                        cchange = f'c.{dup_start_hgvs}dup'
+                            cpos_end = gposend_cstart + 1
+                            tpos_end = gposend_tstart + 1
                     else:
-                        lenscanfrag = len(scan_frag)
-                        if strand == PLUSSTRAND:
-                            gpos_q_start = gpos - lenalt + i
-                            gpos_q_end = gpos + i - 1
-                            gpos_q_f = gpos_q_start
-                            while True:
-                                gpos_q_f = gpos_q_start + lenscanfrag
-                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenscanfrag - 1)
-                                if base_q_f == scan_frag:
-                                    gpos_q_start = gpos_q_f
-                                else:
-                                    break
+                        if gposend > frag_mid:
+                            cpos_end = gposend_cstart
+                            tpos_end = gposend_tstart
                         else:
-                            gpos_q_start = gpos + lenalt - i
-                            gpos_q_end = gpos - i + 1
-                            while True:
-                                gpos_q_f = gpos_q_start - lenscanfrag
-                                base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, strand='-')
-                                if base_q_f == scan_frag:
-                                    gpos_q_start = gpos_q_f
-                                    gpos_q_end = gpos_q_start - lenalt + 1
-                                else:
-                                    break
-                        dup_start_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_start, chrom, strand)
-                        dup_end_hgvs = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos_q_end, chrom, strand)
-                        cchange = f'c.{dup_start_hgvs}_{dup_end_hgvs}dup'
-                        break
-            if dup_found == False:
-                for i in range(lenalt):
-                    if tr_alt_base[i] != next_ref[i]:
-                        gpos = gpos + i
-                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
-                        break
-                if strand == PLUSSTRAND:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
+                            cpos_end = gposend_cstart + 1
+                            tpos_end = gposend_tstart + 1
+                    apos_end = int((cpos_end - 1) / 3) + 1
+                elif gposend_kind == FRAG_UTR5 or gposend_kind == FRAG_UTR3:
+                    tpos_end = gposend_gdist + gposend_tstart
+                    cpos_end = -1
+                    apos_end = -1
+                elif gposend_kind == FRAG_UP2K or gposend_kind == FRAG_DN2K:
+                    tpos_end = -1
+                    cpos_end = -1
+                    apos_end = -1
+                elif gposend_kind == FRAG_UTR5INTRON or gposend_kind == FRAG_UTR3INTRON:
+                    frag_mid = (gposend_gstart + gposend_gend) / 2
+                    if strand == PLUSSTRAND:
+                        if gposend < frag_mid:
+                            tpos_end = gposend_tstart
+                        else:
+                            tpos_end = gposend_tstart + 1
+                    else:
+                        if gposend > frag_mid:
+                            tpos_end = gposend_tstart
+                        else:
+                            tpos_end = gposend_tstart + 1
+                    cpos_end = -1
+                    apos_end = -1
+                elif gposend_kind == FRAG_UP2K or gposend_kind == FRAG_DN2K:
+                    tpos_end = -1
+                    cpos_end = -1
+                    apos_end = -1
+        coding = None
+        cchange = None
+        achange = None
+        if kind == FRAG_UP2K:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_2KU,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K: # no transcript
+                so = (SO_TAB, SO_2KU, SO_2KD)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_2KU, SO_UT5)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3: # no transcript
+                so = (SO_TAB, SO_2KU, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS: # no transcript
+                so = (SO_TAB, SO_2KU)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_2KU, SO_NSO)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_2KU, SO_UT5)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON: # no transcript
+                so = (SO_TAB, SO_2KU, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDSINTRON: # no transcript
+                so = (SO_TAB, SO_2KU)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_2KU, SO_NSO)
+                csn = CSN_NONCODING
+        elif kind == FRAG_DN2K:
+            if gposend_kind == FRAG_UP2K: # no transcript
+                so = (SO_TAB, SO_2KD)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_2KD,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5: # no transcript
+                so = (SO_MLO, SO_2KD, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_2KD, SO_UT3)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDS:
+                if apos == alen:
+                    so = (SO_STL, SO_UT3, SO_2KU)
+                    csn = CSN_NONCODING
+                elif apos == 1:
+                    so = (SO_MLO, SO_STL, SO_UT3, SO_2KD)
+                    csn = CSN_NONCODING
                 else:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand)
-                cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
+                    so = (SO_UT3, SO_2KD)
+                    csn = CSN_NONCODING
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_2KU, SO_NSO)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_MLO, SO_2KU, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_2KU, SO_UT3)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_UT3, SO_2KD)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_2KU, SO_NSO)
+                csn = CSN_NONCODING
+        elif kind == FRAG_UTR5:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_2KU, SO_UT5)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_MLO, SO_UT5, SO_2KD)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_UT5,)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_UT5, SO_NSO)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_UT5, SO_INT)
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                achange = ''
+                #so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_UT5, SO_NSO)
+                csn = CSN_NONCODING
+        elif kind == FRAG_UTR3:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_TAB, SO_2KU, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UP2K:
+                so = (SO_UT3, SO_2KD)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_UT3,)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_UT3,)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_UT3, SO_NSO)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_UT3,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_UT3,)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_UT3, SO_NSO)
+                csn = CSN_NONCODING
+        elif kind == FRAG_CDS:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_TAB, SO_2KU)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_2KD,)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_MLO, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_UT3,)
+                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_cds
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so, achange = self._get_del_cds_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_NSO, SO_NSO)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_MLO, SO_UTR5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_NSO,)
+                coding = b'Y'
+                csn = CSN_CODING
+        elif kind == FRAG_NCRNA:
+            so = (SO_NSO,)
+            csn = CSN_NONCODING
+        elif kind == FRAG_UTR5INTRON:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_UT5, SO_2KU)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_MLO,)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_MLO, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_MLO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_MLO,)
+                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_addl
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+        elif kind == FRAG_UTR3INTRON:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_UT5, SO_2KU)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_MLO,)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_MLO, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_MLO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_MLO,)
+                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_addl
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+        elif kind == FRAG_CDSINTRON:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_UT5, SO_2KU)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_MLO,)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_MLO, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_MLO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so, achange = self._get_del_cdsintron_cdsintron_data(
+                    tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
+                    gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen, fragno, 
+                    apos_end, gstart, gend, gposend_gstart, gposend_gend)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+        elif kind == FRAG_NCRNAINTRON:
+            if gposend_kind == FRAG_UP2K:
+                so = (SO_UT5, SO_2KU)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_DN2K:
+                so = (SO_MLO,)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_UTR5:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3:
+                so = (SO_MLO, SO_UT5, SO_UT3)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_CDS:
+                so = (SO_MLO, SO_UT5)
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNA:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR5INTRON:
+                so = (SO_UT5,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_UTR3INTRON:
+                so = (SO_MLO,)
+                csn = CSN_NONCODING
+            elif gposend_kind == FRAG_CDSINTRON:
+                so = (SO_MLO,)
+                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = so + so_addl
+                coding = b'Y'
+                csn = CSN_CODING
+            elif gposend_kind == FRAG_NCRNAINTRON:
+                so = (SO_NSO,)
+                csn = CSN_NONCODING
+        # hgvs c.
+        if kind == FRAG_CDS and gposend_kind == FRAG_CDS:
+            _get_bases_tpos = self._get_bases_tpos
+            tpos_diff_start = None
+            for tpos_q in range(tpos_end + 1, tlen + 1):
+                early_base = _get_bases_tpos(tid, tpos_q - lenref)
+                late_base = _get_bases_tpos(tid, tpos_q)
+                if early_base != late_base:
+                    tpos_diff_start = tpos_q
+                    break
+            cpos_diff_start = tpos_diff_start - tstart + cstart
+            cpos_ter_end = alen * 3 + 3
+            if cpos_diff_start > cpos_ter_end:
+                hgvs_start = f'*{cpos_diff_start - cpos_ter_end}'
+            else:
+                hgvs_start = f'{cpos_diff_start}'
+            cpos_diff_end = cpos_diff_start + lenref - 1
+            if cpos_diff_end > cpos_ter_end:
+                hgvs_end = f'*{cpos_diff_end - cpos_ter_end}'
+            else:
+                hgvs_end = f'{cpos_diff_end}'
+            cchange = f'c.{hgvs_start}_{hgvs_end}del'
+        else:
+            get_bases = self.hg38reader.get_bases
+            _get_hgvs_cpos = self._get_hgvs_cpos
+            if strand == PLUSSTRAND:
+                gpos_q = gposend + 1
+                gpos_diff_start = None
+                while True:
+                    late_base = get_bases(chrom, gpos_q)
+                    early_base = get_bases(chrom, gpos_q - lenref)
+                    print(f'@ gpos_q={gpos_q} late_base={late_base} early_base={early_base}')
+                    if early_base != late_base:
+                        gpos_diff_start = gpos_q - lenref
+                        print(f'  @ gpos_diff_start={gpos_diff_start}')
+                        break
+                    else:
+                        gpos_q += 1
+                hgvs_start = _get_hgvs_cpos(tid, kind, gstart, gend, cstart, gpos_diff_start, chrom, strand, prevcont, nextcont, exonno)
+                hgvs_end = _get_hgvs_cpos(tid, kind, gposend_gstart, gposend_gend, gposend_cstart, 
+                        gpos_diff_start + lenref - 1, chrom, strand, gposend_prevcont, gposend_nextcont, gposend_exonno)
+                cchange = f'c.{hgvs_start}_{hgvs_end}del'
+            else:
+                gpos_q = gpos - 1
+                gpos_diff_start = None
+                while True:
+                    late_base = get_bases(chrom, gpos_q)
+                    early_base = get_bases(chrom, gpos_q + lenref)
+                    if early_base != late_base:
+                        gpos_diff_start = gpos_q + lenref
+                        break
+                    else:
+                        gpos_q -= 1
+                hgvs_start = _get_hgvs_cpos(tid, kind, gstart, gend, cstart, gpos_diff_start, chrom, strand, prevcont, nextcont, exonno)
+                hgvs_end = _get_hgvs_cpos(tid, kind, gposend_gstart, gposend_gend, gposend_cstart, 
+                        gpos_diff_start - lenref + 1, chrom, strand, gposend_prevcont, gposend_nextcont, gposend_exonno)
+                cchange = f'c.{hgvs_start}_{hgvs_end}del'
+        print(f'@ ################ {chrom}:{gpos} tid={tid} so={so} achange={achange} cchange={cchange} coding={coding} csn={csn}')
         return so, achange, cchange, coding, csn
 
     def _get_com_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
@@ -1293,9 +1413,57 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_NONCODING
         return so, achange, cchange, coding, csn
 
-    def _get_del_cds_cds_data (tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, 
+    def _get_del_cdsintron_cdsintron_data (self, tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
+            gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen, fragno, 
+            apos_end, gstart, gend, gposend_gstart, gposend_gend):
+        if gpos == gstart or gpos == gstart + 1 or gpos == gend or gpos == gend - 1 or \
+                gposend == gposend_gstart or gposend == gposend_gstart + 1 or \
+                gposend == gposend_gend or gposend == gposend_gend - 1: # splice
+            if fragno == gposend_fragno:
+                so = (SO_SPL,)
+                achange = ''
+            else:
+                so = (SO_SPL, SO_EXL)
+                achange = ''
+        else: # intron
+            if fragno == gposend_fragno:
+                so = (SO_INT,)
+                achange = ''
+            else:
+                cpos_codonpos = int((cstart + 1) % 3)
+                cpos_end_codonpos = int((gposend_cstart + 1) % 3)
+                del_start_apos = int(cstart / 3 + 1)
+                del_end_apos = int((gposend_cstart - 1) / 3 + 1)
+                if (cpos_codonpos == 1 and cpos_end_codonpos == 2) or \
+                        (cpos_codonpos == 2 and cpos_end_codonpos == 0) or \
+                        (cpos_codonpos == 0 and cpos_end_codonpos == 1):
+                    so = (SO_EXL, SO_IND)
+                    prev_aanum = codonnum_to_aanum[self._get_codonnum(tid, tstart)]
+                    if del_start_apos == del_end_apos:
+                        achange = f'p.{aanum_to_aa[prev_aanum]}{apos}del'
+                    else:
+                        # TODO: handle 3' rule.
+                        next_aanum = codonnum_to_aanum[self._get_codonnum(tid, gposend_tstart + 1)]
+                        if cpos_codonpos == 0: # conservative
+                            achange = f'p.{aanum_to_aa[prev_aanum]}{apos}_{aanum_to_aa[next_aanum]}{del_end_apos}del'
+                        else: # disruptive
+                            achange = f'p.{aanum_to_aa[prev_aanum]}{apos}_{aanum_to_aa[next_aanum]}{del_end_apos}del'
+                    print(f'@ codon={codonnum_to_codon[self._get_codonnum(tid, tstart)]} tstart={tstart} tpos={tpos} cpos={cpos} cpos_codonpos={cpos_codonpos} cpos_end_codonpos={cpos_end_codonpos}')
+                else:
+                    print(f'@ del_start_apos={del_start_apos} del_end_apos={del_end_apos}')
+                    if del_start_apos <= 1 and del_end_apos >= 1:
+                        so = (SO_EXL, SO_MLO, SO_FSD)
+                    else:
+                        so = (SO_EXL, SO_FSD)
+                    aanum = codonnum_to_aanum[self._get_codonnum(tid, tstart)]
+                    print(f'@ codon={codonnum_to_codon[self._get_codonnum(tid, tstart)]} tstart={tstart} tpos={tpos} cpos={cpos} cpos_codonpos={cpos_codonpos} cpos_end_codonpos={cpos_end_codonpos}')
+                    achange = f'p.{aanum_to_aa[aanum]}{apos}fs'
+        return so, achange
+
+    def _get_del_cds_cds_data (tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
             gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen):
         pseq = memoryview(self.prots[tid])
+        _get_codonnum = self._get_codonnum
         if lenref % 3 == 0: # inframe_deletion
             ref_codonpos = cpos % 3
             if ref_codonpos == 1: # conservative_inframe_deletion
@@ -1358,7 +1526,7 @@ class Mapper (cravat.BaseMapper):
                     else:
                         ref_gpos = gpos + 2
                     num_base_from_start_codon = 2
-                ref_codon_start = codonnum_to_codon[self._get_codonnum(tid, ref_tpos)]
+                ref_codon_start = codonnum_to_codon[_get_codonnum(tid, ref_tpos)]
                 ref_aanum_start = codon_to_aanum[ref_codon_start]
                 ref_codonpos_end = cpos_end % 3
                 if ref_codonpos_end == 2:
@@ -1372,7 +1540,7 @@ class Mapper (cravat.BaseMapper):
                     ref_cpos_end = cpos_end
                     ref_tpos_end = tpos_end
                     ref_gpos_end = gposend
-                ref_codon_end = codonnum_to_codon[self._get_codonnum(tid, ref_tpos_end)]
+                ref_codon_end = codonnum_to_codon[_get_codonnum(tid, ref_tpos_end)]
                 ref_aanum_end = codon_to_aanum[ref_codon_end]
                 new_codon = ref_codon_start[:num_base_from_start_codon] + ref_codon_end[ref_codonpos_end:]
                 new_aanum = codon_to_aanum[new_codon]
@@ -1384,13 +1552,25 @@ class Mapper (cravat.BaseMapper):
                         so = (SO_STG, SO_IND)
                         achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}*'
                 else:
-                    if new_aanum != ref_aanum_start:
+                    if new_aanum != ref_aanum_start and new_aanum != ref_aanum_end:
                         apos_del_end = (ref_cpos_end - 1) / 3 + 1
                         if apos == 1: # MET deletion
                             so = (SO_MLO, SO_IND)
                             achange = f'p.M1{aanum_to_aa[new_aanum]}'
                         elif apos <= alen + 1 and apos_del_end >= alen + 1: # TER deletion
-                            
+                            so = (SO_STL, SO_IND)
+                            achange = f'p.{aanum_to_aa[ref_aanums_start]}{apos}_{aanum_to_aa[ref_aanums_end]}{apos_del_end}delins{aanum_to_aa[new_aanum]}ext*'
+                            ter_found = False
+                            tpos_del_end = apos_del_end * 3 - cstart + tstart
+                            for tpos_q in range(tpos_del_end + 1, tlen + 1, 3):
+                                codonnum = _get_codonnum(tid, tpos_q)
+                                aanum = codonnum_to_aanum[codonnum]
+                                if aanum == TER:
+                                    apos_nextter = (tpos_q - tpos_del_end - 1) / 3 + 2
+                                    achange += f'{apos_nextter}'
+                                    ter_found = True
+                            if ter_found == False:
+                                achange += f'?'
                         else:
                             so = (SO_IND,)
                             achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}_{aanum_to_aa[ref_aanum_end]}{apos_del_end}delins{aanum_to_aa[new_aanum]}'
@@ -1440,6 +1620,7 @@ class Mapper (cravat.BaseMapper):
                             else:
                                 achange = f'p.{aanum_to_aa[ref_aanums_start]}{max_apos_del_start}_{aanum_to_aa[ref_aanums_end]}{max_apos_del_end}del'
         else: # frameshift_truncation
+            _get_bases_tpos = self._get_bases_tpos
             ref_codonpos_start = cpos % 3
             if ref_codonpos_start == 0:
                 ref_cpos_start = cpos - 2
@@ -1482,13 +1663,13 @@ class Mapper (cravat.BaseMapper):
                     ref_gpos_end = gposend + 1
             ref_codon_end = codonnum_to_codon[self._get_codonnum(tid, ref_tpos_end)]
             if ref_codonpos_start == 1:
-                new_ref_codon = self._get_bases_tpos(tid, ref_tpos_end + 1, ref_tpos_end + 3)
+                new_ref_codon = _get_bases_tpos(tid, ref_tpos_end + 1, ref_tpos_end + 3)
                 ref_tpos_after_new_codon = ref_tpos_end + 4
             elif ref_codonpos_start == 2:
-                new_ref_codon = ref_codon_start[0] + self._get_bases_tpos(tid, ref_tpos_end + 1, ref_tpos_end + 2)
+                new_ref_codon = ref_codon_start[0] + _get_bases_tpos(tid, ref_tpos_end + 1, ref_tpos_end + 2)
                 ref_tpos_after_new_codon = ref_tpos_end + 3
             elif ref_codonpos_start == 0:
-                new_ref_codon = ref_codon_start[:2] + self._get_bases_tpos(tid, ref_tpos_end + 1)
+                new_ref_codon = ref_codon_start[:2] + _get_bases_tpos(tid, ref_tpos_end + 1)
                 ref_tpos_after_new_codon = ref_tpos_end + 2
             new_aanum_start = codon_to_aanum[new_ref_codon]
             if ref_aanum_start != new_aanum_start:
@@ -1499,13 +1680,13 @@ class Mapper (cravat.BaseMapper):
                 new_aanum = None
                 altered_apos = None
                 for tpos_q in range(ref_tpos_after_new_codon, tlen + 1, 3):
-                    aanum_q = codonnum_to_aanum[self._get_bases_tpos(tid, tpos_q, tpos_q + 2)
+                    aanum_q = codonnum_to_aanum[_get_bases_tpos(tid, tpos_q, tpos_q + 2)]
                     if aanum_q != pseq[apos_q - 1]:
                         new_aanum = aanum_q
                         altered_apos = apos_q
                         break
                     else:
-                        if aanum_q == TER
+                        if aanum_q == TER:
                             break
                         else:
                             apos_q += 1
@@ -1514,6 +1695,7 @@ class Mapper (cravat.BaseMapper):
                 ref_aa_start = aanum_to_aa[ref_aanum_start]
                 achange = f'p.{ref_aa_start}{apos}='
             else:
+                so = (SO_FSD,)
                 achange = f'p.{pseq[altered_apos - 1]}{altered_apos}{aanum_to_aa[new_aanum]}fs*'
                 ter_found = False
                 for tpos_q in range(ref_tpos_after_new_codon, tlen + 1, 3):
@@ -1657,8 +1839,50 @@ class Mapper (cravat.BaseMapper):
             bases += base
         return bases
 
-    def _get_intron_hgvs_cpos (self, start, end, gpos, cstart, strand):
+    def _get_intron_hgvs_cpos (self, start, end, gpos, cstart, strand, prevcont, nextcont, chrom, tid, exonno, kind):
+        if prevcont != 0:
+            print(f'  @ in _get_intro_hgvs_cpos {chrom} tid={tid} exonno={exonno} kind={kind} prevcont={prevcont}')
+            if strand == PLUSSTRAND:
+                q = f'select start from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and prevcont=0'
+            else:
+                q = f'select end from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and prevcont=0'
+            self.c2.execute(q)
+            intron_start = self.c2.fetchone()[0]
+        else:
+            intron_start = start
+        print(f'    @ intron start={intron_start}')
+        if nextcont != 0:
+            print(f'    @ {chrom} tid={tid} exonno={exonno} kind={kind} nextcont={nextcont}')
+            if strand == PLUSSTRAND:
+                q = f'select end from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and nextcont=0'
+            else:
+                q = f'select start from transcript_frags_{chrom} where tid={tid} and exonno={exonno} and kind={kind} and nextcont=0'
+            print(f'    @ q={q}')
+            self.c2.execute(q)
+            intron_end = self.c2.fetchone()[0]
+        else:
+            intron_end = end
+        print(f'    @ intron_end={intron_end}')
+        midpoint = (intron_start + intron_end) / 2
+        if gpos < midpoint:
+            diff = gpos - intron_start + 1
+            print(f'    @ diff={diff}')
+            if strand == PLUSSTRAND:
+                hgvs_cpos = f'{cstart}+{diff}'
+            else:
+                hgvs_cpos = f'{cstart + 1}-{diff}'
+        else:
+            diff = intron_end - gpos + 1
+            print(f'    @ diff={diff}')
+            if strand == PLUSSTRAND:
+                hgvs_cpos = f'{cstart + 1}-{diff}'
+            else:
+                hgvs_cpos = f'{cstart}+{diff}'
+        if kind == FRAG_UTR3INTRON:
+            hgvs_cpos = '*' + hgvs_cpos
+        '''
         midpoint = (start + end) / 2
+        print(f'  @ midpoint={midpoint} cstart={cstart} gpos={gpos}')
         if strand == PLUSSTRAND:
             if gpos < midpoint:
                 hgvs_cpos = f'{cstart}+{gpos - start + 1}'
@@ -1669,9 +1893,11 @@ class Mapper (cravat.BaseMapper):
                 hgvs_cpos = f'{cstart}+{end - gpos + 1}'
             else:
                 hgvs_cpos = f'{cstart + 1}-{gpos - start + 1}'
+        '''
         return hgvs_cpos
 
-    def _get_hgvs_cpos (self, tid, kind, start, end, cstart, gpos_q, chrom, strand):
+    def _get_hgvs_cpos (self, tid, kind, start, end, cstart, gpos_q, chrom, strand, prevcont, nextcont, exonno):
+        print(f'  @ in _get_hgvs_cpos. gpos_q={gpos_q} start={start} end={end} exonno={exonno}')
         if gpos_q >= start and gpos_q <= end:
             kind_q = kind
             start_q = start
@@ -1679,6 +1905,7 @@ class Mapper (cravat.BaseMapper):
             cstart_q = cstart
         else:
             row = self._get_gpos_fraginfo(tid, chrom, gpos_q)
+            print(f'    @ row={row}')
             if row is None:
                 if strand == PLUSSTRAND:
                     if (kind == FRAG_UP2K and gpos_q < start) or (kind == FRAG_DN2K and gpos_q > end):
@@ -1693,7 +1920,7 @@ class Mapper (cravat.BaseMapper):
             else:
                 start_q, end_q, kind_q, cstart_q = row
         if kind_q & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
-            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand)
+            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand, prevcont, nextcont, chrom, tid, exonno, kind)
         else:
             if strand == PLUSSTRAND:
                 cpos_q = gpos_q - start_q + cstart_q
@@ -1729,7 +1956,7 @@ class Mapper (cravat.BaseMapper):
             prev_last_cpos = cpos
             so = (SO_SPL, SO_INT)
             csn = CSN_SPLICE
-        elif kind == FRAG_UTR5INTON or kind == FRAG_UTR3INTRON:
+        elif kind == FRAG_UTR5INTRON or kind == FRAG_UTR3INTRON:
             so = (SO_INT,)
             csn = CSN_SPLICE
         return apos, so, csn

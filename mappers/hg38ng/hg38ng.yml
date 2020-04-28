@@ -30,6 +30,7 @@ report_substitution:
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
+    EXL: exon_loss_variant
   all_so:
     2KD: 2kb_downstream_variant
     2KU: 2kb_upstream_variant
@@ -50,6 +51,7 @@ report_substitution:
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
+    EXL: exon_loss_variant
   all_mappings:
     2KD: 2kb_downstream_variant
     2KU: 2kb_upstream_variant
@@ -70,6 +72,7 @@ report_substitution:
     INI: inframe_insertion
     IND: inframe_deletion
     MLO: start_lost
+    EXL: exon_loss_variant
   coding:
     Y: "Yes"
 can_summarize_by_gene: true
