@@ -106,6 +106,9 @@ FRAG_FLAG_2K =          0b00000010
 FRAG_FLAG_UTR =         0b00000100
 FRAG_FLAG_CDS =         0b00001000
 FRAG_FLAG_INTRON =      0b00010000
+FRAG_FLAG_IG =          0b00100000 # intergenic
+FRAG_UPIG = FRAG_FLAG_IG | 0b0
+FRAG_DNIG = FRAG_FLAG_IG | 0b1
 FRAG_UP2K = FRAG_FLAG_2K | 0b0
 FRAG_DN2K = FRAG_FLAG_2K | 0b1
 FRAG_UTR5 = FRAG_FLAG_UTR | 0b0
@@ -359,6 +362,7 @@ class Mapper (cravat.BaseMapper):
         gpos = crv_data['pos']
         ref_base_str = crv_data['ref_base']
         alt_base_str = crv_data['alt_base']
+        print(f'@@@@@@ crv={crv_data}')
         lenref = len(ref_base_str)
         lenalt = len(alt_base_str)
         tr_ref_base_plus = ''
@@ -395,7 +399,7 @@ class Mapper (cravat.BaseMapper):
         coding = None
         for r in rs:
             (tid, fragno, start, end, kind, exonno, tstart, cstart, binno, prevcont, nextcont) = r
-            print(f'@@@@@@ r={r}')
+            print(f'  @ tid={tid} fragno={fragno} exonno={exonno} kind={kind}')
             (tr, strand, refseqs, uniprot, alen, tlen, genename) = tr_info[tid]
             if tr not in alt_transcripts:
                 alt_transcripts[tr] = []
@@ -837,12 +841,11 @@ class Mapper (cravat.BaseMapper):
             apos_end = apos
         else:
             q = f'select kind, fragno, exonno, start, end, cstart, tstart, prevcont, nextcont from transcript_frags_{chrom} where tid={tid} and binno={gposendbin} and start<={gposend} and end>={gposend}'
-            print(f'@ in _get_del_map_data. q={q}')
+            print(f'  @ q={q}')
             self.c2.execute(q)
             row = self.c2.fetchone()
             if row is not None:
                 (gposend_kind, gposend_fragno, gposend_exonno, gposend_gstart, gposend_gend, gposend_cstart, gposend_tstart, gposend_prevcont, gposend_nextcont) = row
-                print(f'  @ gposend_exonno={gposend_exonno}')
                 if strand == PLUSSTRAND:
                     gposend_gdist = gposend - gposend_gstart
                 else:
@@ -894,6 +897,9 @@ class Mapper (cravat.BaseMapper):
                     tpos_end = -1
                     cpos_end = -1
                     apos_end = -1
+            else:
+                gposend_kind 
+        print(f'  @ gposend_kind={gposend_kind}')
         coding = None
         cchange = None
         achange = None
@@ -958,8 +964,8 @@ class Mapper (cravat.BaseMapper):
                 else:
                     so = (SO_UT3, SO_2KD)
                     csn = CSN_NONCODING
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                so = so + so_cds
+                so = (SO_2KD, SO_UNK); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_NCRNA:
@@ -973,9 +979,8 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_2KU, SO_UT3)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so = (SO_UT3, SO_2KD)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                so = so + so_cds
+                so = (SO_UT3, SO_2KD, SO_INT, SO_UNK); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_NCRNAINTRON:
@@ -998,7 +1003,8 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_CODING
             elif gposend_kind == FRAG_CDS:
                 so = (SO_UT5,)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1014,9 +1020,9 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_CODING
             elif gposend_kind == FRAG_CDSINTRON:
                 so = (SO_UT5, SO_INT)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
                 #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
-                achange = ''
-                #so = so + so_cds
+                so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_NCRNAINTRON:
@@ -1027,7 +1033,7 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_TAB, SO_2KU, SO_UT3)
                 coding = b'Y'
                 csn = CSN_CODING
-            elif gposend_kind == FRAG_UP2K:
+            elif gposend_kind == FRAG_DN2K:
                 so = (SO_UT3, SO_2KD)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_UTR5:
@@ -1040,7 +1046,8 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_CODING
             elif gposend_kind == FRAG_CDS:
                 so = (SO_UT3,)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1054,8 +1061,9 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_UT3,)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so = (SO_UT3,)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_UT3, SO_INT)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1069,7 +1077,8 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_CODING
             elif gposend_kind == FRAG_DN2K:
                 so = (SO_2KD,)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1079,12 +1088,15 @@ class Mapper (cravat.BaseMapper):
                 csn = CSN_CODING
             elif gposend_kind == FRAG_UTR3:
                 so = (SO_UT3,)
-                so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_cds, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_cds
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_CDS:
-                so, achange = self._get_del_cds_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen)
+                so, achange = self._get_del_cds_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, 
+                        chrom, strand, lenalt, apos, gpos, lenref, alen, 
+                        gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen)
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_NCRNA:
@@ -1096,11 +1108,13 @@ class Mapper (cravat.BaseMapper):
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_UTR3INTRON:
-                so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_UNK,); achange = '' # TODO: temporary
+                #so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_INT, SO_UNK,); achange = '' # TODO: temporary
+                #so, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 coding = b'Y'
                 csn = CSN_CODING
             elif gposend_kind == FRAG_NCRNAINTRON:
@@ -1139,8 +1153,9 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_MLO,)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so = (SO_MLO,)
-                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_MLO, SO_INT)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_addl
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1176,8 +1191,9 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_MLO,)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so = (SO_MLO,)
-                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_MLO, SO_INT)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_addl
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1251,8 +1267,9 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_MLO,)
                 csn = CSN_NONCODING
             elif gposend_kind == FRAG_CDSINTRON:
-                so = (SO_MLO,)
-                so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
+                so = (SO_MLO, SO_INT)
+                so_cds = (SO_UNK,); achange = '' # TODO: temporary
+                #so_addl, achange = self._get_del_cds_data(tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, strand, gposend_kind)
                 so = so + so_addl
                 coding = b'Y'
                 csn = CSN_CODING
@@ -1290,7 +1307,7 @@ class Mapper (cravat.BaseMapper):
                 while True:
                     late_base = get_bases(chrom, gpos_q)
                     early_base = get_bases(chrom, gpos_q - lenref)
-                    print(f'@ gpos_q={gpos_q} late_base={late_base} early_base={early_base}')
+                    print(f'  @ gpos_q={gpos_q} late_base={late_base} early_base={early_base}')
                     if early_base != late_base:
                         gpos_diff_start = gpos_q - lenref
                         print(f'  @ gpos_diff_start={gpos_diff_start}')
@@ -1460,14 +1477,15 @@ class Mapper (cravat.BaseMapper):
                     achange = f'p.{aanum_to_aa[aanum]}{apos}fs'
         return so, achange
 
-    def _get_del_cds_cds_data (tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
+    def _get_del_cds_cds_data (self, tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
             gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen):
+        print(f'  @ start of _get_del_cds_cds_data')
         pseq = memoryview(self.prots[tid])
         _get_codonnum = self._get_codonnum
         if lenref % 3 == 0: # inframe_deletion
             ref_codonpos = cpos % 3
             if ref_codonpos == 1: # conservative_inframe_deletion
-                apos_end = (cpos_end - 1) / 3 + 1
+                apos_end = int((cpos_end - 1) / 3 + 1)
                 ref_aanums = pseq[apos - 1:apos_end]
                 ref_aanums_len = apos_end - apos + 1
                 max_apos_start = apos
@@ -1553,7 +1571,7 @@ class Mapper (cravat.BaseMapper):
                         achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}*'
                 else:
                     if new_aanum != ref_aanum_start and new_aanum != ref_aanum_end:
-                        apos_del_end = (ref_cpos_end - 1) / 3 + 1
+                        apos_del_end = int((ref_cpos_end - 1) / 3 + 1)
                         if apos == 1: # MET deletion
                             so = (SO_MLO, SO_IND)
                             achange = f'p.M1{aanum_to_aa[new_aanum]}'
@@ -1575,7 +1593,7 @@ class Mapper (cravat.BaseMapper):
                             so = (SO_IND,)
                             achange = f'p.{aanum_to_aa[ref_aanum_start]}{apos}_{aanum_to_aa[ref_aanum_end]}{apos_del_end}delins{aanum_to_aa[new_aanum]}'
                     else:
-                        num_aas_del = lenref / 3
+                        num_aas_del = int(lenref / 3)
                         max_apos_del_start = apos + 1
                         for apos_q in range(apos + 1, alen + 1):
                             predel_aanum = pseq[apos_q - 1]
@@ -1595,7 +1613,7 @@ class Mapper (cravat.BaseMapper):
                         elif max_apos_del_start <= alen + 1 and max_apos_del_end >= alen + 1: # TER deletion
                             so = (SO_STL, SO_IND)
                             ref_aanums_start = pseq[max_apos_del_start - 1]
-                            if ref_aanums_len == 1:
+                            if num_aas_del == 1:
                                 achange = f'p.{aanum_to_aa[ref_aanums_start]}{max_apos_del_start}delext*'
                             else:
                                 ref_aanums_end = pseq[max_apos_del_end - 1]
@@ -1615,7 +1633,7 @@ class Mapper (cravat.BaseMapper):
                             so = (SO_IND,)
                             ref_aanums_start = pseq[max_apos_del_start - 1]
                             ref_aanums_end = pseq[max_apos_del_end - 1]
-                            if ref_aanums_len == 1:
+                            if num_aas_del == 1:
                                 achange = f'p.{aanum_to_aa[ref_aanums_start]}{max_apos_del_start}del'
                             else:
                                 achange = f'p.{aanum_to_aa[ref_aanums_start]}{max_apos_del_start}_{aanum_to_aa[ref_aanums_end]}{max_apos_del_end}del'
@@ -1675,15 +1693,19 @@ class Mapper (cravat.BaseMapper):
             if ref_aanum_start != new_aanum_start:
                 new_aanum = new_aanum_start
                 altered_apos = apos
+                tpos_diff_start = ref_tpos_after_new_codon
             else:
-                apos_q = apos + 1
                 new_aanum = None
                 altered_apos = None
-                for tpos_q in range(ref_tpos_after_new_codon, tlen + 1, 3):
-                    aanum_q = codonnum_to_aanum[_get_bases_tpos(tid, tpos_q, tpos_q + 2)]
+                tpos_diff_start = None
+                for tpos_q in range(ref_tpos_after_new_codon, tlen - 2, 3):
+                    aanum_q = codon_to_aanum[_get_bases_tpos(tid, tpos_q, tpos_q + 2)]
+                    apos_q = int((tpos_q - tstart + cstart - 1) / 3)
+                    print(f'  @ apos_q={apos_q} pseq len={len(pseq)}')
                     if aanum_q != pseq[apos_q - 1]:
                         new_aanum = aanum_q
                         altered_apos = apos_q
+                        tpos_diff_start = tpos_q
                         break
                     else:
                         if aanum_q == TER:
@@ -1698,13 +1720,15 @@ class Mapper (cravat.BaseMapper):
                 so = (SO_FSD,)
                 achange = f'p.{pseq[altered_apos - 1]}{altered_apos}{aanum_to_aa[new_aanum]}fs*'
                 ter_found = False
-                for tpos_q in range(ref_tpos_after_new_codon, tlen + 1, 3):
-                    codonnum = _get_codonnum(tid, tpos_q)
-                    aanum = codonnum_to_aanum[codonnum]
+                for tpos_q in range(tpos_diff_start, tlen - 2, 3):
+                    print(f'  @ tpos_q={tpos_q} tlen={tlen}')
+                    codon = _get_bases_tpos(tid, tpos_q, tpos_q + 2)
+                    aanum = codon_to_aanum[codon]
                     if aanum == TER:
-                        apos_nextter = (tpos_q - ref_tpos_after_new_codon) / 3 + 1
+                        apos_nextter = int((tpos_q - tpos_diff_start) / 3 + 1)
                         achange += f'{apos_nextter}'
                         ter_found = True
+                        break
                 if ter_found == False:
                     achange += f'?'
         return so, achange
