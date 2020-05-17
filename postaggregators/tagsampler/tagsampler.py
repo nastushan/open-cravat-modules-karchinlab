@@ -22,8 +22,12 @@ class CravatPostAggregator (BasePostAggregator):
             q = 'update sample set base__sample_id="no-sample" where base__sample_id is null'
             self.cursor.execute(q)
             self.dbconn.commit()
+        self.cursor.execute('pragma synchronous=0;')
+        self.cursor.execute('pragma journal_mode=WAL;')
     
     def cleanup (self):
+        self.cursor.execute('pragma synchronous=2;')
+        self.cursor.execute('pragma journal_mode=delete;')
         self.cursor_a.close()
         
     def annotate (self, input_data):
