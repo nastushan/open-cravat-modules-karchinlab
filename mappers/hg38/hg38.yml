@@ -102,6 +102,8 @@ gene_summary_output_columns:
   width: 90
   filterable: false
 requires_opencravat: '>=1.8.1'
+requires:
+- hg38wgs
 release_note:
   1.6.0: added c. and p. notation.
   1.5.2: added test.
