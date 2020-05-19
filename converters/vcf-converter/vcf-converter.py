@@ -49,6 +49,7 @@ class CravatConverter(BaseConverter):
         }
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
         self.unique_excs = []
+        self.vep_present = False
 
     def check_format(self, f): 
         vcf_format = False

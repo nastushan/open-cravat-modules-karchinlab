@@ -475,6 +475,16 @@ class Mapper (cravat.BaseMapper):
                 tpos = -1
                 cpos = -1
                 apos = -1
+            # fill in missing base. # TODO: delete in the 2nd phase of this mapper.
+            if ref_base_str == 'N' and kind == FRAG_CDS:
+                codon = codonnum_to_codon[self._get_codons(tid, chrom, tstart, cstart, cpos)[0]]
+                cpos_codonpos = cpos % 3
+                base = codon[cpos_codonpos - 1]
+                if strand == PLUSSTRAND:
+                    crv_data['ref_base'] = base
+                if strand == MINUSSTRAND:
+                    crv_data['ref_base'] = rev_bases[base]
+                tr_ref_base = base
             # so, refaa, altaa
             if var_type == SNV:
                 so, achange, cchange, coding = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 

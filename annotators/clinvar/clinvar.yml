@@ -9,7 +9,7 @@ developer:
   name: NCBI
   organization: NCBI
   website: https://www.ncbi.nlm.nih.gov/clinvar/
-input_format: crv
+input_format: crx
 level: variant
 output_columns:
 - category: single

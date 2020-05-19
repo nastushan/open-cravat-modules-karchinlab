@@ -1,6 +1,6 @@
 name: hg19wgs
 title: UCSC hg19 Whole Genome Sequence
-version: 0.0.2
+version: 1.0.0
 type: common
 description: UCSC hg19 whole genome sequence module
 developer:
@@ -10,7 +10,8 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 requires_opencravat: '>=1.8.0'
-private: true
+hidden: true
 release_note:
+  1.0.0: release version
   0.0.2: added rev for n.
   0.0.1: initial release
