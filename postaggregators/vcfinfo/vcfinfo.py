@@ -10,14 +10,6 @@ class CravatPostAggregator (BasePostAggregator):
         self.cursor.execute('select colval from info where colkey="_converter_format"')
         return self.cursor.fetchone()[0] == 'vcf'
 
-    def setup (self):
-        self.cursor.execute('pragma synchronous=0;')
-        self.cursor.execute('pragma journal_mode=WAL;')
-    
-    def cleanup (self):
-        self.cursor.execute('pragma synchronous=2;')
-        self.cursor.execute('pragma journal_mode=delete;')
-
     def annotate (self, input_data):
         uid = str(input_data['base__uid'])
         q = 'select base__sample_id, base__phred, base__filter, ' +\

@@ -1,6 +1,6 @@
 name: hg38
 title: UCSC hg38 Gene Mapper
-version: 1.5.5
+version: 1.6.0
 type: mapper
 description: Gene mapper using UCSC Gencode
 developer:
@@ -11,56 +11,71 @@ developer:
   citation: ''
 report_substitution:
   so:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    SYN: synonymous
-    MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site_variant
+    STG: stop_gained
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
+    INI: inframe_insertion
+    IND: inframe_deletion
+    MLO: start_lost
+    EXL: exon_loss_variant
+    TAB: transcript_ablation
   all_so:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    SYN: synonymous
-    MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site_variant
+    STG: stop_gained
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
+    INI: inframe_insertion
+    IND: inframe_deletion
+    MLO: start_lost
+    EXL: exon_loss_variant
+    TAB: transcript_ablation
   all_mappings:
-    2KD: 2kb downstream
-    2KU: 2kb upstream
-    UT3: 3-prime utr
-    UT5: 5-prime utr
-    INT: intron
+    2KD: 2kb_downstream_variant
+    2KU: 2kb_upstream_variant
+    UT3: 3_prime_UTR_variant
+    UT5: 5_prime_UTR_variant
+    INT: intron_variant
     UNK: unknown
-    SYN: synonymous
-    MIS: missense
-    CSS: complex substitution
-    STL: stop lost
-    SPL: splice site
-    STG: stop gained
-    FSD: frameshift deletion
-    FSI: frameshift insertion
-    INI: inframe insertion
-    IND: inframe deletion
+    SYN: synonymous_variant
+    MRT: start_retained_variant
+    STR: stop_retained_variant
+    MIS: missense_variant
+    CSS: complex_substitution
+    STL: stop_lost
+    SPL: splice_site_variant
+    STG: stop_gained
+    FSD: frameshift_truncation
+    FSI: frameshift_elongation
+    INI: inframe_insertion
+    IND: inframe_deletion
+    MLO: start_lost
+    EXL: exon_loss_variant
+    TAB: transcript_ablation
   coding:
     Y: "Yes"
 can_summarize_by_gene: true
@@ -86,8 +101,9 @@ gene_summary_output_columns:
   type: string
   width: 90
   filterable: false
-requires_opencravat: '>=1.8.0'
+requires_opencravat: '>=1.8.1'
 release_note:
+  1.6.0: added c. and p. notation.
   1.5.2: added test.
   1.5.0: next-generation hg38 mapper 1st phase
   0.0.11: transcripts are the same as in the old hg38.
