@@ -1,8 +1,8 @@
 title: Variant Annotation
-version: 1.1.0
+version: 1.1.1
 type: webviewerwidget
 required_annotator: base
-requires_opencravat: '>=1.7.0'
+requires_opencravat: '>=1.8.1'
 description: Variant annotation webviewer widget
 developer:
   name: Rick Kim
@@ -17,6 +17,7 @@ columnwidth:
 tags:
 - visualization widgets
 release_note:
+  1.1.1: works with oc 1.8.1 and 2nd phase new hg38.
   1.1.0: works with single variant page in oc 1.7.0.
   1.0.7: added gene tab aggregated columns.
   1.0.5: uses full sequence ontology names.
