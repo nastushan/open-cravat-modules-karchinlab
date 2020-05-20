@@ -22,7 +22,7 @@ widgetGenerators[widgetName] = {
 				} else {
                     if (so == '2kb downstream' || so == '2kb upstream' ||
                         so == '3-prime utr' || so == '5-prime utr' ||
-                        so == 'intron' || so == '') {
+                        so == 'intron' || so == '' || so == null) {
                         noNoncoding++;
                     } else {
                         noCoding++;
