@@ -28,3 +28,4 @@ annotators/haploreg*
 *.swp
 **/**/*.so
 **/**/*.pyd
+mappers/hg38old

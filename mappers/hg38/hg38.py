@@ -1539,7 +1539,7 @@ class Mapper (cravat.BaseMapper):
         coding = NONCODING
         cchange = ''
         achange = ''
-        so = (SO_CSS,)
+        so = ()
         if kind == FRAG_UP2K:
             so += (SO_2KU,)
             if gposend_kind == FRAG_UP2K: pass

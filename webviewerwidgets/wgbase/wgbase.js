@@ -39,7 +39,7 @@ widgetGenerators['base'] = {
                     table.style.tableLayout = 'auto';
 					table.style.width = '100%';
 					var thead = getWidgetTableHead(['Gene', 'UniProt', 'Prot Chng', 
-						'Seq Ont', 'Transcript'], ['10%', '15%', '18%', '23%', '34%']);
+						'Seq Ont', 'Transcript'], ['10%', '15%', '18%', '33%', '24%']);
 					addEl(table, thead);
 					var tbody = getEl('tbody');
 					var hugos = Object.keys(allMappings);
@@ -50,7 +50,7 @@ widgetGenerators['base'] = {
 							var uniprot_d = uniprot_ds[j];
 							var uniprot = uniprot_d[0];
 							var aachange = uniprot_d[1];
-                            so = uniprot_d[2];
+                            so = uniprot_d[2].split(',').join(', ');
 							var transcript = uniprot_d[3];
 							var tr = getWidgetTableTr([hugo, uniprot, aachange, so, transcript]);
 							addEl(tbody, tr);
@@ -79,7 +79,7 @@ widgetGenerators['base'] = {
 				for (var i = 0; i < allMappings.length; i++) {
 					var mapping = allMappings[i];
 					var toks = mapping.split('(');
-                    so = toks[0];
+                    so = toks[0].split(',').join(', ');
 					var numTranscript = toks[1].split(')')[0];
 					var tr = getWidgetTableTr([so, numTranscript]);
 					addEl(tbody, tr);

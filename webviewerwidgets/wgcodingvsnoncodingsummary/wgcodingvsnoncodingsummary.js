@@ -20,9 +20,9 @@ widgetGenerators[widgetName] = {
 				if (hugo == '') {
 					noNoncoding++;
 				} else {
-                    if (so == '2kb downstream' || so == '2kb upstream' ||
-                        so == '3-prime utr' || so == '5-prime utr' ||
-                        so == 'intron' || so == '' || so == null) {
+                    if (so == '2kb_downstream_variant' || so == '2kb_upstream_variant' ||
+                        so == '3_prime_UTR_variant' || so == '5_prime_UTR_variant' ||
+                        so == 'intron_variant' || so == '' || so == null || so == 'unknown') {
                         noNoncoding++;
                     } else {
                         noCoding++;
