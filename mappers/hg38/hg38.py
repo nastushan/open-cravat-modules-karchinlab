@@ -3421,10 +3421,10 @@ class Mapper (cravat.BaseMapper):
                         alt_aa_first = alt_aas[0]
                         alt_aa_last = alt_aas[-1]
                         dup_found = FALSE
+                        scan_frag = alt_aas[:-1]
+                        lenaltaasrepeat = lenaltaas - 1
+                        apos_prev_ref_start = apos - len(scan_frag)
                         if alt_aa_first == ref_aa and alt_aa_last != ref_aa: # insertion after ref_aa of alt_aas[1:]
-                            scan_frag = alt_aas[1:]
-                            lenaltaasrepeat = lenaltaas - 1
-                            apos_next_ref_end = apos + len(scan_frag)
                             alen = self.tr_info[tid][TR_INFO_ALEN_I]
                             if apos_next_ref_end > alen:
                                 apos_next_ref_end = alen
@@ -3457,8 +3457,6 @@ class Mapper (cravat.BaseMapper):
                                 alt_aas = ''.join([aanum_to_aa[aanum] for aanum in alt_aas])
                                 achange = f'p.{aanum_to_aa[pseq[apos-2]]}{apos-1}_{aanum_to_aa[pseq[apos-1]]}{apos}ins{alt_aas}'
                         elif alt_aa_first != ref_aa and alt_aa_last == ref_aa: # insertion before ref_aa of alt_aas[:-1]
-                            scan_frag = alt_aas[:-1]
-                            apos_prev_ref_start = apos - len(scan_frag)
                             if apos_prev_ref_start < 1:
                                 apos_prev_ref_start = 1
                             prev_ref = pseq[apos_prev_ref_start - 1:apos - 1]
