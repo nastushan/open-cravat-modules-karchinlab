@@ -482,7 +482,7 @@ class Mapper (cravat.BaseMapper):
             alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
-        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+        return so, achange, cchange, coding, csn
 
     def _get_ins_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont):
         so = SO_NSO
@@ -577,7 +577,7 @@ class Mapper (cravat.BaseMapper):
             alt_aas = [aanum_to_aa[NDA]]
             coding = None
             csn = NONCODING
-        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+        return so, achange, cchange, coding, csn
 
     def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
         so = SO_NSO
@@ -693,7 +693,7 @@ class Mapper (cravat.BaseMapper):
                 alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
-        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+        return so, achange, cchange, coding, csn
 
     def _get_com_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont):
         so = SO_NSO
@@ -809,7 +809,7 @@ class Mapper (cravat.BaseMapper):
                 alt_aas = [aanum_to_aa[NDA]]
                 coding = None
                 csn = NONCODING
-        return so, ref_aas, alt_aas, achange, cchange, coding, csn
+        return so, achange, cchange, coding, csn
 
     def _get_tr_map_data (self, chrom, gpos):
         gposbin = int(gpos / self.binsize)
@@ -921,13 +921,13 @@ class Mapper (cravat.BaseMapper):
             ref_codonnum = -1
             alt_codonnum = -1
             if var_type == SNV:
-                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == INS:
-                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == DEL:
-                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_del_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             if var_type == COM:
-                so, ref_aas, alt_aas, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
+                so, achange, cchange, coding, csn = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, start, end, chrom, gposendbin, gposend, fragno, lenref, lenalt, prevcont, nextcont)
             mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding, csn)
             if genename not in all_mappings:
                 all_mappings[genename] = []
