@@ -330,6 +330,9 @@ class CravatConverter(BaseConverter):
         if toklen < 5:
             raise BadFormatError('At least CHROM POS ID REF ALT columns are needed')
         [chrom, pos, tag, ref, alts] = toks[:5]
+        # Skip structural variants
+        if '<' in alts or '[' in alts or ']' in alts:
+            raise BadFormatError(f'OpenCRAVAT does not support alt={alts} at this time')
         if toklen >= 6:
             qual = toks[5]
             if qual == '.': qual = None
