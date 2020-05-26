@@ -490,7 +490,6 @@ class Mapper (cravat.BaseMapper):
                 so, achange, cchange, coding = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
                         apos, strand_gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno)
             elif var_type == INS:
-                print(f'@ crv={crv_data}')
                 so, achange, cchange, coding = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
                         apos, strand_gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno, alen)
             elif var_type == DEL:
