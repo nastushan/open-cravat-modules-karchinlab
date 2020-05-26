@@ -172,13 +172,17 @@ class CravatConverter(BaseConverter):
             colsep = True
             self.sepcols[colname] = []
             colname2s = coldesc.split(' Format: ')[1].split('|')
+            colname2_idx = 0
             for colname2 in colname2s:
+                if colname2 == 'Allele':
+                    self.vep_alt_idx = colname2_idx
                 newcolname = colname + '_' + colname2
                 newcoltitle = colname + ' ' + colname2
                 newdesc = f'VEP annotation: {colname2}'
                 coldef = {'name': newcolname, 'type': coltype, 'title': newcoltitle, 'desc': newdesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}
                 coldefs.append(coldef)
                 self.sepcols[colname].append(coldef)
+                colname2_idx += 1
         else:
             colsep = False
             self.vep_present = False
@@ -258,7 +262,7 @@ class CravatConverter(BaseConverter):
                     coldefs = self.sepcols[colname]
                     colvalss = [v.split('|') for v in colvals]
                     for i in range(len(colvalss)):
-                        vepalt = colvalss[i][0]
+                        vepalt = colvalss[i][self.vep_alt_idx]
                         refalt = f'{ref}:{vepalt}'
                         for j in range(1, len(coldefs)):
                             coldef = coldefs[j]
