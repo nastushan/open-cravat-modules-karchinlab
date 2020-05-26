@@ -490,6 +490,7 @@ class Mapper (cravat.BaseMapper):
                 so, achange, cchange, coding = self._get_snv_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
                         apos, strand_gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno)
             elif var_type == INS:
+                print(f'@ crv={crv_data}')
                 so, achange, cchange, coding = self._get_ins_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, 
                         apos, strand_gpos, start, end, chrom, fragno, lenref, lenalt, prevcont, nextcont, exonno, alen)
             elif var_type == DEL:
@@ -741,6 +742,7 @@ class Mapper (cravat.BaseMapper):
         else:
             print(f'@ error. kind={kind:0b}')
         # hgvs c.
+        '''
         if kind == FRAG_CDS:
             _get_bases_tpos = self._get_bases_tpos
             if strand == MINUSSTRAND:
@@ -823,86 +825,87 @@ class Mapper (cravat.BaseMapper):
                     hgvs_end = str(cpos_q_end)
                 cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
         else:
-            if strand == PLUSSTRAND:
-                prev_ref_start = gpos - lenalt
-                prev_ref_end = gpos - 1
-                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end)
-                next_ref_start = gpos
-                next_ref_end = gpos + lenalt - 1
-                next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end)
-            else:
-                gpos -= 1
-                tpos += 1
-                cpos += 1
-                prev_ref_start = gpos + lenalt
-                prev_ref_end = gpos + 1
-                prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-')
-                next_ref_start = gpos
-                next_ref_end = gpos - lenalt + 1
-                next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-')
-            search_bases = prev_ref + tr_alt_base + next_ref
-            dup_found = FALSE
-            max_gpos_q_start = None
-            for i in range(len(search_bases) - lenalt - lenalt + 1):
-                scan_frag = search_bases[i:i + lenalt]
-                if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
-                    dup_found = TRUE
-                    if strand == PLUSSTRAND:
-                        gpos_q_start = gpos - lenalt + i
-                        if max_gpos_q_start is None or gpos_q_start > max_gpos_q_start:
-                            max_gpos_q_start = gpos_q_start
-                        while TRUE:
-                            gpos_q_f = gpos_q_start + lenalt
-                            base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenalt - 1)
-                            if base_q_f == scan_frag:
-                                gpos_q_start = gpos_q_f
-                                if gpos_q_start > max_gpos_q_start:
-                                    max_gpos_q_start = gpos_q_start
-                                gpos_q_f = gpos_q_start + lenalt
-                            else:
-                                break
-                    else:
-                        gpos_q_start = gpos + lenalt - i
-                        if max_gpos_q_start is None or gpos_q_start < max_gpos_q_start:
-                            max_gpos_q_start = gpos_q_start
-                        while TRUE:
-                            gpos_q_f = gpos_q_start - lenalt
-                            base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f - lenalt + 1, gpos_q_f, strand=strand)
-                            if base_q_f == scan_frag:
-                                gpos_q_start = gpos_q_f
-                                if gpos_q_start < max_gpos_q_start:
-                                    max_gpos_q_start = gpos_q_start
-                                gpos_q_f = gpos_q_start - lenalt
-                            else:
-                                break
-            if dup_found:
-                if lenalt == 1:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
-                    cchange = f'c.{hgvs_start}dup'
-                else:
-                    if strand == PLUSSTRAND:
-                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
-                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start + lenalt - 1, chrom, strand, prevcont, nextcont, exonno)
-                    else:
-                        hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
-                        hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start - lenalt + 1, chrom, strand, prevcont, nextcont, exonno)
-                    cchange = f'c.{hgvs_start}_{hgvs_end}dup'
-            else:
-                for i in range(lenalt):
-                    if tr_alt_base[i] != next_ref[i]:
-                        if strand == PLUSSTRAND:
-                            gpos = gpos + i
-                        else:
-                            gpos = gpos - i
-                        tr_alt_base = tr_alt_base[i:] + next_ref[:i]
-                        break
+        '''
+        if strand == PLUSSTRAND:
+            prev_ref_start = gpos - lenalt
+            prev_ref_end = gpos - 1
+            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end)
+            next_ref_start = gpos
+            next_ref_end = gpos + lenalt - 1
+            next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end)
+        else:
+            gpos -= 1
+            tpos += 1
+            cpos += 1
+            prev_ref_start = gpos + lenalt
+            prev_ref_end = gpos + 1
+            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-')
+            next_ref_start = gpos
+            next_ref_end = gpos - lenalt + 1
+            next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-')
+        search_bases = prev_ref + tr_alt_base + next_ref
+        dup_found = FALSE
+        max_gpos_q_start = None
+        for i in range(len(search_bases) - lenalt - lenalt + 1):
+            scan_frag = search_bases[i:i + lenalt]
+            if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
+                dup_found = TRUE
                 if strand == PLUSSTRAND:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand, prevcont, nextcont, exonno)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
+                    gpos_q_start = gpos - lenalt + i
+                    if max_gpos_q_start is None or gpos_q_start > max_gpos_q_start:
+                        max_gpos_q_start = gpos_q_start
+                    while TRUE:
+                        gpos_q_f = gpos_q_start + lenalt
+                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenalt - 1)
+                        if base_q_f == scan_frag:
+                            gpos_q_start = gpos_q_f
+                            if gpos_q_start > max_gpos_q_start:
+                                max_gpos_q_start = gpos_q_start
+                            gpos_q_f = gpos_q_start + lenalt
+                        else:
+                            break
                 else:
-                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand, prevcont, nextcont, exonno)
-                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
-                cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
+                    gpos_q_start = gpos + lenalt - i
+                    if max_gpos_q_start is None or gpos_q_start < max_gpos_q_start:
+                        max_gpos_q_start = gpos_q_start
+                    while TRUE:
+                        gpos_q_f = gpos_q_start - lenalt
+                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f - lenalt + 1, gpos_q_f, strand=strand)
+                        if base_q_f == scan_frag:
+                            gpos_q_start = gpos_q_f
+                            if gpos_q_start < max_gpos_q_start:
+                                max_gpos_q_start = gpos_q_start
+                            gpos_q_f = gpos_q_start - lenalt
+                        else:
+                            break
+        if dup_found:
+            if lenalt == 1:
+                hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
+                cchange = f'c.{hgvs_start}dup'
+            else:
+                if strand == PLUSSTRAND:
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start + lenalt - 1, chrom, strand, prevcont, nextcont, exonno)
+                else:
+                    hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start, chrom, strand, prevcont, nextcont, exonno)
+                    hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, max_gpos_q_start - lenalt + 1, chrom, strand, prevcont, nextcont, exonno)
+                cchange = f'c.{hgvs_start}_{hgvs_end}dup'
+        else:
+            for i in range(lenalt):
+                if tr_alt_base[i] != next_ref[i]:
+                    if strand == PLUSSTRAND:
+                        gpos = gpos + i
+                    else:
+                        gpos = gpos - i
+                    tr_alt_base = tr_alt_base[i:] + next_ref[:i]
+                    break
+            if strand == PLUSSTRAND:
+                hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos - 1, chrom, strand, prevcont, nextcont, exonno)
+                hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
+            else:
+                hgvs_start = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos + 1, chrom, strand, prevcont, nextcont, exonno)
+                hgvs_end = self._get_hgvs_cpos(tid, kind, start, end, cstart, gpos, chrom, strand, prevcont, nextcont, exonno)
+            cchange = f'c.{hgvs_start}_{hgvs_end}ins{tr_alt_base}'
         return so, achange, cchange, coding
 
     def _get_del_map_data (self, tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, gpos, 
@@ -2006,7 +2009,7 @@ class Mapper (cravat.BaseMapper):
                         achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}='
             else: # frameshift
                 if TER in new_pseq_frag:
-                    n = new_pseq_frag.index(TER)
+                    n = new_pseq_frag.index(TER) + 1
                 else:
                     n = '?'
                 achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[new_pseq_frag[0]]}fs{aanum_to_aa[TER]}{n}'

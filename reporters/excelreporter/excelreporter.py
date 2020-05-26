@@ -109,6 +109,7 @@ class Reporter(CravatReport):
             self.colno += 1
         self.rowno += 1
 
+    '''
     def substitute_val (self, level, row):
         if level in self.column_subs:
             for i in self.column_subs[level]:
@@ -117,6 +118,7 @@ class Reporter(CravatReport):
                     for target in sub:
                         row[i] = re.sub('\\b' + target + '\\b', sub[target], row[i])
         return row
+    '''
 
 def main ():
     r = Reporter(sys.argv)
