@@ -106,6 +106,7 @@ requires:
 - hg38wgs
 private: true
 release_note:
+  1.6.1: updated data with fix on - strand gene cds starting or ending at mrna start or end.
   1.6.0: added c. and p. notation. uses wgs.
   1.5.6: does not use wgs.
   1.5.2: added test.
