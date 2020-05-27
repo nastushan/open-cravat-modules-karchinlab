@@ -515,7 +515,15 @@ class Mapper (cravat.BaseMapper):
         for genename in sorted(all_mappings.keys()):
             amd[genename] = []
             for mapping in all_mappings[genename]:
-                amd[genename].append((mapping[MAPPING_UNIPROT_I], mapping[MAPPING_ACHANGE_I], ','.join(sorted([sonum_to_so[v] for v in mapping[MAPPING_SO_I]])), mapping[MAPPING_TR_I], mapping[MAPPING_CCHANGE_I]))
+                amd[genename].append(
+                    (
+                        mapping[MAPPING_UNIPROT_I], 
+                        mapping[MAPPING_ACHANGE_I], 
+                        ','.join(sorted([sonum_to_so[v] for v in mapping[MAPPING_SO_I]])), 
+                        mapping[MAPPING_TR_I], 
+                        mapping[MAPPING_CCHANGE_I]
+                    )
+                )
         crx_data['all_mappings'] = json.dumps(amd)
         return crx_data
 
