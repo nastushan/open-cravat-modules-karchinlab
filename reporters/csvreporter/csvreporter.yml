@@ -1,5 +1,5 @@
 title: CSV Reporter
-version: 1.0.7
+version: 1.0.8
 type: reporter
 description: CSV format text file reporter
 requires_opencravat: '>=1.5.0'
