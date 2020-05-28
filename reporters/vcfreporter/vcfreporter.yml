@@ -1,5 +1,5 @@
 title: VCF Reporter
-version: 1.0.17
+version: 1.0.18
 type: reporter
 description: VCF format text file reporter
 requires_opencravat: '>=1.7.0'
