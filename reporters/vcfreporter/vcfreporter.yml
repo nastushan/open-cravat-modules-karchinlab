@@ -12,7 +12,7 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 private: false
-hidden: true
+hidden: false
 release_note:
   1.0.17: release for star alleles and hidden true
   1.0.16: release candidate for star alleles
