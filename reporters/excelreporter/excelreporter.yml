@@ -1,8 +1,8 @@
 title: Excel Reporter
-version: 1.0.6
+version: 1.0.7
 type: reporter
 description: Microsoft Excel reporter
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.8.1'
 output_filename_schema:
 - '{run_name}.xlsx'
 developer:
@@ -12,6 +12,7 @@ developer:
   website: http://www.insilico.us.com
   citation: ''
 release_note:
+  1.0.7: for oc 1.8.1 and hg38 2nd
   1.0.6: added output_filename_schema.
   1.0.5: sync write_table_row
   1.0.4: async write_table_row

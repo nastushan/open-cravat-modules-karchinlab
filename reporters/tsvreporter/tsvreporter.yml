@@ -2,7 +2,7 @@ title: TSV Reporter
 version: 1.0.9
 type: reporter
 description: Tab-delimited format text file reporter
-requires_opencravat: '>=1.5.0'
+requires_opencravat: '>=1.8.1'
 output_filename_schema:
 - '{run_name}.tsv.zip'
 developer:
@@ -13,6 +13,7 @@ developer:
   citation: ''
 hidden: false
 release_note:
+  1.0.9: for oc 1.8.1 and hg38ng 2nd
   1.0.8: hidden true
   1.0.7: added column description header.
   1.0.6: added output_filename_schema.
