@@ -1,4 +1,4 @@
-datasource: v85
+datasource: v91
 description: Catalogue Of Somatic Mutations In Cancer, is the world's largest and
   most comprehensive resource for exploring the impact of somatic mutations in human
   cancer.
@@ -25,13 +25,14 @@ output_columns:
   filterable: false
   desc: Occurences in COSMIC per tissue
 release_note:
+  91.0.0: data update to COSMIC v91
   85.0.2: added index to data for speed
 tags:
 - genes
 - cancer
 title: COSMIC Gene
 type: annotator
-version: 85.0.6
+version: 91.0.0
 requires:
 - wgcosmic_gene
 commercial_warning: 'For commercial use, contact cosmic@sanger.ac.uk '
