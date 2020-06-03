@@ -1,6 +1,3 @@
-# RNA Editing sites from Trinity CTAT 
-
-
 Significant snp-gene associations reported by the Geuvadis project. 
 
 NOTE: Data provided by [dbNSFP](https://sites.google.com/site/jpopgen/dbNSFP) version 4.0b1a
