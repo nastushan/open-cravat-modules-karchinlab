@@ -59,8 +59,14 @@ def base_to_basenum (c):
 def _compare_mapping (m2, m1):
     m1uniprot = m1[MAPPING_UNIPROT_I]
     m2uniprot = m2[MAPPING_UNIPROT_I]
-    m1so = max(m1[MAPPING_SO_I])
-    m2so = max(m2[MAPPING_SO_I])
+    m1sos = m1[MAPPING_SO_I]
+    m2sos = m2[MAPPING_SO_I]
+    m1so = max(m1sos)
+    m2so = max(m2sos)
+    minm1so = min(m1sos)
+    minm2so = min(m2sos)
+    if minm1so > 0 and minm2so < 0:
+        return -1
     m1aalen = m1[MAPPING_AALEN_I]
     m2aalen = m2[MAPPING_AALEN_I]
     higher_so = m1so > m2so
@@ -120,50 +126,50 @@ INS = 22
 DEL = 23
 COM = 24
 # sequence ontology
-SO_NSO = -13
-SO_PTR = -12 # processed_transcript
-SO_TU1 = -11 # transcribed_unprocessed_pseudogene
-SO_UNP = -10 # unprocessed_pseudogene
-SO_MIR = -9 # miRNA
-SO_LNC = -8 # lncRNA_gene
-SO_PPS = -7 # processed_pseudogene
-SO_SNR = -6 # snRNA
-SO_TPR = -5 # transcribed_processed_pseudogene
-SO_RTI = -4 # pseudogenic_transcript_with_retained_intron
-SO_NMD = -3 # NMD_polymorphic_pseudogene_transcript
-SO_MCR = -2 # misc_RNA
-SO_UNT = -1 # unconfirmed_transcript
-SO_PSE = 0 # pseudogene
-SO_TU2 = 1 # transcribed_unitary_pseudogene
-SO_NSD = 2
-SO_SNO = 3
-SO_SCA = 4
-SO_PRR = 5
-SO_UPG = 6
-SO_PPG = 7
-SO_RRN = 8
-SO_IVP = 9
-SO_RIB = 10
-SO_SRN = 11
-SO_TVG = 12
-SO_TVP = 13
-SO_TDG = 14
-SO_TJG = 15
-SO_TCG = 16
-SO_TJP = 17
-SO_ICG = 18
-SO_ICP = 19
-SO_IJG = 20
-SO_IJP = 21
-SO_IDG = 22
-SO_IVG = 23
-SO_IGP = 24
-SO_TPP = 25
-SO_SCR = 26
-SO_VLR = 27
-SO_TUP = 28
-SO_MTR = 29
-SO_MRR = 30
+SO_NSO = -44
+SO_PTR = -43 # processed_transcript
+SO_TU1 = -42 # transcribed_unprocessed_pseudogene
+SO_UNP = -41 # unprocessed_pseudogene
+SO_MIR = -40 # miRNA
+SO_LNC = -39 # lncRNA_gene
+SO_PPS = -38 # processed_pseudogene
+SO_SNR = -37 # snRNA
+SO_TPR = -36 # transcribed_processed_pseudogene
+SO_RTI = -35 # pseudogenic_transcript_with_retained_intron
+SO_NMD = -34 # NMD_polymorphic_pseudogene_transcript
+SO_MCR = -33 # misc_RNA
+SO_UNT = -32 # unconfirmed_transcript
+SO_PSE = -31 # pseudogene
+SO_TU2 = -30 # transcribed_unitary_pseudogene
+SO_NSD = -29
+SO_SNO = -28
+SO_SCA = -27
+SO_PRR = -26
+SO_UPG = -25
+SO_PPG = -24
+SO_RRN = -23
+SO_IVP = -22
+SO_RIB = -21
+SO_SRN = -20
+SO_TVG = -19
+SO_TVP = -18
+SO_TDG = -17
+SO_TJG = -16
+SO_TCG = -15
+SO_TJP = -14
+SO_ICG = -13
+SO_ICP = -12
+SO_IJG = -11
+SO_IJP = -10
+SO_IDG = -9
+SO_IVG = -8
+SO_IGP = -7
+SO_TPP = -6
+SO_SCR = -5
+SO_VLR = -4
+SO_TUP = -3
+SO_MTR = -2
+SO_MRR = -1
 SO_2KD = 31
 SO_2KU = 32
 SO_UT3 = 33
@@ -562,7 +568,8 @@ class Mapper (cravat.BaseMapper):
                     binno, prevcont, nextcont) = tr_map_start
             (tr, strand, uniprot, alen, tlen, genename, tposcposoffset, 
                     genetypeno, transcripttypeno, transcriptclassno) = tr_info[tid]
-            if (transcripttypeno == TRANSCRIPTTYPENO_PROTEIN_CODING or transcripttypeno == TRANSCRIPTTYPENO_NMD) and \
+            if (genetypeno == GENETYPENO_PROTEIN_CODING) and \
+                    (transcripttypeno == TRANSCRIPTTYPENO_PROTEIN_CODING or transcripttypeno == TRANSCRIPTTYPENO_NMD) and \
                     transcriptclassno == TRANSCRIPTCLASSNO_CODING:
                 if strand == MINUSSTRAND and gposend != gpos:
                     strand_gpos = gposend
@@ -644,7 +651,15 @@ class Mapper (cravat.BaseMapper):
                     all_mappings[genename] = set()
                 all_mappings[genename].add(mapping)
             else:
-                so = (transcripttype_to_so[self.transcripttypes[transcripttypeno]],)
+                ttype = self.transcripttypes[transcripttypeno]
+                if ttype in transcripttype_to_so:
+                    so = (transcripttype_to_so[ttype],)
+                else:
+                    gtype = self.genetypes[genetypeno]
+                    if gtype in transcripttype_to_so:
+                        so = (transcripttype_to_so[gtype],)
+                    else:
+                        so = (SO_UNK,)
                 if kind & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
                     so += (SO_INT,)
                 elif kind == FRAG_UTR5:
@@ -669,7 +684,11 @@ class Mapper (cravat.BaseMapper):
         crx_data['hugo'] = primary_mapping[MAPPING_GENENAME_I]
         crx_data['coding'] = 'Y' if primary_mapping[MAPPING_CODING_I] == CODING else ''
         crx_data['transcript'] = primary_mapping[MAPPING_TR_I]
-        crx_data['so'] = sonum_to_so[max(primary_mapping[MAPPING_SO_I])]
+        minso = min(primary_mapping[MAPPING_SO_I])
+        if minso < 0:
+            crx_data['so'] = sonum_to_so[minso]
+        else:
+            crx_data['so'] = sonum_to_so[max(primary_mapping[MAPPING_SO_I])]
         crx_data['achange'] = primary_mapping[MAPPING_ACHANGE_I]
         crx_data['cchange'] = primary_mapping[MAPPING_CCHANGE_I]
         amd = {}
