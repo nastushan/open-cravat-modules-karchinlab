@@ -117,6 +117,10 @@ class CravatConverter(BaseConverter):
         if write_ex_info:
             self.ex_info_writer.close()
 
+    def clean_colname (self, colname):
+        colname = ''.join([v if v.isalnum() else '_' for v in colname])
+        return colname
+
     def parse_header_info_field (self, l):
         l = l[7:].rstrip('>')
         if 'ID=' in l:
@@ -126,8 +130,7 @@ class CravatConverter(BaseConverter):
                 idx2 = l2.index(',')
             except:
                 idx2 = len(l2)
-            colname = l2[:idx2]
-            colname = colname.replace('.', '_')
+            colname = self.clean_colname(l2[:idx2])
         else:
             colname = None
         if 'Number=' in l:
@@ -171,7 +174,7 @@ class CravatConverter(BaseConverter):
             self.vep_present = True
             colsep = True
             self.sepcols[colname] = []
-            colname2s = coldesc.split(' Format: ')[1].split('|')
+            colname2s = [self.clean_colname(v) for v in coldesc.split(' Format: ')[1].split('|')]
             colname2_idx = 0
             for colname2 in colname2s:
                 if colname2 == 'Allele':
@@ -256,7 +259,7 @@ class CravatConverter(BaseConverter):
             data = None
             if '=' in tok:
                 idx = tok.index('=')
-                colname = tok[:idx].replace('.', '_')
+                colname = self.clean_colname(tok[:idx])
                 colvals = tok[idx + 1:].split(',')
                 if colname == 'CSQ':
                     coldefs = self.sepcols[colname]
@@ -314,7 +317,7 @@ class CravatConverter(BaseConverter):
                             for refalt in self.alts:
                                 info_dict[refalt][colname] = colvals[0]
             else:
-                colname = tok
+                colname = self.clean_colname(tok)
                 col = self.info_field_cols[colname]
                 if col['oritype'] == 'flag':
                     data = True
