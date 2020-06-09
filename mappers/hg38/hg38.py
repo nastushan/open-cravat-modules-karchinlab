@@ -913,26 +913,26 @@ class Mapper (cravat.BaseMapper):
         if strand == PLUSSTRAND:
             prev_ref_start = gpos - lenalt
             prev_ref_end = gpos - 1
-            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end)
+            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_start, prev_ref_end).upper()
             next_ref_start = gpos
-            next_ref_end = gpos + lenalt - 1
-            next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end)
+            next_ref_end = gpos + lenalt - 1 + lenalt - 1
+            next_ref = self.hg38reader.get_bases(chrom, next_ref_start, next_ref_end).upper()
         else:
             gpos -= 1
             tpos += 1
             cpos += 1
             prev_ref_start = gpos + lenalt
             prev_ref_end = gpos + 1
-            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-')
+            prev_ref = self.hg38reader.get_bases(chrom, prev_ref_end, prev_ref_start, strand='-').upper()
             next_ref_start = gpos
-            next_ref_end = gpos - lenalt + 1
-            next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-')
+            next_ref_end = gpos - lenalt + 1 - lenalt + 1
+            next_ref = self.hg38reader.get_bases(chrom, next_ref_end, next_ref_start, strand='-').upper()
         search_bases = prev_ref + tr_alt_base + next_ref
         dup_found = FALSE
         max_gpos_q_start = None
-        for i in range(len(search_bases) - lenalt - lenalt + 1):
+        for i in range(lenalt * 3):
             scan_frag = search_bases[i:i + lenalt]
-            if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt]:
+            if scan_frag == search_bases[i + lenalt:i + lenalt + lenalt] and (i <= lenalt or scan_frag[lenalt - i:] == search_bases[lenalt:i]):
                 dup_found = TRUE
                 if strand == PLUSSTRAND:
                     gpos_q_start = gpos - lenalt + i
@@ -940,7 +940,7 @@ class Mapper (cravat.BaseMapper):
                         max_gpos_q_start = gpos_q_start
                     while TRUE:
                         gpos_q_f = gpos_q_start + lenalt
-                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenalt - 1)
+                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f, gpos_q_f + lenalt - 1).upper()
                         if base_q_f == scan_frag:
                             gpos_q_start = gpos_q_f
                             if gpos_q_start > max_gpos_q_start:
@@ -954,7 +954,7 @@ class Mapper (cravat.BaseMapper):
                         max_gpos_q_start = gpos_q_start
                     while TRUE:
                         gpos_q_f = gpos_q_start - lenalt
-                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f - lenalt + 1, gpos_q_f, strand=strand)
+                        base_q_f = self.hg38reader.get_bases(chrom, gpos_q_f - lenalt + 1, gpos_q_f, strand=strand).upper()
                         if base_q_f == scan_frag:
                             gpos_q_start = gpos_q_f
                             if gpos_q_start < max_gpos_q_start:
@@ -2025,12 +2025,15 @@ class Mapper (cravat.BaseMapper):
         lennewpseqfrag = len(new_pseq_frag)
         min_pseq_frag_len = min(lenpseqfrag, lennewpseqfrag)
         apos_c_diff = -1
-        for i in range(min_pseq_frag_len - 1, -1, -1):
-            if pseq_frag[i] != new_pseq_frag[i]:
-                apos_c_diff = apos_n_diff + i
-                pseq_frag = pseq_frag[:i + 1]
-                new_pseq_frag = new_pseq_frag[:i + 1]
+        for i in range(min_pseq_frag_len):
+            sp = -i - 1
+            if pseq_frag[sp] != new_pseq_frag[sp]:
+                apos_c_diff = apos_n_diff + lenpseqfrag + sp
+                pseq_frag = pseq_frag[:lenpseqfrag - i]
+                new_pseq_frag = new_pseq_frag[:lennewpseqfrag - i]
                 break
+        lenpseqfrag = len(pseq_frag)
+        lennewpseqfrag = len(new_pseq_frag)
         if apos_c_diff == -1:
             if lenpseqfrag > lennewpseqfrag:
                 diff = lenpseqfrag - lennewpseqfrag
@@ -2039,7 +2042,8 @@ class Mapper (cravat.BaseMapper):
                 new_pseq_frag = []
             elif lenpseqfrag < lennewpseqfrag:
                 diff = lennewpseqfrag - lenpseqfrag
-                apos_c_diff = apos_n_diff + 1
+                apos_c_diff = apos_n_diff
+                apos_n_diff -= 1
                 pseq_frag = []
                 new_pseq_frag = new_pseq_frag[:diff]
             else:
@@ -2048,7 +2052,7 @@ class Mapper (cravat.BaseMapper):
                 new_pseq_frag = []
         lenpseqfrag = len(pseq_frag)
         lennewpseqfrag = len(new_pseq_frag)
-        if apos > 1 and apos_end <= alen: # middle aas
+        if apos_n_diff > 1 and apos_c_diff <= alen: # middle aas
             if lendifrem == 0: # inframe
                 if lenpseqfrag == 1:
                     if lennewpseqfrag == 1:
@@ -2086,9 +2090,19 @@ class Mapper (cravat.BaseMapper):
                         achange = f'p.{aanum_to_aa[pseq_frag[0]]}{apos_n_diff}_{aanum_to_aa[pseq_frag[-1]]}{apos_c_diff}del'
                 else: # insertion
                     if lennewpseqfrag == 1:
-                        achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}_{aanum_to_aa[pseq[apos_c_diff - 1]]}{apos_c_diff}ins{aanum_to_aa[new_pseq_frag[0]]}'
+                        alt_aa = aanum_to_aa[new_pseq_frag[0]]
+                        prev_ref_aa = aanum_to_aa[pseq[apos_n_diff - 1]]
+                        if alt_aa == prev_ref_aa:
+                            achange = f'p.{prev_ref_aa}{apos_n_diff}dup'
+                        else:
+                            achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}_{prev_ref_aa}{apos_c_diff}ins{alt_aa}'
                     elif lennewpseqfrag > 1:
-                        achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}_{aanum_to_aa[pseq[apos_c_diff - 1]]}{apos_c_diff}ins{"".join([aanum_to_aa[aanum] for aanum in new_pseq_frag])}'
+                        alt_aas = ''.join([aanum_to_aa[aanum] for aanum in new_pseq_frag])
+                        prev_ref_aas = ''.join([aanum_to_aa[aanum] for aanum in pseq[apos_n_diff - lennewpseqfrag:apos_n_diff]])
+                        if alt_aas == prev_ref_aas:
+                            achange = f'p.{aanum_to_aa[pseq[apos_n_diff - lennewpseqfrag]]}{apos_n_diff - lennewpseqfrag + 1}_{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}dup'
+                        else:
+                            achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}_{aanum_to_aa[pseq[apos_c_diff - 1]]}{apos_c_diff}ins{"".join([aanum_to_aa[aanum] for aanum in new_pseq_frag])}'
                     else:
                         achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}='
             else: # frameshift
@@ -2618,9 +2632,10 @@ class Mapper (cravat.BaseMapper):
                             break
                         aanum = codonnum_to_aanum[codonnum]
                         if aanum == TER:
-                            apos_nextter = (tpos_q - max_tpos_end - 1) / 3 + 1
-                            achange += f'{apos_nextter}'
+                            apos_nextter = int((tpos_q - max_tpos_end - 1) / 3) + 1
+                            achange += f'{apos_nextter:d}'
                             ter_found = TRUE
+                            break
                     if ter_found == FALSE:
                         achange += f'?'
                 else: # middle deletion
@@ -2732,9 +2747,10 @@ class Mapper (cravat.BaseMapper):
                                 codonnum = _get_codonnum(tid, tpos_q)
                                 aanum = codonnum_to_aanum[codonnum]
                                 if aanum == TER:
-                                    apos_nextter = (tpos_q - max_tpos_del_end - 1) / 3 + 1
+                                    apos_nextter = int((tpos_q - max_tpos_del_end - 1) / 3) + 1
                                     achange += f'{apos_nextter}'
                                     ter_found = TRUE
+                                    break
                             if ter_found == FALSE:
                                 achange += f'?'
                         else: # middle deletion
@@ -3243,7 +3259,7 @@ class Mapper (cravat.BaseMapper):
                                 max_apos_q_start = apos_q_start
                             while TRUE:
                                 apos_q_f = apos_q_start + lenaltaasrepeat
-                                aas_q_f = pseq[apos_q_f:apos_q_f + lenaltaasrepeat]
+                                aas_q_f = pseq[apos_q_f - 1:apos_q_f + lenaltaasrepeat - 1]
                                 if aas_q_f == scan_frag:
                                     apos_q_start = apos_q_f
                                     if apos_q_start > max_apos_q_start:
