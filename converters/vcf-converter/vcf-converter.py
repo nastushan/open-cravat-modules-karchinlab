@@ -8,6 +8,7 @@ from cravat import constants
 import os
 import logging
 import traceback
+from collections import defaultdict
 
 class CravatConverter(BaseConverter):
 
@@ -172,17 +173,13 @@ class CravatConverter(BaseConverter):
             colsep = True
             self.sepcols[colname] = []
             colname2s = coldesc.split(' Format: ')[1].split('|')
-            colname2_idx = 0
             for colname2 in colname2s:
-                if colname2 == 'Allele':
-                    self.vep_alt_idx = colname2_idx
                 newcolname = colname + '_' + colname2
                 newcoltitle = colname + ' ' + colname2
                 newdesc = f'VEP annotation: {colname2}'
                 coldef = {'name': newcolname, 'type': coltype, 'title': newcoltitle, 'desc': newdesc, 'oritype': coloritype, 'number': colnumber, 'separate': colsep}
                 coldefs.append(coldef)
                 self.sepcols[colname].append(coldef)
-                colname2_idx += 1
         else:
             colsep = False
             self.vep_present = False
@@ -262,7 +259,7 @@ class CravatConverter(BaseConverter):
                     coldefs = self.sepcols[colname]
                     colvalss = [v.split('|') for v in colvals]
                     for i in range(len(colvalss)):
-                        vepalt = colvalss[i][self.vep_alt_idx]
+                        vepalt = colvalss[i][0]
                         refalt = f'{ref}:{vepalt}'
                         for j in range(1, len(coldefs)):
                             coldef = coldefs[j]
@@ -387,11 +384,8 @@ class CravatConverter(BaseConverter):
             gt_field_no = gtf_nos['GT']
             gt_all_zero = True
             used_alts = []
-            wdicts_by_gtno = {}
-            newalts_by_gtno = {}
-            for i in range(len(alts)):
-                wdicts_by_gtno[i + 1] = []
-                newalts_by_gtno[i + 1] = []
+            wdicts_by_gtno = defaultdict(list)
+            newalts_by_gtno = defaultdict(list)
             for sample_no in range(len(sample_datas)):
                 sample = self.samples[sample_no]
                 sample_data = sample_datas[sample_no].split(':')
@@ -456,6 +450,8 @@ class CravatConverter(BaseConverter):
                     newalts_by_gtno[gt].append(newalt)
                     if alt not in used_alts:
                         used_alts.append(alt)
+            if gt_all_zero:
+                raise BadFormatError('All sample GT are zero')
             for altno in range(len(alts)):
                 alt = alts[altno]
                 if alt not in used_alts:
@@ -482,8 +478,6 @@ class CravatConverter(BaseConverter):
                     wdicts_by_gtno[gt].append(wdict)
                     newalts_by_gtno[gt].append(newalt)
                     used_alts.insert(altno, alt)
-            if gt_all_zero:
-                raise BadFormatError('All sample GT are zero')
         for i in range(len(alts)):
             gtno = i + 1
             for wdict in wdicts_by_gtno[gtno]:

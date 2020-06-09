@@ -1,5 +1,6 @@
 title: VCF Converter
-version: 1.4.4
+version: 1.4.5ben
+private: true
 type: converter
 description: Converter for VCF format input
 developer:
