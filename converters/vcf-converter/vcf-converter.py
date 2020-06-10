@@ -196,11 +196,12 @@ class CravatConverter(BaseConverter):
             for wdict in all_wdicts:
                 ref = wdict['ref_base']
                 alt = wdict['alt_base']
+                pos = wdict['pos']
                 sample = wdict['sample_id']
-                refalt = f'{ref}:{alt}'
-                if refalt not in info_dict:
-                    info_dict[refalt] = {}
-                    self.alts.append(refalt)
+                posrefalt = f'{pos}:{ref}:{alt}'
+                if posrefalt not in info_dict:
+                    info_dict[posrefalt] = {}
+                    self.alts.append(posrefalt)
         else:
             alt_1st_same = len(set([alt[0] for alt in alts])) == 1
             for alt in alts:
@@ -447,7 +448,7 @@ class CravatConverter(BaseConverter):
                         value = sample_data[gtf_no]
                         wdict[gtf] = value
                     wdicts_by_gtno[gt].append(wdict)
-                    newalts_by_gtno[gt].append(newalt)
+                    newalts_by_gtno[gt].append(f'{newpos}:{newref}:{newalt}')
                     if alt not in used_alts:
                         used_alts.append(alt)
             if gt_all_zero:
@@ -476,20 +477,18 @@ class CravatConverter(BaseConverter):
                         'hap_strand': None,                               
                         }
                     wdicts_by_gtno[gt].append(wdict)
-                    newalts_by_gtno[gt].append(newalt)
+                    newalts_by_gtno[gt].append(f'{newpos}:{newref}:{newalt}')
                     used_alts.insert(altno, alt)
         for i in range(len(alts)):
             gtno = i + 1
             for wdict in wdicts_by_gtno[gtno]:
                 all_wdicts.append(wdict)
-            for newalt in newalts_by_gtno[gtno]:
-                newalts.append(newalt)
+            for posrefalt in newalts_by_gtno[gtno]:
+                newalts.append(posrefalt)
         if info is not None:
             try:
                 self.info_field_data = self.parse_data_info_field(info, pos, ref, alts, l, all_wdicts)
             except Exception as e:
-                # print(l)
-                # traceback.print_exc()
                 self._log_conversion_error(l, e)
                 self.info_field_data = {}
         else:
@@ -501,9 +500,9 @@ class CravatConverter(BaseConverter):
         if self.write_ex_info:
             uid = wdict['uid']
             row_data = {}
-            refalt = self.alts[wdict_no]
-            if refalt in self.info_field_data:
-                data = self.info_field_data[refalt]
+            posrefalt = self.alts[wdict_no]
+            if posrefalt in self.info_field_data:
+                data = self.info_field_data[posrefalt]
                 for k, v in data.items():
                     if type(v) is list:
                         row_data[k] = v[wdict_no]
