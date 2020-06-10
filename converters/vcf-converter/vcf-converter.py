@@ -292,9 +292,9 @@ class CravatConverter(BaseConverter):
                     colnumber = coldef['number']
                     colsep = coldef['separate']
                     if coloritype == 'integer':
-                        colvals = [float(v) for v in colvals]
+                        colvals = [float(v) if v != '.' else None for v in colvals]
                     elif coloritype == 'float':
-                        colvals = [float(v) for v in colvals]
+                        colvals = [float(v) if v != '.' else None for v in colvals]
                     elif coloritype in ['string', 'character', 'flag']:
                         colvals = colvals
                     if colnumber == '0':
