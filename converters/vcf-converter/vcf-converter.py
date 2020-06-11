@@ -118,7 +118,7 @@ class CravatConverter(BaseConverter):
             self.ex_info_writer.close()
 
     def clean_colname (self, colname):
-        colname = ''.join([v if v.isalnum() else '_' for v in colname])
+        colname = ''.join([v if v.isalnum() else 'x' for v in colname])
         return colname
 
     def parse_header_info_field (self, l):
