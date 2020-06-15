@@ -74,7 +74,7 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
         self.vcflines = {}
         self.input_path_dict = {}
-        if self.input_format == 'vcf':
+        if self.input_format == 'vcf' and len(self.args.inputfiles) == 1:
             if self.args.inputfiles is not None:
                 if type(self.args.inputfiles) is str:
                     self.args.inputfiles = [self.args.inputfiles]
