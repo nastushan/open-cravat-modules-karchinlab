@@ -3943,19 +3943,21 @@ class Mapper (cravat.BaseMapper):
             if hugo in all_mappings:
                 counts = {}
                 for mapping in all_mappings[hugo]:
-                    so = mapping[2]
-                    if so == '2KU' or so == '2KD':
-                        continue
-                    if so not in counts:
-                        counts[so] = TRUE
+                    sos = mapping[2]
+                    for so in sos.split(','):
+                        if so == '2KU' or so == '2KD':
+                            continue
+                        if so not in counts:
+                            counts[so] = TRUE
                 for so in counts:
                     if so not in so_counts:
                         so_counts[so] = 0
                     so_counts[so] += numsample
         so_count_keys = list(so_counts.keys())
         so_count_keys.sort()
-        so_count_l = [f'{so}({so_counts[so]}' for so in so_count_keys]
+        so_count_l = [f'{so}({so_counts[so]})' for so in so_count_keys]
         out['all_so'] = ','.join(so_count_l)
+        print(f'@ out={out}')
         return out
 
     def empty_map (self, crv_data):
