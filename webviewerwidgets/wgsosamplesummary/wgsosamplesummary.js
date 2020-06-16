@@ -1,7 +1,7 @@
 widgetGenerators['sosamplesummary'] = {
 	'info': {
 		'name': 'Sequence Ontology by Sample',
-		'width': 480, 
+		'width': 880, 
 		'height': 380, 
 		'callserver': true,
         'variables': {},
@@ -49,6 +49,22 @@ widgetGenerators['sosamplesummary'] = {
 				'Intron':'#00ffff', // aqua
 				'Unknown':'#000080', // navy
 				'Intergenic':'#008080', // teal
+				'frameshift_elongation':'#ff0000', // red
+				'frameshift_truncation':'#dc143c', // crimson
+				'stop_gained':'#ff4500', // orange red
+				'stop_lost':'#ffa500', // orange
+				'missense_variant':'#ffd700', // gold
+				'inframe_insertion':'#d2691e', // chocolate
+				'inframe_deletion':'#8b4513', // saddle brown
+				'splice_site_variant':'#adff2f', // green yellow
+				'2kb_upstream_variant':'#7fffd4', // aqua marine
+				'2kb_downstream_variant':'#00ced1', // dark turquoise
+				'3_prime_UTR_variant':'#00bfff', // deep sky blue
+				'5_prime_UTR_variant':'#ffff00', // yellow
+				'complex_substitution':'#0000ff', // blue
+				'synonymous_variant':'#00ff00', // lime
+				'intron_variant':'#00ffff', // aqua
+				'Unknown':'#000080', // navy
 	        };
 			if (div != null) {
 				emptyElement(div);

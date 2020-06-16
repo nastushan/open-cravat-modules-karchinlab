@@ -1,7 +1,9 @@
 import aiosqlite3
 import os
+import json
 
 async def get_data (queries):
+    '''
     so_dic = {
         None: 'Intergenic',
         '':'Intergenic',
@@ -48,6 +50,7 @@ async def get_data (queries):
         'intron':'Intron',
         'unknown':'Unknown'
     }
+    '''
     
     dbpath = queries['dbpath']
     conn = await aiosqlite3.connect(dbpath)
@@ -61,6 +64,12 @@ async def get_data (queries):
         return response
     samples.sort()
     
+    q = 'select subdict from variant_reportsub where module="base"'
+    await cursor.execute(q)
+    r = await cursor.fetchone()
+    so_dic = json.loads(r[0])['so']
+    so_dic[None] = 'Intergenic'
+    so_dic[''] = 'Intergenic'
     q = 'select distinct variant.base__so from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid'
     await cursor.execute(q)
     sos = [so_dic[v[0]] for v in await cursor.fetchall()]

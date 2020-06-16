@@ -28,16 +28,17 @@ async def get_data (queries):
         return response
 
     gene_var_perc = {}
-    q = 'select variant.base__hugo, count(*) from variant, variant_filtered where variant.base__uid=variant_filtered.base__uid and variant.base__hugo is not null group by variant.base__hugo'
+    q = 'select variant.base__hugo, count(*) from variant, variant_filtered where variant.base__coding=="Y" and variant.base__uid=variant_filtered.base__uid and variant.base__hugo is not null group by variant.base__hugo'
     await cursor.execute(q)
     for row in await cursor.fetchall():
         hugo = row[0]
         if hugo == '':
             continue
         count = row[1]
-        aalen = genelen[hugo]
-        perc = count / aalen
-        gene_var_perc[hugo] = perc
+        if hugo in genelen:
+            aalen = genelen[hugo]
+            perc = count / aalen
+            gene_var_perc[hugo] = perc
     
     num_gene_to_extract = 10
     sorted_hugos = sorted(gene_var_perc, key=gene_var_perc.get, reverse=True)
