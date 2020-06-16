@@ -1,5 +1,5 @@
 title: Genes Ranked by Total Variants
-version: 1.1.0
+version: 1.2.0
 type: webviewerwidget
 requires_opencravat: '>=1.8.1'
 required_annotator: base
@@ -8,3 +8,5 @@ developer: {name: Rick Kim, organization: In Silico Solutions, email: rkim@insil
   website: 'http://www.insilico.us.com', citation: ''}
 release_note: {1.0.4: aiosqlite3 version}
 tags: [visualization widgets]
+release_note:
+  1.2.0: works with oc 1.8.1.
