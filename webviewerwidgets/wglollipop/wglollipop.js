@@ -4,39 +4,116 @@ widgetGenerators['lollipop'] = {
 		'width': 580, 
 		'height': 180, 
 		'variables': {
+            'soPoints': {
+                '': -44,
+                'processed_transcript': -43,
+                'transcribed_unprocessed_pseudogene': -42,
+                'unprocessed_pseudogene': -41,
+                'miRNA': -40,
+                'lnc_RNA': -39,
+                'processed_pseudogene': -38,
+                'snRNA': -37,
+                'transcribed_processed_pseudogene': -36,
+                'retained_intron': -35,
+                'NMD_transcript_variant': -34,
+                'misc_RNA': -33,
+                'unconfirmed_transcript': -32,
+                'pseudogene': -31,
+                'transcribed_unitary_pseudogene': -30,
+                'NSD_transcript': -29,
+                'snoRNA': -28,
+                'scaRNA': -27,
+                'pseudogene_rRNA': -26,
+                'unitary_pseudogene': -25,
+                'polymorphic_pseudogene': -24,
+                'rRNA': -23,
+                'IG_V_pseudogene': -22,
+                'ribozyme': -21,
+                'sRNA': -20,
+                'TR_V_gene': -19,
+                'TR_V_pseudogene': -18,
+                'TR_D_gene': -17,
+                'TR_J_gene': -16,
+                'TR_C_gene': -15,
+                'TR_J_pseudogene': -14,
+                'IG_C_gene': -13,
+                'IG_C_pseudogene': -12,
+                'IG_J_gene': -11,
+                'IG_J_pseudogene': -10,
+                'IG_D_gene': -9,
+                'IG_V_gene': -8,
+                'IG_pseudogene': -7,
+                'translated_processed_pseudogene': -6,
+                'scRNA': -5,
+                'vault_RNA': -4,
+                'translated_unprocessed_pseudogene': -3,
+                'Mt_tRNA': -2,
+                'Mt_rRNA': -1,
+                '2kb_downstream_variant': 31,
+                '2kb_upstream_variant': 32,
+                '3_prime_UTR_variant': 33,
+                '5_prime_UTR_variant': 34,
+                'intron_variant': 35,
+                'unknown': 36,
+                'synonymous_variant': 37,
+                'start_retained_variant': 38,
+                'stop_retained_variant': 39,
+                'missense_variant': 40,
+                'complex_substitution': 41,
+                'inframe_deletion': 42,
+                'inframe_insertion': 43,
+                'stop_lost': 44,
+                'splice_site_variant': 45,
+                'stop_gained': 46,
+                'frameshift_truncation': 47,
+                'frameshift_elongation': 48,
+                'exon_loss_variant': 49,
+                'start_lost': 50,
+                'transcript_ablation': 51,
+            },
 			'varColors': {
-					'synonymous': 'rgb(250, 250, 250)',
-					'missense': 'rgb(255, 251, 123)',
-					'complex substitution': 'rgb(141, 237, 255)',
-					'inframe insertion': 'rgb(181, 255, 131)',
-					'inframe deletion': 'rgb(181, 255, 131)',
-					'stop lost': 'rgb(63, 255, 193)',
-					'splice site': 'rgb(255, 118, 35)',
-					'stop gained': 'rgb(250, 0, 0)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'SYN': 'rgb(250, 250, 250)',
-					'MIS': 'rgb(255, 251, 123)',
-					'CSS': 'rgb(141, 237, 255)',
-					'INI': 'rgb(181, 255, 131)',
-					'IND': 'rgb(181, 255, 131)',
-					'STL': 'rgb(63, 255, 193)',
-					'SPL': 'rgb(255, 118, 35)',
-					'STG': 'rgb(250, 0, 0)',
-					'FI1': 'rgb(200, 0, 255)',
-					'FI2': 'rgb(200, 0, 255)',
-					'FIV': 'rgb(200, 0, 255)',
-					'FSI': 'rgb(200, 0, 255)',
-					'FD1': 'rgb(200, 0, 255)',
-					'FD2': 'rgb(200, 0, 255)',
-					'FDV': 'rgb(200, 0, 255)',
-					'FSD': 'rgb(200, 0, 255)',
+                'synonymous': 'rgb(250, 250, 250)',
+                'missense': 'rgb(255, 251, 123)',
+                'complex substitution': 'rgb(141, 237, 255)',
+                'inframe insertion': 'rgb(181, 255, 131)',
+                'inframe deletion': 'rgb(181, 255, 131)',
+                'stop lost': 'rgb(63, 255, 193)',
+                'splice site': 'rgb(255, 118, 35)',
+                'stop gained': 'rgb(250, 0, 0)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'SYN': 'rgb(250, 250, 250)',
+                'MIS': 'rgb(255, 251, 123)',
+                'CSS': 'rgb(141, 237, 255)',
+                'INI': 'rgb(181, 255, 131)',
+                'IND': 'rgb(181, 255, 131)',
+                'STL': 'rgb(63, 255, 193)',
+                'SPL': 'rgb(255, 118, 35)',
+                'STG': 'rgb(250, 0, 0)',
+                'FI1': 'rgb(200, 0, 255)',
+                'FI2': 'rgb(200, 0, 255)',
+                'FIV': 'rgb(200, 0, 255)',
+                'FSI': 'rgb(200, 0, 255)',
+                'FD1': 'rgb(200, 0, 255)',
+                'FD2': 'rgb(200, 0, 255)',
+                'FDV': 'rgb(200, 0, 255)',
+                'FSD': 'rgb(200, 0, 255)',
+                'synonymous_variant': 'rgb(250, 250, 250)',
+                'missense_variant': 'rgb(255, 251, 123)',
+                'complex_substitution': 'rgb(141, 237, 255)',
+                'inframe_insertion': 'rgb(181, 255, 131)',
+                'inframe_deletion': 'rgb(181, 255, 131)',
+                'stop_lost': 'rgb(63, 255, 193)',
+                'splice_site_variant': 'rgb(255, 118, 35)',
+                'stop_gained': 'rgb(250, 0, 0)',
+                'frameshift_elongation': 'rgb(200, 0, 255)',
+                'frameshift_truncation': 'rgb(200, 0, 255)',
 			},
 			'varColorNoSo': '#aaaaaa',
 			'reftranscript': null,
@@ -67,12 +144,12 @@ widgetGenerators['lollipop'] = {
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
 			var tabName = toks[1];
-			
+
 			var v = widgetGenerators[widgetName][tabName]['variables'];
-			
+
 			v.widgetContentDiv = div;
             v.tabName = tabName;
-			
+
 			var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (hugo == '') {
 				$(div).empty();
@@ -110,7 +187,7 @@ widgetGenerators['lollipop'] = {
 			} else {
 				drawMyVariants(widgetGenerators[widgetName]['data']);
 			}
-			
+
             function drawMain () {
                 var data = v['data'];
                 var widgetContentDiv = document.getElementById('widgetcontentdiv_' + widgetName + '_' + self.variables.tabName);
@@ -176,69 +253,83 @@ widgetGenerators['lollipop'] = {
 				}
 				return index;
 			}
-			
+
 			function getMyVarCanvasId (datasource) {
 				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
-			
+
 			function getOtherVarCanvasId (datasource) {
 				var id = tabName + '_' + widgetName + '_othervar_canvas';
 				return id;
 			}
-			
+
 			function getProtCanvasId () {
 				var id = tabName + '_' + widgetName + '_prot_canvas';
 				return id;
 			}
-			
+
 			function getSiteCanvasId () {
 				var id = tabName + '_' + widgetName + '_site_canvas';
 				return id;
 			}
-			
+
 			function getVarDatasourceSelectorId () {
 				var id = tabName + '_' + widgetName + '_vardatasourceselect';
 				return id;
 			}
-			
+
 			function getVarCategorySelectorId () {
 				var id = tabName + '_' + widgetName + '_varcategselect';
 				return id;
 			}
-			
+
 			function getVarCategorySelectorDivId () {
 				var id = getVarCategorySelectorId() + '_div';
 				return id;
 			}
-			
+
 			function getProtSiteSourceSelectorId () {
 				var id = tabName + '_' + widgetName + '_protsitedatasourceselect';
 				return id;
 			}
-			
+
 			function getMyVariant () {
+                var v = widgetGenerators[widgetName][tabName]['variables'];
+                var soPoints = v['soPoints'];
                 var allMappings = JSON.parse(getWidgetData(tabName, 'base', row, 'all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
+                var reftrNoVer = v.reftranscript.split('.')[0];
 				for (var i = 0; i < hugos.length; i++) {
 					var hugo = hugos[i];
 					var uniprot_ds = allMappings[hugo];
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
-						if (transcript == v.reftranscript) {
+						if (transcript.split('.')[0] == reftrNoVer) {
 							var protchange = uniprot_ds[j][1];
 							if (protchange == null) {
 								continue;
 							}
-							variant['so'] = uniprot_ds[j][2];
-							var refaa = protchange[0];
-							var protchangelen = protchange.length;
-							var altaa = protchange.substring(protchangelen - 1, protchangelen);
-							var start = protchange.substring(1, protchangelen - 1);
+							var sos = uniprot_ds[j][2].split(',');
+                            var bestSo = sos[0];
+                            var bestSoPoint = soPoints[so];
+                            for (var k = 1; k < sos.length; k++) {
+                                var so = sos[k];
+                                var soPoint = soPoints[so];
+                                if (soPoint < 0) {
+                                    bestSo = so;
+                                    bestSoPoint = soPoint;
+                                    break;
+                                } else if (soPoint > bestSoPoint) {
+                                    bestSo = so;
+                                    bestSoPoint = soPoint;
+                                }
+                            }
+							variant['so'] = bestSo;
+							var start = protchange.match(/\d+/)[0];
 							variant['start'] = start;
-							variant['refaa'] = refaa;
-							variant['altaa'] = altaa;
+							variant['achange'] = protchange;
                             variant['count'] = getWidgetData(tabName, 'base', row, 'numsample');
 							break;
 						}
@@ -246,7 +337,7 @@ widgetGenerators['lollipop'] = {
 				}
 				return variant;
 			}
-			
+
 			function onChangeOtherVariantDatasource (select, data) {
 				var categorySelect = 
 					document.getElementById(getVarCategorySelectorId());
@@ -280,7 +371,7 @@ widgetGenerators['lollipop'] = {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantdatasource = datasource;
 			}
-			
+
 			function onChangeOtherVariantCategory (
 					canvasId, data, datasource, category) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
@@ -320,7 +411,7 @@ widgetGenerators['lollipop'] = {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantcategory = category;
 			}
-			
+
 			function onChangeProtSiteDatasource (
 					canvasId, data, datasource) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
@@ -376,7 +467,7 @@ widgetGenerators['lollipop'] = {
 				dsDiv.style.height = maxStackLevel * (v.domainLineHeight + 2) 
 					+ 5 + 'px';
 			}
-			
+
 			function setupVariantPopup (element, variant) {
                 element.variant = variant;
 				var v = widgetGenerators[widgetName][tabName]['variables'];
@@ -385,7 +476,6 @@ widgetGenerators['lollipop'] = {
 						var x = evt.clientX;
 						var y = evt.clientY - 50;
 						var variant = evt.target['variant'];
-						
 						var div = getEl('div');
 						div.style.position = 'fixed';
 						div.style.top = y + 'px';
@@ -395,20 +485,21 @@ widgetGenerators['lollipop'] = {
 						div.style.background = 'white';
 						div.style.border = '1px solid black';
 						div.style.borderRadius = '6px';
-						
 						var span = getEl('span');
 						span.style.fontWeight = 'bold';
-						var text = variant['refaa'] + variant['start'] + 
-							variant['altaa'] + ' (' + variant['so'] + ')';
+                        if (variant['refaa'] != undefined) {
+                            var text = variant['refaa'] + variant['start'] + 
+                                variant['altaa'] + ' (' + variant['so'] + ')';
+                        } else if (variant['achange'] != undefined) {
+                            var text = variant['achange'] + ' (' + variant['so'] + ')';
+                        }
 						addEl(div, addEl(span, getTn(text)));
 						addEl(div, getEl('br'));
-						
 						var span = getEl('span');
 						span.style.fontWeight = 'bold';
 						addEl(span, getTn('# Samples: '));
 						addEl(div, span);
 						addEl(div, getTn(variant['count']));
-						
 						addEl(v.widgetContentDiv, div);
 						v['popup'] = div;
 					}
@@ -420,7 +511,7 @@ widgetGenerators['lollipop'] = {
 					}
 				});
 			}
-			
+
 			function setupDomainPopup (element, domain) {
 				element.domain = domain;
 				acgraph.events.listen(element, 'mouseover', function (evt) {
@@ -464,7 +555,7 @@ widgetGenerators['lollipop'] = {
 					}
 				});
 			}
-			
+
 			function drawMyVariant (variant, stage, y, varHeightInc) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				var x = parseInt(variant.start) * v.aaWidth + v.xStart;
@@ -489,16 +580,16 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-                var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                var aachange = variant['achange'];
                 rect.domElement_.setAttribute('aachange', aachange);
                 circle.domElement_.setAttribute('aachange', aachange);
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
-			
+
 			function drawBoxDomain (stage, domain, y) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var x = domain['start'] * v.aaWidth + v.xStart;
 				var width = (domain['stop'] - domain['start']) * v.aaWidth;
 				var color = 'brown';
@@ -516,10 +607,10 @@ widgetGenerators['lollipop'] = {
 				setupDomainPopup(box, domain);
 				setupDomainPopup(text, domain);
 			}
-			
+
 			function drawLineDomain (stage, domain, y) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var x = domain['start'] * v.aaWidth + v.xStart;
 				var width = Math.max(v.domainLineMinWidth, 
 						(domain['stop'] - domain['start']) * v.aaWidth - 2);
@@ -545,17 +636,17 @@ widgetGenerators['lollipop'] = {
 				setupSiteDiv(data);
 				v.drawing = false;
 			}
-			
+
 			function drawControlPanel (data) {
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Container
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
 				dsDiv.style.height = '20px';
 				addEl(div, dsDiv);
-			
+
 				// Protein site datasource selector
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
@@ -609,7 +700,7 @@ widgetGenerators['lollipop'] = {
 					select.options.add(option);
 				}
 				addEl(dsDiv, partDiv);
-				
+
 				// Variant category selector
 				var partDiv = getEl('div');
 				partDiv.id = getVarCategorySelectorDivId();
@@ -632,10 +723,10 @@ widgetGenerators['lollipop'] = {
 				addEl(partDiv, addEl(getEl('span'), getTn(')')));
 				addEl(dsDiv, partDiv);
 			}
-			
+
 			function drawMyVariants (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Erases canvas for a new gene.
 				var canvasId = getMyVarCanvasId();
 				var canvas = document.getElementById(canvasId);
@@ -643,18 +734,18 @@ widgetGenerators['lollipop'] = {
 					var dsDiv = getEl('div');
 					dsDiv.style.width = '100%';
 					dsDiv.style.height = v.varHeightMax + v.variantRadius;
-					
+
 					var canvas = getEl('div');
 					canvas.id = canvasId;
 					canvas.style.width = '100%';
 					canvas.style.height = v.varHeightMax + v.variantRadius;
 					addEl(dsDiv, canvas);
-					
+
 					addEl(div, dsDiv);
 				} else {
 					$(canvas).empty();
 				}
-				
+
 				// Stage
 				var stage = acgraph.create(canvas);
 				var y = v.variantRadius;
@@ -667,11 +758,11 @@ widgetGenerators['lollipop'] = {
 					drawMyVariant(variant, stage, y, varHeightInc);
 				}
 			}
-			
+
 			function drawProtein (data) {
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Protein container
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
@@ -686,7 +777,7 @@ widgetGenerators['lollipop'] = {
                 tsDiv.style.right = '12px';
                 tsDiv.textContent = v.reftranscript;
                 addEl(div, tsDiv);
-				
+
 				// Protein canvas
 				var canvas = getEl('div');
 				var canvasId = getProtCanvasId();
@@ -694,11 +785,11 @@ widgetGenerators['lollipop'] = {
 				canvas.style.width = '100%';
 				canvas.style.height = '100%';
 				addEl(dsDiv, canvas);
-				
+
 				// Protein stage
 				var stage = acgraph.create(canvas);
 				var y = 0;
-				
+
 				// Protein
 				stage.rect(v.xStart, y, v.proteinWidth, v.proteinHeight).
 					round(v.boxR, v.boxR, v.boxR, v.boxR).
@@ -706,9 +797,9 @@ widgetGenerators['lollipop'] = {
 					fill({
 						keys: ['0 #aaaaaa', '0.6 #dddddd', '1 #aaaaaa'],
 						angle: 90,
-						
+
 					});
-				
+
 				// Pfam boxes
 				var datasource = 'pfam';
 				if (data['domains'] != undefined && 
@@ -720,7 +811,7 @@ widgetGenerators['lollipop'] = {
 					}
 				}
 			}
-			
+
 			function setupOtherVariantDiv (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				var datasources = Object.keys(data['variants']);
@@ -731,71 +822,148 @@ widgetGenerators['lollipop'] = {
 				dsDiv.style.height = v.varHeightMax + v.variantRadius;
 				addEl(div, dsDiv);
 				var canvasId = dsDiv.id + '_canvas';
-				
+
 				var canvas = getEl('div');
 				canvas.id = canvasId;
 				canvas.style.width = '100%';
 				canvas.style.height = v.varHeightMax + v.variantRadius;
 				addEl(dsDiv, canvas);
 			}
-			
+
 			function setupSiteDiv (data) {
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
 				dsDiv.style.height = '30px';
-				
+
 				var canvas = getEl('div');
 				var canvasId = getSiteCanvasId();
 				canvas.id = canvasId;
 				canvas.style.width = '100%';
 				canvas.style.height = '100%';
 				addEl(dsDiv, canvas);
-				
+
 				addEl(div, dsDiv);
 			}
 		}
 	},
 	'gene': {
 		'donterase': true,
-		'width': 580, 
+		'width': 880, 
 		'height': 180, 
 		'variables': {
+            'soPoints': {
+                '': -44,
+                'processed_transcript': -43,
+                'transcribed_unprocessed_pseudogene': -42,
+                'unprocessed_pseudogene': -41,
+                'miRNA': -40,
+                'lnc_RNA': -39,
+                'processed_pseudogene': -38,
+                'snRNA': -37,
+                'transcribed_processed_pseudogene': -36,
+                'retained_intron': -35,
+                'NMD_transcript_variant': -34,
+                'misc_RNA': -33,
+                'unconfirmed_transcript': -32,
+                'pseudogene': -31,
+                'transcribed_unitary_pseudogene': -30,
+                'NSD_transcript': -29,
+                'snoRNA': -28,
+                'scaRNA': -27,
+                'pseudogene_rRNA': -26,
+                'unitary_pseudogene': -25,
+                'polymorphic_pseudogene': -24,
+                'rRNA': -23,
+                'IG_V_pseudogene': -22,
+                'ribozyme': -21,
+                'sRNA': -20,
+                'TR_V_gene': -19,
+                'TR_V_pseudogene': -18,
+                'TR_D_gene': -17,
+                'TR_J_gene': -16,
+                'TR_C_gene': -15,
+                'TR_J_pseudogene': -14,
+                'IG_C_gene': -13,
+                'IG_C_pseudogene': -12,
+                'IG_J_gene': -11,
+                'IG_J_pseudogene': -10,
+                'IG_D_gene': -9,
+                'IG_V_gene': -8,
+                'IG_pseudogene': -7,
+                'translated_processed_pseudogene': -6,
+                'scRNA': -5,
+                'vault_RNA': -4,
+                'translated_unprocessed_pseudogene': -3,
+                'Mt_tRNA': -2,
+                'Mt_rRNA': -1,
+                '2kb_downstream_variant': 31,
+                '2kb_upstream_variant': 32,
+                '3_prime_UTR_variant': 33,
+                '5_prime_UTR_variant': 34,
+                'intron_variant': 35,
+                'unknown': 36,
+                'synonymous_variant': 37,
+                'start_retained_variant': 38,
+                'stop_retained_variant': 39,
+                'missense_variant': 40,
+                'complex_substitution': 41,
+                'inframe_deletion': 42,
+                'inframe_insertion': 43,
+                'stop_lost': 44,
+                'splice_site_variant': 45,
+                'stop_gained': 46,
+                'frameshift_truncation': 47,
+                'frameshift_elongation': 48,
+                'exon_loss_variant': 49,
+                'start_lost': 50,
+                'transcript_ablation': 51,
+            },
 			'varColors': {
-					'synonymous': 'rgb(250, 250, 250)',
-					'missense': 'rgb(255, 251, 123)',
-					'complex substitution': 'rgb(141, 237, 255)',
-					'inframe insertion': 'rgb(181, 255, 131)',
-					'inframe deletion': 'rgb(181, 255, 131)',
-					'stop lost': 'rgb(63, 255, 193)',
-					'splice site': 'rgb(255, 118, 35)',
-					'stop gained': 'rgb(250, 0, 0)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift insertion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'frameshift deletion': 'rgb(200, 0, 255)',
-					'SYN': 'rgb(250, 250, 250)',
-					'MIS': 'rgb(255, 251, 123)',
-					'CSS': 'rgb(141, 237, 255)',
-					'INI': 'rgb(181, 255, 131)',
-					'IND': 'rgb(181, 255, 131)',
-					'STL': 'rgb(63, 255, 193)',
-					'SPL': 'rgb(255, 118, 35)',
-					'STG': 'rgb(250, 0, 0)',
-					'FI1': 'rgb(200, 0, 255)',
-					'FI2': 'rgb(200, 0, 255)',
-					'FIV': 'rgb(200, 0, 255)',
-					'FSI': 'rgb(200, 0, 255)',
-					'FD1': 'rgb(200, 0, 255)',
-					'FD2': 'rgb(200, 0, 255)',
-					'FDV': 'rgb(200, 0, 255)',
-					'FSD': 'rgb(200, 0, 255)',
+                'synonymous': 'rgb(250, 250, 250)',
+                'missense': 'rgb(255, 251, 123)',
+                'complex substitution': 'rgb(141, 237, 255)',
+                'inframe insertion': 'rgb(181, 255, 131)',
+                'inframe deletion': 'rgb(181, 255, 131)',
+                'stop lost': 'rgb(63, 255, 193)',
+                'splice site': 'rgb(255, 118, 35)',
+                'stop gained': 'rgb(250, 0, 0)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift insertion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'frameshift deletion': 'rgb(200, 0, 255)',
+                'SYN': 'rgb(250, 250, 250)',
+                'MIS': 'rgb(255, 251, 123)',
+                'CSS': 'rgb(141, 237, 255)',
+                'INI': 'rgb(181, 255, 131)',
+                'IND': 'rgb(181, 255, 131)',
+                'STL': 'rgb(63, 255, 193)',
+                'SPL': 'rgb(255, 118, 35)',
+                'STG': 'rgb(250, 0, 0)',
+                'FI1': 'rgb(200, 0, 255)',
+                'FI2': 'rgb(200, 0, 255)',
+                'FIV': 'rgb(200, 0, 255)',
+                'FSI': 'rgb(200, 0, 255)',
+                'FD1': 'rgb(200, 0, 255)',
+                'FD2': 'rgb(200, 0, 255)',
+                'FDV': 'rgb(200, 0, 255)',
+                'FSD': 'rgb(200, 0, 255)',
+                'synonymous_variant': 'rgb(250, 250, 250)',
+                'missense_variant': 'rgb(255, 251, 123)',
+                'complex_substitution': 'rgb(141, 237, 255)',
+                'inframe_insertion': 'rgb(181, 255, 131)',
+                'inframe_deletion': 'rgb(181, 255, 131)',
+                'stop_lost': 'rgb(63, 255, 193)',
+                'splice_site_variant': 'rgb(255, 118, 35)',
+                'stop_gained': 'rgb(250, 0, 0)',
+                'frameshift_elongation': 'rgb(200, 0, 255)',
+                'frameshift_truncation': 'rgb(200, 0, 255)',
 			},
 			'varColorNoSo': '#aaaaaa',
 			'reftranscript': null,
@@ -809,7 +977,7 @@ widgetGenerators['lollipop'] = {
 			'domainLineMinWidth': 7,
 			'variantMinWidth': 2,
 			'variantRadius': 5,
-			'xStart': 160,
+			'xStart': 280,
 			'xEndPad': 14,
 			'varHeightMax': 22,
 			'varHeightMin': 12,
@@ -826,12 +994,12 @@ widgetGenerators['lollipop'] = {
 			var widgetDiv = div.parentElement;
 			var toks = widgetDiv.id.split('_');
 			var tabName = toks[1];
-			
+
 			var v = widgetGenerators[widgetName][tabName]['variables'];
 
 			v.widgetContentDiv = div;
             v.tabName = tabName;
-			
+
 			var hugo = getWidgetData(tabName, 'base', row, 'hugo');
 			if (hugo == '') {
 				$(div).empty();
@@ -934,47 +1102,47 @@ widgetGenerators['lollipop'] = {
 				}
 				return index;
 			}
-			
+
 			function getMyVarCanvasId (datasource) {
 				var id = tabName + '_' + widgetName + '_myvar_canvas';
 				return id;
 			}
-			
+
 			function getOtherVarCanvasId (datasource) {
 				var id = tabName + '_' + widgetName + '_othervar_canvas';
 				return id;
 			}
-			
+
 			function getProtCanvasId () {
 				var id = tabName + '_' + widgetName + '_prot_canvas';
 				return id;
 			}
-			
+
 			function getSiteCanvasId () {
 				var id = tabName + '_' + widgetName + '_site_canvas';
 				return id;
 			}
-			
+
 			function getVarDatasourceSelectorId () {
 				var id = tabName + '_' + widgetName + '_vardatasourceselect';
 				return id;
 			}
-			
+
 			function getVarCategorySelectorId () {
 				var id = tabName + '_' + widgetName + '_varcategselect';
 				return id;
 			}
-			
+
 			function getVarCategorySelectorDivId () {
 				var id = getVarCategorySelectorId() + '_div';
 				return id;
 			}
-			
+
 			function getProtSiteSourceSelectorId () {
 				var id = tabName + '_' + widgetName + '_protsitedatasourceselect';
 				return id;
 			}
-			
+
 			function onChangeOtherVariantDatasource (select, data) {
 				var categorySelect = 
 					document.getElementById(getVarCategorySelectorId());
@@ -983,7 +1151,7 @@ widgetGenerators['lollipop'] = {
 				}
 
 				var datasource = select.options[select.selectedIndex].value;
-				
+
 				var categories = null;
 				var categoryPartDiv = 
 					document.getElementById(getVarCategorySelectorDivId());
@@ -996,7 +1164,7 @@ widgetGenerators['lollipop'] = {
 					categories.sort();
 					categoryPartDiv.style.display = 'inline-block';
 				}
-				
+
 				var option = new Option('', '');
 				categorySelect.options.add(option);
 				for (var i = 0; i < categories.length; i++) {
@@ -1007,17 +1175,16 @@ widgetGenerators['lollipop'] = {
 					var option = new Option(category, category);
 					categorySelect.options.add(option);
 				}
-				
+
 				categorySelect.setAttribute('datasource', datasource);
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantdatasource = datasource;
 			}
-			
+
 			function onChangeOtherVariantCategory (
 					canvasId, data, datasource, category) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
 				$('#' + canvasId).empty();
 				var stage = acgraph.create(canvasId);
 				var y = 0;
@@ -1051,26 +1218,25 @@ widgetGenerators['lollipop'] = {
 					setupVariantPopup(rect, variant);
 					setupVariantPopup(circle, variant);
 				}
-				
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				v.variantcategory = category;
 			}
-			
+
 			function onChangeProtSiteDatasource (
 					canvasId, data, datasource) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var canvas = document.getElementById(canvasId);
 				$(canvas).empty();
 				if (datasource == '') {
 					return;
 				}
-				
+
 				v.sitedatasource = datasource;
-				
+
 				var stage = acgraph.create(canvasId);
 				var y = 0;
-				
+
 				var domains = data['domains'];
 				var lineDomains = domains[datasource];
 				var stacks = {};
@@ -1115,7 +1281,7 @@ widgetGenerators['lollipop'] = {
 				dsDiv.style.height = maxStackLevel * (v.domainLineHeight + 2) 
 					+ 5 + 'px';
 			}
-			
+
 			function setupVariantPopup (element, variant) {
                 element.variant = variant;
 				var v = widgetGenerators[widgetName][tabName]['variables'];
@@ -1124,7 +1290,6 @@ widgetGenerators['lollipop'] = {
 						var x = evt.clientX;
 						var y = evt.clientY - 50;
 						var variant = evt.target['variant'];
-						
 						var div = getEl('div');
 						div.style.position = 'fixed';
 						div.style.top = y + 'px';
@@ -1134,20 +1299,21 @@ widgetGenerators['lollipop'] = {
 						div.style.background = 'white';
 						div.style.border = '1px solid black';
 						div.style.borderRadius = '6px';
-						
 						var span = getEl('span');
 						span.style.fontWeight = 'bold';
-						var text = variant['refaa'] + variant['start'] + 
-							variant['altaa'] + ' (' + variant['so'] + ')';
+                        if (variant['refaa'] != undefined) {
+                            var text = variant['refaa'] + variant['start'] + 
+                                variant['altaa'] + ' (' + variant['so'] + ')';
+                        } else if (variant['achange'] != undefined) {
+                            var text = variant['achange'] + ' (' + variant['so'] + ')';
+                        }
 						addEl(div, addEl(span, getTn(text)));
 						addEl(div, getEl('br'));
-						
 						var span = getEl('span');
 						span.style.fontWeight = 'bold';
 						addEl(span, getTn('# Samples: '));
 						addEl(div, span);
 						addEl(div, getTn(variant['count']));
-						
 						addEl(v.widgetContentDiv, div);
 						v['popup'] = div;
 					}
@@ -1159,7 +1325,7 @@ widgetGenerators['lollipop'] = {
 					}
 				});
 			}
-			
+
 			function setupDomainPopup (element, domain) {
 				element.domain = domain;
 				acgraph.events.listen(element, 'mouseover', function (evt) {
@@ -1228,17 +1394,17 @@ widgetGenerators['lollipop'] = {
 					y + v.varHeightMax - height, 
 					v.variantRadius).
 					fill(color);
-                var aachange = variant['refaa'] + variant['start'] + variant['altaa'];
+                var aachange = variant['achange'];
                 rect.domElement_.setAttribute('aachange', aachange);
                 circle.domElement_.setAttribute('aachange', aachange);
                 circle.domElement_.classList.add('lollipop_gene');
 				setupVariantPopup(rect, variant);
 				setupVariantPopup(circle, variant);
 			}
-			
+
 			function drawBoxDomain (stage, domain, y) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var x = domain['start'] * v.aaWidth + v.xStart;
 				var width = (domain['stop'] - domain['start']) * v.aaWidth;
 				var color = 'brown';
@@ -1256,10 +1422,10 @@ widgetGenerators['lollipop'] = {
 				setupDomainPopup(box, domain);
 				setupDomainPopup(text, domain);
 			}
-			
+
 			function drawLineDomain (stage, domain, y) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var x = domain['start'] * v.aaWidth + v.xStart;
 				var width = Math.max(v.domainLineMinWidth, 
 						(domain['stop'] - domain['start']) * v.aaWidth - 2);
@@ -1275,18 +1441,18 @@ widgetGenerators['lollipop'] = {
 				v.proteinWidth = parseInt(
 					v.proteinWidth.substring(0, v.proteinWidth.length - 2)) 
 					- v.variantRadius - v.xEndPad - v.xStart;
-				
+
 				v.aalen = data['len'];
 				v.aaWidth = v.proteinWidth / v.aalen;
 				v.reftranscript = data['transcript'];
-				
+
 				drawControlPanel(data);
 				drawMyVariants(data);
 				drawProtein(data);
 				setupOtherVariantDiv(data);
 				setupSiteDiv(data);
                 drawMyVariantsTable(data);
-				
+
 				v.drawing = false;
 			}
 
@@ -1298,20 +1464,20 @@ widgetGenerators['lollipop'] = {
                 addEl(contentDiv, div);
                 var table = getEl('table');
                 table.className = 'lollipop_gene_varianttable';
-                table.style.width = '160px';
+                table.style.width = '240px';
+                table.style.fontSize = '10px';
                 addEl(div, table);
                 var thead = getEl('thead');
                 var tr = getEl('tr');
                 var th = getEl('th');
-                th.style.fontSize = '8px';
+                th.style.width = '60px';
                 addEl(th, getTn('Change'));
                 addEl(tr, th);
                 var th = getEl('th');
-                th.style.fontSize = '8px';
                 addEl(th, getTn('Seq Ont'));
                 addEl(tr, th);
                 var th = getEl('th');
-                th.style.fontSize = '8px';
+                th.style.width = '52px';
                 addEl(th, getTn('# Samples'));
                 addEl(tr, th);
                 addEl(thead, tr);
@@ -1343,11 +1509,10 @@ widgetGenerators['lollipop'] = {
                     var variant = myVariants[i];
                     tr = getEl('tr');
                     td = getEl('td');
-                    td.style.fontSize = '8px';
                     td.style.cursor = 'default';
                     td.addEventListener('mouseover', function (evt) {
                         var aachange = evt.target.textContent;
-                        var circles = $('circle.lollipop_gene[aachange=' + aachange + ']');
+                        var circles = $('circle.lollipop_gene[aachange="' + aachange + '"]');
                         for (var i = 0; i < circles.length; i++) {
                             var circle = circles[i];
                             circle.setAttribute('oldfill', circle.getAttribute('fill'));
@@ -1356,21 +1521,19 @@ widgetGenerators['lollipop'] = {
                     });
                     td.addEventListener('mouseout', function (evt) {
                         var aachange = evt.target.textContent;
-                        var circles = $('circle.lollipop_gene[aachange=' + aachange + ']');
+                        var circles = $('circle.lollipop_gene[aachange="' + aachange + '"]');
                         for (var i = 0; i < circles.length; i++) {
                             var circle = circles[i];
                             circle.setAttribute('fill', circle.getAttribute('oldfill'));
                         }
                     });
-                    addEl(td, getTn(variant.refaa + variant.start + variant.altaa));
+                    addEl(td, getTn(variant.achange));
                     addEl(tr, td);
                     td = getEl('td');
-                    td.style.fontSize = '8px';
                     addEl(td, getTn(variant.so));
                     addEl(tr, td);
                     td = getEl('td');
                     addEl(td, getTn(variant.count));
-                    td.style.fontSize = '8px';
                     addEl(tr, td);
                     addEl(tbody, tr);
                 }
@@ -1378,13 +1541,13 @@ widgetGenerators['lollipop'] = {
 
 			function drawControlPanel (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Container
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
 				dsDiv.style.height = '20px';
 				addEl(div, dsDiv);
-			
+
 				// Protein site datasource selector
 				var partDiv = getEl('div');
 				partDiv.style.display = 'inline-block';
@@ -1438,7 +1601,7 @@ widgetGenerators['lollipop'] = {
 					select.options.add(option);
 				}
 				addEl(dsDiv, partDiv);
-				
+
 				// Variant category selector
 				var partDiv = getEl('div');
 				partDiv.id = getVarCategorySelectorDivId();
@@ -1464,7 +1627,7 @@ widgetGenerators['lollipop'] = {
 
 			function drawMyVariants (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Erases canvas for a new gene.
 				var canvasId = getMyVarCanvasId();
 				var canvas = document.getElementById(canvasId);
@@ -1472,18 +1635,18 @@ widgetGenerators['lollipop'] = {
 					var dsDiv = getEl('div');
 					dsDiv.style.width = '100%';
 					dsDiv.style.height = v.varHeightMax + v.variantRadius;
-					
+
 					var canvas = getEl('div');
 					canvas.id = canvasId;
 					canvas.style.width = '100%';
 					canvas.style.height = v.varHeightMax + v.variantRadius;
 					addEl(dsDiv, canvas);
-					
+
 					addEl(div, dsDiv);
 				} else {
 					$(canvas).empty();
 				}
-				
+
 				// Stage
 				var stage = acgraph.create(canvas);
 				var y = v.variantRadius;
@@ -1509,27 +1672,40 @@ widgetGenerators['lollipop'] = {
 			}
 
 			function getMyVariant (row) {
+                var v = widgetGenerators[widgetName][tabName]['variables'];
+                var soPoints = v['soPoints'];
 				var allMappings = JSON.parse(getWidgetData('variant', 'base', row, 'all_mappings'));
 				var hugos = Object.keys(allMappings);
 				variant = {};
+                var reftrNoVer = v.reftranscript.split('.')[0];
 				for (var i = 0; i < hugos.length; i++) {
 					var hugo = hugos[i];
 					var uniprot_ds = allMappings[hugo];
 					for (var j = 0; j < uniprot_ds.length; j++) {
 						var transcript = uniprot_ds[j][3];
-						if (transcript == v.reftranscript) {
+						if (transcript.split('.')[0] == reftrNoVer) {
 							var protchange = uniprot_ds[j][1];
-                            if (protchange == null) {
+                            if (protchange == '') {
                                 continue;
                             }
-							variant['so'] = uniprot_ds[j][2];
-							var refaa = protchange[0];
-							var protchangelen = protchange.length;
-							var altaa = protchange.substring(protchangelen - 1, protchangelen);
-							var start = protchange.substring(1, protchangelen - 1);
-							variant['start'] = start;
-							variant['refaa'] = refaa;
-							variant['altaa'] = altaa;
+							var sos = uniprot_ds[j][2].split(',');
+                            var bestSo = sos[0];
+                            var bestSoPoint = soPoints[so];
+                            for (var k = 1; k < sos.length; k++) {
+                                var so = sos[k];
+                                var soPoint = soPoints[so];
+                                if (soPoint < 0) {
+                                    bestSo = so;
+                                    bestSoPoint = soPoint;
+                                    break;
+                                } else if (soPoint > bestSoPoint) {
+                                    bestSo = so;
+                                    bestSoPoint = soPoint;
+                                }
+                            }
+							variant['so'] = bestSo;
+							variant['start'] = protchange.match(/\d+/)[0];
+							variant['achange'] = protchange;
                             variant['count'] = getWidgetData('variant', 'base', row, 'numsample');
 							break;
 						}
@@ -1539,16 +1715,16 @@ widgetGenerators['lollipop'] = {
 			}
 
 			function drawProtein (data) {
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				// Protein container
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
 				dsDiv.style.height = '30px';
 				dsDiv.setAttribute('datasource', datasource);
 				addEl(div, dsDiv);
-				
+
                 // Transcript
                 var tsDiv = getEl('div');
                 tsDiv.style.position = 'absolute';
@@ -1556,7 +1732,7 @@ widgetGenerators['lollipop'] = {
                 tsDiv.style.right = '12px';
                 tsDiv.textContent = v.reftranscript;
                 addEl(div, tsDiv);
-				
+
 				// Protein canvas
 				var canvas = getEl('div');
 				var canvasId = getProtCanvasId();
@@ -1564,11 +1740,11 @@ widgetGenerators['lollipop'] = {
 				canvas.style.width = '100%';
 				canvas.style.height = '100%';
 				addEl(dsDiv, canvas);
-				
+
 				// Protein stage
 				var stage = acgraph.create(canvas);
 				var y = 0;
-				
+
 				// Protein
 				stage.rect(v.xStart, y, v.proteinWidth, v.proteinHeight).
 					round(v.boxR, v.boxR, v.boxR, v.boxR).
@@ -1576,9 +1752,9 @@ widgetGenerators['lollipop'] = {
 					fill({
 						keys: ['0 #aaaaaa', '0.6 #dddddd', '1 #aaaaaa'],
 						angle: 90,
-						
+
 					});
-				
+
 				// Pfam boxes
 				var datasource = 'pfam';
 				if (data['domains'] != undefined && 
@@ -1592,7 +1768,7 @@ widgetGenerators['lollipop'] = {
 
                 // My variant table
 			}
-			
+
 			function setupOtherVariantDiv (data) {
 				var v = widgetGenerators[widgetName][tabName]['variables'];
 				var datasources = Object.keys(data['variants']);
@@ -1603,29 +1779,29 @@ widgetGenerators['lollipop'] = {
 				dsDiv.style.height = v.varHeightMax + v.variantRadius;
 				addEl(div, dsDiv);
 				var canvasId = dsDiv.id + '_canvas';
-				
+
 				var canvas = getEl('div');
 				canvas.id = canvasId;
 				canvas.style.width = '100%';
 				canvas.style.height = v.varHeightMax + v.variantRadius;
 				addEl(dsDiv, canvas);
 			}
-			
+
 			function setupSiteDiv (data) {
-				
+
 				var v = widgetGenerators[widgetName][tabName]['variables'];
-				
+
 				var dsDiv = getEl('div');
 				dsDiv.style.width = '100%';
 				dsDiv.style.height = '30px';
-				
+
 				var canvas = getEl('div');
 				var canvasId = getSiteCanvasId();
 				canvas.id = canvasId;
 				canvas.style.width = '100%';
 				canvas.style.height = '100%';
 				addEl(dsDiv, canvas);
-				
+
 				addEl(div, dsDiv);
 			}
 		}
