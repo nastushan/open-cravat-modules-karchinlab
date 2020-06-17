@@ -3797,11 +3797,14 @@ class Mapper (cravat.BaseMapper):
                         so = (SO_FSI, SO_STL)
                     else:
                         so = (SO_FSI,)
-                    achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}'
                     if stp_found:
-                        achange += f'{len(alt_aas) - i_found}'
+                        ter_dist = len(alt_aas) - i_found
+                        if ter_dist == 1:
+                            achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}'
+                        else:
+                            achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}{len(alt_aas) - i_found}'
                     else:
-                        achange += '?'
+                        achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}?'
         return so, achange
 
     def _find_next_stp_apos (self, tid, tpos):
