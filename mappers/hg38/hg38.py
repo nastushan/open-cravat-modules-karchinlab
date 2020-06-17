@@ -717,7 +717,7 @@ class Mapper (cravat.BaseMapper):
             else:
                 if apos == 1:
                     so += (SO_MLO,)
-                    achange = f'p.{ref_aa}{apos}{alt_aa}'
+                    achange = f'p.{ref_aa}{apos}?'
                 else:
                     if ref_aanum != TER:
                         achange = f'p.{ref_aa}{apos}{alt_aa}'
