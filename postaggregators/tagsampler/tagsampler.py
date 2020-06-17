@@ -10,7 +10,6 @@ class CravatPostAggregator (BasePostAggregator):
         return True
 
     def setup (self):
-        self.cursor_a = self.dbconn.cursor()
         q = 'select distinct(base__sample_id) from sample'
         self.cursor.execute(q)
         sample_is_all_null = True
@@ -28,23 +27,22 @@ class CravatPostAggregator (BasePostAggregator):
     def cleanup (self):
         self.cursor.execute('pragma synchronous=2;')
         self.cursor.execute('pragma journal_mode=delete;')
-        self.cursor_a.close()
         
     def annotate (self, input_data):
         uid = str(input_data['base__uid'])
         q = 'select base__sample_id from sample where base__uid=' + uid + ' and base__sample_id is not null'
-        self.cursor_a.execute(q)
+        self.cursor.execute(q)
         samples = {}
-        for row in self.cursor_a:
+        for row in self.cursor:
             samples[row[0]] = True
         numsample = len(samples)
         samples = list(samples.keys())
         samples.sort()
         samples = ';'.join(samples)
         q = 'select base__tags from mapping where base__uid=' + uid
-        self.cursor_a.execute(q)
+        self.cursor.execute(q)
         tags = {}
-        for row in self.cursor_a:
+        for row in self.cursor:
             if row[0] is not None:
                 tags[row[0]] = True
         tags = list(tags.keys())
