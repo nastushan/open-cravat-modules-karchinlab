@@ -3791,7 +3791,7 @@ class Mapper (cravat.BaseMapper):
                         break
                 if ref_apos_found == 1:
                     so = (SO_FSI, SO_MLO)
-                    achange = f'p.{aanum_to_aa[MET]}1fs?'
+                    achange = f'p.{aanum_to_aa[MET]}1?'
                 else:
                     if ref_aa_found == TER:
                         so = (SO_FSI, SO_STL)
