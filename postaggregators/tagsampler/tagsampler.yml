@@ -1,7 +1,6 @@
 title: Tag Sampler
-version: 1.1.1
+version: 1.1.2
 type: postaggregator
-
 name: tagsampler
 level: variant
 input_level: variant,crs,crm
@@ -16,7 +15,6 @@ output_columns:
 - name: samples
   title: Samples
   type: string
-  category: multi
   width: 65
   desc: Samples which contain the variant.
 - name: tags
@@ -25,7 +23,6 @@ output_columns:
   width: 65
   desc: Variant tags from the input file.
   hidden: true
-
 description: Aggregates tags and samples
 developer:
   name: 'Rick Kim'
@@ -34,6 +31,7 @@ developer:
   website: 'http://www.insilico.us.com'
   citation: ''
 release_note:
+  1.1.2: removed multi from sample_id for speed.
   1.0.2: removed multi cat from tags for speed
   1.0.4: handles samples that are null
   1.0.5: assigned filterable.
