@@ -340,6 +340,9 @@ class CravatConverter(BaseConverter):
         # Skip structural variants
         if '<' in alts or '[' in alts or ']' in alts:
             raise BadFormatError(f'OpenCRAVAT does not support alt={alts} at this time')
+        # Skips . alt.
+        if alts == '.':
+            raise BadFormatError(f'. alt is skipped')
         if toklen >= 6:
             qual = toks[5]
             if qual == '.': qual = None

@@ -3957,7 +3957,6 @@ class Mapper (cravat.BaseMapper):
         so_count_keys.sort()
         so_count_l = [f'{so}({so_counts[so]})' for so in so_count_keys]
         out['all_so'] = ','.join(so_count_l)
-        print(f'@ out={out}')
         return out
 
     def empty_map (self, crv_data):
