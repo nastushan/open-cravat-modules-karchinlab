@@ -339,14 +339,12 @@ aa_to_num = {'A':ALA, 'C': CYS, 'D': ASP, 'E': GLU, 'F': PHE,
     'M': MET, 'N': ASN, 'P': PRO, 'Q': GLN, 'R': ARG,
     'S': SER, 'T': THR, 'V': VAL, 'W': TRP, 'Y': TYR,
     '*': TER, NOA: '_', XAA: '?', NDA: ' '}
-'''
-aanum_to_aa = {
+aanum_to_aa1 = {
     ALA: 'A', CYS: 'C', ASP: 'D', GLU: 'E', PHE: 'F', 
     GLY: 'G', HIS: 'H', ILE: 'I', LYS: 'K', LEU: 'L',
     MET: 'M', ASN: 'N', PRO: 'P', GLN: 'Q', ARG: 'R',
     SER: 'S', THR: 'T', VAL: 'V', TRP: 'W', TYR: 'Y',
     TER: '*', NOA: '_', XAA: '?', NDA: ' '}
-'''
 aanum_to_aa = {
     ALA: 'Ala', CYS: 'Cys', ASP: 'Asp', GLU: 'Glu', PHE: 'Phe', 
     GLY: 'Gly', HIS: 'His', ILE: 'Ile', LYS: 'Lys', LEU: 'Leu',
@@ -492,6 +490,8 @@ FALSE = 0
 GENETYPENO_PROTEIN_CODING = None
 TRANSCRIPTTYPENO_PROTEIN_CODING = None
 TRANSCRIPTCLASSNO_CODING = None
+NO_VALUE = -1
+SO_TO_DISCARD = -999
 
 def _get_base_str (tr_base, lenbase):
     tr_base_str = ''
@@ -644,6 +644,8 @@ class Mapper (cravat.BaseMapper):
                 elif var_type == COM:
                     so, achange, cchange, coding = self._get_com_map_data(tid, cpos, cstart, tpos, tstart, tr_ref_base, tr_alt_base, strand, kind, apos, strand_gpos, 
                             start, end, chrom, strand_gposend, fragno, lenref, lenalt, prevcont, nextcont, alen, tlen, exonno, tr_map_end, tposcposoffset, tr_alt_base_plus, tr_alt_base_minus, var_type)
+                if SO_TO_DISCARD in so:
+                    continue
                 if transcripttypeno == TRANSCRIPTTYPENO_NMD:
                     so += (SO_NMD,)
                 mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding)
@@ -670,6 +672,8 @@ class Mapper (cravat.BaseMapper):
                     so += (SO_2KU,)
                 elif kind == FRAG_DN2K:
                     so += (SO_2KD,)
+                if so is None:
+                    continue
                 uniprot = ''
                 achange = ''
                 cchange = ''
@@ -1974,7 +1978,8 @@ class Mapper (cravat.BaseMapper):
         self.c2.execute(q)
         return self.c2.fetchone()[0]
 
-    def _translate (self, mrna, tlen, tposcposoffset):
+    def _get_new_pseq (self, mrna, tlen, tposcposoffset, source_pseq):
+        source_pseq_len = len(source_pseq)
         max_alen = int(tlen / 3)
         pseq = bytearray(max_alen)
         tpos_q = 0
@@ -1983,14 +1988,21 @@ class Mapper (cravat.BaseMapper):
             aanum = codon_to_aanum[mrna[tpos_q:tpos_q + 3].decode().upper()]
             apos = int((tpos_q - tposcposoffset) / 3) + 1
             pseq[apos - 1] = aanum
+            if apos <= source_pseq_len:
+                source_aa = source_pseq[apos - 1]
+                if apos < source_pseq_len and source_aa == aanum:
+                    continue
             if aanum == TER:
                 alen = apos
                 pseq = pseq[:alen]
                 ter_found = TRUE
                 break
         if ter_found == FALSE:
-            alen = pseq.index(0)
-            pseq = pseq[:alen]
+            if 0 in pseq:
+                alen = pseq.index(0)
+                pseq = pseq[:alen]
+            else:
+                alen = len(pseq)
         return pseq, alen, ter_found
 
     def _get_com_cds_cds_data (self, tid, tpos, cpos, apos, lendel, lenins, ins_base, tposcposoffset, alen):
@@ -2009,13 +2021,22 @@ class Mapper (cravat.BaseMapper):
             else:
                 so += (SO_FSI,)
         pseq = self.prots[tid]
+        if pseq is None:
+            achange = ''
+            return so, achange
         len_pseq = len(pseq)
         tlen = self.tr_info[tid][TR_INFO_TLEN_I]
         mrna = bytearray(tlen)
         self._fill_full_mrna_seq(tid, mrna)
+        mrna_lastcodon_tpos = tposcposoffset + alen * 3
+        mrna_lastcodon = mrna[mrna_lastcodon_tpos: mrna_lastcodon_tpos + 3]
+        if mrna_lastcodon != 'TAA' and mrna_lastcodon != 'TAG' and mrna_lastcodon != 'TGA':
+            so = (SO_TO_DISCARD,)
+            achange = ''
+            return so, achange
         new_mrna = bytearray(tlen - lendel + lenins)
         new_mrna = mrna[:tpos - 1] + ins_base + mrna[tpos + lendel - 1:]
-        new_pseq, len_new_pseq, ter_found = self._translate(new_mrna, len(new_mrna), tposcposoffset)
+        new_pseq, len_new_pseq, ter_found = self._get_new_pseq(new_mrna, len(new_mrna), tposcposoffset, pseq)
         if new_pseq[0] != MET:
             so += (SO_MLO,)
             if MET in new_pseq:
@@ -2034,16 +2055,41 @@ class Mapper (cravat.BaseMapper):
         lenpseqfrag = len(pseq_frag)
         lennewpseqfrag = len(new_pseq_frag)
         min_pseq_frag_len = min(lenpseqfrag, lennewpseqfrag)
+        apos_n_diff = NO_VALUE
         for i in range(min_pseq_frag_len):
             if pseq_frag[i] != new_pseq_frag[i]:
                 apos_n_diff = apos + i
                 pseq_frag = pseq_frag[i:]
                 new_pseq_frag = new_pseq_frag[i:]
                 break
+        if apos_n_diff == NO_VALUE:
+            pseq_frag = []
+            new_pseq_frag = []
+        else:
+            if lendifrem != 0: # frameshift
+                if TER in new_pseq_frag:
+                    n = new_pseq_frag.index(TER) + 1
+                else:
+                    n = '?'
+                if n == 1:
+                    achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[new_pseq_frag[0]]}'
+                else:
+                    achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[new_pseq_frag[0]]}fs{aanum_to_aa[TER]}{n}'
+                return so, achange
+            aa1ter = aanum_to_aa1[TER]
+            if aanum_to_aa1[new_pseq_frag[0]] == aa1ter:
+                if aanum_to_aa1[pseq_frag[0]] == aa1ter:
+                    so += (SO_SYN,)
+                    achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}='
+                    return so, achange
+                else:
+                    so += (SO_STG,)
+                    achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[TER]}'
+                    return so, achange
         lenpseqfrag = len(pseq_frag)
         lennewpseqfrag = len(new_pseq_frag)
         min_pseq_frag_len = min(lenpseqfrag, lennewpseqfrag)
-        apos_c_diff = -1
+        apos_c_diff = NO_VALUE
         for i in range(min_pseq_frag_len):
             sp = -i - 1
             if pseq_frag[sp] != new_pseq_frag[sp]:
@@ -2053,7 +2099,7 @@ class Mapper (cravat.BaseMapper):
                 break
         lenpseqfrag = len(pseq_frag)
         lennewpseqfrag = len(new_pseq_frag)
-        if apos_c_diff == -1:
+        if apos_c_diff == NO_VALUE:
             if lenpseqfrag > lennewpseqfrag:
                 diff = lenpseqfrag - lennewpseqfrag
                 apos_c_diff = apos_n_diff + diff - 1
@@ -2071,7 +2117,13 @@ class Mapper (cravat.BaseMapper):
                 new_pseq_frag = []
         lenpseqfrag = len(pseq_frag)
         lennewpseqfrag = len(new_pseq_frag)
-        if apos_n_diff > 1 and apos_c_diff <= alen: # middle aas
+        if apos_n_diff == NO_VALUE:
+            so += (SO_SYN,)
+            achange = f'p.{aanum_to_aa[pseq[apos - 1]]}{apos}='
+        elif apos_n_diff == 1 and apos_c_diff == 1:
+            so += (SO_MLO,)
+            achange = f'p.{aanum_to_aa[MET]}1?'
+        elif apos_n_diff > 1 and apos_c_diff <= alen + 1: # middle aas
             if lendifrem == 0: # inframe
                 if lenpseqfrag == 1:
                     if lennewpseqfrag == 1:
@@ -2125,11 +2177,17 @@ class Mapper (cravat.BaseMapper):
                     else:
                         achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}='
             else: # frameshift
-                if TER in new_pseq_frag:
-                    n = new_pseq_frag.index(TER) + 1
+                if lennewpseqfrag == 0 and lenpseqfrag > 0: # deletion
+                    if lenpseqfrag == 1:
+                        achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}del'
+                    else:
+                        achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}_{aanum_to_aa[pseq[apos_c_diff - 1]]}{apos_c_diff}del'
                 else:
-                    n = '?'
-                achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[new_pseq_frag[0]]}fs{aanum_to_aa[TER]}{n}'
+                    if lenpseqfrag == 0 or pseq_frag[-1] != TER: # has TER on new frag
+                        n = lennewpseqfrag + 1
+                    else:
+                        n = '?'
+                    achange = f'p.{aanum_to_aa[pseq[apos_n_diff - 1]]}{apos_n_diff}{aanum_to_aa[new_pseq_frag[0]]}fs{aanum_to_aa[TER]}{n}'
         return so, achange
 
     def _get_del_cds_utr3_data (self, cpos, tpos, tid, tpos_end, apos, tlen, lenref, tstart, cstart, alen):
@@ -3638,7 +3696,7 @@ class Mapper (cravat.BaseMapper):
                             apos_next_ref_end = apos + lenaltaas
                             alen = self.tr_info[tid][TR_INFO_ALEN_I]
                             if apos_next_ref_end > alen:
-                                next_ref = pseq[apos:alen] + bytearray(apos_next_ref_end - alen)
+                                next_ref = pseq[apos:alen].tobytes() + bytearray(apos_next_ref_end - alen)
                             else:
                                 next_ref = pseq[apos:apos_next_ref_end]
                             lenaltaas = len(alt_aas)
