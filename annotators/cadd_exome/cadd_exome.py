@@ -21,6 +21,8 @@ class CravatAnnotator(BaseAnnotator):
             return
         prefix_key = input_data['ref_base']+input_data['alt_base']
         prefix = self.which_col.get(prefix_key)
+        if prefix is None:
+            return
         score_col = prefix+'_score'
         phred_col = prefix+'_phred'
         pos = input_data['pos']
