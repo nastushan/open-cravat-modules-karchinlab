@@ -51,9 +51,10 @@ class CravatAnnotator(BaseAnnotator):
         
         transc_ontologies = {}
         for mapping in p.mappings:
-            so = mapping.so
-            if so in ['MIS','STG','STL']:
-                transc_ontologies[mapping.transcript] = so
+            sos = mapping.so
+            for so in sos:
+                if so in ['MIS','STG','STL']:
+                    transc_ontologies[mapping.transcript] = so
         if transc_ontologies == {}:
             return
                     
