@@ -1,6 +1,7 @@
 from cravat import BaseConverter
 from cravat import BadFormatError
 from cravat import ExpectedException
+from cravat import InvalidData
 import re
 from collections import OrderedDict
 from cravat.inout import CravatWriter
@@ -50,6 +51,7 @@ class CravatConverter(BaseConverter):
         self.allowed_info_colnumbers = ['0', '1', 'a', 'r', '.']
         self.unique_excs = []
         self.vep_present = False
+        self.ex_info_writer = None
 
     def check_format(self, f): 
         vcf_format = False
@@ -100,7 +102,7 @@ class CravatConverter(BaseConverter):
                     if gtf not in self.genotype_fields:
                         self.genotype_fields.append(gtf)
         self.write_ex_info = (len(self.info_field_cols) > 0)
-        if self.write_ex_info:
+        if self.write_ex_info and self.ex_info_writer is None:
             self.open_ex_info_writer()
 
     def open_ex_info_writer (self):
@@ -344,7 +346,7 @@ class CravatConverter(BaseConverter):
             raise BadFormatError(f'OpenCRAVAT does not support alt={alts} at this time')
         # Skips . alt.
         if alts == '.':
-            raise BadFormatError(f'. alt is skipped')
+            raise InvalidData(f'. alt is skipped')
         if toklen >= 6:
             qual = toks[5]
             if qual == '.': qual = None
