@@ -34,7 +34,7 @@ class Reporter(CravatReport):
         self.cursor2.execute(q)
         r = self.cursor2.fetchone()
         self.input_format = r[0]
-        if self.input_format == 'vcf' and len(self.args.inputfiles) > 1:
+        if self.input_format == 'vcf' and self.args.inputfiles is not None and len(self.args.inputfiles) > 1:
             msg = 'VCF reporter can handle jobs with only 1 VCF input file'
             self.logger.info(msg)
             print(msg)
@@ -74,7 +74,7 @@ class Reporter(CravatReport):
         self.write_preface_lines(lines)
         self.vcflines = {}
         self.input_path_dict = {}
-        if self.input_format == 'vcf' and len(self.args.inputfiles) == 1:
+        if self.input_format == 'vcf' and self.args.inputfiles is not None and len(self.args.inputfiles) == 1:
             if self.args.inputfiles is not None:
                 if type(self.args.inputfiles) is str:
                     self.args.inputfiles = [self.args.inputfiles]
