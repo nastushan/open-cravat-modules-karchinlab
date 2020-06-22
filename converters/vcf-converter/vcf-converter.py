@@ -248,7 +248,7 @@ class CravatConverter(BaseConverter):
                 elif lenalt == lenref:
                     vepalt = alt
                 else:
-                    print(f'@ VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
+                    print(f'VEP alt problem. Please report to support@cravat.us with this printout: l={l}')
                     exit()
                 if vepalt in self.alts:
                     refalt = f'{ref}:{alt}'
@@ -482,6 +482,7 @@ class CravatConverter(BaseConverter):
                     'hap_block': None,
                     'hap_strand': None,                               
                     }
+                gt = altno + 1
                 wdicts_by_gtno[gt].append(wdict)
                 newalts_by_gtno[gt].append(newalt)
                 used_alts.insert(altno, alt)
