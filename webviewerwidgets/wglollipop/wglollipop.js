@@ -308,7 +308,7 @@ widgetGenerators['lollipop'] = {
 						var transcript = uniprot_ds[j][3];
 						if (transcript.split('.')[0] == reftrNoVer) {
 							var protchange = uniprot_ds[j][1];
-							if (protchange == null) {
+							if (protchange == null || protchange == '') {
 								continue;
 							}
 							var sos = uniprot_ds[j][2].split(',');
