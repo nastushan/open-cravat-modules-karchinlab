@@ -14,6 +14,11 @@ output_columns:
   title: RNA Editing Database
   type: string
   hidden: false
+  category: multi
+  categories:
+  - RADAR
+  - ATLAS
+  - DARNED
   desc: Database(s) for identifying likely RNA-editing events. 
 
 tags:
