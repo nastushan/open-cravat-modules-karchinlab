@@ -1,0 +1,13 @@
+#generated variants for Mutpanning test genes.
+#Chrom	Position	Strand	Ref Base	Alt Base	Sample Id	Tag
+
+chr17   7675166     -   G   T       TP53_mut
+chr12   25227300    -   C   A       KRAS_mut
+chr5    112828905   +   G   A       APC_mut
+chr1    26729790    +   C   T       ARID1a_mut
+chr13    48376965   +   T   G       RB1_mut
+chr10   87931070    +   C   A       PTEN_mut  
+chr12   25228070    -   A   T       inter_mut
+chr4    186655820   -   A   G       inter_mut
+chr4    1658830     -   C   A       non_cod
+chr19   3110205     +   G   T       GNA11_mut
