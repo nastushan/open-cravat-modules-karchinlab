@@ -2933,48 +2933,46 @@ class Mapper (cravat.BaseMapper):
         return so, achange
 
     def _make_primary_transcripts (self):
-        self.primary_transcript = ()
+        self.primary_transcript = {}
         if self.primary_transcript_paths is None or len(self.primary_transcript_paths) == 0:
             return
         for primary_transcript_path in self.primary_transcript_paths:
             if primary_transcript_path == 'mane':
-                continue
-            f = open(primary_transcript_path)
-            for line in f:
-                if line.startswith('#') == FALSE:
-                    break
-            toks = line[:-1].split()
-            tokslen = len(toks)
-            if tokslen == 1:
-                self.primary_transcript += (toks[0],)
+                fns = glob.glob(os.path.join(self.module_dir, 'MANE.GRCh38.*.txt'))
+                fns.sort()
+                fn = fns[-1]
+                mane_path = fn
+                f = open(fn)
+                toks = f.readline().split('\t')
+                hugo_colno = toks.index('symbol')
+                enst_colno = toks.index('Ensembl_nuc')
+                for line in f:
+                    toks = line[:-1].split('\t')
+                    hugo = toks[hugo_colno]
+                    enst = toks[enst_colno].split('.')[0]
+                    if hugo not in self.primary_transcript:
+                        self.primary_transcript[hugo] = enst
+                f.close()
+            else:
+                f = open(primary_transcript_path)
                 for line in f:
                     if line.startswith('#'):
                         continue
                     toks = line[:-1].split()
-                    self.primary_transcript += (toks[0],)
-            elif tokslen == 2:
-                self.primary_transcript += (toks[1],)
-                for line in f:
-                    if line.startswith('#'):
+                    #if tokslen == 1:
+                    #    self.primary_transcript += (toks[0],)
+                    #    for line in f:
+                    #        if line.startswith('#'):
+                    #            continue
+                    #        toks = line[:-1].split()
+                    #        self.primary_transcript += (toks[0],)
+                    if len(toks) != 2:
                         continue
-                    toks = line[:-1].split()
-                    self.primary_transcript += (toks[1],)
-            f.close()
-        if 'mane' in self.primary_transcript_paths:
-            fns = glob.glob(os.path.join(self.module_dir, 'MANE.GRCh38.*.txt'))
-            fns.sort()
-            fn = fns[-1]
-            mane_path = fn
-            f = open(fn)
-            toks = f.readline().split('\t')
-            #hugo_colno = toks.index('symbol')
-            enst_colno = toks.index('Ensembl_nuc')
-            for line in f:
-                toks = line[:-1].split('\t')
-                #hugo = toks[hugo_colno]
-                enst = toks[enst_colno].split('.')[0]
-                self.primary_transcript += (enst,)
-            f.close()
+                    else:
+                        hugo = toks[0]
+                        enst = toks[1]
+                        self.primary_transcript[hugo] = enst
+                f.close()
 
     def setup (self):
         self.module_dir = os.path.dirname(__file__)
@@ -3936,30 +3934,23 @@ class Mapper (cravat.BaseMapper):
         return so, ref_aanum, alt_aanum
 
     def _get_primary_mapping (self, all_mappings):
-        primary_mapping = ('', '', (SO_NSO,), '', '', -1, '', '')
-        hugo_primary_picked = {}
+        primary_mappings = {}
         for hugo, mappings in all_mappings.items():
+            if hugo not in primary_mappings:
+                primary_mappings[hugo] = ('', '', (SO_NSO,), '', '', -1, '', '')
             for mapping in mappings:
                 tr = mapping[MAPPING_TR_I]
-                if tr in self.primary_transcript: # defined in primary transcript file
-                    tr_idx = self.primary_transcript.index(tr)
-                    if hugo not in hugo_primary_picked:
-                        hugo_primary_picked[hugo] = tr_idx
-                        if primary_mapping[MAPPING_GENENAME_I] == hugo:
-                            primary_mapping = mapping
-                        else:
-                            if SO_NSO in primary_mapping[MAPPING_SO_I]:
-                                primary_mapping = mapping
-                            elif _compare_mapping(primary_mapping, mapping) < 0:
-                                primary_mapping = mapping
-                    elif tr_idx < hugo_primary_picked[hugo]:
-                        primary_mapping = mapping
+                if hugo in self.primary_transcript and tr == self.primary_transcript[hugo]: # defined in primary transcript file
+                    primary_mappings[hugo] = mapping
                 else:
-                    if hugo not in hugo_primary_picked:
-                        if SO_NSO in primary_mapping[MAPPING_SO_I]:
-                            primary_mapping = mapping
-                        elif _compare_mapping(primary_mapping, mapping) < 0:
-                            primary_mapping = mapping
+                    if SO_NSO in primary_mappings[hugo][MAPPING_SO_I]:
+                        primary_mappings[hugo] = mapping
+                    elif _compare_mapping(primary_mappings[hugo], mapping) < 0:
+                        primary_mappings[hugo] = mapping
+        primary_mapping = ('', '', (SO_NSO,), '', '', -1, '', '')
+        for hugo, mapping in primary_mappings.items():
+            if _compare_mapping(primary_mapping, mapping) < 0:
+                primary_mapping = mapping
         return primary_mapping
 
     def _get_codonnum (self, tid, tpos):
