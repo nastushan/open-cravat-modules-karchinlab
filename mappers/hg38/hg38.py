@@ -2029,7 +2029,7 @@ class Mapper (cravat.BaseMapper):
         mrna = bytearray(tlen)
         self._fill_full_mrna_seq(tid, mrna)
         mrna_lastcodon_tpos = tposcposoffset + alen * 3
-        mrna_lastcodon = mrna[mrna_lastcodon_tpos: mrna_lastcodon_tpos + 3]
+        mrna_lastcodon = mrna[mrna_lastcodon_tpos: mrna_lastcodon_tpos + 3].decode()
         if mrna_lastcodon != 'TAA' and mrna_lastcodon != 'TAG' and mrna_lastcodon != 'TGA':
             so = (SO_TO_DISCARD,)
             achange = ''
