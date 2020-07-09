@@ -14,7 +14,6 @@
 **/*.status.json
 hg38_bak
 tagger.py
-*.tsv
 .gitignore
 example_annotator
 **input.status.json
