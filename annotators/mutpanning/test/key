@@ -1,32 +1,36 @@
 #CRAVAT Report
-#Created at Wednesday 06/24/2020 10:07:09
+#Created at Thursday 07/09/2020 13:25:35
 #Report level: variant
 #
-Variant Annotation															Mutpanning								
-UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo	Transcript	Sequence Ontology	Protein Change	All Mappings	Sample Count	Samples	Tags	Number of Cancer Types	Max Mutation Frequency	Best Q Value	Supporting Literature	TCGA Marker Papers	dNdS Study	Tumor portal	Bailey Database	Cancer Type
-8	chr4	186655820	T	C			FAT1	ENST00000614102.4	intron		ENST00000441802.6:FAT1:Q14517:intron:(na):(na); ENST00000614102.4:FAT1:A0A087WVP1:intron:(na):(na)	1	inter_mut		4.0	20.0	0.0	yes	yes	yes	yes	yes	Bladder | Brain | HeadNeck | LungSC
-1	chr17	7675166	C	A		Yes	TP53	ENST00000269305.8	missense	S149F	ENST00000269305.8:TP53:P04637:missense:S149F:G446T; ENST00000359597.8:TP53:J3KP33:missense:S149F:G446T; ENST00000413465.6:TP53:E7EQX7:missense:S149F:G446T; ENST00000420246.6:TP53:(na):missense:S149F:G446T; ENST00000445888.6:TP53:P04637:missense:S149F:G446T; ENST00000455263.6:TP53:(na):missense:S149F:G446T; ENST00000504290.5:TP53:(na):missense:S17F:G50T; ENST00000504937.5:TP53:(na):missense:S17F:G50T; ENST00000510385.5:TP53:(na):missense:S17F:G50T; ENST00000610292.4:TP53:(na):missense:S110F:G329T; ENST00000610538.4:TP53:(na):missense:S110F:G329T; ENST00000610623.4:TP53:A0A087WT22:5-prime utr:(na):(na); ENST00000615910.4:TP53:A0A087WZU8:missense:S138F:G413T; ENST00000617185.4:TP53:(na):missense:S149F:G446T; ENST00000618944.4:TP53:A0A087WXZ1:5-prime utr:(na):(na); ENST00000619186.4:TP53:A0A087X1Q1:5-prime utr:(na):(na); ENST00000619485.4:TP53:(na):missense:S110F:G329T; ENST00000620739.4:TP53:(na):missense:S110F:G329T; ENST00000622645.4:TP53:(na):missense:S110F:G329T	1	TP53_mut		24.0	87.34	0.0	yes	yes	yes	yes	yes	AdenoidCystic | Bladder | Blood | Brain | Breast | Cholangio | Colorectal | Endometrium | Gastroesophageal | HeadNeck | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Lymph | Ovarian | Pancreas | Pleura | Prostate | Sarcoma | Skin | Thymus | Thyroid
-2	chr12	25227300	G	T		Yes	KRAS	ENST00000256078.8	missense	G75E	ENST00000256078.8:KRAS:P01116:missense:G75E:C224A; ENST00000311936.7:KRAS:(na):missense:G75E:C224A; ENST00000557334.5:KRAS:G3V5T7:intron:(na):(na)	1	KRAS_mut		11.0	82.57	0.0	yes	yes	yes	yes	yes	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
-7	chr12	25228070	T	A			KRAS	ENST00000256078.8	intron		ENST00000256078.8:KRAS:P01116:intron:(na):(na); ENST00000311936.7:KRAS:(na):intron:(na):(na); ENST00000557334.5:KRAS:G3V5T7:intron:(na):(na)	1	inter_mut		11.0	82.57	0.0	yes	yes	yes	yes	yes	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
-4	chr1	26729790	C	T		Yes	ARID1A	ENST00000324856.11	missense	T426I	ENST00000324856.11:ARID1A:O14497:missense:T426I:C1277T; ENST00000374152.6:ARID1A:(na):missense:T43I:C128T; ENST00000457599.6:ARID1A:(na):missense:T426I:C1277T; ENST00000615191.4:ARID1A:A0A087WUV6:missense:T43I:C128T	1	ARID1a_mut		14.0	30.88	0.0	yes	yes	yes	yes	yes	Bladder | Blood | Brain | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungAD | Pancreas
-5	chr13	48376965	T	G		Yes	RB1	ENST00000267163.4	missense	D421E	ENST00000267163.4:RB1:P06400:missense:D421E:T1263G	1	RB1_mut		15.0	52.63	0.0	yes	yes	yes	yes	yes	Bladder | Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Ovarian | Prostate | Sarcoma | Skin
-6	chr10	87931070	C	A		Yes	PTEN	ENST00000371953.7	synonymous	T78T	ENST00000371953.7:PTEN:P60484:synonymous:T78T:C234A; ENST00000610634.1:PTEN:A0A087WT17:synonymous:T44T:C132A	1	PTEN_mut		13.0	55.35	0.0	yes	yes	yes	yes	yes	Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungSC | Pancreas | Prostate | Skin | Thyroid
-3	chr5	112828905	G	A		Yes	APC	ENST00000257430.8	missense	S559N	ENST00000257430.8:APC:P25054:missense:S559N:G1676A; ENST00000508376.6:APC:P25054:missense:S559N:G1676A	1	APC_mut		6.0	73.99	0.0	yes	yes	yes	yes	yes	Colorectal | Endometrium | Gastroesophageal | Pancreas | Prostate | TesticularGermCell
+Variant Annotation																Mutpanning								
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Gene	Transcript	Sequence Ontology	cDNA change	Protein Change	All Mappings	Sample Count	Samples	Tags	No. of Cancer Types	Mutation Frequency	Best Q Value	Supporting Literature	TCGA Marker Papers	dNdS Study	Tumor portal	Bailey Database	Cancer Type
+10	chr19	3110205	G	T		Yes	GNA11	ENST00000078429.9	missense_variant	c.193G>T	p.Ala65Ser	ENST00000078429.9:GNA11:P29992:missense_variant:p.Ala65Ser:c.193G>T; ENST00000586763.1:GNA11::intron_variant,processed_transcript::	1	GNA11_mut		2.0	45.0	0.0	Yes	32015527			30096302	Skin | UvealMelanoma
+8	chr4	186655820	T	C			FAT1	ENST00000614102.4	intron_variant	c.3580+7479A>G		ENST00000441802.7:FAT1:Q14517:intron_variant::c.3580+7479A>G; ENST00000614102.4:FAT1::intron_variant::c.3580+7479A>G	1	inter_mut		4.0	20.0	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Brain | HeadNeck | LungSC
+1	chr17	7675166	C	A		Yes	TP53	ENST00000615910.4	missense_variant	c.413G>T	p.Ser138Phe	ENST00000269305.8:TP53:P04637:missense_variant:p.Ser149Phe:c.446G>T; ENST00000359597.8:TP53::missense_variant:p.Ser149Phe:c.446G>T; ENST00000413465.6:TP53::missense_variant:p.Ser149Phe:c.446G>T; ENST00000420246.6:TP53:P04637:missense_variant:p.Ser149Phe:c.446G>T; ENST00000445888.6:TP53:P04637:missense_variant:p.Ser149Phe:c.446G>T; ENST00000455263.6:TP53:P04637:missense_variant:p.Ser149Phe:c.446G>T; ENST00000504290.5:TP53:P04637:missense_variant:p.Ser17Phe:c.50G>T; ENST00000504937.5:TP53:P04637:missense_variant:p.Ser17Phe:c.50G>T; ENST00000510385.5:TP53:P04637:missense_variant:p.Ser17Phe:c.50G>T; ENST00000574684.1:TP53::2kb_upstream_variant,processed_transcript::; ENST00000610292.4:TP53:P04637:missense_variant:p.Ser110Phe:c.329G>T; ENST00000610538.4:TP53:P04637:missense_variant:p.Ser110Phe:c.329G>T; ENST00000610623.4:TP53::5_prime_UTR_variant::c.-32G>T; ENST00000615910.4:TP53::missense_variant:p.Ser138Phe:c.413G>T; ENST00000617185.4:TP53:P04637:missense_variant:p.Ser149Phe:c.446G>T; ENST00000618944.4:TP53::5_prime_UTR_variant::c.-32G>T; ENST00000619186.4:TP53::5_prime_UTR_variant::c.-32G>T; ENST00000619485.4:TP53:P04637:missense_variant:p.Ser110Phe:c.329G>T; ENST00000620739.4:TP53:P04637:missense_variant:p.Ser110Phe:c.329G>T; ENST00000622645.4:TP53:P04637:missense_variant:p.Ser110Phe:c.329G>T; ENST00000635293.1:TP53::missense_variant,NMD_transcript_variant:p.Ser110Phe:c.329G>T	1	TP53_mut		24.0	87.34	0.0	Yes	32015527	29906452	24390350	30096302	AdenoidCystic | Bladder | Blood | Brain | Breast | Cholangio | Colorectal | Endometrium | Gastroesophageal | HeadNeck | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Lymph | Ovarian | Pancreas | Pleura | Prostate | Sarcoma | Skin | Thymus | Thyroid
+2	chr12	25227300	G	T		Yes	KRAS	ENST00000256078.9	missense_variant	c.224C>A	p.Gly75Glu	ENST00000256078.9:KRAS:P01116:missense_variant:p.Gly75Glu:c.224C>A; ENST00000311936.8:KRAS:P01116:missense_variant:p.Gly75Glu:c.224C>A; ENST00000557334.5:KRAS::intron_variant::c.112-17389C>A; ENST00000620933.1:AC092794.2::2kb_downstream_variant,lnc_RNA::	1	KRAS_mut		11.0	82.57	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
+7	chr12	25228070	T	A			KRAS	ENST00000256078.9	intron_variant	c.112-658A>T		ENST00000256078.9:KRAS:P01116:intron_variant::c.112-658A>T; ENST00000311936.8:KRAS:P01116:intron_variant::c.112-658A>T; ENST00000557334.5:KRAS::intron_variant::c.111+17204A>T	1	inter_mut		11.0	82.57	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
+9	chr4	1658830	G	T			FAM53A	ENST00000308132.10	intron_variant	c.76-1362C>A		ENST00000308132.10:FAM53A:Q6NSI3:intron_variant::c.76-1362C>A; ENST00000461064.5:FAM53A:Q6NSI3:intron_variant::c.76-1362C>A; ENST00000472884.6:FAM53A:Q6NSI3:intron_variant::c.76-1362C>A; ENST00000489363.5:FAM53A::intron_variant::c.76-1362C>A	1	non_cod										
+4	chr1	26729790	C	T		Yes	ARID1A	ENST00000324856.13	missense_variant	c.1277C>T	p.Thr426Ile	ENST00000324856.13:ARID1A:O14497:missense_variant:p.Thr426Ile:c.1277C>T; ENST00000374152.7:ARID1A:O14497:missense_variant:p.Thr43Ile:c.128C>T; ENST00000430799.7:ARID1A::missense_variant:p.Thr43Ile:c.128C>T; ENST00000457599.6:ARID1A:O14497:missense_variant:p.Thr426Ile:c.1277C>T; ENST00000615191.4:ARID1A::missense_variant:p.Thr43Ile:c.128C>T	1	ARID1a_mut		14.0	30.88	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Blood | Brain | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungAD | Pancreas
+5	chr13	48376965	T	G		Yes	RB1	ENST00000267163.5	missense_variant	c.1263T>G	p.Asp421Glu	ENST00000267163.5:RB1:P06400:missense_variant:p.Asp421Glu:c.1263T>G; ENST00000650461.1:RB1::missense_variant:p.Asp421Glu:c.1263T>G	1	RB1_mut		15.0	52.63	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Ovarian | Prostate | Sarcoma | Skin
+6	chr10	87931070	C	A		Yes	PTEN	ENST00000371953.8	synonymous_variant	c.234C>A	p.Thr78=	ENST00000371953.8:PTEN:P60484:synonymous_variant:p.Thr78=:c.234C>A	1	PTEN_mut		13.0	55.35	0.0	Yes	32015527	29906452	24390350	30096302	Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungSC | Pancreas | Prostate | Skin | Thyroid
+3	chr5	112828905	G	A		Yes	APC	ENST00000508376.6	missense_variant	c.1676G>A	p.Ser559Asn	ENST00000257430.9:APC:P25054:missense_variant:p.Ser559Asn:c.1676G>A; ENST00000508376.6:APC:P25054:missense_variant:p.Ser559Asn:c.1676G>A; ENST00000508624.5:APC::NMD_transcript_variant,3_prime_UTR_variant::c.*998G>A	1	APC_mut		6.0	73.99	0.0	Yes	32015527	29906452	24390350	30096302	Colorectal | Endometrium | Gastroesophageal | Pancreas | Prostate | TesticularGermCell
 #CRAVAT Report
-#Created at Wednesday 06/24/2020 10:07:09
+#Created at Thursday 07/09/2020 13:25:35
 #Report level: gene
 #
 Variant Annotation						Mutpanning								
-Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies	Number of Cancer Types	Max Mutation Frequency	Best Q Value	Supporting Literature	TCGA Marker Papers	dNdS Study	Tumor portal	Bailey Database	Cancer Type
-FAT1		0	1	intron	intron(1)	4.0	20.0	0.0	yes	yes	yes	yes	yes	Bladder | Brain | HeadNeck | LungSC
-TP53		1	0	missense	missense(1),5-prime utr(1)	24.0	87.34	0.0	yes	yes	yes	yes	yes	AdenoidCystic | Bladder | Blood | Brain | Breast | Cholangio | Colorectal | Endometrium | Gastroesophageal | HeadNeck | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Lymph | Ovarian | Pancreas | Pleura | Prostate | Sarcoma | Skin | Thymus | Thyroid
-KRAS		1	1	missense	intron(2),missense(1)	11.0	82.57	0.0	yes	yes	yes	yes	yes	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
-ARID1A		1	0	missense	missense(1)	14.0	30.88	0.0	yes	yes	yes	yes	yes	Bladder | Blood | Brain | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungAD | Pancreas
-RB1		1	0	missense	missense(1)	15.0	52.63	0.0	yes	yes	yes	yes	yes	Bladder | Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Ovarian | Prostate | Sarcoma | Skin
-PTEN		1	0	synonymous	synonymous(1)	13.0	55.35	0.0	yes	yes	yes	yes	yes	Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungSC | Pancreas | Prostate | Skin | Thyroid
-APC		1	0	missense	missense(1)	6.0	73.99	0.0	yes	yes	yes	yes	yes	Colorectal | Endometrium | Gastroesophageal | Pancreas | Prostate | TesticularGermCell
+Gene	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies	No. of Cancer Types	Mutation Frequency	Best Q Value	Supporting Literature	TCGA Marker Papers	dNdS Study	Tumor portal	Bailey Database	Cancer Type
+GNA11		1	0	missense_variant	intron_variant(1),missense_variant(1),processed_transcript(1)	2.0	45.0	0.0	Yes	32015527			30096302	Skin | UvealMelanoma
+FAT1		0	1	intron_variant	intron_variant(1)	4.0	20.0	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Brain | HeadNeck | LungSC
+TP53		1	0	missense_variant	missense_variant(1),NMD_transcript_variant(1),processed_transcript(1),5_prime_UTR_variant(1)	24.0	87.34	0.0	Yes	32015527	29906452	24390350	30096302	AdenoidCystic | Bladder | Blood | Brain | Breast | Cholangio | Colorectal | Endometrium | Gastroesophageal | HeadNeck | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Lymph | Ovarian | Pancreas | Pleura | Prostate | Sarcoma | Skin | Thymus | Thyroid
+KRAS		1	1	missense_variant	intron_variant(2),missense_variant(1)	11.0	82.57	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Blood | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | LungAD | Pancreas | TesticularGermCell
+FAM53A		0	1	intron_variant	intron_variant(1)									
+ARID1A		1	0	missense_variant	missense_variant(1)	14.0	30.88	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Blood | Brain | Breast | Cervix | Cholangio | Colorectal | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungAD | Pancreas
+RB1		1	0	missense_variant	missense_variant(1)	15.0	52.63	0.0	Yes	32015527	29906452	24390350	30096302	Bladder | Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyNonClear | Liver | LungAD | LungSC | LungSCLC | Ovarian | Prostate | Sarcoma | Skin
+PTEN		1	0	synonymous_variant	synonymous_variant(1)	13.0	55.35	0.0	Yes	32015527	29906452	24390350	30096302	Brain | Breast | Cervix | Endometrium | Gastroesophageal | KidneyClear | KidneyNonClear | Liver | LungSC | Pancreas | Prostate | Skin | Thyroid
+APC		1	0	missense_variant	missense_variant(1),NMD_transcript_variant(1),3_prime_UTR_variant(1)	6.0	73.99	0.0	Yes	32015527	29906452	24390350	30096302	Colorectal | Endometrium | Gastroesophageal | Pancreas | Prostate | TesticularGermCell
 #CRAVAT Report
-#Created at Wednesday 06/24/2020 10:07:09
+#Created at Thursday 07/09/2020 13:25:35
 #Report level: sample
 #
 Variant Annotation	
@@ -39,8 +43,10 @@ UID	Sample
 6	PTEN_mut
 7	inter_mut
 8	inter_mut
+9	non_cod
+10	GNA11_mut
 #CRAVAT Report
-#Created at Wednesday 06/24/2020 10:07:09
+#Created at Thursday 07/09/2020 13:25:35
 #Report level: mapping
 #
 Variant Annotation			
@@ -53,3 +59,5 @@ Original Line	User Tags	UID	Input File Number
 9		6	0
 10		7	0
 11		8	0
+12		9	0
+13		10	0
