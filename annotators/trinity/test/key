@@ -1,0 +1,37 @@
+#CRAVAT Report
+#Created at Friday 06/26/2020 16:32:15
+#Report level: variant
+#
+Variant Annotation																trinity
+UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Hugo Gene Symbol	Transcript	Sequence Ontology	cDNA change	Protein Change	All Mappings	Sample Count	Samples	Tags	Rna Editing Database
+2	chr1	136168	T	C									0			ATLAS
+1	chr1	10187	A	G									0			RADAR
+3	chr1	280226	T	C									0			DARNED; RADAR
+4	chr1	777991	T	C			LINC01409	ENST00000429505.6	lnc_RNA			ENST00000412115.2:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000429505.6:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000434264.6:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000443772.2:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000457084.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000589899.5:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000609830.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000651411.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000655765.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000656571.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000657896.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000658648.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000665719.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000665867.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000666217.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000669749.1:LINC01409::2kb_upstream_variant,lnc_RNA::; ENST00000670700.1:LINC01409::2kb_upstream_variant,lnc_RNA::	0			ATLAS; DARNED; RADAR
+#CRAVAT Report
+#Created at Friday 06/26/2020 16:32:15
+#Report level: gene
+#
+Variant Annotation					
+Hugo	Note	Number of Coding Variants	Number of Noncoding Variants	Sequence Ontology	All Sequence Ontologies
+LINC01409		0	1	lnc_RNA	lnc_RNA(0)
+#CRAVAT Report
+#Created at Friday 06/26/2020 16:32:15
+#Report level: sample
+#
+Variant Annotation	
+UID	Sample
+1	
+2	
+3	
+4	
+#CRAVAT Report
+#Created at Friday 06/26/2020 16:32:15
+#Report level: mapping
+#
+Variant Annotation			
+Original Line	User Tags	UID	Input File Number
+2		1	0
+3		2	0
+4		3	0
+5		4	0

@@ -8,37 +8,20 @@ class CravatAnnotator(BaseAnnotator):
 
     def annotate(self, input_data):
         chrom = input_data['chrom']
-        pos = input_data['pos']
-        ref_base = input_data['ref_base']
-        alt_base = input_data['alt_base']
-        if ref_base == '-' or alt_base == '-':
-            q = 'select sig, disease_refs, disease_names, rev_stat, id from ' +\
-                chrom + ' where pos=' + str(pos)
-        else:
-            q = 'select sig, disease_refs, disease_names, rev_stat, id from ' +\
-                chrom + ' where pos=' + str(pos) + ' and ref="' +\
-                ref_base + '" and alt="' + alt_base + '"'
-
-        sig = ''
-        refs = ''
-        diseases = ''
-        rev = ''
-        id = ''
-
-        self.cursor.execute(q)
+        self.cursor.execute(
+            f'select sig, disease_refs, disease_names, rev_stat, id from {chrom} where pos=? and ref=? and alt=?;',
+            (input_data['pos'], input_data['ref_base'], input_data['alt_base'])
+        )
         qr = self.cursor.fetchone()
         if qr is not None:
-            sig = qr[0]
-            refs = qr[1]
-            diseases = qr[2]
-            rev = qr[3]
-            id = qr[4]
+            return {
+                'sig':qr[0],
+                'disease_refs':qr[1],
+                'disease_names':qr[2],
+                'rev_stat':qr[3],
+                'id': qr[4],
+            }
 
-        return {'sig':sig,
-                'disease_refs':refs,
-                'disease_names':diseases,
-                'rev_stat':rev,
-                'id': id}
         
 if __name__ == '__main__':
     annotator = CravatAnnotator(sys.argv)
