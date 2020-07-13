@@ -650,8 +650,8 @@ class Mapper (cravat.BaseMapper):
                     so += (SO_NMD,)
                 mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding)
                 if genename not in all_mappings:
-                    all_mappings[genename] = set()
-                all_mappings[genename].add(mapping)
+                    all_mappings[genename] = []
+                all_mappings[genename].append(mapping)
             else:
                 ttype = self.transcripttypes[transcripttypeno]
                 if ttype in transcripttype_to_so:
@@ -680,8 +680,8 @@ class Mapper (cravat.BaseMapper):
                 coding = NONCODING
                 mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding)
                 if genename not in all_mappings:
-                    all_mappings[genename] = set()
-                all_mappings[genename].add(mapping)
+                    all_mappings[genename] = []
+                all_mappings[genename].append(mapping)
         primary_mapping = self._get_primary_mapping(all_mappings)
         crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         crx_data.update(crv_data)
@@ -3936,6 +3936,7 @@ class Mapper (cravat.BaseMapper):
     def _get_primary_mapping (self, all_mappings):
         primary_mappings = {}
         for hugo, mappings in all_mappings.items():
+            mappings = all_mappings[hugo]
             if hugo not in primary_mappings:
                 primary_mappings[hugo] = ('', '', (SO_NSO,), '', '', -1, '', '')
             for mapping in mappings:
