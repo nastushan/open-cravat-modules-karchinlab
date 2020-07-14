@@ -3074,7 +3074,7 @@ class Mapper (cravat.BaseMapper):
 
     def _get_gpos_fraginfo (self, tid, chrom, gpos):
         gposbin = int(gpos / self.binsize)
-        q = f'select start, end, kind, cstart from transcript_frags_{chrom} where tid={tid} and binno={gposbin} and start<={gpos} and end>={gpos}'
+        q = f'select start, end, kind, cstart, exonno from transcript_frags_{chrom} where tid={tid} and binno={gposbin} and start<={gpos} and end>={gpos}'
         self.c2.execute(q)
         row = self.c2.fetchone()
         if row is None:
@@ -3207,9 +3207,9 @@ class Mapper (cravat.BaseMapper):
                     else:
                         return None
             else:
-                start_q, end_q, kind_q, cstart_q = row
+                start_q, end_q, kind_q, cstart_q, exonno = row
         if kind_q & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
-            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand, prevcont, nextcont, chrom, tid, exonno, kind)
+            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand, prevcont, nextcont, chrom, tid, exonno, kind_q)
         else:
             if strand == PLUSSTRAND:
                 cpos_q = gpos_q - start_q + cstart_q
