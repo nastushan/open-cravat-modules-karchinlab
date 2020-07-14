@@ -1385,7 +1385,8 @@ class Mapper (cravat.BaseMapper):
                     tid, cpos, cstart, tpos, tstart, tr_alt_base, chrom, strand, lenalt, apos, gpos, lenref, alen, 
                     gposend_kind, gposend_fragno, gposend_cstart, gposend_tstart, gposend, cpos_end, tpos_end, tlen, fragno, 
                     apos_end, gstart, gend, gposend_gstart, gposend_gend, exonno, gposend_exonno)
-                coding = CODING
+                if (SO_EXL in so) or (SO_SPL in so) or (SO_IND in so) or (SO_FSD in so) or (SO_MLO in so):
+                    coding = CODING
             elif gposend_kind == FRAG_NCRNAINTRON:
                 so = (SO_NSO,)
             elif gposend_kind == FRAG_FLAG_IG:
