@@ -650,8 +650,8 @@ class Mapper (cravat.BaseMapper):
                     so += (SO_NMD,)
                 mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding)
                 if genename not in all_mappings:
-                    all_mappings[genename] = set()
-                all_mappings[genename].add(mapping)
+                    all_mappings[genename] = []
+                all_mappings[genename].append(mapping)
             else:
                 ttype = self.transcripttypes[transcripttypeno]
                 if ttype in transcripttype_to_so:
@@ -680,8 +680,8 @@ class Mapper (cravat.BaseMapper):
                 coding = NONCODING
                 mapping = (uniprot, achange, so, tr, cchange, alen, genename, coding)
                 if genename not in all_mappings:
-                    all_mappings[genename] = set()
-                all_mappings[genename].add(mapping)
+                    all_mappings[genename] = []
+                all_mappings[genename].append(mapping)
         primary_mapping = self._get_primary_mapping(all_mappings)
         crx_data = {x['name']:'' for x in cravat.constants.crx_def}
         crx_data.update(crv_data)
@@ -2029,7 +2029,7 @@ class Mapper (cravat.BaseMapper):
         mrna = bytearray(tlen)
         self._fill_full_mrna_seq(tid, mrna)
         mrna_lastcodon_tpos = tposcposoffset + alen * 3
-        mrna_lastcodon = mrna[mrna_lastcodon_tpos: mrna_lastcodon_tpos + 3]
+        mrna_lastcodon = mrna[mrna_lastcodon_tpos: mrna_lastcodon_tpos + 3].decode()
         if mrna_lastcodon != 'TAA' and mrna_lastcodon != 'TAG' and mrna_lastcodon != 'TGA':
             so = (SO_TO_DISCARD,)
             achange = ''
@@ -3074,7 +3074,7 @@ class Mapper (cravat.BaseMapper):
 
     def _get_gpos_fraginfo (self, tid, chrom, gpos):
         gposbin = int(gpos / self.binsize)
-        q = f'select start, end, kind, cstart from transcript_frags_{chrom} where tid={tid} and binno={gposbin} and start<={gpos} and end>={gpos}'
+        q = f'select start, end, kind, cstart, exonno from transcript_frags_{chrom} where tid={tid} and binno={gposbin} and start<={gpos} and end>={gpos}'
         self.c2.execute(q)
         row = self.c2.fetchone()
         if row is None:
@@ -3207,9 +3207,9 @@ class Mapper (cravat.BaseMapper):
                     else:
                         return None
             else:
-                start_q, end_q, kind_q, cstart_q = row
+                start_q, end_q, kind_q, cstart_q, exonno = row
         if kind_q & FRAG_FLAG_INTRON == FRAG_FLAG_INTRON:
-            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand, prevcont, nextcont, chrom, tid, exonno, kind)
+            hgvs_cpos = self._get_intron_hgvs_cpos(start_q, end_q, gpos_q, cstart_q, strand, prevcont, nextcont, chrom, tid, exonno, kind_q)
         else:
             if strand == PLUSSTRAND:
                 cpos_q = gpos_q - start_q + cstart_q
@@ -3936,6 +3936,7 @@ class Mapper (cravat.BaseMapper):
     def _get_primary_mapping (self, all_mappings):
         primary_mappings = {}
         for hugo, mappings in all_mappings.items():
+            mappings = all_mappings[hugo]
             if hugo not in primary_mappings:
                 primary_mappings[hugo] = ('', '', (SO_NSO,), '', '', -1, '', '')
             for mapping in mappings:
