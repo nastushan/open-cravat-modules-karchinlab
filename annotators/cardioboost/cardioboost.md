@@ -1,6 +1,6 @@
 # CardioBoost
 
-CardioBoost is a disease-specific machine learning classifier to predict the pathogenicity of rare (gnomAD Allele Frequency <=0.1%) missense variant in genes associated with cardiomyopathies and arrhythmias that outperforms existing genome-wide prediction tools.The methods and evaluations are described fully in our manuscript available on bioRxiv. The source code for the manuscript, along with all data and code necessary to reproduce the analyses, is available on GitHub.The web app was built using Shiny, the source code is freely available here.
+CardioBoost is a disease-specific machine learning classifier to predict the pathogenicity of rare (gnomAD Allele Frequency <=0.1%) missense variant in genes associated with cardiomyopathies and arrhythmias that outperforms existing genome-wide prediction tools. The methods and evaluations are described fully in our manuscript available on bioRxiv. The source code for the manuscript, along with all data and code necessary to reproduce the analyses, is available on GitHub. The web app was built using Shiny.
 
 ## Inherited Cardiac Conditions
 
@@ -60,4 +60,3 @@ There are mainly three reasons that CardioBoost would not return any prediction:
 * The variant's gnomAD allele frequency is larger than 0.1%, which can be considered as a common variant and highly likely benign to cardiomyopathies and arrhythmias.
 
 Information from https://www.cardiodb.org/cardioboost/
-

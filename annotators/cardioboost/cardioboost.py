@@ -15,20 +15,12 @@ class CravatAnnotator(BaseAnnotator):
         out = {}
         for row in rows:
             if row[2] == 'Cardiomyopathy':
-                a = round(row[0], 4)
-                a = str(a)
-                b = '; ' + row[1]
-                c = a + b
-                out['cardiomyopathy'] = c
+                out['cardiomyopathy'] = row[0]
+                out['cardiomyopathy1'] = row[1]
                 
-            elif row[2] == 'Arrhthymias':
-                a = round(row[0], 4)
-                a = str(a)
-                b = '; ' + row[1]
-                c = a + b
-                out['arrhthymias'] = c
-                
-                
+            elif row[2] == 'Arrhythmias':
+                out['arrhythmias'] = row[0]
+                out['arrhythmias1'] = row[1]     
         return out
     
     def cleanup(self):
