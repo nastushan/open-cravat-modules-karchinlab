@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Monday 07/13/2020 16:25:47
+#Created at Wednesday 07/15/2020 15:13:24
 #Report level: variant
 #
 Variant Annotation																Cardiovascular Disease Knowledge Portal				
@@ -8,9 +8,9 @@ UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Gene	Transcript	Sequence Ontolo
 5	chr1	817186	G	A			FAM87B	ENST00000326734.2	lnc_RNA			ENST00000326734.2:FAM87B::2kb_upstream_variant,lnc_RNA::	0				5.0557e-07	2.1781e-05	9.1106e-07	
 4	chr1	55326	T	C									0							4.7746e-06
 2	chr1	88316	A	G			AL627309.1	ENST00000466430.5	lnc_RNA			ENST00000466430.5:AL627309.1::2kb_downstream_variant,lnc_RNA::; ENST00000495576.1:AL627309.3::2kb_downstream_variant,lnc_RNA::	0			5.7302e-05			2.0295e-06	
-1	chr1	30923	G	T			MIR1302-2HG	ENST00000469289.1	lnc_RNA			ENST00000469289.1:MIR1302-2HG::intron_variant,lnc_RNA::; ENST00000473358.1:MIR1302-2HG::intron_variant,lnc_RNA::; ENST00000607096.1:MIR1302-2::2kb_downstream_variant,miRNA::	0						4.7853e-06	
+1	chr1	30923	G	T			MIR1302-2HG	ENST00000473358.1	lnc_RNA			ENST00000469289.1:MIR1302-2HG::intron_variant,lnc_RNA::; ENST00000473358.1:MIR1302-2HG::intron_variant,lnc_RNA::; ENST00000607096.1:MIR1302-2::2kb_downstream_variant,miRNA::	0						4.7853e-06	
 #CRAVAT Report
-#Created at Monday 07/13/2020 16:25:47
+#Created at Wednesday 07/15/2020 15:13:24
 #Report level: gene
 #
 Variant Annotation					
@@ -19,7 +19,7 @@ FAM87B		0	2	lnc_RNA	lnc_RNA(0)
 AL627309.1		0	1	lnc_RNA	lnc_RNA(0)
 MIR1302-2HG		0	1	lnc_RNA	intron_variant(0),lnc_RNA(0)
 #CRAVAT Report
-#Created at Monday 07/13/2020 16:25:47
+#Created at Wednesday 07/15/2020 15:13:24
 #Report level: sample
 #
 Variant Annotation	
@@ -30,7 +30,7 @@ UID	Sample
 4	
 5	
 #CRAVAT Report
-#Created at Monday 07/13/2020 16:25:47
+#Created at Wednesday 07/15/2020 15:13:24
 #Report level: mapping
 #
 Variant Annotation			
