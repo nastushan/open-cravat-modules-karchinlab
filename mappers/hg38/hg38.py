@@ -2982,7 +2982,6 @@ class Mapper (cravat.BaseMapper):
         self.db = self._get_db(db_path)
         self.c = self.db.cursor()
         self.c2 = self.db.cursor()
-        self.c.execute('pragma synchronous=0;')
         q = 'select v from info where k="binsize"'
         self.c.execute(q)
         self.binsize = int(self.c.fetchone()[0])
@@ -3000,7 +2999,6 @@ class Mapper (cravat.BaseMapper):
         self._make_primary_transcripts()
 
     def end (self):
-        self.c.execute('pragma synchronous=2;')
         self.c.close()
         self.c2.close()
         self.db.close()
