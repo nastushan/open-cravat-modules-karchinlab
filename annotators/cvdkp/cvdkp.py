@@ -8,7 +8,6 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data):
         q = 'select effect_weight, Disease from cvdkp where chr = "{chr}" AND position_hg19 = {position_hg19} AND A1 = "{A1}" AND A2 = "{A2}"'.format(
             chr = input_data["chrom"], position_hg19=int(input_data["pos"]), A2 = input_data["alt_base"], A1 = input_data["ref_base"])
-        print(q)
         self.cursor.execute(q)
         rows = self.cursor.fetchall()
         out = {}
