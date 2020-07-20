@@ -26,10 +26,4 @@ Knowledge Portals are intended to serve three key functions:
 * To function as scientific discovery engines that can be harnessed by the community at large, and assist in the selection of new targets for drug design.
 * Eventually, to facilitate the conduct of customized analyses by any interested user around the world, doing so in a secure manner that provides high quality results while protecting the integrity of the data.
 
-## Citations
-
-Khera, Amit V., et al. "Polygenic prediction of weight and obesity trajectories from birth to adulthood." Cell 177.3 (2019): 587-596
-
-Khera, Amit V., et al. "Genome-wide polygenic scores for common diseases identify individuals with risk equivalent to monogenic mutations." Nature genetics 50.9 (2018): 1219-1224.
-
 Information from http://www.broadcvdi.org/

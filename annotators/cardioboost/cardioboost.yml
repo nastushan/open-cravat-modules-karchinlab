@@ -13,7 +13,7 @@ output_columns:
   title: Cardiomyopathy Score
   type: float
   hidden: false
-  desc: pathogenic score
+  desc: Probability of Pathogenicity
   width: 150
 
 - name: cardiomyopathy1
@@ -28,7 +28,7 @@ output_columns:
   title: Arrhythmia Score
   type: float
   hidden: false
-  desc: pathogenic score
+  desc: Probability of Pathogenicity
   width: 150
 
 - name: arrhythmias1
@@ -46,4 +46,3 @@ tags:
 title: CardioBoost
 version: 1.0.0
 type: annotator
-private: true

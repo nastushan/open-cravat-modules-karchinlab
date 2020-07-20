@@ -32,10 +32,11 @@ output_columns:
   title: Type 2 Diabetes
   type: float
   hidden: false
+  width: 100
+  
 tags:
 - variants
 title: Cardiovascular Disease Knowledge Portal
 version: 1.0.0
 type: annotator
-private: true
 
