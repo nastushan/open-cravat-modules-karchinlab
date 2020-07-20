@@ -3747,7 +3747,7 @@ class Mapper (cravat.BaseMapper):
             elif ref_codonpos == 1:
                 ref_cpos = cpos
             elif ref_codonpos == 2:
-                ref_cpos = cpos - 2
+                ref_cpos = cpos - 1
             ref_tpos = tstart + ref_cpos - cstart
             ref_gpos = gpos + ref_cpos - cpos
             ref_codonnum = self._get_codonnum(tid, ref_tpos)
@@ -3851,7 +3851,7 @@ class Mapper (cravat.BaseMapper):
                     achange = f'p.{aanum_to_aa[MET]}1?'
                 else:
                     if stp_found:
-                        if i_found:
+                        if i_found is not None:
                             if ref_aa_found == TER:
                                 so = (SO_FSI, SO_STL)
                             else:
@@ -3865,6 +3865,7 @@ class Mapper (cravat.BaseMapper):
                             so = (SO_SYN,)
                             achange = f'p.{aanum_to_aa[pseq[apos]]}{apos}='
                     else:
+                        so = (SO_FSI,)
                         achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}?'
         return so, achange
 
