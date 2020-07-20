@@ -3744,8 +3744,10 @@ class Mapper (cravat.BaseMapper):
             ref_codonpos = cpos % 3
             if ref_codonpos == 0:
                 ref_cpos = cpos - 2
-            else:
-                ref_cpos = cpos - ref_codonpos + 1
+            elif ref_codonpos == 1:
+                ref_cpos = cpos
+            elif ref_codonpos == 2:
+                ref_cpos = cpos - 2
             ref_tpos = tstart + ref_cpos - cstart
             ref_gpos = gpos + ref_cpos - cpos
             ref_codonnum = self._get_codonnum(tid, ref_tpos)
@@ -3848,16 +3850,20 @@ class Mapper (cravat.BaseMapper):
                     so = (SO_FSI, SO_MLO)
                     achange = f'p.{aanum_to_aa[MET]}1?'
                 else:
-                    if ref_aa_found == TER:
-                        so = (SO_FSI, SO_STL)
-                    else:
-                        so = (SO_FSI,)
                     if stp_found:
-                        ter_dist = len(alt_aas) - i_found
-                        if ter_dist == 1:
-                            achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}'
+                        if i_found:
+                            if ref_aa_found == TER:
+                                so = (SO_FSI, SO_STL)
+                            else:
+                                so = (SO_FSI,)
+                            ter_dist = len(alt_aas) - i_found
+                            if ter_dist == 1:
+                                achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}'
+                            else:
+                                achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}{len(alt_aas) - i_found}'
                         else:
-                            achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}{len(alt_aas) - i_found}'
+                            so = (SO_SYN,)
+                            achange = f'p.{aanum_to_aa[pseq[apos]]}{apos}='
                     else:
                         achange = f'p.{aanum_to_aa[ref_aa_found]}{ref_apos_found}{aanum_to_aa[alt_aas[i_found]]}fs{aanum_to_aa[TER]}?'
         return so, achange
