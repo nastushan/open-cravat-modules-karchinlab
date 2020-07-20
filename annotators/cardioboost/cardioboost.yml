@@ -1,31 +1,48 @@
 datasource: v2.1
 description: Predicts pathogenicity of missense variants for inherited cardiac conditions
 developer:
-  name: CardioBoost
-  organization: CardioBoost
-  email: support@cravat.us
-  website: https://www.cardiodb.org/cardioboost/
-  citation: Zhang, Xiaolei, et al. "Disease-specific variant pathogenicity prediction
-    significantly improves variant interpretation in inherited cardiac conditions."
-    bioRxiv (2020).
+  name: 'CardioBoost'
+  organization: 'CardioBoost'
+  email: 'support@cravat.us'
+  website: 'https://www.cardiodb.org/cardioboost/'
+  citation: 'Zhang, Xiaolei, et al. "Disease-specific variant pathogenicity prediction significantly improves variant interpretation in inherited cardiac conditions." bioRxiv (2020).'
+
 level: variant
 output_columns:
 - name: cardiomyopathy
-  title: Cardiomyopathy
+  title: Cardiomyopathy Score
+  type: float
+  hidden: false
+  desc: Probability of Pathogenicity
+  width: 150
+
+- name: cardiomyopathy1
+  title: Cardiomyopathy Class
   type: string
   hidden: false
-  desc: pathogeniciy; classification for cardiomyopathy conditions
-  width: 275
-- name: arrhthymias
-  title: Arrhythmia
+  desc: a variant is classified given its predicted pathogenicity
+  width: 175
+  category: single
+
+- name: arrhythmias
+  title: Arrhythmia Score
+  type: float
+  hidden: false
+  desc: Probability of Pathogenicity
+  width: 150
+
+- name: arrhythmias1
+  title: Arrhythmia Class
   type: string
   hidden: false
-  desc: pathogeniciy; classification for inherited arrhthymia conditions
+  desc: a variant is classified given its predicted pathogenicity
+  width: 175
+  category: single
+  
 tags:
 - variant
 - genes
+
 title: CardioBoost
 version: 1.0.0
 type: annotator
-publish: private
-private: true
