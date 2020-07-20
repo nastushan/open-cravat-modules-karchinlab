@@ -65,14 +65,15 @@ def _compare_mapping (m2, m1):
     m2so = max(m2sos)
     minm1so = min(m1sos)
     minm2so = min(m2sos)
-    if minm1so > 0 and minm2so < 0:
+    if minm2so < 0 and minm1so > 0:
         return -1
+    elif minm1so < 0 and minm2so > 0:
+        return 1
     m1aalen = m1[MAPPING_AALEN_I]
     m2aalen = m2[MAPPING_AALEN_I]
     higher_so = m1so > m2so
     same_so = m1so == m2so
     longer_aa = m1aalen > m2aalen
-    same_aalen = m1aalen == m2aalen
     self_is_better = higher_so or (same_so and longer_aa)
     if self_is_better:
         return -1
@@ -503,7 +504,7 @@ class Mapper (cravat.BaseMapper):
 
     def map (self, crv_data):
         tr_info = self.tr_info
-        uid = crv_data['uid']
+        uid = crv_data.get('uid', None)
         chrom = crv_data['chrom']
         gpos = crv_data['pos']
         ref_base_str = crv_data['ref_base']
@@ -3947,8 +3948,9 @@ class Mapper (cravat.BaseMapper):
                 primary_mappings[hugo] = ('', '', (SO_NSO,), '', '', -1, '', '')
             for mapping in mappings:
                 tr = mapping[MAPPING_TR_I]
-                if hugo in self.primary_transcript and tr == self.primary_transcript[hugo]: # defined in primary transcript file
+                if hugo in self.primary_transcript and tr.split('.')[0] == self.primary_transcript[hugo]: # defined in primary transcript file
                     primary_mappings[hugo] = mapping
+                    break
                 else:
                     if SO_NSO in primary_mappings[hugo][MAPPING_SO_I]:
                         primary_mappings[hugo] = mapping
