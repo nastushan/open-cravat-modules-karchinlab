@@ -1,5 +1,5 @@
 #CRAVAT Report
-#Created at Tuesday 07/14/2020 13:21:25
+#Created at Wednesday 07/22/2020 15:40:45
 #Report level: variant
 #
 Variant Annotation															
@@ -10,10 +10,10 @@ UID	Chrom	Position	Ref Base	Alt Base	Note	Coding	Gene	Transcript	Sequence Ontolo
 4	chr22	24719483	-	AGG		Yes	PIWIL3	ENST00000332271.9	inframe_insertion	c.2638_2639insCCT	p.Leu879_Phe880insSer	ENST00000332271.9:PIWIL3:Q7Z3Z3:inframe_insertion:p.Leu879_Phe880insSer:c.2638_2639insCCT; ENST00000527701.5:PIWIL3::inframe_insertion:p.Leu761_Phe762insSer:c.2284_2285insCCT; ENST00000532537.2:PIWIL3::processed_transcript::; ENST00000533313.5:PIWIL3::inframe_insertion:p.Leu761_Phe762insSer:c.2284_2285insCCT; ENST00000616349.4:PIWIL3:Q7Z3Z3:inframe_insertion:p.Leu879_Phe880insSer:c.2638_2639insCCT	1	sample_2	TR4;Non-Smoker
 5	chr22	24719483	AGA	-		Yes	PIWIL3	ENST00000332271.9	inframe_deletion	c.2637_2639del	p.Phe880del	ENST00000332271.9:PIWIL3:Q7Z3Z3:inframe_deletion:p.Phe880del:c.2637_2639del; ENST00000527701.5:PIWIL3::inframe_deletion:p.Phe762del:c.2283_2285del; ENST00000532537.2:PIWIL3::processed_transcript::; ENST00000533313.5:PIWIL3::inframe_deletion:p.Phe762del:c.2283_2285del; ENST00000616349.4:PIWIL3:Q7Z3Z3:inframe_deletion:p.Phe880del:c.2637_2639del	1	sample_2	TR5
 6	chr22	24719483	AG	T		Yes	PIWIL3	ENST00000332271.9	frameshift_truncation	c.2637_2638delinsA	p.Tyr881ThrfsTer9	ENST00000332271.9:PIWIL3:Q7Z3Z3:complex_substitution,frameshift_truncation:p.Tyr881ThrfsTer9:c.2637_2638delinsA; ENST00000527701.5:PIWIL3::complex_substitution,frameshift_truncation:p.Tyr763ThrfsTer9:c.2283_2284delinsA; ENST00000532537.2:PIWIL3::processed_transcript::; ENST00000533313.5:PIWIL3::complex_substitution,frameshift_truncation:p.Tyr763ThrfsTer9:c.2283_2284delinsA; ENST00000616349.4:PIWIL3:Q7Z3Z3:complex_substitution,frameshift_truncation:p.Tyr881ThrfsTer9:c.2637_2638delinsA	1	sample_2	TR6
-7	chr2	218270043	G	-		Yes	AAMP	ENST00000444053.5	frameshift_truncation	c.44del	p.Pro15HisfsTer5	ENST00000248450.8:AAMP:Q13685:frameshift_truncation:p.Pro15HisfsTer5:c.44del; ENST00000248451.7:PNKD:Q8N490:2kb_upstream_variant::c.-487del; ENST00000273077.9:PNKD:Q8N490:2kb_upstream_variant::c.-487del; ENST00000420660.5:AAMP::2kb_upstream_variant::c.-445del; ENST00000444053.5:AAMP::frameshift_truncation:p.Pro15HisfsTer5:c.44del; ENST00000472650.1:PNKD::2kb_upstream_variant,processed_transcript::	1	sample_3	TR7
-8	chr2	218270044	-	G		Yes	AAMP	ENST00000444053.5	frameshift_elongation	c.44dup	p.Leu16ThrfsTer9	ENST00000248450.8:AAMP:Q13685:frameshift_elongation:p.Leu16ThrfsTer9:c.44dup; ENST00000248451.7:PNKD:Q8N490:2kb_upstream_variant::c.-487dup; ENST00000273077.9:PNKD:Q8N490:2kb_upstream_variant::c.-487dup; ENST00000420660.5:AAMP::2kb_upstream_variant::c.-445dup; ENST00000444053.5:AAMP::frameshift_elongation:p.Leu16ThrfsTer9:c.44dup; ENST00000472650.1:PNKD::2kb_upstream_variant,processed_transcript::	1	sample_3	TR8
+7	chr2	218270043	G	-		Yes	AAMP	ENST00000248450.8	frameshift_truncation	c.44del	p.Pro15HisfsTer5	ENST00000248450.8:AAMP:Q13685:frameshift_truncation:p.Pro15HisfsTer5:c.44del; ENST00000248451.7:PNKD:Q8N490:2kb_upstream_variant::c.-487del; ENST00000273077.9:PNKD:Q8N490:2kb_upstream_variant::c.-487del; ENST00000420660.5:AAMP::2kb_upstream_variant::c.-445del; ENST00000444053.5:AAMP::frameshift_truncation:p.Pro15HisfsTer5:c.44del; ENST00000472650.1:PNKD::2kb_upstream_variant,processed_transcript::	1	sample_3	TR7
+8	chr2	218270044	-	G		Yes	AAMP	ENST00000248450.8	frameshift_elongation	c.44dup	p.Leu16ThrfsTer9	ENST00000248450.8:AAMP:Q13685:frameshift_elongation:p.Leu16ThrfsTer9:c.44dup; ENST00000248451.7:PNKD:Q8N490:2kb_upstream_variant::c.-487dup; ENST00000273077.9:PNKD:Q8N490:2kb_upstream_variant::c.-487dup; ENST00000420660.5:AAMP::2kb_upstream_variant::c.-445dup; ENST00000444053.5:AAMP::frameshift_elongation:p.Leu16ThrfsTer9:c.44dup; ENST00000472650.1:PNKD::2kb_upstream_variant,processed_transcript::	1	sample_3	TR8
 #CRAVAT Report
-#Created at Tuesday 07/14/2020 13:21:25
+#Created at Wednesday 07/22/2020 15:40:45
 #Report level: gene
 #
 Variant Annotation					
@@ -23,7 +23,7 @@ MRTFA		2	0	missense_variant	intron_variant(2),missense_variant(2)
 PIWIL3		3	0	frameshift_truncation	complex_substitution(1),frameshift_truncation(1),inframe_deletion(1),inframe_insertion(1),processed_transcript(3)
 AAMP		2	0	frameshift_elongation	frameshift_truncation(1),frameshift_elongation(1)
 #CRAVAT Report
-#Created at Tuesday 07/14/2020 13:21:25
+#Created at Wednesday 07/22/2020 15:40:45
 #Report level: sample
 #
 Variant Annotation	
@@ -38,7 +38,7 @@ UID	Sample
 7	sample_3
 8	sample_3
 #CRAVAT Report
-#Created at Tuesday 07/14/2020 13:21:25
+#Created at Wednesday 07/22/2020 15:40:45
 #Report level: mapping
 #
 Variant Annotation			
