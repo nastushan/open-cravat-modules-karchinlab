@@ -1,5 +1,5 @@
 datasource: v4.1
-description: Catalog of human genes and genetic disorders and traits, with particular focus on the molecular relationship between genetic variation and phenotypic expression.
+description: Online Mendelian Inheritance in Man. Catalog of human genes and genetic disorders and traits.
 developer:
   name: 'Johns Hopkins University'
   organization: 'Johns Hopkins University'
@@ -9,19 +9,21 @@ developer:
 
 
 level: variant
+
 output_columns:
 - name: omim_id
-  title: OMIM id
+  title: Entry ID
   type: string
-  width: 100
+  width: 70
   link_format: 'https://omim.org/entry/${[^;]+}'
 
   tags:
   - clinical relevance 
   - literature
+  requires: 
+  - wgomim
 
-
-title: Online Mendelian Inheritance in Man
+title: OMIM
 version: 1.0.0
 type: annotator
 private: true
