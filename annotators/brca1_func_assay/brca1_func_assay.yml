@@ -27,7 +27,7 @@ output_columns:
 tags:
 - cancer
 - multiplex assays
-title: BRCA1 Multiplex Assay
+title: BRCA1 Saturation Genome Editing Scores
 type: annotator
 version: 2019.05.13
 requires:
