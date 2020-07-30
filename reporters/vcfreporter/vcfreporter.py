@@ -46,6 +46,7 @@ class Reporter(CravatReport):
     def end (self):
         if self.wf is not None:
             self.wf.close()
+        return self.filename
 
     async def connect_db (self, dbpath=None):
         if dbpath != None:
