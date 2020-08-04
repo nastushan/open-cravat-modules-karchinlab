@@ -32,7 +32,6 @@ tags:
 - noncoding
 - germline
 - variant effect prediction
-- dbnsfp
 title: PhD-SNPg
 type: annotator
 version: 0.0.8

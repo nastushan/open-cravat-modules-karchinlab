@@ -16,7 +16,6 @@ output_columns:
   width: 127
 tags:
 - genes
-- dbnsfp
 title: p(HI)
 type: annotator
 version: 3.5.4
