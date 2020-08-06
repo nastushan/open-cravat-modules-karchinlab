@@ -9,7 +9,6 @@ class CravatAnnotator(BaseAnnotator):
     def annotate(self, input_data, secondary_data=None):
         q = 'select samples from cancer where chrom = "{chrom}" and pos = {pos} and ref = "{ref}" and alt = "{alt}"'.format(
             chrom = input_data["chrom"], pos = int(input_data["pos"]), ref = input_data["ref_base"], alt = input_data["alt_base"])
-        print(q)
         self.cursor.execute(q)
         row = self.cursor.fetchone()
         if row:
