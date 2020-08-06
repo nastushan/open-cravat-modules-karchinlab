@@ -16,6 +16,9 @@ output_columns:
   desc: Distinct cancer type and count associated with each variant. 
   width: 120
 
+requires:
+- wgcancer_hotspots
+
 title: Cancer Hotspots
 version: 1.0.0
 type: annotator
