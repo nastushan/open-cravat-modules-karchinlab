@@ -12,8 +12,8 @@ class CravatAnnotator(BaseAnnotator):
         self.cursor.execute(q)
         row = self.cursor.fetchone()
         if row:
-            Samples = str(row[0]).replace('|', '; ')
-            out = {'samples': Samples}
+            samples = str(row[0]).replace('|', '; ')
+            out = {'samples': samples}
         else:
             out = None
         return out
