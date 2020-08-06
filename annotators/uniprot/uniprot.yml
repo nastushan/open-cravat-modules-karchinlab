@@ -21,4 +21,3 @@ datasource: '201809'
 requires_opencravat: '>=1.4.0'
 tags:
 - genes
-- dbnsfp

@@ -48,7 +48,6 @@ output_columns:
   filterable: false
 tags:
 - populations
-- dbnsfp
 title: UK10k Cohorts
 type: annotator
 version: 3.5.9

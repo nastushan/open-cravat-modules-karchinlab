@@ -15,7 +15,6 @@ output_columns:
   desc: Score predicting gene haploinsufficiency
 tags:
 - genes
-- dbnsfp
 title: GHIS
 type: annotator
 version: 3.5.5

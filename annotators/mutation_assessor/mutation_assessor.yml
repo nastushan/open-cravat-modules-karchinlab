@@ -41,7 +41,6 @@ tags:
 - germline
 - cancer
 - variant effect prediction
-- dbnsfp
 title: Mutation Assessor
 type: annotator
 version: 3.0.6
