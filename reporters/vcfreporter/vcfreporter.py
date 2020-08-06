@@ -62,6 +62,10 @@ class Reporter(CravatReport):
         self.conn2 = sqlite3.connect(self.dbpath)
         self.cursor2 = self.conn2.cursor()
 
+    async def close_db (self):
+        await self.cursor.close()
+        await self.conn.close()
+
     def write_preface (self, level): 
         self.level = level
         if self.wf is not None:
