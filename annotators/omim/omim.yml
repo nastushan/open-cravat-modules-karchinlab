@@ -26,4 +26,4 @@ output_columns:
 title: OMIM
 version: 1.0.0
 type: annotator
-private: true
+
