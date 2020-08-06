@@ -1,4 +1,4 @@
-import aiosqlite3
+import aiosqlite
 import os
 import json
 
@@ -53,7 +53,7 @@ async def get_data (queries):
     '''
     
     dbpath = queries['dbpath']
-    conn = await aiosqlite3.connect(dbpath)
+    conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
 
     q = 'select distinct base__sample_id from sample where base__sample_id is not null'

@@ -1,4 +1,4 @@
-import aiosqlite3
+import aiosqlite
 import os
 
 async def get_data (queries):
@@ -6,7 +6,7 @@ async def get_data (queries):
     dbpath = os.path.join(os.path.dirname(__file__), 
                           'data',
                           'wgtopgenessummary.sqlite')
-    conn = await aiosqlite3.connect(dbpath)
+    conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
     q = 'select hugo, aalen from genelen'
     await cursor.execute(q)
@@ -15,7 +15,7 @@ async def get_data (queries):
         genelen[row[0]] = row[1]
     
     dbpath = queries['dbpath']
-    conn = await aiosqlite3.connect(dbpath)
+    conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
 
     # 1 sample?

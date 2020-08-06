@@ -1,9 +1,9 @@
-import aiosqlite3
+import aiosqlite
 import os
 
 async def make_db ():
     dbpath = 'wglollipop.sqlite'
-    conn = await aiosqlite3.connect(dbpath)
+    conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
     table_name = 'variant'
     sql = 'drop table if exists ' + table_name
@@ -36,7 +36,7 @@ async def get_data (queries):
     hugo = queries['hugo']
     dbpath = os.path.join(os.path.dirname(__file__), 'data',
                           'wglollipop.sqlite')
-    conn = await aiosqlite3.connect(dbpath)
+    conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
     
     ret = {}
