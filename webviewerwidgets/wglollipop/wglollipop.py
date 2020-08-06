@@ -22,6 +22,8 @@ async def make_db ():
     await cursor.execute(sql)
     sql = 'create index ' + table_name + '_idx0 on ' + table_name + ' (hugo)'
     await cursor.execute(sql)
+    await cursor.close()
+    await conn.close()
     
     # Next steps.
     # .separator "\t"
@@ -101,4 +103,6 @@ async def get_data (queries):
             sorted(domains[data_source], key=lambda x: x['start'])
     ret['domains'] = domains
     ret['hugo'] = hugo
+    await cursor.close()
+    await conn.close()
     return ret

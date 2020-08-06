@@ -33,7 +33,8 @@ async def get_data (queries):
             query = 'select distinct base__hugo from ' + table
             await cursor.execute(query)
             hugos = [v[0] for v in await cursor.fetchall() if len(v[0].strip()) > 0]
-
+    await cursor.close()
+    await conn.close()
     '''
     query = 'select name from sqlite_master where type="table" and ' +\
         'name="variant"'
@@ -95,4 +96,6 @@ async def get_data (queries):
 
     response['data'] = data
 
+    await cursor.close()
+    await conn.close()
     return response

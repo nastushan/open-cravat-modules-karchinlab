@@ -13,7 +13,8 @@ async def get_data (queries):
     genelen = {}
     for row in await cursor.fetchall():
         genelen[row[0]] = row[1]
-    
+    await cursor.close()
+    await conn.close()
     dbpath = queries['dbpath']
     conn = await aiosqlite.connect(dbpath)
     cursor = await conn.cursor()
@@ -55,5 +56,6 @@ async def get_data (queries):
     response = {'data': []}
     for hugo in sorted_hugos:
         response['data'].append([hugo, genesampleperc[hugo]])
-
+    await cursor.close()
+    await conn.close()
     return response

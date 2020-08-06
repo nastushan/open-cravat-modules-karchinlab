@@ -99,4 +99,6 @@ async def get_data (queries):
     
     response = {'data': {'samples': samples, 'sos': sos, 'socountdata': data}}
 
+    await cursor.close()
+    await conn.close()
     return response
