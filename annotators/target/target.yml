@@ -24,7 +24,6 @@ output_columns:
   hidden: true
 tags:
 - genes
-- clinical relevance
 - cancer
 title: TARGET
 type: annotator

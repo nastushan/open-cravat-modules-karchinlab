@@ -93,8 +93,6 @@ output_columns:
   hidden: true
 tags:
 - genes
-- germline
-- populations
 title: ExAC Gene and CNV
 type: annotator
 version: 0.3.21
