@@ -12,7 +12,7 @@ class Reporter(CravatReport):
 
     def setup(self):
 
-        outpath = f'{self.savepath}.example.txt'
+        outpath = f'{self.savepath}.annovar.txt'
         self.outfile = open(outpath, 'w')
 
     def write_header(self, level):
