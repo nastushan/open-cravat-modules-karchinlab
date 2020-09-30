@@ -1,0 +1,30 @@
+title: PROVEAN
+datasource: v1.1 ensembl 66
+type: annotator
+
+level: variant
+output_columns:
+- name: provean_score
+  title: Score
+  type: float
+  desc: Scores range from -14 to 14. The smaller the score the more likely the SNP has damaging effect.
+- name: provean_converted_rankscore
+  title: Converted rankscore
+  desc: The rankscore is the ratio of the rank the PROVEAN score over the total number of PROVEAN scores in dbNSFP.
+- name: provean_phred
+  title: Phred
+  type: float
+  desc: If score <= -2.5 the corresponding nsSNV is predicted as "D(amaging)"; otherwise it is predicted as "N(eutral)".
+
+description: PROVEAN is a software tool which predicts whether an amino acid substitution 
+  or indel has an impact on the biological function of a protein.
+developer:
+  name: Yongwook Choi, Agnes Chan
+  organization: J. Craig Venter Institute (JCVI)
+  email: support@cravat.us
+  website: http://provean.jcvi.org/index.php
+  citation: 'Choi Y, Chan AP (2015) PROVEAN web server: a tool to predict the functional effect of amino acid substitutions and indels.         Bioinformatics 31(16): 2745-2747.'
+
+tags:
+- variant effect prediction
+
