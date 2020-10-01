@@ -10,10 +10,11 @@ output_columns:
   desc: Scores range from -14 to 14. The smaller the score the more likely the SNP has damaging effect.
 - name: provean_converted_rankscore
   title: Converted rankscore
+  type: float
   desc: The rankscore is the ratio of the rank the PROVEAN score over the total number of PROVEAN scores in dbNSFP.
 - name: provean_phred
   title: Phred
-  type: float
+  type: string
   desc: If score <= -2.5 the corresponding nsSNV is predicted as "D(amaging)"; otherwise it is predicted as "N(eutral)".
 
 description: PROVEAN is a software tool which predicts whether an amino acid substitution or indel has an impact on the biological function of a protein.
