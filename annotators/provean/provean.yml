@@ -18,7 +18,7 @@ output_columns:
 - name: provean_converted_rankscore
   title: Converted rankscore
   type: float
-  desc: The rankscore is the ratio of the rank the PROVEAN score over the total number of PROVEAN scores in dbNSFP.
+  desc: The ratio of the rank the PROVEAN score over the total number of PROVEAN scores in dbNSFP.
   hidden: false
   width: 70
 - name: provean_pred
