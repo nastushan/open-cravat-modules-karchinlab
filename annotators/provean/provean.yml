@@ -13,17 +13,25 @@ output_columns:
   title: Score
   type: float
   desc: Scores range from -14 to 14. The smaller the score the more likely the SNP has damaging effect.
+  hidden: true
+  width: 60
 - name: provean_converted_rankscore
   title: Converted rankscore
   type: float
   desc: The rankscore is the ratio of the rank the PROVEAN score over the total number of PROVEAN scores in dbNSFP.
-- name: provean_phred
-  title: Phred
+  hidden: false
+  width: 70
+- name: provean_pred
+  title: Prediction
   type: string
-  desc: If score <= -2.5 the corresponding nsSNV is predicted as "D(amaging)"; otherwise it is predicted as "N(eutral)".
+  desc: If score <= -2.5 the corresponding nsSNV is predicted as "Damaging"; otherwise it is predicted as "Neutral".
+  hidden: false
+  width: 65
 
 tags:
 - variant effect prediction
 
 title: PROVEAN
 type: annotator
+
+
