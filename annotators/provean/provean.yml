@@ -1,5 +1,5 @@
 datasource: v1.1 ensembl 66
-description: PROVEAN is a software tool which predicts whether an amino acid substitution or indel has an impact on the biological function of a protein.
+description: A tool to predict the functional effect of amino acid substitutions and indels.
 developer:
   name: Yongwook Choi, Agnes Chan
   organization: J. Craig Venter Institute (JCVI)
